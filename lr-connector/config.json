@@ -1,0 +1,26 @@
+{
+    "lr": {
+        "url": "http://lrnode.inbloom.org",
+        "first_run_start_date": "2013-03-17",
+        "public_key_fingerprint": "5FCAF0FB45631978389313FA6350F8DF35B1647B",
+        "tagger_submitter": "inBloom Tagger Application <tagger@inbloom.org>"
+    },
+    "lrib": {
+        "url": "http://lriserver.inbloom.org",
+        "username": "lri",
+        "password": "7u2GR94z",
+        "access_token": "DELEGATE_0",
+        "local_cache_expiration": 86400
+    },
+    "lris": {
+        "host": "localhost",
+        "port": "9200",
+        "index": "lris",
+        "index_type": "schema-org"
+    },
+    "gpg": {
+        "binary": "/usr/bin/gpg"
+    },
+    "logging_level": "DEBUG",
+    "interval": 60
+}

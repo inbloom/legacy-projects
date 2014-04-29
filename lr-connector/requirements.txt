@@ -1,0 +1,7 @@
+LRSignature==0.1.13
+argparse==1.2.1
+importlib==1.0.2
+pyes==0.20.0
+python-gnupg==0.3.3
+urllib3==1.6
+wsgiref==0.1.2

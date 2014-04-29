@@ -1,0 +1,61 @@
+{
+    "settings":{
+
+    },
+    "mappings":{
+        "schema-org":{
+            "dynamic_date_formats": ["dateOptionalTime"],
+            "dynamic_templates": [
+                {                    
+                    "id_template":{
+                        "match": "id",
+                        "mapping": {
+                            "type":"string",
+                            "index":"not_analyzed",
+                            "include_in_all":false
+                        }
+                    }
+                },
+                {
+                    "type_template":{
+                        "match": "type",
+                        "mapping": {
+                            "type":"string",
+                            "index":"not_analyzed",
+                            "include_in_all":false
+                        }
+                    }
+                },
+                {
+                    "object_template":{
+                        "match": "*",
+                        "match_mapping_type": "object",
+                        "mapping": {
+                            "type": "object",
+                            "dynamic": true
+                        }
+                    }
+                },
+                {
+                    "generic_template":{
+                        "match": "*",
+                        "mapping": {
+                            "type": "multi_field",
+                            "path": "full",
+                            "fields": {
+                                "{name}": {
+                                    "type": "{dynamic_type}",
+                                    "index": "analyzed"
+                                },
+                                "original": {
+                                    "type": "string",
+                                    "index": "not_analyzed"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
