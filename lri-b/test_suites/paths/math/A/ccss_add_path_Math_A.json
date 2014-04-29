@@ -1,0 +1,79 @@
+{
+  //
+  // Create competency_path for Algebra - High School Math
+  //
+
+  // Path starts with Math domain CCSS.Math.Content.HSA.APR
+  "path_step_HSA.APR": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "APR",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.APR",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSA.APR"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSA.CED
+  "path_step_HSA.CED": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "CED",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.CED",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSA.CED",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.APR"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSA.REI
+  "path_step_HSA.REI": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "REI",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.REI",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSA.REI",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.CED"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSA.SSE
+  "path_step_HSA.SSE": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "SSE",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.SSE",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSA.SSE",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.REI"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+
+  // Create the path
+  "competency_path_math_HSA": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "A",
+      "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.Math.Content:HSA",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                      "urn:lri:entity_type:competency",
+                                      "urn:lri:entity_type:competency_path"],
+      "urn:lri:property_type:path_step": [
+        "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.APR",
+        "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.CED",
+        "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.REI",
+        "urn:ccss:path_step:CCSS.Math.Content:HSA:CCSS.Math.Content.HSA.SSE"
+      ],
+        "urn:lri:property_type:previous": "urn:ccss:ordering:CCSS.Math.Content:HSN"
+   },
+    "opts": {"access_token": "letmein"}
+  }
+}
+
+

@@ -1,0 +1,270 @@
+{
+    "properties": {
+        "urn:schema-org:property_type:alignment_type": {
+            "urn:lri:property_type:comment_plain": "A category of alignment between the learning resource and the framework node. Recommended values include: 'assessed', 'teaches', 'requires', 'textComplexity', 'readingLevel', 'educationalSubject', and 'educationLevel'.", 
+            "urn:lri:property_type:domains": [
+                "urn:schema-org:entity_type:alignment_object"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:alignment_type", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Alignment Type", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:educational_alignment": {
+            "urn:lri:property_type:comment_plain": "An alignment to an established educational framework.", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:educational_alignment", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Educational Alignment", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:schema-org:entity_type:alignment_object"
+            ]
+        }, 
+        "urn:schema-org:property_type:educational_framework": {
+            "urn:lri:property_type:comment_plain": "The framework to which the resource being described is aligned.", 
+            "urn:lri:property_type:domains": [
+                "urn:schema-org:entity_type:alignment_object"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:educational_framework", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Educational Framework", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:schema-org:entity_type:organization"
+            ]
+        }, 
+        "urn:schema-org:property_type:intended_end_user_role": {
+            "urn:lri:property_type:comment_plain": "The role that describes the target audience of the content.", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:intended_end_user_role", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Intended End User Role", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:group_type": {
+            "urn:lri:property_type:comment_plain": "Group Type", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:group_type", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Group Type", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:alignment_type": {
+            "urn:lri:property_type:comment_plain": "Alignment Type", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:alignment_type", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Alignment Type", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:educational_use": {
+            "urn:lri:property_type:comment_plain": "The purpose of the work in the context of education. Ex: 'assignment', 'group work'", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:educational_use", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Educational Use", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:interactivity_type": {
+            "urn:lri:property_type:comment_plain": "The predominate mode of learning supported by the learning resource. Acceptable values are active, expositive, or mixed.", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:interactivity_type", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Interactivity Type", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:is_based_on_url": {
+            "urn:lri:property_type:comment_plain": "A resource that was used in the creation of this resource. This term can be repeated for multiple sources.", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:is_based_on_url", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Is Based On URL", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:data_type:url"
+            ]
+        }, 
+        "urn:schema-org:property_type:learning_resource_type": {
+            "urn:lri:property_type:comment_plain": "The predominate type or kind characterizing the learning resource.", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:learning_resource_type", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Learning Resource Type", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:target_description": {
+            "urn:lri:property_type:comment_plain": "The description of a node in an established educational framework.", 
+            "urn:lri:property_type:domains": [
+                "urn:schema-org:entity_type:alignment_object"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:target_description", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Target Description", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:data_type:text"
+            ]
+        }, 
+        "urn:schema-org:property_type:target_name": {
+            "urn:lri:property_type:comment_plain": "The name of a node in an established educational framework.", 
+            "urn:lri:property_type:domains": [
+                "urn:schema-org:entity_type:alignment_object"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:target_name", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Target Name", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:data_type:text"
+            ]
+        }, 
+        "urn:schema-org:property_type:target_url": {
+            "urn:lri:property_type:comment_plain": "The URL of a node in an established educational framework.", 
+            "urn:lri:property_type:domains": [
+                "urn:schema-org:entity_type:alignment_object"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:target_url", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Target URL", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:data_type:url"
+            ]
+        }, 
+        "urn:schema-org:property_type:time_required": {
+            "urn:lri:property_type:comment_plain": "Approximate or typical time it takes to work with or through this learning resource for the typical intended target audience.", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:time_required", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Time Required", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:data_type:duration"
+            ]
+        }, 
+        "urn:schema-org:property_type:typical_age_range": {
+            "urn:lri:property_type:comment_plain": "The typical range of ages the content's intendedEndUser. ", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:typical_age_range", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Typical Age Range", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }, 
+        "urn:schema-org:property_type:use_rights_url": {
+            "urn:lri:property_type:comment_plain": "The URL where the owner specifies permissions for using the resource.", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:use_rights_url", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Use Rights URL", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:data_type:url"
+            ]
+        },
+        "urn:schema-org:property_type:physical_media_type": {
+            "urn:lri:property_type:comment_plain": "The physical media type", 
+            "urn:lri:property_type:domains": [
+                "urn:lri:entity_type:creative_work"
+            ], 
+            "urn:lri:property_type:id": "urn:schema-org:property_type:physical_media_type", 
+            "urn:lri:property_type:is_primary": true, 
+            "urn:lri:property_type:is_unique": false, 
+            "urn:lri:property_type:label": "Use Rights URL", 
+            "urn:lri:property_type:mandatory": false, 
+            "urn:lri:property_type:ranges": [
+                "urn:lri:entity_type:enumeration_member"
+            ]
+        }
+    }, 
+    "types": {
+        "urn:schema-org:entity_type:alignment_object": {
+            "urn:lri:property_type:comment_plain": "An intangible item that describes an alignment between a learning resource and a node in an educational framework.", 
+            "urn:lri:property_type:id": "urn:schema-org:entity_type:alignment_object", 
+            "urn:lri:property_type:label": "Alignment Object", 
+            "urn:lri:property_type:specific_properties": [
+                "urn:schema-org:property_type:alignment_type", 
+                "urn:schema-org:property_type:educational_framework", 
+                "urn:schema-org:property_type:target_description", 
+                "urn:schema-org:property_type:target_name", 
+                "urn:schema-org:property_type:target_url"
+            ], 
+            "urn:lri:property_type:supertypes": [
+                "urn:schema-org:entity_type:intangible"
+            ], 
+            "urn:lri:property_type:url": "http://schema.org/AlignmentObject"
+        }, 
+        "urn:schema-org:entity_type:educational_audience": {
+            "urn:lri:property_type:comment_plain": "The target audience for educational webpages.", 
+            "urn:lri:property_type:id": "urn:schema-org:entity_type:educational_audience", 
+            "urn:lri:property_type:label": "Educational Audience", 
+            "urn:lri:property_type:specific_properties": [
+                "urn:schema-org:property_type:educational_role"
+            ], 
+            "urn:lri:property_type:supertypes": [], 
+            "urn:lri:property_type:url": "http://schema.org/EducationalAudience"
+        }
+    }
+}

@@ -1,0 +1,749 @@
+step000:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "LRMI Controlled Vocabulary Enumeration: Intended End User Role", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration"}
+
+step001:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "LRMI Controlled Vocabulary Enumeration: Educational Use", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration"}
+
+step002:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration:interactivity_type", "urn:lri:property_type:name": "LRMI Controlled Vocabulary Enumeration: Interactivity Type", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration"}
+
+step003:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "LRMI Controlled Vocabulary Enumeration: Typical Age Range", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration"}
+
+step004:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "LRMI Controlled Vocabulary Enumeration: Media Type", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration"}
+
+step005:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "LRMI Controlled Vocabulary Enumeration: Learning Resource Type", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration"}
+
+step006:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:team", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Team", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step007:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:teacher", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Teacher", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step008:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:peer_tutor", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Peer Tutor", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step009:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:specialist", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Specialist", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step010:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:parent", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Parent", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step011:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:student", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Student", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step012:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:administrator", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Administrator", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step013:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:intended_end_user_role:mentor", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:intended_end_user_role", "urn:lri:property_type:name": "Mentor", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step014:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:nonlinguistic", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Nonlinguistic", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step015:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:writing", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Writing", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step016:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:musical", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Musical", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step017:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:differentiation", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Differentiation", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step018:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:interviews", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Interviews", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step019:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:field_trip", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Field Trip", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step020:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:problem_based", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Problem Based", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step021:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:play", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Play", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step022:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:visual_spatial", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Visual/Spatial", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step023:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:kinesthetic", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Kinesthetic", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step024:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:peer_response", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Peer Response", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step025:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:auditory", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Auditory", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step026:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:lecture", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Lecture", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step027:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:guided_questions", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Guided questions", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step028:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:drill_practice", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Drill & Practice", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step029:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:discussion_debate", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Discussion/Debate", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step030:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:service_learning", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Service Learning", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step031:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:generating_hypotheses", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Generating hypotheses", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step032:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:model_simulation", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Model & Simulation", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step033:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:summarizing", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Summarizing", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step034:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:problem_solving", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Problem Solving", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step035:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:cooperative_learning", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Cooperative Learning", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step036:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:assessment", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Assessment", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step037:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:reading", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Reading", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step038:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:introduction", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Introduction", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step039:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:word_association", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Word Association", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step040:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:identify_similarities_differences", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Identify similarities & differences", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step041:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:inquiry", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Inquiry", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step042:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:game", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Game", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step043:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:research", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Research", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step044:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:thematic_instruction", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Thematic Instruction", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step045:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:reciprocal_teaching", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Reciprocal Teaching", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step046:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:homework", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Homework", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step047:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:questioning", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Questioning", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step048:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:activity", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Activity", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step049:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:experiential", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Experiential", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step050:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:reflection", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Reflection", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step051:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:role_playing", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Role Playing", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step052:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:classifying", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Classifying", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step053:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:peer_coaching", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Peer Coaching", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step054:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:metaphors", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Metaphors", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step055:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:interactive", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Interactive", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step056:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:project", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Project", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step057:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:creative_response", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Creative Response", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step058:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:journaling", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Journaling", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step059:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:hands_on", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Hands-on", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step060:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:demonstration", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Demonstration", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step061:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:brainstorming", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Brainstorming", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step062:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:comparing", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Comparing", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step063:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:reinforcement", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Reinforcement", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step064:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:simulations", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Simulations", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step065:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:presentation", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Presentation", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step066:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:laboratory", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Laboratory", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step067:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:review", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Review", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step068:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:technology", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Technology", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step069:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:interview_survey", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Interview/Survey", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step070:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:testing_hypotheses", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Testing Hypotheses", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step071:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:analogies", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Analogies", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step072:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:note_taking", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Note taking", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step073:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:educational_use:discovery_learning", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:educational_use", "urn:lri:property_type:name": "Discovery Learning", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step074:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:interactivity_type:mixed", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:interactivity_type", "urn:lri:property_type:name": "Mixed", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step075:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:interactivity_type:expositive", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:interactivity_type", "urn:lri:property_type:name": "Expositive", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step076:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:interactivity_type:active", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:interactivity_type", "urn:lri:property_type:name": "Active", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step077:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:5_8", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "5-8", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step078:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:18+", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "18+", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step079:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:8_10", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "8-10", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step080:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:0_2", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "0-2", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step081:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:12_14", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "12-14", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step082:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:10_12", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "10-12", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step083:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:16_18", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "16-18", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step084:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:14_16", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "14-16", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step085:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:typical_age_range:3_5", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:typical_age_range", "urn:lri:property_type:name": "3-5", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step086:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:field_trip", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Field Trip", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step087:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:pdf", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "PDF", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step088:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:overhead", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Overhead", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step089:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:audiotape", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Audiotape", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step090:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:wiki", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Wiki", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step091:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:video_conference", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Video Conference", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step092:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:microfiche", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Microfiche", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step093:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:television", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Television", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step094:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:image", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Image", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step095:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:cd_i", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "CD-I", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step096:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:in_person_speaker", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "In-Person/Speaker", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step097:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:calculator", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Calculator", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step098:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:robotics", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Robotics", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step099:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:electronic_slides", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Electronic Slides", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step100:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:filmstrip", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Filmstrip", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step101:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:pamphlet", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Pamphlet", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step102:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:podcast", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Podcast", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step103:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:interactive_whiteboard", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Interactive Whiteboard", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step104:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:manipulative", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Manipulative", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step105:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:cd_rom", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "CD-ROM", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step106:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:photo", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Photo", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step107:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:slides", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Slides", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step108:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:printed", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Printed", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step109:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:flash", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Flash", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step110:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:audio_cd", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Audio CD", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step111:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:radio", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Radio", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step112:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:mbl_microcomputer_based_", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "MBL (Microcomputer Based)", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step113:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:webpage", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Webpage", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step114:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:diskette", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Diskette", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step115:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:satellite", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Satellite", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step116:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:person_to_person", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Person-to-Person", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step117:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:phonograph_record", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Phonograph Record", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step118:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:duplication_master", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Duplication Master", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step119:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:videodisc", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Videodisc", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step120:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:dvd_blu_ray", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "DVD/ Blu-ray", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step121:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:e_mail", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "E-Mail", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step122:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:media_type:transparency", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:media_type", "urn:lri:property_type:name": "Transparency", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step123:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:presentation", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Presentation", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step124:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:test", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Test", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step125:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:video", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Video", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step126:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:quiz", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Quiz", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step127:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:lesson_plan", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Lesson Plan", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step128:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:robotics", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Robotics", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step129:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:in_person_speaker", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "In-Person/Speaker", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step130:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:manipulative", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Manipulative", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step131:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:assessment", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Assessment", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step132:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:calculator", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Calculator", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step133:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:wiki", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Wiki", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step134:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:lab_material_printed_activities_instruments_samples_", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Lab Material (Printed Activities - Instruments - Samples...)", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step135:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:broadcast", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Broadcast", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step136:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:e_mail", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "E-Mail", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step137:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:mbl_microcomputer_based_", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "MBL (Microcomputer Based)", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step138:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:discussion", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Discussion", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step139:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:worksheet", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Worksheet", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step140:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:on_line", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "On-Line", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step141:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:audio", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Audio", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step142:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:printed", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Printed", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step143:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:kinesthetic", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Kinesthetic", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step144:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:still_image", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Still Image", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step145:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:field_trip", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Field Trip", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step146:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:podcast", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Podcast", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step147:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:hands_on", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Hands-on", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step148:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:activity", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Activity", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}
+
+step149:
+  action: entity/create
+  opts: {"access_token": "letmein"}
+  q: {"urn:lri:property_type:id": "urn:lrmi:enumeration_member:learning_resource_type:model", "urn:lri:property_type:is_member_of_enumeration": "urn:lrmi:enumeration:learning_resource_type", "urn:lri:property_type:name": "Model", "urn:lri:property_type:types": "urn:lri:entity_type:enumeration_member"}

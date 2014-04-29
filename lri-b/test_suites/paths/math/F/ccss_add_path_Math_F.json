@@ -1,0 +1,78 @@
+{
+  //
+  // Create competency_path for Functions - High School Math
+  //
+
+  // Path starts with Math domain CCSS.Math.Content.HSF.BF
+  "path_step_HSF.BF": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "BF",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.BF",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSF.BF"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSF.IF
+  "path_step_HSF.IF": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "IF",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.IF",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSF.IF",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.BF"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSF.LE
+  "path_step_HSF.LE": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "LE",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.LE",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSF.LE",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.IF"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSF.TF
+  "path_step_HSF.TF": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "TF",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.TF",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSF.TF",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.LE"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // Create the path
+  "competency_path_math_HSF": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "F",
+      "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.Math.Content:HSF",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                      "urn:lri:entity_type:competency",
+                                      "urn:lri:entity_type:competency_path"],
+      "urn:lri:property_type:path_step": [
+        "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.BF",
+        "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.IF",
+        "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.LE",
+        "urn:ccss:path_step:CCSS.Math.Content:HSF:CCSS.Math.Content.HSF.TF"
+      ],
+        "urn:lri:property_type:previous": "urn:ccss:ordering:CCSS.Math.Content:HSA"
+   },
+    "opts": {"access_token": "letmein"}
+  }
+}
+
+

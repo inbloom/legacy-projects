@@ -1,0 +1,68 @@
+// Copyright 2012-2013 inBloom, Inc. and its affiliates.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Create new entity
+step000:
+    action: entity/create
+    q: {"urn:lri:property_type:types":"urn:lri:entity_type:thing","urn:lri:property_type:id":"$RANDOM_ID"}
+    opts: {"access_token": "letmein"}
+    xtract: 
+        - response | urn:lri:property_type:guid | $ENTITY_GUID_0
+
+// Find new entity
+step001:
+    action: entity/search
+    q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+    opts: {"use_cached":false, "details":false}
+    xtract:
+        - response | 0 | props | urn:lri:property_type:creator | $CREATOR_0
+        - response | 0 | props | urn:lri:property_type:timestamp | $TIMESTAMP_0
+
+step002:
+    action: entity/search
+    q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+    opts: {"use_cached":false, "details":true}
+    xtract:
+        - response | 0 | props | urn:lri:property_type:creator | $CREATOR_0 | 0 | guid | $CREATOR_GUID
+        - response | 0 | props | urn:lri:property_type:timestamp | $TIMESTAMP_0| 0 | guid | $TIMESTAMP_GUID
+
+// Attempt to update timestamp
+step003:
+    action: property/update
+    q: {"guid":"$TIMESTAMP_GUID", "value": "123"}
+    opts: {"access_token":"letmein"}
+    xtract:
+        - message | 0 | $TIMESTAMP_MESSAGE
+    test:
+        - '"not allowed" in "$TIMESTAMP_MESSAGE"'
+
+step004:
+    action: property/update
+    q: {"guid":"$CREATOR_GUID", "value": "Tza Tza Gabor"}
+    opts: {"access_token":"letmein"}
+    xtract:
+        - message | 0 | $CREATOR_MESSAGE_0
+    test:
+        - '"not allowed" in "$CREATOR_MESSAGE_0"'
+
+step005:
+    action: property/create
+    q: {"from":"$ENTITY_GUID_0","urn:lri:property_type:creator":"Tza Tza Gabor"}
+    opts: {"access_token":"letmein"}
+    xtract:
+        - message | 0 | $CREATOR_MESSAGE_1
+    test:
+        - '"not allowed" in "$CREATOR_MESSAGE_1"'
+// Attempt to update creator
+// Attempt to create new creator

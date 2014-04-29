@@ -1,0 +1,94 @@
+{
+  //
+  // Create path 4.G
+  //
+
+  // Path starts with domain 4.G
+  "path_step_4.G": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.G",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.G",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/domain/4.G"
+    },
+    "opts": {}
+  },
+
+  // cluster 4.G.A
+  "path_step_4.G.A": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.G.A",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.G.A",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/cluster/4.G.A",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.G"
+    },
+    "opts": {}
+  },
+
+  // standard 4.G.1
+  "path_step_4.G.1": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.G.1",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.G.1",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.G.1",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.G.A"
+    },
+    "opts": {}
+  },
+
+  // standard 4.G.2
+  "path_step_4.G.2": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.G.2",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.G.2",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.G.2",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.G.1"
+    },
+    "opts": {}
+  },
+
+  // standard 4.G.3
+  "path_step_4.G.3": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.G.3",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.G.3",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.G.3",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.G.2"
+    },
+    "opts": {}
+  },
+
+  // Create the path
+  "competency_path_4.G": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.G",
+      "uri://lri/property_type/id": "uri://ccss/ordering/math/4.G",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/competency",
+                                        "uri://lri/object_type/competency_path"],
+      "uri://lri/property_type/path_step": [
+        "uri://ccss/path_step/4.G",
+        "uri://ccss/path_step/4.G.A",
+        "uri://ccss/path_step/4.G.1",
+        "uri://ccss/path_step/4.G.2",
+        "uri://ccss/path_step/4.G.3"
+      ]
+    },
+    "opts": {}
+  }
+}

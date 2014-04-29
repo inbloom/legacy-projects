@@ -1,0 +1,59 @@
+// Copyright 2012-2013 inBloom, Inc. and its affiliates.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+---
+
+// First create an initial entity with a dangling reference
+step000:
+  action: entity/create
+  q: {"urn:lri:property_type:types":"urn:lri:entity_type:competency","urn:lri:property_type:id":"$RANDOM_ID","urn:lri:property_type:contained_by":"$RANDOM_ID"}
+  opts: {"access_token":"letmein"}
+  xtract: 
+    - response | urn:lri:property_type:guid | $ENTITY_GUID_0
+    - response | urn:lri:property_type:id | $ENTITY_ID_0
+    - response | urn:lri:property_type:contained_by | $DANGLING_ID_CREATED
+
+// Check for that reference
+step001:
+  action: entity/search
+  q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+  opts: {"details":false,"use_cached":false}
+  xtract:
+    - response | 0 | props| urn:lri:property_type:contained_by | $DANGLING_ID_FOUND
+  test:
+    - '"$DANGLING_ID_CREATED" == "$DANGLING_ID_FOUND"'
+
+// Now try to create a second entity with the dangling reference as an ID
+step002:
+  action: entity/create
+  q: {"urn:lri:property_type:types":"urn:lri:entity_type:competency_container","urn:lri:property_type:id":"$DANGLING_ID_CREATED"}
+  opts: {"access_token":"letmein"}
+  xtract:
+    - response | urn:lri:property_type:guid | $ENTITY_GUID_2
+    - response | urn:lri:property_type:id | $ENTITY_ID_2
+    - status | $STATUS_2
+  test:
+    - '"$STATUS_2" == "normal"'
+    - '"$DANGLING_ID_CREATED" == "$ENTITY_ID_2"' 
+
+// Check for that reference
+step003:
+  action: entity/search
+  q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+  opts: {"details":details,"use_cached":false}
+  xtract:
+    - response | 0 | props | urn:lri:property_type:contained_by | $DANGLING_ID_CREATED | 0 | to | $CONNECTED_GUID
+  test: 
+    - '"$ENTITY_GUID_2" == "$CONNECTED_GUID"'
+

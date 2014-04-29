@@ -1,0 +1,90 @@
+{
+    //
+    // Create competency_path mapping ELA grade 8 to ELA domains
+    //
+
+    // Path starts with ELA domain CCSS.ELA-Literacy.L
+    "ela_domain_L.8": {
+        "action": "entity/create",
+        "q": {
+            "urn:lri:property_type:name": "L",
+            "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.L",
+            "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+            "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.ELA-Literacy.L"
+        },
+        "opts": {"access_token": "letmein"}
+    },
+
+    // ELA domain CCSS.ELA-Literacy.RI
+    "ela_domain_RI.8": {
+        "action": "entity/create",
+        "q": {
+            "urn:lri:property_type:name": "RI",
+            "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.RI",
+            "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+            "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.ELA-Literacy.RI",
+            "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.L"
+        },
+        "opts": {"access_token": "letmein"}
+    },
+
+    // ELA domain CCSS.ELA-Literacy.RL
+    "ela_domain_RL.8": {
+        "action": "entity/create",
+        "q": {
+            "urn:lri:property_type:name": "RL",
+            "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.RL",
+            "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+            "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.ELA-Literacy.RL",
+            "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.RI"
+        },
+        "opts": {"access_token": "letmein"}
+    },
+
+    // ELA domain CCSS.ELA-Literacy.SL
+    "ela_domain_SL.8": {
+        "action": "entity/create",
+        "q": {
+        "urn:lri:property_type:name": "SL",
+        "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.SL",
+        "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+        "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.ELA-Literacy.SL",
+        "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.RL"
+        },
+        "opts": {"access_token": "letmein"}
+    },
+
+    // ELA domain CCSS.ELA-Literacy.W
+    "ela_domain_W.8": {
+        "action": "entity/create",
+        "q": {
+            "urn:lri:property_type:name": "W",
+            "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.W",
+            "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+            "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.ELA-Literacy.W",
+            "urn:lri:property_type:previous": "urn:ccss:path_step:8:CCSS.ELA-Literacy.SL"
+        },
+        "opts": {"access_token": "letmein"}
+    },
+
+    // Path
+    "ela_path_8": {
+        "action": "entity/create",
+        "q": {
+            "urn:lri:property_type:name": "8",
+            "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.ELA-Literacy:8",
+            "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                              "urn:lri:entity_type:competency",
+                                              "urn:lri:entity_type:competency_path"],
+            "urn:lri:property_type:path_step": [
+                "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.L",
+                "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.RI",
+                "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.RL",
+                "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.SL",
+                "urn:ccss:path_step:CCSS.ELA-Literacy:8:CCSS.ELA-Literacy.W"
+            ],
+            "urn:lri:property_type:previous": "urn:ccss:ordering:CCSS.ELA-Literacy:7"
+        },
+        "opts": {"access_token": "letmein"}
+    }
+}

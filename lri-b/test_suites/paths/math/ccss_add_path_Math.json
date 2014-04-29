@@ -1,0 +1,36 @@
+{
+  //
+  // Create competency_path for Math
+  //
+
+  //
+  // Create competency_path for Math grades
+  //
+  "competency_path_Math": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "Mathematics",
+      "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.Math.Content",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                      "urn:lri:entity_type:competency",
+                                      "urn:lri:entity_type:competency_path"],
+      "urn:lri:property_type:path_step": [
+        "urn:ccss:ordering:CCSS.Math.Content:K",
+        "urn:ccss:ordering:CCSS.Math.Content:1",
+        "urn:ccss:ordering:CCSS.Math.Content:2",
+        "urn:ccss:ordering:CCSS.Math.Content:3",
+        "urn:ccss:ordering:CCSS.Math.Content:4",
+        "urn:ccss:ordering:CCSS.Math.Content:5",
+        "urn:ccss:ordering:CCSS.Math.Content:6",
+        "urn:ccss:ordering:CCSS.Math.Content:7",
+        "urn:ccss:ordering:CCSS.Math.Content:8",
+        "urn:ccss:ordering:CCSS.Math.Content:HSN",
+        "urn:ccss:ordering:CCSS.Math.Content:HSA",
+        "urn:ccss:ordering:CCSS.Math.Content:HSF",
+        "urn:ccss:ordering:CCSS.Math.Content:HSG",
+        "urn:ccss:ordering:CCSS.Math.Content:HSS"
+      ]
+    },
+    "opts": {"access_token":"letmein"}
+  }
+}

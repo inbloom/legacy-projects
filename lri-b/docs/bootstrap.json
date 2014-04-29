@@ -1,0 +1,554 @@
+{ "datatypes": {
+    "Text": {
+      "comment": "Data type: Text.", 
+      "comment_plain": "Data type: Text.", 
+      "id": "urn:lri:data_type:text", 
+      "label": "Text", 
+      "types": [ "urn:lri:entity_type:data_type" ]
+    }, 
+    "URL": {
+      "comment": "Data type: URL.", 
+      "comment_plain": "Data type: URL.", 
+      "id": "urn:lri:data_type:url", 
+      "label": "URL", 
+      "supertypes": ["urn:lri:data_type:text" ], 
+      "types": [ "urn:lri:entity_type:data_type" ]
+    },
+    "URN": {
+      "comment": "Data type: URN.", 
+      "comment_plain": "Data type: URN.", 
+      "id": "urn:lri:data_type:urn", 
+      "label": "URN", 
+      "supertypes": [ "urn:lri:data_type:text" ],
+      "types": [ "urn:lri:entity_type:data_type" ] 
+    },
+    "guid": {
+      "comment_plain": "An internal LRI GUID (IGUID)", 
+      "id": "urn:lri:data_type:guid", 
+      "label": "URI", 
+      "supertypes": [ "urn:lri:data_type:text" ],
+      "types": [ "urn:lri:entity_type:data_type" ] 
+    },
+    "Boolean": {
+      "comment_plain": "Boolean: True or False.", 
+      "id": "urn:lri:data_type:boolean", 
+      "label": "Boolean", 
+      "types": ["urn:lri:entity_type:data_type"]
+    }, 
+    "datetime": {
+      "comment_plain": "An ISO 8601 Value", 
+      "id": "urn:lri:data_type:datetime", 
+      "label": "DateTime", 
+      "types": ["urn:lri:entity_type:data_type"]
+    }, 
+    "duration": {
+      "comment_plain": "An ISO 8601 Value", 
+      "id": "urn:lri:data_type:datetime", 
+      "label": "DateTime", 
+      "types": ["urn:lri:entity_type:data_type"]
+    }, 
+    "Float": {
+      "comment_plain": "A floating point number", 
+      "id": "urn:lri:data_type:float", 
+      "label": "Float", 
+      "supertypes": [ "urn:lri:data_type:number" ],
+      "types": ["urn:lri:entity_type:data_type"]
+    }, 
+    "Integer": {
+      "comment_plain": "An integer number", 
+      "id": "urn:lri:data_type:integer", 
+      "label": "Integer", 
+      "supertypes": [ "urn:lri:data_type:number" ],
+      "types": ["urn:lri:entity_type:data_type"]
+    },
+    "Number": {
+      "comment_plain": "Data type: Number", 
+      "id": "urn:lri:data_type:number", 
+      "label": "Number", 
+      "types": ["urn:lri:entity_type:data_type"]
+    }, 
+    "Duration": {
+      "comment_plain": "Quantity: Duration (use  ISO 8601 duration format).", 
+      "id": "urn:lri:data_type:duration", 
+      "label": "Duration", 
+      "supertypes": [ "urn:lri:data_type:text" ],
+      "types": ["urn:lri:entity_type:quantity"]
+    }, 
+    "Distance": {
+      "comment_plain": "Properties that take Distances as values are of the form '<Number> <Length unit of measure>'. E.g., '7 ft'", 
+      "id": "urn:lri:data_type:distance", 
+      "label": "Distance", 
+      "supertypes": [ "urn:lri:data_type:text" ],
+      "types": ["urn:lri:entity_type:quantity"]
+    }, 
+    "Energy": {
+      "comment_plain": "Properties that take Enerygy as values are of the form '<Number> <Energy unit of measure>'", 
+      "id": "urn:lri:data_type:energy", 
+      "label": "Energy", 
+      "supertypes": [ "urn:lri:data_type:text" ],
+      "types": ["urn:lri:entity_type:quantity"]
+    }, 
+    "Mass": {
+      "comment_plain": "Properties that take Mass as values are of the form '<Number> <Mass unit of measure>'. E.g., '7 kg'", 
+      "id": "urn:lri:data_type:mass", 
+      "label": "Mass", 
+      "supertypes": [ "urn:lri:data_type:text" ],
+      "types": ["urn:lri:entity_type:quantity"]
+    }
+  }, 
+  "types":
+    { "Type": {
+      "comment_plain": "Type in the type system", 
+      "id": "urn:lri:entity_type:type", 
+      "label": "Type", 
+      "specific_properties": [
+       "ancestors",
+       "comment",
+       "comment_plain",
+       "instances",
+       "label",
+       "properties",
+       "specific_properties",
+       "subtypes", 
+       "supertypes"
+      ], 
+      "subtypes": ["PropertyType"],
+      "supertypes": ["Thing"], 
+      "url": ""
+    }, 
+    "PropertyType": {
+      "comment_plain": "Property types in the type system", 
+      "id": "urn:lri:entity_type:property_type", 
+      "label": "Property Type", 
+      "specific_properties": [
+        "domains",
+        "is_unique",
+        "mandatory",
+	"reverse",
+	"is_primary",
+        "ranges"
+      ], 
+      "subtypes": [],
+      "supertypes": ["Type"], 
+      "url": ""
+    }, 
+    "Property": {
+      "comment_plain": "Property in the type system", 
+      "id": "urn:lri:entity_type:property", 
+      "label": "Property", 
+      "specific_properties": [
+        "creator",
+        "from",
+        "replaced_by",
+        "timestamp",
+        "to",
+        "value",
+	"rank",
+	"proptype",
+	"alive"
+      ], 
+      "subtypes": [],
+      "supertypes": [], 
+      "types":["urn:lri:entity_type:property_type"],
+      "url": ""
+       },
+    "DataType": {
+      "comment_plain": "The basic data types such as Integers, Strings, etc.", 
+      "id": "urn:lri:entity_type:data_type", 
+      "label": "Data Type", 
+      "properties": [], 
+      "specific_properties": [], 
+      "supertypes": ["Type"], 
+      "types": ["Type"]
+    }, 
+    "Quantity": {
+      "comment_plain": "The basic data types such as Integers, Strings, etc.", 
+      "id": "urn:lri:entity_type:quantity", 
+      "label": "Quantity", 
+      "supertypes": ["DataType"], 
+      "types": ["Type"]
+    }, 
+    "Thing": {
+      "ancestors": [], 
+      "comment": "The most generic type of item.", 
+      "comment_plain": "The most generic type of item.", 
+      "id": "urn:lri:entity_type:thing", 
+      "label": "Thing", 
+      "specific_properties": [
+        "description", 
+        "guid",
+	"timestamp",
+        "id",
+        "image", 
+        "name", 
+        "types",
+        "url"
+      ], 
+      "subtypes": [
+        "CreativeWork", 
+        "Event", 
+        "Intangible", 
+        "Organization", 
+        "Person", 
+        "Place", 
+        "Product",
+        "Type"
+      ], 
+      "supertypes": [],   
+      "url": "http://schema.org/Thing"
+    },
+   "enumeration":{                                                                                       
+     "comment_plain": "A finite, enumerated collection of entities",                                                        
+     "id": "urn:lri:entity_type:enumeration",                                                                               
+     "label": "Enumeration",                                                                                                
+     "specific_properties": [                                                                                               
+         "urn:lri:property_type:has_enumeration_member"                                                                                       
+      ],                                                                                                                     
+     "supertypes": ["Thing"]                                                                                                
+    },                                                                                                                        
+   "enumeration_member":{                                                                                
+     "comment_plain": "A member of an enumeration entity",                                                                  
+     "id": "urn:lri:entity_type:enumeration_member",                                                                        
+     "label": "Enumeration Member",                                                                                         
+     "specific_properties": [                                                                                               
+        "urn:lri:property_type:is_member_of_enumeration"                                                                     
+      ],                                                                                                                     
+     "supertypes": ["Thing"]                                                                                                
+    }                                                                                                                       
+   },
+
+"properties":{
+    "description": {
+      "comment_plain":"Description of the the object instance", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:description",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:text"]
+    }, 
+    "guid": {
+      "comment_plain":"Automatically generated internal LRI ID", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:guid",
+      "is_unique":true,
+      "mandatory":true,
+      "label": "GUID", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:text"]
+      },
+    "id": {
+      "comment_plain":"ID for the object.  Always written as a URI.", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:id",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "ID", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:urn"]
+      },
+    "image": {
+      "comment_plain":"URL of an image of the item.", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:uri",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Image", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:url"]
+      },
+    "name": {
+      "comment_plain":"The name of the item.", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:name",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Name", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:text"]
+      },
+    "timestamp": {
+      "comment_plain":"The creation time of the item.", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:timestamp",
+      "is_unique":true,
+      "mandatory":true,
+      "label": "Creation Timestamp", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:date"]
+      },
+    "types": {
+      "comment_plain":"Types that this item is declared to be.", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:types",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Types", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:type"]
+      },
+    "url": {
+      "comment_plain":"URL of the item.", 
+      "domains": ["urn:lri:entity_type:thing"], 
+      "id": "urn:lri:property_type:url",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "URL", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:url"]
+      },
+    "ancestors": {
+      "comment_plain":"A list of all of the generations of supertypes.", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:ancestors",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Ancestors", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:type"]
+      },
+    "comment": {
+      "comment_plain":"A comment in HTML about this type", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:comment",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Comment", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:text"]
+      },
+    "comment_plain": {
+      "comment_plain":"A comment in plain (UTF-8) text about this type.", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:comment_plain",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Comment", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:text"]
+      },
+    "instances": {
+      "comment_plain":"Instances of this type", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:instances",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Instances", 
+      "is_primary":false,
+      "ranges": ["urn:lri:entity_type:thing"]
+      },
+    "label": {
+      "comment_plain":"A short human readable label for this type.", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:label",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Label", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:text"]
+      },
+    "properties": {
+      "comment_plain":"A derived list of specific_properties for this type including all ancestors", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:properties",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Properties", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:property_type"]
+      },
+    "specific_properties": {
+      "comment_plain":"The properties specific to this immediate type.", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:specific_properties",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Specific Properties", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:property_type"]
+      },
+    "subtypes": {
+      "comment_plain":"Types that inherit from this one (Child types). Reverse of supertypes", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:subtypes",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Subtypes", 
+      "is_primary":false,
+      "ranges": ["urn:lri:entity_type:type"]
+      },
+    "supertypes": {
+      "comment_plain":"Types that this one inherits from (Parent types). Reverse of subtypes", 
+      "domains": ["urn:lri:entity_type:type"], 
+      "id": "urn:lri:property_type:supertypes",
+      "is_unique":false,
+      "mandatory":false,
+      "label": "Supertypes", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:type"]
+      },
+    "domains": {
+      "comment_plain":"Domains for this property", 
+      "domains": ["urn:lri:entity_type:property_type"], 
+      "id": "urn:lri:property_type:domains",
+      "is_unique":false,
+      "mandatory":true,
+      "label": "Domains", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:type"]
+      },
+    "ranges": {
+      "comment_plain":"Ranges (expected type) for this property.", 
+      "domains": ["urn:lri:entity_type:property_type"], 
+      "id": "urn:lri:property_type:ranges",
+      "is_unique":false,
+      "mandatory":true,
+      "label": "Ranges", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:type"]
+      },
+    "creator": {
+      "comment_plain":"ID for the creator of this property instance.", 
+      "domains": ["urn:lri:entity_type:property"], 
+      "id": "urn:lri:property_type:creator",
+      "is_unique":true,
+      "mandatory":true,
+      "label": "Creator", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:uri"]
+      },
+    "from": {
+      "comment_plain":"Left hand side of this property", 
+      "domains": ["urn:lri:entity_type:property"], 
+      "id": "urn:lri:property_type:from",
+      "is_unique":true,
+      "mandatory":true,
+      "label": "From", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:guid"]
+      },
+    "to": {
+      "comment_plain":"Right hand side of this property. Mutually exclusive with 'value'", 
+      "domains": ["urn:lri:entity_type:property"], 
+      "id": "urn:lri:property_type:to",
+      "is_unique":true,
+      "mandatory":false,
+      "label": "To", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:guid"]
+      },
+    "is_unique": {
+      "comment_plain":"Boolean indicating whether no more than one instance of this property is allowed.  Default is 'false'", 
+      "domains": ["urn:lri:entity_type:property_type"], 
+      "id": "urn:lri:property_type:is_unique",
+      "is_unique":true,
+      "mandatory":false,
+      "label": "Is Unique?", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:boolean"]
+      },
+    "is_primary": {
+      "comment_plain":"Boolean indicating whether this is the primary direction of this property type.  Default is 'true'", 
+      "domains": ["urn:lri:entity_type:property_type"], 
+      "id": "urn:lri:property_type:is_primary",
+      "is_unique":true,
+      "mandatory":true,
+      "label": "Is Primary Property Direction?", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:boolean"]
+      },
+    "mandatory": {
+      "comment_plain":"Boolean indicating whether this property is required.  Default is 'false'", 
+      "domains": ["urn:lri:entity_type:property_type"], 
+      "id": "urn:lri:property_type:mandatory",
+      "is_unique":true,
+      "mandatory":false,
+      "label": "Is Mandatory?", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:boolean"]
+      },
+    "value": {
+      "comment_plain":"The actual value of a property.", 
+      "domains": ["urn:lri:entity_type:property",
+                  "urn:lri:entity_type:key"], 
+      "id": "urn:lri:property_type:value",
+      "is_unique":true,
+      "mandatory":false,
+      "label": "Value", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:datatype"]
+      },
+    "replaced_by": {
+      "comment_plain":"A newer version of this property instance.", 
+      "domains": ["urn:lri:entity_type:property"],
+      "id": "urn:lri:property_type:replaced_by",
+      "is_unique":true,
+      "mandatory":false,
+      "label": "Replaced By", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:property"]
+      },
+    "rank": {
+      "comment_plain":"An ordering value for the property.", 
+      "domains": ["urn:lri:entity_type:property"],
+      "id": "urn:lri:property_type:rank",
+      "is_unique":true,
+      "mandatory":false,
+      "label": "Value", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:text"]
+      },
+    "reverse": {
+      "comment_plain":"The property that is the reverse of this one", 
+      "domains": ["urn:lri:entity_type:property_type"],
+      "id": "urn:lri:property_type:reverse",
+      "is_unique":true,
+      "mandatory":false,
+      "label": "Value", 
+      "ranges": ["urn:lri:entity_type:property_type"],
+      "is_primary":true
+      },
+    "proptype": {
+      "comment_plain":"This property's type", 
+      "domains": ["urn:lri:entity_type:property"],
+      "id": "urn:lri:property_type:proptype",
+      "is_unique":true,
+      "mandatory":true,
+      "label": "Proptype", 
+      "is_primary":true,
+      "ranges": ["urn:lri:entity_type:property_type"]
+      },
+    "alive": {
+      "comment_plain":"Whether this property instance is alive or deleted", 
+      "domains": ["urn:lri:entity_type:property"],
+      "id": "urn:lri:property_type:alive",
+      "is_unique":true,
+      "mandatory":true,
+      "label": "Alive", 
+      "is_primary":true,
+      "ranges": ["urn:lri:data_type:boolean"]
+      },
+    "urn:lri:property_type:is_member_of_enumeration": {                                                                      
+      "comment_plain": "This entity is a member of an enumeration collection",                                               
+      "domains": ["urn:lri:entity_type:enumeration_member"],                                                                 
+      "id": "urn:lri:property_type:is_member_of_enumeration",                                                                          
+      "is_unique": false,                                                                                                    
+      "mandatory": false,                                                                                                     
+      "label": "Is Member Of",                                                                                   
+      "is_primary": true,                                                                                                    
+      "ranges": ["urn:lri:entity_type:enumeration"],                                                                         
+      "reverse": "urn:lri:property_type:has_enumeration_member"                                                            
+      },                                                                                                                       
+    "urn:lri:property_type:has_enumeration_member": {                                                                                        
+      "comment_plain": "This enumeration contains the member",                                                               
+      "domains": ["urn:lri:entity_type:enumeration"],                                                                        
+      "id": "urn:lri:property_type:has_enumeration_member",                                                                                     "is_unique": false,                                                                                                    
+      "mandatory": false,                                                                                                    
+      "label": "Has Member",                                                                                                     
+      "is_primary": false,                                                                                                   
+      "ranges": ["urn:lri:entity_type:enumeration_member"],                                                                  
+      "reverse": "urn:lri:property_type:is_member_of_enumeration"                                                            
+    }                                                                                                                     
+}
+}

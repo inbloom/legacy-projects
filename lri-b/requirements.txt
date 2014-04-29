@@ -1,0 +1,7 @@
+JPype==0.5.4.2
+PyYAML==3.10
+httplib2==0.8
+neo4j-embedded==1.6
+py2neo==1.4.6
+python-memcached==1.51
+web.py==0.37

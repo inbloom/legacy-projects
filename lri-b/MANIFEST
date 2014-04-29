@@ -1,0 +1,76 @@
+
+SOURCE CODE FILES
+
+cache.py : Cache handling class
+client.py : HTTP client class for LRI server
+entity.py : Entity object class
+lri_admin.py : Command line tool to administer LRI
+lridb.py : Main abstraction class for LRI database (subclass for new backends)
+lrilog.py : Simple logging class
+neo_admin.py : Neo4J administrative functions class
+neorest.py : Subclass of lridb.py for neo4j backend via HTTP
+org2lri.py : Tool to convert schema.org JSON formatted schema to LRI digestable schema 
+parseccssxml.py : Converts CCSS XML dumps into query_sequencer input files.
+prop.py : LRI property object class
+query_sequencer.py : Tool/class to run sequences of queries with extractions and tests.  Good for bulk loads too.
+regression.py : Regression testing tool/class
+request.py : LRI server request handler class
+schema.py : LRI schema handler/validator class
+timer.py : Timing class for performance profiling
+user.py : Class for user login authentication
+webapp.py : WSGI application for serving requests
+
+SCHEMA FILES
+
+external_schema : Contains raw schema from external sources
+external_schema/english_standards.xml : Old (obsolete) CCSS ELA standards instances
+external_schema/ELA-Literacy.xml: CCSS ELA Literacy XML dump
+external_schema/schemaorg.json : schema.org snapshot
+external_schema/Math.xml : CCSS Math XML dump
+external_schema/math_standards.xml Old (obsolete) CCSS math standards instances
+external_schema/schemaorg.xml : schema.org snapshot
+
+lri_schema : Holds internal (or cleaned external) schema
+lri_schema/bootstrap.json : Core bootstrap schema
+lri_schema/lrmi_fixed.json : LRMI extensions to schema.org
+lri_schema/schema.org.json : Raw schema.org schema
+lri_schema/cc_schema.json : LMDM/CCSS schema
+lri_schema/schema.org_fixed.json : cleaned schema.org schema
+
+LICENSE FILES
+
+LICENSE-2.0.txt : Apache license text
+NOTICE.txt : License notice
+
+CONFIGURATION FILES
+
+lri_config.json : Configuration file for LRI server
+wsgi_config.json : Configuration for WSGI in webapp
+
+QUERY SEQUENCER INPUT FILES
+
+test_suites : Hold all query_sequencer input files
+test_suites/resources : Miscellaneous datasets
+test_suites/resources/all_learning_resources.yaml : Collection of 3000 learning resources from thinkfinity
+test_suites/load : Contains datasets intended for bulk loading by query_sequencer
+test_suites/load/ccss_suite_new.yaml : CCSS standards dataset
+test_suites/load/lrmi_enumerations.loadable.yaml : LRMI enumerations for Agilix tagger
+test_suites/load/ccss_suite.yaml : Uncleaned CCSS standards dataset
+test_suites/regression : Contains regression/unit tests for LRI API
+test_suites/regression/test_update_error.yaml : Test for property updates
+test_suites/regression/test_property_delete.yaml : Test for property deletes
+test_suites/regression/test_cursor.yaml : Cursor test
+test_suites/regression/test_constrain_by.yaml : Test for "constrain_by" 
+test_suites/regression/suite_01.yaml : Basic "hello world" test
+test_suites/regression/test_dup_id.yaml : Test for duplicate ID prevention
+test_suites/regression/test_reverse.yaml : Test for reverse property handling
+test_suites/regression/test_simple_AND.yaml : Test for logical AND
+test_suites/regression/test_valid_prop.yaml : Test for property ID validation
+test_suites/regression/test_cache.yaml : Caching test
+test_suites/regression/test_constrain_creator.yaml : Test for "creator" constraints
+test_suites/regression/test_atomic_creation.yaml : Test for atomicity of entity creates
+test_suites/regression/test_wildcard.yaml : Test for wildcard support in text searches
+test_suites/regression/test_move_id.yaml : Test for moving IDs between entities
+test_suites/regression/test_connect_dangling.yaml : Test for attachment of dangling link properties
+test_suites/paths : Collections of CCSS curated learning paths
+

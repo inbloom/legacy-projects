@@ -1,0 +1,836 @@
+{
+    "properties": {
+        "urn:ccss:property_type:contained_anchor_standard": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:anchor_standard_section"
+            ], 
+            "id": "urn:ccss:property_type:contained_anchor_standard", 
+            "is_unique": false, 
+            "label": "Anchor Standard", 
+            "mandatory": false, 
+	    "is_primary":false,
+            "ranges": [
+                "urn:ccss:entity_type:anchor_standard"
+            ], 
+            "reverse": "urn:ccss:property_type:is_in_section"
+        }, 
+        "urn:lri:property_type:assessed_by": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency"
+            ], 
+            "id": "urn:lri:property_type:assessed_by", 
+            "is_unique": false, 
+            "label": "Assessed By", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:assessment_resource"
+            ], 
+	    "is_primary":false,
+            "reverse":  "urn:lri:property_type:assesses"
+        }, 
+        "urn:lri:property_type:assesses": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:assessment_resource"
+            ], 
+            "id": "urn:lri:property_type:assesses", 
+            "is_unique": false, 
+            "label": "Assesses", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:competency"
+            ], 
+	    "is_primary":true,
+            "reverse":  "urn:lri:property_type:assessed_by"
+        }, 
+        "urn:lri:property_type:authored_by": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency_path"
+            ], 
+            "id": "urn:lri:property_type:authored_by", 
+            "is_unique": true, 
+            "label": "Author", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:path_author"
+            ], 
+            "reverse":  "urn:lri:property_type:path_authored"
+        }, 
+        "urn:lri:property_type:path_authored": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:path_author"
+            ], 
+            "id": "urn:lri:property_type:path_authored", 
+            "is_unique": true, 
+            "label": "Author", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:competency_path"
+            ], 
+	    "is_primary":false,
+            "reverse":  "urn:lri:property_type:authored_by"
+        }, 
+        "urn:lri:property_type:authority": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:specification"
+            ], 
+            "id": "urn:lri:property_type:authority", 
+            "is_unique": false, 
+            "label": "Authority", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:uri"
+            ]
+        }, 
+        "urn:ccss:property_type:ccid": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:learning_objective"
+            ], 
+            "id": "urn:ccss:property_type:ccid", 
+            "is_unique": true, 
+            "label": "Ccid", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:data_type:text"
+            ]
+        }, 
+        "urn:lri:property_type:completion_criterion": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency_container"
+            ], 
+            "id": "urn:lri:property_type:completion_criterion", 
+            "is_unique": false, 
+            "label": "Completion Criterion", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:completion_criterion"
+            ]
+        }, 
+        "urn:ccss:property_type:includes_domain": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:strand"
+            ], 
+            "id": "urn:ccss:property_type:includes_domain", 
+            "is_unique": false, 
+            "label": "Domain", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:ccss:entity_type:domain"
+            ], 
+	    "is_primary":false,
+            "reverse": "urn:ccss:property_type:is_in_strand"
+        }, 
+        "urn:ccss:property_type:is_in_strand": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:domain"
+            ], 
+            "id": "urn:ccss:property_type:is_in_strand", 
+            "is_unique": false, 
+            "label": "Domain", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:ccss:entity_type:strand"
+            ], 
+            "reverse": "urn:ccss:property_type:includes_domain"
+        }, 
+        "urn:ccss:property_type:includes_anchor_standard": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:strand"
+            ], 
+            "id": "urn:ccss:property_type:includes_anchor_standard", 
+            "is_unique": false, 
+            "label": "Domain", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:ccss:entity_type:anchor_standard"
+            ], 
+	    "is_primary":false,
+            "reverse": "urn:ccss:property_type:anchor_standard_included_in_strand"
+        }, 
+        "urn:lri:property_type:resource_contained_by": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "id": "urn:lri:property_type:resource_contained_by", 
+            "is_unique": false, 
+            "label": "Contained By", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "reverse": "urn:lri:property_type:resource_contains"
+        }, 
+        "urn:lri:property_type:contains": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency_container"
+            ], 
+            "id": "urn:lri:property_type:contains", 
+            "is_unique": false, 
+            "label": "Contains", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:competency"
+            ], 
+	    "is_primary":false,
+            "reverse": "urn:lri:property_type:contained_by"
+        }, 
+        "urn:lri:property_type:contained_by": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency"
+            ], 
+            "id": "urn:lri:property_type:contained_by", 
+            "is_unique": false, 
+            "label": "Contained By", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:competency_container"
+            ], 	
+	    "is_primary":true,
+            "reverse": "urn:lri:property_type:contains"
+        }, 
+        "urn:lri:property_type:resource_contains": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "id": "urn:lri:property_type:resource_contains", 
+            "is_unique": false, 
+            "label": "Contains", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+	    "is_primary":false,
+            "reverse": "urn:lri:property_type:resource_contained_by"
+        }, 
+        "urn:lri:property_type:edition": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:learning_resource"
+            ], 
+            "id": "urn:lri:property_type:edition", 
+            "is_unique": false, 
+            "label": "Edition", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:data_type:text"
+            ]
+        }, 
+        "urn:lri:property_type:expected_time_required": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "id": "urn:lri:property_type:expected_time_required", 
+            "is_unique": true, 
+            "label": "Expected Time Required", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:data_type:date"
+            ]
+        }, 
+        "urn:lri:property_type:function": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:completion_criterion"
+            ], 
+            "id": "urn:lri:property_type:function", 
+            "is_unique": true, 
+            "label": "Function", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:data_type:text"
+            ]
+        }, 
+        "urn:lri:property_type:subject": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:thing"
+            ], 
+            "id": "urn:lri:property_type:subject", 
+            "is_unique": false, 
+            "label": "Subject", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:subject"
+            ]
+        }, 
+        "urn:ccss:property_type:is_anchored_to": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:standard"
+            ], 
+            "id": "urn:ccss:property_type:is_anchored_to", 
+            "is_unique": true, 
+            "label": "Is Anchored To", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:ccss:entity_type:anchor_standard"
+            ], 
+	    "is_primary":false,
+            "reverse": "urn:ccss:property_type:anchors"
+        }, 
+        "urn:ccss:property_type:anchors": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:anchor_standard"
+            ], 
+            "id": "urn:ccss:property_type:anchors", 
+            "is_unique": false, 
+            "label": "Anchors", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:ccss:entity_type:standard"
+            ], 
+            "reverse": "urn:ccss:property_type:is_anchored_to"
+        }, 
+
+        "urn:ccss:property_type:is_in_section": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:anchor_standard"
+            ], 
+            "id": "urn:ccss:property_type:is_in_section", 
+            "is_unique": true, 
+            "label": "Is In Section", 
+            "mandatory": false, 
+	    "is_primary":true,
+            "ranges": [
+                "urn:ccss:entity_type:anchor_standard_section"
+            ], 
+            "reverse":  "urn:ccss:property_type:contained_anchor_standard"
+        }, 
+        "urn:ccss:property_type:anchor_standard_included_in_strand": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:ccss:entity_type:anchor_standard"
+            ], 
+            "id": "urn:ccss:property_type:anchor_standard_included_in_strand", 
+            "is_unique": false, 
+            "label": "Is In Strand", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:ccss:entity_type:strand"
+            ], 
+	    "is_primary":true,
+            "reverse": "urn:ccss:property_type:includes_anchor_standard"
+        }, 
+        "urn:lri:property_type:language": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "id": "urn:lri:property_type:language", 
+            "is_unique": false, 
+            "label": "Language", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:data_type:text"
+            ]
+        }, 
+        "urn:lri:property_type:license": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "id": "urn:lri:property_type:license", 
+            "is_unique": false, 
+            "label": "License", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:uri"
+            ]
+        }, 
+        "urn:lri:property_type:specifies": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:specification"
+            ], 
+            "id": "urn:lri:property_type:specifies", 
+            "is_unique": false, 
+            "label": "Path", 
+            "mandatory": false, 
+	    "is_primary":false,
+            "ranges": [
+                "urn:lri:entity_type:competency_path",
+                "urn:lri:entity_type:competency"
+            ], 
+	    "is_primary":true,
+            "reverse":  "urn:lri:property_type:specified_by"
+        }, 
+        "urn:lri:property_type:path_step": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency_path"
+            ], 
+            "id": "urn:lri:property_type:path_step", 
+            "is_unique": false, 
+            "label": "Path Step", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:path_step"
+            ], 
+	    "is_primary":false,
+            "reverse":  "urn:lri:property_type:included_in_path"
+        }, 
+        "urn:lri:property_type:included_in_path": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:path_step"
+            ], 
+            "id": "urn:lri:property_type:included_in_path", 
+            "is_unique": false, 
+            "label": "Included In Path", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:competency_path"
+            ], 
+            "reverse":  "urn:lri:property_type:path_step"
+        }, 
+        "urn:lri:property_type:is_path_step": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency"
+            ], 
+            "id": "urn:lri:property_type:is_path_step", 
+            "is_unique": false, 
+            "label": "Path Step", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:path_step"
+            ], 
+	    "is_primary":false,
+            "reverse":  "urn:lri:property_type:competency_in_path"
+        }, 
+        "urn:lri:property_type:competency_in_path": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:path_step"
+            ], 
+            "id": "urn:lri:property_type:competency_in_path", 
+            "is_unique": true, 
+            "label": "Competency In Path", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:competency"
+            ], 
+	    "is_primary":true,
+            "reverse":  "urn:lri:property_type:is_path_step"
+        }, 
+        "urn:lri:property_type:previous": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:grade_level"
+            ], 
+            "id": "urn:lri:property_type:previous", 
+            "is_unique": true, 
+            "label": "Previous", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:grade_level"
+            ]
+        }, 
+        "urn:lri:property_type:required_by": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency"
+            ], 
+            "id": "urn:lri:property_type:required_by", 
+            "is_unique": false, 
+            "label": "Required By", 
+            "mandatory": false, 
+	    "is_primary":false,
+            "ranges": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "reverse":  "urn:lri:property_type:requires"
+        }, 
+        "urn:lri:property_type:requires": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:knowledge_web_resource"
+            ], 
+            "id": "urn:lri:property_type:requires", 
+            "is_unique": false, 
+            "label": "Requires", 
+            "mandatory": false,
+	    "is_primary":true, 
+            "ranges": [
+                "urn:lri:entity_type:competency"
+            ], 
+            "reverse":  "urn:lri:property_type:required_by"
+        }, 
+        "urn:lri:property_type:score_scale": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:assessment_resource"
+            ], 
+            "id": "urn:lri:property_type:score_scale", 
+            "is_unique": false, 
+            "label": "Score Scale", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:score_scale"
+            ]
+        }, 
+        "urn:lri:property_type:specified_by": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency_path",
+                "urn:lri:entity_type:competency"
+            ], 
+            "id": "urn:lri:property_type:specified_by", 
+            "is_unique": false, 
+            "label": "Specified By", 
+            "mandatory": false, 
+	    "is_primary":false,
+            "ranges": [
+                "urn:lri:entity_type:specification"
+            ], 
+            "reverse":  "urn:lri:property_type:specifies"
+        }, 
+        "urn:lri:property_type:taught_by": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:competency"
+            ], 
+            "id": "urn:lri:property_type:taught_by", 
+            "is_unique": false, 
+            "label": "Taught By", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:learning_resource"
+            ], 
+	    "is_primary":false,
+            "reverse":  "urn:lri:property_type:teaches"
+        }, 
+        "urn:lri:property_type:teaches": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:learning_resource"
+            ], 
+            "id": "urn:lri:property_type:teaches", 
+            "is_unique": false, 
+            "label": "Teaches", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:entity_type:competency"
+            ], 
+            "reverse":  "urn:lri:property_type:taught_by"
+        }, 
+        "urn:lri:property_type:time_period_in_effect": {
+            "comment_plain": "", 
+            "domains": [
+                "urn:lri:entity_type:specification"
+            ], 
+            "id": "urn:lri:property_type:time_period_in_effect", 
+            "is_unique": true, 
+            "label": "Time Period In Effect", 
+            "mandatory": false, 
+            "ranges": [
+                "urn:lri:data_type:date"
+            ]
+        }
+    }, 
+    "types": {
+        "urn:ccss:entity_type:anchor_standard": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:anchor_standard", 
+            "label": "Anchor Standard", 
+            "specific_properties": [
+                "urn:ccss:property_type:anchor_standard_included_in_strand", 
+                "urn:ccss:property_type:is_in_section",
+                "urn:ccss:property_type:anchors"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:ccss:entity_type:anchor_standard_section": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:anchor_standard_section", 
+            "label": "Anchor Standard Section", 
+            "specific_properties": [
+                "urn:ccss:property_type:anchor_standard"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:lri:entity_type:assessment_resource": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:assessment_resource", 
+            "label": "Assessment Resource", 
+            "specific_properties": [
+                "urn:lri:property_type:assesses", 
+                "urn:lri:property_type:score_scale"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:knowledge_web_resource"
+            ]
+        }, 
+        "urn:ccss:entity_type:cluster": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:cluster", 
+            "label": "Cluster", 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:lri:entity_type:competency": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:competency", 
+            "label": "Competency", 
+            "specific_properties": [
+                "urn:lri:property_type:contained_by", 
+                "urn:lri:property_type:required_by", 
+                "urn:lri:property_type:assessed_by", 
+                "urn:lri:property_type:taught_by", 
+                "urn:lri:property_type:specified_by",
+		"urn:lri:property_type:is_path_step"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:lri:entity_type:competency_container": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:competency_container", 
+            "label": "Competency Container", 
+            "specific_properties": [
+                "urn:lri:property_type:contains", 
+                "urn:lri:property_type:completion_criterion"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency"
+            ]
+        }, 
+        "urn:lri:entity_type:competency_path": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:competency_path", 
+            "label": "Competency Path", 
+            "specific_properties": [
+                "urn:lri:property_type:path_step", 
+                "urn:lri:property_type:specified_by", 
+                "urn:lri:property_type:authored_by"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:lri:entity_type:completion_criterion": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:completion_criterion", 
+            "label": "Completion Criterion", 
+            "specific_properties": [
+                "urn:lri:property_type:function"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:ccss:entity_type:domain": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:domain", 
+            "label": "Domain", 
+            "specific_properties": [
+                "urn:ccss:property_type:is_in_strand"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency", 
+                "urn:ccss:entity_type:learning_objective"
+            ]
+        }, 
+        "urn:ccss:entity_type:grade_level": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:grade_level", 
+            "label": "Grade Level", 
+            "specific_properties": [
+                "urn:ccss:property_type:previous"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency", 
+                "urn:ccss:entity_type:learning_objective"
+            ]
+        }, 
+        "urn:ccss:entity_type:set": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:set", 
+            "label": "CCSS Set", 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency", 
+                "urn:ccss:entity_type:learning_objective"
+            ]
+        }, 
+        "urn:ccss:entity_type:framework": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:framework", 
+            "label": "CCSS Framework", 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency", 
+                "urn:ccss:entity_type:learning_objective"
+            ]
+        }, 
+        "urn:ccss:entity_type:initiative": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:initiative", 
+            "label": "CCSS Initiative", 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency", 
+                "urn:ccss:entity_type:learning_objective"
+            ]
+        }, 
+        "urn:lri:entity_type:knowledge_web_resource": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:knowledge_web_resource", 
+            "label": "Knowledge Web Resource", 
+            "specific_properties": [
+                "urn:lri:property_type:requires", 
+                "urn:lri:property_type:contains", 
+                "urn:lri:property_type:contained_by", 
+                "urn:lri:property_type:previous", 
+                "urn:lri:property_type:language", 
+                "urn:lri:property_type:license", 
+                "urn:lri:property_type:expected_time_required"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:ccss:entity_type:learning_objective": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:learning_objective", 
+            "label": "Learning Objective", 
+            "specific_properties": [
+	       "urn:ccss:property_type:ccid"
+	    ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency"
+            ]
+        }, 
+        "urn:lri:entity_type:learning_resource": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:learning_resource", 
+            "label": "Learning Resource", 
+            "specific_properties": [
+                "urn:lri:property_type:teaches", 
+                "urn:lri:property_type:edition"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:knowledge_web_resource"
+            ]
+        }, 
+        "urn:lri:entity_type:thing": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:thing", 
+            "label": "Object", 
+            "specific_properties": [
+                "urn:lri:property_type:guid", 
+                "urn:lri:property_type:name"
+            ]
+        }, 
+        "urn:lri:entity_type:path_step": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:path_step", 
+            "label": "Path Step", 
+            "specific_properties": [
+                "urn:lri:property_type:path", 
+                "urn:lri:property_type:previous", 
+                "urn:lri:property_type:competency_in_path"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:lri:entity_type:score_scale": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:score_scale", 
+            "label": "Score Scale", 
+            "specific_properties": [], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:lri:entity_type:specification": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:specification", 
+            "label": "Specification", 
+            "specific_properties": [
+                "urn:lri:property_type:authority", 
+                "urn:lri:property_type:time_period_in_effect"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:ccss:entity_type:standard": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:standard", 
+            "label": "Standard", 
+            "specific_properties": [
+                "urn:ccss:property_type:is_anchored_to", 
+                "urn:ccss:property_type:cluster"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency", 
+                "urn:ccss:entity_type:learning_objective"
+            ]
+        }, 
+        "urn:ccss:entity_type:standard_component": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:standard_component", 
+            "label": "Standard Component", 
+            "specific_properties": [
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing", 
+                "urn:lri:entity_type:competency", 
+                "urn:ccss:entity_type:learning_objective"
+            ]
+        }, 
+        "urn:ccss:entity_type:strand": {
+            "comment_plain": "", 
+            "id": "urn:ccss:entity_type:strand", 
+            "label": "Strand", 
+            "specific_properties": [
+                "urn:ccss:property_type:includes_domain", 
+                "urn:ccss:property_type:includes_anchor_standard"
+            ], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }, 
+        "urn:lri:entity_type:subject": {
+            "comment_plain": "", 
+            "id": "urn:lri:entity_type:subject", 
+            "label": "Subject", 
+            "specific_properties": [], 
+            "supertypes": [
+                "urn:lri:entity_type:thing"
+            ]
+        }
+    }
+}

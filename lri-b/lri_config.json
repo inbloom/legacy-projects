@@ -1,0 +1,28 @@
+{
+    "host":"10.180.41.25",
+    "port":8888,
+    "neo4j_dir":"/opt/neo4j",
+    "neo4j_server_host":"127.0.0.1",
+    "neo4j_server_port":7474,
+    "slc_server_host":"api.sandbox.slcedu.org",
+    "slc_token_check_path":"/api/rest/system/session/check",
+    "cache_type":"memcached",
+    "memcached_host":"127.0.0.1",
+    "memcached_port":"11211",
+    "bootstrap_filenames":[
+        "/opt/lri-b/lri_schema/bootstrap.json",
+        "/opt/lri-b/lri_schema/cc_schema.json",
+        "/opt/lri-b/lri_schema/schema.org_fixed.json",
+        "/opt/lri-b/lri_schema/lrmi_fixed.json"
+    ],
+    "default_creator_guid":"LRI_TEST_CREATOR",
+    "admin_passwd":"changeme",
+    "use_cache":true,
+    "admin_access_tokens":{
+        "regtest":"regtest",
+        "letmein":"LRI_ADMIN_USER_0"
+    },
+    "delegate_tokens":[
+        "DELEGATE_0"
+    ]
+}

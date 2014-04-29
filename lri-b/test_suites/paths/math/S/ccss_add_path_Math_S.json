@@ -1,0 +1,78 @@
+{
+  //
+  // Create competency_path for Statistics & Probability - High School Math
+  //
+
+  // Path starts with Math domain CCSS.Math.Content.HSS.CP
+  "path_step_HSS.CP": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "CP",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.CP",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSS.CP"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSS.IC
+  "path_step_HSS.IC": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "IC",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.IC",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSS.IC",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.CP"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSS.ID
+  "path_step_HSS.ID": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "ID",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.ID",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSS.ID",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.IC"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSS.MD
+  "path_step_HSS.MD": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "MD",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.MD",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSS.MD",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.ID"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // Create the path
+  "competency_path_math_HSS": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "S",
+      "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.Math.Content:HSS",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                      "urn:lri:entity_type:competency",
+                                      "urn:lri:entity_type:competency_path"],
+      "urn:lri:property_type:path_step": [
+        "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.CP",
+        "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.IC",
+        "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.ID",
+        "urn:ccss:path_step:CCSS.Math.Content:HSS:CCSS.Math.Content.HSS.MD"
+      ],
+        "urn:lri:property_type:previous": "urn:ccss:ordering:CCSS.Math.Content:HSG"
+   },
+    "opts": {"access_token": "letmein"}
+  }
+}
+
+

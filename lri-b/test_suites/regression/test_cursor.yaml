@@ -1,0 +1,39 @@
+// Copyright 2012-2013 inBloom, Inc. and its affiliates.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Search for entity that will provide cursor
+// Extract response
+
+step000:
+    action: entity/search
+    q: {"urn:lri:property_type:types":"urn:ccss:entity_type:framework","limit":1}
+    opts: {"use_cached":false}
+    xtract:
+        - cursor | $CURSOR
+        - response | 0 | props | urn:lri:property_type:guid | $ENTITY_GUID_0
+
+// Send back cursor
+// Test response for equality
+
+step001:
+    action: entity/search
+    q: {"cursor":"$CURSOR"}
+    opts: {"use_cached":false}
+    xtract:
+        - response | 0 | props | urn:lri:property_type:guid | $CURSOR_ENTITY_GUID_0
+        - response | 0 | props | urn:lri:property_type:id | $CURSOR_ENTITY_GUID_0
+        - response | 1 | props | urn:lri:property_type:id | $CURSOR_ENTITY_GUID_1
+    test:
+        - '"$ENTITY_GUID_0" == "$CURSOR_ENTITY_GUID_0"'
+        - 'sorted(["urn:ccss:framework:CCSS.Math","urn:ccss:framework:CCSS.ELA-Literacy"]) == sorted(["$CURSOR_ENTITY_GUID_0","$CURSOR_ENTITY_GUID_1"])'

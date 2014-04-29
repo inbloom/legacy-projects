@@ -1,0 +1,72 @@
+// Copyright 2012-2013 inBloom, Inc. and its affiliates.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+// Create new entity
+step000:
+    action: entity/create
+    q: {"urn:lri:property_type:types":"urn:lri:entity_type:thing","urn:lri:property_type:id":"$RANDOM_ID", "urn:lri:property_type:name":"$RANDOM_ID"}
+    opts: {"access_token":"letmein"}
+    xtract:
+        - response | urn:lri:property_type:guid | $ENTITY_GUID_0
+        - response | urn:lri:property_type:id | $ENTITY_ID_0
+        - response | urn:lri:property_type:name | $ENTITY_NAME_0
+
+// Search for created to trigger cache
+step001:
+    action: entity/search
+    q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+    opts: {"details":true,"use_cached":true}
+
+// Search for created entity extract time_cached
+step002:
+    action: entity/search
+    q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+    opts: {"details":true,"use_cached":true}
+    xtract:
+        - time_cached | $TIME_CACHED_0
+
+// Search again to check time_cached
+step003:
+    action: entity/search
+    q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+    opts: {"details":true,"use_cached":true}
+    xtract:
+        - time_cached | $TIME_CACHED_1
+        - response | 0 | props | urn:lri:property_type:name | $ENTITY_NAME_0 | 0 | guid | $PROP_GUID_NAME_0
+    test:
+        - '"$TIME_CACHED_0" == "$TIME_CACHED_1"'
+
+// Update entity
+step004:
+    action: property/update 
+    q: {"guid":"$PROP_GUID_NAME_0","value":"NEW NAME"}
+    opts: {"access_token":"letmein"}
+    xtract:
+        - status | $STATUS_1
+
+step005:
+    action: entity/search
+    q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+    opts: {"details":true,"use_cached":true}
+
+step006:
+    action: entity/search
+    q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+    opts: {"details":true,"use_cached":true}
+    xtract:
+        - time_cached | $TIME_CACHED_2
+    test:
+        - '"$TIME_CACHED_0" != "$TIME_CACHED_2"'
+

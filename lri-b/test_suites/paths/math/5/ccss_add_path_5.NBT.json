@@ -1,0 +1,202 @@
+{
+  //
+  // Create competency_path 5.NBT
+  //
+
+  // Path starts with domain 5.NBT
+  "path_step_5.NBT": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/domain/5.NBT",
+      "uri://lri/property_type/previous": "uri://ccss/ordering/math/4.MD"
+    },
+    "opts": {}
+  },
+
+  // cluster 5.NBT.A
+  "path_step_5.NBT.A": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.A",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.A",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/cluster/5.NBT.A",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT"
+    },
+    "opts": {}
+  },
+
+  // standard 5.NBT.1
+  "path_step_5.NBT.1": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.1",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.1",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/5.NBT.1",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.A"
+    },
+    "opts": {}
+  },
+
+  // standard 5.NBT.2
+  "path_step_5.NBT.2": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.2",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.2",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/5.NBT.2",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.1"
+    },
+    "opts": {}
+  },
+
+  // standard 5.NBT.3
+  "path_step_5.NBT.3": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.3",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.3",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/5.NBT.3",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.2"
+    },
+    "opts": {}
+  },
+
+ // standard_component 5.NBT.3.a
+  "path_step_5.NBT.3.a": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.3.a",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.3.a",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard_component/5.NBT.3.a",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.3"
+    },
+    "opts": {}
+  },
+
+  // standard_component 5.NBT.3.b
+  "path_step_5.NBT.3.b": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.3.b",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.3.b",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard_component/5.NBT.3.b",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.3.a"
+    },
+    "opts": {}
+  },
+
+
+  // standard 5.NBT.4
+  "path_step_5.NBT.4": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.4",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.4",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/5.NBT.4",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.3"
+    },
+    "opts": {}
+  },
+
+  // cluster 5.NBT.B
+  "path_step_5.NBT.B": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.B",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.B",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/cluster/5.NBT.B",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.4"
+    },
+    "opts": {}
+  },
+
+  // standard 5.NBT.5
+  "path_step_5.NBT.5": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.5",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.5",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/5.NBT.5",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.B"
+    },
+    "opts": {}
+  },
+
+  // standard 5.NBT.6
+  "path_step_5.NBT.6": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.6",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.6",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/5.NBT.6",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.5"
+    },
+    "opts": {}
+  },
+
+  // standard 5.NBT.7
+  "path_step_5.NBT.7": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT.7",
+      "uri://lri/property_type/id": "uri://ccss/path_step/5.NBT.7",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/5.NBT.7",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/5.NBT.6"
+    },
+    "opts": {}
+  },
+
+  // Create the path
+  "competency_path_5.NBT": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "5.NBT",
+      "uri://lri/property_type/id": "uri://ccss/ordering/math/5.NBT",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/competency",
+                                        "uri://lri/object_type/competency_path"],
+      "uri://lri/property_type/path_step": [
+        "uri://ccss/path_step/5.NBT",
+        "uri://ccss/path_step/5.NBT.A",
+        "uri://ccss/path_step/5.NBT.1",
+        "uri://ccss/path_step/5.NBT.2",
+        "uri://ccss/path_step/5.NBT.3",
+        "uri://ccss/path_step/5.NBT.3.a",
+        "uri://ccss/path_step/5.NBT.3.b",
+        "uri://ccss/path_step/5.NBT.4",
+        "uri://ccss/path_step/5.NBT.B",
+        "uri://ccss/path_step/5.NBT.5",
+        "uri://ccss/path_step/5.NBT.6",
+        "uri://ccss/path_step/5.NBT.7"
+      ]
+    },
+    "opts": {}
+  }
+}
+

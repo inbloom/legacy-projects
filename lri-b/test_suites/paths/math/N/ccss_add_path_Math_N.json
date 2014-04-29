@@ -1,0 +1,79 @@
+{
+  //
+  // Create competency_path for Number & Quantity - High School Math
+  //
+
+  // Path starts with Math domain CCSS.Math.Content.HSN.CN
+  "path_step_HSN.CN": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "CN",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.CN",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSN.CN"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSN.Q
+  "path_step_HSN.Q": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "Q",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.Q",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSN.Q",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.CN"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSN.RN
+  "path_step_HSN.RN": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "RN",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.RN",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSN.RN",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.Q"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSN.VM
+  "path_step_HSN.VM": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "VM",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.VM",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSN.VM",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.RN"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+
+  // Create the path
+  "competency_path_math_HSN": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "N",
+      "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.Math.Content:HSN",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                      "urn:lri:entity_type:competency",
+                                      "urn:lri:entity_type:competency_path"],
+      "urn:lri:property_type:path_step": [
+        "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.CN",
+        "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.Q",
+        "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.RN",
+        "urn:ccss:path_step:CCSS.Math.Content:HSN:CCSS.Math.Content.HSN.VM"
+      ],
+        "urn:lri:property_type:previous": "urn:ccss:ordering:CCSS.Math.Content:8"
+   },
+    "opts": {"access_token": "letmein"}
+  }
+}
+
+

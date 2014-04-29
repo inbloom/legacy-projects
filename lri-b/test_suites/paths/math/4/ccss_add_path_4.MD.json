@@ -1,0 +1,215 @@
+{
+  //
+  // Create competency_path 4.MD
+  //
+
+  // Path starts with domain 4.MD
+  "path_step_4.MD": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/domain/4.MD",
+      "uri://lri/property_type/previous": "uri://ccss/ordering/math/4.G"
+    },
+    "opts": {}
+  },
+
+  // cluster 4.MD.A
+  "path_step_4.MD.A": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.A",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.A",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/cluster/4.MD.A",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD"
+    },
+    "opts": {}
+  },
+
+  // standard 4.MD.1
+  "path_step_4.MD.1": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.1",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.1",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.MD.1",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.A"
+    },
+    "opts": {}
+  },
+
+  // standard 4.MD.2
+  "path_step_4.MD.2": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.2",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.2",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.MD.2",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.1"
+    },
+    "opts": {}
+  },
+
+  // standard 4.MD.3
+  "path_step_4.MD.3": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.3",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.3",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.MD.3",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.2"
+    },
+    "opts": {}
+  },
+
+  // cluster 4.MD.B
+  "path_step_4.MD.B": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.B",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.B",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/cluster/4.MD.B",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.3"
+    },
+    "opts": {}
+  },
+
+  // standard 4.MD.4
+  "path_step_4.MD.4": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.4",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.4",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.MD.4",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.B"
+    },
+    "opts": {}
+  },
+
+  // cluster 4.MD.C
+  "path_step_4.MD.C": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.C",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.C",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/cluster/4.MD.C",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.4"
+    },
+    "opts": {}
+  },
+
+  // standard 4.MD.5
+  "path_step_4.MD.5": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.5",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.5",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.MD.5",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.C"
+    },
+    "opts": {}
+  },
+
+  // standard_component 4.MD.5.a
+  "path_step_4.MD.5.a": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.5.a",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.5.a",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard_component/4.MD.5.a",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.5"
+    },
+    "opts": {}
+  },
+
+  // standard_component 4.MD.5.b
+  "path_step_4.MD.5.b": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.5.b",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.5.b",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard_component/4.MD.5.b",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.5.a"
+    },
+    "opts": {}
+  },
+
+  // standard 4.MD.6
+  "path_step_4.MD.6": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.6",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.6",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.MD.6",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.5.b"
+    },
+    "opts": {}
+  },
+
+  // standard 4.MD.7
+  "path_step_4.MD.7": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD.7",
+      "uri://lri/property_type/id": "uri://ccss/path_step/4.MD.7",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/path_step"],
+      "uri://lri/property_type/competency_in_path": "uri://ccss/standard/4.MD.7",
+      "uri://lri/property_type/previous": "uri://ccss/path_step/4.MD.6"
+    },
+    "opts": {}
+  },
+
+  // Create the path
+  "competency_path_4.MD": {
+    "action": "entity/create",
+    "q": {
+      "uri://lri/property_type/name": "4.MD",
+      "uri://lri/property_type/id": "uri://ccss/ordering/math/4.MD",
+      "uri://lri/property_type/types": ["uri://lri/object_type/thing",
+                                        "uri://lri/object_type/competency",
+                                        "uri://lri/object_type/competency_path"],
+      "uri://lri/property_type/path_step": [
+        "uri://ccss/path_step/4.MD",
+        "uri://ccss/path_step/4.MD.A",
+        "uri://ccss/path_step/4.MD.1",
+        "uri://ccss/path_step/4.MD.2",
+        "uri://ccss/path_step/4.MD.3",
+        "uri://ccss/path_step/4.MD.B",
+        "uri://ccss/path_step/4.MD.4",
+        "uri://ccss/path_step/4.MD.C",
+        "uri://ccss/path_step/4.MD.5",
+        "uri://ccss/path_step/4.MD.5.a",
+        "uri://ccss/path_step/4.MD.5.b",
+        "uri://ccss/path_step/4.MD.6",
+        "uri://ccss/path_step/4.MD.7"
+      ]
+    },
+    "opts": {}
+  }
+}

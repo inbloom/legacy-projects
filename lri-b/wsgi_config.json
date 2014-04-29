@@ -1,0 +1,21 @@
+{
+  "uwsgi": {
+      "gid":"www-data",
+      "uid":"www-data",
+      "enable-logging":true,
+      "socket":"/tmp/wsgi.sock",
+      "chmod-socket":666,
+      "protocol":"wsgi",
+      "buffer-size":25000,
+      "wsgi-file":"/home/kurt/neo/webapp.py",
+      "pyargv":"/home/kurt/neo/lri_config.json",
+      "plugins":["python","http"],
+      "processes":1,
+      "master":true,
+      "harakiri":180,
+      "limit-as":1024,
+      "memory-report":true,
+      "no-orphans":true
+  }
+}
+

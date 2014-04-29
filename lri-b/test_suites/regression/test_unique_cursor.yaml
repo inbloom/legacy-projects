@@ -1,0 +1,38 @@
+---
+
+# Page through ELA standards in urn:ccss:domain:CCSS.ELA-Literacy.W
+# Test that cursors are unique
+
+# Get first 5 results
+step000:
+  action: entity/search
+  q: {"limit":5,"urn:lri:property_type:contained_by":"urn:ccss:domain:CCSS.ELA-Literacy.W","shape":{"urn:lri:property_type:contains":{"urn:lri:property_type:taught_by":{},"urn:lri:property_type:contains":{},"urn:ccss:property_type:is_anchored_to":{}}}}
+
+  opts: {"details":false, "use_cached":false}
+  xtract:
+      - response | 0 | props | urn:lri:property_type:id | $ID_0
+      - cursor | $CURSOR_0
+
+# Get next 5 using cursor
+step001:
+  action: entity/search
+  q: {"limit":5,"cursor":"$CURSOR_0"}
+
+  opts: {"details":false, "use_cached":false}
+  xtract:
+      - response | 0 | props | urn:lri:property_type:id | $ID_1
+      - cursor | $CURSOR_1
+
+# Get next 5 using cursor
+step002:
+  action: entity/search
+  q: {"limit":5,"cursor":"$CURSOR_1"}
+
+  opts: {"details":false, "use_cached":false}
+  xtract:
+      - response | 0 | props | urn:lri:property_type:id | $ID_2
+      - cursor | $CURSOR_2
+  test:
+      - '"$CURSOR_2" != "$CURSOR_1" and "$CURSOR_2" != "$CURSOR_0"'
+      - '"ID_2" != "ID_1" and "ID_2" != "ID_0"'
+

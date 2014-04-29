@@ -1,0 +1,91 @@
+{
+  //
+  // Create competency_path for 5th Grade Math
+  //
+
+  // Path starts with Math domain CCSS.Math.Content.5.G
+  "path_step_5.G": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "G",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.G",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.5.G"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering 5.MD
+  "path_step_5.MD": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "MD",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.MD",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.5.MD",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.G"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering 5.NBT
+  "path_step_5.NBT": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "NBT",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.NBT",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.5.NBT",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.MD"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering 5.NF
+  "path_step_5.NF": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "NF",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.NF",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.5.NF",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.NBT"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering 5.OA
+  "path_step_5.OA": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "OA",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.OA",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.5.OA",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.NF"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // Create the path
+  "competency_path_math_5": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "5",
+      "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.Math.Content:5",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                      "urn:lri:entity_type:competency",
+                                      "urn:lri:entity_type:competency_path"],
+      "urn:lri:property_type:path_step": [
+        "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.G",
+        "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.MD",
+        "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.NBT",
+        "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.NF",
+        "urn:ccss:path_step:CCSS.Math.Content:5:CCSS.Math.Content.5.OA"
+      ],
+        "urn:lri:property_type:previous": "urn:ccss:ordering:CCSS.Math.Content:4"
+   },
+    "opts": {"access_token": "letmein"}
+  }
+}
+

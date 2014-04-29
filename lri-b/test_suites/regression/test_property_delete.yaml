@@ -1,0 +1,66 @@
+// Copyright 2012-2013 inBloom, Inc. and its affiliates.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+---
+
+// First create an initial entity with a name
+step000:
+  action: entity/create
+  q: {"urn:lri:property_type:types":"urn:lri:entity_type:thing","urn:lri:property_type:id":"$RANDOM_ID","urn:lri:property_type:name":"TEST NAME ZERO - $RANDOM_ID"}
+  opts: {"access_token":"letmein"}
+  xtract:
+    - response | urn:lri:property_type:guid | $ENTITY_GUID_0
+    - response | urn:lri:property_type:id | $ENTITY_ID_0
+    - response | urn:lri:property_type:name | $ENTITY_NAME_0
+
+// Get the GUID for the name
+step001:
+  action: entity/search
+  q: {"urn:lri:property_type:guid":"$ENTITY_GUID_0"}
+  opts: {"details":true,"use_cached":false}
+  xtract:
+    - response | 0 | props | urn:lri:property_type:name | $ENTITY_NAME_0 | 0 | guid | $NAME_GUID_1
+    - response | 0 | props | urn:lri:property_type:name | $ENTITY_NAME_0 | 0 | value | $NAME_VALUE_1
+  test: 
+    - '"$NAME_VALUE_1" == "$ENTITY_NAME_0"'
+
+// Update that name
+step002:
+  action: property/update
+  q: {"guid":"$NAME_GUID_1","value":"NAME VALUE TWO - $RANDOM_ID"}
+  opts: {"access_token":"letmein"}
+  xtract:
+    - response | new | guid | $NAME_GUID_2
+    - response | new | value | $NAME_VALUE_2
+
+// Delete the name property
+step003:
+  action: property/update
+  q: {"guid":"$NAME_GUID_2","alive":false,"access_token":"letmein"}
+  opts: {"access_token":"letmein"}
+  xtract:
+    - response | new | guid | $NAME_GUID_3
+    - response | new | value | $NAME_VALUE_3
+
+
+// UnDelete our dead property
+step004:
+  action: property/update
+  q: {"guid":"$NAME_GUID_3","alive":true,"access_token":"letmein"}
+  opts: {"access_token":"letmein"}
+  xtract:
+    - response | new | guid | $NAME_GUID_4
+    - response | new | value | $NAME_VALUE_4
+
+

@@ -1,0 +1,106 @@
+{
+  //
+  // Create competency_path for Geometry - High School Math
+  //
+
+  // Path starts with Math domain CCSS.Math.Content.HSG.C
+  "path_step_HSG.C": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "C",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.C",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSG.C"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSG.CO
+  "path_step_HSG.CO": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "CO",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.CO",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSG.CO",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.C"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSG.GMD
+  "path_step_HSG.GMD": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "GMD",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.GMD",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSG.GMD",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.CO"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSG.GPE
+  "path_step_HSG.GPE": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "GPE",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.GPE",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:domain:CCSS.Math.Content.HSG.GPE",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.GMD"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSG.MG
+  "path_step_HSG.MG": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "MG",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.MG",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.MG",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.GPE"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // ordering HSG.SRT
+  "path_step_HSG.SRT": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "SRT",
+      "urn:lri:property_type:id": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.SRT",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:path_step"],
+      "urn:lri:property_type:competency_in_path": "urn:ccss:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.SRT",
+      "urn:lri:property_type:previous": "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.MG"
+    },
+    "opts": {"access_token": "letmein"}
+  },
+
+  // Create the path
+  "competency_path_math_HSG": {
+    "action": "entity/create",
+    "q": {
+      "urn:lri:property_type:name": "G",
+      "urn:lri:property_type:id": "urn:ccss:ordering:CCSS.Math.Content:HSG",
+      "urn:lri:property_type:types": ["urn:lri:entity_type:thing",
+                                      "urn:lri:entity_type:competency",
+                                      "urn:lri:entity_type:competency_path"],
+      "urn:lri:property_type:path_step": [
+        "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.C",
+        "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.CO",
+        "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.GMD",
+        "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.GPE",
+        "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.MG",
+        "urn:ccss:path_step:CCSS.Math.Content:HSG:CCSS.Math.Content.HSG.SRT"
+      ],
+        "urn:lri:property_type:previous": "urn:ccss:ordering:CCSS.Math.Content:HSF"
+   },
+    "opts": {"access_token": "letmein"}
+  }
+}
+
+
