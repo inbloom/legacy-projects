@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <pair key='urn:lri:property_type:authored_by'>
+        <value>erik</value>
+    </pair>
+    <pair key='urn:lri:property_type:description'>
+        <value>test</value>
+    </pair>
+    <pair key='urn:lri:property_type:id'>
+        <value>urn:erik:path:107</value>
+    </pair>
+    <pair key='urn:lri:property_type:name'>
+        <value>test 107</value>
+    </pair>
+
+    <pair key='urn:lri:property_type:path_step'>
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='orderId'>
+              <value>0</value>
+            </pair>
+            <pair key='urn:lri:property_type:competency_in_path'>
+                <value>urn:ccss:standard:CCSS.Math.Content.1.G.A.1</value>
+            </pair>
+        </value>
+
+        <value>
+            <pair key='type'>
+                <value>ordering</value>
+            </pair>
+            <pair key='orderId'>
+              <value>1</value>
+            </pair>
+            <pair key='urn:lri:property_type:path_step'>
+                <value>
+                    <pair key='type'>
+                        <value>step</value>
+                    </pair>
+                    <pair key='orderId'>
+                        <value>2</value>
+                    </pair>
+                    <pair key='previous'>
+                        <value>0</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:competency_in_path'>
+                      <value>urn:ccss:standard:CCSS.Math.Content.1.G.A.2</value>
+                    </pair>
+                </value>
+
+                <value>
+                    <pair key='type'>
+                        <value>step</value>
+                    </pair>
+                    <pair key='orderId'>
+                      <value>3</value>
+                    </pair>
+                    <pair key='previous'>
+                        <value>0</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:competency_in_path'>
+                      <value>urn:ccss:standard:CCSS.Math.Content.1.G.A.3</value>
+                    </pair>
+                </value> 
+            </pair>
+        </value>
+
+
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='orderId'>
+                <value>4</value>
+            </pair>
+            <pair key='previous'>
+                <value>1</value>
+            </pair>
+            <pair key='urn:lri:property_type_competency_in_path'>
+                <value>urn:ccss:standard:CCSS.Math.Content.1.MD.A.1</value>
+            </pair>
+        </value>
+    </pair>
+</xml>

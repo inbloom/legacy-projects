@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <!-- 
+         or: path A[B|D]C == A, B or D, C
+    -->
+    <pair key='urn:lri:property_type:authored_by'>
+        <value>author_id</value>
+    </pair>
+    <pair key='urn:lri:property_type:description'>
+        <value>path_description</value>
+    </pair>
+    <pair key='urn:lri:property_type:id'>
+        <value>path_id</value>
+    </pair>
+    <pair key='urn:lri:property_type:name'>
+        <value>path_name</value>
+    </pair>
+    <pair key='urn:lri:property_type:path_step'>
+        <value>A</value>
+
+        <value>
+            <pair key='path:or'>
+                <value>
+                    <pair key='urn:lri:property_type:path_step'>
+                        <value>
+                            <pair key='urn:lri:property_type:competency_in_path'>
+                                <value>B</value>
+                            </pair>
+                            <pair key='urn:lri:property_type:previous'>
+                                <value>A</value>
+                            </pair>
+                        </value>
+
+                        <value>
+                            <pair key='urn:lri:property_type:competency_in_path'>
+                                <value>D</value>
+                            </pair>
+                            <pair key='urn:lri:property_type:previous'>
+                                <value>A</value>
+                            </pair>
+                        </value> 
+
+                    </pair> <!-- path_step -->
+                </value>
+            </pair> <!-- path:or -->
+        </value>
+
+        <value>C</value>
+    </pair>
+
+    <!--
+        or: path A[[BC]|E]D == A, [B, C] or E, D
+    -->
+    <pair key='path_step'>
+        <value>A</value>
+
+        <value>
+            <pair key='path:or'>
+                <value>
+                    <pair key='path_step'>
+                        <value>
+                            <pair key='path:and'>
+                                <value>
+                                    <pair key='path_step'>
+                                        <value>
+                                            <pair key='competency_in_path'>
+                                                <value>B</value>
+                                            </pair>
+                                            <pair key='previous'>
+                                                <value>A</value>
+                                            </pair>
+                                        </value>
+
+                                        <value>
+                                            <pair key='competency_in_path'>
+                                                <value>C</value>
+                                            </pair>
+                                            <pair key='previous'>
+                                                <value>B</value>
+                                            </pair>
+                                        </value>
+                                    </pair>
+                                </value>
+                            </pair>
+                        </value>
+
+                        <value>
+                            <pair key='competency_in_path'>
+                                <value>E</value>
+                            </pair>
+                            <pair key='previous'>
+                                <value>A</value>
+                            </pair>
+                        </value>
+                    </pair>
+                </value>
+            </pair>
+        </value>
+
+        <value>D</value>
+    </pair>
+</xml>

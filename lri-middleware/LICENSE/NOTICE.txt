@@ -1,0 +1,17 @@
+ 
+jQuery Foundation
+
+License: http://jquery.org/license/
+
+This software incorporates (e.g. links to) various jQuery libraries released under a dual MIT and GPL license.  For such libraries, the contributors elect the MIT license to enable distribution under the above terms and conditions.
+
+
+Multi-path vis 
+
+The following software may be included in this product:
+D3.js. Use of any of this software is governed by the terms
+of the license referenced below.
+
+� 2012 Michael Bostock
+
+License:  https://github.com/mbostock/d3/blob/master/LICENSE

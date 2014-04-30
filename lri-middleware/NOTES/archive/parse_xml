@@ -1,0 +1,245 @@
+#!/usr/bin/python
+
+from bs4 import BeautifulSoup
+import json
+import random
+import sys
+import web
+from xml.sax import saxutils
+
+def makeRandom():
+    thisName = "makeRandom"
+
+    r = str(random.random()).split(".")[1]
+    web.debug(thisName + ": r = %s" % r)
+
+    return r
+
+RANDSTR = makeRandom()
+
+def main(argv=None):
+    thisName = "main"
+
+    if argv is None:
+        argv = sys.argv
+
+    fileIn = argv[1]
+    xml = open(fileIn).read()
+
+    queries = buildInserts(xml)
+
+    print
+    web.debug(thisName + ": queries: ")
+    web.debug(queries)
+
+def buildInserts(xml):
+    thisName = "buildInserts"
+
+    xml = saxutils.unescape(xml)
+    soup = BeautifulSoup(xml)
+
+    pathId = None
+    tmp = soup.find(key="urn:lri:property_type:id")
+    if tmp:
+        pathId = tmp.getText().strip()
+
+    pathName = None
+    tmp = soup.find(key="urn:lri:property_type:name")
+    if tmp:
+        pathName = tmp.getText().strip()
+
+    pathDesc = None
+    tmp = soup.find(key="urn:lri:property_type:description")
+    if tmp:
+        pathDesc = tmp.getText().strip()
+
+    authorName = None
+    tmp = soup.find(key="urn:lri:property_type:authored_by")
+    if tmp:
+        authorName = tmp.getText().strip()
+    
+    pathSteps = None
+    tmp = soup.find(key="urn:lri:property_type:path_step")
+    if tmp:
+        pathSteps = tmp
+
+    # Create path
+    props = {
+        "urn:lri:property_type:id": pathId,
+        "urn:lri:property_type:name": pathName,
+        "urn:lri:property_type:description": pathDesc,
+        "urn:lri:property_type:authored_by": authorName,
+        }
+    pathQuery = makePath(props)
+
+    # Create steps
+    stepList = []
+    stepQueries = []
+    web.debug(thisName + ": pathStep values: ")
+    for step in pathSteps.findAll("value"):
+        if step.pair:
+            stepQuery = {}
+            orderingQueries = []
+            if step.pair["key"] == "type":
+                val = step.pair.value.getText()
+                if val == "step":
+                    web.debug(thisName + ": Creating step")
+                    stepQuery = makeStep(step)
+                    stepQueries.append(stepQuery)
+                    stepList.append(stepQuery["urn:lri:property_type:id"])
+                elif val == "ordering":
+                    web.debug(thisName + ": Creating ordering step")
+                    orderingQuery = makeOrderingStep(step)
+                    stepQueries += orderingQuery
+                    for oq in orderingQuery:
+                        stepList.append(oq["urn:lri:property_type:id"])
+                                    
+    queries = stepQueries
+    pathQuery["urn:lri:property_type:path_step"] = stepList
+    queries.append(pathQuery)
+
+    # Convert query to json before sending to LRI server
+    jsonQueries = []
+    for query in queries:
+        jsonQueries.append(json.dumps(query))
+
+    web.debug(thisName + ": jsonQueries: ")
+    for jsonQuery in jsonQueries:
+        web.debug(jsonQuery)
+
+    return jsonQueries
+
+def makePath(props={}):
+    thisName = "makePath"
+
+    query = {}
+    if len(props) > 0:
+        for prop in props:
+            query[prop] = props[prop]
+    else:
+        id = makeId("container")
+        query["urn:lri:property_type:id"] = id
+        query["urn:lri:property_type:name"] = makeName("container", id)
+
+    query["urn:lri:property_type:types"]= ["urn:lri:entity_type:thing",
+                                           "urn:lri:entity_type:competency",
+                                           "urn:lri:entity_type:competency_path"]
+
+    query["urn:lri:property_type:path_step"] = []
+
+    web.debug(thisName + ": query: ")
+    web.debug(query)
+
+    return query          
+
+def makeId(type, ns="lrihelper", commonName="lrihelper"):
+    thisName = "makeId"
+
+    id = "urn:"
+    id += ns + ":"
+    id += type + ":"
+    id += commonName + "-"
+
+    id += RANDSTR
+
+    web.debug(thisName + ": id = %s" % id)
+
+    return id
+
+def makeName(type, id):
+    thisName = "makeName"
+
+    parts = id.split(":")
+    name = " ".join(parts[1:])
+
+    web.debug(thisName + ": name = %s" % name)
+
+    return name
+
+def makeContainer(competencyList):
+    thisName = "makeContainer"
+
+    query = {}
+    id = makeId("container")
+    query["urn:lri:property_type:id"] = id
+    query["urn:lri:property_type:name"] = makeName("container", id)
+    query["urn:lri:property_type:types"] = ["urn:lri:entity_type:thing",
+                                            "urn:lri:entity_type:competency",
+                                            "urn:lri:entity_type:competency_container"]
+    query["urn:lri:property_type:contains"] = competencyList
+
+    web.debug(thisName + ": query: ")
+    web.debug(query)
+
+    return query
+
+def makeStep(xml):
+    thisName = "makeStep"
+
+    pairs = xml.findAll("pair")
+    stepType = pairs[0].value.getText().strip()
+
+    competencyList = []
+    for value in pairs[1].findAll("value"):
+        competencyList.append(value.getText().strip())
+
+    previous = None
+    tmp = xml.find(key="urn:lri:property_type:previous")
+    if tmp:
+        previous = tmp.getText().strip()
+            
+    web.debug(thisName + ": stepType = %r" % stepType)
+    web.debug(thisName + ": competencyList: ")
+    web.debug(competencyList)
+    web.debug(thisName + ": previous = %r" % previous)
+
+    query = {}
+    query["urn:lri:property_type:types"] = ["urn:lri:entity_type:thing",
+                                            "urn:lri:entity_type:path_step"]
+
+    id = makeId("step")
+    query["urn:lri:property_type:id"] = id
+    query["urn:lri:property_type:name"] = makeName("step", id)
+    query["urn:lri:property_type:competency_in_path"] = makeContainer(competencyList)
+
+    if previous:
+        query["urn:lri:property_type:previous"] = previous
+
+    web.debug(thisName + ": query: ")
+    web.debug(query)
+
+    return query
+
+def makeOrderingStep(xml):
+    thisName = "makeOrderingStep"
+
+    pairs = xml.findAll("pair")
+    stepType = pairs[0].value.getText().strip()
+
+    pathQuery = makePath({})
+
+    pathSteps = xml.find(key="urn:lri:property_type:path_step")
+    stepQueries = []
+    stepList = []
+    for step in pathSteps.findAll("value"):
+        if step.pair:
+            stepQuery = {}
+            if step.pair["key"] == "type":
+                val = step.pair.value.getText()
+                if val == "step":
+                    stepQuery = makeStep(step)
+                    stepQueries.append(stepQuery)
+                    stepList.append(stepQuery["urn:lri:property_type:id"])
+
+    queries = stepQueries
+    pathQuery["urn:lri:property_type:path_step"] = stepList
+    queries.append(pathQuery)
+
+    web.debug(thisName + ": queries: ")
+    for query in queries:
+        web.debug(query)
+
+    return queries
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv))

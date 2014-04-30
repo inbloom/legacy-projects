@@ -1,0 +1,875 @@
+$def with (form)
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type; charset=utf-8">
+    <title>path builder</title>
+    <style>
+        .node {
+            stroke-width: 2.5;
+        }
+
+        .node text {
+            pointer-events: none;
+            font: 10px sans-serif;
+        }
+
+        .link {
+            stroke: #999;
+            stroke-width: 5;
+        }
+    </style>
+    <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <div id="div1"></div>
+
+    <div id="div2">
+      <div id="div3"></div>
+    </div>
+
+    <!--
+        Use Framework and Domain/GradeLevel to get list of Standards
+        Draw Standards w/d3
+        Drag Standards to Canvas to form Paths
+        Save a Path
+        Lood a Path
+        Clear the Canvas
+    -->
+    
+    <div id="viz" style="width:80%;height:700px">
+      <div id="header" style="background-color:white">
+        <h1>/pathbuilder</h1>
+      </div>
+
+      <!-- Form -->
+      <div id="form" style="background-color:white;border:1px solid black">
+        <form name="main" method="post">
+          $if not form.valid: <p class="error">Try again:</p>
+          $:form.render()
+
+          <div id="canvas" style="display:inline-block;background-color:grey"></div>
+
+          <div id="buttons" style="background-color:white;border:1px solid black">
+            <input type="button" id="add" name="add" value="Add Step"/>
+            <input type="button" id="split" name="split" value="Split Path"/>
+            <input type="button" id="join" name="join" value="Join Path"/>
+            <input type="button" name="clear" value="Clear Path"/>
+            <input type="submit" name="save" value="Save Path"/>
+            <input type="submit" name="load" value="Load Path"/>
+          </div>
+        </form>
+      </div>
+    </div>
+
+<!--
+--------------------------------------------------------------------------------
+-->
+    <script type="text/javascript">
+      (function () { // namespace
+        //
+        // Viz
+        //
+        var VIZ_WIDTH = jQuery("#viz").width();
+        var VIZ_HEIGHT = jQuery("#viz").height();
+        console.log("form:", VIZ_WIDTH, VIZ_HEIGHT);
+
+        var FORM_WIDTH = jQuery("#form").width();
+        var FORM_HEIGHT = jQuery("#viz").height();
+        console.log("form:", FORM_WIDTH, FORM_HEIGHT);
+
+        var MENU_WIDTH = jQuery("table").width();
+        var MENU_HEIGHT = jQuery("table").height();
+        console.log("menu:", MENU_WIDTH, MENU_HEIGHT);
+
+        var BUTTON_WIDTH = jQuery("#buttons").width();
+        var BUTTON_HEIGHT = jQuery("#buttons").height();
+        console.log("button:", BUTTON_WIDTH, BUTTON_HEIGHT);
+
+        var CANVAS_WIDTH = FORM_WIDTH;
+        var CANVAS_HEIGHT = FORM_HEIGHT - MENU_HEIGHT - BUTTON_HEIGHT - 10;
+        console.log("canvas:", CANVAS_WIDTH, CANVAS_HEIGHT);
+
+        var X0 = 0;
+        var Y0 = 0.5 * CANVAS_HEIGHT;
+
+        var d3ForceDefaults = {
+            distance: 20,
+            strength: 1,
+            friction: 0.9,
+            charge: -30,
+            theta: 0.8,
+            gravity: 0.1
+        };
+
+        var FORCE_SIZE = [CANVAS_WIDTH, CANVAS_HEIGHT];
+        var FORCE_FRICTION = d3ForceDefaults.friction;
+        var FORCE_DISTANCE = 100;
+        var FORCE_CHARGE = -200;
+        var FORCE_GRAVITY = d3ForceDefaults.gravity;
+        var FORCE_THETA = d3ForceDefaults.theta;
+        var FORCE_STRENGTH = d3ForceDefaults.strength;
+        var FORCE_FRICTION = d3ForceDefaults.friction;
+
+        var step = null;
+        var prev = step;
+
+        var nodeList = [];
+        var linkList = [];
+
+        var force;
+        var link;
+        var node;
+
+        var colors = ["red", "orange", "yellow", "green", "blue", "violet"];
+        var colorIndex = 0;
+        var stepIndex = 0;
+        var competencyIndex = 1;
+
+        var forks = [];
+
+        var fill = d3.scale.category20();
+
+        var svg;
+
+        // Handle ready()
+        jQuery(document).ready(function () {
+            var thisName = "ready";
+
+            // Initialize canvas
+            svg = initializeCanvas();
+
+            // Initialize d3
+            force = d3.layout.force()
+                .size(FORCE_SIZE)
+                .friction(FORCE_FRICTION)
+                .linkDistance(FORCE_DISTANCE)
+                .charge(FORCE_CHARGE)
+                .gravity(FORCE_GRAVITY)
+                .theta(FORCE_THETA)
+                .linkStrength(FORCE_STRENGTH)
+                .friction(FORCE_FRICTION);
+
+/*
+            force = d3.layout.force()
+                .gravity(.05)
+                .distance(100)
+                .charge(-200)
+                .size([CANVAS_WIDTH, CANVAS_HEIGHT]);
+*/
+
+            link = svg.selectAll(".link");
+            node = svg.selectAll(".node");
+
+            force
+                .nodes(nodeList)
+                .links(linkList);
+            console.log(thisName + ": set nodes");
+            console.log(thisName + ": set links");
+
+            addNode();
+            drawNodes();
+
+
+
+            // Initialize initiatives menu
+            var url = "http://knowledgeweb.appliedminds.com:9000/ccss/initiatives";
+            console.log("ready: " + url);
+            var initiatives = {};
+            var r = jQuery.get(url, function (data, status) {
+                console.log(status);
+                if (status === "success") {
+                    console.log("Getting initiatives");
+
+                    // Set initiatives menu contents
+                    initiatives = getEntities(data);
+                    var names = [];
+                    for (var i in initiatives) {
+                       names.push(initiatives[i]);
+                    }
+                    addToMenu("#initiatives", names);
+                }
+            }, "text");
+            console.log(r);
+            console.log(r.getAllResponseHeaders());
+
+            // Handle Initiative selection
+            var frameworks = {};
+            jQuery("#initiatives").change(function () {
+                var selectedInitiative = jQuery("#initiatives").val();
+                console.log("Got initiative: " + selectedInitiative);
+
+                var initiativeId = "";
+                console.log("Looking for: " + selectedInitiative);
+                for (var i in initiatives) {
+                    if (initiatives[i] === selectedInitiative) {
+                        console.log("Found: " + selectedInitiative + ": " + i);
+                        initiativeId = i;
+                        break;
+                    }
+                }
+
+                url = "http://knowledgeweb.appliedminds.com:9000/ccss/frameworks?initiative=";
+                url += initiativeId;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    console.log(status);
+                    if (status === "success") {
+                        console.log("Getting frameworks");
+
+                        // Set frameworks menu contents
+                        frameworks = getEntities(data);
+                        var names = [];
+                        for (var i in frameworks) {
+                            names.push(frameworks[i]);
+                        }
+                        addToMenu("#frameworks", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Framework selection
+            var sets = {};
+            jQuery("#frameworks").change(function () {
+                var selectedFramework = jQuery("#frameworks").val();
+                console.log("Got framework: " + selectedFramework);
+
+                var frameworkId = "";
+                console.log("Looking for: " + selectedFramework);
+                for (var i in frameworks) {
+                    if (frameworks[i] === selectedFramework) {
+                        console.log("Found: " + selectedFramework + ": " + i);
+                        frameworkId = i;
+                        break;
+                    }
+                }
+
+                url = "http://knowledgeweb.appliedminds.com:9000/ccss/sets?framework=";
+                url += frameworkId;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    console.log(status);
+                    if (status === "success") {
+                        console.log("Getting sets");
+
+                        // Set sets menu contents
+                        sets = getEntities(data);
+                        var names = [];
+                        for (var i in sets) {
+                            names.push(sets[i]);
+                        }
+                        addToMenu("#sets", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Set selection
+            var grades = {};
+            jQuery("#sets").change(function () {
+                var selectedSet = jQuery("#sets").val();
+                console.log("Got set: " + selectedSet);
+
+                var setId = "";
+                console.log("Looking for: " + selectedSet);
+                for (var i in sets) {
+                    if (sets[i] === selectedSet) {
+                        console.log("Found: " + selectedSet + ": " + i);
+                        setId = i;
+                        break;
+                    }
+                }
+
+                url = "http://knowledgeweb.appliedminds.com:9000/ccss/grade_levels?set=";
+                url += setId;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    console.log(status);
+                    if (status === "success") {
+                        console.log("Getting grade_levels");
+
+                        // Set grade_levels menu contents
+                        grades = getEntities(data);
+                        var names = [];
+                        for (var i in grades) {
+                            names.push(grades[i]);
+                        }
+                        addToMenu("#grades", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Grade selection
+            var domains = {};
+            jQuery("#grades").change(function () {
+               console.log("===== grade -> domains =====");
+               console.log(grades);
+ 
+               //domains = setChildMenu("#grades", grades, "#domains");
+
+                var selectedGrade = jQuery("#grades").val();
+                console.log("Got grade: " + selectedGrade);
+
+                var gradeId = "";
+                console.log("Looking for: " + selectedGrade);
+                for (var i in grades) {
+                    if (grades[i] === selectedGrade) {
+                        console.log("Found: " + selectedGrade + ": " + i);
+                        gradeId = i;
+                        break;
+                    }
+                }
+
+                url = "http://knowledgeweb.appliedminds.com:9000/ccss/domains?grade_level=";
+                url += gradeId;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    console.log(status);
+                    if (status === "success") {
+                        console.log("Getting domains");
+
+                        // Set domains menu contents
+                        domains = getEntities(data);
+                        var names = [];
+                        for (var i in domains) {
+                            names.push(domains[i]);
+                        }
+                        addToMenu("#domains", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Domain selection
+            var standards = {};
+            jQuery("#domains").change(function () {
+               console.log("===== domain -> standards =====");
+
+                //standards = setChildMenu("#domains", domains, "#standards");
+              
+                var selectedDomain = jQuery("#domains").val();
+                console.log("Got domain = " + selectedDomain);
+
+                var domainId = "";
+                console.log("Looking for: " + selectedDomain);
+                for (var i in domains) {
+                    if (domains[i] === selectedDomain) {
+                        console.log("Found: " + selectedDomain + ": " + i);
+                        domainId = i;
+                        break;
+                    }
+                }
+
+                url = "http://knowledgeweb.appliedminds.com:9000/ccss/standards?domain=";
+                url += domainId;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    console.log(status);
+                    if (status === "success") {
+                        console.log("Getting standards");
+
+                        // Set standards menu contents
+                        standards = getEntities(data);
+                        var names = [];
+                        for (var i in standards) {
+                            names.push(standards[i]);
+                        }
+                        addToMenu("#standards", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Standard selection
+            jQuery("#standards").change(function () {
+                // Get standards in selected domain
+                var selectedStandard = jQuery("#standards").val();
+                console.log("selectedStandard = " + selectedStandard);
+   
+                var standardId = "";
+                console.log("Looking for: " + selectedStandard);
+                for (var i in standards) {
+                    if (standards[i] === selectedStandard) {
+                        console.log("Found: " + selectedStandard + ": " + i);
+                        standardId = i;
+                        break;
+                    }
+                }
+
+                // Add competency
+               /*
+               if (step === null) {
+                    step = {r: 20, 
+                            color: colors[0],
+                            id: "",
+                            name: "path_step",
+                            nodeIndex: stepIndex};
+                    nodeList.push(step);
+
+                    console.log(thisName + ": step: " + stepIndex + ": ");
+                    console.log(step);
+                    stepIndex++;
+                }
+                */
+                var competency = {r: 10,
+                                  color: colors[2],
+                                  id: standardId,
+                                  name: selectedStandard,
+                                  step: stepIndex,
+                                  nodeIndex: competencyIndex};
+                competencyIndex++;
+                console.log(thisName + ": competency: " + competencyIndex + ": ");
+                console.log(competency);
+                nodeList.push(competency);
+
+                var link = {
+                    source: step,
+                    target: competency
+                };
+                console.log(thisName + ": link: ");
+                console.log(link);
+
+                linkList.push(link);
+
+                drawNodes();
+            }); // end standards
+
+            // Handle Add button
+            document.getElementById("add").onclick = function () {
+                var thisName = "add.onclick";
+                addNode();
+                drawNodes();
+            }
+
+            // Handle Split button
+            document.getElementById("split").onclick = function () {
+                var thisName = "split.onclick";
+                splitPath();
+                drawNodes();
+            }
+
+            // Handle Join button
+            document.getElementById("join").onclick = function () {
+                var thisName = "join.onclick";
+                joinPath();
+                drawNodes();
+            }
+        }); // end ready
+
+        function splitPath() {
+            var thisName = "splitPath";
+
+            var node = makeNode();
+            nodeList.push(node);
+            forks.push(node);
+            stepIndex++;
+
+            var link = makeLink(node, step);
+            linkList.push(link);
+
+            node = makeNode();
+            nodeList.push(node);
+            forks.push(node);
+            stepIndex++;
+
+            link = makeLink(node, step);
+            linkList.push(link);
+
+            prev = step = node;
+        }
+
+        function joinPath() {
+            var thisName = "joinPath";
+
+            var node = makeNode();
+            nodeList.push(node);
+            stepIndex++;
+
+            // Complete diamond
+            var link = makeLink(forks[0], node);
+            linkList.push(link);
+            link = makeLink(forks[1], node);
+            linkList.push(link);
+
+            prev = step = node;
+        }
+
+        function shallowCopy(obj) {
+            var thisName = "shallowCopy";
+
+            var copy = {};
+            for (var i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    copy[i] = obj[i];
+                }
+            }
+
+            return copy;
+        }
+
+        function makeLink(source, target) {
+            var thisName = "makeLink";
+
+            var link = {
+                source: source,
+                target: target
+            };
+
+            return link;
+        }
+
+        function makeNode() {
+            var thisName = "makeNode";
+
+            var node = {
+                r: 20,
+                color: colors[0],
+                nodeIndex: stepIndex,
+                name: stepIndex
+            };
+
+            return node;
+        }
+
+        function addLink() {
+            var thisName = "addLink";
+
+            var link = {
+            };
+        }
+
+        function addNode(x0, y0) {
+            var thisName = "addNode";
+
+            step = {
+                r:20,
+                color: colors[colorIndex],
+                nodeIndex: stepIndex,
+                name: stepIndex,
+                id: stepIndex
+            };
+            if (x0) {
+                step.x = x0;
+                step.fixed = true;
+            }
+            if (y0) {
+                step.y = y0;
+                step.fixed = true;
+            }
+            nodeList.push(step);
+            stepIndex++;
+            colorIndex++;
+            console.log(thisName + ": nodes: " 
+                        + nodeList.length + ", "
+                        + "stepIndex: " + stepIndex + ", "
+                        + "colorindex: " + colorIndex);
+
+            if (prev != step && prev != null) {
+                var link = {
+                    source: step,
+                    target: prev
+                };
+                linkList.push(link);
+            }
+            prev = step;
+        }
+
+/*
+      //////////////////////////////////////////////////////////////////////////
+      // Test
+      //////////////////////////////////////////////////////////////////////////
+      var data = [4, 16, 36];
+
+      // Sanity check
+      var svg = d3.select("body").append("svg");
+      svg.attr("width", 100)
+        .attr("height", 100)
+        .style("border", "1px solid black")
+        .style("background-color", "#ffaaaa");
+
+      var circle = svg.selectAll("circle")
+        .data(data);
+
+      circle.enter().append("circle")
+        .style("fill", "blue")
+        .attr("cx", String)
+        .attr("cy", String)
+        .attr("r", Math.sqrt);
+
+      circle.exit().remove();
+*/
+
+
+
+      //////////////////////////////////////////////////////////////////////////
+      // API
+      //////////////////////////////////////////////////////////////////////////
+
+      function initializeCanvas() {
+          var canvasAttrs = {
+              textAnchor: "left"
+          };
+
+          var canvasStyles = {
+              backgroundColor: jQuery("#canvas")[0].style.backgroundColor,
+              border: "1px solid red"
+          };
+
+          var canvasSel = d3.select("#canvas");
+          var svg = appendSvg(canvasSel, CANVAS_WIDTH, CANVAS_HEIGHT, canvasAttrs, canvasStyles);
+
+          /*
+          var textData = [
+              {x: 100, y: 20, text: "Nodes"},
+              {x: 200, y: 20, text: "Appear"},
+              {x: 300, y: 20, text: "Here"}
+          ];
+          drawText(svg, textData);
+          */
+
+          return svg;
+      };
+
+      function appendSvg(selection, width, height, attrs, styles) {
+        var svg = selection.append("svg");
+        svg.attr("width", width)
+           .attr("height", height);
+
+        for (attr in attrs) {
+          svg.attr(attr, attrs[attr]);
+        }
+
+        for (style in styles) {
+          svg.style(style, styles[style]);
+        }
+
+        //svg.append("g");
+
+        return svg;
+      }
+
+      function drawText(svg, data) {
+        var drag = d3.behavior.drag()
+          .origin(Object)
+          .on("drag", function (d) {
+            d3.select(this)
+              .attr("x", d.x = d3.event.x)
+              .attr("y", d.y = d3.event.y);
+          });
+
+        var text = svg.selectAll("text")
+          .data(data);
+
+        text.enter().append("text")
+          .attr("x", function (d) { return d.x; })
+          .attr("y", function (d) { return d.y; })
+          .text(function (d) { return d.text; })
+          .call(drag);
+
+        text.exit().remove();
+      }
+
+          function connectNode(node) {
+          }
+
+          function drawNodes() {
+            var thisName = "drawNodes";
+
+            // Draw link
+            link = link.data(linkList);
+            link.enter().insert("line", ".node")
+                .attr("class", "link");
+            link.exit().remove();
+            console.log(thisName + ": drew link");
+
+            // Draw node w/text
+            node = node.data(nodeList);
+            node.enter().append("g")
+                .attr("class", "node")
+                .call(force.drag)
+            .append("circle")
+                .attr("cx", function (d) { return d.x; })
+                .attr("cy", function (d) { return d.y; })
+                .attr("r", function (d) { return d.r; })
+                .style("fill", function (d, i) { return fill(i); })
+                .style("stroke", function (d, i) { return d3.rgb(fill(i)).darker(2); })
+                .attr("id", function (d) { return d.id; });
+
+            node.append("text")
+                .attr("dx", 12)
+                .attr("dy", ".35em")
+                .text(function (d) { return d.name; })
+                .style("fill", function (d, i) { return d3.rgb(fill(i)).brighter(2); });
+            console.log(thisName + ": drew a circle w/label");
+
+            node.exit().remove();
+
+            force.start();
+            console.log(thisName + ": started force layout");
+
+            force.on("tick", function (d) {
+                //console.log(d);
+
+                link.attr("x1", function(d) { return d.source.x; })
+                    .attr("y1", function(d) { return d.source.y; })
+                    .attr("x2", function(d) { return d.target.x; })
+                    .attr("y2", function(d) { return d.target.y; });
+
+//                node.attr("cx", function (d) { return d.x; })
+//                    .attr("cy", function (d) { return d.y; });
+
+                node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+            });
+
+/*
+           trans = d3.event.translate;
+           scale = d3.event.scale;
+           svg.attr("transform",
+               "translate(" + trans + ")"
+               + " scale(" + scale + ")");
+*/
+          }
+
+          function getEntities(response, key) {
+             console.log("getEntities");
+
+              var ents = {};
+              data = JSON.parse(response);
+              console.log("getEntities: data: ");
+              console.log(data);
+
+              var idProp = "urn:lri:property_type:id";
+              var nameProp = "urn:lri:property_type:name";
+              for (var i in data["response"]) {
+                  console.log("  " + i);
+
+                  for (var j in data["response"][i]) {
+                      console.log("    " + j);
+
+                      for (var k in data["response"][i][j]) {
+                          console.log("      " + k);
+
+                          var id = data["response"][i][j][k]["props"][idProp];
+                          var name = data["response"][i][j][k]["props"][nameProp];
+                          ents[id] = name;
+                      }
+                  }
+              }
+
+              console.log("getEntities: ents: ");
+              console.log(ents);
+              return ents;
+          }
+
+          function addToMenu(id, names) {
+              console.log("addToMenu");
+              console.log("addToMenu: id = " + id);
+              console.log("addToMenu: names: ");
+              console.log(names);
+
+              for (var i in names) {
+                  console.log("  " + names[i]);
+
+                  var option = document.createElement("option");
+                  option.value = names[i];
+                  option.text = option.value;
+                  jQuery(id).append(option);
+              }
+          }
+
+          // setChildMenu
+          // Populates child menu given selection change in parent menu
+          //
+          // menuName: name of menu that changed (#names)
+          // idNameMap: mapping of id -> name
+          // childMenuName: name of menu to populate (#childNames)
+          function setChildMenu(menuName, idNameMap, childMenuName) {
+              var thisName = "setChildMenu";
+
+              var selectedItem = jQuery(menuName).val();
+              console.log(thisName + ": Got from: " + menuName + ": " + selectedItem);
+              var itemId = getIdFromName(idNameMap, selectedItem);
+
+              var childType = childMenuName.substring(1, childMenuName.length-1);
+              var parentType = menuName.substring(1, menuName.length-1);
+              if (parentType === "grade") {
+                  parentType = "grade_level";
+              }
+              var url = makeUrl(childType, parentType, itemId);
+              console.log(thisName + ": url = " + url);
+              var entities = populateMenuFromUrl(childMenuName, url);
+
+              return entities;
+          }
+
+          // populateMenuFromUrl
+          // Returns mapping of id -> name
+          function populateMenuFromUrl(menuName, url) {
+              var thisName = "populateMenuFromUrl";
+
+              var entities = "";
+              jQuery.get(url, function (data, status) {
+                  console.log(thisName + ": " + status);
+
+                  if (status === "success") {
+                      // Set menu contents
+                      entities = getEntities(data);
+                      var itemNames = [];
+                      for (var i in entities) {
+                          itemNames.push(entities[i]);
+                      }
+                      addToMenu(menuName, itemNames);
+                  }
+
+                  return entities;
+              }, "text");
+              //console.log(thisName + ": entities: ");
+              //console.log(entities);
+
+              //return entities;
+          }
+
+          // makeUrl
+          function makeUrl(childType, parentType, parentId) {
+              var thisName = "makeUrl";
+
+              var url = "http://knowledgeweb.appliedminds.com:9000/ccss";
+              url += "/" + childType + "s";
+              url += "?" + parentType;
+              url += "=" + parentId;
+              console.log(thisName + ": url = " + url);
+
+              return url;
+         }
+
+          // getIdFromName
+          // Returns id of named entity
+          function getIdFromName(idNameMap, name) {
+              var thisName = "getIdFromName";
+
+              var itemId = "";
+              console.log(thisName + ": Looking for: " + name);
+              console.log(thisName + ": ", idNameMap);
+
+              for (var i in idNameMap) {
+                  console.log(thisName + ": ", 
+                              "i = " + i, 
+                              ", idNameMap[" + i + "] = " + idNameMap[i], 
+                              ", name = " + name);
+
+                  if (idNameMap[i] === name) {
+                      console.log(thisName + ": Found: " + name + ": " + i);
+                      itemId = i;
+                      break;
+                  }
+              }
+              console.log(thisName + ": id = " + itemId);
+
+              return itemId;
+          }
+      })(); // end namespace
+    </script>
+  </body>
+</html>

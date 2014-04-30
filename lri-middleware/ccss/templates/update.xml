@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='urn:lri:property_type:id'>
+    <value>ENTITY_ID</value>
+  </pair>
+  <pair key='updates'>
+    <value>
+      <pair key='property'>
+        <value>PROPERTY_NAME</value>
+        <value>NEW_VALUE</value>
+      </pair>
+    </value>
+  </pair>
+</xml>
+

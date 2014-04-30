@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='urn:ccss:property_type:anchors'>
+    <value>STANDARD_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>CREATOR_NAME</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>DESCRIPTION_NAME</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>NAME</value>
+  </pair>
+</xml>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>urn:erik:framework:erik_03.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test initiative 03</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:initiative:erik_03</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_03</value>
+  </pair>
+</xml>
+
+=== framework ===
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>urn:erik:initiative:erik_03</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>urn:erik:set:erik_03.test_00.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test framework 00</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:framework:erik_03.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_00</value>
+  </pair>
+</xml>
+
+===== set =====
+erik_03.test_00.test_00
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03.test_00.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>urn:erik:framework:erik_03.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>urn:erik:grade:erik_03.test_00.test_00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test set 00</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:set:erik_03.test_00.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_00</value>
+  </pair>
+</xml>
+
+======= grade_level =======
+erik_03.test_00.test_00.00
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03.test_00.test_00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>urn:erik:set:erik_03.test_00.test_00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>urn:erik:level0:erik_03.test_00.test_00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test grade_level 00</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:grade:erik_03.test_00.test_00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_00</value>
+  </pair>
+</xml>
+
+========= competency_container / domain / level0 =========
+erik_03.test_00.test_00.00.00
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03.test_00.test_00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:completion_criterion'>
+    <value>all</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>urn:erik:grade:erik_03.test_00.test_00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>urn:erik:level1:erik_03.test_00.test_00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test level0 00</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:level0:erik_03.test_00.test_00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_00</value>
+  </pair>
+</xml>
+
+=========== competency_container / cluster / level1 ===========
+erik_03.test_00.test_00.00.00.00
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03.test_00.test_00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:completion_criterion'>
+    <value>all</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>urn:erik:grade:erik_03.test_00.test_00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>urn:erik:level2:erik_03.test_00.test_00.00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test level1 00</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:level1:erik_03.test_00.test_00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_00</value>
+  </pair>
+</xml>
+
+============= competency_container / standard / level2 =============
+erik_03.test_00.test_00.00.00.00.00
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03.test_00.test_00.00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:completion_criterion'>
+    <value>all</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>urn:erik:grade:erik_03.test_00.test_00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>urn:erik:level3:erik_03.test_00.test_00.00.00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test level2 00</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:level2:erik_03.test_00.test_00.00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_00</value>
+  </pair>
+</xml>
+
+============= competency / standard_component / level3=============
+erik_03.test_00.test_00.00.00.00.00.00
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>erik_03.test_00.test_00.00.00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:completion_criterion'>
+    <value>all</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>urn:erik:grade:erik_03.test_00.test_00.00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>erik</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>test level3 00</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>urn:erik:level3:erik_03.test_00.test_00.00.00.00.00.00</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>test_00</value>
+  </pair>
+</xml>

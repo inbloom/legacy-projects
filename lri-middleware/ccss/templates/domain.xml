@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>ELA_FRAMEWORK_LEVEL_ID</value>
+    <value>MATH_GRADE_LEVEL_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>ELA_GRADE_LEVEL_ID</value>
+    <value>MATH_CLUSTER_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>CREATOR_NAME</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>DESCRIPTION</value>
+  </pair>
+  <pair key='urn:ccss:property_type:is_in_strand'>
+    <value>ELA_STRAND_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>NAME</value>
+  </pair>
+  <pair key='namespace'>
+    <value>NAMESPACE</value>
+  </pair>
+  <pair key='uniqueid'>
+    <value>UNIQUE_ID</value>
+  </pair>
+</xml>

@@ -1,0 +1,7 @@
+{
+    "urn:lri:property_type:completion_criterion": "COMPLETION CRITERION",
+    "urn:lri:property_type:contained_by": "COMPETENCY_CONTAINER_ID"
+    "urn:lri:property_type:description": "DESCRIPTION",
+    "urn:lri:property_type:id": "ID",
+    "urn:lri:property_type:name": "NAME"
+}

@@ -1,0 +1,727 @@
+#!/usr/bin/python
+
+###############################################################################
+#
+###############################################################################
+
+from bs4 import BeautifulSoup
+import copy
+import json
+import operator
+import re
+import sys
+import traceback
+import urllib
+import web
+from xml.sax import saxutils
+
+import httpconfig
+
+from ccss import format
+from ccss import insert
+from ccss import prune
+from ccss import query
+from ccss import sort
+
+"""Interface for LRI queries for Common Core State Standards
+
+uWSGI / web.py
+
+"""
+
+class NotImplementedError(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
+
+class WrongTypeError(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
+
+class DebugMessage(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
+
+class DeprecatedError(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
+
+##### web.py
+web.config.debug = True
+urls = ("/.*", "ccss")
+
+app = web.application(urls, globals())
+application = app.wsgifunc()
+
+class index:
+    def GET(self):
+        return "hello, world!"
+
+# TODO: Ditch start_response?
+class ccss:
+    def start_response(self, status, headers):
+        web.ctx.status = status
+        for header, value in headers:
+            web.header(header, value)
+
+    def convertQueryString(self):
+        """Converts &-separated query string to LRI-style json-formatted opts
+
+?key1=val1&key2=val2 -> ?opts={"key1":"val1","key2":"val2"}
+
+"""
+
+        queryString = web.ctx.env.get("QUERY_STRING", "")
+        queryVars = queryString.split("&")
+
+        emptyOpts = '"opts={}"'
+        if len(queryVars) == 0:
+            return emptyOpts
+        if queryString.find("=") == -1:
+            return emptyOpts
+
+        opts = {}
+        try:
+            for var in queryVars:
+                var = var.strip("?")
+                key, val = var.split("=")
+                if val in ["true", "True"]:
+                    val = True
+                if val in ["false", "False"]:
+                    val = False
+                if key in opts:
+                    opts[key].append(val)
+                else:
+                    opts[key] = []
+                    opts[key].append(val)
+
+            for key in opts:
+                if len(opts[key]) == 1:
+                    val = opts[key][0]
+                    opts[key] = val
+        except Exception, e:
+            web.debug(e)
+
+        s = "opts=%s" % json.dumps(opts)
+        return s
+        
+    def GET(self, extra=None):
+        web.debug("GET")
+
+        web.debug("web.config: ")
+        for config in web.config:
+            web.debug("    %s : %s" % (config, web.config[config]))
+
+        web.debug("web.config[session_parameters]: ")
+        for param in web.config["session_parameters"]:
+            web.debug("    %s : %s" % (param, web.config["session_parameters"][param]))
+
+        web.debug("web.ctx.env: ")
+        web.debug(web.ctx.env)
+
+        if web.ctx.env["QUERY_STRING"].find("opts={") == -1:
+            web.ctx.env["QUERY_STRING"] = self.convertQueryString()
+
+        return getApplication(web.ctx.env, self.start_response)
+
+    def POST(self, extra=None):
+        web.debug("POST")
+
+        # Convert query str to opts
+        web.ctx.env["QUERY_STRING"] = self.convertQueryString()
+        web.debug("QUERY_STRING: %s" % web.ctx.env["QUERY_STRING"])
+
+        # Print env
+        web.debug("web.ctx.env: ")
+        web.debug(web.ctx.env)
+
+        # Print POST data dict
+        web.debug("web.input: ")
+        userData = web.input()
+        web.debug(userData)
+
+        # Print encoded POST data
+        web.debug("web.data: ")
+        rawData = web.data()
+        web.debug(rawData)
+
+        # Decode POST data
+        #data = web.input()
+        #try:
+        #    data.data = json.loads(data.data)
+        #except ValueError, e:
+        #    pass
+
+        #web.debug("decoded web.data: ")
+        #web.debug(data.data)
+
+        # Set headers to send back to client
+        #web.header("Content-Type", "application/xml; charset=utf-8")
+        web.header("Access-Control-Allow-Origin", "*")
+
+        # Return data to client
+        #web.debug("returning: %s" % data.data)
+        #return data.data.encode("utf-8")
+        return postApplication(web.ctx.env, self.start_response, userData)
+        #return web.input().data
+
+def getUriJson(data):
+    decodedJson = json.loads(data)
+    return decodedJson["uri://lri/property_type/id"]
+
+def getUriXml(data):
+    xml = saxutils.unescape(data)
+    soup = BeautifulSoup(xml)
+    return soup.find(key="uri://lri/property_type/id").getText().strip()
+
+# TODO: Use QueryRunner and QueryResult?
+# TODO: Figure out what can go since we're not using lriserver modules
+# TODO: Look up web.py idiom for setting status
+def postApplication(environ, start_response, userData):
+    web.debug("postApplication")
+
+    status = 0
+    result = []
+
+    pathInfo  = environ["PATH_INFO"]
+    web.debug("postApplication: pathInfo = %s" % pathInfo)
+    web.debug("postApplication: userData = %r" % userData)
+    web.debug("postApplication: web.input() = %r" % web.input())
+    web.debug("postApplication: web.data() = %r" % web.data())
+
+    web.debug("postApplication: userData.keys() = %r" % userData.keys())
+
+    decodedOpts = {}
+    if environ.has_key("QUERY_STRING"):
+        decodedOpts = decodeOpts(environ["QUERY_STRING"])
+        web.debug("postApplication: decodedOpts = %r" % decodedOpts)
+    if environ["REQUEST_METHOD"] == "POST":
+        code, result = doPost(pathInfo, decodedOpts, userData.data)
+    else:
+        return result
+
+    # TODO: There must be a better/web.py way of doing this
+    status = ""
+    if code == 201:
+        status = "201 Created"
+    elif code == 404:
+        status = "404 Not Found"
+    elif code == 500:
+        status = "500 Internal Server Error"
+    else:
+        # pywebapp.py returns 200 OK for GET & POST
+        if code == 200:
+            status = "201 Created"
+
+    headers = [
+        ("X-Powered-By", "Python"),
+        ("Webapp", "ccss"),
+        ("Access-Control-Allow-Origin", "*")]
+
+    if code in [404, 500]:
+        start_response(status, headers)
+        result = status + "\n\n" + pathInfo + "\n\n" + result
+        web.debug("postApplication: ERROR: Returning code: %d" % code)
+        web.debug("postApplication: ERROR: Returning headers: %r" % headers)
+        return result
+
+    toFormat = "xml"
+    if decodedOpts.has_key("format"):
+        toFormat = decodedOpts["format"]
+    elif userData.has_key("format"):
+        toFormat = userData.format
+
+    if toFormat == "json":
+        headers.append(("Content-Type", "application/json; charset=utf-8"))
+    elif toFormat in ["xml", "johnxml", "oldxml"]:
+        headers.append(("Content-Type", "application/xml; charset=UTF-8"))
+    elif toFormat == "yaml":
+        headers.append(("Content-Type", "text/x-yaml; charset=utf-8"))
+    else:
+        headers.append(("Content-Type", "application/json"))
+    
+    # Add Location header
+    if toFormat in ["json", "xml"]:
+        uri = ""
+        if toFormat == "json":
+            uri = getUriJson(userData.data)
+        elif toFormat == "xml":
+            uri = getUriXml(userData.data)
+        #headers.append(("Location", uri))
+
+    web.debug("postApplication: Returning status: %s" % status)
+    web.debug("postApplication: Returning headers: %r" % headers)
+    web.debug("postApplication: Returning result: ")
+    if toFormat == "xml":
+        xml = saxutils.unescape(result)
+        soup = BeautifulSoup(xml)
+        print(soup.prettify())
+
+    start_response(status, headers)
+
+    return result
+
+
+# TODO: Constants for default formats (DEFAULT_FORMAT_REQUEST, DEFAULT_FORMAT_RESPONSE)
+def doPost(pathInfo, opts, data):
+    web.debug("doPost")
+
+    formatted = ""
+    results = None
+    code = 201
+    try:
+        # Create & run inserts (create, update)
+        pattern = "(/[a-z_]+)(/[a-z]+)"
+        m = re.match(pattern, pathInfo)
+        ccssType, action = m.groups()
+        i = insert.InsertFactory().CreateInsert(ccssType, action, opts, data)
+        for url in i.getUrls():
+            r = QueryRunner(url)
+            results = r.runQuery()
+            if not isinstance(results, QueryResult):
+                raise WrongTypeError("doPost: QueryRunner.runQuery(): expected QueryResult, got %s" % type(results))
+            code = results.getHttpStatusCode()
+
+        # TODO: Sorting?
+
+        # Convert to requested format
+        toFormat = "xml"
+        if not opts.has_key("format"):
+            userData = web.input()
+            toFormat = userData.get("format", "xml")
+        web.debug("format = %s" % toFormat)
+
+        f = format.FormatterFactory().CreateFormatter(toFormat)
+        formatted = f.format(results.getData())
+
+    except NotImplementedError, e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        formatted = "doPost: Caught NotImplementedError: " + str(e) + "\n"
+        formatted += "-" * 60 + "\n"
+        formatted += traceback.format_exc()
+        formatted += "-" * 60 + "\n"
+        code = 501
+
+    except WrongTypeError, e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        formatted = "doPost: Caught WrongTypeError: " + str(e) + "\n"
+        formatted += "-" * 60 + "\n"
+        formatted += traceback.format_exc()
+        formatted += "-" * 60 + "\n"
+        code = 500
+
+    except Exception, e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        formatted = "doPost: Caught Exception: " + str(e) + "\n"
+        formatted += "-" * 60 + "\n"
+        formatted += traceback.format_exc()
+        formatted += "-" * 60 + "\n"
+        code = 500
+        
+    return code, formatted
+
+# TODO: Refactor:
+#    queries.py
+#    sorting.py
+#    formatting.py
+# TODO: Properly port to web.py
+def getApplication(environ, start_response):
+    web.debug("getApplication")
+
+    status = 0
+    result = []
+
+    # GET /ccss/subjects
+    #   returns uri://ccss/subject/math, uri://ccss/subject/ela
+    # /ccss/grade_levels ? subject=uri://ccss/subject/ela
+    #   returns uri://ccss/grade_level/ela/K, ...
+    # /ccss/domains ? grade_level=uri://ccss/grade_level/ela/4
+    #   returns uri://ccss/domain/L.4, ...
+    # /ccss/clusters ? domain=uri://ccss/domain/L.4
+    #   returns uri://ccss/anchor_standard_section/L.4.A, ...
+    # /ccss/standards ? cluster=uri://ccss/anchor_standard_section/L.4.A
+    #   returns uri://ccss/standard/L.4.1, ...
+    # /ccss/standard_components ? standard=uriL//ccss/standard/L.4.1
+    #   returns uri://ccss/standard_component/L.4.1.a, ...
+    # /ccss/anchor_standards ? anchor_standard_section=uri://ccss/anchor_standard_section/L.4.A
+    #   returns uri://ccss/anchor_standard/L.4
+    # /ccss/competency_paths
+    #   returns uri://foo/bar/baz, ...
+    # /ccss/competency_path/uri://foo/bar/baz
+    #   returns uri://foo/bar/baz
+    # /ccss/competency_path ? competency=uri://ccss/standard/L.4.1
+    #   returns uri://foo/bar/baz
+    # /ccss/strands
+    #   returns uri://ccss/strand/L, ...
+
+    pathInfo = environ["PATH_INFO"]
+    decodedOpts = {}
+    if environ.has_key("QUERY_STRING"):
+        web.debug("QUERY_STRING = %s" % environ["QUERY_STRING"])
+        decodedOpts = decodeOpts(environ["QUERY_STRING"])
+        web.debug("decodedOpts = %r" % decodedOpts)
+    if environ["REQUEST_METHOD"] == "GET":
+        code, result = doGet(pathInfo, decodedOpts)
+    else:
+        return result
+
+    # TODO: Use web.ctx.status instead of assembling status string
+    status = code
+    if code == 200:
+        status = "200 OK"
+    elif code == 404:
+        status = "404 Not Found"
+    elif code == 500:
+        status = "500 Internal Server Error"
+
+    headers = [
+        ("X-Powered-By", "Python"),
+        ("Webapp", "ccss"),
+        ("Access-Control-Allow-Origin", "*")]
+
+    if "format" in decodedOpts:
+        if decodedOpts["format"] == "json":
+            headers.append(("Content-Type", "application/json"))
+        elif decodedOpts["format"] in ["xml", "johnxml", "oldxml"]:
+            headers.append(("Content-Type", "application/xml"))
+        elif decodedOpts["format"] == "yaml":
+            headers.append(("Content-Type", "text/x-yaml"))
+        else:
+            headers.append(("Content-Type", "application/json"))
+
+    # TODO: Use start_response w/sys.exc_info() param
+    start_response(status, headers)
+
+    if code in [404, 500]:
+        result = status + "\n\n" + pathInfo + "\n\n" + result
+
+    return result
+
+def decodeOpts(opts):
+    """Decodes options string to dict"""
+
+    decodedOpts = {}
+    try:
+        parts = opts.split("opts=")
+        decodedOpts = json.loads(urllib.unquote(parts[1]))
+    except Exception, e:
+        web.debug(e)
+        pass
+
+    return decodedOpts
+
+def doGet(pathInfo, opts):
+    """Does GET"""
+
+    web.debug("doGet")
+
+    formatted = ""
+    results = None
+    code = 200
+    try:
+        # Create & run query
+        httpConfig = httpconfig.HttpConfig(web.ctx.env["DOCUMENT_ROOT"])
+        q = query.QueryFactory().CreateQuery(pathInfo, opts, httpConfig)
+        if q is None:
+            code = 404
+            return code, formatted
+
+        r = QueryRunner(q.getUrl())
+        results = r.runQuery()
+        if not isinstance(results, QueryResult):
+            raise WrongTypeError("doGet: QueryRunner.runQuery(): expected QueryResult, got %s" % type(results))
+        code = results.getHttpStatusCode()
+
+        # Defaults
+        # prune: True
+        if not "prune" in opts or opts["prune"] is not False:
+            opts["prune"] = True
+
+        # sort: true
+        if not "sort" in opts or opts["sort"] is not False:
+            opts["sort"] = True
+
+        # If pruning, sort
+        if opts["prune"] is True:
+            opts["sort"] = True
+        elif opts["prune"] is False:
+            opts["sort"] = False
+            
+        # If sorting, prune
+        if opts["sort"] is True:
+            opts["prune"] = True
+        elif opts["sort"] is False:
+            opts["prune"] = False
+
+        web.debug("doGet: prune = %s" % opts["prune"])
+        web.debug("doGet: sort = %s" % opts["sort"])
+
+        # Prune
+        if "prune" in opts and opts["prune"] is True:
+            p = prune.PrunerFactory().CreatePruner(pathInfo)
+            filterBy = opts.get("property", [])
+            results = p.prune(results, keep=filterBy)
+
+            if len(filterBy) > 0:
+                # Filter
+                if not isinstance(filterBy, list):
+                    filterBy = [filterBy]
+                key = pathInfo.strip("/")
+                results.filterPruned(filterBy, key)
+
+                # Sort
+                if "sort" in opts and opts["sort"] is True:
+                    s = sort.FilterSorter(key, filterBy[0])
+                    results = s.sort(results)
+            else:
+                # Sort
+                # Default behavior is to sort results
+                if "sort" in opts and  opts["sort"] is True:
+                    s = sort.SorterFactory().CreateSorter(pathInfo, results)
+                    results = s.sort(results)
+
+        # Convert to requested format
+        toFormat = "json"
+        if opts.has_key("format"):
+            toFormat = opts["format"]
+        f = format.FormatterFactory().CreateFormatter(toFormat)
+        formatted = f.format(results.getData())
+
+    except NotImplementedError, e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        formatted = "doGet: Caught NotImplementedError: " + str(e) + "\n"
+        formatted += "-" * 60 + "\n"
+        formatted += traceback.format_exc()
+        formatted += "-" * 60 + "\n"
+        code = 501
+
+    except WrongTypeError, e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        formatted = "doGet: Caught WrongTypeError: " + str(e) + "\n"
+        formatted += "-" * 60 + "\n"
+        formatted += traceback.format_exc()
+        formatted += "-" * 60 + "\n"
+        code = 500
+
+    except Exception, e:
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        formatted = "doGet: Caught Exception: " + str(e) + "\n"
+        formatted += "-" * 60 + "\n"
+        formatted += traceback.format_exc()
+        formatted += "-" * 60 + "\n"
+        code = 500
+        
+    return code, formatted
+
+# TODO: Use requests
+class QueryRunner(object):
+    """Class for running an LRI query"""
+
+    def __init__(self, url):
+        self.url = url
+
+    def runQuery(self):
+        """Runs the query. Returns QueryResult"""
+
+        msg = "runQuery: url = %s" % self.url
+        web.debug(msg)
+
+        fh = urllib.urlopen(self.url)
+        code = fh.code
+        linesAsString = ""
+        for line in fh:
+            line = line.strip()
+            linesAsString += line
+        fh.close()
+
+        results = json.loads(linesAsString)
+        queryResult = QueryResult(code, results)
+
+        return queryResult
+
+# TODO: rename to QueryResponse? QueryRequest?
+class QueryResult(object):
+    """Holds result of LRI query."""
+
+    def __init__(self, code, results):
+        self.code = code
+
+        # self.data is a dict
+        self.data = results
+
+        # valid keys into self.data dict
+        self.validKeys = ["api_version",
+                          "opts",
+                          "q",
+                          "response",
+                          "status", 
+                          "timer", 
+                          "timestamp"]
+
+        self.entityKey = None
+
+    def getHttpStatusCode(self):
+        """Returns HTTP status code."""
+
+        return self.code
+
+    def get(self, key=None):
+        """Returns key in dict. See self.validKeys"""
+
+        if key == None:
+            return self.data
+
+        if key not in self.validKeys:
+            return self.data
+
+        if key not in self.data:
+            return ""
+
+        return self.data[key]
+
+    def getData(self):
+        """Returns query response data dict."""
+
+        return self.data
+
+    def getStatus(self):
+        """Requery query response status."""
+
+        return self.get("status")
+
+    def getPropertyNames(self):
+        """Returns property names"""
+
+        propertyNames = []
+        try:
+            for i in xrange(1):
+                propertyNames = self.get("response")[i]["props"].keys()
+
+            # TODO: should these be added? only framework has them
+            for entity in self.get("response"):
+                key = "uri://lri/property_type/properties"
+                if key in entity["props"]:
+                    for propertyName in entity["props"][key]:
+                        if propertyName not in propertyNames:
+                            propertyNames.append(propertyName)
+
+            for entity in self.get("response"):
+                key = "uri://lri/property_type/specific_properties"
+                if key in entity["props"]:
+                    if isinstance(entity["props"][key], list):
+                        for propertyName in entity["props"][key]:
+                            if propertyName not in propertyNames:
+                                propertyNames.append(propertyName)
+                    elif isinstance(entity["props"][key], str):
+                        if propertyName not in propertyNames:
+                            propertyNames.append(entity["props"][key])
+                    
+        except KeyError, e:
+            # Results have been pruned
+            web.debug("QueryResult.getPropertyNames: %r" % e)
+            for response in self.get("response"):
+                propertyNames = response["property_names"]
+
+        return propertyNames
+
+    def getDefaultFilterProps(self):
+        return ["uri://lri/property_type/id"]
+
+    # TODO: Refactor filter and filterPruned
+    def filter(self, properties):
+        """Returns data w/all keys removed but id and given properties"""
+
+        # Get all properties
+        props = []
+        for item in self.get("response"):
+            props = item["props"].keys()
+
+        # Keep props we want to keep
+        # Start with props that are never removed
+        # Add props passed in
+        keeps = self.getDefaultFilterProps()
+        for prop in properties:
+            if prop not in keeps:
+                keeps.append(prop)
+
+        # Remove props we want to keep from list
+        for keep in keeps:
+            try:
+                props.remove(keep)
+            except ValueError, e:
+                web.debug("%s: %r" % (keep, e))
+
+        # Remove props we don't want to keep
+        for item in self.get("response"):
+            for prop in props:
+                try:
+                    del item["props"][prop]
+                except ValueError, e:
+                    web.debug("%s: %r" % (entityId, e))
+                except KeyError, e:
+                    web.debug("%s: %r" % (entityId, e))
+
+    def filterPruned(self, properties, key):
+        # Get all properties
+        props = []
+        for item in self.get("response"):
+            for i in item[key]:
+                for prop in i["props"].keys():
+                    if prop not in props:
+                        props.append(prop)
+
+        # Keep props we want to keep
+        # Start with props that are never removed
+        # Add props passed in
+        keeps = self.getDefaultFilterProps()
+        for prop in properties:
+            if prop not in keeps:
+                keeps.append(prop)
+
+        # Remove props we want to keep from list
+        for keep in keeps:
+            try:
+                props.remove(keep)
+            except ValueError, e:
+                web.debug("%s: %r" % (keep, e))
+
+        # Remove props we don't want to keep
+        for item in self.get("response"):
+            for i in item[key]:
+                entityId = i["props"]["uri://lri/property_type/id"]
+                for prop in props:
+                    try:
+                        del i["props"][prop]
+                    except ValueError, e:
+                        web.debug("%s: %r" % (entityId, e))
+                    except KeyError, e:
+                        web.debug("%s: %r" % (entityId, e))
+
+    def set(self, key, value):
+        """Sets key in dict. See self.validKeys"""
+
+        if not key in self.validKeys:
+            return
+
+        self.data[key] = value
+
+    def setData(self, value):
+        """Sets query response data (as in sorting)."""
+
+        self.data = value
+
+##### web.py
+if __name__ == '__main__':
+    web.debug(__name__)
+    app.run()

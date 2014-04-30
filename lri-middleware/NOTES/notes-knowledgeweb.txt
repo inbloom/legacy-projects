@@ -1,0 +1,100 @@
+
+Notes for installing nginx + uwsgi on knowledgeweb (ubuntu 11.04)
+Erik Jasso
+ejasso@appliedminds.com
+2012/10/26
+
+* Configs are in KnowledgeWeb/webapps/config
+
+### nginx
+
+# install
+sudo apt-get install nginx-full nginx-common
+
+# configure
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default-orig
+sudo cp nginx/sites-available/default /etc/nginx/sites-available
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/default default
+
+# start
+sudo service nginx start
+http://knowledgeweb.appliedminds.com:8888/
+
+### uwsgi
+
+# install
+* no packages for ubuntu 11 (not until ubuntu 12)
+sudo apt-get install libxml2 libxml2-dev python-dev
+sudo pip install uwsgi
+
+# configure
+* need to install uwsgi config files, support files that didn't come with pip
+(from jefferson)
+scp -r /usr/share/uwsgi/init/ ejasso@knowledgeweb:/home/ejasso/Code/KnowledgeWeb/webapps/config/uwsgi/
+scp -r /usr/share/uwsgi/conf/ ejasso@knowledgeweb:/home/ejasso/Code/KnowledgeWeb/webapps/config/uwsgi/
+scp /etc/default/uwsgi ejasso@knowledgeweb:/home/ejasso/Code/KnowledgeWeb/webapps/config/uwsgi/
+
+(on knowledgeweb)
+cp init.d/uwsgi init.d/uwsgi-knowledgeweb
+cd /etc/init.d
+sudo ln -s /home/ejasso/Code/KnowledgeWeb/webapps/config/init.d/uwsgi-knowledgeweb uwsgi
+
+sudo cp -r uwsgi /usr/share
+sudo cp uwsgi/uwsgi /etc/default
+
+# install an app
+sudo mkdir -p /var/www/apps/test
+sudo cp webapps/test/test.py /var/www/apps/test
+
+# start
+screen -S nginx-9000
+sudo service uwsgi start
+http://knowledgeweb.appliedminds.com:9000/test/
+
+### lri
+
+sudo adduser --home /home/lri --shell /bin/bash lri
+sudo passwd lri
+ssh lri@knowledgeweb
+
+# test
+mkdir test
+svn co https://am-vm-svn00.amthinking.net/repos/lri/lriserver/ test
+cd test
+emacs lri_config.json
+host : "knowledgeweb.appliedminds.com"
+port : 9100
+neo4j_dir : "/home/lri/test/db"
+screen -S lri-test-9100
+./pywebapp.py
+
+# live
+mkdir live
+svn co https://am-vm-svn00.amthinking.net/repos/lri/lriserver/ live
+cd live
+emacs lri_config.json
+host : "knowledgeweb.appliedminds.com"
+port : 8100
+neo4j_dir : "/home/lri/live/db"
+screen -S lri-live
+./pywebapp.py
+
+# install ccss
+# test
+emacs config/http_config.json
+"serverhost" : "knowledgeweb.appliedminds.com"
+"serverport" : 9100
+sudo cp config/http_config.json /var/www/apps-test/config/http_config.json
+sudo cp -r ccss /var/www/apps-test/
+
+sudo pip install requests
+
+# live
+emacs config/http_config.json
+"serverhost" : "knowledgeweb.appliedminds.com"
+"serverport" : 8100
+cp config/http_config.json /var/www/apps/config/http_config.json
+sudo cp -r ccss /var/www/apps
+
+# pkg

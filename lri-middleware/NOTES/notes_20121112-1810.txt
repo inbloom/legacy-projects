@@ -1,0 +1,269 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+### ccss in new schema
+
+kurt: subjects are 1:1 with frameworks
+
+## common
+
+initiative
+ccid: CCSS
+id: uri://ccss/initiative/CCSS
+
+## math
+
+# ccids
+framework: CCSS.Math
+set: CCSS.Math.Content
+grade_level: CCSS.Math.Content.4
+domain: CCSS.Math.Content.4.G
+cluster: CCSS.Math.Content.4.G.A
+standard: CCSS.Math.Content.4.G.A.1
+standard_component: CCSS.Math.Content.4.NF.B.4.a
+
+# ids
+initiative: uri://ccss/initiative/CCSS
+framework: uri://ccss/framework/CCSS.Math
+set: uri://ccss/set/CCSS.Math.Content
+grade_level: uri://ccss/cluster/CCSS.Math.Content.4
+domain: uri://ccss/domain/CCSS.Math.Content.4.G
+cluster: uri://ccss/cluster/CCSS.Math.Content.4.G.A
+standard: uri://ccss/standard/CCSS.Math.Content.4.G.A.1
+standard_component: uri://ccss/standard_component/CCSS.Math.Content.4.NF.B.4.a
+
+# structure
+initiative contains framework
+framework contains set
+set contains grade_level
+grade_level contains domain
+domain contains cluster
+domain contains standard
+cluster contains standard
+standard contains standard_component
+standard_component is a leaf
+
+# common queries
+/ccss/initiative
+/ccss/framework?initiative=
+
+# math queries
+/ccss/sets?framework=
+/ccss/grade_levels?set=
+/ccss/domains?grade_level=
+/ccss/clusters?domain=
+/ccss/standards?domain=
+/ccss/standards?cluster=
+/ccss/standard_components?standard=
+
+## ela
+
+# ccids
+framework: CCSS.ELA-Literacy
+   set: CCSS.ELA-Literacy.CCRA
+      strand: CCSS.ELA-Literacy.CCRA.L
+         domain: CCSS.ELA-Literacy.L
+         anchor_standard: CCSS.ELA-Literacy.CCRA.L.1
+   domain: CCSS.ELA-Literacy.L
+      grade_level: CCSS.ELA-Literacy.L.4
+         standard: CCSS.ELA-Literacy.L.4.1
+            standard_component: CCSS.ELA-Literacy.L.4.1.a
+
+# ids
+framework: uri://ccss/framework/CCSS.ELA-Literacy
+set: uri://ccss/set/CCSS.ELA-Literacy.CCRA
+strand: uri://ccss/strand/CCSS.ELA-Literacy.CCRA.L
+domain: uri://ccss/domain/CCSS.ELA-Literacy.L
+anchor_standard: uri://ccss/anchor_standard/CCSS.ELA-Literacy.CCRA.L.1
+grade_level: uri://ccss/grade/CCSS.ELA-Literacy.L.4
+standard: uri://ccss/standard/CCSS.ELA-Literacy.L.4.1
+standard_component: uri://ccss/standard_component/CCSS.ELA-Literacy.L.4.1.a
+
+# structure
+initiative contains framework
+   framework contains set
+      set contains strand
+         strand includes_domain
+            domain contains grade_level
+               grade_level contains standard
+                  standard contains standard_component
+         strand includes_anchor_standard
+            anchor_standard anchors standard
+              standard contains standard_component
+
+   framework contains domain
+      domain is_in_strand
+      domain contains grade_level
+         grade_level contains standard
+            standard contains standard_component
+
+# ela queries
+/ccss/set?framework=
+/ccss/strand?set=
+/ccss/domain?strand=
+/ccss/domain?framework=
+/ccss/grade_level?domain=
+/ccss/standard?grade_level=
+/ccss/standard?anchor_standard=
+/ccss/standard_component?standard=
+/ccss/anchor_standard?strand=
+
+### new schema
+
+## property changes
+/lri/property_type/anchor_standard_included_in_strand -> /ccss/
+/lri/property_type/anchors -> /ccss/
+/lri/property_type/ccid -> /ccss/
+/lri/property_type/cluster -> ?
+/lri/property_type/contained_anchor_standard -> /ccss/
+? /lri/property_type/guid -> /ccss/property_type/is_anchored_to
+/lri/property_type/includes_anchor_standard -> /ccss/
+/lri/property_type/includes_domain -> /ccss/
+/lri/property_type/is_anchored_to -> /ccss/
+/lri/property_type/is_in_section -> /ccss/
+/lri/property_type/is_in_strand -> /ccss/
+/lri/property_type/previous -> /ccss/
+? /lri/object_type/thing -> /ccss/object_type/standard
+
+## type changes
+/lri/object_type/anchor_standard -> /ccss/
+/lri/object_type/anchor_standard_section -> /ccss/
+/lri/object_type/cluster -> /ccss/
+/lri/object_type/domain -> /ccss/
+/lri/object_type/grade_level -> /ccss/
+/lri/object_type/learning_objective -> /ccss/
+/lri/object_type/standard -> /ccss/
+/lri/object_type/standard_component -> /ccss/
+/lri/object_type/strand -> /ccss/
+
+## new types
+/ccss/object_type/set [is a competency, is a learning_objective]
+/ccss/object_type/framework [is a competency, is a learning_objective]
+/ccss/object_type/initiative [ is a competency, is a learning_objective]
+/lri/object_type/thing [has a guid, has a name]
+
+## no changes
+/lri/object_type/knowledge_web_resource
+/lri/object_type/learning_resource
+/lri/object_type/subject
+/lri/property_type/subject
+
+
+### sanity check
+
+knowledgeweb:9000
+ccss=/var/www/apps-test/ccss/
+log=/var/log/uwsgi/app/ccss-test.log
+db=knowledgeweb:9100
+
+knowledgeweb:8080
+ccss=knowledgeweb.appliedminds.com:9000
+
+lriserver:10000
+ccss=/var/www/apps/ccss/
+log=/var/log/uwsgi/app/ccss.log
+db=knowledgeweb:8100
+ccss=/var/www/apps-test/ccss/
+log=/var/log/uwsgi/app/ccss-test.log
+db=knowledgeweb:9100
+
+
+
+### xml debug
+
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<root>
+<pair>
+<key>status</key>
+<value>normal</value>
+</pair>
+<pair>
+<key>response</key>
+<value>
+<pair>
+<key>subjects</key>
+<value>
+<pair>
+<key>timestamp</key>
+<value>2012-08-30T02:46:58.159436</value>
+</pair>
+<pair>
+<key>guid</key>
+<value>b0632052ae85bec5f014f3e394f9b83b</value>
+</pair>
+<pair>
+<key>props</key>
+<value>
+<pair>
+<key>uri://lri/property_type/name</key>
+<value>English Language Arts</value>
+</pair>
+<pair>
+<key>uri://lri/property_type/id</key>
+<value>uri://ccss/subject/ela</value>
+</pair>
+</value>
+</pair>
+<pair>
+<key>creator</key>
+<value>TEST_CREATOR</value>
+</pair>
+</value>
+<value>
+<pair>
+<key>timestamp</key>
+<value>2012-08-30T02:46:58.303948</value>
+</pair>
+<pair>
+<key>guid</key>
+<value>791380a314a99f554eff79150ee5d888</value>
+</pair>
+<pair>
+<key>props</key>
+<value>
+<pair>
+<key>uri://lri/property_type/name</key>
+<value>Mathematics</value>
+</pair>
+<pair>
+<key>uri://lri/property_type/id</key>
+<value>uri://ccss/subject/math</value>
+</pair>
+</value>
+</pair>
+<pair>
+<key>creator</key>
+<value>TEST_CREATOR</value>
+</pair>
+</value>
+</pair>
+</value>
+</pair>
+</root>
+
+
+<!---
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+->
+<!--    <head>
+        <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+
+        <script type="text/javascript">
+            console.log(d3.version);
+            d3.select("h4").style("color", "blue");
+-->
+<!--
+            d3.select("body").style("background-color", "black");
+            d3.selectAll("p").style("color", "red");
+            d3.selectAll("p")
+                .data([4, 8])
+                .style("font-size", function(d) { return d + "px"; });
+-->
+<!--
+        </script>
+    </head>
+
+    <body>
+</html>
+-->

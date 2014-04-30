@@ -1,0 +1,14 @@
+server {
+       listen 8888;
+       server_name ccss;
+
+       root /var/www/apps;
+       location /ccss {
+       		include uwsgi_params;
+		uwsgi_param UWSGI_CHDIR /var/www/apps/ccss/;
+		uwsgi_param UWSGI_PYHOME /var/www/apps/ccss/;
+		uwsgi_param UWSGI_SCRIPT ccss;
+		uwsgi_param SCRIPT_NAME /ccss;
+		uwsgi_pass localhost:8889;
+	}
+}

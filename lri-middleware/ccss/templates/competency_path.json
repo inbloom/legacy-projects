@@ -1,0 +1,11 @@
+{
+    "urn:lri:property_type:author": "author_id",
+    "urn:lri:property_type:description": "path_description",
+    "urn:lri:property_type:id": "path_id",
+    "urn:lri:property_type:name": "path_name",
+    "urn:lri:property_type:path_step": [
+        "competency_id_1",
+        "competency_id_2",
+        "competency_id_3"
+    ]
+}

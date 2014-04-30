@@ -1,0 +1,1944 @@
+$def with (form)
+
+<!doctype html>
+
+<!--
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+-->
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type; charset=utf-8">
+    <title>path builder</title>
+    <style>
+        table {
+            background-color: white;
+        }
+
+        .node {
+            stroke-width: 2.5;
+        }
+
+        .node text {
+            pointer-events: none;
+            font: 10px sans-serif;
+        }
+
+        .link {
+            stroke: #999;
+            stroke-width: 5;
+        }
+    </style>
+    <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <div id="viz" style="width:100%;height:800px">
+      <div id="header" style="background-color:white">
+        <h1>/pathbuilder</h1>
+      </div>
+
+
+      <!-- Form -->
+      <div id="form" style="background-color:white">
+        <form name="main" method="post">
+          $if not form.valid: <p class="error">Try again:</p>
+          $:form.render()
+
+          <div id="menus" style="display:inline-block">
+            <table>
+              <th>Framework CCSS.ELA-Literacy</th><th>Set CCSS.Math.Content</th><th>Custom</th>
+              <tr>
+                <td>
+                  <select id="ela_domains" id="ela_domains">
+                    <option>Pick a domain</option>
+                  </select>
+                </td>
+                <td>
+                  <select id="math_grades" id="math_grades">
+                    <option>Pick a grade</option>
+                  </select>
+                </td>
+                <td>
+                  <select id="custom_initiatives" id="custom_initiatives">
+                    <option>Pick an initiative</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <select id="ela_grades" id="ela_grades">
+                    <option>Pick a grade</option>
+                  </select>
+                </td>
+                <td>
+                  <select id="math_domains" id="math_domain">
+                    <option>Pick a domain</option>
+                  </select>
+                </td>
+                <td>
+                  <select id="custom_frameworks" id="custom_frameworks">
+                    <option>Pick a framework</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <select id="ela_standards" id="ela_standards">
+                    <option>Pick a standard</option>
+                  </select>
+                </td>
+                <td>
+                  <select id="math_standards" id="math_standards">
+                    <option>Pick a standard</option>
+                  </select>
+                </td>
+                <td>
+                  <select id="custom_grades" id="custom_grades">
+                    <option>Pick a grade</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <input type="button" id="ela_add_standard" name="ela_add_standard" value="Add standard"/>
+                </td>
+                <td>
+                  <input type="button" id="math_add_standard" name="math_add_standard" value="Add standard"/>
+                </td>
+                <td>
+                  <select id="custom_domains" id="custom_domains">
+                    <option>Pick a domain</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td><!-- empty --></td>
+                <td><!-- empty --></td>
+                <td>
+                  <select id="custom_standards" id="custom_standards">
+                    <option>Pick a standard</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td><!-- empty --></td>
+                <td><!-- empty --></td>
+                <td>
+                  <input type="button" id="custom_add_standard" name="custom_add_standard" value="Add standard"/></br>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div id="buttons" style="background-color:white">
+            <input type="button" id="add" name="add" value="Add node"/>
+
+            <input type="text" id="path_name" name="path_name" value="Enter path name"/>
+            <input type="text" id="path_author_name" name="path_author_name" value="Enter author ID"/>
+            <input type="submit" id="save" name="save" value="Save path ..."/>
+            <input type="button" id="new" name="new" value="Clear path"/>
+    
+            <select name="load" id="load">
+              <option>Pick a path</option>
+            </select>
+
+            <input type="button" id="debug" name="debug" value="debug" hidden/>
+            </br>
+          </div>
+
+          <div id="canvas" style="display:inline-block;background-color:grey"></div>
+        </form>
+      </div>
+    </div>
+
+<!------------------------------------------------------------------------------------>
+    <script type="text/javascript">
+    (function () { // namespace
+
+        var DEBUG = false;
+
+        //
+        // Defaults
+        //
+        var VIZ_WIDTH = jQuery("#viz").width();
+        var VIZ_HEIGHT = jQuery("#viz").height();
+        console.log("form:", VIZ_WIDTH, VIZ_HEIGHT);
+
+        var FORM_WIDTH = jQuery("#form").width();
+        var FORM_HEIGHT = jQuery("#viz").height();
+        console.log("form:", FORM_WIDTH, FORM_HEIGHT);
+        
+        var MENU_WIDTH = jQuery("table").width();
+        var MENU_HEIGHT = jQuery("table").height();
+        console.log("menu:", MENU_WIDTH, MENU_HEIGHT);
+
+        var BUTTON_WIDTH = jQuery("#buttons").width();
+        var BUTTON_HEIGHT = jQuery("#buttons").height();
+        console.log("button:", BUTTON_WIDTH, BUTTON_HEIGHT);
+
+        var CANVAS_WIDTH = FORM_WIDTH;
+        var CANVAS_HEIGHT = FORM_HEIGHT - MENU_HEIGHT - BUTTON_HEIGHT - 10;
+        console.log("canvas:", CANVAS_WIDTH, CANVAS_HEIGHT);
+
+        var d3ForceDefaults = {
+            distance: 40,
+            strength: 1,
+            friction: 0.9,
+            charge: -30,
+            theta: 0.8,
+            gravity: 0.1
+        };
+
+        var FORCE_SIZE = [CANVAS_WIDTH, CANVAS_HEIGHT];
+        var FORCE_FRICTION = d3ForceDefaults.friction;
+        var FORCE_DISTANCE = 100;
+        var FORCE_CHARGE = -200;
+        var FORCE_GRAVITY = d3ForceDefaults.gravity;
+        var FORCE_THETA = d3ForceDefaults.theta;
+        var FORCE_STRENGTH = d3ForceDefaults.strength;
+        var FORCE_FRICTION = d3ForceDefaults.friction;
+
+        // Pointer to the current step in the path
+        var step = null;
+
+        // Pointer to the previous step in the path
+        var prev = step;
+
+        // List of nodes
+        var nodeList = [];
+
+        // List of links
+        var linkList = [];
+
+        // D3 force layout
+        var force;
+
+        // Index into nodeList 
+        // Used to track step nodes
+        // Used as node id and default node name
+        var stepIndex = 0;
+
+        // Index into nodeList, offset by 1
+        // Used to competency nodes
+        var competencyIndex = 1;
+
+        // List of nodes in forked paths
+        // Currently unused
+        var forks = [];
+
+        // List of colors
+        var fill = d3.scale.category20();
+
+        // SVG element
+        var svg;
+
+        // ELA menu defaults
+        var ELA_INITIATIVES_SEL = "Initiative CCSS";
+        var ELA_FRAMEWORKS_SEL = "Framework CCSS CCSS.ELA-Literacy";
+        var ELA_DOMAINS_SEL = jQuery("#ela_domains").val();
+        var ELA_GRADES_SEL = jQuery("#ela_grades").val();
+        var ELA_STANDARDS_SEL = jQuery("#ela_standards").val();
+
+        // Math menu defaults
+        var MATH_INITIATIVES_SEL = "Initiative CCSS";
+        var MATH_FRAMEWORKS_SEL = "Framework CCSS CCSS.Math";
+        var MATH_SET_SEL = "Set CCSS.Math";
+        var MATH_GRADES_SEL = jQuery("#math_grades").val();
+        var MATH_DOMAINS_SEL = jQuery("#math_domains").val();
+        var MATH_STANDARDS_SEL = jQuery("#math_standards").val();
+
+        // Custom menu defaults
+        var CUSTOM_INITIATIVES_SEL = jQuery("#custom_initiatives").val();
+        var CUSTOM_FRAMEWORKS_SEL = jQuery("#custom_frameworks").val();
+        //var CUSTOM_SETS_SEL = jQuery("#custom_sets").val();
+        var CUSTOM_GRADES_SEL = jQuery("#custom_grades").val();
+        var CUSTOM_DOMAINS_SEL = jQuery("#custom_domains").val();
+        var CUSTOM_STANDARDS_SEL = jQuery("#custom_standards").val();
+
+        // Menu selections
+        var elaMenuSelections = {
+            selectedInitiative: "",
+            selectedFramework: "",
+            selectedDomain: "",
+            selectedGrade: "",
+            selectedStandard: ""
+        };
+
+        var mathMenuSelections = {
+            selectedInitiative: "",
+            selectedFramework: "",
+            selectedDomain: "",
+            selectedGrade: "",
+            selectedStandard: ""
+        };
+
+        var customMenuSelections = {
+            selectedInitiative: "",
+            selectedFramework: "",
+            selectedGrade: "",
+            selectedDomain: "",
+            selectedStandard: ""
+        };
+
+        // Toolbar defaults
+        var FORM_PATH_NAME_VAL = jQuery("#path_name").val();
+        var FORM_PATH_AUTHOR_NAME_VAL = jQuery("#path_author_name").val();
+        var FORM_LOAD_SEL = jQuery("#load").val();
+
+        //
+        // Start XML
+        //
+        // These will be replaced with values from form
+        var PATH_NAME = "PATH_NAME";
+        var PATH_AUTHOR_NAME = "PATH_AUTHOR_NAME";
+        var PATH_DESCRIPTION = "Built by path_builder";
+
+        // Path id will contain author name
+        var app = "path_builder";
+        var now = String(Date.now());
+        var PATH_ID = "urn:" +
+            app + ":" +
+            "path:" +
+            PATH_AUTHOR_NAME + ":" +
+            now;
+
+        // Author id will contain author name
+        var AUTHOR_ID = "urn:" +
+            app + ":" +
+            "author:" +
+            PATH_AUTHOR_NAME;
+            
+        var xml;
+        startXml();
+
+        // JSON of competency_paths from server
+        var paths = {};
+
+        /**
+           Handles document.ready()
+         **/
+        jQuery(document).ready(function () {
+            var thisName = "ready";
+
+            // Initialize canvas
+            svg = initializeCanvas();
+              
+            // Initialize layout
+            force = d3.layout.force()
+                .size(FORCE_SIZE)
+                .friction(FORCE_FRICTION)
+                .linkDistance(FORCE_DISTANCE)
+                .charge(FORCE_CHARGE)
+                .gravity(FORCE_GRAVITY)
+                .theta(FORCE_THETA)
+                .linkStrength(FORCE_STRENGTH)
+                .friction(FORCE_FRICTION)
+                .nodes(nodeList)
+                .links(linkList);
+
+            force.start();
+
+            // Initialize graph
+            // Start w/one node
+            addStep()
+            drawNodes();
+
+            ///////////////////////////////////////////////////////////////
+            //
+            // ELA
+            //
+            ///////////////////////////////////////////////////////////////
+
+            // Initialize ELA domains menu
+            var hostname = "knowledgeweb.appliedminds.com";
+            var hostport = ":9000";
+            var script = "/ccss";
+            var HTTP = "http://" + hostname + hostport + script;
+            var SORT = "&sort=true";
+            var url = HTTP + "/domains?framework=urn:ccss:framework:CCSS.ELA-Literacy" + SORT;
+            console.log(url);
+            var elaDomains = {};
+
+            /**
+               Initializes ELA domains menu
+
+               Gets ELA domains from LRI and populates ELA domains menu
+            **/
+            var r = jQuery.get(url, function (data, status) {
+                debug(status);
+                if (status === "success") {
+                    console.log(thisName + ": Getting ELA domains");
+
+                    // Set ELA initiatives menu contents
+                    elaDomains = getEntities(data);
+                    var names = [];
+                    for (var i in elaDomains) {
+                        names.push(elaDomains[i]);
+                    }
+                    console.log(thisName + ": Got " + names.length + " domains");
+                    addToMenu("#ela_domains", names);
+                }
+            }, "text");
+
+            // Handle ELA domain selection
+            /**
+               Handles ela_domains.change()
+            **/
+            var elaGrades = {};
+            jQuery("#ela_domains").change(function () {
+                var thisName = "ela_domains.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#ela_domains").val();
+                if ((newSelection == elaMenuSelections.selectedDomain) || 
+                    (newSelection == ELA_DOMAINS_SEL)) 
+                {
+                    return;
+                }
+
+                elaMenuSelections.selectedDomain = newSelection;
+                console.log(thisName + ": Got domain = " + elaMenuSelections.selectedDomain);
+
+                var domainId = "";
+                console.log(thisName + ": Looking for: " + elaMenuSelections.selectedDomain);
+                for (var i in elaDomains) {
+                    if (elaDomains[i] === elaMenuSelections.selectedDomain) {
+                        console.log("Found: " + elaMenuSelections.selectedDomain + ": " + i);
+                        domainId = i;
+                        break;
+                    }
+                }
+
+                // Populate ELA grades menu
+                url = HTTP + "/grade_levels?domain=" + domainId + SORT;
+                console.log(url);
+                /**
+                   Gets ELA grade_levels from LRI and populates ELA grades menu
+                **/
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting grades");
+
+                        // Set ELA grades menu contents
+                        elaGrades = getEntities(data);
+                        var names = [];
+                        for (var i in elaGrades) {
+                            names.push(elaGrades[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " grades");
+                        addToMenu("#ela_grades", names);
+                    }
+                }, "text");
+            });
+
+            // Handle ELA grade_level selection
+            var elaStandards = {};
+            /**
+               Handles ela_grades.change()
+            **/
+            jQuery("#ela_grades").change(function () {
+                var thisName = "ela_grades.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#ela_grades").val();
+                if ((newSelection == elaMenuSelections.selectedGrade) || 
+                    (newSelection == ELA_GRADES_SEL)) 
+                {
+                    return;
+                }
+
+                elaMenuSelections.selectedGrade = newSelection;
+                console.log("Got grade: " + elaMenuSelections.selectedGrade);
+
+                var gradeId = "";
+                console.log(thisName + ": Looking for: " + elaMenuSelections.selectedGrade);
+                for (var i in elaGrades) {
+                    if (elaGrades[i] === elaMenuSelections.selectedGrade) {
+                        console.log(thisName + ": Found: " + elaMenuSelections.selectedGrade + ": " + i);
+                        gradeId = i;
+                        break;
+                    }
+                }
+
+                // Populate ELA standards menu
+                /**
+                   Gets ELA standards from LRI and populates ELA standards menu
+                **/
+                url = HTTP + "/standards?grade_level=" + gradeId + "&property=urn:lri:property_type:name&property=urn:lri:property_type:ccid" + SORT;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting standards");
+
+                        // Set standards menu contents
+                        elaStandards = getEntities(data);
+                        var names = [];
+                        for (var i in elaStandards) {
+                            names.push(elaStandards[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " standards");
+                        addToMenu("#ela_standards", names);
+                    }
+                }, "text");
+            });
+
+            // Handle ELA standard selection
+            var elaStandard = {
+                id: "",
+                name: ""
+            };
+            jQuery("#ela_standards").change(function () {
+                var thisName = "ela_standards.change";
+                debug(thisName);
+
+                var newSelection = jQuery("#ela_standards").val();
+                if (newSelection == ELA_STANDARDS_SEL) {
+                    return;
+                }
+
+                // Get standards in selected domain
+                elaMenuSelections.selectedStandard = newSelection;
+                console.log(thisName + ": selectedStandard = " + elaMenuSelections.selectedStandard);
+   
+                var standardId = "";
+                console.log(thisName + ": Looking for: " + elaMenuSelections.selectedStandard);
+                for (var i in elaStandards) {
+                    if (elaStandards[i] === elaMenuSelections.selectedStandard) {
+                        console.log(thisName + ": Found: " + elaMenuSelections.selectedStandard + ": " + i);
+                        standardId = i;
+                        break;
+                    }
+                }
+
+                elaStandard.id = standardId;
+                elaStandard.name = elaMenuSelections.selectedStandard;
+            });
+
+            // Handle ELA add node button
+            document.getElementById("ela_add_standard").onclick = function (event) {
+                event.preventDefault();
+
+                var thisName = "ela_add_standard.onclick";
+                console.log(thisName);
+
+                // Add competency to graph
+                addCompetency(elaStandard.id, elaStandard.name);
+                drawNodes();
+            }
+
+
+
+            ///////////////////////////////////////////////////////////////
+            //
+            // Math
+            //
+            ///////////////////////////////////////////////////////////////
+
+            // Initialize math grades menu
+            var url = HTTP + "/grade_levels?set=urn:ccss:set:CCSS.Math.Content" + SORT;
+            console.log(url);
+            var mathGrades = {};
+            var r = jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting Math grades");
+
+                        // Set Math grades menu contents
+                        mathGrades = getEntities(data);
+                        var names = [];
+                        for (var i in mathGrades) {
+                            names.push(mathGrades[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " grades");
+                        addToMenu("#math_grades", names);
+                    }
+                }, "text");
+
+            // Handle Math grade_level selection
+            var mathGrades = {};
+            jQuery("#math_grades").change(function () {
+                var thisName = "math_grades.change";
+                debug(thisName);
+
+                var newSelection = jQuery("#math_grades").val();
+                if ((newSelection == mathMenuSelections.selectedGrade) || 
+                    (newSelection == MATH_GRADES_SEL)) 
+                {
+                    return;
+                }
+
+                mathMenuSelections.selectedGrade = newSelection;
+                console.log("Got grade: " + mathMenuSelections.selectedGrade);
+
+                var gradeId = "";
+                console.log(thisName + ": Looking for: " + mathMenuSelections.selectedGrade);
+                for (var i in mathGrades) {
+                    if (mathGrades[i] === mathMenuSelections.selectedGrade) {
+                        console.log(thisName + ": Found: " + mathMenuSelections.selectedGrade + ": " + i);
+                        gradeId = i;
+                        break;
+                    }
+                }
+
+                // Populate Math domains menu
+                url = HTTP + "/domains?grade_level=" + gradeId + SORT;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting domains");
+
+                        // Set domains menu contents
+                        mathDomains = getEntities(data);
+                        var names = [];
+                        for (var i in mathDomains) {
+                            names.push(mathDomains[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " domains");
+                        addToMenu("#math_domains", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Math domain selection
+            var mathStandards = {};
+            jQuery("#math_domains").change(function () {
+                var thisName = "math_domains.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#math_domains").val();
+                if ((newSelection == mathMenuSelections.selectedDomain) || 
+                    (newSelection == MATH_DOMAINS_SEL)) 
+                {
+                    return;
+                }
+
+                mathMenuSelections.selectedDomain = newSelection;
+                console.log(thisName + ": Got domain = " + mathMenuSelections.selectedDomain);
+
+                var domainId = "";
+                console.log(thisName + ": Looking for: " + mathMenuSelections.selectedDomain);
+                for (var i in mathDomains) {
+                    if (mathDomains[i] === mathMenuSelections.selectedDomain) {
+                        console.log("Found: " + mathMenuSelections.selectedDomain + ": " + i);
+                        domainId = i;
+                        break;
+                    }
+                }
+
+                // Populate Math standards menu
+                url = HTTP + "/standards?domain=" + domainId + "&property=urn:lri:property_type:name" + SORT;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting standards");
+
+                        // Set standards menu contents
+                        mathStandards = getEntities(data);
+                        var names = [];
+                        for (var i in mathStandards) {
+                            names.push(mathStandards[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " standards");
+                        addToMenu("#math_standards", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Math standard selection
+            var mathStandard = {
+                id: "",
+                name: ""
+            };
+            jQuery("#math_standards").change(function () {
+                var thisName = "math_standards.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#math_standards").val();
+                if (newSelection == MATH_STANDARDS_SEL) {
+                    return;
+                }
+
+                // Get standards in selected domain
+                mathMenuSelections.selectedStandard = newSelection;
+                console.log(thisName + ": selectedStandard = " + mathMenuSelections.selectedStandard);
+
+                var standardId = "";
+                console.log(thisName + ": Looking for: " + mathMenuSelections.selectedStandard);
+                for (var i in mathStandards) {
+                    if (mathStandards[i] === mathMenuSelections.selectedStandard) {
+                        console.log(thisName + ": Found: " + mathMenuSelections.selectedStandard + ": " + i);
+                        standardId = i;
+                        break;
+                    }
+                }
+
+                mathStandard.id = standardId;
+                mathStandard.name = mathMenuSelections.selectedStandard;
+            });
+
+            // Handle Math add node button
+            document.getElementById("math_add_standard").onclick = function (event) {
+                event.preventDefault();
+
+                var thisName = "math_add_standard.onclick";
+                console.log(thisName);
+
+                // Add competency to graph
+                addCompetency(mathStandard.id, mathStandard.name);
+                drawNodes();
+            }
+
+
+
+            ///////////////////////////////////////////////////////////////
+            //
+            // Custom
+            //
+            ///////////////////////////////////////////////////////////////
+
+            // Initialize Custom initiatives menu
+            var url = HTTP + "/initiatives" + "?sort=true";
+            console.log(url);
+            var customInitiatives = {};
+            var r = jQuery.get(url, function (data, status) {
+                debug(status);
+                if (status === "success") {
+                    console.log(thisName + ": Getting custom initiatives");
+
+                    // Set initiatives menu contents
+                    customInitiatives = getEntities(data);
+                    var names = [];
+                    for (var i in customInitiatives) {
+                        names.push(customInitiatives[i]);
+                    }
+                    console.log(thisName + ": Got " + names.length + " initiatives");
+                    addToMenu("#custom_initiatives", names);
+                }
+            }, "text");
+
+            // Handle Custom initiative selection
+            var customFrameworks = {};
+            jQuery("#custom_initiatives").change(function () {
+                var thisName = "custom_initiatives.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#custom_initiatives").val();
+                if ((newSelection == customMenuSelections.selectedInitiative) || 
+                    (newSelection == CUSTOM_INITIATIVES_SEL)) 
+                {
+                    return;
+                }
+                customMenuSelections.selectedInitiative = newSelection;
+                console.log(thisName + ": Got initiative: " + customMenuSelections.selectedInitiative);
+
+                var initiativeId = "";
+                console.log(thisName + ": Looking for: " + customMenuSelections.selectedInitiative);
+                for (var i in customInitiatives) {
+                    if (customInitiatives[i] === customMenuSelections.selectedInitiative) {
+                        console.log(thisName + ": Found: " + customMenuSelections.selectedInitiative + ": " + i);
+                        initiativeId = i;
+                        break;
+                    }
+                }
+
+                // Populate Custom frameworks menu
+                url = HTTP + "/frameworks?initiative=" + initiativeId + SORT;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting frameworks");
+
+                        // Set frameworks menu contents
+                        customFrameworks = getEntities(data);
+                        var names = [];
+                        for (var i in customFrameworks) {
+                            names.push(customFrameworks[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " frameworks");
+                        addToMenu("#custom_frameworks", names);
+                    }
+                }, "text");
+            });
+                
+            // Handle Custom framework selection
+            var customGrades = {};
+            jQuery("#custom_frameworks").change(function () {
+                var thisName = "Custom.frameworks.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#custom_frameworks").val();
+                if ((newSelection == customMenuSelections.selectedFramework) || 
+                    (newSelection == CUSTOM_FRAMEWORKS_SEL)) 
+                {
+                    return;
+                }
+                
+                customMenuSelections.selectedFramework = newSelection;
+                console.log(thisName + ": Got framework: " + customMenuSelections.selectedFramework);
+
+                var frameworkId = "";
+                console.log(thisName + ": Looking for: " + customMenuSelections.selectedFramework);
+                for (var i in customFrameworks) {
+                    if (customFrameworks[i] === customMenuSelections.selectedFramework) {
+                        console.log(thisName + ": Found: " + customMenuSelections.selectedFramework + ": " + i);
+                        frameworkId = i;
+                        break;
+                    }
+                }
+
+                // Populate Custom grades menu
+                //url = HTTP + "/grade_levels?set=" + setId + SORT;
+                url = HTTP + "/grade_levels?framework=" + frameworkId + SORT;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting grade_levels");
+
+                        // Set grade_levels menu contents
+                        customGrades = getEntities(data);
+                        var names = [];
+                        for (var i in customGrades) {
+                            names.push(customGrades[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " grades");
+                        addToMenu("#custom_grades", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Custom grade selection
+            var customDomains = {};
+            jQuery("#custom_grades").change(function () {
+                var thisName = "Custom.grades.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#custom_grades").val();
+                if ((newSelection == customMenuSelections.selectedGrade) || 
+                    (newSelection == CUSTOM_GRADES_SEL)) 
+                {
+                    //return;
+                }
+
+                customMenuSelections.selectedGrade = newSelection;
+                console.log("Got grade: " + customMenuSelections.selectedGrade);
+
+                var gradeId = "";
+                console.log(thisName + ": Looking for: " + customMenuSelections.selectedGrade);
+                for (var i in customGrades) {
+                    if (customGrades[i] === customMenuSelections.selectedGrade) {
+                        console.log(thisName + ": Found: " + customMenuSelections.selectedGrade + ": " + i);
+                        gradeId = i;
+                        break;
+                    }
+                }
+
+                // Populate Custom domains menu
+                url = HTTP + "/domains?grade_level=" + gradeId + SORT;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting domains");
+
+                        // Set domains menu contents
+                        customDomains = getEntities(data);
+                        var names = [];
+                        for (var i in customDomains) {
+                            names.push(customDomains[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " domains");
+                        addToMenu("#custom_domains", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Custom domain selection
+            var customStandards = {};
+            jQuery("#custom_domains").change(function () {
+                var thisName = "Custom.domains.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#custom_domains").val();
+                if ((newSelection == customMenuSelections.selectedDomain) || 
+                    (newSelection == CUSTOM_DOMAINS_SEL)) 
+                {
+                    return;
+                }
+
+                customMenuSelections.selectedDomain = newSelection;
+                console.log(thisName + ": Got domain = " + customMenuSelections.selectedDomain);
+
+                var domainId = "";
+                console.log(thisName + ": Looking for: " + customMenuSelections.selectedDomain);
+                for (var i in customDomains) {
+                    if (customDomains[i] === customMenuSelections.selectedDomain) {
+                        console.log("Found: " + customMenuSelections.selectedDomain + ": " + i);
+                        domainId = i;
+                        break;
+                    }
+                }
+
+                // Populate Custom standards menu
+                url = HTTP + "/standards?domain=" + domainId + "&property=urn:lri:property_type:name" + SORT;
+                console.log(url);
+                jQuery.get(url, function (data, status) {
+                    debug(status);
+                    if (status === "success") {
+                        console.log(thisName + ": Getting standards");
+
+                        // Set standards menu contents
+                        customStandards = getEntities(data);
+                        var names = [];
+                        for (var i in customStandards) {
+                            names.push(customStandards[i]);
+                        }
+                        console.log(thisName + ": Got " + names.length + " standards");
+                        addToMenu("#custom_standards", names);
+                    }
+                }, "text");
+            });
+
+            // Handle Custom standard selection
+            var customStandard = {
+                id: "",
+                name: ""
+            };
+            jQuery("#custom_standards").change(function () {
+                var thisName = "Custom.standards.change";
+                console.log(thisName);
+
+                var newSelection = jQuery("#custom_standards").val();
+                if (newSelection == CUSTOM_STANDARDS_SEL) {
+                    return;
+                }
+
+                // Get standards in selected domain
+                customMenuSelections.selectedStandard = newSelection;
+                console.log(thisName + ": selectedStandard = " + customMenuSelections.selectedStandard);
+   
+                var standardId = "";
+                console.log(thisName + ": Looking for: " + customMenuSelections.selectedStandard);
+                for (var i in customStandards) {
+                    if (customStandards[i] === customMenuSelections.selectedStandard) {
+                        console.log(thisName + ": Found: " + customMenuSelections.selectedStandard + ": " + i);
+                        standardId = i;
+                        break;
+                    }
+                }
+
+                customStandard.id = standardId;
+                customStandard.name = customMenuSelections.selectedStandard;
+            });
+
+            // Handle Custom add standard button
+            document.getElementById("custom_add_standard").onclick = function (event) {
+                event.preventDefault();
+
+                var thisName = "custom_add_standard.onclick";
+                console.log(thisName);
+
+                // Add competency to graph
+                addCompetency(customStandard.id, customStandard.name);
+                drawNodes();
+            }
+
+            // Handle Add button
+            document.getElementById("add").onclick = function () {
+                var thisName = "add.onclick";
+                addStep();
+                drawNodes();
+            }
+
+/*
+            // Handle Split button
+            document.getElementById("split").onclick = function () {
+                var thisName = "split.onclick";
+                splitPath();
+                drawNodes();
+            }
+
+            // Handle Join button
+            document.getElementById("join").onclick = function () {
+                var thisName = "join.onclick";
+                joinPath();
+                drawNodes();
+            }
+
+*/
+
+            // Clear text inputs when clicked or get focus
+            document.getElementById("path_name").onclick = function () {
+                if (jQuery("#path_name").val() == FORM_PATH_NAME_VAL) {
+                    jQuery("#path_name").val("");
+                }
+            }
+            document.getElementById("path_name").onfocus = function () {
+                if (jQuery("#path_name").val() == FORM_PATH_NAME_VAL) {
+                    jQuery("#path_name").val("");
+                }
+            }
+
+            document.getElementById("path_author_name").onclick = function () {
+                if (jQuery("#path_author_name").val() == FORM_PATH_AUTHOR_NAME_VAL) {
+                    jQuery("#path_author_name").val("");
+                }
+            }
+            document.getElementById("path_author_name").onfocus = function () {
+                if (jQuery("#path_author_name").val() == FORM_PATH_AUTHOR_NAME_VAL) {
+                    jQuery("#path_author_name").val("");
+                }
+            }
+
+            // Handle Save button
+            document.getElementById("save").onclick = function (event) {
+                var thisName = "save.onclick";
+
+                disableControl("#ela_add_standard");
+                disableControl("#math_add_standard");
+                disableControl("#custom_add_standard");
+                disableControl("#add");
+                disableControl("#save");
+
+                //
+                // End XML and send to server
+                //
+
+                event.preventDefault();
+
+                var thisName = "save.onclick";
+                console.log(thisName);
+
+                // End XML
+                xml += "      </pair>\n";
+                xml += "    </value>\n";
+                xml += "  </pair>\n";
+                xml += "</xml>\n";
+
+                // Do replacements in PATH_ID and AUTHOR_ID
+
+                // Replace PATH_NAME with #path_name
+                var re = new RegExp(PATH_NAME, "g");
+                var repl = jQuery("#path_name").val();
+                xml = xml.replace(re, repl);
+
+                // Replace PATH_AUTHOR_NAME with #path_author_name
+                re = new RegExp(PATH_AUTHOR_NAME, "g");
+                repl = jQuery("#path_author_name").val();
+                xml = xml.replace(re, repl);
+
+                // Replace #path author name with #pathauthorname
+                repl = repl.toLowerCase();
+                re = new RegExp("\\W+", "g");
+                repl = repl.replace(re, "");
+                re = new RegExp(PATH_AUTHOR_NAME);
+                xml = xml.replace(re, repl);
+                  
+                console.log(xml);
+
+                // Set path data to send to server
+                jQuery("#pathData").text(xml);
+
+                var url = jQuery("#form").attr("action");
+
+                jQuery.post(url, { data: xml }, function (data) {
+                    // Success
+                    var pathName = jQuery("#path_name").val();
+                    alert("Saved path \"" + pathName + "\"");
+
+                    // Add new path to menu
+                    console.log("\n" + thisName + ": data: ");
+                    console.log(data);
+                    console.log("\n" + thisName + ": path id: ");
+                    console.log(data.getElementById("urn:lri:property_type:id"));
+                    console.log("\n" + thisName + ": path name: ");
+                    console.log(data.getElementById("urn:lri:property_type:name"));
+
+                    // find:
+                    // data.root.pair.key=response.value.pair.key=urn:lri:property_type:id.value
+                    console.log(jQuery("key").each(function () {
+                        console.log(jQuery(this).text());
+                    }));
+
+                    addToMenu("#load", [pathName]);
+                });
+            }
+
+            // Handle new
+            document.getElementById("new").onclick = function () {
+                var thisName = "new.onclick";
+                console.log(thisName);
+
+                reset();
+
+                addStep();
+                drawNodes();
+
+                enableControls();
+            }
+
+            // Initialize load menu
+            // Get name and id only now 
+            // and rest of props when path is selected
+            var url = HTTP + "/competency_paths" + "?property=urn:lri:property_type:name" + SORT;
+            console.log(url);
+            console.log(thisName + ": Getting competency_paths");
+            var r = jQuery.get(url, function (data, status) {
+                if (status == "success") {
+                    // Set load menu contents
+                    paths = getPaths(data);
+                    var names = [];
+                    for (var i in paths) {
+                        var id = paths[i]["props"]["urn:lri:property_type:id"];
+                        var name = paths[i]["props"]["urn:lri:property_type:name"];
+                        var uniqueName = id + "::" + name;
+                        paths[i]["uniqueName"] = uniqueName;
+                        names.push(uniqueName);
+                    }
+                    console.log(thisName + ": Got " + names.length + " paths");
+                    addToMenu("#load", names);
+                }
+            }, "text");
+
+            // Handle Load selection
+            jQuery("#load").change(function () {
+                var thisName = "load.change";
+
+                resetData();
+                resetPath();
+                resetLayout();
+
+                disableControl("#add");
+                disableControl("#save");
+                disableControl("#ela_add_standard");
+                disableControl("#math_add_standard");
+                disableControl("#custom_add_standard");
+
+                // Match path selection w/path
+                var path = "";
+                var selectedPathName = jQuery("#load").val();
+                var selectedPathId = jQuery(this).find(":selected")[0].id;
+                for (var i in paths) {
+                    var thisPath = paths[i];
+                    var name = thisPath["props"]["urn:lri:property_type:name"];
+                    if (name == selectedPathName) {
+                        var id = thisPath["props"]["urn:lri:property_type:id"];
+                        if (id == selectedPathId) {
+                            path = paths[i];
+                            break;
+                        }
+                    }
+                }
+
+                // Get selected path from server
+                var url = HTTP + 
+                    "/competency_paths" +
+                    "?competency_path=" + 
+                    path["props"]["urn:lri:property_type:id"] +
+                    "&children=true";
+                console.log(url);
+                var r = jQuery.get(url, function (data, status) {
+                    if (status == "success" ) {
+                        debug(thisName + ": ===== path =====");
+
+                        debug("\n" + thisName + ": data: ");
+                        debug(data);
+
+                        for (var x in data["response"]) {
+                            debug(thisName + ":   x = " + x);
+                            for (var y in data["response"][x]) {
+                                debug(thisName + ":     y = " + y);
+                                for (var z in data["response"][x][y]) {
+                                    debug(thisName + ":       z = " + z);
+                                    path = data["response"][x][y][z];
+                                }
+                            }
+                        }
+
+                        debug("\n" + thisName + ": path: ");
+                        debug(path);
+
+                        debug("\n" + thisName + ": path[props]: ");
+                        debug(path["props"]);
+
+                        var nameProp = "urn:lri:property_type:name";
+                        var authorProp = "urn:lri:property_type:authored_by";
+                        var descProp = "urn:lri:property_type:description";
+                        var idProp = "urn:lri:property_type:id";
+                        var stepProp = "urn:lri:property_type:path_step";
+                        var competencyProp = "urn:lri:property_type:competency_in_path";
+                        var containsProp = "urn:lri:property_type:contains";
+                        var previousProp = "urn:lri:property_type:previous";
+
+                        var pathName = path["props"][nameProp];
+                        var pathAuthorName = path["props"][authorProp];
+                        var pathDescription = path["props"][descProp];
+                        var pathId = path["props"][idProp];
+                        console.log(thisName + ": pathName        = " + pathName + "\n" +
+                                    thisName + ": pathAuthorName  = " + pathAuthorName + "\n" +
+                                    thisName + ": pathDescription = " + pathDescription + "\n" +
+                                    thisName + ": pathId          = " + pathId);
+
+                        setInput("#path_name", pathName);
+                        setInput("#path_author_name", pathAuthorName);
+
+                        for (var j in path["props"][stepProp]) {
+                            debug(thisName + ": step: ");
+
+                            var step = path["props"][stepProp][j];
+                            var stepId = step["props"][idProp];
+                            var stepPrevious = path["props"][previousProp];
+                            debug(thisName + ":   " + "stepId       = " + stepId + "\n" +
+                                  thisName + ":   " + "stepPrevious = " + stepPrevious);
+
+                            var stepProps = {
+                                id: stepIndex,
+                                name: stepIndex,
+                                previous: stepPrevious
+                            }
+                            addStep(stepProps.id, stepProps.name);
+
+                            debug(thisName + ":   competency");
+                            for (var k in step["props"][competencyProp]) {
+                                debug(thisName + ":     competency_in_path: ");
+
+                                var competency = step["props"][competencyProp][k];
+                                debug(competency);
+                                if (typeof(competency["props"][containsProp]) == "string") {
+                                    var comp = competency["props"][containsProp];
+                                    debug(thisName + ":       competency_in_path (str): ");
+                                    debug(comp);
+                                    var compName = comp["props"][nameProp];
+                                    var compId = comp["props"][idProp];
+
+                                    var compProps = {
+                                        id: compId,
+                                        name: compName,
+                                    };
+                                    addCompetency(compProps.id, compProps.name);
+                                } else {
+                                    for (var l in competency["props"][containsProp]) {
+                                        debug(thisName + ":       contains");
+
+                                        var comp = competency["props"][containsProp][l];
+                                        debug(thisName + ":       competency: (list)");
+                                        debug(comp);
+
+                                        var compName = comp["props"][nameProp];
+                                        var compId = comp["props"][idProp];
+
+                                        var compProps = {
+                                            id: compId,
+                                            name: compName
+                                        };
+                                        addCompetency(compProps.id, compProps.name);
+                                    }
+                                }
+                            }
+                        }
+                        drawNodes(true);
+                    }
+                }, "json");
+            });
+
+            // Handle debug
+            document.getElementById("debug").onclick = function () {
+                var thisName = "debug.onclick";
+                console.log(thisName);
+
+                console.log(thisName + ": xml: ");
+                console.log(xml);
+
+                console.log(thisName + ": path_name = " + jQuery("#path_name").val());
+
+                console.log(thisName + ": path_author_id = " + jQuery("#path_author_name").val());
+            }
+        }); // end ready
+
+
+        //////////////////////////////////////////////////////////////////////////
+        // API
+        //////////////////////////////////////////////////////////////////////////
+
+        function debug(msg) {
+            if (DEBUG) {
+                console.log("DEBUG: " + msg);
+            }
+        }
+
+        /**
+           Starts XML document
+        **/
+        function startXml() {
+            xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+            xml += "<xml>\n";
+            xml += "  <pair key='urn:lri:property_type:authored_by'>\n";
+            xml += "    <value>" + AUTHOR_ID + "</value>\n";
+            xml += "  </pair>\n";
+            xml += "  <pair key='urn:lri:property_type:description'>\n";
+            xml += "    <value>" + PATH_DESCRIPTION + "</value>\n";
+            xml += "  </pair>\n";
+            xml += "  <pair key='urn:lri:property_type:id'>\n";
+            xml += "    <value>" + PATH_ID + "</value>\n";
+            xml += "  </pair>\n";
+            xml += "  <pair key='urn:lri:property_type:name'>\n";
+            xml += "    <value>" + PATH_NAME + "</value>\n";
+            xml += "  </pair>\n";
+        }
+
+        /**
+           Ends XML document
+
+           NOT IMPLEMENTED
+        **/
+        function endXml() {
+        }
+
+        /**
+           Disables an HTML control by setting "disabled" attribute
+        **/
+        function disableControl(id) {
+            jQuery(id).attr("disabled", "");
+        }
+
+        /**
+           Enabled an HTML control
+        **/
+        function enableControl(id) {
+            jQuery(id).removeAttr("disabled");
+        }
+
+        /**
+           Enabled menus
+        **/
+        function enableMenus() {
+            jQuery("#initiatives").removeAttr("disabled");
+            jQuery("#frameworks").removeAttr("disabled");
+            jQuery("#sets").removeAttr("disabled");
+            jQuery("#grades").removeAttr("disabled");
+            jQuery("#domains").removeAttr("disabled");
+            jQuery("#standards").removeAttr("disabled");
+            enableControl("#ela_add_standard");
+            enableControl("#math_add_standard");
+            enableControl("#custom_add_standard");
+          }
+
+        /**
+           Enables toolbar controls
+        **/
+        function enableToolbar() {
+            jQuery("#add").removeAttr("disabled", "");
+            jQuery("#path_name").removeAttr("disabled", "");
+            jQuery("#path_author_name").removeAttr("disabled", "");
+            jQuery("#save").removeAttr("disabled", "");
+        }
+
+        /**
+           Enabled disabled menus and toolbar controls
+        **/
+        function enableControls() {
+            enableMenus();
+            enableToolbar();
+        }
+
+        /**
+           Splits path to create "OR" path
+
+           Modifies:
+               nodeList
+               forks
+               stepIndex
+               linkList
+               prev
+               step
+
+           NOT USED
+        **/
+        function splitPath() {
+            var thisName = "splitPath";
+
+            var node = makeNode();
+            nodeList.push(node);
+            forks.push(node);
+            stepIndex++;
+
+            var link = makeLink(node, step);
+            linkList.push(link);
+
+            node = makeNode();
+            nodeList.push(node);
+            forks.push(node);
+            stepIndex++;
+
+            link = makeLink(node, step);
+            linkList.push(link);
+
+            prev = step = node;
+        }
+
+        /**
+           Joins split "OR" path
+
+           NOT USED
+
+           Modifies:
+               nodeList
+               stepIndex
+               linkList
+               prev
+               step
+        **/
+        function joinPath() {
+            var thisName = "joinPath";
+
+            var node = makeNode();
+            nodeList.push(node);
+            stepIndex++;
+
+            // Complete diamond
+            var link = makeLink(forks[0], node);
+            linkList.push(link);
+            link = makeLink(forks[1], node);
+            linkList.push(link);
+
+            prev = step = node;
+        }
+
+        /**
+           Creates a link between two nodes
+
+           @param {node} source One endpoint in the link
+           @param {node} target The other endpoint in the link
+           @return {link} The new link
+        **/
+        function makeLink(source, target) {
+            var thisName = "makeLink";
+
+            var link = {
+                source: source,
+                target: target
+            };
+
+            return link;
+        }
+
+        /**
+           Creates a new node
+
+           Used by split/join
+
+           @return {node} The new node
+        **/
+        function makeNode() {
+            var thisName = "makeNode";
+
+            var node = {
+                r: 20,
+                color: colors[0],
+                nodeIndex: stepIndex,
+                name: stepIndex
+            };
+
+            return node;
+        }
+
+        /**
+           Sets the value of an HTML input
+
+           @param {String} id The ID of the input
+           #param {String} value The new value of the input
+        **/
+        function setInput(id, value) {
+            var thisName = "setInput";
+            debug(thisName);
+
+            if (jQuery(id).val() != value) {
+                jQuery(id).val(value);
+                debug(thisName + ": set: " + id + ", " + value);
+            }
+        }
+
+        /**
+           Resets ELA menus to defaults
+        **/
+        function resetElaMenus() {
+            setInput("#ela_grades", ELA_GRADES_SEL);
+            setInput("#ela_domains", ELA_DOMAINS_SEL);
+            setInput("#ela_standards", ELA_STANDARDS_SEL);
+        }
+
+        /**
+           Resets Math menus to defaults
+        **/
+        function resetMathMenus() {
+            setInput("#math_grades", MATH_GRADES_SEL);
+            setInput("#math_domains", MATH_DOMAINS_SEL);
+            setInput("#math_standards", MATH_STANDARDS_SEL);
+        }
+
+        /**
+           Resets Custom menus to defaults
+        **/
+        function resetCustomMenus() {
+            setInput("#custom_nitiatives", CUSTOM_INITIATIVES_SEL);
+            setInput("#custom_frameworks", CUSTOM_FRAMEWORKS_SEL);
+            setInput("#custom_grades", CUSTOM_GRADES_SEL);
+            setInput("#custom_domains", CUSTOM_DOMAINS_SEL);
+            setInput("custom_#standards", CUSTOM_STANDARDS_SEL);
+        }
+
+        /**
+           Resets ELA, Math, and Custom menus
+        **/
+        function resetMenus() {
+            resetElaMenus();
+            resetMathMenus();
+            resetCustomMenus();
+        }
+
+        /**
+           Resets toolbar controls
+        **/
+        function resetToolbar() {
+            setInput("#path_name", FORM_PATH_NAME_VAL);
+            setInput("#path_author_name", FORM_PATH_AUTHOR_NAME_VAL);
+            setInput("#load", FORM_LOAD_SEL);
+        }
+
+        /**
+           Resets data used by force layout
+
+           Modifies:
+               nodeList
+               linklist
+        **/
+        function resetData() {
+            nodeList = [];
+            linkList = [];
+        }
+
+        /**
+           Starts a new path
+
+           Modifies:
+               prev
+               step
+               competencyIndex
+               nodeList
+               linkList
+        **/
+        function resetPath() {
+            prev = step = null;
+            stepIndex = 0;
+            competencyIndex = 1;
+
+            resetData();
+        }
+
+        /**
+           Resets the force layout
+        **/
+        function resetLayout() {
+            force
+                .nodes(nodeList)
+                .links(linkList)
+                .start();
+        }
+
+        /**
+           Resets path builder
+        **/
+        function reset() {
+            resetMenus();
+            resetToolbar();
+            resetData();
+            resetPath();
+            resetLayout();
+
+            startXml();
+        }
+
+        /**
+           Adds a step node to the graph
+
+           @param {String} id The ID of the node
+           @param {String} name The name of the node
+
+           Modifies:
+               step
+               nodeList
+               stepIndex
+               linkList
+               prev
+               xml
+        **/
+        function addStep(id, name) {
+            var thisName = "addStep";
+
+            var props = {};
+            props["id"] = id;
+            if (!id) {
+                props["id"] = stepIndex;
+            }
+
+            props["name"] = name;
+            if (!name) {
+                props["name"] = stepIndex;
+            }
+
+            props["r"] = 20;
+            props["nodeIndex"] = stepIndex;
+            props["type"] = "step";
+            props["orderId"] = stepIndex;
+            debug(thisName + ": props: ");
+            debug(props);
+
+            step = props;
+            nodeList.push(step);
+            stepIndex++;
+            debug(thisName + ": new stepIndex = " + stepIndex);
+
+            if (prev != null) {
+                xml += "      </pair>\n";
+                xml += "    </value>\n";
+            } else {
+                xml += "  <pair key='urn:lri:property_type:path_step'>\n";
+            }
+            xml += "    <value>\n";
+            xml += "      <pair key='type'>\n";
+            xml += "        <value>" + step.type + "</value>\n";
+            xml += "      </pair>\n";
+            xml += "      <pair key='orderId'>\n";
+            xml += "        <value>" + step.orderId + "</value>\n";
+            xml += "      </pair>\n";
+
+            if (prev != step && prev != null) {
+                var link = {
+                    source: step,
+                    target: prev
+                };
+                linkList.push(link);
+
+                xml += "      <pair key='previous'>\n";
+                xml += "        <value>" + prev.orderId + "</value>\n";
+                xml += "      </pair>\n";            
+            }
+            xml += "      <pair key='urn:lri:property_type:competency_in_path'>\n";
+            prev = step;
+        }
+
+        /**
+           Adds competency node to graph
+
+           @param {String} id The id of the node
+           @param {String} name The name of the node
+
+           Modifies:
+               competencyIndex
+               nodeList
+               xml
+               linkList
+        **/
+        function addCompetency(id, name) {
+            var thisName = "addCompetency";
+            debug(thisName);
+
+            var competency = {};
+            competency["id"] = id;
+            competency["name"] = name;
+            competency["r"] = 10;
+            competency["step"] = stepIndex;
+            competency["nodeIndex"] = competencyIndex;
+            competency["type"] = "competency";
+            debug(thisName + ": new competency: ");
+            debug(competency);
+
+            competencyIndex++;
+            nodeList.push(competency);
+ 
+            xml += "        <value>" + competency.id + "</value>\n";
+
+            var link = {
+                source: competency,
+                target: step
+            }
+            debug(thisName + ": new link: ");
+            debug(link);
+
+            linkList.push(link);
+        }
+
+        /**
+           Sets attrs and styles on the canvas div
+
+           @return {d3.selection} SVG selection from appendSvg()
+        **/
+        function initializeCanvas() {
+            var canvasAttrs = {
+                textAnchor: "left"
+            };
+
+            var canvasStyles = {
+                backgroundColor: jQuery("#canvas")[0].style.backgroundColor
+            };
+
+            var canvasSel = d3.select("#canvas");
+            var svg = appendSvg(canvasSel, CANVAS_WIDTH, CANVAS_HEIGHT, canvasAttrs, canvasStyles);
+
+            return svg;
+        };
+
+        /**
+           Adds an SVG element to document
+
+           @return {d3.select} SVG selection
+         **/
+        function appendSvg(selection, width, height, attrs, styles) {
+            var svg = selection.append("svg");
+            svg.attr("width", width)
+                .attr("height", height);
+
+            for (attr in attrs) {
+                svg.attr(attr, attrs[attr]);
+            }
+
+            for (style in styles) {
+                svg.style(style, styles[style]);
+            }
+
+            return svg;
+        }
+
+        /**
+           Draws the graph
+
+           @param {Boolean} arrangeNodes Arrange nodes L to R instead of randomly
+        **/
+        function drawNodes(arrangeNodes) {
+            var thisName = "drawNodes";
+            console.log("\n" + thisName);
+
+            // Start layout
+            force.start();
+
+            // Draw links
+            var link = svg.selectAll(".link")
+                .data(linkList);
+            link.exit().remove();
+            link.enter().insert("line", ".node")
+                .attr("class", "link")
+                .attr("x1", function (d) { return d.source.x; })
+                .attr("y1", function (d) { return d.source.y; })
+                .attr("x2", function (d) { return d.target.x; })
+                .attr("y2", function (d) { return d.target.x; });
+
+            // Draw nodes
+            // Group node and text
+            console.log(nodeList.length);
+            var node = svg.selectAll(".node")
+                .data(nodeList, function (d) {
+                    debug(thisName + ": node data: ");
+                    debug(d);
+                    return d;
+                });
+            node.exit().remove()
+            node.enter().append("g")
+                .attr("class", "node")
+                .call(force.drag);
+
+            node.append("circle")
+                .attr("class", "circle")
+                .attr("cx", 0)
+                .attr("cy", 0)           
+                .attr("r", function (d) { return d.r; })
+                .style("fill", function (d, i) {
+                    if (d.type == "step") {
+                        return fill(d.nodeIndex-1);
+                    }
+                    if (d.type == "competency") {
+                        return fill(d.step-2);
+                    }
+                })
+                .style("stroke", function (d, i) { 
+                    if (d.type == "step") {
+                        return d3.rgb(fill(d.nodeIndex-1)).darker(2);
+                    }
+                    if (d.type == "competency") {
+                        return d3.rgb(fill(d.step-2)).darker(2);
+                    }
+                })
+                .attr("id", function (d) { return d.id; });
+
+            node.append("text", ".circle")
+                .attr("dx", 12)
+                .attr("dy", ".35em")
+                .text(function (d) { return d.name; })
+                .style("font-size", 12)
+                .style("fill", function (d, i) { 
+                    if (d.type == "step") {
+                        return d3.rgb(fill(d.nodeIndex-1)).brighter(2);
+                    }
+                    if (d.type == "competency") {
+                        return d3.rgb(fill(d.step-2)).brighter(2);
+                    }
+                });
+
+            debug(thisName + ": after text: ");
+            debug(node[0].parentNode);
+
+            var numNodes = nodeList.length;
+            var numSteps = 0;
+            for (var i = 0; i < numNodes; ++i) {
+                if (nodeList[i].type == "step") {
+                    numSteps += 1;
+                }
+            }
+            console.log("w = " + CANVAS_WIDTH);
+            console.log("N = " + numNodes);
+            console.log("n = " + numSteps);
+            console.log("(w / N) = " + (CANVAS_WIDTH / numNodes));
+            console.log("(w / n) = " + (CANVAS_WIDTH / numSteps));
+            var offset = CANVAS_WIDTH / numNodes;
+            force.on("tick", function () {
+                if (arrangeNodes) {
+                    nodeList.forEach(function (d, i) {
+                        if (d.type == "step") {
+                            d.x = offset + CANVAS_WIDTH / numNodes * i;
+                            debug("i = " + i + ", d.x = " + d.x);
+                        }
+                    });
+                }
+
+                link
+                    .attr("x1", function (d) { return d.source.x; })
+                    .attr("y1", function (d) { return d.source.y; })
+                    .attr("x2", function (d) { return d.target.x; })
+                    .attr("y2", function (d) { return d.target.y; });
+
+                node = svg.selectAll("g")
+                    .attr("cx", function (d) { return d.x; })
+                    .attr("cy", function (d) { return d.y; });
+
+                node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
+            });
+        }
+
+        /**
+           Extracts competency_paths from JSON returned from LRI query
+
+           @param {Object} response JSON blob
+           @return {Object} competency_path data keyed by ID
+         **/
+        function getPaths(response) {
+            var paths = {};
+            data = JSON.parse(response);
+            for (var i in data["response"]) {
+                for (var j in data["response"][i]) {
+                    for (var k in data["response"][i][j]) {
+                        var id = data["response"][i][j][k]["props"]["urn:lri:property_type:id"];
+                        paths[id] = data["response"][i][j][k];
+                    }
+                }
+            }
+            return paths;
+        }
+
+        /**
+           Prunes JSON data down to specific properties:
+               ID
+               name
+               CCID (if present)
+
+           @return {Object} Entities keyed by ID
+         **/
+        function getEntities(response) {
+            debug("getEntities");
+
+            var ents = {};
+            data = JSON.parse(response);
+            debug("getEntities: data: ");
+            debug(data);
+
+            var idProp = "urn:lri:property_type:id";
+            var nameProp = "urn:lri:property_type:name";
+            var ccidProp = "urn:ccss:property_type:ccid";
+            for (var i in data["response"]) {
+                for (var j in data["response"][i]) {
+                    for (var k in data["response"][i][j]) {
+                        var id = data["response"][i][j][k]["props"][idProp];
+                        var name = data["response"][i][j][k]["props"][nameProp];
+                        var displayName = name;
+                        var ccid = data["response"][i][j][k]["props"][ccidProp];
+                        if (ccid != undefined) {
+                            displayName = ccid + " : " + name;
+                        }
+                        ents[id] = displayName;
+                    }
+                }
+            }
+
+            debug("getEntities: ents: ");
+            debug(ents);
+            return ents;
+        }
+
+        /**
+           Populates a menu
+
+           @param {String} The ID of the menu
+           @param {Array} The list of names to put in the menu
+        **/
+        function addToMenu(id, names) {
+            debug("addToMenu");
+            debug("addToMenu: id = " + id);
+            debug("addToMenu: names: ");
+            debug(names);
+
+            for (var i in names) {
+                // Paths have special ids
+                var pathId = "";
+                var pathName = names[i];
+                if (names[i].indexOf("::") != -1) {
+                    var parts = names[i].split("::");
+                    pathId = parts[0];
+                    pathName = parts[1];
+                }
+
+                var option = document.createElement("option");
+                option.value = pathName;
+                option.text = option.value;
+
+                if (pathId.length > 0) {
+                    option.id = pathId;
+                }
+
+                jQuery(id).append(option);
+            }
+        }
+    })(); // end namespace
+    </script>
+  </body>
+</html>

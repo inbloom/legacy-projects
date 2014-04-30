@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>MATH_DOMAIN_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>MATH_STANDARD_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>CREATOR_NAME</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>DESCRIPTION</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>NAME</value>
+  </pair>
+  <pair key='uniqueid'>
+    <value>UNIQUE_ID</value>
+  </pair>
+</xml>

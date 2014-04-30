@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='urn:ccss:property_type:ccid'>
+    <value>CCID</value>
+  </pair>
+  <pair key='urn:lri:property_type:cluster'>
+    <value>MATH_CLUSTER_ID</value>    
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>ELA_GRADE_LEVEL_ID</value>
+    <value>MATH_CLUSTER_ID</value>    
+    <value>MATH_DOMAIN_ID</value>    
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>STANDARD_COMPONENT_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>CREATOR_NAME</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>DESCRIPTION_NAME</value>
+  </pair>
+  <pair key='urn:ccss:property_type:id'>
+    <value>ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>NAME</value>
+  </pair>
+</xml>

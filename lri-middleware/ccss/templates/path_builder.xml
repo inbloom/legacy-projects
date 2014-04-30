@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <pair key='urn:lri:property_type:authored_by'>
+        <value>author_id</value>
+    </pair>
+    <pair key='urn:lri:property_type:description'>
+        <value>path_description</value>
+    </pair>
+    <pair key='urn:lri:property_type:id'>
+        <value>path_id</value>
+    </pair>
+    <pair key='urn:lri:property_type:name'>
+        <value>path_name</value>
+    </pair>
+
+    <pair key='urn:lri:property_type:path_step'>
+        <!-- A, B, C -->
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type_competency_in_path'>
+                <value>A</value>
+            </pair>
+        </value>
+
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type:competency_in_path'>
+                <value>B</value>
+            </pair>
+            <pair key='urn:lri:property_type:previous'>
+                <value>step:A</value>
+            </pair>        
+        </value>
+
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type_competency_in_path'>
+                <value>C</value>
+            </pair>
+            <pair key='urn:lri:property_type:previous'>
+                <value>step:B</value>
+            </pair>
+        </value>
+
+        <!-- D, E|F, G -->
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type:competency_in_path'>
+                <value>D</value>
+            </pair>
+            <pair key='urn:lri:property_type:previous'>
+                <value>step:C</value>
+            </pair>
+        </value>
+
+        <value>
+            <pair key='type'>
+                <value>ordering</value>
+            </pair>
+            <pair key='urn:lri:property_type:path_step'>
+                <pair key='type'>
+                    <value>step</value>
+                </pair>
+                <value>
+                    <pair key='urn:lri:property_type:competency_in_path'>
+                        <value>E</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:previous'>
+                        <value>step:D</value>
+                    </pair>
+                </value>
+
+                <value>
+                    <pair key='type'>
+                        <value>step</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:competency_in_path'>
+                        <value>F</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:previous'>
+                        <value>step:D</value>
+                    </pair>
+                </value> 
+            </pair>
+        </value>
+        
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type_competency_in_path'>
+                <value>G</value>
+            </pair>
+            <pair key='urn:lri:property_type:previous'>
+                <value>ordering:EF</value>
+            </pair>
+        </value>
+
+        <!-- H, [I, J]|K, L -->
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type_competency_in_path'>
+                <value>H</value>
+            </pair>
+            <pair key='urn:lri:property_type:previous'>
+                <value>step:G</value>
+            </pair>
+        </value>
+
+        <value>
+            <pair key='type'>
+                <value>ordering</value>
+            </pair>
+            <pair key='urn:lri:property_type:path_step'>
+                <value>
+                    <pair key='type'>
+                        <value>step</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:competency_in_path'>
+                        <value>I</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:previous'>
+                        <value>step:H</value>
+                    </pair>
+                </value>
+
+                <value>
+                    <pair key='type'>
+                        <value>step</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:competency_in_path'>
+                        <value>J</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:previous'>
+                        <value>step:I</value>
+                    </pair>
+                </value> 
+
+                <value>
+                    <pair key='type'>
+                        <value>step</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:competency_in_path'>
+                        <value>K</value>
+                    </pair>
+                    <pair key='urn:lri:property_type:previous'>
+                        <value>step:H</value>
+                    </pair>
+                </value> 
+            </pair>
+        </value>
+
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type_competency_in_path'>
+                <value>L</value>
+            </pair>
+            <pair key='urn:lri:property_type:previous'>
+                <value>ordering:IJK</value>
+            </pair>
+        </value>
+
+        <!-- MNOP -->
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='urn:lri:property_type_competency_in_path'>
+                <value>M</value>
+                <value>N</value>
+                <value>O</value>
+                <value>P</value>
+            </pair>
+            <pair key='urn:lri:property_type:previous'>
+                <value>step:L</value>
+            </pair>
+        </value>
+
+    </pair>
+</xml>

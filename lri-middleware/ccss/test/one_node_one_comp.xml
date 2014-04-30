@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <pair key='urn:lri:property_type:authored_by'>
+        <value>erik</value>
+    </pair>
+    <pair key='urn:lri:property_type:description'>
+        <value>test</value>
+    </pair>
+    <pair key='urn:lri:property_type:id'>
+        <value>urn:erik:path:103</value>
+    </pair>
+    <pair key='urn:lri:property_type:name'>
+        <value>test 103</value>
+    </pair>
+
+    <pair key='urn:lri:property_type:path_step'>
+        <value>
+            <pair key='type'>
+                <value>step</value>
+            </pair>
+            <pair key='orderId'>
+                <value>0</value>
+            </pair>
+            <pair key='urn:lri:property_type:competency_in_path'>
+                <value>urn:ccss:standard:CCSS.Math.Content.1.G.A.1</value>
+            </pair>
+        </value>
+    </pair>
+</xml>

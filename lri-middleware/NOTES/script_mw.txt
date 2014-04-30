@@ -1,0 +1,13 @@
+----------
+middleware
+----------
+middleware provides abstraction of common lri queries
+
+organizes and sorts data
+
+supports json and xml
+
+
+url:
+http://knowledgeweb.appliedminds.com:9000/ccss/initiatives
+

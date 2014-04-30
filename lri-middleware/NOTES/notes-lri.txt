@@ -1,0 +1,71 @@
+
+Notes for installing nginx + uwsgi on lri (ubuntu wheezy/sid)
+Erik Jasso
+ejasso@appliedminds.com
+2012/11/08
+
+* Configs are in KnowledgeWeb/webapps/config
+
+### nginx
+
+# install
+sudo apt-get install nginx-full nginx-common
+
+# configure
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default-orig
+sudo cp nginx/sites-available/default /etc/nginx/sites-available
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/default default
+
+# start
+sudo service nginx start
+http://knowledgeweb.appliedminds.com:10000/
+
+### uwsgi
+
+# install
+sudo apt-get install uwsgi uwsgi-core uwsgi-plugin-python
+
+
+# configure
+sudo cp uwsgi/apps-available/test /etc/uwsgi/apps-available
+cd /etc/uwsgi/apps-enabled
+sudo ln -s /etc/uwsgi/apps-available/test.ini test.ini
+
+# install an app
+sudo mkdir -p /var/www/apps/test
+sudo cp test/test.py /var/www/apps/test
+
+# install ccss
+sudo mkdir -p /var/www/apps/ccss
+sudo cp -r ccss/*.py ccss/__init__.py ccss/test/ /var/www/apps/ccss
+
+# install configs
+sudo mkdir -p /var/www/apps/config
+sudo cp config/webapps/http_config.json /var/www/apps/config
+
+sudo mkdir -p /var/www/apps/httpconfig
+sudo cp httpconfig/httpconfig.py httpconfig/__init__.py /var/www/apps/httpconfig
+
+# start
+screen -S nginx-10000
+sudo service uwsgi start
+http://knowledgeweb.appliedminds.com:10000/test/
+
+### lri
+* Kurt will do this part
+
+### install python libs
+sudo apt-get install python-pip
+sudo pip install web.py
+sudo pip install requests
+
+exit
+ssh lri@192.168.100.75
+screen -S nginx-10000
+sudo service nginx start
+screen -d
+
+screen -S uwsgi
+sudo service uwsgi start
+screen -d

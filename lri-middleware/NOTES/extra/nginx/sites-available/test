@@ -1,0 +1,15 @@
+server {
+       listen 8888;
+       server_name test;
+
+       root /var/www/apps/;
+       location /test {
+       		include uwsgi_params;
+		#uwsgi_param UWSGI_CHDIR /var/www/apps/;
+		uwsgi_param UWSGI_PYHOME /var/www/apps/test/;
+		uwsgi_param UWSGI_SCRIPT test;
+		uwsgi_param SCRIPT_NAME /test;
+		uwsgi_pass localhost:8889;
+		#uwsgi_modifier1 30;
+	}
+}

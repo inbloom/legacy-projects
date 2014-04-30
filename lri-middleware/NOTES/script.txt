@@ -1,0 +1,60 @@
+------------
+path builder
+------------
+path builder lets you: 
+- create non-linear paths through the common core data and custom standard sets
+- mix standard sets
+- visualize paths as a graph
+
+pb built with javascript, d3, and jquery on top of middleware
+
+all data is dynamic
+
+
+explain ui
+- menus
+  - ela -- ccss ela standards
+  - math -- ccss math standards
+  - custom -- custom standards from cc browser standards authoring tool
+- add standard -- adds competency node to graph attached to current node
+
+- toolbar
+  - add node -- adds step node to graph
+  - path name -- name of path
+  - author -- path author
+  - save path -- saves path to lri
+  - clear path -- resets the ui
+  - pick path -- loads existing path
+
+demonstrate building a path
+ela L
+ela L.4
+pick 1 standard
+add standard
+pick standard
+add standard
+
+add 2nd node
+math 4
+math g
+pick standard
+add standard
+pick standard
+add standard
+
+enter path name
+
+enter my name
+
+say how could save path to database
+
+demonstrate loading a path
+good paths:
+- "AND": 
+  - EJ ELA Grade 4 -- personal path through ela grade 4
+  - EJ Grade 4 Independent Study -- personal path through grade 4 ela and math
+- 1 comp per step: 
+  - ela grade 4 rl -- path through ela rl.4 w/1 comp per step
+
+
+

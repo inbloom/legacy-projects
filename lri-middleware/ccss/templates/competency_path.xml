@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <pair key='urn:lri:property_type:authored_by'>
+        <value>author_id</value>
+    </pair>
+    <pair key='urn:lri:property_type:description'>
+        <value>path_description</value>
+    </pair>
+    <pair key='urn:lri:property_type:id'>
+        <value>path_id</value>
+    </pair>
+    <pair key='urn:lri:property_type:name'>
+        <value>path_name</value>
+    </pair>
+    <pair key='urn:lri:property_type:path_step'>
+      <value>
+        <pair key='type'>
+          <value>step</value>
+        </pair>
+        <pair key='orderId'>
+          <value>0</value>
+        </pair>
+        <pair key='urn:lri:property_type:competency_in_path'>
+          <value>competency_1_id</value>
+          <value>competency_2_id</value>
+          <value>competency_3_id</value>
+        </pair>
+      </value>
+    </pair>
+</xml>

@@ -1,0 +1,75 @@
+Path Builder Interactive Visualization
+
+Introduction
+Path Builder is used to make and visualize Competency Paths through
+the Common Core State Standards and custom Standards created by the
+Authoring Tool and other fashions. Paths are "AND" Paths -- Path Steps
+can have multiple Standards, all of which must be completed before
+moving on to the next Step. Path Builder saves new Paths to the LRI
+and loads existing paths from the LRI.
+
+Description
+
+Menus
+Three sets of menus are provided for looking up Standards in the LRI. From
+top to bottom each menu represents a lower level in the hieratchy. A
+selection from one menu triggers an LRI query that populates the next
+menu in the hierarchy. At the lowest level are Standards that can be
+added to a Path. 
+
+The menus are: 
+- Framework CCSS.ELA-Literacy: For querying the LRI for Common Core ELA Standards.
+- Set CCSS.Math.Content: For querying the LRI for Common Core Math Standards.
+- Custom: For querying the LRI for Custom Standards.
+Clicking "Add standard" places the selected Standard on the current
+Path Step. A Path Step can have any number of attached Standards.
+
+Viewer
+Displays Path Steps and Competencies in a graph with large nodes
+representing Path Steps and smaller nodes representing
+competencies. Path Steps are numbered starting with 0 to indicate order.
+
+Toolbar
+Add node button: Click to add new step node to the graph. This node
+becomes the current Path Step. Standard nodes added to the graph are
+connected to this node.
+
+"Enter path name" input: Type the name of the Path Here.
+
+"Enter author name": Type your name here.
+
+Save path ...: Click to save the Path to the LRI. Disables edits.
+
+Clear path: Discards the current Path.
+
+Pick a path: Select a Path to load from the LRI and display it.
+
+Making a New Path
+- Select a Standard from a menu
+- Click Add standard
+- Enter Path name
+- Enter Author name
+- Click Save path
+
+Loading an Existing Path
+To load a Path from the LRI select it from the "Pick a path"
+menu. Loading a Path presents the Path for viewing only and disables edits.
+
+Screenshots
+
+Technology
+Javascript, jQuery, D3, LRI, LRI Middleware
+
+Known Issues and Future Work
+Bugs
+
+Future Work
+- Allow edits to Paths
+- Build and load "OR" Paths
+
+TODO:
+From SLC Wrap-up 2013/02/07:
+- Expand competency_containers down to leaf nodes (e.g., standard_component)
+- "OR" paths (split/join)
+- Save steps as paths
+- Zoom

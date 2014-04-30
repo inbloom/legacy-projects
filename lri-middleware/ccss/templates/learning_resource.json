@@ -1,0 +1,10 @@
+{
+    "urn:lri:property_type:id": "resource_id",
+    "urn:lri:property_type:name": "resource_name",
+    "urn:lri:property_type:description": "resource_description",
+    "urn:lri:property_type:teaches": [
+        "competency_1_id",
+        "competency_2_id",
+        "competency_3_id"
+    ]
+}

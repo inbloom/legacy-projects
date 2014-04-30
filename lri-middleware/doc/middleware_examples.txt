@@ -1,0 +1,135 @@
+# Example: GET all frameworks in Python console
+
+ipython
+import requests
+url = “http://knowledgeweb.appliedminds.com:8000/ccss/frameworks”
+response = requests.get(url)
+
+Response
+
+print(response.status_code)
+200
+print(response.reason)
+OK
+print(response.headers)
+{'date': 'Sat, 19 Jan 2013 21:06:06 GMT', 'connection': 'keep-alive', 'x-powered-by': 'Python', 'transfer-encoding': 'chunked', 'webapp': 'ccss', 'access-control-allow-origin': '*', 'server': 'nginx/0.8.54'}
+import json
+print(json.dumps(response.json, indent=3))
+
+###
+Example: GET all frameworks using "property" and "format" parameters
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<root>
+<pair>
+<key>status</key>
+<value>normal</value>
+</pair>
+<pair>
+<key>response</key>
+<value>
+<pair>
+<key>frameworks</key>
+<value>
+<pair>
+<key>child_type</key>
+<value>urn:ccss:entity:type:domain</value>
+</pair>
+<pair>
+<key>props</key>
+<value>
+<pair>
+<key>urn:lri:property_type:name</key>
+<value>Framework CCSS CCSS.ELA-Literacy</value>
+</pair>
+<pair>
+<key>urn:lri:property_type:id</key>
+<value>urn:ccss:framework:CCSS.ELA-Literacy</value>
+</pair>
+</value>
+</pair>
+</value>
+<value>
+<pair>
+<key>child_type</key>
+<value>urn:ccss:entity:type:set</value>
+</pair>
+<pair>
+<key>props</key>
+<value>
+<pair>
+<key>urn:lri:property_type:name</key>
+<value>Framework CCSS CCSS.Math</value>
+</pair>
+<pair>
+<key>urn:lri:property_type:id</key>
+<value>urn:ccss:framework:CCSS.Math</value>
+</pair>
+</value>
+</pair>
+</value>
+<value>
+<pair>
+<key>child_type</key>
+<value>urn:ccss:entity:type:set</value>
+</pair>
+<pair>
+<key>props</key>
+<value>
+<pair>
+<key>urn:lri:property_type:name</key>
+<value>f</value>
+</pair>
+<pair>
+<key>urn:lri:property_type:id</key>
+<value>urn:inBloom:navigatorApp:initiative.f.f</value>
+</pair>
+</value>
+</pair>
+</value>
+</pair>
+</value>
+</pair>
+</root>
+
+###
+Example: Get the XML template for creating an initiative
+
+http://knowledgeweb.appliedminds.com:9000/ccss/create/template/initiative/xml
+
+<xml>
+  <pair key="uid">
+    <value>UNIQUE_ID</value>
+  </pair>
+  <pair key="urn:lri:property_type:contains">
+    <value>COMPETENCY_CONTAINER_ID</value>
+  </pair>
+  <pair key="urn:lri:property_type:creator">
+    <value>CREATOR_NAME</value>
+  </pair>
+  <pair key="urn:lri:property_type:description">
+    <value>DESCRIPTION</value>
+  </pair>
+  <pair key="urn:lri:property_type:id">
+    <value>ID</value>
+  </pair>
+  <pair key="urn:lri:property_type:name">
+    <value>NAME</value>
+  </pair>
+</xml>
+
+###
+Example: Create an initiative in iPython console
+ipython
+import requests
+url = “http://knowledgeweb.appliedminds.com:9000/ccss/initiative/create”
+# Use XML template from /ccss/create/template/initiative/xml
+postData = {
+  “format”: “xml”,
+  “data”: """<xml><pair key="uid"><value>Example</value></pair><pair key="urn:lri:property_type:contains"><value>urn:example:framework:1</value></pair><pair key="urn:lri:property_type:creator"><value>A User</value></pair><pair key="urn:lri:property_type:description"><value>Example initiative</value></pair><pair key="urn:lri:property_type:id"><value>urn:example:initiative:1</value></pair><pair key="urn:lri:property_type:name"><value>Example initiative 1</value></pair></xml>“““
+}
+response = requests.post(url, data=postData)
+
+
+
+###
+Example update (in Python)

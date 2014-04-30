@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+  <pair key='uid'>
+    <value>UNIQUE_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:completion_criterion'>
+    <value>COMPLETION CRITERION</value>
+  </pair>
+  <pair key='urn:lri:property_type:contained_by'>
+    <value>COMPETENCY_CONTAINER_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:contains'>
+    <value>COMPETENCY_ID</value>
+    <value>COMPETENCY_CONTAINER_ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:creator'>
+    <value>CREATOR</value>
+  </pair>
+  <pair key='urn:lri:property_type:description'>
+    <value>DESCRIPTION_NAME</value>
+  </pair>
+  <pair key='urn:lri:property_type:id'>
+    <value>ID</value>
+  </pair>
+  <pair key='urn:lri:property_type:name'>
+    <value>NAME</value>
+  </pair>
+</xml>
