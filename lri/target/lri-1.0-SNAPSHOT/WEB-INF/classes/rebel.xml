@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com" xsi:schemaLocation="http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
+
+	<classpath>
+		<dir name="/home/inbloom/lri/target/classes">
+			<include name="hibernate.cfg.xml"/>
+			<include name="ehcache.xml"/>
+			<include name="jdbc.properties"/>
+			<include name="hibernate.properties"/>
+			<include name="messages.properties"/>
+			<include name="log4j.xml"/>
+			<include name="META-INF/persistence.xml"/>
+			<include name="mail.properties"/>
+			<include name="displaytag.properties"/>
+		</dir>
+		<dir name="/home/inbloom/lri/src/main/resources">
+			<include name="applicationContext-resources.xml"/>
+		</dir>
+		<dir name="/home/inbloom/lri/src/main/java">
+			<include name="**/*.xml"/>
+		</dir>
+		<dir name="/home/inbloom/lri/target/classes">
+		</dir>
+	</classpath>
+
+	<web>
+		<link target="/">
+			<dir name="/home/inbloom/lri/src/main/webapp">
+			</dir>
+		</link>
+	</web>
+
+</application>
