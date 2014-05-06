@@ -1,0 +1,4 @@
+The spring-boot autowired thymeleaf expects to find this "templates"
+directory, and throws a hissy fit if it can't find it. This file is
+in the directory to ensure that testing tools include the directory
+on the classpath.

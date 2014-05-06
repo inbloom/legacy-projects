@@ -1,0 +1,15 @@
+ruby '2.0.0'
+source 'http://rubygems.org'
+
+gem 'dotenv'              # config
+gem 'thor'                # command-line interfaces
+gem 'cucumber'            # feature specification
+gem 'rspec'               # test assertions
+gem 'capybara'            # web testing
+gem 'capybara-screenshot' # grab screenshot on failure
+gem 'selenium-webdriver'  # browser testing
+gem 'rest-client'         # REST calls
+gem 'webmock'             # mocking external web calls
+gem 'mysql2'              # database access
+gem 'net-ldap'            # ldap
+gem 'pry'                 # ruby repl

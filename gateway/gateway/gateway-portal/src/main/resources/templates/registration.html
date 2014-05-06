@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+    <head>
+        <title>Hello!</title>
+    </head>
+
+    <body>
+
+        <div layout:fragment="content">
+            <div class="page-header">
+                <h1 th:text="${message}">Greeting</h1>
+            </div>
+            <p class="lead">
+Welcome! You are requesting access...
+            </p>
+
+<form class="form-horizontal" method="post">
+<fieldset>
+
+<!-- Form Name -->
+<!-- <legend>Developer Account Registration</legend> -->
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstname">First Name</label>  
+  <div class="col-md-4">
+  <input id="firstname" name="firstname" type="text" placeholder="" class="form-control input-md" required="" />
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastname">Last Name</label>  
+  <div class="col-md-4">
+  <input id="lastname" name="lastname" type="text" placeholder="" class="form-control input-md" required="" />
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="company">Company</label>  
+  <div class="col-md-4">
+  <input id="company" name="company" type="text" placeholder="" class="form-control input-md" />
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email</label>  
+  <div class="col-md-4">
+  <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="" />
+    
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id">Double Button</label>
+  <div class="col-md-8">
+    <button type="submit" id="button1id" name="button1id" class="btn btn-success">Submit</button>
+    <button type="reset" id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+
+        </div>
+
+    </body>
+
+</html>
