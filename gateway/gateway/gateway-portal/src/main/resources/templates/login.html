@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+    <head>
+        <title>Login</title>
+    </head>
+
+    <body>
+
+        <div layout:fragment="content">
+
+            <!-- Form Name -->
+            <legend>Login to inBloom</legend>
+
+            <div class="alert alert-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+
+            <div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
+            <div style="position: relative">
+
+                <div style="left: 0; width: 50%; position: absolute">
+
+                <form class="form-horizontal" th:action="@{/login}" method="post">
+                    <fieldset>
+
+                        <!-- Email input-->
+                        <div class="form-group control-group">
+                            <label class="col-md-4 control-label" for="emailinput">Email</label>
+                            <div class="col-md-4 controls">
+                                <input id="emailinput" name="email" type="email" placeholder="" class="form-control input-md" required="" oninput="testValidation()"/>
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group control-group">
+                            <label class="col-md-4 control-label" for="passwordinput">Password</label>
+                            <div class="col-md-4 controls ">
+                                <input id="passwordinput" name="password" type="password" placeholder="" class="form-control input-md" required="" oninput="testValidation()"/>
+                                <p class="help-block"></p>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group control-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+
+                            <div class="col-md-4 controls">
+                                <button id="submit" name="submit" class="btn btn-success btn-block" disabled="">Submit</button>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
+
+<script type="text/javascript">
+    $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+
+<script type="text/javascript">
+    var testValidation = function()
+    {
+        if ($('#passwordinput').jqBootstrapValidation('hasErrors') || $('#emailinput').jqBootstrapValidation('hasErrors')) {
+            $('#submit').attr("disabled", "true");
+        }
+        else {
+            $('#submit').removeAttr("disabled");
+        }
+    }
+</script>
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+    <head>
+        <title>Hello!</title>
+    </head>
+
+    <body>
+
+        <div layout:fragment="content">
+            <div class="page-header">
+                <h1 th:text="${message}">Greeting</h1>
+            </div>
+            <p class="lead">
+                Wow! Such layout! Now, if you want to do something creative, stop. Step away from your keyboard,
+                take a deep breath and get yourself on over to <a href="http://getbootstrap.com">bootstrap</a>. You'll find
+                plenty of tools there to get the job done.
+            </p>
+        </div>
+
+    </body>
+
+</html>
