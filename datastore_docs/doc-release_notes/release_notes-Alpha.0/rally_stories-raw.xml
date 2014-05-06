@@ -1,0 +1,551 @@
+<Objects>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6692886473" objectVersion="14" refObjectName="Enable Sandbox users to switch between already provisioned LZ" CreatedAt="Jun 11">
+      <CreationDate>2012-06-11T17:32:26.276Z</CreationDate>
+      <ObjectID>6692886473</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Sandbox can provision LZ for each of the sample data sets once, and unlimited LZ for their custom data sets. However, there is no way in which the user is able to switch between already provisioned landing zone.&amp;nbsp;            &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Only in sandbox&lt;/div&gt; &lt;div&gt;* When the user provisions an a landing zone which already exists in the tenant collection, his home directory in ldap is updated&lt;/div&gt; &lt;div&gt;* The user should see a success message&lt;/div&gt; &lt;div&gt;* The user should get an email notification&lt;/div&gt; &lt;div&gt;* No duplicates should occur in the tenant collection&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Discussion:&lt;/div&gt; &lt;div&gt;https://thesli.onconfluence.com/display/sli/Single+LZ+with+Predefined+EdOrg+-DE643&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;UX changes: &amp;nbsp;Page 12 of the the .pdf attached&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;font class="Apple-style-span" size="2"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/div&gt; &lt;div&gt;Acceptance Test: Attached&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US2844</FormattedID>
+      <LastUpdateDate>2012-06-15T13:32:35.117Z</LastUpdateDate>
+      <Name>Enable Sandbox users to switch between already provisioned LZ</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6692886474" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <Attachments>
+         <Attachment rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6706445811" refObjectName="Provision_Integrated.feature" type="Attachment" />
+         <Attachment rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6706620052" refObjectName="SLIDevRegistration_handoff_v3[3] copy.pdf" type="Attachment" />
+      </Attachments>
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423141" refObjectName="4.7" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6609235732" refObjectName="Admin: Provision Landing Zone shouldn't require EdOrg Entry" type="HierarchicalRequirement" />
+      <Predecessors />
+      <Rank>499999497856.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321656" refObjectName="PI4" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Sandbox</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>In sandbox the user can only provision a landing zone for a particular educational organization once, which limits them from switching between landing zones for retesting with data that they used before. &amp;nbsp;There is no limitation to the number of landing zones they can provision using a custom educational organization.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Workaround:&lt;/div&gt;&lt;div&gt;If the user wants to re-ingest a sample dataset and can not re-provision the landing zone, the best way is to create a custom landing zone and update the sample data to have the matching high level ed-org.&amp;nbsp;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6543233813" objectVersion="11" refObjectName="App Permissions - Assigning Existing Data Category Rights" CreatedAt="May 29">
+      <CreationDate>2012-05-29T19:00:35.786Z</CreationDate>
+      <ObjectID>6543233813</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;span class="rally-rte-class-0146e74ce"&gt;As a LEA Super Administrator, I would like to be able to decide what permissions will I give to the applications that I am authorizing for my district.&lt;/span&gt;    &lt;div id="x4-gen1246" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1245" class="rally-rte-class-05e19ea52"&gt;Acceptance Criteria:&lt;/div&gt;  &lt;div id="x4-gen1244" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt;  &lt;div class="rally-rte-class-05e19ea52"&gt;  &lt;ul id="x4-gen1243" class="rally-rte-class-0bd797cf7"&gt;  &lt;li id="x4-gen1242" class="rally-rte-class-0322ebfa5"&gt;A functionality that will allow giving collection of (already existing rights) to the applications&lt;/li&gt;  &lt;li id="x4-gen1241" class="rally-rte-class-0322ebfa5"&gt;The rights are the same ones as the rights or the default user roles (rights listed here:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/pages/viewpage.action?pageId=2000832" id="x4-gen1240" class="rally-rte-class-047d2f95f"&gt;https://thesli.onconfluence.com/pages/viewpage.action?pageId=2000832&lt;/a&gt;)&lt;/li&gt;  &lt;li id="x4-gen1239" class="rally-rte-class-0322ebfa5"&gt;What the user will be able to access is an intersection of the user and app rights. For example: A user of Daybreak with a role of Leader is using the Data Browser to traverse the data of his/her district, but the Data Browser is authorized with R Public and R General only. He/She will not be able to access the student's restricted data, even though his role has that right&lt;/li&gt;  &lt;li id="x4-gen1247" class="rally-rte-class-0322ebfa5"&gt;An UI in the Application Authorization Tool that will allow the LEA Super Admin (or its delegate) to choose which rights will be given to the application when the application is authorized for the District. This rights should be editable.&lt;/li&gt;  &lt;/ul&gt;  &lt;/div&gt;  &lt;div id="x4-gen1248" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt;  &lt;div class="rally-rte-class-05e19ea52"&gt;Wireframes:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Application+Authorization+Tool+Wireframes" id="x4-gen1249" class="rally-rte-class-047d2f95f"&gt;https://thesli.onconfluence.com/display/sli/SLI+Application+Authorization+Tool+Wireframes&lt;/a&gt;&lt;/div&gt;  &lt;div id="x4-gen1250" class="rally-rte-class-05e19ea52"&gt;Note: Please look at the new - post alpha wireframe.&lt;/div&gt;  &lt;div id="x4-gen1251" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1252" class="rally-rte-class-05e19ea52"&gt;Demo Script:&lt;/div&gt;  &lt;div id="x4-gen1253" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Gherkin:&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US2660</FormattedID>
+      <LastUpdateDate>2012-06-15T21:49:19.600Z</LastUpdateDate>
+      <Name>App Permissions - Assigning Existing Data Category Rights</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6543233814" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423133" refObjectName="4.7" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6542857715" refObjectName="Data Categories Rights for Application" type="HierarchicalRequirement" />
+      <PlanEstimate>5.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999512576.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321650" refObjectName="PI4" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Security</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>An application that is authorized by a LEA, can access the LEA's data based on the user's permissions (on which behalf the application is accessing LEA's data) and the application features/capabilities. There is no additional restriction that LEA can impose other than 'blanket' access (application can or cannot access LEA's data on user's behalf). Additional functionality will be built to allow the LEA to choose what rights over the existing data categories&amp;nbsp;to give to certain application. The intersection of the user's and application's permissions and the application's capabilities&amp;nbsp;will define in which way the user will be able to access the LEA's data. For example, if an application allows editing of general student data, and a user with IT Administrator role (which gives permission for editing student data) is using the application, he/she will not be able to edit any student data if this right has not been given to the application by the LEA.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>11-AuthPerm</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5823519958" objectVersion="40" refObjectName="Stable URLs for Student Profile Pages" CreatedAt="Mar 23">
+      <CreationDate>2012-03-23T15:17:34.339Z</CreationDate>
+      <ObjectID>5823519958</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;As a teacher, I want to be able to bookmark or share a profile URL with an authorized colleague.&lt;br /&gt;As an IT Admin, I need to ensure that the data remains secure and that the student's GUID is not in that URL to prevent the story below.&lt;br /&gt;Avoid this story: As a hacker, I want to use GUIDs in URLs to undermine data security.&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;ul&gt;  &lt;li&gt;Discussions with security have determined that the GUID should be encrypted to prevent data compromise.&lt;br /&gt;&lt;/li&gt;  &lt;/ul&gt;  &lt;br /&gt;AC:&lt;br /&gt;&lt;br /&gt;  &lt;/div&gt;  &lt;div&gt;URLs to student profiles are stable and canonical/bookmarkable, and also meet security protocols by removing GUIDs from URLs.&lt;br /&gt;&lt;br /&gt;Note: when doing this story, if we choose to POST the GUIDs at each request, maybe add the security token in the same way (Robert's idea)&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US1727</FormattedID>
+      <LastUpdateDate>2012-06-13T19:08:39.815Z</LastUpdateDate>
+      <Name>Stable URLs for Student Profile Pages</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5823519959" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429991" refObjectName="5.1" type="Iteration" />
+      <PlanEstimate>3.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999543872.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780843" refObjectName="PI5" type="Release" />
+      <ScheduleState>Defined</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>18.0</TaskEstimateTotal>
+      <TaskRemainingTotal>18.0</TaskRemainingTotal>
+      <TaskStatus>DEFINED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/task/6010409861" refObjectName="Code Revoew" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/task/6010409493" refObjectName="A/T" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/task/6010410023" refObjectName="Bucket" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>In Dashboard, student profile and list URLs are unique and can be bookmarked, but will change at a later time, and with the ingestion of new data, so they are not permanently canonical at this time.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6569060457" objectVersion="10" refObjectName="Remove &quot;Attendance and Discipline&quot; Tab Until Data is Available" CreatedAt="May 31">
+      <CreationDate>2012-05-31T16:07:54.987Z</CreationDate>
+      <ObjectID>6569060457</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Remove the attendance and discipline tab from the student profiles until we are able to ingest and display data for them. (They should not be blank).</Description>
+      <Discussion />
+      <FormattedID>US2724</FormattedID>
+      <LastUpdateDate>2012-06-15T18:24:54.947Z</LastUpdateDate>
+      <Name>Remove "Attendance and Discipline" Tab Until Data is Available</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539504316" refObjectName="Vijay Ummalaneni" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/6429790214" refObjectName="Avengers (Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6569060458" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423135" refObjectName="4.7" type="Iteration" />
+      <Predecessors />
+      <Rank>499999554176.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/6429790226" refObjectName="PI4" type="Release" />
+      <ScheduleState>Defined</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>6.0</TaskEstimateTotal>
+      <TaskRemainingTotal>6.0</TaskRemainingTotal>
+      <TaskStatus>DEFINED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/task/6572968937" refObjectName="Edit Default Config" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/task/6572972031" refObjectName="Acceptance Tests" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/task/6572970998" refObjectName="Code Review" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>In some cases depending on configuration, a blank "Attendance and Discipline" tab may appear in Student Profiles.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6609235732" objectVersion="13" refObjectName="Admin: Provision Landing Zone shouldn't require EdOrg Entry" CreatedAt="Jun 4">
+      <CreationDate>2012-06-04T18:21:43.026Z</CreationDate>
+      <ObjectID>6609235732</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;If you disagree please talk to me, this is based on my understanding.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; When provisioning a landing zone, the user must provision the landing zone at the edOrg they are apart of. &amp;nbsp;Given the Tenant and EdOrg are an attribute in the ldap, the user shouldn't have to type in their edOrg, just hit provision and it will provision the EdOrg that the user was setup with.      &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Example:&lt;/div&gt; &lt;div&gt;daybreakadmin attribute is tenant=IL,edOrg=IL-DAYBREAK&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Daybreakadmin shouldn't have to write IL-DAYBREAK as its already known in their attribute. &amp;nbsp;Hitting provision should automatically create /ingestion/lz/IL/IL-DAYBREAK.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Further Discussion:&lt;/div&gt; &lt;div&gt;&lt;a href="https://thesli.onconfluence.com/display/sli/Single+LZ+with+Predefined+EdOrg+-DE643"&gt;https://thesli.onconfluence.com/display/sli/Single+LZ+with+Predefined+EdOrg+-DE643&lt;/a&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Wireframes:&lt;/div&gt; &lt;div&gt;TDB&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Acceptance Tests:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US2786</FormattedID>
+      <LastUpdateDate>2012-06-16T21:36:31.863Z</LastUpdateDate>
+      <Name>Admin: Provision Landing Zone shouldn't require EdOrg Entry</Name>
+      <Notes>&lt;br&gt;&lt;br&gt;&lt;b&gt;Defect specific properties:&lt;/b&gt;&lt;br&gt;Defect State: Scheduled&lt;br&gt;Priority: Emergency Release (P2)&lt;br&gt;Severity: Usable but incorrect behavior (Sev3)&lt;br&gt;Submitted By: cwilson@wgen.net&lt;br&gt;Creation Date: 2012-05-30 09:41:37 AM&lt;br&gt;Found In: &lt;br&gt;Fixed In: &lt;br&gt;Verified In: &lt;br&gt;Target Build: &lt;br&gt;Target Date: &lt;br&gt;Release Note: false&lt;br&gt;Affects Doc: false</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6609235733" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children>
+         <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6611152028" objectVersion="11" refObjectName="As a ingestion user I can provision a LZ using the defined high level Ed-Org in LDAP" CreatedAt="Jun 4" type="HierarchicalRequirement">
+            <CreationDate>2012-06-04T20:32:42.498Z</CreationDate>
+            <ObjectID>6611152028</ObjectID>
+            <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+            <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+            <Changesets />
+            <Description>&lt;span class="Apple-style-span rally-rte-class-0b081c7dc"&gt;Discussion:&amp;nbsp;https://thesli.onconfluence.com/display/sli/Single+LZ+with+Predefined+EdOrg+-DE643&lt;/span&gt;     &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0b081c7dc"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0b081c7dc"&gt;Wireframes:&amp;nbsp; Look at Page 12 of 18&lt;br /&gt;and &lt;br /&gt;https://thesli.onconfluence.com/display/sli/Sandbox+Account+Provisioning+Workflow&amp;nbsp; &lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0b081c7dc"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0b081c7dc"&gt;Acceptance criteria:&lt;br /&gt;* The user is not asked to enter the Ed-Org&lt;br /&gt;* The Ed-Org for a user is read from LDAP&lt;br /&gt;* The LZ for the user is saved to LDAP and Mongo (like it is currently)&lt;br /&gt;* The user gets an error when the user tries to re-provision.&amp;nbsp; &lt;br /&gt;* Acceptance tests updated accordingly&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0b081c7dc"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0b081c7dc"&gt;UX Changes: Look at page 16 in the .pdf attached&lt;br /&gt;&lt;br /&gt;Acceptance Tests: Attached&lt;/span&gt;&lt;/div&gt;</Description>
+            <Discussion />
+            <FormattedID>US2788</FormattedID>
+            <LastUpdateDate>2012-06-13T20:49:53.673Z</LastUpdateDate>
+            <Name>As a ingestion user I can provision a LZ using the defined high level Ed-Org in LDAP</Name>
+            <Notes />
+            <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+            <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+            <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6611152029" type="RevisionHistory" />
+            <Tags>
+               <Tag rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+            </Tags>
+            <Attachments>
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6706488659" refObjectName="Provision_Integrated.feature" type="Attachment" />
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6706622428" refObjectName="SLIDevRegistration_handoff_v3[3] copy.pdf" type="Attachment" />
+            </Attachments>
+            <Blocked>false</Blocked>
+            <Children />
+            <DefectStatus>NONE</DefectStatus>
+            <Defects />
+            <InProgressDate>2012-06-05T19:00:59.324Z</InProgressDate>
+            <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475421389" refObjectName="4.6" type="Iteration" />
+            <Parent rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6609235732" refObjectName="Admin: Provision Landing Zone shouldn't require EdOrg Entry" type="HierarchicalRequirement" />
+            <Predecessors />
+            <Rank>499999619456.000</Rank>
+            <Recycled>false</Recycled>
+            <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321656" refObjectName="PI4" type="Release" />
+            <ScheduleState>In-Progress</ScheduleState>
+            <Successors />
+            <TaskActualTotal>0.0</TaskActualTotal>
+            <TaskEstimateTotal>0.0</TaskEstimateTotal>
+            <TaskRemainingTotal>0.0</TaskRemainingTotal>
+            <TaskStatus>NONE</TaskStatus>
+            <Tasks />
+            <TestCaseStatus>NONE</TestCaseStatus>
+            <TestCases />
+            <Component>Sandbox</Component>
+            <NewScope>false</NewScope>
+            <ReleaseNote>false</ReleaseNote>
+            <ReleaseNoteDescription>Currently the landing zone provisioning tool requires the ingestion user to manually enter their Educational Organization. &amp;nbsp;This leads to two issues&lt;div&gt;a. The user can mistakenly enter an Ed-Org that does not match the allowed Ed-Org in their LDAP account.&lt;/div&gt;&lt;div&gt;b. The user can create more than one landing zone by entering a different EdOrg.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Work around:&lt;/div&gt;&lt;div&gt;Until the development work is completed the user should make sure that the Ed-Org they enter is the same as the one assigned to them in LDAP.&lt;/div&gt;</ReleaseNoteDescription>
+            <SCLegacyID>186</SCLegacyID>
+            <SCLegacyPersonas />
+            <SCLegacyProdIncrement />
+            <SCMustHave>true</SCMustHave>
+            <StrandDetails />
+         </HierarchicalRequirement>
+         <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6692886473" objectVersion="14" refObjectName="Enable Sandbox users to switch between already provisioned LZ" CreatedAt="Jun 11" type="HierarchicalRequirement">
+            <CreationDate>2012-06-11T17:32:26.276Z</CreationDate>
+            <ObjectID>6692886473</ObjectID>
+            <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+            <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+            <Changesets />
+            <Description>Sandbox can provision LZ for each of the sample data sets once, and unlimited LZ for their custom data sets. However, there is no way in which the user is able to switch between already provisioned landing zone.&amp;nbsp;            &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Only in sandbox&lt;/div&gt; &lt;div&gt;* When the user provisions an a landing zone which already exists in the tenant collection, his home directory in ldap is updated&lt;/div&gt; &lt;div&gt;* The user should see a success message&lt;/div&gt; &lt;div&gt;* The user should get an email notification&lt;/div&gt; &lt;div&gt;* No duplicates should occur in the tenant collection&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Discussion:&lt;/div&gt; &lt;div&gt;https://thesli.onconfluence.com/display/sli/Single+LZ+with+Predefined+EdOrg+-DE643&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;UX changes: &amp;nbsp;Page 12 of the the .pdf attached&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;font class="Apple-style-span" size="2"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/div&gt; &lt;div&gt;Acceptance Test: Attached&lt;/div&gt;</Description>
+            <Discussion />
+            <FormattedID>US2844</FormattedID>
+            <LastUpdateDate>2012-06-15T13:32:35.117Z</LastUpdateDate>
+            <Name>Enable Sandbox users to switch between already provisioned LZ</Name>
+            <Notes />
+            <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+            <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+            <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6692886474" type="RevisionHistory" />
+            <Tags>
+               <Tag rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+            </Tags>
+            <Attachments>
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6706445811" refObjectName="Provision_Integrated.feature" type="Attachment" />
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6706620052" refObjectName="SLIDevRegistration_handoff_v3[3] copy.pdf" type="Attachment" />
+            </Attachments>
+            <Blocked>false</Blocked>
+            <Children />
+            <DefectStatus>NONE</DefectStatus>
+            <Defects />
+            <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423141" refObjectName="4.7" type="Iteration" />
+            <Parent rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6609235732" refObjectName="Admin: Provision Landing Zone shouldn't require EdOrg Entry" type="HierarchicalRequirement" />
+            <Predecessors />
+            <Rank>499999497856.000</Rank>
+            <Recycled>false</Recycled>
+            <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321656" refObjectName="PI4" type="Release" />
+            <ScheduleState>Backlog</ScheduleState>
+            <Successors />
+            <TaskActualTotal>0.0</TaskActualTotal>
+            <TaskEstimateTotal>0.0</TaskEstimateTotal>
+            <TaskRemainingTotal>0.0</TaskRemainingTotal>
+            <TaskStatus>NONE</TaskStatus>
+            <Tasks />
+            <TestCaseStatus>NONE</TestCaseStatus>
+            <TestCases />
+            <Component>Sandbox</Component>
+            <NewScope>false</NewScope>
+            <ReleaseNote>true</ReleaseNote>
+            <ReleaseNoteDescription>In sandbox the user can only provision a landing zone for a particular educational organization once, which limits them from switching between landing zones for retesting with data that they used before. &amp;nbsp;There is no limitation to the number of landing zones they can provision using a custom educational organization.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Workaround:&lt;/div&gt;&lt;div&gt;If the user wants to re-ingest a sample dataset and can not re-provision the landing zone, the best way is to create a custom landing zone and update the sample data to have the matching high level ed-org.&amp;nbsp;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</ReleaseNoteDescription>
+            <SCLegacyID />
+            <SCLegacyPersonas />
+            <SCLegacyProdIncrement />
+            <SCMustHave>false</SCMustHave>
+            <StrandDetails />
+         </HierarchicalRequirement>
+      </Children>
+      <Defects>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6559225722" refObjectName="Admin: User should not be able to provision multiple landing zones" type="Defect" />
+      </Defects>
+      <InProgressDate>2012-06-05T19:00:59.324Z</InProgressDate>
+      <PlanEstimate>0.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999582336.000</Rank>
+      <Recycled>false</Recycled>
+      <ScheduleState>In-Progress</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <Tasks />
+      <TestCases />
+      <Component>Sandbox</Component>
+      <DeliveryPlanned>Alpha.0</DeliveryPlanned>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>When provisioning a landing zone, the user must provision the landing zone at the edOrg they are a part of.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>true</SCMustHave>
+      <SCPlannedDelivery>Alpha.0</SCPlannedDelivery>
+      <StrandDetails />
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6559328210" objectVersion="8" refObjectName="Add Pagination to List of Students" CreatedAt="May 30">
+      <CreationDate>2012-05-30T21:08:10.947Z</CreationDate>
+      <ObjectID>6559328210</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>List of Students currently does not support pagination. Add the pagination component similar to the one used in student search.&lt;br /&gt;&lt;br&gt;&lt;br&gt;A/C:</Description>
+      <Discussion />
+      <FormattedID>US2714</FormattedID>
+      <LastUpdateDate>2012-06-11T18:51:22.463Z</LastUpdateDate>
+      <Name>Add Pagination to List of Students</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/6429790214" refObjectName="Avengers (Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6559328211" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE_CLOSED</DefectStatus>
+      <Defects>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/defect/5693943312" refObjectName="Dashboard doesn't handle paging" type="Defect" />
+      </Defects>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429981" refObjectName="5.1" type="Iteration" />
+      <PlanEstimate>3.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999586624.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/6429790226" refObjectName="PI4" type="Release" />
+      <ScheduleState>Defined</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>Dashboard displays a maximum of 50 students in a selected section, and does not support pagination at this time.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5401899757" objectVersion="21" refObjectName="Current Courses and Grades Panel" CreatedAt="Feb 8">
+      <CreationDate>2012-02-08T19:41:18.791Z</CreationDate>
+      <ObjectID>5401899757</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>As an educator, I want to see a display of a student's currently enrolled courses and associated grades in their student profile.&lt;br /&gt;&lt;br&gt;(&lt;a href="https://thesli.onconfluence.com/display/sli/Dashboard--Current+Enrollment+and+Grades"&gt;https://thesli.onconfluence.com/display/sli/Dashboard--Current+Enrollment+and+Grades&lt;/a&gt;)&lt;br&gt;&lt;br&gt;A/C:&lt;br&gt;Student current courses and grades are displayed.&lt;br&gt;Pixel perfect.&lt;br&gt;Missing data degrades gracefully.</Description>
+      <Discussion />
+      <FormattedID>US1030</FormattedID>
+      <LastUpdateDate>2012-06-12T13:40:13.085Z</LastUpdateDate>
+      <Name>Current Courses and Grades Panel</Name>
+      <Notes>Action item for Greg: Can a teacher see the grades for another class? Other enrollment info?</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/6429790214" refObjectName="Avengers (Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5401899758" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429981" refObjectName="5.1" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514295422" refObjectName="Student Profile" type="HierarchicalRequirement" />
+      <PlanEstimate>8.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999586688.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/6429790224" refObjectName="PI5" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>Student Profiles do not yet have a tab displaying a student's current courses and associated grades, even when this data is ingested into SLI.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>true</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>18-Views</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6081700392" objectVersion="35" refObjectName="Password Reset for SLI Hosted Users" CreatedAt="Apr 17">
+      <CreationDate>2012-04-17T18:44:40.045Z</CreationDate>
+      <ObjectID>6081700392</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;On the simple-idp login page add a "reset my password" link.&lt;/div&gt; &lt;div&gt;It should invalidate the account and send the welcome/validate email.&lt;/div&gt; &lt;div&gt;User can click link and is prompted to reset their password.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Link could also be added to the edit user account page in SAMT&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US2121</FormattedID>
+      <LastUpdateDate>2012-06-15T15:15:30.465Z</LastUpdateDate>
+      <Name>Password Reset for SLI Hosted Users</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6081700393" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+         <Tag rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>ALL_CLOSED</DefectStatus>
+      <Defects>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6512253257" refObjectName="Developers cannot change password" type="Defect" />
+      </Defects>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423133" refObjectName="4.7" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514294110" refObjectName="Super Admin Management Tool" type="HierarchicalRequirement" />
+      <PlanEstimate>5.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999624448.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321650" refObjectName="PI4" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Admin</Component>
+      <DeliveryPlanned>Alpha.0</DeliveryPlanned>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>If an SLI hosted directory user has forgotten own password, he/she will have to ask the SLC Operator (in an offline process) to reset the password for him/her. A feature will be added to the SLI Identity Provider&amp;nbsp;that will allow the SLI hosted directory users to reset their password.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5401900816" objectVersion="50" refObjectName="Attendance History Panel in Student Profile" CreatedAt="Feb 8">
+      <CreationDate>2012-02-08T19:41:44.749Z</CreationDate>
+      <ObjectID>5401900816</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;As an educator or administrator, I would like to see a student's historical attendance summary in their profile.&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;&lt;b&gt;MYSTIQUE MOCKUP&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;a href="https://thesli.onconfluence.com/display/sli/Dashboard--Attendance+History"&gt;https://thesli.onconfluence.com/display/sli/Dashboard--Attendance+History&lt;/a&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;b&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;EXTRA LINKS WITH STUFF FROM MYSTIQUE:&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;span class="Apple-style-span" style="font-family: Calibri, sans-serif; font-size: 14px; "&gt;  &lt;div&gt;This page has links to the panels for the student profile:&lt;/div&gt;  &lt;div&gt;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Wireframes"&gt;https://thesli.onconfluence.com/display/sli/SLI+Wireframes&lt;/a&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;In this example, the enrollment history wireframe includes links to business logic, the style guide that Thomas has put together, and the sample data for the panels.&lt;/div&gt;  &lt;div&gt;&lt;a href="https://thesli.onconfluence.com/display/sli/Dashboard+-+Enrollment+History+Panel"&gt;https://thesli.onconfluence.com/display/sli/Dashboard+-+Enrollment+History+Panel&lt;/a&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;As more goodies are created that can be associated with wireframes, they will be added as links to the appropriate page. Our hope is that teams will "follow" the confluence page so that they always have the latest version of the wireframe, and supporting documents.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;The thing that is missing is the documentation from Anna:&lt;/div&gt;  &lt;div&gt;&lt;a href="https://thesli.onconfluence.com/display/sli/Dashboard+UI+Development+ABCs"&gt;https://thesli.onconfluence.com/display/sli/Dashboard+UI+Development+ABCs&lt;/a&gt;&lt;/div&gt;  &lt;/span&gt;  &lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US1032</FormattedID>
+      <LastUpdateDate>2012-06-12T00:02:24.486Z</LastUpdateDate>
+      <Name>Attendance History Panel in Student Profile</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5401900817" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429991" refObjectName="5.1" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514295422" refObjectName="Student Profile" type="HierarchicalRequirement" />
+      <PlanEstimate>8.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999806080.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="34" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780843" refObjectName="PI5" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <DeliveryPlanned>Alpha.0</DeliveryPlanned>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>Attendance and discipline data are not yet available in Student Profiles.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>true</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>18-Views</StrandNumber>
+   </HierarchicalRequirement>
+</Objects>

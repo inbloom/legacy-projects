@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_limitations">
+  <title>Known Limitations</title>
+  <para>
+                Known limitations in the Alpha.1 release can be summarized as follows:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+                        Currently the Sandbox landing zones enforce a size limit of 1 MB for 
+                        ingestion archive files, corresponding to approximately 30-50MB 
+                        of uncompressed XML data, or about 30,000-50,000 records. 
+                        In Alpha.1, ingesting a data set of this size should take less than 5
+                        minutes.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Some Ed-Fi entities are not yet supported and, thus,
+                        not consumable through data ingestion. For additional 
+                        information, see the
+                        <citetitle>SLC Data Ingestion White Paper</citetitle>
+                        from
+                        <link xlink:href="http://dev.slcedu.org/documentation">dev.slcedu.org/documentation</link>.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Bulk data extracts are not yet supported.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Not all ingestible data is displayed in SLC 
+                        educator dashboards, including discipline incidents, 
+                        full attendance records, current courses, and grades.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Leader roles do not yet provide aggregate view of data.
+                    </para>
+    </listitem>
+  </itemizedlist>
+  <para>
+                The following are the user stories currently used to track known
+                limitations in the Alpha.1 release. Click a linked story ID and
+                title in the list to view for more details:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="US2959">US2959: App Permissions - Authorizing Application Rights</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US1030">US1030: Current Courses and Grades Panel</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US1727">US1727: Stable URLs for Student Profile Pages</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2660">US2660: App Permissions - Authorizing Existing Data Category Rights</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2792">US2792: Epic: Ingestion Progress</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2714">US2714: Add Pagination to List of Students</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US136">US136: Super Admin Management Tool</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="US2959">
+    <title>US2959: App Permissions - Authorizing Application Rights</title>
+    <para>An application that is authorized by an LEA, can access the LEA's data based on the user's permissions (on which behalf the application is accessing LEA's data) and the application features/capabilities. The LEA can give complete, blanket access to an application, but cannot restrict permissions to a more specific level.Additional functionality will be built to allow the LEA to choose what rights over the existing data categoriesto give to certain application. The intersection of the user's and application's permissions and the application's capabilitieswill define in which way the user will be able to access the LEA's data. For example, if an application allows editing of general student data, and a user with IT Administrator role (which gives permission for editing student data) is using the application, he/she will not be able to edit any student data if this right has not been given to the application by the LEA.</para>
+  </section>
+  <section xml:id="US1030">
+    <title>US1030: Current Courses and Grades Panel</title>
+    <para>Student Profiles do not yet have a tab displaying a student's current courses and associated grades even if the data has already been ingested into SLI.</para>
+  </section>
+  <section xml:id="US1727">
+    <title>US1727: Stable URLs for Student Profile Pages</title>
+    <para>In the Dashboard, student profile and list URLs are unique and can be bookmarked. However, these will change at a later time with the ingestion of new data. As a result, they are not currently permanently canonical.</para>
+  </section>
+  <section xml:id="US2660">
+    <title>US2660: App Permissions - Authorizing Existing Data Category Rights</title>
+    <para>An application that is authorized by an LEA can access the LEA's data based on the user's permissions and the application features/capabilities. However, the LEA can only give an application complete, unrestricted access. Additional functionality will be built to allow the LEA to restrict rights to the existing data categories for an application.</para>
+  </section>
+  <section xml:id="US2792">
+    <title>US2792: Epic: Ingestion Progress</title>
+    <para>During bulk data ingestion, there is no progress indication for an ingestion job until the job is complete.The uploaded .zip file is immediately removed from the user's landing zone and the job log file(s) do not appear in its place until the job is complete.</para>
+  </section>
+  <section xml:id="US2714">
+    <title>US2714: Add Pagination to List of Students</title>
+    <para>The Dashboard currently displays a maximum of 50 students in a section. Also, the Dashboard does not support pagination.</para>
+  </section>
+  <section xml:id="US136">
+    <title>US136: Super Admin Management Tool</title>
+    <para>Currently, the SLC Operator creates and manages every SLI hosted administrative user for a tenant by using an LDAP browser. A tool will be built that allows individual tenants to create and manage their own users.The SLC will still have to create the first user for the tenant.</para>
+  </section>
+</section>

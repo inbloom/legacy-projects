@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE article [
+<!ENTITY % slc_entities SYSTEM "../../common/docbook_entities-slc.ent">
+%slc_entities;
+<!ENTITY RELEASE "Alpha.1">
+]>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xml:id="release_notes" version="5.0">
+    
+    <info>
+        <title>&COMPANY; &RELEASE; Operator Release Notes</title>
+    </info>
+
+    <para>
+        The &RELEASE; release is the second release in the Alpha phase of the &COMPANYABBR; technology services, education dashboards, and documentation.
+    </para>
+    <para>
+        This document covers resolved issues as well as known issues and limitations which are relevant to &COMPANYABBR; operators. 
+    </para>    
+    <para>
+        For end-user release notes, please refer to the &COMPANY; &RELEASE; User Release Notes. 
+    </para>
+    
+    <section>
+        <title>Configuration Changes</title>
+        <para>
+            Below are additional configuration changes for new and required functionality updates between Alpha.0 and &RELEASE;.
+        </para>
+        <programlisting><![CDATA[
+#Properties required to disable Sandbox mode in the API
+sli.sandbox.enabled = false
+bootstrap.sandbox.createSandboxRealm = false
+
+#New Properties in both Sandbox and Production Modes
+#LDAP credentials for admin realm user validation
+sli.api.ldap.user = cn=[Administrator],dc=slcedu,dc=org 
+sli.api.ldap.pass = [password]
+
+sli.application.buildTag = sli.app.buildTag
+sli.api.performance.tracking = false
+sli.ingestion.errors.tracking = true
+sli.ingestion.warnings.tracking = true
+sli.ingestion.securityEvent.capSize = 
+sli.ingestion.mongotemplate.writeConcern = SAFE
+sli.ingestion.staging.mongotemplate.writeConcern = SAFE
+sli.default.mongotemplate.writeConcern = SAFE
+sli.ingestion.exception.message.log = true
+sli.ingestion.log.level = info
+sli.ingestion.processor.edfi = concurrent
+sli.ingestion.processor.xml = concurrent
+sli.ingestion.queue.options = keepAlive=true&jms.prefetchPolicy.queuePrefetch=0
+sli.ingestion.queue.brokerUrl = tcp://${sli.ingestion.queue.workItem.host}:${sli.ingestion.queue.workItem.port}?${sli.ingestion.queue.options}
+sli.ingestion.queue.maxConnections = 25
+sli.ingestion.queue.maximumActive = 500
+sli.ingestion.cache.type = inmemory
+sli.ingestion.cache.servers = 
+sli.ingestion.cache.opTimeout = 10
+sli.ingestion.split.chunk.size = 500
+sli.ingestion.split.threshold.percentage = 0.3
+sli.ingestion.referenceSchema.referenceCheckEnabled = false
+dashboard.log.level = warn
+dashboard.minify.js = true
+dashboard.cache.disable = false
+sli.mongodb.connections = 30
+
+#These settings are required, however they should remain the defaults listed below.
+sli.perf.mongodb.database = apiPerf
+sli.perf.mongodb.host = localhost
+sli.perf.mongodb.port =27017
+sli.api.performance.tracking = false
+
+#These parameters must match the API parameters and are used for encrypting/decrypting authentication keys between the 
+#dashboard and API.
+dashboard.encryption.keyStorePass = [password]
+dashboard.encryption.dalKeyAlias = dalKey
+dashboard.encryption.dalKeyPass = [password]
+dashboard.encryption.keyStore = ../data-access/dal/keyStore/ciKeyStore.jks
+    
+#Parameters used by the API to bootstrap application authorizations for the core applications in production mode.
+bootstrap.app.admin.authorized_for_all_edorgs = true
+bootstrap.app.admin.allowed_for_all_edorgs = true
+bootstrap.app.databrowser.authorized_for_all_edorgs = false
+bootstrap.app.databrowser.allowed_for_all_edorgs = false
+bootstrap.app.dashboard.authorized_for_all_edorgs = false
+bootstrap.app.dashboard.allowed_for_all_edorgs = false
+bootstrap.app.portal.authorized_for_all_edorgs = false
+bootstrap.app.portal.allowed_for_all_edorgs = false 
+
+#Parameters used by the API to bootstrap application authorizations for the core applications in sandbox mode.
+bootstrap.app.admin.authorized_for_all_edorgs = true
+bootstrap.app.admin.allowed_for_all_edorgs = true
+bootstrap.app.databrowser.authorized_for_all_edorgs = true
+bootstrap.app.databrowser.allowed_for_all_edorgs = true
+bootstrap.app.dashboard.authorized_for_all_edorgs = true
+bootstrap.app.dashboard.allowed_for_all_edorgs = true
+bootstrap.app.portal.authorized_for_all_edorgs = true
+bootstrap.app.portal.allowed_for_all_edorgs = true 
+        ]]></programlisting>
+        <para>
+            In addition, several updates have been made to the Portal configuration files. The changes are detailed below:
+        </para>
+        <programlisting><![CDATA[
+#Changes to the environment.properties file:
+oauth.encryption=[true/false]
+]]></programlisting>
+        <programlisting><![CDATA[
+#Changes to the portal-ext.properties file:
+is_sandbox = [true/false]
+include-and-override=${sli.encryption.properties}
+jdbc.default.encrypted.password=[true/false]
+session.timeout.warning=0
+sli.cookie.domain=<domain of application>
+layout.user.private.layouts.enabled=false
+layout.user.private.layouts.modifiable=true
+layout.user.private.layouts.auto.create=false
+auto.deploy.copy.log4j=false
+browser.cache.signed.in.disabled=true
+http.header.version.verbosity= partial]]></programlisting>
+        <programlisting><![CDATA[
+#Changes to the Portal's sli.properties file:
+sli.domain=<server_domain>]]></programlisting>
+        <programlisting><![CDATA[
+#Add to the new liferaylog.properties file:
+log.level=<log_level>
+log.path=<log_path>
+        ]]></programlisting>
+    </section>    
+       
+
+    <xi:include href="rally_op_resolved_defects.xml" />
+    
+    <xi:include href="rally_op_defects.xml"/>
+    
+</article>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_logs"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Logs</title>
+    
+    <para>
+        When &PRODUCTABBR; processes an ingestion job, it creates several log 
+        files and places those files in the landing zone, accessible for
+        download from the same FTP server used to upload the job. These files
+        contain the warnings and errors that occur both at job level (for 
+        each control file) and at resource level (for each XML file). 
+        See <xref linkend="r-ingestion_log_files"/> for a description of
+        these log files.
+    </para>
+    <para>
+        The file names and contents for each log file use the job ID and 
+        resource ID values. Within the files, each new log file entry begins 
+        with INFO, WARN, or ERROR to indicate the type of message.
+        See <xref linkend="r-ingestion_errors_and_warnings"/> for a complete
+        list of messages along with hints on how to handle them.
+    </para>
+    <warning>
+        <title>Important!</title>
+        <para>
+            Error messages imply that the ingestion of the specified data 
+            has failed, either as a whole or in part. To complete a successful 
+            ingestion, you must resolve these errors.
+        </para>
+    </warning>
+    
+</section>

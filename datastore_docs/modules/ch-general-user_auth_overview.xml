@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-5a2abecf-9587-4fd1-bc52-3085828989a3"
+    
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>User Authentication in &PRODUCTCAPS;</title>
+    <para>
+        &PRODUCTABBR; authenticates users through a combination of OAuth 2.0 and 
+        SAML 2.0 protocols to enable web-based authentication and authorization, 
+        including &PRODUCTABBR;-wide single sign-on (SSO). 
+    </para>
+    <note>
+        <para>
+            For non-web-based applications, the OAuth 2.0 specification supports long-life 
+            tokens. This topic will be discussed in a future release of this document. <!-- Developer only??? -->
+        </para>
+    </note>
+    <para>
+        OAuth is an authentication and authorization process for both the application and the
+        user. That is, the application must authenticate to the API and the user must
+        authenticate to their user directory. After both the user and the application authenticate, not only does
+        the API recognize the application and trust the user, but the application becomes
+        authorized to access the API on behalf of the user, through the effective role-based
+        permissions that a user has when using the &PRODUCTABBR; application. 
+    </para>
+    <para>
+        This design enables <firstterm>authentication/authorization</firstterm> 
+        realms (the education organizations that have their own identity 
+        providers) maintain local control over their identity data without 
+        revealing their user directory and credentials to &PRODUCTABBR;. It 
+        also enables application developers to use a simplified OAuth
+        2.0-based API authentication process without doing any SSO integration 
+        work or using SAML. 
+    </para>
+    <para>
+        In the the &PRODUCTABBR; developer guide, developers can find useful information and instructions on how to develop applications using &PRODUCTABBR; authorization structures.
+    </para>
+    <section xml:id="doc-16680fb0-3164-4290-9f5c-8f539a36eef1">
+        <title>Core Concepts for User Authentication</title>
+        <para>
+            The following are the core concepts used throughout this documentation when 
+            discussing user authorization:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-client_id">client ID</glossterm> - 
+                    An ID that uniquely identifies an application to &PRODUCTABBR;.
+                    The client ID is assigned during the
+                    application registration process.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-client_secret">client secret</glossterm> - 
+                    A value that, in combination with the client ID, 
+                    enables an application to authenticate with the &PRODUCTABBR;. 
+                    The client secret is assigned during the
+                    application registration process.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-redirect_uri">redirect URI</glossterm> - 
+                    For user authentication in &PRODUCTABBR;, this is a target
+                    URI within an application to which a user is redirected 
+                    after successful authentication. This URI is registered with
+                    &PRODUCTABBR; during the application registration
+                    process.
+                    Also called a <firstterm>callback URL</firstterm>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-verification_code">verification code</glossterm> - 
+                    A code that verifies that the credentials provided by a user have been
+                    authenticated against the identity directory that contains that user's
+                    account. A verification code enables an application to obtain an 
+                    <glossterm linkend="def-access_context">access token</glossterm>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-access_token">access_token</glossterm> - 
+                    An object that encapsulates a user's authenticated session
+                    with an application, including their access privileges.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+</chapter>
+
+        

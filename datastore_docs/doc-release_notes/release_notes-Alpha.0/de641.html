@@ -1,0 +1,11 @@
+<p>
+    The SLC Java Client Library does not support multiple sessions. When 
+    used in a multi-session environment, users can have conflicting
+    actions, such as updating the same resource at the same time.
+</p>
+<p>
+    Workaround: Create an instance of the SLC Java Client Library for 
+    each connection to the REST API, then attach the <i>SLIClient</i> 
+    to the <i>HttpSession</i>. Sample code for this is available in the 
+    <i>AuthFiter.java class</i> for the <i>Sample</i> application.
+</p>

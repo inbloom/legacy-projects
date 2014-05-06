@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-6ca7de1d-42a7-4777-9907-e712e9b9ac90"
+    
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>How Application Registration Works</title>
+    <para>
+        To access &COMPANYABBR; data, applications, and services, 
+        applications must meet the following requirements:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para> Must be registered with &COMPANYABBR; </para>
+        </listitem>
+        <listitem>
+            <para>
+                Must be authorized for use by each education organization
+                that wants to use that application
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        You can ensure an application meets these requirements by following
+        the &COMPANYABBR;'s application registration process. This is a
+        one-time process that establishes a trusted relationship between 
+        the application and a given &COMPANYABBR; deployment.
+    </para>
+    <para> Your part in the application process will vary based on your role in &COMPANYABBR;: </para>
+    <itemizedlist>
+        <listitem>
+            <para> As an &COMPANYABBR; user, you can only access applications that have been through
+                this registration process. Available applications are listed in &COMPANYABBR;. </para>
+        </listitem>
+        <listitem>
+            <para> If you're a developer, you must register your application with &COMPANYABBR;,
+                then authorize its use by given education organizations. </para>
+        </listitem>
+        <listitem>
+            <para> If you are an &PRODUCTABBR; administrator, you can approve and manage the
+                applications in the &PRODUCTABBR; Production environment you're administering. </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The registration process also varies based on the type of application 
+        you're registering. Look for references to each of these application 
+        types as you step through the registration procedure:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                A <emphasis>web application</emphasis> resides on servers
+                accessible over a network connection. A user can interact with
+                a web application through a web browser installed on desktop,
+                laptop, or mobile device, without installing any part of the 
+                application on that device.
+            </para>
+        </listitem>
+        <listitem>
+            <para annotations="">
+                <emphasis>Installed applications</emphasis> are those that are installed on a
+                personal device in which the user (1) is driving the application and (2) has access
+                to a web browser on the same device. This would include, but is not limited to,
+                applications designed for <trademark>Apple iOS</trademark>,
+                    <trademark>Android</trademark>, and desktop operating systems like
+                    <trademark>Microsoft Windows</trademark>. </para>
+        </listitem>
+    </itemizedlist>
+    <!-- Diagram needs updates before it can be included again.
+        <para>
+            The following diagram shows the creation of a developer/vendor account in both 
+            Sandbox and Production. The diagram includes (for both for Sandbox and Production) 
+            how an application is created, registered, and enabled for districts for 
+            authorization and use by end users.
+        </para>
+        <figure xml:id="figure-security-application-onboarding">
+            <title>Application On-boarding</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center"
+                    fileref="images/security-application-onboarding.gif" 
+                    scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center"
+                    fileref="../common/images/security-application-onboarding.gif" 
+                    scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>-->
+</chapter>
+
+        

@@ -1,0 +1,22 @@
+Scripts Used in Technical Documentation
+
+gr.py
+-----
+Python script that makes a series of GET requests using the URIs in
+the SLI REST API. Use the following format when calling the command:
+
+  python gr.py <urls-file> <actual-base-url> <print-base-url> <oauth-token>
+
+In the command above:
+* urls-file = the path and filename of the list of partial URIs,
+              which is the portion of the URI that makes it unique
+              within the API
+* actual-base-url = the string to append to the beginning of each
+                    partial URI from urls-file to direct the request
+                    to a specific SLI data source
+* print-base-url = the string to append to the bevinning of each
+                   partial URI from urls-file when printing the URI
+                   used in each example
+* oauth-token = the token returned after authenticating to the target
+                database
+

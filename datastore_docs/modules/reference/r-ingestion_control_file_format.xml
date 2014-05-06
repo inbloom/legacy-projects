@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion_control_file_format"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Control File Format</title>
+    
+    <para>
+        The control file defines the set of XML data files to be ingested 
+        as part of the same ingestion job. &COMPANYABBR; expects this file to 
+        be a text file with a .ctl file extension (such as 
+        <filename>control_file.ctl</filename>).
+        Within the control file is a series of lines providing information
+        about each XML data file, with additional parameters to control
+        the ingestion job.
+    </para>
+    
+    <section xml:id="r-ingestion_control_file_format-data_file_lines">
+        <title>Control File: Data File Lines</title>
+        <para> For each XML file, the control file must include a line formatted as a
+            comma-separated list of values: </para>
+        <programlisting><![CDATA[<file format>,<interchange>,<file name>]]></programlisting>
+        <informaltable>
+            <?dbfo keep-together="always"?>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para><varname>&lt;file format&gt;</varname></para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The file format in relation to the ingestion
+                                system. For &COMPANYABBR;, 
+                                <varname>edfi-xml</varname> is the only 
+                                supported file format.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para><varname>&lt;interchange&gt;</varname></para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The applicable Ed-Fi interchange name. These
+                                interchanges are listed and described in
+                                &COMPANYABBR; ingestion documentation.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para><varname>&lt;file name&gt;</varname></para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The file name. This value should abide by the 
+                                following rules:
+                            </para>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        They are case insensitive.
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        They should not contain any relative 
+                                        file paths or operating-system-specific 
+                                        path delimiters (such as "/", "\", 
+                                        or ":").
+                                        Since the .zip archive should have no 
+                                        directories, these should be no need 
+                                        for such paths. 
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        They should 
+                                        <emphasis role="bold">not</emphasis> be 
+                                        enclosed in double quotes, a common 
+                                        convention for configuration files.
+                                    </para>
+                                    <para>
+                                        Exception: If the file name itself 
+                                        contains double quotes or commas, 
+                                        then it should be enclosed in double 
+                                        quotes, and a backslash ("/") should 
+                                        be used to escape the double quotes 
+                                        that are part of the file name
+                                        itself.
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+        <para>
+            Other rules for XML data file entries:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Each of the four fields is case-insensitive.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Leading or trailing spaces are considered part of the values 
+                    and are not trimmed when reading the file.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A comma must not follow the last value in any row.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Valid line separators include pairs of newlines, carriage 
+                    returns, or line feeds.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <note>
+            <para>
+                The file's MD5 hash or checksum for a file may appear as an 
+                additional value in each line. This checksum is expressed as 
+                32 hexadecimal digits, and it was a required component in
+                earlier versions of &PRODUCTABBR;. Now, if it is included in
+                the file, it is ignored during ingestion processing.
+            </para>
+        </note>
+    </section>
+    
+    <section xml:id="r-ingestion_control_file_format-job_control_lines">
+        <title>Control File: Job Control Lines</title>
+        <para>
+            Job-level parameters in a control file direct the job in how to
+            proceed with parsing and storing the data. Job-level parameters
+            are additional lines that start with the "@" symbol. Parameters
+            that do not require a value are treated like flags ("on" if
+            it appears in the file, "off" if not). Both parameter names and 
+            parameter values are case-insensitive.
+        </para>
+        <para>
+            The following table lists the parameters currently supported 
+            for use in a control file:
+        </para>
+        <informaltable>
+            <?dbfo keep-together="always"?>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Parameter
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Effect
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                <varname>@dry-run</varname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Indicates that the results of the ingestion 
+                                job should not be written to the persistent
+                                data store. This allows for testing the
+                                success or failure of an ingestion job, and for
+                                handling errors produced by the job, before
+                                making permanent changes to the data store.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <varname>@purge</varname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Deletes all previously ingested data from this
+                                tenant. This is the only operation performed
+                                by the job that processes it. All other content
+                                in the control file is ignored.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <varname>@purge-keep-edorgs</varname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Performs the same action as 
+                                <varname>@purge</varname>above while 
+                                retaining the tenant 
+                                EdOrgs and AppAuthorizations, so the tenant 
+                                retains access to its registered applications.
+                            </para>
+                            <para>
+                                <emphasis role="bold">NOTE: </emphasis>
+                                This is only used in production mode.
+                            </para>
+                        </entry>
+                    </row>
+		<row>
+			<entry>
+				<para>
+					<varname>@duplicate-detection</varname>
+				</para>
+			</entry>
+			<entry>
+				<para>
+					Various modes for the duplicate detect/discard optimization (a.k.a. the recordHash
+					optimization a.k.a. the delta-hash optimization):
+				</para>
+				<para>
+					<emphasis>[unset]</emphasis>:    Normal mode, hash data and compare with recordHash
+				</para>
+				<para>
+					<varname>reset</varname>:      Like normal, but first purge recordHash of possibly stale data.
+                    				This will have the performance characteristics of "Day 1"
+                    				for the current job, and "Day N" for the next job.
+				</para>
+				<para>
+					<varname>disable</varname>:    Purge the recordHash and also do not hash the incoming data
+                   				 nor insert it into recordHash, leaving recordHash empty.
+                    				This will have the performance charactersitics of "Day 1"
+                    				for the current job and the next job.
+				</para>
+				<para>
+					<varname>debugdrop</varname>:  Treat all entities subject to recordHash based duplicate discarding as if
+                   				they are in fact duplicates.  This will mimic a Day-N fully redundant ingestion,
+                   				with the side effect that all recordHash processing is skipped.  This is in
+              					turn useful for measuring the performance impact of recordHash processing.
+				</para>
+			</entry>
+		</row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+    <section xml:id="r-ingestion_control_file_format-example">
+        <title>Control File: Example</title>
+        <para>
+            The following shows the contents of an example of a control 
+            file for a dry run of a single XML file:
+        </para>
+        <programlisting><![CDATA[
+@dry-run
+edfi-xml,StudentEnrollment,data.xml
+]]></programlisting>
+    </section>
+    
+</section>

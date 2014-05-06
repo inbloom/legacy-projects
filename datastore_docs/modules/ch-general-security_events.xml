@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-developer-security-events"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Security Events</title>
+    <section xml:id="doc-developer-security-events-tracked">
+        <title>Security Events Tracked</title>
+        <para>
+        	Documents the Security Events that are in the system and where they are logged and the location in the code that they are logged from.
+        </para>
+        <para>
+        	The API call for retrieving the available events is <link linkend="r-api-resource-securityEvent">here</link>
+        </para>
+        <table xml:id="doc-developer-security-events-tracked-table">
+        	<title>Security Events Tracked by the system</title>
+        	<tgroup cols="3">
+        		<thead>
+        			<row>
+        				<entry>
+        					<para>Details</para>
+        				</entry>
+        				<entry>
+        					<para>Origin</para>
+        				</entry>
+        				<entry>
+        					<para>Log Name/Class</para>
+        				</entry>
+        			</row>
+        		</thead>
+        		<tbody>
+        			<row>
+        				<entry>
+        					<para>Bulk Extract request header preconditions failed</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Range header doesn't match format</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>If range is not syntactically valid</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request for singlePartFileResponse</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request for multiPartsFileResponse</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Logout: status</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>SecuritySessionResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>LEA's delegation is enabled/disabled</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>AdminDelegationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Application granted access to EdOrg data</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>ApplicationAuthorizationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>EdOrg data access has been revoked</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>ApplicationAuthorizationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role rights validation failed</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role unique roles check failed</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role invalid realm specified</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role Already exists: </para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Created custom role with id:</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to update realmId</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Updated Role by id</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Deleted Role by ID</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Realm [name] {updated,deleted,created}</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>RealmResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>SAML Message received from [origin] is invalid</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>SamlFederationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>HttpServletRequest is missing</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>SamlFederationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[principal id] from tenant [tenant] logged successfully into [applicationDetails]</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>SamlFederationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>{created,updated,deleted} user</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>UserResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Ingestion process started.</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>ControlFilePreProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] considered for processing: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] records ingested successfully: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] records deleted successfully: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] records not considered for processing: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful processing of all files.</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Not all records completely processed</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Number of records processed</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Runtime Exception</para>
+        				</entry>
+        				<entry><para>IDP</para></entry>
+        				<entry><para>Login</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful Login</para>
+        				</entry>
+        				<entry><para>IDP</para></entry>
+        				<entry><para>Login</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed Login</para>
+        				</entry>
+        				<entry><para>IDP</para></entry>
+        				<entry><para>Login</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Request to stream sample bulk extract</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request to stream EdOrg data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Received request to stream EdOrg data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed request to stream SEA public data, missing edOrgId</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Received request for list of links for all SEAs and LEAs for this user/app</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request for list of links for all SEAs and LEAs for this user/app</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Received request to stream EdOrg delta bulk extract data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed delta request, missing LEA id</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed delta request, missing date</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed request for EdOrg delta bulk extract data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>No bulk extract support for: [LEA]</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>No authorized EdOrgs for application</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successfully retrieved SEA/LEA list for application</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>App must provide client side X509 certificate</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        		</tbody>
+        	</tgroup>
+        </table>
+    </section>
+    
+</chapter>
+
+        

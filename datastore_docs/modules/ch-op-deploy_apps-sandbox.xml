@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-09d08d76-466e-4cfb-9c1f-d107b67a3686"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy &COMPANYABBR; Applications: Developer Sandbox</title>
+
+    <para>
+        The &PRODUCTABBR; Sandbox environment is a Production-like environment for 
+        use by application developers. It contains the same infrastructure as the 
+        Production environment with minor changes to the runtime configuration.
+    </para>
+    
+    <warning>
+        <title>Sandbox Mode vs. the Sandbox Environment</title>
+        <para>
+            In <xref linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f"/>, 
+                you read that &PRODUCTABBR; itself can run in two modes: 
+                Production and Sandbox. The Sandbox environment is a separate deployment 
+                that replicates the resources used in Production. This separate environment 
+                is deployed in Sandbox mode, and it remains in Sandbox mode throughout its
+                existence. By using this separate Sandbox environment, you can keep the 
+                Production environment operating separately and securely while still offering
+                Sandbox services to application developers.
+        </para>
+    </warning>
+    
+    <section xml:id="doc-0cd54dae-32fe-4f70-93da-fc0e14a50414">
+        <title>Developer Sandbox: What You Need to Know Before Deployment</title>
+        <para>
+            The &PRODUCTABBR; Sandbox requires hardware similar to that of the 
+            Production environment. This environment should be hosted on separate 
+            hardware to prevent interactions between Production and Sandbox systems.
+        </para>
+        <para> Software requirements are also similar to that of Production. Specifically, the
+            Sandbox environment needs Tomcat with &PRODUCTABBR; applications running, Rails running
+            the admin tools and Data Browser, a MongoDB sharded cluster, and an OpenLDAP instance.
+            These should be separate instances from Production. </para>
+    </section>
+    
+    <section xml:id="doc-12c730a9-1368-4ff7-94de-5e173fb11b38">
+        <title>Developer Sandbox: Installation</title>
+        <para>
+            To install the &PRODUCTABBR; Sandbox environment, follow the same procedures
+            as the Production environment installation with the following configuration 
+            differences:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    In the API node <filename>sli.properties</filename>:
+                    <programlisting><![CDATA[
+sli.sandbox.enabled=true
+sli.autoRegisterApps=true
+bootstrap.sandbox.createSandboxRealm=true
+                            ]]></programlisting>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    In the admin application node <filename>config.yml</filename>:
+                </para>
+                <programlisting><![CDATA[
+is_sandbox: true              
+                        ]]></programlisting>    
+            </listitem>
+            <listitem>
+                <para>
+                    In the ingestion node <filename>sli.properties</filename>:
+                    <programlisting><![CDATA[
+sli.ingestion.tenant.loadDefaultTenants=false
+                            ]]></programlisting>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    In the IDP server node <filename>sli.properties</filename>:
+                    <programlisting><![CDATA[
+sli.simple-idp.sandboxImpersonationEnabled=true 
+                            ]]></programlisting>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    In the Portal server node <filename>portal-ext.properties</filename>:
+                </para>
+                <programlisting><![CDATA[
+is_sandbox=true                            
+                        ]]></programlisting>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+</chapter>

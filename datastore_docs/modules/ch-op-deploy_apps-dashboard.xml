@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-2c7693dc-4e18-412b-b5ab-fa812f4d0972"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy &PRODUCTABBR; Applications: Dashboard</title>
+
+    <para>
+        The sections that follow cover preparing for, installing, and
+        configuring the Dashboard as part of the applications 
+        in &PRODUCTABBR;.
+    </para>
+    
+    <section xml:id="doc-fa530074-5d2d-402e-8743-aa490f300857">
+        <title>Dashboard: What You Need to Know Before Deployment</title>
+        <para> The Education Dashboard is a proof-of-concept application that leverages the rich
+            &PRODUCTABBR; RESTful API to demonstrate educator access to a broad range of student
+            information. The Dashboard is implemented as a Java web application, and is hosted in a
+            Tomcat container that is configured similarly to the API servers. This is currently a
+            read-only application, designed to make ingested data available in a user-friendly
+            manner. </para>
+        <para>
+            Scaling the Dashboard application requires the deployment of additional Dashboard
+            server instances behind the load balancers. Dashboard leverages in-memory data
+            caching to reduce repeat call load on the API. Session stickiness for the
+            Dashboard is recommended.
+        </para>
+        <para>Added scaling information. see 
+            <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840/detail/userstory/9510509634">US4877</link></para>
+    </section>
+    
+    <section xml:id="doc-e7198cca-9846-4a69-a657-b8b03481bb42">
+        <title>Dashboard: Installation</title>
+        <para>
+            Installation for the Dashboard requires the following:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A Tomcat application server.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Connectivity to the API server(s).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A properly formatted <filename>sli.properties</filename> configuration file.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ingested data for a <code>TenantId</code>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    An account matching the <code>TenantID</code> data ingested, granted with educator 
+                    privileges from a non-operator identity provider.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>Use the following procedure to install the Dashboard application for &PRODUCTABBR;.
+            For these instructions, $TOMCAT_HOME represents the location of the Tomcat installation.
+            You may wish to set that as an environment variable, or substitute with your own
+            configuration. </para>
+        <procedure>
+            <step>
+                <para>
+                    Edit the <filename>catalina.sh</filename> script located in $TOMCAT_HOME to apply certain 
+                    environment variables that the Dashboard looks for on start-up.  
+                    Add the following into the JAVA_OPTS string:
+                </para>
+                <programlisting><![CDATA[
+-Dsli.trust.certificates=$TOMCAT_HOME/trust/trustedCertificates -Dsli.conf=$TOMCAT_HOME/conf/sli.properties
+                            ]]></programlisting>
+                <para>
+                    In the simplest example, add the following line:
+                </para>
+                <programlisting><![CDATA[
+JAVA_OPTS="$JAVA_OPTS -Dsli.trust.certificates=$TOMCAT_HOME/trust/trustedCertificates -Dsli.conf=$TOMCAT_HOME/conf/sli.properties"
+                            ]]></programlisting>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <code>sli.trust.certificates</code> - Defines a file containing any Certificate 
+                            Authority certificate files to make use of, beyond the 
+                            Java installation's standard certificates.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <code>sli.conf</code> - Defines the path to the &PRODUCTABBR; configuration properties file, 
+                            which each application loads upon start-up.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>
+                    Make note of the following configuration settings in the <filename>sli.properties</filename> file:
+                </para>
+                <programlisting><![CDATA[
+oauth.client.id = 10CharIden
+oauth.client.secret = 48CharacterRandomSecret
+                            ]]></programlisting>
+                <para>
+                    These settings are specific per API client application, and need 
+                    to be set and copied into the database  
+                    for the API to authenticate and trust an application.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <code>oauth.client.id</code> - A ten character random string [a-z|A-Z|0-9] 
+                            that represents the application for authentication to the API service. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <code>oauth.client.secret</code> - A forty eight character random string 
+                            [a-z|A-Z|0-9] that is a shared secret between the API and the application.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>
+                    Edit the <filename>sli.properties</filename> to contain this value: 
+                    <programlisting><![CDATA[
+dashboard.google_analytics.id = <google_analytics_id>
+                            ]]></programlisting>
+                </para>
+            </step>
+            <step>
+                <para>
+                    Place the <filename>dashboard.war</filename> file into the <filename>$TOMCAT_HOME/webapps</filename> folder.  
+                    If Tomcat is configured for hot deployment, replacing this file will update the application.
+                    If so, Tomcat should be restarted periodically or post-deployment. 
+                </para>
+                <note><para>All &PRODUCTABBR; java web applications should be deployed to the context specified by the .war filename. They should not be deployed to the root context in Tomcat.</para></note>
+            </step>
+            <step>
+                <para>
+                    Once the settings are in place, start Tomcat.
+                </para>
+                <programlisting><![CDATA[
+$TOMCAT_HOME/bin/start.sh
+                            ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Access the server webroot with a web browser. You will be re-directed to the API, 
+                    which will re-direct you to the configured IDP.  If validated correctly, 
+                    you will then be redirected back to the API, and then back to the admin web 
+                    application.
+                </para>
+            </step><step>
+                <para>
+                    Ensure that your configuration matches the one used by the API to bootstrap 
+                    the Dashboard application. Once the API has been restarted and the records have
+                    been verified in the MongoDB application collection, you are ready to proceed.
+                </para>
+            </step>
+            <step>
+                <para>
+                    You should now have a working Dashboard. The Dashboard displays nothing until 
+                    data has been ingested that matches the user 
+                    ID and tenant information that you used to log in.  You can verify 
+                    that the Dashboard is operational by viewing <filename>$TOMCAT_HOME/log/catlina.out</filename>, 
+                    or attempting to access the <code>/dashboard/</code> URI with a web browser on the 
+                    Tomcat server port.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-145d070b-0672-41bc-b810-913d6a229eee">
+        <title>Dashboard: Configuration</title>
+        <para>
+            Dashboard configuration is driven from the <filename>sli.properties</filename> configuration
+            file and an optional JSON configuration document.  Tomcat finds the <filename>sli.properties</filename> 
+            configuration file through the <code>sli.conf</code> environment 
+            variable.  The JSON configuration document can be uploaded by any individuals in the 
+            education organization with sufficient access (roles).  The document provides control over the 
+            overall look and feel of the Dashboard application for the users of that education 
+            organization. 
+        </para>
+    </section>
+    
+    <section xml:id="doc-f6ff8ed5-5ea8-4b0c-a03e-81b4ef6c1ef5">
+        <title>Dashboard: Troubleshooting During Deployment</title>
+        <para>
+            There are 2 variables in the <filename>sli.properties</filename> file that are used by Dashboard for logging purposes.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <code>log.path</code> is used to specify where the Dashboard log file (<filename>dashboard.log</filename>) lives.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <code>log.level</code> is used to set the log level of <code>slf4j</code> logger used by Dashboard.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Dashboard creates a <filename>dashboard.log</filename> file in the location defined by <code>log.path</code>, 
+            and that file's contents can be reviewed to identify problems.  The key for the Dashboard 
+            application is ensuring that the Dashboard is able to access the API.
+        </para>
+        <para>
+            Dashboard is also dependent upon the Portal application for it's header and footer.  If 
+            the header is not rendered, check the Portal servers to ensure that they are operating 
+            as expected.
+        </para>
+    </section>
+    
+</chapter>

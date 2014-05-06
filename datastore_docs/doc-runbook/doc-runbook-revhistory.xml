@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE revhistory [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<revhistory xml:id="docs-runbook-revhistory"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <revision>
+        <revnumber>0.1</revnumber>
+        <date>5/9/2012</date>
+        <revdescription>
+            <para>
+                Subject-matter experts' contributions added
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>0.2</revnumber>
+        <date>5/11/2012</date>
+        <revdescription>
+            <para>
+                Formatting fixes, some proofreading
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>0.2a</revnumber>
+        <date>5/25/2012</date>
+        <revdescription>
+            <para>
+                Extensive restructuring and clarifying
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>0.3</revnumber>
+        <date>6/12/2012</date>
+        <revdescription>
+            <para>
+                Restructured throughout;
+                existing information replaced, extensively edited, 
+                or removed; new information added throughout.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>0.4</revnumber>
+        <date>6/14/2012</date>
+        <revdescription>
+            <para>
+                Updates to configuration information for Mongo, ingestion, portal.
+                Added ops tools.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.0</revnumber>
+        <date>6/15/2012</date>
+        <revdescription>
+            <para>
+                Completed final revisions.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.1</revnumber>
+        <date>6/16/2012</date>
+        <revdescription>
+            <para>
+                Additions throughout to clarify deployment steps.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.1a</revnumber>
+        <date>6/20/2012</date>
+        <revdescription>
+            <para>
+                Post-Alpha editing pass. Defects logged.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2</revnumber>
+        <date>7/19/2012</date>
+        <revdescription>
+            <para>
+                Added section on the portal; updated ingestion
+                related content throughout, including adding a
+                new image to help clarify that content.
+            </para>
+            <para>
+                Updated a command in the deploy services section. 
+            </para>
+            <para>
+                Updates throughout to address additional defects.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.3</revnumber>
+        <date>8/14/2012</date>
+        <revdescription>
+            <para>Updated instructions for installing and configuring the portal. </para>
+            <para>Included new and changed configuration properties. <link xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7307406798"
+                >DE1419</link>. </para>
+            <para>Included new configuration properties for sandbox mode and redundant MQ.
+                <link xlink:show="new"
+                    xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7158397247"
+                    >DE1267</link>. </para>
+            <para>Updated Ops Tools. <link xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7278873557"
+                >DE1396</link>
+            </para>
+            <para>Updated the Sample Application Installation section. <link
+                xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7278412025"
+                >DE1395</link>
+            </para>
+            <para>Updated the Portal Installation Section. <link xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7278283719"
+                >DE1394</link>
+            </para>
+            <para>Updated the Portal Configuration Section. <link xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7301181083"
+                >DE1409</link>
+            </para>
+            <para>Updated Ingestion Configuration. <link xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7301181083"
+                >DE1409</link>. </para>
+            <para>Updated MongoDB instructions for setting up the data store with
+                instructions for indexing databases. <link xlink:show="new"
+                    xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7395912771"
+                    >DE1464</link></para>
+            <para>Added preparation section to define sandbox and production modes, and
+                added tips to aid readers in identifying content specific to sandbox mode. </para>
+            <para>Added information on the OpenLDAP olcSizeLimit parameter. <link
+                xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7420715863"
+                >DE1480</link>.</para>
+            <para>Added a configuration change to the reset password lifespan value. <link
+                xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7435411728"
+                >DE1487</link>. </para>
+            <para>Added information on updating the ActiveMQ settings. <link
+                xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7420647680"
+                >DE1479</link>. </para>
+            <para>Added Ingestion Configuration Changes for ActiveMQ settings. <link
+                xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7381036197"
+                >DE1455</link>. </para>
+            <para>Extensive revisions for the Portal installation and configuration content.
+                <link xlink:show="new"
+                    xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7384926787"
+                    >DE1462</link></para>
+            <para>Added a chapter describing administrator account creation. Part of <link
+                xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/7361604638"
+                >US3415</link>
+            </para>
+            <para>Added a chapter describing how to handle application registration
+                requests. Part of <link xlink:show="new"
+                    xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/7361604638"
+                    >US3415</link>
+            </para>
+            <para>Added data ingestion instructions and reference, previously included in
+                the admin guide. <link xlink:show="new"
+                    xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7474098267"
+                    >DE1512</link>
+            </para>
+            <para>Added two chapters that describe security event notifications and security
+                event logs. Part of <link xlink:show="new"
+                    xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/7361604638"
+                    >US3415</link>
+            </para>
+            <para>Added a chapter on approving developer accounts in production. Part of
+                <link xlink:show="new"
+                    xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7462953455"
+                    >DE1503</link>
+            </para>
+            <para>Added a chapter on resetting an environment. <link xlink:show="new"
+                xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7396417954"
+                >DE1465</link>
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.4</revnumber>
+        <date>8/31/2012</date>
+        <revdescription>
+            <para>
+                Added a section to the ingestion chapter on implementing the CPSI environment in Amazon Web Services. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7501740885">DE1519</link>.
+            </para>
+            <para>
+                Revised network preparation and assumptions and 
+                supporting information for SimpleIDP to clarify
+                that identity providers between the &PRODUCTABBR; and
+                education organizations don't require a direct
+                connection. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7461009399">DE1502</link> for more information.</para>
+            <para>
+                Added a line to ingestion configuration about the total number of retries on a mongo operation. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7634472321">DE1594</link>.
+            </para>
+            <para>
+                Updated the <filename>sli.properties</filename> file in the configuration section for the portal. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7623577050">DE1585</link>.
+            </para>
+            <para>
+                Added a new section on cookies and proxying. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7594613205">DE1570</link>. 
+            </para>
+            <para>
+                Added instructions on resetting an environment during deployment. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7593539182">DE1568</link>. 
+            </para>
+            <para>
+                Added a section on blocking search engine web bot indexing. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7452823001">DE1496</link>.
+            </para>
+            <para>
+                Added a step on deleting directory contents to the instructions for resetting an environment. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7688800397">DE1621</link>.
+            </para>
+            <para>
+                Removed the data ingestion section. This is part of <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7677812452">DE1617</link>.
+            </para>
+            <para>
+                Added a step to the instructions on resetting an environment. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7697824916">DE1623</link>.
+            </para>
+            <para>
+                Added a line in the <filename>sli.properties</filename> file in the ingestion configuration section to cover the queueURI. Also, added a line to the same file for the sample data set location. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7689600722">DE1622</link> and <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7660033381">DE1607</link>. 
+            </para>
+            <para>
+                Added a parameter to the <filename>sli.properties</filename> file in the Setting up ActiveMQ section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7158397247">DE1267</link>.  
+            </para>
+        </revdescription>    
+    </revision>
+    <revision>
+        <revnumber>0.2.62</revnumber>
+        <date>10/02/2012</date>
+        <revdescription>
+            <para>
+                Added SLI architecture chapter featuring a diagram.
+            </para>
+            <para>
+                Added information on encrypting the client_id and client_secret for portal and dashboard config. See <link xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7828737130">DE1660</link>.
+            </para>
+            <para>
+                Updated the command to release the tenant job lock in the ingestion section. See <link xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7763895422" xlink:show="new">DE1643</link>.
+            </para>
+            <para>
+                Updated a URL in the ActiveMQ section. See <link xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7857987076">DE1684</link>.
+            </para>
+            <para>
+                Changed sli.sandbox.autoRegisterApps property to sli.autoRegisterApps. Added details relating to the property.  See <link xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7477312584">DE1515</link>.
+            </para>
+            <para>
+                Added information on administrative emails for developer registration requests, application approval requests, and security event notifications. Added instructions on how to permanently delete and temporarily disable administrative users. Added a screenshot for the application registration approval page. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7677812452">DE1617</link> for more details. 
+            </para>
+            <para>
+                Added a section on roles and LDAP groups. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7907336788">DE1690</link> for details. 
+            </para>
+            <para>
+                Removed references to event notifications that have not been implemented. Also, Clarified what is available in the security logs using the API. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/6392011099">DE413</link> for details. 
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>0.2.63</revnumber>
+        <date>10/16/2012</date>
+        <revdescription>
+            <para>
+                Added a section to describe updating Mongo to version 2.2. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/7786842228">US3964</link>.
+            </para>
+            <para>
+                Added a section to describe using the AAMT to add administrative users. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/87092912657961">US4342</link>.
+            </para>
+            <para>
+                Added timeout configurations for ingestion. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/8108623022">DE1761</link>.
+            </para>
+            <para>
+                Added information about the sli-shard-presplit.js script and current Mongo functionality to the MongoDB section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9061378018">DE1817</link>.
+            </para>
+            <para>
+                Updated runbook version numbering to match current code release version number. From henceforth, each revision number will match the code release number.
+            </para>
+            <para>Removed teacher_stamper information from Ops Tools section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9093214382">DE1843</link></para>
+            <para>Replaced the ingestion configuration block text in order with text that reflects Multiple Maestros. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9093045023">DE1841</link></para>
+            <para>Added a note to indicate that a non-manager account must be used for all interaction between the software and the LDAP directory. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9092735059">DE1840</link></para>
+            <para>Added portal url to Databrowser Installation section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9092735059">DE1838</link></para>
+            <para>Improved Apache Tomcat installation documentation. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9092238054">DE1836</link></para>
+            <para>Added keyencoding property to the configuration sections for Ingestion, SimpleIDP, and REST API. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9134913983">DE1869</link></para>
+            <para>Added commands to disable flow control for ActiveMQ. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9152450380">DE1881</link>.</para>
+            <para>Added information to setup redundancy for ActiveMQ. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9212722809">DE1929</link>.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>0.2.64</revnumber>
+        <date>10/31/2012</date>
+        <revdescription>
+            <para>Added a warning about a bug in <parameter>nss-pam-ldapd  </parameter>. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9192681246">DE1913</link>.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.0.65</revnumber>
+        <date>11/13/2012</date>
+        <revdescription>
+            <para>Added sli.simple-idp.sandbox.users to the Simple IDP Configuration Properties table. See
+                <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9310254866">DE2001</link>.</para>
+            <para>Updated information on ProFTPD and ActiveMQ in several sections. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9375592827">DE2057</link> for more information.</para>
+            <para>Updated instructions on the deploying the admin application and the dashboard. The new instructions include several steps on generating plain-text key files. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9307532724">DE1982</link> for more information.</para>
+            <para>Updated instructions for releasing ingestion tenant onboarding lock. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9385218317">DE2065</link> for more information.</para>
+            <para>Added sli.security.in_clause_size propery and information on 413 response codes. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9201283908">DE1922</link> for more information.</para>
+            <para>Removed references to the ed_org stamper. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9455204838">DE2199</link> for more information.</para>
+            <para>Added information to generate the key and encrypt the LDAP password. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9510679606">DE2171</link></para>
+            <para>Added section for rebalancing sandbox. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840/detail/userstory/9511670463">US4889</link>.</para>
+            <para>Added step to generate encrypted SMTP password. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840/detail/defect/9507319576">DE2166</link>.</para>
+            <para>Changed sli.ingestion.warningsCountPerInterchange and sli.ingestion.errors CountPerInterchange to 10000. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840/detail/defect/9568027714">DE2206</link>.</para>
+            <para>Added scaling information. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840/detail/userstory/9510509634">US4877</link></para>
+            <para>Removing invalid steps for databrower installation. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840/detail/defect/9623408454">DE2224</link></para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.0.66</revnumber>
+        <date>12/05/2012</date>
+        <revdescription>
+            <para>Removed is_indexes.js related information. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9465361569">DE2124</link>.</para>
+            <para>Removed reference to sli.ingestion.tenant.deriveTenants. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840ud/detail/userstory/9494292684">US4833</link>.</para>
+            <para>Added "Sandbox Administrator" to sli.role.admin. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9672298726">DE2269</link>.</para>
+            <para>Added PathAllowFilter directive. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/6823101899">DE1071</link>.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.0.67</revnumber>
+        <date>12/19/2012</date>
+        <revdescription>
+            <para>Replaced second paragraph of the MongoDB section of Deploy Platform: Data Stores. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9708259000">DE2281</link>.</para>
+            <para>Added a new section about index validation in the ingestion server ("Index Validation"). See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9777058919">DE2326</link> </para>
+            <para>Added information that Tomcat must run as root during ingestion to the Deploy SLI Services: Ingestion section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9724707282">DE2291</link>.</para>
+            <para>Added notes to the Creating Administrator Accounts section that indicate that the initial account that is created for a district must be an SEA Admin. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9737689696">DE2297</link>.</para>
+            <para>Added search-related properties to the REST API: Configuration section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9793553593">DE2340</link>.</para>
+            <para>Added SARJE information to the Deploy Platform: Messaging Queue section and deleted redundant steps. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9791183648">DE2337</link>.</para>
+            <para>Added Deploy SLI Services: Search Indexer section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9790304881">DE2334</link>.</para>
+            <para>Added Deploy SLI Services: SARJE section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9790358114">DE2335</link>.</para>
+            <para>Added deployment warning for Java applications. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9693238539">DE2276</link>.</para>
+            <para>Added Deploy Platform: Elasticsearch section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9623262139">DE2223</link> for more information.]</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.0.68</revnumber>
+        <date>1/17/2013</date>
+        <revdescription>
+            <para>Merged and condensed architecture information in planning chapter and updated images to include the search index features. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9791260484">DE2338</link>.</para>
+            <para>Added step 5 to Portal Installation task. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9901171153">DE2387</link>.</para>
+            <para>Added Java parameters to configure the Java garbage collector to the Ingestion: Configuration section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9929606282">DE2399</link>.</para>
+            <para>Removed Handling Developer Account Creation Requests in Production Mode. Developers now log in using their Sandbox credentials. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/9896935487">US5089</link>.</para>
+            <para>Updated to include unified account information. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9942534683">US2304</link>.</para>
+            <para>Added section on how to reset the end user license agreement. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9340406523">DE2028</link>.</para>
+            <para>Removed various ingestion properties. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9958453958">DE2408</link>.</para>
+            <para>Updated sli.search.embedded related information. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10075026552">DE2446</link>.</para>
+            <para>Removed directions to run component level automated suites (except for apiAndSecurityTests).  Also added information on running the new end-to-end test suite for smoke testing the configuration of a new staging environment. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/4314775983d/detail/defect/9993723910">DE2420</link>.</para>
+            <para>Updated broker url information for elasticsearch. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10112734956">DE2475</link>.</para>
+            <para>Updated search indexer configuration property defaults and descriptions. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10106716455">DE2468</link>.</para>
+            <para>Updated admin tool and API configuration to reflect inBloom configuration changes. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10108438021">DE2469</link>.</para>
+            <para>Use correct case for Data Store. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/10094789577">US5182</link>.</para>
+            <para>Updated links to reflect new brand and website See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/9976220189">US5113</link>.</para>
+            <para>Added additional settings for MongoDB. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/10164182972">US5230</link>.</para>
+            <para>Additional link and configuration updates for rebranding. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10154917791">DE2494</link>.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.69</revnumber>
+        <date>2/06/13</date>
+        <revdescription>
+            <para>Removed .ctl file information from Setting up the Landing Zone Servers. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10168732378">DE2505</link>.</para>
+            <para>Added sli.ingestion.queue.parser values to ingestion configuration. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10198821912">DE2518</link>.</para>
+            <para>Removed Creating Administrative Users with LDAP section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10197999548">DE2514</link>.</para>
+            <para>Removed sli.mongodb.port property and updated sli.mongodb.host property. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10327730343">DE2535</link>.</para>
+            <para>Updated search indexer installation configuration code. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10316705741">DE2534</link>.</para>
+            <para>Added ldap_use_ssl to the Admin Tools Installation configuration example. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/9691325037">DE2270</link>.</para>
+            <para>Added Adjusting Session Timeouts to the Deploy Services section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/8064180291">DE1749</link>.</para>
+            <para>Added note to detail SimpleIDP capabilities. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10385621190">DE2594</link>.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.70</revnumber>
+        <date>2/22/13</date>
+        <revdescription>
+            <para>Added a warning regarding the grace period to the API Configuration section. The grace period must be set to 0 before the public accesses Production data. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10383333330">DE2592</link>.</para>
+            <para>Added contextual information to support the operator's understanding of unified developer accounts. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10431551399">DE2604</link>.</para>
+            <para>Added ulimit configuration requirements for acceptance testing. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10459404737">DE2611</link>.</para>
+            <para>Added information about mitigating click-jacking to Preparations &amp; Assumptions: Security. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/6220963543">DE2295</link>.</para>
+            <para>Repaired table layouts throughout where text had been overlapping across cells.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.71</revnumber>
+        <date>03/06/13</date>
+        <revdescription>
+            <para>Added information for limiting upload sizes for entities that are created or updated through the API. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10707450053">DE2668</link>.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.72</revnumber>
+        <date>03/19/13</date>
+        <revdescription>
+            <para>Added information to clarify bootstrap instructions for additional applications. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10558157590">DE2639</link>.</para>
+            <para>Added sli.ingestion.parser.batch.size property to the Ingestion Configuration properties. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10839435601">DE2703</link>.</para>
+            <para>Added the Portal SQL Cleanup for Deploying a New Release task to the Deploy inBloom Applications: Portal section. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10703345405">DE2667</link>.</para>
+            <para>Updated the examples in the inBloom REST API Example Walk Through: Recording Grades for a Quiz by replacing studentId and sectionID with studentSectionAssociationId. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/4983255020d/detail/defect/10573320597">DE2640</link>.</para>
+            <para>Updated ingestion index validation deployment information. See <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/10909067108">DE2723</link>.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.73</revnumber>
+        <date>04/05/2013</date>
+        <revdescription>
+            <para>
+                Copy editing to improve readability in some sections.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.74</revnumber>
+        <date>04/17/2013</date>
+        <revdescription>
+            <para>
+                Updated and clarified information throughout the MongoDB 
+                section.
+            </para>
+            <para>
+                Added deployment section for the bulk extract service.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.3.75</revnumber>
+        <date>05/01/2013</date>
+        <revdescription>
+            <para>
+                Added section in the bulk extract deployment chapter to 
+                cover additional tasks required when deploying REST API updates.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.3.76</revnumber>
+        <date>05/15/2013</date>
+        <revdescription>
+            <para>
+                Added new information for bulk extract data encryption. Two 
+                new sections: 
+                <itemizedlist>
+                    <listitem>
+                        <para>Update the Tomcat Configuration for Bulk Extract Encryption</para>
+                    </listitem>
+                    <listitem>
+                        <para>Adding Certificates to the inBloom Truststore</para>
+                    </listitem>
+                </itemizedlist>
+            </para> 
+            <para>
+                Added new sli.properties entries to the bulk extract deployment,
+                which control how bulk extract operations read from the 
+                MongoDB data store. Update included pulling parameters list
+                into its own section, linked from the setup procedure.
+            </para>
+            <para>
+                Added section in the bulk extract deployment chapter to cover
+                a required database update when deleting individual bulk
+                extract files.
+            </para>
+            <para>
+                Added instructions for E2E testing of bulk extract applications. Removed old properties and steps that are no longer needed for E2E testing.
+            </para>
+            <para> Added resolution information for segmentation faults from the search indexer. </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.4.77</revnumber>
+        <date>05/29/2013</date>
+        <revdescription>
+            <para>
+                Added instructions and supporting information in the bulk
+                extract deployment section for using a cleanup script to
+                delete specific bulk extract files.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.5.78</revnumber>
+        <date>06/12/2013</date>
+        <revdescription>
+            <para>
+                For changes related to removing the staging database from
+                the ingestion subsystem: updated list of REST API and ingestion
+                SLI properties in their respective deployment sections,
+                removed staging database resources from the planning
+                chapter, and updated the architecture diagram.
+            </para>
+            <para>
+                Added "developer_realm" value to the acceptance tests
+                properties.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.6.79</revnumber>
+        <date>06/26/2013</date>
+        <revdescription>
+            <para>
+                Security event logs table now includes the events associated
+                with the bulk extract feature.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.7.80</revnumber>
+        <date>07/07/2013</date>
+        <revdescription>
+            <para>
+                Added warning that the TLS connection for bulk extract endpoints must propagate all the way to the API/bulk extract node and must not terminate at the load balancer/nginx.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.8.81</revnumber>
+        <date>7/19/2013</date>
+        <revdescription>
+            <para>
+                No changes were made during this release.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.9.82</revnumber>
+        <date>8/2/2013</date>
+        <revdescription>
+            <para>
+                Added a note in the section about security even logs to draw
+                attention to the securityEvents resources in the REST API.
+                Also cleaned up the table covering what security events are
+                logged.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.10.85</revnumber>
+        <date>9/13/2013</date>
+        <revdescription>
+            <para>
+                Made several additions to the properties.yml configuration file
+                in support of generic edorg E2E tests in RC.  Also added note
+                regarding need to import ldif file for Charter School scenarios.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.88</revnumber>
+        <date>10/25/2013</date>
+        <revdescription>
+            <para>
+                Updated SecurityEvents API call documentation to refer to updated Developer Guide.  Updated the descriptions of Logged Events.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.89</revnumber>
+        <date>11/08/2013</date>
+        <revdescription>
+            <para>
+                Bulk extract documentation update.
+            </para>
+            <para>
+                Removed mention of targetEdOrg.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.90</revnumber>
+        <date>11/22/2013</date>
+        <revdescription>
+            <para>
+                Updated references to Ruby version to 1.9.2-p320 from 1.9.2-p290.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.13.91</revnumber>
+        <date>12/6/2013</date>
+        <revdescription>
+            <para>
+                Added a new section in the Generate Cryptographic Keys, Keystores, and Truststores chapter to describe the setup for an API keystore.
+            </para>
+            <para>
+                Added API keystore properties.
+            </para>
+            <para>
+                Updated references to Ruby version 1.9.3-p448 from 1.9.2-p320.
+            </para>
+            <para>
+                Added a new section to run Bulk Extract Tests in Sandbox Mode.
+            </para>
+            <para>
+                Added a new section for removing certificates from the inBloom truststore.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.14.92</revnumber>
+        <date>12/20/2013</date>
+        <revdescription>
+            <para>
+                Update API Configuration section to remove ambiguity around usage of encryption tool.
+            </para>
+            <para>
+                Update E2E Tests section to clarify what properties are needed to run bulk extract.
+            </para>
+            <para>
+                Update API Configuration section to include search engine query limits.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.15.93</revnumber>
+        <date>1/10/2014</date>
+        <revdescription>
+            <para>
+                No changes were made during this release.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.15.95</revnumber>
+        <date>2/7/2014</date>
+        <revdescription>
+            <para>
+                Updated references to Ruby version 2.0.0-p353 from 1.9.3-p448.
+            </para>
+        </revdescription>
+    </revision>
+    <!--revision>
+        <revnumber>&CURRENTRELEASEREVISION;</revnumber>
+        <date>&CURRENTRELEASEDATE;</date>
+        <revdescription>
+            <para>
+                No changes were made during this release.
+            </para>
+        </revdescription>
+    </revision-->
+    
+</revhistory>
+
+        

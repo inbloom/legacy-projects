@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-bulk_extract-authentication"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Authentication for Bulk Extract Operations</title>
+    
+    <para>
+        To receive a valid resource from the 
+        <filename>bulk/extract</filename> 
+        URI, the calling application must include an OAuth bearer token 
+        in its request. This must correspond to a user with a user role 
+        that includes the <varname>BULK_EXTRACT</varname> right. 
+        This token can be obtained in different ways:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The application can implement the OAuth 2.0 authentication 
+                flow described in &PRODUCTABBR; Developer Documentation.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The application can implement the modified OAuth 2.0 
+                authentication flow described in 
+                <xref linkend="t-api-bulk-extract-oauth_flow"/>.
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+    <section xml:id="t-api-bulk-extract-oauth_flow">
+        <title>Use a Modified OAuth Application Flow for Bulk Extract</title>
+        <para>
+            Use the following steps to implement the modified OAuth 2.0 
+            authentication flow for bulk extract.
+        </para>
+        <note>
+            <para> All applications using these steps must have the <guibutton>Installed</guibutton>
+                and <guibutton>Bulk Extract</guibutton> checkboxes selected during
+                registration.</para>
+        </note>
+        <procedure>
+            <step>
+                <para>
+                    Call the <filename>/oauth/authorize</filename> endpoint 
+                    as documented in 
+                    <xref linkend="doc-2d6bc8f1-0290-46a3-8823-3e83f1f2d60a"/>:
+                </para>
+                <programlisting><![CDATA[
+#{api_server}/oauth/authorize?response_type=code&redirect_uri=NA&client_id=#{clientId}
+]]></programlisting>
+                <para>
+                    The response is an HTTP 302 redirect, including the 
+                    Location header, from which the URL and 
+                    SAML AUTHN REQUEST parameters must be extracted.
+                    The base URLs for each environment are:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            &PRODUCTABBR; Production: 
+                            <filename>https://api.inbloom.org/</filename>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            &PRODUCTABBR; Sandbox:
+                            <filename>https://api.sandbox.inbloom.org/</filename>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>
+                    Compose and POST a well-formed request to the IDP 
+                    using the SAML request, username, and password. 
+                    These are specific to the IDP being called. 
+                    See
+                    <xref linkend="r-api-bulk-extract-oauth_flow-sandbox"/>
+                    for additional details.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Parse the SAML assertion and the redirect target 
+                    from the POST response. This is specific to the IDP 
+                    being called. See
+                    <xref linkend="r-api-bulk-extract-oauth_flow-sandbox"/>
+                    for additional details.
+                </para>
+            </step>
+            <step>
+                <para>
+                    POST the SAML assertion to the redirect target 
+                    (the &PRODUCTABBR; API).
+                </para>
+                <programlisting><![CDATA[
+#{api_server}/api/rest/saml/sso/post
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Parse the authorization code from the JSON response 
+                    returned by the &PRODUCTABBR; API.
+                </para>
+                <para>
+                    Example response:
+                </para>
+                <programlisting><![CDATA[
+{"authorization_code":"c-135e0cf1-ea2d-4671-b6e0-88f372a7a0a7"}
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Call the <filename>/oauth/token</filename> resource 
+                    to exchange the authorization code for an OAuth
+                    bearer token, as documented in 
+                    <xref linkend="doc-2d6bc8f1-0290-46a3-8823-3e83f1f2d60a"/>:
+                </para>
+                <para>
+                    Example response:
+                </para>
+                <programlisting><![CDATA[
+{"access_token":"t-4a3ab4a4-b505-49f6-b422-c2940d42f3cc"}
+]]></programlisting>
+                <para>
+                    Include the access token in an 
+                    <guilabel>Authorization</guilabel> header when making 
+                    the <filename>bulk/extract</filename> resource request.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="r-api-bulk-extract-oauth_flow-sandbox">
+        <title>OAuth Flow Modifications for Bulk Extract in the &PRODUCTABBR; Sandbox</title>
+        <para>
+            The following are additional details for the steps in
+            <xref linkend="t-api-bulk-extract-oauth_flow"/>, specific to
+            the &PRODUCTABBR; Sandbox:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Post to the Sandbox IDP login page at
+                    <filename>https://sidp.sandbox.inbloom.org/sliidp/login</filename>
+                    with the following POST parameters:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <varname>SAMLRequest</varname>:
+                            Extracted from the Location header parameter
+                            returned in the 302 redirect response.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>realm</varname>: 
+                            Extracted from the Location header parameter 
+                            returned in the 302 redirect response.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>user_id</varname>: 
+                            Sandbox account email address
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>password</varname>: 
+                            Corresponding sandbox password
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
+                    A <varname>Set-Cookie</varname> header is returned 
+                    in the response. Extract the contents of that cookie.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Post to the Sandbox IDP impersonation page at
+                    <filename>https://sidp.sandbox.inbloom.org/sliidp/impersonate</filename>
+                    with the cookie in the previous step and the following
+                    POST parameters:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <varname>SAMLRequest</varname>: 
+                            Extracted from the Location header parameter
+                            returned in the 302 redirect response.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>realm</varname>: 
+                            Extracted from the Location header parameter 
+                            returned in the 302 redirect response.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>impersonate_user</varname>: 
+                            The <varname>staffUniqueStateId</varname> of a 
+                            user in the dataset. If you are using the 
+                            Small Sample Dataset, then "rrogers"
+                            is a state-level user that could be used.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>customRoles</varname>: 
+                            Name of a configured role that has the
+                            <varname>BULK_EXTRACT</varname> right.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>manualConfig</varname>: 
+                            Set this parameter to 
+                            <guibutton>true</guibutton>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+</section>

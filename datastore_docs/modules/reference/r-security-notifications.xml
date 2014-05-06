@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-4ee7afee-e5c8-4dbb-bb3b-f382e186afe1"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Security Event Notifications</title>
+    
+    <para>
+        In addition to the logging of security events as described in
+        <xref linkend="doc-74271d84-d606-456c-bc4b-5956286a9777"/>, 
+        &PRODUCTABBR; sends email notifications about administrative 
+        events.
+    </para>
+    <para>
+        This notification is sent by the &OPERATORROLE; to the appropriate
+        recipients. The notification will be sent to the email address
+        configured in the <property>sli.support.email</property> property,
+        part of <filename>sli.properties</filename>. The sender name and email 
+        address are configured in the administration tool's configuration
+        file, <filename>config.yml</filename> configuration file: 
+        <property>email_sender_address</property> and 
+        <property>email_sender_name</property>.
+    </para>
+    <para>
+        The table below lists the security events that produce 
+        notifications and the administrator roles a user would need 
+        to be in to receive those notifications:
+    </para>
+    
+    <table xml:id="table-f1d58dc3-fd18-4566-aff3-86efd8a30fc0">
+        <title>Security Event Notifications</title>
+        <tgroup cols="5">
+            <colspec colname="firstCol" colwidth="2*"/>
+            <colspec colname="secondCol" colwidth="1*" align="center"/>
+            <colspec colname="thirdCol" colwidth="1*" align="center"/>
+            <colspec colname="fourthCol" colwidth="1*" align="center"/>
+            <colspec colname="fifthCol" colwidth="1*" align="center"/>
+            <thead>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            Event
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="thirdCol">
+                        Notification Sent
+                    </entry>
+                    <entry namest="fourthCol" nameend="fifthCol">
+                        <para>
+                            Notification Recipients
+                            (&PRODUCTABBR; administrator roles)
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>Sandbox*</entry>
+                    <entry>Production</entry>
+                    <entry>Sandbox*</entry>
+                    <entry>Production</entry>
+                </row>
+            </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                Application Developer Account Approved
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-application_developer">Application Developer</glossterm>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-application_developer">Application Developer</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Landing Zone Provisioned
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-application_developer">Application Developer</glossterm>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Application Registration Request Made
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable, registration is automatic
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-slc_operator">&OPERATORROLE;</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Application Registration Request Approved
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable, registration is automatic
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-application_developer">Application Developer</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                  <!--  <row>
+                        <entry>
+                            <para>
+                                Application Developer Account Disabled/Deleted***
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-application_developer">Application Developer</glossterm>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-application_developer">Application Developer</glossterm>
+                            </para>
+                        </entry>
+                    </row> -->
+                    <row>
+                        <entry>
+                            <para>
+                                SEA Super-administrator Created
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-sea_administrator">SEA Super-administrator</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                LEA Super-administrator Created
+                            </para>
+                            <para>
+                                (LEA = local education agency)
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-lea_administrator">LEA Super-administrator</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Realm Administrator Created
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-realm_administrator">Realm Administrator</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Ingestion User Created
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                &OPERATORROLE; Created
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Yes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not applicable
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <glossterm linkend="def-slc_operator">&OPERATORROLE;</glossterm>
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    
+    <para>
+        * <emphasis>The Sandbox environment for &PRODUCTABBR; is used for 
+            developing and testing applications before they're deployed in
+            Production. <!-- For more information, see
+                FIXME... need link. --></emphasis>
+    </para>
+    
+</chapter>

@@ -1,0 +1,1203 @@
+<Objects>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7209362390" objectVersion="2" refObjectName="Data migration in support of CourseOffering" CreatedAt="Jul 19">
+      <CreationDate>2012-07-19T22:52:29.008Z</CreationDate>
+      <ObjectID>7209362390</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>We need a release note for alpha.1 explaining that courseOfferings have been inserted into the data, and some of their fields have been essentially filled with made up data, so if the user was expecting to use those fields (localCourseCode, localCourseId, and schoolId) in a particular way, they should re-ingest their data.</Description>
+      <Discussion />
+      <FormattedID>DE1329</FormattedID>
+      <LastUpdateDate>2012-07-20T15:30:15.527Z</LastUpdateDate>
+      <Name>Data migration in support of CourseOffering</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967715433" refObjectName="Steve Peha" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289701840" refObjectName="Storm(Doc-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7209362391" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999393280.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Triage</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5690356545" refObjectName="Shawn Marie Richards" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>CourseOffering entity ingestion is now supported by SLI, and the existing tenant data has been migrated over. &amp;nbsp;However, some of the CourseOffering fields (e.g. localCourseCode, localCourseId, and schoolId) have been filled with fixture data. Users expecting to use the contents of CourseOffering entities should re-ingest their data.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6470654396" objectVersion="23" refObjectName="INGESTION: Some uses of IDREF are not supported" CreatedAt="May 22">
+      <CreationDate>2012-05-22T19:50:11.554Z</CreationDate>
+      <ObjectID>6470654396</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>For example:&lt;br /&gt;InterchangeEducationorganization/School/ClassPeriodReference and InterchangeEducationorganization/School/LocationReference are not currently supported by id-ref resolution. &lt;br&gt;While ingesting&amp;nbsp; InterchangeEducationorganization snippet files are generated for the ClassPeriodReference and LocationReference ids. &lt;br&gt;&lt;br&gt;The handler needs to be optimized for such cases.</Description>
+      <Discussion />
+      <FormattedID>DE563</FormattedID>
+      <LastUpdateDate>2012-07-17T21:54:47.682Z</LastUpdateDate>
+      <Name>INGESTION: Some uses of IDREF are not supported</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5562057394" refObjectName="Nupur Pandey" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6470654397" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-07-10T13:42:34.389Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-10T13:42:34.393Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-21T17:14:44.833Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429989" refObjectName="5.1" type="Iteration" />
+      <OpenedDate>2012-05-23T18:18:58.619Z</OpenedDate>
+      <PlanEstimate>0.5</PlanEstimate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999555328.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780841" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5562057394" refObjectName="Nupur Pandey" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>InterchangeEducationorganization/School/ClassPeriodReference, InterchangeEducationorganization/School/LocationReference, and some others are currently not supported by IDREF resolution.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6104882769" objectVersion="30" refObjectName="INGESTION: Processed files are left in a hidden directory" CreatedAt="Apr 19">
+      <CreationDate>2012-04-19T13:58:05.771Z</CreationDate>
+      <ObjectID>6104882769</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Numerous times we've found the ingestion installations on the CI&amp;nbsp;environment are leaving files in their ingestion landing zone folder lz/inbound/.done/.  &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;If these files are not cleaned up, they will eventually grow to run the server out of disk space. &amp;nbsp;The ingestion process should clean up the files after it has completed ingesting the data.&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE212</FormattedID>
+      <LastUpdateDate>2012-07-17T21:56:27.894Z</LastUpdateDate>
+      <Name>INGESTION: Processed files are left in a hidden directory</Name>
+      <Notes>Checked with Justin and Igor. The current scope of this defect is to clean out the files related to current batch job from the unzip folder.&lt;br /&gt;&lt;br&gt;Files are being removed where applicable. In cases where we can't remove  files (ie corrupt control file) We provide error msg for the user that  due to the control file problem, they will need to manually clean up  their LZ.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5562057394" refObjectName="Nupur Pandey" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6104882770" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-22T20:38:08.131Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-22T20:38:08.131Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-05-31T18:13:33.155Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423143" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-05-15T13:18:06.924Z</OpenedDate>
+      <PlanEstimate>2.0</PlanEstimate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999609088.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321658" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5761253931" refObjectName="Justin Kreger" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Ingestion process leaves files in ingestion landing zone folder lz/inbound/.done. This uses unnecessary space.&amp;nbsp;Workaround: Manually delete files in .done folder&amp;nbsp;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6309920530" objectVersion="17" refObjectName="DASHBOARD: Enrollment History - Teacher cannot see the names of past schools their students attended" CreatedAt="May 8">
+      <CreationDate>2012-05-08T18:21:13.185Z</CreationDate>
+      <ObjectID>6309920530</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Repro Steps:    &lt;div&gt;- Log in as Linda Kim&lt;/div&gt;  &lt;div&gt;- Click on Matts Sollar&lt;/div&gt;  &lt;div&gt;- Look at his Enrollment History&lt;/div&gt;  &lt;div&gt;- We cannot see that he attended South Daybreak Elementary in gr4&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Bug Description:&lt;/div&gt;  &lt;div&gt;- In enrollment history, teacher cannot see the name of the school that his student attended if the teacher doesn't have access to that school.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;- Copy from Sravan's email from 4/19:&lt;/div&gt;  &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Calibri, sans-serif; font-size: 15px; "&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;When a teacher tries to look at a student’s enrollment history, we can get access to the studentSchoolAssociations from the api for the teacher. The associations however only contain the id of the school the student is associated with. To display the name of the school, we have to make a call to the /schools service. The problem arises when a student has attended a school in the past, which the teacher does not have access to. In this case, making a call to the /schools service returns a 403 Forbidden error. A quick fix would be to add the name of the school to the studentSchoolAssociations and possibly some other relevant values.&lt;/span&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE356</FormattedID>
+      <LastUpdateDate>2012-07-17T21:58:00.788Z</LastUpdateDate>
+      <Name>DASHBOARD: Enrollment History - Teacher cannot see the names of past schools their students attended</Name>
+      <Notes>Duplicate of DE320</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539504316" refObjectName="Vijay Ummalaneni" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/6429790214" refObjectName="Avengers (Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6309920531" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-27T13:51:26.411Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-05-14T21:29:14.622Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999756032.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>Duplicate</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539506010" refObjectName="Doris Ip" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>5.0</TaskEstimateTotal>
+      <TaskRemainingTotal>5.0</TaskRemainingTotal>
+      <TaskStatus>DEFINED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6779076270" refObjectName="ATs" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6779075011" refObjectName="Investigate the root cause" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6779074201" refObjectName="Reproduce the defect" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6779077097" refObjectName="Make necessary Changes" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>In the Dashboard's Enrollment History panel, teachers cannot see the names of past schools a student attended even if the student has not changed districts. While the dates of enrollment and other data appear, the school name left blank.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6144230886" objectVersion="12" refObjectName="DASHBOARD: Student column in list of students suggests that it's sorted when first loaded" CreatedAt="Apr 23">
+      <CreationDate>2012-04-23T21:34:24.892Z</CreationDate>
+      <ObjectID>6144230886</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Repo Steps:&lt;br /&gt;Go to Dashboard Login Page&lt;br&gt;Log in as linda.kim&lt;br&gt;Choose 8th Grade English - Section 6 on SDS data&lt;br&gt;&lt;br&gt;Description:&lt;br&gt;When the LOS is loaded for the first time, the UI suggests that the student column is already sorted (the top triangle is grey-ed - suggesting that column is ascending sorted), however the column is not sorted.&lt;br&gt;&lt;br&gt;It'll be better if the column is sorted based on what the UI suggests, else don't show the little triangle for Student.  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Can we sort the Student column?&lt;br /&gt;&lt;br /&gt;&amp;nbsp;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE230</FormattedID>
+      <LastUpdateDate>2012-07-17T21:58:59.231Z</LastUpdateDate>
+      <Name>DASHBOARD: Student column in list of students suggests that it's sorted when first loaded</Name>
+      <Notes>Dewayne Walker - 2012-7-10 &lt;div&gt;Spoke with Doris, the DE was fixed by Anna in a previous sprint.&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539504316" refObjectName="Vijay Ummalaneni" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/6429790214" refObjectName="Avengers (Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6144230887" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-07-10T14:30:08.082Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-10T14:30:08.082Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-07-10T14:04:53.834Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429981" refObjectName="5.1" type="Iteration" />
+      <OpenedDate>2012-05-14T21:27:37.138Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999956736.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/6429790224" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539506010" refObjectName="Doris Ip" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Lists of students suggest that they are sorted alphabetically on load, however they are not. Workaround: Press the normal sort button in the header.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/5599531434" objectVersion="80" refObjectName="INGESTION: Some fields of LocalEducationAgency are not persisted" CreatedAt="Mar 2">
+      <CreationDate>2012-03-02T18:53:47.665Z</CreationDate>
+      <ObjectID>5599531434</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;LocalEducationAgency entity and related elements have been removed from the SLI schema including:&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;- LEACategory (THIS ELEMENT IS REQUIRED PER ED-FI)&lt;/div&gt;  &lt;div&gt;- CharterStatus&lt;/div&gt;  &lt;div&gt;- LocalEducationAgencyReference&lt;/div&gt;  &lt;div&gt;- EducationServiceCenterReference&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;The entity and related elements need to be restored or mappings to equivalent targets&amp;nbsp;provided.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion>
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/6554353236" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/6553714728" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/6553583645" type="ConversationPost" />
+      </Discussion>
+      <FormattedID>DE80</FormattedID>
+      <LastUpdateDate>2012-07-17T21:59:40.706Z</LastUpdateDate>
+      <Name>INGESTION: Some fields of LocalEducationAgency are not persisted</Name>
+      <Notes>&lt;div&gt;MarkP:&lt;/div&gt;  &lt;div&gt;I do not believe this causes actual system failure. &amp;nbsp;Moving to to SEV2 and Alpha.X target for now.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Please fill in this description with how this will actually cause the system to fall over and not be operational and I'm happy to renegotiate&lt;br /&gt;&lt;br /&gt;[Pete Wenzel] Support for LocalEducationAgencyReference (subdistricts) needs to be escalated to P2, must-have for Alpha.1 (preferably earlier).&amp;nbsp; NYSED EdOrg, as provided to you on 05/15/2012, requires it.&amp;nbsp; e.g. NYC Community School Districts report to NYC CHANCELLOR'S OFFICE, all of which are LEAs.&amp;nbsp; Best to open a new DE just for LEARef?&lt;br /&gt;&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289467719" refObjectName="Megatron(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5599531435" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-24T12:22:23.157Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-29T20:13:09.564Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-18T17:58:24.642Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423153" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-05-08T13:57:14.657Z</OpenedDate>
+      <PlanEstimate>5.0</PlanEstimate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999607296.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321668" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <TargetBuild>Alpha.X</TargetBuild>
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>21.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6097305389" refObjectName="Modify ingestion pipeline" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6097302417" refObjectName="Determine approach" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6097303332" refObjectName="Modify SLI schema" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6097343076" refObjectName="Code Review" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6097340185" refObjectName="Write/modify acceptance tests for ingestion" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;The LEACategory, CharterStatus,&amp;nbsp;LocalEducationAgencyReference, and EducationServiceCenterReference fields of LocalEducationAgency entities are ignored.&amp;nbsp;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6608669685" objectVersion="14" refObjectName="ADMIN TOOLS: Version field in App Registration Tool only accepts numeric input" CreatedAt="Jun 4">
+      <CreationDate>2012-06-04T17:46:15.217Z</CreationDate>
+      <ObjectID>6608669685</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;p style="margin:0in;font-family:Calibri;font-size:11.0pt"&gt;Version can be sometimes different than just a number (for example Beta.1), so we should be allowing characters as well. We should limit the total count to 25.&lt;/p&gt; &lt;p style="margin:0in;font-family:Calibri;font-size:11.0pt"&gt;&lt;br /&gt;&lt;/p&gt; &lt;p style="margin:0in;font-family:Calibri;font-size:11.0pt"&gt;&amp;lt;6/14/12 Janko&amp;gt; Not critical, but it appears not to be very hard to fix.&lt;/p&gt;</Description>
+      <Discussion />
+      <FormattedID>DE716</FormattedID>
+      <LastUpdateDate>2012-07-17T22:00:30.924Z</LastUpdateDate>
+      <Name>ADMIN TOOLS: Version field in App Registration Tool only accepts numeric input</Name>
+      <Notes>Mark signed off on this. &amp;nbsp;Tested WSRP and iframe, put in max number of characters. &amp;nbsp;Tested locally.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5113808755" refObjectName="Jonathan Nanney" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6608669686" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-22T20:13:18.215Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-27T15:46:17.703Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-20T15:39:35.665Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423133" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-06-04T17:46:15.288Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999768320.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321650" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>When creating or editing an application in Application Registration Tool, the user can only use integers or floating point number to describe the version.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6652031166" objectVersion="7" refObjectName="DASHBOARD: Previous and next arrow icons are missing on Search results page  (IE8)." CreatedAt="Jun 7">
+      <CreationDate>2012-06-07T21:22:40.503Z</CreationDate>
+      <ObjectID>6652031166</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>In the SLI search page, Previous and Next arrow icons in pagination row are missing.</Description>
+      <Discussion />
+      <FormattedID>DE792</FormattedID>
+      <LastUpdateDate>2012-07-17T22:03:25.092Z</LastUpdateDate>
+      <Name>DASHBOARD: Previous and next arrow icons are missing on Search results page  (IE8).</Name>
+      <Notes>&amp;lt;doris 6/19&amp;gt; verified on dashboardDevAlpha1</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6326411952" refObjectName="Nitesh Sankhalkar" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6652031167" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-19T19:44:12.429Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-06-07T21:43:34.146Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999648256.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6326411952" refObjectName="Nitesh Sankhalkar" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;The pagination icons are missing on the Dashboard's search results page in Internet Explorer 8. However, the buttons do still function. &amp;nbsp;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6650582837" objectVersion="12" refObjectName="DASHBOARD: Search button is not displaying properly. The icon is missing. (IE8)" CreatedAt="Jun 7">
+      <CreationDate>2012-06-07T19:17:55.548Z</CreationDate>
+      <ObjectID>6650582837</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>In the header section, search button is not displaying properly. The search icon is missing.</Description>
+      <Discussion />
+      <FormattedID>DE780</FormattedID>
+      <LastUpdateDate>2012-07-17T22:05:10.432Z</LastUpdateDate>
+      <Name>DASHBOARD: Search button is not displaying properly. The icon is missing. (IE8)</Name>
+      <Notes>&amp;lt;Doris 6/19&amp;gt; Icon is there. tested on dashboardDevAlpha.1</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6326411952" refObjectName="Nitesh Sankhalkar" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6650582838" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-07-02T18:39:13.649Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-19T19:46:30.642Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-18T16:47:43.130Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423145" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-06-07T19:52:32.175Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999652864.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321660" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6326411952" refObjectName="Nitesh Sankhalkar" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>6.0</TaskEstimateTotal>
+      <TaskRemainingTotal>6.0</TaskRemainingTotal>
+      <TaskStatus>DEFINED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6719530285" refObjectName="Bucket" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;The search button in the Dashboard's header is missing an expected magnifying glass search icon. However, the button still functions properly.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/5938246951" objectVersion="40" refObjectName="DASHBOARD: Using browser's back button on student profile page may result in error (Safari)" CreatedAt="Apr 3">
+      <CreationDate>2012-04-04T03:42:04.450Z</CreationDate>
+      <ObjectID>5938246951</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>To Reproduce     &lt;div&gt;* load https://nxbuild.slidev.org/dashboard&lt;/div&gt; &lt;div&gt;* &lt;span style="background-color: rgb(255, 255, 255); font-family: arial, helvetica, sans-serif; text-align: left; "&gt;select a realm (e.g. Sunset School District 4526)&lt;/span&gt;&lt;/div&gt; &lt;div&gt;* log in (e.g. linda.kim)&lt;/div&gt; &lt;div&gt;* select "Daybreak School District" "Easy Daybreak Junior High" "8th grade english" "8th grade english - sec 6"&lt;/div&gt; &lt;div&gt;LOS displays&lt;/div&gt; &lt;div&gt;* select "Verda Herriman"&lt;/div&gt; &lt;div&gt;Student Profile displays&lt;/div&gt; &lt;div&gt;* Press browser back button&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Expected Behavior:&lt;/div&gt; &lt;div&gt;LOS displays&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Observed Behavior (Safari):&lt;/div&gt; &lt;div&gt;Popup with "Are you Sure you want to send a form again" displays&lt;/div&gt; &lt;div&gt;Clicking "send" redirects to&amp;nbsp;https://devopenam1.slidev.org/idp1/SSORedirect/metaAlias/idp?ReqID=&lt;/div&gt; &lt;div&gt;and a HTTP 500 Status error page shows&lt;br /&gt;&lt;br /&gt;(4-17-12 - This behavior has now changed. No more 500 error.)&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE129</FormattedID>
+      <LastUpdateDate>2012-07-17T22:07:17.244Z</LastUpdateDate>
+      <Name>DASHBOARD: Using browser's back button on student profile page may result in error (Safari)</Name>
+      <Notes>April 26 - Doris: &amp;nbsp;The behavior is consistent with what Dave described in the bug report. &amp;nbsp;It still happens on SafarI (not on Firefox).&lt;br /&gt;&lt;br&gt;May 23 - Greg: Pushing this due to other high priority bugs and not wanting to do a bandaid fix, but do a full fix in a later iteration.  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;6/14/2012 CCHENG:&lt;/div&gt;  &lt;div&gt;Cannot reproduce this anymore, I think it was fixed by the unique URL story.&lt;/div&gt;  &lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4600481314" refObjectName="Chen Cheng" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5938246952" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-06-18T18:51:12.686Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-18T18:51:58.463Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-14T19:46:30.291Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423145" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-05-08T13:36:26.285Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999939584.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321660" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Requirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5805083252" refObjectName="LOS Pages Are Unique URLs" type="HierarchicalRequirement" />
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Causes system failure (Sev1)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4405394042" refObjectName="Dave Coleman" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>11.0</TaskEstimateTotal>
+      <TaskRemainingTotal>11.0</TaskRemainingTotal>
+      <TaskStatus>IN_PROGRESS</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407343606" refObjectName="AT" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407343191" refObjectName="Code" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407343473" refObjectName="UT" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>When browsing student profiles in the Dashboard while using Safari, using the back button can intermittently cause an error message.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Workaround: Refreshing the page is a temporary workaround.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6746288427" objectVersion="10" refObjectName="INGESTION: AttendanceEvents occurring outside Session time interval are not persisted" CreatedAt="Jun 15">
+      <CreationDate>2012-06-15T15:42:05.242Z</CreationDate>
+      <ObjectID>6746288427</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>When an AttendanceEvent is ingested all the AttendanceEvents for each Student/School pair are combined into 1 Attendance entity. So if there are 5000 AttendanceEvents and they get combined into 500 Attendances, it is only reported that 500 records were considered, which could be confusing to an operator who is expecting to see 5000 records considered.&lt;br /&gt;&lt;br&gt;Also, if the AttendanceEvent has a Date that does not correspond to a Schools's Session dates, then the AttendanceEvent is not persisted and no error is thrown. &lt;br&gt;&lt;br&gt;For example, if a School only has a Session between 2012-01-15 to 2012-05-15, and an AttendanceEvent is for 2012-01-14, that AttendanceEvent will silently not be persisted.</Description>
+      <Discussion />
+      <FormattedID>DE925</FormattedID>
+      <LastUpdateDate>2012-06-22T18:24:25.530Z</LastUpdateDate>
+      <Name>INGESTION: AttendanceEvents occurring outside Session time interval are not persisted</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5480677417" refObjectName="Tao Ke" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6746288428" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-06-22T18:21:52.550Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments>
+         <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6746409708" refObjectName="TestData.zip" type="Attachment" />
+      </Attachments>
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-22T18:24:25.515Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-18T18:49:58.490Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423143" refObjectName="4.7" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999609856.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321658" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125123223" refObjectName="Alexander Blum" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>AttendanceEvents will not be ingested if School is not in Session during the time of that event, and no error is reported.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6736314536" objectVersion="10" refObjectName="INGESTION: Irregular error logging when same data set is ingested multiple times" CreatedAt="Jun 14">
+      <CreationDate>2012-06-14T20:04:14.873Z</CreationDate>
+      <ObjectID>6736314536</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;When ingesting the StoriedDataSet_IL_Daybreak dataset numerous times on both a local PC and devgalactus, an error file was created during one of the runs on each platform (first run for PC and third run for devgalactus).&lt;/div&gt; &lt;div&gt;The error file involved the file InterchangeEducationOrgCalendar.xml, and the message was: "ERROR&amp;nbsp; Failed to process [session] due to preceding errors."&amp;nbsp; Each time the error file was produced, the job file contained the line: "INFO&amp;nbsp; Not all records were processed completely due to errors." instead of the message "INFO&amp;nbsp; All records processed successfully." displayed when the error file was not created.&amp;nbsp; The number of records reported as considered, ingested successfully and failed was identical for both machines over all the runs, as were the number of records persisted to the database.&amp;nbsp; Warning files were produced consistently over each ingestion, and appear to be identical between the two platforms.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE911</FormattedID>
+      <LastUpdateDate>2012-06-22T20:39:09.444Z</LastUpdateDate>
+      <Name>INGESTION: Irregular error logging when same data set is ingested multiple times</Name>
+      <Notes>Been fixed by the lastest alpha.0</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6297081705" refObjectName="Shan S" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6736314537" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-22T20:39:09.433Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-22T20:39:09.433Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-18T18:04:27.929Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423143" refObjectName="4.7" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999609344.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321658" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125038442" refObjectName="Thomas Shewchuk" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Occasionally Ingestion gives error report when there is no error.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6649031156" objectVersion="23" refObjectName="INGESTION: Nested references not handled correctly in all cases" CreatedAt="Jun 7">
+      <CreationDate>2012-06-07T17:06:05.558Z</CreationDate>
+      <ObjectID>6649031156</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>The new ingestion pipeline supports nested references, where an inner reference is resolved to an Id which is then used as a query criteria in an outer reference resolution.&lt;br /&gt;&lt;br&gt;This is not functioning correctly in the case where the inner reference is not resolved.&amp;nbsp; Currently, this results in no criteria being added to the query for the outer reference resolution and the query may proceed and resolve an Id for the outer reference.&amp;nbsp; The correct behavior for this case would be for the outer reference resolution to fail.&lt;br&gt;&lt;br&gt;This issue can potentially lead to references being resolved incorrectly when they should fail and may affect the following etities:&lt;br&gt;grade&lt;br&gt;schoolSessionAssociation&lt;br&gt;section&lt;br&gt;staffCohortAssociation&lt;br&gt;studentCohortAssociation&lt;br&gt;studentCompetency&lt;br&gt;studentSectionGraqdebookEntry&lt;br&gt;&lt;br&gt;A quick fix for this issue was added in Commit:541bb82ffff196eb16634215277913f76b0617a6 but this fix was lost in Commit:fe9176b2cfba666c92fca1ab875624489db4f7c8.&amp;nbsp; The solution may be to reinstate that fix but this functionality also needs to be covered by unit tests.&lt;br&gt;&lt;br&gt;-----------------------------------------------------------------------&lt;br&gt;&lt;br&gt; (JT 6/8/2012) The fix pointed to in the above commit is actually not sufficient for all cases, in that it assumes the inner reference resolution is a required part of the reference object.&amp;nbsp; This is not always the case, e.g. the section reference in teacherSectionAssociation contains a choice with a course reference on one side.</Description>
+      <Discussion />
+      <FormattedID>DE778</FormattedID>
+      <LastUpdateDate>2012-07-17T22:10:58.744Z</LastUpdateDate>
+      <Name>INGESTION: Nested references not handled correctly in all cases</Name>
+      <Notes>(jtully 6/21/2012) Fix has been pushed to master which results in a parent reference failing if the child reference fails UNLESS it the child reference is marked as optional and is not provided.   &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Note that the current fix only provides only partial coverage of the case where a child reference exists on one side of a choice. &amp;nbsp;An example of this is SectionReference but no cases are as yet fully implemented. &amp;nbsp;The fix provided is adequate so long as we can assume that the source file was valid Ed-Fi (the choice must be filled out correctly).&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Verification instructions:&lt;/div&gt; &lt;div&gt;Use the attached negative test data set involving StudentCohortAssociation. &amp;nbsp; The Cohort reference involves a required child reference to an EdOrg which is empty in the test data so the child reference is not resolved. &amp;nbsp;Ingestion of the StudentCohortAssociation should result in an error on the cohort reference.&lt;br /&gt;&lt;br /&gt;[slee 06/22/12] Pull code from master and build on local Windows 7. Upload the attached zipped file for ingestion. It was verified that the second StudentCohortAssociation element is not ingested because the EdOrg reference is missing. The ingestion generates an error msg as following:&lt;br /&gt;&lt;br /&gt;ERROR&amp;nbsp; ERROR: Missing required reference&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Entity studentCohortAssociation: Missing reference to cohort&lt;br /&gt;ERROR&amp;nbsp; Failed to process [studentCohortAssociation] due to preceding errors&lt;br /&gt;&lt;br /&gt;&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125122291" refObjectName="Jonathan Tully" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6649031157" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-06-22T20:40:31.743Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments>
+         <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6824932677" refObjectName="StudentCohortAssociation_DE778.zip" type="Attachment" />
+      </Attachments>
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-22T15:06:23.765Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-11T13:50:32.143Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423163" refObjectName="4.7" type="Iteration" />
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999660032.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321676" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125122291" refObjectName="Jonathan Tully" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>17.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6689905512" refObjectName="Fix acceptance tests for nested reference resolution change" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6689852988" refObjectName="Extend IdNormalizer to function correctly with child ref resolution failure in all cases" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6804725182" refObjectName="Add acceptance test coverage for nested references as part of an ed-fi choice (teacherSectionAssociation)" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>When an inner reference is not resolved, the resolution of the outer reference should fail, but doesn't.&amp;nbsp;This issue can potentially lead to references being resolved incorrectly when they should fail. The issue can affect the grade, schoolSessionAssociation, section, staffCohortAssociation, studentCohortAssociation, studentCompetency, and studentSectionGradebookEntry entities.&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6654526477" objectVersion="37" refObjectName="INGESTION: Ingestion begins processing valid zip files prematurely" CreatedAt="Jun 7">
+      <CreationDate>2012-06-08T03:59:43.699Z</CreationDate>
+      <ObjectID>6654526477</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Uploaded ILDAYBREAK.zip (attached).&amp;nbsp; Resulted in job-ILDAYBREAK.zip-742a1a53-b815-4ba0-9c89-6cd292beaa31.log file containing:&lt;br /&gt;INFO&amp;nbsp; jobId: ILDAYBREAK.zip-742a1a53-b815-4ba0-9c89-6cd292beaa31&lt;br&gt;INFO&amp;nbsp; Not all records were processed completely due to errors.&lt;br&gt;INFO&amp;nbsp; Processed 0 records.&lt;br&gt;&lt;br&gt;and error.ILDAYBREAK.zip-ILDAYBREAK.zip-742a1a53-b815-4ba0-9c89-6cd292beaa31.log &lt;br&gt;ERROR&amp;nbsp; Could not read .zip archive ILDAYBREAK.zip. Possible file damage or corruption. Please resubmit.&lt;br&gt;&lt;br&gt;However, the /ingestion/lz/ptearnen@alvarezandmarsal.com/IL/.done/.camel/ILDAYBREAK.zip file is correct and complete.&amp;nbsp; It is ingested properly after copying it back into the landing zone directory when logged into the server.&lt;br&gt;&lt;br&gt;/var/log/tomcat/ingestion.log entries pertaining to first (failed) attempt at processing this job:&lt;br&gt;07 Jun 2012 22:18:41.078-0400 INFO&amp;nbsp; [Camel (camel-1) thread #16 - file:///ingestion/lz/ptearnen@alvarezandmarsal.com/IL] J.PerformanceMonitor [NO_USER] - - ID-rcingest01-40143-1339008584706-0-45352 - ILDAYBREAK.zip - Processing zip file.&lt;br&gt;07 Jun 2012 22:18:41.078-0400 INFO&amp;nbsp; [Camel (camel-1) thread #16 - file:///ingestion/lz/ptearnen@alvarezandmarsal.com/IL] o.s.s.i.p.ZipFileProcessor [NO_USER] - Received zip file: ILDAYBREAK.zip&lt;br&gt;07 Jun 2012 22:18:41.079-0400 INFO&amp;nbsp; [Camel (camel-1) thread #16 - file:///ingestion/lz/ptearnen@alvarezandmarsal.com/IL] o.s.s.c.u.p.PerformanceTrackingAspect [NO_USER] - StoreReturnPointcut -- Storing a field Into Performance Local Store: ingestionBatchJobId = ILDAYBREAK.zip-742a1a53-b815-4ba0-9c89-6cd292beaa31&lt;br&gt;07 Jun 2012 22:18:41.079-0400 INFO&amp;nbsp; [Camel (camel-1) thread #16 - file:///ingestion/lz/ptearnen@alvarezandmarsal.com/IL] o.s.s.c.u.p.PerformanceTrackingAspect [NO_USER] - StoreReturnPointcut -- Storing a field Into Performance Local Store: ingestionBatchJobId = ILDAYBREAK.zip-742a1a53-b815-4ba0-9c89-6cd292beaa31&lt;br&gt;07 Jun 2012 22:18:41.093-0400 INFO&amp;nbsp; [Camel (camel-1) thread #16 - file:///ingestion/lz/ptearnen@alvarezandmarsal.com/IL] stop [NO_USER] - end of job: header(jobId)&lt;br&gt;07 Jun 2012 22:18:41.093-0400 INFO&amp;nbsp; [Camel (camel-1) thread #16 - file:///ingestion/lz/ptearnen@alvarezandmarsal.com/IL] J.PerformanceMonitor [NO_USER] - - ID-rcingest01-40143-1339008584706-0-45352 - ILDAYBREAK.zip - File processed.&lt;br&gt;07 Jun 2012 22:18:41.094-0400 INFO&amp;nbsp; [Camel (camel-1) thread #19 - WireTap] J.PerformanceMonitor [NO_USER] - - ID-rcingest01-40143-1339008584706-0-45352 - ILDAYBREAK.zip - Reporting on jobs for file.&lt;br&gt;07 Jun 2012 22:18:41.137-0400 INFO&amp;nbsp; [Camel (camel-1) thread #19 - WireTap] SecurityMonitor [NO_USER] - Thu Jun 07 22:18:41 EDT 2012,14913@rcingest01,INFO,10.-95.-125.11,Ingestion,org.slc.sli.ingestion.processors.JobReportingProcessor,,,,,,writeLine,,[],jobId: ILDAYBREAK.zip-742a1a53-b815-4ba0-9c89-6&lt;br&gt;cd292beaa31&lt;br&gt;07 Jun 2012 22:18:41.140-0400 INFO&amp;nbsp; [Camel (camel-1) thread #19 - WireTap] SecurityMonitor [NO_USER]&amp;nbsp;- Thu Jun 07 22:18:41 EDT 2012,14913@rcingest01,INFO,10.-95.-125.11,Ingestion,org.slc.sli.ingestion.processors.JobReportingProcessor,,,,,,writeLine,,[],Not all records were processed completely due t&lt;br&gt;o errors.&lt;br&gt;07 Jun 2012 22:18:41.151-0400 INFO&amp;nbsp; [Camel (camel-1) thread #19 - WireTap] SecurityMonitor [NO_USER]&amp;nbsp;- Thu Jun 07 22:18:41 EDT 2012,14913@rcingest01,INFO,10.-95.-125.11,Ingestion,org.slc.sli.ingestion.processors.JobReportingProcessor,,,,,,writeLine,,[],Processed 0 records.&lt;br&gt;&lt;br&gt;stat /ingestion/lz/ptearnen@alvarezandmarsal.com/IL/.done/.camel/ILDAYBREAK.zip&lt;br&gt;shows modification time of 2012-06-07 22:18:46.326406000 -0400&lt;br&gt;so it was apparently picked up 5 seconds before the transfer was complete, which indicates that the file transfer completion detection mechanism is faulty.&amp;nbsp; May have occurred due to slow or intermittent-speed connection.&lt;br&gt;&lt;br&gt;Suggestion: rather than relying on file timestamps and size changes to guess when a transfer is complete, obtain positive acknowledgment that the transfer has completed successfully from the SFTP server.&amp;nbsp; That is the only way to know when a transfer is finished, the file has been completely and correctly transferred, and the session has not been interrupted or otherwise terminated prematurely.</Description>
+      <Discussion />
+      <FormattedID>DE811</FormattedID>
+      <LastUpdateDate>2012-07-17T22:12:06.735Z</LastUpdateDate>
+      <Name>INGESTION: Ingestion begins processing valid zip files prematurely</Name>
+      <Notes>&lt;div&gt;2012-06-15 Update: the fix for this required two changes: a change to the ProFTP configuration that 'hides' files during upload (HiddenStores On - files are uploaded a '.in.originalFileName.' then moved to 'originalFileName') and code change in Ingestion to ignore the hidden zip files. The first part of the change was not properly followed up on and RC and RC Stage were only just updated today. We have tested with both changes in place and large file uploads are working properly.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; Update: occurred again. &amp;nbsp;In Sandbox on LZ (and Ingestion 8, if it matters, running build 161) This time, confirmed that ingestion process began while file transfer was still in progress.&lt;br /&gt;&lt;br /&gt;stat .camel/US1942_TAURON.zip shows modification time of 2012-06-07 23:25:39.491416629 -0400 and log indicates processing began at 23:23:26.360.&lt;br /&gt;&lt;br /&gt;So the file continued to grow for 2 minutes after it was moved and ingestion was attempted, until SFTP session was killed by user.&lt;br /&gt;&lt;br /&gt;Escalating to P1.&amp;nbsp; After workaround is verified and published in ingestion spec and release notes, demote to P2.   &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;2012-06-20 12:48AM: Mporter: Still happens on Sandbox with config set. Nestor is going to cut and paste in the configuration.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Adding the config file that is currently in production for the proftpd service&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;# /etc/proftpd/proftpd.conf -- This is a basic ProFTPD configuration file.&lt;/div&gt; &lt;div&gt;# To really apply changes, reload proftpd after modifications, if&lt;/div&gt; &lt;div&gt;# it runs in daemon mode. It is not required in inetd/xinetd mode.&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Includes DSO modules&lt;/div&gt; &lt;div&gt;Include /etc/proftpd/modules.conf&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Set off to disable IPv6 support which is annoying on IPv4 only boxes.&lt;/div&gt; &lt;div&gt;UseIPv6 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; off&lt;/div&gt; &lt;div&gt;# If set on you can experience a longer connection delay in many cases.&lt;/div&gt; &lt;div&gt;IdentLookups &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;off&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;ServerName &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;"Debian"&lt;/div&gt; &lt;div&gt;ServerType &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;standalone&lt;/div&gt; &lt;div&gt;DeferWelcome &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;off&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;MultilineRFC2228 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;on&lt;/div&gt; &lt;div&gt;ShowSymlinks &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;on&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;TimeoutNoTransfer &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 600&lt;/div&gt; &lt;div&gt;TimeoutStalled &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;600&lt;/div&gt; &lt;div&gt;TimeoutIdle &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 1200&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;DisplayLogin &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;welcome.msg&lt;/div&gt; &lt;div&gt;DisplayChdir &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;.message true&lt;/div&gt; &lt;div&gt;ListOptions &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "-l"&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;DenyFilter &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;\*.*/&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Use this to jail all users in their homes&lt;/div&gt; &lt;div&gt;DefaultRoot &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ~&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Users require a valid shell listed in /etc/shells to login.&lt;/div&gt; &lt;div&gt;# Use this directive to release that constrain.&lt;/div&gt; &lt;div&gt;# RequireValidShell &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; off&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Port 21 is the standard FTP port.&lt;/div&gt; &lt;div&gt;Port &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;21&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# In some cases you have to specify passive ports range to by-pass&lt;/div&gt; &lt;div&gt;# firewall limitations. Ephemeral ports can be used for that, but&lt;/div&gt; &lt;div&gt;# feel free to use a more narrow range.&lt;/div&gt; &lt;div&gt;# PassivePorts &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;49152 65534&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# If your host was NATted, this option is useful in order to&lt;/div&gt; &lt;div&gt;# allow passive tranfers to work. You have to use your public&lt;/div&gt; &lt;div&gt;# address and opening the passive ports used on your firewall as well.&lt;/div&gt; &lt;div&gt;# MasqueradeAddress &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 1.2.3.4&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# This is useful for masquerading address with dynamic IPs:&lt;/div&gt; &lt;div&gt;# refresh any configured MasqueradeAddress directives every 8 hours&lt;/div&gt; &lt;div&gt;&amp;lt;IfModule mod_dynmasq.c&amp;gt;&lt;/div&gt; &lt;div&gt;# DynMasqRefresh 28800&lt;/div&gt; &lt;div&gt;&amp;lt;/IfModule&amp;gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# To prevent DoS attacks, set the maximum number of child processes&lt;/div&gt; &lt;div&gt;# to 30. &amp;nbsp;If you need to allow more than 30 concurrent connections&lt;/div&gt; &lt;div&gt;# at once, simply increase this value. &amp;nbsp;Note that this ONLY works&lt;/div&gt; &lt;div&gt;# in standalone mode, in inetd mode you should use an inetd server&lt;/div&gt; &lt;div&gt;# that allows you to limit maximum number of processes per service&lt;/div&gt; &lt;div&gt;# (such as xinetd)&lt;/div&gt; &lt;div&gt;MaxInstances &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;30&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Set the user and group that the server normally runs at.&lt;/div&gt; &lt;div&gt;User &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;proftpd&lt;/div&gt; &lt;div&gt;Group &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; nogroup&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Umask 022 is a good standard umask to prevent new files and dirs&lt;/div&gt; &lt;div&gt;# (second parm) from being group and world writable.&lt;/div&gt; &lt;div&gt;Umask &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; 022 &amp;nbsp;022&lt;/div&gt; &lt;div&gt;# Normally, we want files to be overwriteable.&lt;/div&gt; &lt;div&gt;AllowOverwrite &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;on&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Uncomment this if you are using NIS or LDAP via NSS to retrieve passwords:&lt;/div&gt; &lt;div&gt;PersistentPasswd &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;off&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# This is required to use PAM-based authentication&lt;/div&gt; &lt;div&gt;AuthPAMConfig &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; proftpd&lt;/div&gt; &lt;div&gt;AuthOrder &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; mod_auth_pam.c*&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Be warned: use of this directive impacts CPU average load!&lt;/div&gt; &lt;div&gt;# Uncomment this if you like to see progress and transfer rate with ftpwho&lt;/div&gt; &lt;div&gt;# in downloads. That is not needed for uploads rates.&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;# UseSendFile &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; off&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;TransferLog /var/log/proftpd/xferlog&lt;/div&gt; &lt;div&gt;SystemLog &amp;nbsp; /var/log/proftpd/proftpd.log&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Logging onto /var/log/lastlog is enabled but set to off by default&lt;/div&gt; &lt;div&gt;#UseLastlog on&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# In order to keep log file dates consistent after chroot, use timezone info&lt;/div&gt; &lt;div&gt;# from /etc/localtime. &amp;nbsp;If this is not set, and proftpd is configured to&lt;/div&gt; &lt;div&gt;# chroot (e.g. DefaultRoot or &amp;lt;Anonymous&amp;gt;), it will use the non-daylight&lt;/div&gt; &lt;div&gt;# savings timezone regardless of whether DST is in effect.&lt;/div&gt; &lt;div&gt;#SetEnv TZ :/etc/localtime&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&amp;lt;IfModule mod_quotatab.c&amp;gt;&lt;/div&gt; &lt;div&gt;QuotaEngine off&lt;/div&gt; &lt;div&gt;&amp;lt;/IfModule&amp;gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&amp;lt;IfModule mod_ratio.c&amp;gt;&lt;/div&gt; &lt;div&gt;Ratios off&lt;/div&gt; &lt;div&gt;&amp;lt;/IfModule&amp;gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Delay engine reduces impact of the so-called Timing Attack described in&lt;/div&gt; &lt;div&gt;# http://www.securityfocus.com/bid/11430/discuss&lt;/div&gt; &lt;div&gt;# It is on by default.&lt;/div&gt; &lt;div&gt;&amp;lt;IfModule mod_delay.c&amp;gt;&lt;/div&gt; &lt;div&gt;DelayEngine on&lt;/div&gt; &lt;div&gt;&amp;lt;/IfModule&amp;gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&amp;lt;IfModule mod_ctrls.c&amp;gt;&lt;/div&gt; &lt;div&gt;ControlsEngine &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;off&lt;/div&gt; &lt;div&gt;ControlsMaxClients &amp;nbsp; &amp;nbsp;2&lt;/div&gt; &lt;div&gt;ControlsLog &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; /var/log/proftpd/controls.log&lt;/div&gt; &lt;div&gt;ControlsInterval &amp;nbsp; &amp;nbsp; &amp;nbsp;5&lt;/div&gt; &lt;div&gt;ControlsSocket &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;/var/run/proftpd/proftpd.sock&lt;/div&gt; &lt;div&gt;&amp;lt;/IfModule&amp;gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&amp;lt;IfModule mod_ctrls_admin.c&amp;gt;&lt;/div&gt; &lt;div&gt;AdminControlsEngine off&lt;/div&gt; &lt;div&gt;&amp;lt;/IfModule&amp;gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;# Alternative authentication frameworks&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;#Include /etc/proftpd/ldap.conf&lt;/div&gt; &lt;div&gt;#Include /etc/proftpd/sql.conf&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;# This is used for FTPS connections&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;#Include /etc/proftpd/tls.conf&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;# Useful to keep VirtualHost/VirtualRoot directives separated&lt;/div&gt; &lt;div&gt;#&lt;/div&gt; &lt;div&gt;Include /etc/proftpd/virtuals.conf&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;# Include other custom configuration files&lt;/div&gt; &lt;div&gt;Include /etc/proftpd/conf.d/&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;HiddenStores on&lt;/div&gt; &lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6654526478" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6633455697" refObjectName="MH Alpha.0" type="Tag" />
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-22T14:21:15.496Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments>
+         <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6654391420" refObjectName="ILDAYBREAK.zip" type="Attachment" />
+      </Attachments>
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-22T14:21:42.365Z</ClosedDate>
+      <Duplicates>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6790044050" refObjectName="Ingestion is unable to handle large zip files" type="Defect" />
+      </Duplicates>
+      <Environment>Sandbox</Environment>
+      <FoundInBuild>Build 161, OmniSand</FoundInBuild>
+      <InProgressDate>2012-06-08T21:45:22.256Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423163" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-06-20T04:49:22.451Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999646208.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321676" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Causes system failure (Sev1)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6030811433" refObjectName="Pete Wenzel" type="User" />
+      <TargetDate>2012-06-08T04:00:00.000Z</TargetDate>
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>22.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6664839324" refObjectName="Investigate and change Camel file options" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6664840489" refObjectName="Write simple program to duplicate the problem" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6664842174" refObjectName="Investigate ProFTP file upload options" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Ingestion can sometimes begin processing valid zip files before they are fully uploaded to the ingestion landing zone.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6499891862" objectVersion="46" refObjectName="INGESTION: References to Course by other entities do not use CourseCode" CreatedAt="May 24">
+      <CreationDate>2012-05-24T20:42:42.606Z</CreationDate>
+      <ObjectID>6499891862</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>DE162 addresses how an incoming Course entity will match to one in the db.       &lt;div&gt;However, the way other entities such as CourseOffering reference Course needs to also use CourseCode and EdOrd to identify the Course they are referencing.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;From the EdFi CourseIdentity xsd documentation:&lt;/div&gt; &lt;div&gt; &lt;div&gt;Provide user information to lookup and link to an existing course record in the receiving system. &amp;nbsp;Two cases are supported:&lt;/div&gt; &lt;div&gt;1. StateCourseCode or other standard course code&lt;/div&gt; &lt;div&gt;2. SchoolOrganizationID + LocalCourseCode&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Course currently continues to set its externalId to courseTitle since CourseOffering and StudentTranscript currently depend on it. &amp;nbsp;Course should be updated to have externalId removed as part of this defect fix since it should no longer be necessary.&lt;/div&gt; &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE608</FormattedID>
+      <LastUpdateDate>2012-07-16T14:52:17.112Z</LastUpdateDate>
+      <Name>INGESTION: References to Course by other entities do not use CourseCode</Name>
+      <Notes>(course)body.courseCode should be mapped to (referencing entity)body.CourseReference.CourseIdentity.CourseCode.&amp;nbsp; However, courseCode and CourseCode are both lists of complex objects.&lt;br /&gt;&lt;br&gt;After conversation with various people (David Holmes, Peter Backes, an EdFi contact), we have identified the following as the correct way to resolve this reference:&lt;br&gt;The way this particular reference resolution must work is as an OR list.&amp;nbsp; Essentially, all the CourseCodes (which are complex objects) must be ORed together, and should return exactly one Course.&amp;nbsp; If it returns more than one, that's an error.&amp;nbsp; Essentially, there should be exactly one Course in the DB that has one or more (but not necessarily all) of the CourseCodes listed in the reference (nor do all the CourseCodes in the Course need to be represented in the reference).&lt;br&gt;You do not necessarily have to do this through ID Normalizer.&amp;nbsp; This is the first time we've hit a reference resolution that goes this way.&amp;nbsp; If we do not expect to resolve anything other than Course via an OR list, then we should probably use the entity-specific class (IE, FooEdFi2SLITransformer).  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;span style="font-family: arial, helvetica, sans-serif; text-align: left; background-color: rgb(255, 255, 255); "&gt;(jtully 6/25/2012) Fix verified locally by checking positive and negative ingestion cases of test data complexObjectArrayIdResolutionTest.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4814417296" refObjectName="Douglas Gore" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6499891863" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-07-16T14:52:17.057Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-06T14:59:05.229Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-18T18:19:53.131Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475430009" refObjectName="5.1" type="Iteration" />
+      <OpenedDate>2012-05-24T21:23:05.651Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999673344.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321676" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5316209188" refObjectName="Brandon S" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>53.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6585966024" refObjectName="Update Course Resolution for CourseTranscript" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6585965338" refObjectName="Update IdNormalizer" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6585966416" refObjectName="Cleanup prior workaround" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6585967534" refObjectName="Fix/New acceptance tests" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6776457279" refObjectName="Create Edfi2XLI transformer for entities that have course references" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6794891634" refObjectName="[Tech Debt]: Update Course Resolution for CourseOffering post DE87" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6810259227" refObjectName="Add unit test for IdNormalizer" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;span style="font-family: arial, helvetica, sans-serif; text-align: left; background-color: rgb(255, 255, 255); "&gt;Entities referencing Course use CourseTitle (not CourseCode and EdOrg as specified by Ed-Fi) to uniquely identify a Course entity. Users will see inconsistencies with local descriptions of Courses until the entity is properly handled.&lt;/span&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/5615533475" objectVersion="45" refObjectName="INGESTION: CourseOffering is ingested in a way that deviates from Ed-Fi" CreatedAt="Mar 5">
+      <CreationDate>2012-03-05T14:06:58.565Z</CreationDate>
+      <ObjectID>5615533475</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;Ed-Fi does not have a direct relationship between Session and Section, but stuffs CourseOffering in the middle.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;We've added a direct reference to Session in the SLI Section entity, which also contains a direct reference to a Course and another to a School.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;So we have all the connections that are handled by an Ed-Fi CourseOffering.&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;The only thing missing is LocalCourseCode and LocalCourseTitle. &amp;nbsp;Those are only relevant if a school wants to recode/rename a Course defined by a district, for example. &amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;Given all the changes it would imply to the existing entity relationships, we're probably looking at 5-8 points to address this defect.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;&lt;font class="Apple-style-span" color="#ff0000"&gt;First thing to do: Decide how serious this is and re-classify if necessary.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span rally-rte-class-0fa4f2cf7"&gt;----------------------------------------------------------------------------------------------------------------------&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Correcting/adding to the above statements:&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;- The sessionCourseAssociation entity in the SLI data model (the equivalent to Ed-Fi’s CourseOffering) that *IS* being populated.&amp;nbsp; It is being populated during Section ingestion via CourseOfferingReference.&lt;br /&gt;&lt;/div&gt; &lt;div&gt;- What that means is that during ingestion we ingest references to CourseOfferings in Section without the corresponding CourseOffering entities themselves which will be confusing to our customers to say the very least.&lt;br /&gt;&lt;/div&gt; &lt;div&gt;- The adding of a separate Course reference to Section is also a defect (DE87) – Ed-Fi establishes a relationship between Sessions and Courses via CourseOffering which is then referenced by Section.&amp;nbsp; Breaking these references apart as has been done in SLI will no longer guarantee valid pairings of Session and Course (aka a CourseOffering) for a Section.&lt;br /&gt;&lt;/div&gt; &lt;div&gt;___________________________________________________________________&lt;br /&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;The CourseOffering entity is not being ingested but is required both in terms of published specifications for SLI and to support a cohesive SLI data model.&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;According to the SLI Deviations page, the sessionCourseAssociation entity "associates course entities with the sessions they are offered; includes the attributes from the CourseOffering Ed-Fi entity" and is essentially the Ed-Fi CourseOffering entity under a different name.&amp;nbsp; Recommend reverting to original name to avoid confusion.&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;Additionally, the Ed-Fi mandatory element SchoolReference has been removed from the SLI schema for this entity.&amp;nbsp; Recommend restoring the element or providing mapping rules to resolve.&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;INGESTION SUPPORT AND THE RESTORATION OF SchoolReference MUST BE ADDRESSED.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE85</FormattedID>
+      <LastUpdateDate>2012-07-06T14:58:29.433Z</LastUpdateDate>
+      <Name>INGESTION: CourseOffering is ingested in a way that deviates from Ed-Fi</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125122291" refObjectName="Jonathan Tully" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5615533476" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-25T13:09:31.670Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-06T14:58:29.400Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-05-21T14:28:00.963Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423163" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-05-02T13:26:11.405Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999672832.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321676" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>The CourseOffering entity is ingested in a way that deviates from the Ed-Fi definition. Users may see inconsistencies with local descriptions of courses.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/5618721302" objectVersion="87" refObjectName="INGESTION: Section entity is ingested in a way that deviates from Ed-Fi" CreatedAt="Mar 5">
+      <CreationDate>2012-03-05T18:52:47.804Z</CreationDate>
+      <ObjectID>5618721302</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;The section entity in the SLI schema has been restructured relative to Ed-Fi as follows:&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;- CourseOfferingReference has been removed and replaced with a reference to Course.&amp;nbsp; Course and CourseOffering are not equivalent.&amp;nbsp; Recommend reversion of change or that detailed mapping rules be provided.&lt;/div&gt; &lt;div&gt;- sessionId (AKA SessionReference in Ed-Fi) has been made mandatory while it is an optional element in Ed-Fi.&amp;nbsp; Recommend reversion or extension to customer facing Ed-Fi.&lt;/div&gt; &lt;div&gt;- Optional elements LocationReference and ClassPeriodReference have been removed.&amp;nbsp; Location and ClassPeriod are out of scope for Alpha so a core schema extension should be used to drop these attributes.&amp;nbsp; This will be handled in a different story/defect TBD.&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;SUBSTITUTION OF Course FOR CourseOfferingReference MUST BE ADDRESSED.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE87</FormattedID>
+      <LastUpdateDate>2012-07-17T22:15:27.129Z</LastUpdateDate>
+      <Name>INGESTION: Section entity is ingested in a way that deviates from Ed-Fi</Name>
+      <Notes>Working this and DE85 together.&amp;nbsp; Tasks:&lt;br /&gt;* Rename sessionCourceAssociation to CourseOffering, resolving deviation from EdFi.&lt;br&gt; * ingest all fields in CourseOffering, including schoolReference&lt;br&gt;* Change section-&amp;gt;course to section-&amp;gt;courseOffering&lt;br&gt;* section-&amp;gt;session becomes optional, resolving deviation from EdFi</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6219770163" refObjectName="Steve Ashton" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5618721303" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-25T13:09:37.721Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-06T14:58:46.069Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-05-22T14:00:12.699Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423163" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-05-08T14:00:48.665Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999673088.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321676" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Causes system failure (Sev1)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>88.0</TaskEstimateTotal>
+      <TaskRemainingTotal>4.0</TaskRemainingTotal>
+      <TaskStatus>IN_PROGRESS</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6465785856" refObjectName="ingest all fields in CourseOffering, including schoolReference" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6465786622" refObjectName="Change section-&amp;gt;course to section-&amp;gt;courseOffering, resolving deviation from EdFi" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6465784885" refObjectName="section-&amp;gt;session becomes optional, resolving deviation from EdFi" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6465784158" refObjectName="Rename sessionCourceAssociation to CourseOffering, resolving deviation from EdFi." type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6496804115" refObjectName="Craft acceptance tests" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6553448277" refObjectName="Fix section courseOffering resolution in section" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6586087947" refObjectName="merge to master" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6618695138" refObjectName="Fix ingestion acceptance tests to use courseOffering" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6659028437" refObjectName="Update Dashboard code" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;&lt;span style="background-color: rgb(255, 255, 255); font-family: arial, helvetica, sans-serif; text-align: left; "&gt;The Section entity is ingested in a way that deviates from the Ed-Fi definition. This is related to a CourseOffering defect. Users may see inconsistencies with local descriptions of courses and sections.&lt;/span&gt;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6665383969" objectVersion="22" refObjectName="INGESTION: Session entity Grading Period reference not fully supported" CreatedAt="Jun 8">
+      <CreationDate>2012-06-08T22:33:38.826Z</CreationDate>
+      <ObjectID>6665383969</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Session entity Grading Period Reference is not fully supported - does not support EducationOrganizationIdentificationCode.     &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Supported:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;GradingPeriod id="GP_1"&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;GradingPeriodIdentity&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;GradingPeriod&amp;gt;First Six Weeks&amp;lt;/GradingPeriod&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;SchoolYear&amp;gt;2011-2012&amp;lt;/SchoolYear&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;StateOrganizationId&amp;gt;Charlie School&amp;lt;/StateOrganizationId&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;/GradingPeriodIdentity&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;BeginDate&amp;gt;2010-09-01&amp;lt;/BeginDate&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;EndDate&amp;gt;2010-12-01&amp;lt;/EndDate&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;TotalInstructionalDays&amp;gt;90&amp;lt;/TotalInstructionalDays&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;CalendarDateReference ref="CD_1"/&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;/GradingPeriod&amp;gt;&lt;/div&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Unsupported:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;&amp;lt;GradingPeriod id="GP_2"&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;GradingPeriodIdentity&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;lt;GradingPeriod&amp;gt;First Six Weeks&amp;lt;/GradingPeriod&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;lt;SchoolYear&amp;gt;2011-2012&amp;lt;/SchoolYear&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;lt;EducationOrgIdentificationCode IdentificationSystem="School"&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;lt;ID&amp;gt;Charlie School&amp;lt;/ID&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;lt;/EducationOrgIdentificationCode&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;/GradingPeriodIdentity&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;lt;BeginDate&amp;gt;2011-01-01&amp;lt;/BeginDate&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;EndDate&amp;gt;2011-04-01&amp;lt;/EndDate&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;lt;TotalInstructionalDays&amp;gt;90&amp;lt;/TotalInstructionalDays&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;lt;CalendarDateReference ref="CD_2"/&amp;gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp;&amp;lt;/GradingPeriod&amp;gt;&lt;/div&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE828</FormattedID>
+      <LastUpdateDate>2012-07-17T22:16:28.693Z</LastUpdateDate>
+      <Name>INGESTION: Session entity Grading Period reference not fully supported</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6077789805" refObjectName="Umesh Navani" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289467719" refObjectName="Megatron(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6665383970" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-07-06T15:26:04.578Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-16T16:02:31.942Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-18T18:36:33.269Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429999" refObjectName="5.1" type="Iteration" />
+      <OpenedDate>2012-06-09T16:10:48.210Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999757824.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780851" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5264877186" refObjectName="Mahesh Patel" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>EducationOrganizationIdentificationCode is not supported as a form of reference.&amp;nbsp;Workaround: Use&amp;nbsp;StateOrganizationId as the reference inside&amp;nbsp;GradingPeriodIdentity.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6594400694" objectVersion="38" refObjectName="API: Duplicate links in certain types of resource responses" CreatedAt="Jun 2">
+      <CreationDate>2012-06-03T02:09:30.884Z</CreationDate>
+      <ObjectID>6594400694</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Requesting a student resource results in several duplicate links, some apparently invalid:  &lt;div&gt; &lt;div&gt;{&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "rel": "getStudentProgramAssociations",&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "href": "https://nxslave09.slidev.org/api/rest/v1/students/c3f98dda-7dd1-4988-9eed-5ca5f0468ed4/studentProgramAssociations"&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt; &lt;/div&gt; &lt;div&gt;and right below it&lt;/div&gt; &lt;div&gt; &lt;div&gt;{&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "rel": "getStudentProgramAssociations",&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "href": "https://nxslave09.slidev.org/api/rest/v1/studentProgramAssociations?studentId=c3f98dda-7dd1-4988-9eed-5ca5f0468ed4"&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt; &lt;/div&gt; &lt;div&gt;also&amp;nbsp;&lt;/div&gt; &lt;div&gt; &lt;div&gt;{&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "rel": "getCourseTranscripts",&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "href": "https://nxslave09.slidev.org/api/rest/v1/students/c3f98dda-7dd1-4988-9eed-5ca5f0468ed4/courseTranscripts"&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt; &lt;/div&gt; &lt;div&gt;and&amp;nbsp;&lt;/div&gt; &lt;div&gt; &lt;div&gt;{&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "rel": "getCourseTranscripts",&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; "href": "https://nxslave09.slidev.org/api/rest/v1/courseTranscripts?studentId=c3f98dda-7dd1-4988-9eed-5ca5f0468ed4"&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt; &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE682</FormattedID>
+      <LastUpdateDate>2012-07-17T22:17:21.809Z</LastUpdateDate>
+      <Name>API: Duplicate links in certain types of resource responses</Name>
+      <Notes>&lt;div&gt;The links all look valid in the description, but it's certainly odd that we have multiple links with the same relationship name (and that return the same payload).&lt;/div&gt; &lt;div&gt;---&lt;/div&gt; &lt;div&gt;&amp;lt;Jerry Jul 3&amp;gt; Tested on a couple of entities, responses do not contain duplicate links anymore.&lt;/div&gt; &lt;div&gt;---&lt;/div&gt; &lt;div&gt;Some links are still returning 404's. &amp;nbsp;It should be giving us an empty list instead.&lt;/div&gt; &lt;div&gt;---&lt;/div&gt; &lt;div&gt;&amp;lt;Jerry Jul 16&amp;gt; Confirmed the 404's, which would be addressed in another defect. Otherwise duplicate links are now gone.&lt;/div&gt; &lt;div&gt;---&lt;/div&gt; &lt;div&gt;&amp;lt;Suneth Jul 16&amp;gt; Defect has been verified by Jerry.&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5511416521" refObjectName="Jerry Hung" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4983255020" refObjectName="Wolverine(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6594400695" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-07-16T18:50:54.755Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-16T18:48:38.700Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-06T18:42:54.473Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429985" refObjectName="5.1" type="Iteration" />
+      <OpenedDate>2012-07-10T20:54:54.143Z</OpenedDate>
+      <PlanEstimate>1.0</PlanEstimate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999497472.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780835" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4543970481" refObjectName="Nicholas Brown" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>IN_PROGRESS</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6969642362" refObjectName="add logic to handle array of links" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6637967304" refObjectName="Analyzing root cause" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6820911776" refObjectName="Removing schoolsession association from ingestion" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6820866220" refObjectName="Removing schoolsession association from api" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6837056725" refObjectName="Adding acceptance tests" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>In the response bodies of certain resources, links with identical names and results may appear. However, both forms of the duplicated URIs resolve correctly.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;It looks like the link of the form ""http://local.slidev.org:8080/api/rest/v1/students/2012av-f0902396-bee2-11e1-b871-0811960672a8/studentDisciplineIncidentAssociations/disciplineIncidents" is returning a 404 if it is empty, which is not the correct behavior.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6827238001" objectVersion="10" refObjectName="PORTAL: When a user reports a problem via portal no email is sent to SLC" CreatedAt="Jun 21">
+      <CreationDate>2012-06-21T22:25:12.872Z</CreationDate>
+      <ObjectID>6827238001</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Report a problem form does not send emails in prod.</Description>
+      <Discussion />
+      <FormattedID>DE1083</FormattedID>
+      <LastUpdateDate>2012-07-23T15:15:25.355Z</LastUpdateDate>
+      <Name>PORTAL: When a user reports a problem via portal no email is sent to SLC</Name>
+      <Notes>&lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;7/23 Doris: &amp;nbsp;works in RC.&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6827238002" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-07-23T15:06:40.980Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-23T15:06:40.981Z</ClosedDate>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <InProgressDate>2012-07-06T14:49:47.100Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429991" refObjectName="5.1" type="Iteration" />
+      <OpenedDate>2012-07-03T17:23:23.050Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999559680.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780843" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4404800185" refObjectName="Ilya Bagrak" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>The Report a Problem form in the portal does not currently send a problem report to SLC. Workaround: Manually report a problem by sending email to issues@dev.slcedu.org&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;We added the flag for the operator to enable/disable encryption on email credentials.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6721512221" objectVersion="16" refObjectName="PORTAL: Users with same UniqueStaffId in different states/tenants are treated as the same user" CreatedAt="Jun 13">
+      <CreationDate>2012-06-13T19:07:24.949Z</CreationDate>
+      <ObjectID>6721512221</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Assume there are two users named joe smith and their UniqueStaffId is joe.smith.&lt;br /&gt;One is in IL and the other is in NY.&lt;br&gt;Portal uses the UniqueStaffId to store and identify users (using its internal MySQL).&lt;br&gt;This means that:&lt;br&gt;1) First Joe logs in&lt;br&gt;2) he sees EULA&lt;br&gt;3) He accepts EULA&lt;br&gt;4) Second Joe logs in&lt;br&gt;5) Liferay checks if its the first time the user logs in&lt;br&gt;6) Finds the user in its internal DB&lt;br&gt;7) Doesn't present EULA</Description>
+      <Discussion>
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/6721733272" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/6731631494" type="ConversationPost" />
+      </Discussion>
+      <FormattedID>DE885</FormattedID>
+      <LastUpdateDate>2012-07-18T19:48:11.008Z</LastUpdateDate>
+      <Name>PORTAL: Users with same UniqueStaffId in different states/tenants are treated as the same user</Name>
+      <Notes>I posted a "discussion" topic, but I don't see any notice that there is a discussion. Please click on the "discussions" link to see it. &lt;div&gt;____________&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Doris: &amp;nbsp;cannot reproduce this issue. &amp;nbsp;Tested w/ the same users from "dip2" and "tosako" realms&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4511028724" refObjectName="Chad Wilson" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6721512222" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-06-18T16:49:41.188Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-14T19:08:42.323Z</ClosedDate>
+      <Duplicates />
+      <Environment>RC</Environment>
+      <InProgressDate>2012-06-18T16:49:41.188Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475421393" refObjectName="4.6" type="Iteration" />
+      <OpenedDate>2012-06-13T20:09:08.400Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999619584.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321660" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4653739154" refObjectName="Sivan Hermon" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;span style="font-family: arial, helvetica, sans-serif; text-align: left; background-color: rgb(255, 255, 255); "&gt;Users with same UniqueStaffId in different states/tenants are treated as the same user.&amp;nbsp;&lt;br&gt;&lt;/span&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6606068873" objectVersion="24" refObjectName="SDK: Sample application should handle lack of access more elegantly than an ISE 500" CreatedAt="Jun 4">
+      <CreationDate>2012-06-04T14:37:33.499Z</CreationDate>
+      <ObjectID>6606068873</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>In the cross app tests, when the slcoperator removes access to the sample application it fails harshly with an ISE 500: &amp;nbsp;  &lt;h2&gt;HTTP ERROR: 500&lt;/h2&gt; INTERNAL_SERVER_ERROR   &lt;p&gt;RequestURI=/sample/callback&lt;/p&gt; &lt;h3&gt;Caused by:&lt;/h3&gt; java.lang.NullPointerException&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.slc.sli.api.client.impl.RESTClient.connect(RESTClient.java:107)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.slc.sli.api.client.impl.BasicClient.connect(BasicClient.java:55)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.slc.sli.sample.oauth.AuthFilter.handleCallback(AuthFilter.java:75)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.slc.sli.sample.oauth.AuthFilter.doFilter(AuthFilter.java:50)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1084)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:360)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:726)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:206)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.Server.handle(Server.java:324)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.HttpConnection$RequestHandler.content(HttpConnection.java:843)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:648)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395)&lt;br /&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488)&lt;br /&gt;   &lt;p&gt;&lt;i&gt;&lt;small&gt;&lt;a href="http://jetty.mortbay.org/"&gt;Powered by Jetty://&lt;/a&gt;&lt;/small&gt;&lt;/i&gt;&lt;/p&gt;</Description>
+      <Discussion />
+      <FormattedID>DE694</FormattedID>
+      <LastUpdateDate>2012-07-17T22:09:07.395Z</LastUpdateDate>
+      <Name>SDK: Sample application should handle lack of access more elegantly than an ISE 500</Name>
+      <Notes>RF: &amp;nbsp;Could not reproduce. &amp;nbsp;Seems to be fixed by other recent changes to the SDK.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4514290116" refObjectName="Ryan Farris" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6606068874" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-29T21:48:34.975Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423141" refObjectName="4.7" type="Iteration" />
+      <OpenedDate>2012-06-04T16:03:13.805Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999630592.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321656" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4711866137" refObjectName="James Short" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>2.0</TaskEstimateTotal>
+      <TaskRemainingTotal>2.0</TaskRemainingTotal>
+      <TaskStatus>IN_PROGRESS</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6772214106" refObjectName="Verify fixes made on the tenant-id-queries branch" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>This error occurs when the authenticated user doesn't have any contextual data or does not have rights to access the application.&amp;nbsp;Workaround:&amp;nbsp;Identify a user in the&amp;nbsp;ingested&amp;nbsp;dataset that has contextual data associated. Eg. A teacher with sections and students.&amp;nbsp;SLC Operator must enable the application for the user's Educational Organization.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6082929250" objectVersion="28" refObjectName="INGESTION: Not all .tmp files deleted from the user's landing zone after processing is complete" CreatedAt="Apr 17">
+      <CreationDate>2012-04-17T20:19:19.749Z</CreationDate>
+      <ObjectID>6082929250</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;Will try to reproduce and add details here.&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt; &lt;div&gt;&lt;strong&gt;Rejected: .tmp files are no longer generated.&lt;/strong&gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE194</FormattedID>
+      <LastUpdateDate>2012-07-17T22:19:25.831Z</LastUpdateDate>
+      <Name>INGESTION: Not all .tmp files deleted from the user's landing zone after processing is complete</Name>
+      <Notes>&lt;div&gt;&lt;strong&gt;Rejected: .tmp files are no longer generated.&lt;/strong&gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4668906505" refObjectName="Oleg Krook" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6082929251" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-07-06T15:46:20.272Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-26T15:02:36.930Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-22T14:19:56.985Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475423143" refObjectName="4.7" type="Iteration" />
+      <PlanEstimate>3.0</PlanEstimate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999758336.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694321658" refObjectName="PI4" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>Not a Defect</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5480679139" refObjectName="Vic McGlaughlin" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;Workaround: Users can delete the files manually.&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;strong&gt;Rejected: .tmp files are no longer generated.&lt;/strong&gt;&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6823739415" objectVersion="14" refObjectName="INGESTION: Ingestion job will begin processing a new job even though previous job has not yet completed" CreatedAt="Jun 21">
+      <CreationDate>2012-06-21T18:02:56.598Z</CreationDate>
+      <ObjectID>6823739415</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Ingestion service can start processing a zip file (or batch) while processing of the current batch have not completed. That resulted in errors.    &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Steps to reproduce:&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;1. Drop a medium size dataset&lt;/div&gt;  &lt;div&gt;2. Confirm the it&amp;nbsp;disappeared from the lz directory&lt;/div&gt;  &lt;div&gt;3. What few moments&lt;/div&gt;  &lt;div&gt;4. Drop a purge.zip to clean your tenant's collections&lt;/div&gt;  &lt;div&gt;5. The first batch fails and produces an error file. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Leaving bug&amp;nbsp; open as a use case to test against for US2956 they should be closed together upon verification/demo.&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1072</FormattedID>
+      <LastUpdateDate>2012-07-17T22:19:54.482Z</LastUpdateDate>
+      <Name>INGESTION: Ingestion job will begin processing a new job even though previous job has not yet completed</Name>
+      <Notes>Edge case, if immediately after data load if a purge operation is executed we have race conditions. Work around is not purging immediately after data load.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5681078097" refObjectName="Olga Violett" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6823739416" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-07-11T14:43:23.366Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-11T14:43:42.689Z</ClosedDate>
+      <Duplicates>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6807609569" refObjectName="Ingestion uses two file pollers which could trigger concurrent ingestion for a tentant" type="Defect" />
+      </Duplicates>
+      <Environment>Sandbox</Environment>
+      <InProgressDate>2012-07-11T14:43:23.366Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429989" refObjectName="5.1" type="Iteration" />
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999556096.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780841" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4668906505" refObjectName="Oleg Krook" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Ingestion job will begin processing a new job even if the previous job has not yet completed. Workaround: verify that a job is completed prior to uploading another job</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6554519223" objectVersion="35" refObjectName="DASHBOARD: Population selection widget incorrectly populated (custom entity)" CreatedAt="May 30">
+      <CreationDate>2012-05-30T15:25:18.226Z</CreationDate>
+      <ObjectID>6554519223</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>The population selection widget on dashboard student page does not populate correctly for a dataset if the LEA does not have associated custom data.&amp;nbsp;     &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;To reproduce:&amp;nbsp;&lt;/div&gt; &lt;div&gt;1) restore the mongo db dump on&amp;nbsp;devpantheon.slidev.org:/storage/ingestion/db_backup_20120529_5M/sli.tar.gz&lt;/div&gt; &lt;div&gt;2) Start API and dashboard (commit hash: 172595c4b2ddb7fe5e4958a1e77c77979315ee8a)&lt;/div&gt; &lt;div&gt;3) Login as rrogers&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Observe a stack trace in dashboard log:&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;30 May 2012 11:36:31.022-0400 ERROR [btpool0-0] o.s.s.m.i.ConfigManagerImpl [org.slc.sli.security.SLIPrincipal@1fb77bbb] - Unable to get custom config from the store for district id cap0&lt;/div&gt; &lt;div&gt;java.lang.NullPointerException: null&lt;/div&gt; &lt;div&gt; at org.slc.sli.client.LiveAPIClient.getEdOrgCustomData(LiveAPIClient.java:143) ~[classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.manager.impl.ConfigManagerImpl.getCustomConfig(ConfigManagerImpl.java:241) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.manager.impl.ConfigManagerImpl.getComponentConfig(ConfigManagerImpl.java:173) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.manager.impl.ConfigManagerImpl.getWidgetConfigs(ConfigManagerImpl.java:219) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.manager.component.impl.CustomizationAssemblyFactoryImpl.getWidgetConfigs(CustomizationAssemblyFactoryImpl.java:87) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.manager.component.impl.CustomizationAssemblyFactoryImpl.getModelAndViewConfig(CustomizationAssemblyFactoryImpl.java:289) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.manager.component.impl.CustomizationAssemblyFactoryImpl.getModelAndViewConfig(CustomizationAssemblyFactoryImpl.java:282) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.web.controller.GenericLayoutController.getPopulatedModel(GenericLayoutController.java:61) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.web.controller.LayoutController.getModelAndView(LayoutController.java:78) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.web.controller.LayoutController.handleLos_aroundBody4(LayoutController.java:63) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.web.controller.LayoutController$AjcClosure5.run(LayoutController.java:1) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.aspectj.runtime.reflect.JoinPointImpl.proceed(JoinPointImpl.java:221) [aspectjweaver-1.6.12.jar:1.6.12]&lt;/div&gt; &lt;div&gt; at org.slc.sli.web.util.ControllerInputValidatorAspect.aroundController(ControllerInputValidatorAspect.java:75) [classes/:na]&lt;/div&gt; &lt;div&gt; at org.slc.sli.web.controller.LayoutController.handleLos(LayoutController.java:62) [classes/:na]&lt;/div&gt; &lt;div&gt; at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.6.0_31]&lt;/div&gt; &lt;div&gt; at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39) ~[na:1.6.0_31]&lt;/div&gt; &lt;div&gt; at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25) ~[na:1.6.0_31]&lt;/div&gt; &lt;div&gt; at java.lang.reflect.Method.invoke(Method.java:597) ~[na:1.6.0_31]&lt;/div&gt; &lt;div&gt; at org.springframework.web.bind.annotation.support.HandlerMethodInvoker.invokeHandlerMethod(HandlerMethodInvoker.java:176) [spring-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.invokeHandlerMethod(AnnotationMethodHandlerAdapter.java:436) [spring-webmvc-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.handle(AnnotationMethodHandlerAdapter.java:424) [spring-webmvc-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:790) [spring-webmvc-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:719) [spring-webmvc-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:669) [spring-webmvc-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:574) [spring-webmvc-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at javax.servlet.http.HttpServlet.service(HttpServlet.java:707) [servlet-api-2.5-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at javax.servlet.http.HttpServlet.service(HttpServlet.java:820) [servlet-api-2.5-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.servlet.ServletHolder.handle(ServletHolder.java:487) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1093) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:369) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:109) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:83) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:97) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:100) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:78) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:54) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:35) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:105) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:79) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:381) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:168) [spring-security-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:237) [spring-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:167) [spring-web-3.0.6.RELEASE.jar:3.0.6.RELEASE]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1084) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.servlet.ServletHandler.handle(ServletHandler.java:360) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.security.SecurityHandler.handle(SecurityHandler.java:216) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.servlet.SessionHandler.handle(SessionHandler.java:181) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.handler.ContextHandler.handle(ContextHandler.java:726) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.webapp.WebAppContext.handle(WebAppContext.java:405) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:206) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.handler.HandlerCollection.handle(HandlerCollection.java:114) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.handler.HandlerWrapper.handle(HandlerWrapper.java:152) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.Server.handle(Server.java:324) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.HttpConnection.handleRequest(HttpConnection.java:505) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.HttpConnection$RequestHandler.headerComplete(HttpConnection.java:829) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.HttpParser.parseNext(HttpParser.java:514) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.HttpParser.parseAvailable(HttpParser.java:211) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.jetty.HttpConnection.handle(HttpConnection.java:380) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.io.nio.SelectChannelEndPoint.run(SelectChannelEndPoint.java:395) [jetty-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt; at org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:488) [jetty-util-6.1.10.jar:6.1.10]&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE642</FormattedID>
+      <LastUpdateDate>2012-07-17T19:00:23.850Z</LastUpdateDate>
+      <Name>DASHBOARD: Population selection widget incorrectly populated (custom entity)</Name>
+      <Notes>Hi Simon,&lt;br /&gt;We had 2 bugs about this that were fixed 3-4 days ago. Can you please indicate when/what env you saw this bug at?&lt;br&gt;&lt;br&gt;Thanks!            &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;It was on commit 91da626fa4f71d2b0804753885e902b9108b853d, so 6 days ago.&amp;nbsp;&lt;/div&gt; &lt;div&gt;Will try to reproduce on latest build.&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Retried with commit hash&amp;nbsp;172595c4b2ddb7fe5e4958a1e77c77979315ee8a. Don't see the original problem anymore, but saw a different one, so logging that instead.&lt;br /&gt;&lt;br /&gt;-------------------------&lt;br /&gt;&lt;br /&gt;5/31 - There's an issue with the way the dashboard queries sessions from the API. We don't use the limit=0 parameter, so we're only receiving 50 out of 1050 sessions. This results in most sections getting filtered out. &lt;br /&gt;&lt;br /&gt;Adding limit=0 will fix this.&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;_______________&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Latest data: &amp;nbsp;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;devpantheon.slidev.org:/storage/ingestion/db_backup_20120608_5M/sli.tar.gz&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;________________&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;6/11 - not working on latest alpha.0. &amp;nbsp;Courses do not show up. &amp;nbsp;David is investigating&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;_________________&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;6/11 - the problem was in the dataset. &amp;nbsp;The updated dataset is now in: &amp;nbsp;&lt;/span&gt;&lt;span class="Apple-style-span" style="color: rgb(20, 20, 20); font-family: 'Lucida Grande'; line-height: 14px; font-size: medium; "&gt;devjuggernauts - /home/ingestion/db_backup/20120611_5M/sli.tar.gz&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="color: rgb(20, 20, 20); font-family: 'Lucida Grande'; line-height: 14px; font-size: medium; "&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="color: rgb(20, 20, 20); font-family: 'Lucida Grande'; line-height: 14px; font-size: medium; "&gt;_________________&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;font class="Apple-style-span" color="#141414" size="3"&gt;&lt;span class="Apple-style-span" style="line-height: 14px;"&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;&amp;nbsp;Tested locally and I'm able to see 150 schools. &amp;nbsp;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="Apple-style-span" style="font-family: Helvetica; "&gt;Closing.&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;font class="Apple-style-span" color="#141414" size="3"&gt;&lt;span class="Apple-style-span" style="line-height: 14px; "&gt;&lt;br /&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt; &lt;div&gt;&lt;font class="Apple-style-span" color="#141414" size="3"&gt;&lt;span class="Apple-style-span" style="line-height: 14px; "&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4670846049" refObjectName="David Wu" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6554519224" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-06-12T18:49:24.844Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-06-11T21:47:57.807Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-05T20:34:05.438Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475421393" refObjectName="4.6" type="Iteration" />
+      <Priority>ASAP Emergency Release (P1)</Priority>
+      <Rank>499999727616.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125487594" refObjectName="Simon Yau" type="User" />
+      <TargetDate>2012-06-07T04:00:00.000Z</TargetDate>
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>The population selection widget on dashboard student page does not populate correctly for a dataset if the LEA does not have associated custom data.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+</Objects>

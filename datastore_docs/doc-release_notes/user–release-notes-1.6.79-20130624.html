@@ -1,0 +1,519 @@
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; characterset=ISO-8859-1"/>
+    <title>inBloom technology 1.6.79 Release Notes</title>
+</head>
+    
+<body>
+    
+    <div class="article">
+        
+        <h1 class="title">inBloom technology 1.6.79 Release Notes</h1>
+        
+        <p>
+            <a href="#whatsNew">What's New</a><br />
+            <a href="#dataModelUpdates">Data Model Updates</a><br />
+            <a href="#ingestionSchemaUpdates">Ingestion Schema Updates</a><br />
+            <a href="#apiUpdates">API Updates</a><br />
+            <a href="#actionsRequiredOnUpdate">Actions Required on Update</a><br />
+            <a href="#resolvedIssues">Resolved Issues</a><br />
+            <a href="#knownIssues">Known Issues</a><br />
+            <a href="#webBrowserCompatibility">Web Browser Compatibility</a><br />
+            <a href="#limitations">Known Limitations</a>
+        </p>
+        
+        <h3>Caution</h3>
+        <p>
+            The inBloom sandbox environment MUST NOT contain real data,
+            including educational records or personally identifiable 
+            information (PII) for students or educators. Make sure to 
+            use only artificial or fabricated data. inBloom provides 
+            fabricated sample data sets, available for download or
+            as a selection when setting up your sandbox online.
+        </p>
+        
+        <hr />
+        
+        <h2 id="whatsNew">What's New?</h2>
+        
+        <h3>Bulk Extract - Full SEA</h3>
+        <p>
+            The following entities are now supported by the full SEA bulk 
+            extract:
+        </p>
+        <ul>
+            <li>calendarDate</li>
+        </ul>
+        <h3>Bulk Extract - Delta SEA</h3>
+        <p>
+            The following entities are now supported by the delta SEA bulk 
+            extract:
+        </p>
+        <ul>
+            <li>calendarDate</li>
+            <li>session</li>
+            <li>gradingPeriod</li>
+            <li>course</li>
+            <li>courseOffering</li>
+            <li>graduationPlan</li>
+            <li>learningObjective</li>
+            <li>learningStandard</li>
+            <li>competencyLevelDescriptor</li>
+            <li>studentCompetencyObjective</li>
+            <li>program</li>
+        </ul>
+        <h3>Bulk Extract - Full LEA</h3>
+        <p>
+            The following entities are now supported by the full LEA bulk 
+            extract:
+        </p>
+        <ul>
+            <li>calendarDate</li>
+        </ul>
+        <h3>Bulk Extract - Delta LEA</h3>
+        <p>
+            The following entities are now supported by the delta LEA bulk 
+            extract:
+        </p>
+        <ul>
+            <li>calendarDate</li>
+        </ul>
+        <h3>Student Login</h3>
+        <p>
+            Students are now able to log in to inBloom in both Production 
+            and Sandbox environments. Student access is limited to public 
+            entities, the student's own entity, and the student's parent 
+            and studentParentAssocations entities. Future versions of 
+            inBloom will enable students to access all data that is relevant
+            to them. For more information about the default Student role 
+            and rights, including the business rules that govern access 
+            of student data, please see the 
+            <a href="https://inbloom.org/sites/default/files/docs-developer/doc-3e1677bd-a02f-44a0-9c73-4eaaa1e1b064.html">inBloom Roles and Permissions</a>
+            in the inBloom developer documentation.
+        </p>
+        
+        <h2 id="dataModelUpdates">Data Model Updates</h2>
+        <p>
+            This release includes the following updates to the data model:
+        </p>
+        <h3>Contextual roles support</h3>
+        <p>
+            The Data Model has been modified to allow unrestricted API user 
+            role names.
+        </p>
+        <ul>
+            <li>
+                <p>
+                    staffEducationOrganizationAssociation
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            The attribute staffClassification has been 
+                            modified from an enumerated string to an 
+                            unrestricted string. The staffClassification 
+                            field is synonymous with a role name assigned 
+                            to a staff member for a particular education 
+                            organization. That role is used to authenticate 
+                            an API user by matching the role against the 
+                            user roles provided by the federated IDP. 
+                            For more about user authentication, see the 
+                            inBloom administrator documentation.
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h2 id="ingestionSchemaUpdates">Ingestion Schema Updates</h2>
+        <p>
+            This release includes the following updates to the ingestion 
+            schema, listed by entity type:
+        </p>
+        <h3>Contextual roles support</h3>
+        <p>
+            The Ingestion schema has been modified to allow unrestricted 
+            API user role names:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    <strong>SLC-StaffClassificationType</strong> - 
+                    replaces StaffClassificationType in Ed-Fi Core as follows:
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            Changes enumeration to an unrestricted string
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Applies these changes to the following entities: 
+                            For StaffEducationOrgAssignmentAssociation: 
+                            StaffClassification
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            The roles provided by the federated IDP should match at least 
+            one of these ingested roles.
+        </p>
+        <h3>Enumeration value additions</h3>
+        <p>
+            The ingestion schema has been modified to support additional 
+            enumeration values:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    "Other" was added as an enumeration value for the 
+                    following types:
+                </p>
+                <ul>
+                    <li>AdministrationEnvironmentType</li>
+                    <li>BehaviorCategoryType</li>
+                    <li>EducationalEnvironmentType</li>
+                    <li>GradeType</li>
+                    <li>ItemCategoryType</li>
+                    <li>IncidentLocationType</li>
+                    <li>LinguisticAccommodationItemType</li>
+                    <li>SchoolCategoryItemType</li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    "Did not meet standard" was added as an enumeration 
+                    value for AssessmentItemResultType.
+                </p>
+            </li>
+            <li>
+                <p>
+                    The following were added as enumerated values for TermType: 
+                </p>
+                <ul>
+                    <li>Term 0</li>
+                    <li>Term 1</li>
+                    <li>Term 2</li>
+                    <li>Term 3</li>
+                    <li>Term 4</li>
+                    <li>Term 5</li>
+                    <li>Term 6</li>
+                    <li>Term 7</li>
+                    <li>Term 8</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h2 id="apiUpdates">API Updates</h2>
+        
+        <p>
+            This release includes the following changes to the API:
+        </p>
+        
+        <h3>Added</h3>
+        <p>
+            No end points have been added.
+        </p>
+    <!--    <ul>
+            <li>
+                FIXME... ITEM
+            </li>
+        </ul> -->
+        
+        <h3>Deprecated</h3>
+        <p>
+            No end points have been deprecated.
+        </p> 
+     <!--   <ul>
+            <li>
+                FIXME... ITEM
+            </li>
+        </ul> -->
+        
+        <h3>New and Updated Fields</h3>
+        <p>
+            No fields have been added or updated.
+        </p> 
+      <!--  <ul>
+            <li>
+                FIXME... ITEM
+            </li>
+        </ul> -->
+        
+        <h2 id="actionsRequiredOnUpdate">Actions Required on Update</h2>
+        <p>
+            <strong>Production Users</strong>: An update is required to 
+            ensure that federated users can authenticate following the 
+            updates to inBloom authentication. Two options are available 
+            to make this update:
+        </p>
+        <ol>
+            <li>
+                <p>
+                    (Recommended) Administrator updates identity provider 
+                    and custom roles: On the federated identity provider, 
+                    give each federated user the roles defined by the 
+                    StaffClassification field, part of the 
+                    StaffEducationOrgAssignmentAssociation in the user's 
+                    record in the inBloom data store. Update the custom 
+                    roles to include the StaffClassification values as 
+                    valid Role Names. For details about configuring custom 
+                    roles, see 
+                    <a href="https://inbloom.org/sites/default/files/docs-developer/doc-d6c53933-f760-494d-a52e-e1c68513eda2.html">Managing User Roles and Rights</a>
+                    in either administrator or developer documentation.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Tenant updates records in the data store: In the 
+                    inBloom data store, add new 
+                    StaffEducationOrgAssignmentAssociation values to Staff 
+                    user records, where the StaffClassification field 
+                    matches the federated user role defined by the 
+                    federated identity provider and the custom roles 
+                    configured in inBloom (see 
+                    <a href="https://inbloom.org/sites/default/files/docs-developer/doc-d6c53933-f760-494d-a52e-e1c68513eda2.html">Managing User Roles and Rights</a>).
+                </p>
+            </li>
+        </ol>
+        
+        <h2 id="resolvedIssues">Resolved Issues</h2>
+        
+        <p>
+            The following is a list of previously reported issues which have
+            been resolved this release.
+        </p>
+        
+        <h3>DE840: inBloom data model does not account for Ed-Fi Core v. 1.0.03 version of Address with Country and AddressLine</h3>
+        <p>
+            The Address entity changed in EdFi 1.0.03 to have separate 
+            structures to represent addresses that specify "Country" with 
+            generic "AddressLine" values. Ingestion now accounts for this change. 
+        </p>
+        
+        <h2 id="knownIssues">Known Issues</h2>
+        <p>
+            The following are the open defects currently used to track known 
+            issues in this release.
+        </p>
+        <h3>DE198: EducationOrganization references to Program are not properly ingested.</h3>
+        <p>
+            The programReference is not yet implemented for 
+            educationOrganization entities. As a result, the API does not 
+            provide a link between educationOrganization and program entities.
+        </p>
+        <h3>DE273: A DisciplineDescriptor is not currently supported in Interchange-StudentDiscipline.</h3>
+        <p>
+            This descriptor is not currently supported. However, a 
+            reference to this descriptor is required for the DisciplineAction
+            entity.
+        </p>
+        <h3>DE325: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs.</h3>
+        <p>
+            The ingestion process assumes that the Program ID is unique 
+            within a tenant, but this should be unique within the specified 
+            EdOrg instead. As a result, the reference could resolve incorrectly.
+        </p>
+        <h3>DE408: Aggregate Viewers cannot see themselves.</h3>
+        <p>
+            Users with the Aggregate Viewer role cannot see their own 
+            Teacher or Staff entity.
+        </p>
+        <h3>DE710: Section, school and session references in AttendanceEvent are ignored.</h3>
+        <p>
+            The way AttendanceEvent entities are handled ignores explicit 
+            characterization of the attendance event - by school, section, 
+            session. As a result, AttendanceEvents for students attending 
+            multiple schools do not properly persist.
+        </p>
+        <h3>DE921: Duplicates are not reported.</h3>
+        <p>
+            Error reports are not always clear regarding the records 
+            persisted. When there are duplicates within the XML file, or a 
+            record already exists, the ingestion engine still updates the 
+            record. However, this record count is not included in the 
+            ingested records count.
+        </p>
+        <h3>DE1434: Internet Explorer 8 users may experience issues when using the dashboard builder.</h3>
+        <p>
+            If you are using Internet Explorer 8 and the dashboard builder, 
+            then intermittently the release after a drag and drop does not 
+            return the page to the correct state.
+        </p>
+        <h3>DE1457: Making a teacher call for a section with two "teachers of record" returns a 403 error.</h3>
+        <p>
+            Making a teacher call for a section with two "teachers of record" 
+            returns a 403 error. This error can cause the sectionInfo panel 
+            to not display.
+        </p>
+        <h3>DE1458: The ingestion service is able to handle more than one teacher of record.</h3>
+        <p>
+            The ingestion service can accept more than one teacher for 
+            a single section. The dashboard does not currently support 
+            this behavior.
+        </p>
+        <h3>DE1573: Attendance Rate should be removed.</h3>
+        <p>
+            The current attendance record includes an attendance rate 
+            column that may not be accurate for some use cases. The 
+            column could be removed by default in a future release.
+        </p>
+        <h3>DE1647: Dashboard may not display all data.</h3>
+        <p>
+            When a large dataset is available, the initial dashboard view 
+            may only display a subset of the data. The dashboard currently 
+            does not display a message explaining this scenario.
+        </p>
+        <h3>DE1728: An error occurs if an OAuth Callback URL does not begin with "HTTPS".</h3>
+        <p>
+            If an application includes a callback URL that does not begin 
+            with "https://", then an error message is returned.
+        </p>
+        <h3>DE2079: HATEOS links don't always work as expected.</h3>
+        <p>
+            The HATEOS links that the API returns may not work as expected 
+            in all cases. The contextual URI rewrites convert some API 
+            requests. Some of these converted requests may not return 
+            what is expected.
+        </p>
+        <h3>DE2160: Selecting a filter after listing a section removes all student data.</h3>
+        <p>
+            When viewing a list of students using the inBloom Dashboard, 
+            choosing a filter related to that student's "special needs" 
+            status results in a "no students found" error.
+        </p>
+        <h3>DE2300: There is a 250 result limit on global entities contained in elasticsearch.</h3>
+        <p>
+            When querying the following entities, results are limited to a 
+            maximum of 250 returns:
+        </p>
+        <ul>
+            <li><p>/assessments</p></li>
+            <li><p>/competencyLevelDescriptor</p></li>
+            <li><p>/learningObjectives</p></li>
+            <li><p>/learningStandards</p></li>
+            <li><p>/studentCompetencyObjectives</p></li>
+        </ul>
+        <h3>DE2725: Updating an entity does not correctly update the search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity 
+            is not updated in elasticsearch and becomes unsearchable.
+        </p>
+        <h3>DE2833: Deletes from Interchanges aside from InterchangeAssessmentMetadata does not work for ObjectiveAssessement and possibly others.</h3>
+        <p>
+            The Action Entity type can be present in any interchange 
+            and should support deletion of any entity type. Currently, 
+            the Action Entity with the type attribute set to DELETE will 
+            only support deletion of entities within the interchange in 
+            which the Action Entity is present. 
+        </p>
+        <h3>DE2851: Newly created student entity is unsearchable.</h3>
+        <p>
+            After creating a student entity, it cannot be retrieved from the 
+            API endpoint.
+        </p>
+        <h3>DE2852: Updating a learningObjective entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2853: Updating a learningStandard entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2857: Updating a courseOffering entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        
+        <h2 id="webBrowserCompatibility">Web Browser Compatibility</h2>
+        <p>
+            inBloom technology Dashboard is best viewed in 
+            Internet Explorer 8+, Firefox 6+, Safari 4+ 
+            with 1024x768 as the minimum recommended screen 
+            resolution.
+        </p>
+        
+        <h2 id="limitations">Known Limitations</h2>
+        <p> 
+            Known limitations in this release are summarized as follows:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    <strong>Landing Zone File Size Limit</strong> - 
+                    Currently the Sandbox landing zones enforce a size 
+                    limit of 5 MB for ingestion archive files, 
+                    corresponding to approximately 150-25MB of 
+                    uncompressed XML data, or about 150,000-250,000 
+                    records. In this release, ingesting a data set of 
+                    this size should take less than 5 minutes.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Unsupported Ed-Fi Entities</strong> - 
+                    Some Ed-Fi entities are not yet supported and, thus, 
+                    not consumable through data ingestion. For additional 
+                    information, see the 
+                    <a href="https://inbloom.org/library">inBloom Ingestion Guide</a>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Educator Dashboard</strong> - 
+                    Not all ingestible data is displayed in inBloom 
+                    educator dashboards, including discipline incidents, 
+                    cohorts or student competencies.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Aggregate Viewer Roles</strong> - 
+                    Aggregate Viewer roles do not yet provide aggregate 
+                    view of data.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>API Custom Data Size Limit</strong> - 
+                    Maximum currently enforced size of a custom data 
+                    resource in API is 128KB. The theoretical maximum 
+                    object size supported by the software platform is 
+                    16MB, but a more practical restriction of 128KB has 
+                    been placed on it in order to encourage efficient 
+                    data management practices and application responsiveness. 
+                    Custom data fields are not intended to be used to 
+                    store multimedia content or other types of 
+                    human-readable documents, for example. Such resources 
+                    are better served through existing web-based 
+                    infrastructure.
+                </p>
+            </li>
+        </ul>
+        
+        <div class="footer">
+            <p>
+                Copyright © 2013 inBloom, Inc. and its affiliates.
+            </p>
+            <p>
+                This document and the information contained herein is provided 
+                on an "AS IS" basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, 
+                EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY 
+                THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY 
+                RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS 
+                FOR A PARTICULAR PURPOSE.
+            </p>
+        </div>
+        
+    </div> <!-- END of div class "article" -->
+
+</body>
+
+</html>

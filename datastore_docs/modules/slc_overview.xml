@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<book 
+    xml:id="slc_overview" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>&COMPANYABBR; Overview</title>
+    </info>
+    
+    <chapter xml:id="doc-2f4565b0-4867-4f84-aa09-3e6ce6455b61">
+        <title>About the &COMPANYABBR;</title>
+        <para>
+            The &COMPANY; (&COMPANYABBR;) has produced a set of shared technology services 
+            that enables state and district education organizations to connect K-12 student 
+            data that currently exist in different formats and locations and that do not 
+            integrate with one another. The &COMPANYABBR; provides a RESTful interface and 
+            tools for building applications to access and manage education data in a
+            Data Store.
+        </para>
+        <para>
+            The &COMPANYABBR; is an alliance of states, foundations, and educators who aim 
+            to accelerate the progress of U.S. public schools toward personalized learning.
+        </para>
+        <para>
+            For information about the &COMPANYABBR;, see 
+            <link xlink:show="new" xlink:href="http://slcedu.org/">http://slcedu.org/</link>.
+        </para>
+    </chapter>
+    
+    <chapter xml:id="doc-d146ef2c-cce5-4099-9c8b-bac2d97cd2c2">
+        <title>Using &COMPANYABBR; Documentation</title>
+        <para>
+            &COMPANYABBR; has produced documentation to support a variety of audiences.
+            The following is a list of document titles with descriptions and links:
+        </para>
+        <itemizedlist>
+            <!-- Add this item back when end user documentation becomes part of the set
+            <listitem>
+                <para>
+                    <xref linkend="slc_user_guide"/> - A guide for end-users accessing
+                    the &COMPANYABBR; Portal and Dashboard applications.
+                </para>
+            </listitem> -->
+            <listitem>
+                <para>
+                    <xref linkend="slc_administrator_guide"/> - Documentation for administrators
+                    responsible for managing users, applications, and security-related 
+                    operations in an &COMPANYABBR; deployment.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="slc_developer_guide"/> - Documentation for software
+                    developers creating applications that call the &COMPANYABBR; 
+                    REST API or Java Client Library. This includes details for
+                    forming API calls and for setting up and using a Sandbox 
+                    development environment.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="data_model"/> - A complete reference for 
+                    how educational data is stored within the &COMPANYABBR; Data Store.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="rest_api_resources"/> - A complete reference for
+                    the resources that make up the REST API, including example requests
+                    and responses.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </chapter>
+    
+</book>
+
+        

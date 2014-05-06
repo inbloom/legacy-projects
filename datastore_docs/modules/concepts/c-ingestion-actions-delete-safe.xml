@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+
+<section xml:id="c-ingestion-actions-delete-safe"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Safe Deletes</title>
+    
+    <para>
+        <varname>Action</varname> attributes: 
+        <varname>Cascade="false" Force="false"</varname>
+    </para>
+    <para>
+        Safe deletes follow these rules:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Deleting a record (expressed as an element instance in XML) 
+                does not trigger a cascade action: any other records 
+                referring to the target record remain unchanged in the 
+                data store.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                If any other records refer to the target record,
+                the delete action fails. The logged error message for a 
+                failed delete indicates that child data exists for that 
+                record.
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</section>

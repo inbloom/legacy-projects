@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-f978fe66-74bf-4b59-8395-5e0e668c07e2"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Sample Code: Dashboard</title>
+
+    <para>The &PRODUCTABBR; Dashboard is a default Dashboard application that may be installed in
+        Production. The application features educator Dashboards, lists of students, and student
+        profile pages. The interface presents common education data elements in a structured,
+        easy-to-understand form. The Dashboard application is designed for use by educators and
+        education organization leaders. </para>
+    <para> 
+        The Dashboard is one of the open source applications from 
+        &COMPANYABBR;. Developers can use its source code as a reference when 
+        building their own applications for &PRODUCTABBR;. You can download
+        the <link xlink:href="&GITHUBURL;/dashboard" xlink:show="new">Dashboard source</link>
+        from the &COMPANYABBR; Github repository: 
+        <link xlink:show="new" xlink:href="&GITHUBURL;/">&GITHUBURL;/</link>. 
+    </para>
+    <para>
+        The sections that follow provide instructions for installing,
+        registering, and configuring the Dashboard sample application from 
+        the source download.
+    </para>
+    <note>
+        <title>Data Ingestion Prerequisite</title>
+        <para>
+            To successfully run this application, you will need data in the
+            data store. If you do not have data to work with, see the
+            &COMPANYABBR; documentation for your development environment
+            (Sandbox or Production) for instructions on how to add data.
+        </para>
+    </note>
+    
+    <section xml:id="doc-c9699536-40b0-4219-b001-2ac61e13a182">
+        <title>Sample Dashboard: Installing and Registering</title>
+        <procedure>
+            <step>
+                <para>
+                    Before installing the sample Dashboard application, 
+                    download and install the Tomcat web application service
+                    (<link xlink:href="http://tomcat.apache.org" xlink:show="new">http://tomcat.apache.org</link>). 
+                    The location that you extract Tomcat to will be referred to
+                    as <filename>$TOMCAT_HOME</filename> throughout these 
+                    instructions.
+                </para>
+            </step>
+            <step>
+                <para> Register the sample application for use in &PRODUCTABBR; as described in
+                        <xref linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"/> for a Sandbox
+                    environment or <xref linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/> for a
+                    Production environment. You will need to provide the following two URLs: </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            The application URL which is where you're hosting
+                            the Dashboard application. For the Dashboard
+                            application, the URL follows this syntax
+                            where <varname>HOST_ADDRESS</varname> and
+                            <varname>PORT</varname> are determined by your
+                            Web server's local settings:
+                        </para>
+                        <programlisting><![CDATA[http://HOST_ADDRESS:PORT/dashboard/service/layout/listOfStudentsPage]]></programlisting>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            The redirect URL, which is where the browser 
+                            redirects after user authentication. For the
+                            Dashboard application, the callback URL follows this syntax
+                            where <varname>HOST_ADDRESS</varname> and
+                            <varname>PORT</varname> are determined by your
+                            Web server's local settings:
+                        </para>
+                        <programlisting><![CDATA[http://HOST_ADDRESS:PORT/dashboard/callback]]></programlisting>
+                    </listitem>
+                </itemizedlist>
+            </step> 
+            <step>
+                <para>
+                    After registration, enable the Dashboard for a district
+                    so that you can impersonate users in that district when
+                    using the application. Select districts based on the data 
+                    in your data store:
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            Click 
+                            <guibutton>Admin</guibutton>.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Click 
+                            <guibutton>Register Application</guibutton>.
+                        </para>
+                    </step> 
+                    <step>
+                        <para>
+                            Click the 
+                            <guibutton>In Progress| Edit</guibutton> 
+                            button on the application that you just created.
+                        </para>
+                    </step> 
+                    <step>
+                        <para>
+                            Scroll to the bottom and check the district you 
+                            want to enable.
+                        </para>
+                    </step> 
+                    <step>
+                        <para>
+                            Click <guibutton>Save</guibutton>.
+                        </para>
+                    </step>    
+                </substeps>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-a790ef0b-c536-4113-991a-13195f474104">
+        <title>Sample Dashboard: Configuring</title>
+        <procedure>
+            <step>
+                <para>
+                    Encrypt the client ID and shared secret generated for 
+                    your application during registration. You should have 
+                    received these in an email following registration. Use
+                    these steps on each to perform that encryption:
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            Run the following command to generate a key store,
+                            replacing the variable values (shown in angle 
+                            brackets) as appropriate:
+                        </para>
+                        <programlisting><![CDATA[
+keytool -genseckey -alias <alias_name> -keypass <alias_password> -keystore <keystore_name>-keystore.jks -storepass <keystore_password> -storetype JCEKS -keysize 256 -keyalg AES
+                    ]]></programlisting>
+                    </step>
+                    <step>
+                        <para>
+                            Using <filename>EncryptionGenerator.jar</filename> 
+                            (included), run the following command. The output 
+                            of this command will be the encrypted string
+                            you'll need in upcoming steps:
+                        </para>
+                        <programlisting><![CDATA[
+java -jar EncyptionGenerator.jar <location_of_keyStore> <keystore_password> <key_alias> <key_password> <string_to_encrypt>
+                    ]]></programlisting>
+                    </step>
+                </substeps>
+            </step>
+            <step>
+                <para>
+                    Edit <filename>dashboard.properties</filename> 
+                    from the application files as follows:
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            Change the API server to:
+                            <filename>https://api.&HOSTEDSANDBOX;</filename>
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Change the security server to:
+                            <filename>https://api.&HOSTEDSANDBOX;</filename>
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Add the encrypted client ID and shared secret
+                            strings you generated in the previous step:
+                        </para>
+                        <programlisting><![CDATA[
+oauth.client.id = <encrypted client_id>
+oauth.client.secret = <encrypted client_secret>
+                        ]]></programlisting>
+                    </step>
+                    <step>
+                        <para>
+                            Change the redirect URL to the Dashboard's callback:
+                        </para>
+                        <programlisting><![CDATA[
+oauth.redirect = http://HOST_ADDRESS:PORT/dashboard/callback
+                         ]]></programlisting>
+                    </step>
+                    <step>
+                        <para>
+                            Update the key store properties:
+                        </para>
+                        <programlisting><![CDATA[
+sli.encryption.keyStore = <keystore_location>/<keystore_name>.jks
+dashboard.encryption.keyStorePass = <keystore_password>
+dashboard.encryption.dalKeyAlias = <alias_password>
+dashboard.encryption.dalKeyPass = <key_password>
+                        ]]></programlisting>
+                    </step>    
+                    <step>
+                        <para>
+                            Copy <filename>dashboard.properties</filename> 
+                            to <filename>$TOMCAT_HOME/conf</filename>.
+                        </para>    
+                    </step>
+                </substeps>
+            </step>
+        </procedure>
+        <para>
+            After configuring the Dashboard, you'll need to configure
+            and run Tomcat for the Dashboard:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Set the default port in Tomcat if needed. The default port
+                    for Tomcat is 8080. If you're running multiple web
+                    applications, you may need to change the port number. Use 
+                    the following steps to make that change:
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            Open 
+                            <filename>$TOMCAT_HOME/conf/server.xml</filename>.
+                        </para>
+                    </step>
+                    <step>
+                        <para> Change the port number on the connector element. For example: </para>
+                        <programlisting><![CDATA[
+        <Connector port="8080" protocol="HTTP/1.1"
+                   connectionTimeout="20000"
+                   redirectPort="8443" />
+ 
+        ==============BECOMES=============
+ 
+        <Connector port="8888" protocol="HTTP/1.1"
+                   connectionTimeout="20000"
+                   redirectPort="8443" />                                    
+                                ]]></programlisting>
+                    </step>
+                </substeps>
+            </step>
+            <step>
+                <para>
+                    Set the execution arguments.
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            Open 
+                            <filename>#TOMCAT_HOME/bin/catalina.sh</filename>.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Change <classname>JAVA_OPTS</classname> in 
+                            Tomcat to the following:
+                        </para>
+                        <programlisting><![CDATA[
+JAVA_OPTS=" -Xms1024m \
+             -Xmx1024m \
+             -XX:+CMSClassUnloadingEnabled \
+             -XX:+CMSPermGenSweepingEnabled \
+             -XX:PermSize=512m \
+             -XX:MaxPermSize=512m \
+             -Dsli.env=team  \
+             -Dsli.conf=/opt/tomcat/conf/dashboard.properties \
+             -Dnet.sf.ehcache.pool.sizeof.AgentSizeOf.bypass=true"                                    
+                        ]]></programlisting>
+                        <para>
+                            Please note that the 
+                            "-Dnet.sf.ehcache.pool.sizeof.AgentSizeOf.bypass=true" 
+                            section is only required for MAC OS X users. 
+                        </para>
+                        <para>
+                            The sli.conf should be set to 
+                            <filename>$TOMCAT_HOME/conf/dashboard.properties</filename>. 
+                        </para>
+                    </step>
+                </substeps>
+            </step>
+            <step>
+                <para>
+                    Copy the <filename>dashboard.war</filename> file to the
+                    <filename>$TOMCAT_HOME/webapps</filename> directory.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Run the following commands to change permissions on the
+                    Tomcat files:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <command>chmod 700 $TOMCAT_HOME/bin/catalina.sh</command>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <command>chmod 700 $TOMCAT_HOME/bin/startup.sh</command>
+                        </para>
+                    </listitem>
+                </itemizedlist>                
+            </step>
+            <step>
+                <para>
+                    Use the following command to start Tomcat:
+                </para>
+                <para>
+                    <command>./$TOMCAT_HOME/bin/startup.sh run</command>
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+</chapter>

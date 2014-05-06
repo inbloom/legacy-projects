@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+
+<section xml:id="c-ingestion-actions-delete"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Delete Actions</title>
+    
+    <para>
+        One of the actions you can take by adding the
+        <varname>Action</varname> element type
+        (described in <xref linkend='c-ingestion-action_element_type'/>)
+        is bulk deletion of the specified data.
+    </para>
+    <programlisting><![CDATA[<Action ActionType="DELETE">
+   <!-- Data to be deleted, described using the ingestion schema XML. -->
+</Action>]]></programlisting>
+    <para>
+        Data to be deleted can be specified in one of two ways:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The entire record, complete with all required fields,
+                expressed as an entity instance in the ingestion XML schema.
+                Though this option requires expressing the entire record, only 
+                the identifying information for the record is examined for the
+                delete action; the rest is ignored.
+                Example:
+            </para>
+            <programlisting><![CDATA[<Action ActionType="DELETE" Cascade="false" Force="true"> 
+   <!-- Whole entity case ->
+   <Student>
+      <StudentUniqueStateId>1</StudentUniqueStateId>
+      <StudentIdentificationCode IdentificationSystem="Local" AssigningOrganizationCode="School">
+         <IdentificationCode>abcde</IdentificationCode>
+      </StudentIdentificationCode>
+      <Name>
+         <FirstName>Jessie</FirstName>
+         <LastSurname>Mcgowan</LastSurname>
+      </Name>      
+      <!-- ... additional record data omitted for example... -->
+      <LoginId>2895@fakemail.com</LoginId>
+    </Student>
+</Action>]]></programlisting>
+        </listitem>
+        <listitem>
+            <para>
+                The entity reference type in the XML schema, typically
+                consisting of only the natural key fields.
+                Example:
+            </para>
+            <programlisting><![CDATA[<Action ActionType="DELETE" Cascade="false" Force="true"> 
+   <!-- Reference case -->
+   <StudentReference>
+      <StudentIdentity>
+         <StudentUniqueStateId>1234678</StudentUniqueStateId>
+      </StudentIdentity></StudentReference>
+</Action>]]></programlisting>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The rules that the ingestion system follows during a delete action
+        can be customized using additional attributes on the 
+        <varname>Action</varname> entity. Two common scenarios are described
+        in the sections that follow, and a list of the attributes and their 
+        default settings can be found in
+        <xref linkend="r-ingestion-action-delete-attributes"/>.
+    </para>
+    
+</section>

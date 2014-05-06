@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+   
+<chapter xml:id="doc-82271e02-dc46-4cf0-b371-b6bd229ab970"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Databases</title>
+    
+    <para>
+        The &PRODUCTABBR; platform requires two software applications to run 
+        the infrastructure's data stores: MongoDB and MySQL. The next two 
+        sections cover the procedure for deploying each of these applications
+        within &PRODUCTABBR;.
+    </para>
+    
+    <section xml:id="doc-65391812-90f6-40f9-a15d-09f439aa381e">
+        <title>MongoDB</title>
+        <para> An &PRODUCT; deployment consists of three MongoDB database schemas: a system database
+            schema, an ingestion batch job database schema, and a tenant database schema. An
+            operator must deploy the system and ingestion batch job database schemas, including
+            running MongoDB scripts that set up indexing. In addition, the operator must set up the
+            servers needed for the tenant database schema, which completes its setup automatically
+            when an education organization first ingests data for a tenancy. The tenant database
+            schema makes use of MongoDB sharding which is a mechanism to increase the scalability of
+            the MongoDB. The following sections define the database schemas. </para>
+        
+        <section xml:id="c-op-mongodb-system_db">
+            <title>System Database (sli)</title>
+            <para>
+                The system database for &PRODUCTABBR; is called 
+                <filename>sli</filename>. It requires setting up indexes
+                by running the MongoDB script
+                <filename>sli_indexes.js</filename> against the 
+                <filename>sli</filename> database. This script is provided by
+                &COMPANYABBR;.
+            </para>
+            <para>
+                For a list of the indexes created, view the text of the
+                <filename>sli_indexes.js</filename> script.
+            </para>
+        </section>
+        
+        <section xml:id="c-op-mongodb-ingestion_db">
+            <title>Ingestion Batch Job Database (ingestion_batch_job)</title>
+            <para>
+                The ingestion batch job database for &PRODUCTABBR; is called 
+                <filename>ingestion_batch_job</filename>. It requires setting 
+                up indexes by running the MongoDB script
+                <filename>ingestion_batch_job.js</filename> against the 
+                <filename>ingestion_batch_job</filename> database. This 
+                script is provided by &COMPANYABBR;.
+            </para>
+        </section>
+        
+        <section xml:id="c-op-mongodb-tenant_db">
+            <title>Tenant Database</title>
+            <para>
+                The &PRODUCTABBR; tenant database makes use of sharding as
+                described in MongoDB documentation (see 
+                <link xlink:href="http://docs.mongodb.org/manual/sharding/">http://docs.mongodb.org/manual/sharding/</link>).
+                The &PRODUCTABBR; data store is a sharded cluster with at least
+                12 required servers:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Minimum of 3 shard servers
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Replica set of 3 members for each shard
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        3 separate configuration servers
+                    </para>
+                </listitem>
+            </itemizedlist>
+            
+            
+            <para>
+                While an operator is responsible for setting up these servers,
+                the indexing and sharing are handled automatically. 
+                A sharding script defines how MongoDB will distribute the 
+                data across the shards in the cluster. An indexing script 
+                ensures that MongoDB is able to quickly find particular data 
+                documents, regardless of which shard they might physically 
+                reside within. 
+            </para>
+            <para>
+                The first time an education organization ingests data for its
+                database tenancy, the tenant database is pre-split. This allows 
+                &PRODUCTABBR; to dynamically support multiple tenants and 
+                evenly distribute data for a given tenant across all available 
+                shards. This process also disables the MongoDB balancer, which
+                should remain in a disabled state.
+            </para>
+            <para>
+                Part of a properly sharded environment includes pre-splitting 
+                that is based on the number of available shards in the cluster. 
+                Indexes must be created when creating shard keys. Like the
+                sharding, this indexing happens automatically when an
+                education organization first ingests data for a tenancy.
+            </para>
+            <para>
+                The current collections used for sharding are below sharding on
+                <code>_id</code>.
+            </para>
+        </section>
+        
+        <section xml:id="doc-029fea2e-8c16-4a52-beb1-dc6f27e29784">
+            <title>MongoDB Settings</title>
+            <caution>
+                <title>Important!</title>
+                <para>This process also disables the MongoDB balancer, which should remain in
+                    a disabled state.
+                    </para>
+            </caution>
+            
+           
+            <para>The MongoDB journal competes with database flush processes for disk operations.
+                Storing the journal on a separate disk is recommended to reduce disk contention.
+                There is currently no option to specify the location of the journal, so use a
+                symbolic link from the journal directory in MongoDB's <code>dbpath</code> to a
+                separate disk. </para>
+        </section>
+       
+        
+    </section>
+    
+    <section xml:id="doc-c004f673-6a72-404e-8932-6c46e56f5021">
+        <title>MySQL</title>
+        <para>
+            The &PRODUCTABBR; Portal is a Liferay-based application which 
+            uses MySQL as a backend database. The data stored in the 
+            database should be considered metadata about the state of 
+            Portal application users. As such, the actual size of the 
+            MySQL database for Portal is not likely to grow to any 
+            significant size. 
+        </para>
+        <para>
+            The Portal was tested on MySQL 5.1.61 with a master/slave 
+            replication cluster, with all connections using SSL encryption.
+            The Liferay application is fairly flexible in regards to its 
+            database configuration.  Details for configuring Liferay can 
+            be found at 
+            <link xlink:show="embed" xlink:href="http://www.liferay.com/community/wiki/-/wiki/Main/Database+Configuration">http://www.liferay.com/community/wiki/-/wiki/Main/Database+Configuration</link>.
+        </para>
+        <para>
+            MySQL can be installed on a RedHat Enterprise Linux server
+            instance using the following commands:
+        </para>
+        <programlisting><![CDATA[
+> yum install mysql mysql-server
+> chkconfig mysqld on
+> service mysqld start
+> mysql_secure_installation]]></programlisting>
+        <para>
+            Information on configuring SSL encryption for MySQL can be found at 
+            <link xlink:show="embed" xlink:href="http://dev.mysql.com/doc/refman/5.1/en/secure-connections.html">http://dev.mysql.com/doc/refman/5.1/en/secure-connections.html</link>.
+        </para>
+    </section>
+    
+   
+</chapter>

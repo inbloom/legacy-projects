@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Ingestion: Managing Landing Zones</title>
+    
+    <para>
+        The landing zone is a secure FTP server location where you can upload
+        files to be ingested to the &PRODUCTABBR; Data Store.
+        To create and manage landing zones, you'll need an &PRODUCTABBR;
+        administrator account with the
+        <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>
+        role. 
+        <!-- I don't think this is true. I think you need a super admin account,
+        not ingestion. According to SH. -->
+    </para>
+    <note>
+        <para>
+            Before you can ingest data, you will need 
+            to generate secure shell (SSH) keys to authenticate to your landing
+            zone. It will be helpful to have these keys generated before you 
+            create your landing zone.
+        </para>
+    </note>
+    <para>
+        To create landing zones, use the
+        <citetitle>Create Landing Zone</citetitle> system tool.
+        To access this system tool:
+    </para>
+    <procedure>
+        <step>
+            <para>
+                Sign in to &PRODUCTABBR;. Make 
+                sure to select the realm for the education organization 
+                that you are targeting for data ingestion. The 
+                <glossterm linkend="def-state_education_agency">state education agency (SEA)</glossterm>
+                associated with that realm must match the SEA for the data you
+                intend to ingest.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Admin</guibutton> to access the administration page.</phrase>
+            </para>
+        </step>
+        <step>
+            <para>
+                Click 
+                <guibutton>Create Landing Zone</guibutton>.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click 
+                <guibutton>Add Public Key to SFTP</guibutton>. 
+                Add your SSH key.</phrase>
+            </para>
+        </step>
+        <step>
+            <para>
+                Click 
+                <guibutton>Create</guibutton>.
+            </para>
+        </step>
+    </procedure>
+    <para>
+        After you click <guibutton>Create</guibutton>, 
+        you'll receive an email with further instructions for ingesting data 
+        using your new landing zone.
+    </para>
+    
+</chapter>

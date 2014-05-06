@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="t-how_to_upload_dashboard_customizations"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Upload Dashboard Customizations</title>
+    
+    <para>
+        The JSON used to express customizations for the
+        &COMPANYABBR; Dashboard is uploaded using the
+        dashboard's administration interface. You can test
+        these customizations using a sandbox environment
+        before deploying them into production
+    </para>
+    <para>
+        The following are the steps for uploading a sample
+        dashboard customization to a sandbox environment.
+        When the customization is ready for production,
+        translate these steps into your production environment:
+    </para>
+    <procedure>
+        <step>
+            <para>
+                Sign in to your developer portal, and then sign in to 
+                test applications in the sandbox portal using sample 
+                user James Stevenson from the Small Sample Dataset. 
+                This user has the IT Administrator role needed to 
+                upload custom configuration to the dashboard.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Admin</guibutton> in the upper right 
+                of the portal to open the administrator tools.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>inBloom Dashboards</guibutton> under 
+                <guilabel>Application Configuration</guilabel>. Note 
+                the URL if you want to access this page directly in 
+                the future; in the hosted sandbox environment, the 
+                URL is 
+                <link xlink:href="https://dashboard.sandbox.inbloom.org/service/config">https://dashboard.sandbox.inbloom.org/service/config</link>.
+            </para>
+        </step>
+        <step>
+            <para>
+                Sample JSON is shown in
+                <xref linkend="r-dashboard-customization-sample_for_tutorial"/>. 
+                Copy that JSON into the text area on the dashboard 
+                configuration page. For your convenience, the sample 
+                is provided as a JSON file which may accompany this
+                document.
+            </para>
+            <para>
+                <xref linkend="figure-dashboard-upload_json_config"/> 
+                shows the dashboard configuration page with some example JSON.
+            </para>
+            <figure xml:id="figure-dashboard-upload_json_config">
+                <title>Dashboard Configuration Page</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" 
+                            fileref="&IMAGEDIRHTML;/dashboard-upload_json_config.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG" 
+                            fileref="&IMAGEDIRPDF;/dashboard-upload_json_config.png" scalefit="1" width="6in"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Save Config</guibutton>. 
+            </para>
+        </step>
+        <step>
+            <para>
+                When the message appears confirming that the JSON was 
+                uploaded, click <guibutton>OK</guibutton>.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click the logo in the upper left to return to the portal,
+                and click <guibutton>inBloom Dashboards</guibutton> to 
+                open the application and view the customizations.
+            </para>
+        </step>
+    </procedure>
+    
+</section>

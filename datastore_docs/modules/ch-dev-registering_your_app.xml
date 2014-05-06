@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Registering Your Application in Production</title>  
+    
+    <para>Each application, whether in a Sandbox or in Production, must have credentials to
+        authenticate with &PRODUCTABBR; in order to use &PRODUCTABBR; resources. These credentials
+        include a client ID and shared secret, which are passed when making authorization calls from
+        your application to &PRODUCTABBR;. This applies to all applications that call the &RESTAPI;,
+        including both web applications and standalone applications (such as mobile apps). </para>
+    <para> &PRODUCTABBR; creates these credentials (client ID and shared secret) for your
+        application as part of the application registration process. As an application developer,
+        you initiate the application registration process. </para>
+    <para>In the Sandbox, your registration is automatically approved, and your credentials are
+        available immediately. The application registration process for Sandbox is covered in <xref
+            linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"/>. </para>
+    <para>In Production, you'll have to wait for approval from an &OPERATORROLE;. </para>
+    
+    <section xml:id="doc-1df6c344-155f-470d-92e5-61a622f561fe">
+        <title>Registering New Applications for &PRODUCTABBR;</title>
+        <para>
+            The Register Application system tool provides an interface for
+            registering applications for use by education organizations in 
+            your &PRODUCTABBR; deployment. As an administrator, you'll use
+            this tool to request registration for a web or mobile application
+            that isn't already available in your &PRODUCTABBR;.
+        </para>
+        <para> Use the following steps to register a new application in the Sandbox: </para>
+        <procedure>
+            <step>
+                <para>
+                    If your application is a web application, start by 
+                    deploying the application on a web server and establishing
+                    its persistent URL for users to access. You'll need this 
+                    URL for your application registration form.
+                </para>
+            </step>
+            <step>
+                <para> Using your preferred Web browser, navigate to your Production URL. </para>
+            </step>
+            <step>
+                <para>Select the &PRODUCTABBR; App Developers realm. </para>
+            </step>
+            <step>
+                <para>
+                    Log in using the credentials for your application developer account.</para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Admin</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para> Click <guibutton>Register Application</guibutton> located under <guilabel>System
+                    Tools</guilabel>. </para>
+            </step>
+            <step><para>Click the <guibutton>New Application</guibutton> button.</para></step>
+            <step>
+                <para>
+                    Complete the application registration form
+                    and click <guibutton>Register</guibutton>.
+                </para>
+                <para>If you are developing a mobile application:</para>
+                <substeps>
+                    <step><para>Check the <guibutton>Installed</guibutton> check box. This indicates your application should
+                            not be treated like a web application.</para></step>
+                    <step><para>Do not provide values for any of these fields:</para><itemizedlist>
+                        <listitem>
+                            <para><guilabel>Url</guilabel></para>
+                        </listitem>
+                        <listitem>
+                            <para><guilabel>Redirect Url</guilabel></para>
+                        </listitem>
+                        <listitem><para><guilabel>Admin Url</guilabel></para></listitem>
+                        <listitem><para><guilabel>Image Url</guilabel></para></listitem>
+                    </itemizedlist>
+                        </step>
+                    <step><para>Check the <guibutton>Bulk Extract</guibutton> check box. This checkbox must be selected for an
+                            application to perform bulk extract. <!-- After selecting this checkbox a new
+                            field appears where the public key used to encrypt the bulk extract data
+                            can be entered. --></para></step>
+                </substeps>
+            </step>
+            <step>
+                <para> Look for an email from an &OPERATORROLE; confirming that the application
+                    registration request was approved. Save this email so that you don't lose its
+                    important information. This step may take several hours to a couple of days
+                    depending on your &OPERATORROLE;s' protocol. Contact an &OPERATORROLE; for that
+                    &PRODUCTABBR; deployment to track your request. </para>
+            </step>
+            <step>
+                <para>
+                    Return to the register application system tool and
+                    click the <guibutton>Edit</guibutton>. There, look for the 
+                    client ID and shared secret values at the top of the page. 
+                    Copy these values and update the configuration values in
+                    your application to use them when authenticating with
+                    &PRODUCTABBR; (making OAuth authorization calls).
+                </para>            
+            </step>
+            <step>
+                <para> Enable the new application for one or more of the education organizations
+                    shown. This allows organizations using &PRODUCTABBR; to use your application for
+                    their interactions with the &PRODUCTABBR; Secure Data Service. </para>
+            </step>
+        </procedure>
+    </section>
+
+</chapter>
+
+        

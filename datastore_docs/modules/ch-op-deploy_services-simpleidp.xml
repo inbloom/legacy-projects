@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+
+<chapter xml:id="doc-e0234334-2b25-4fb8-8eff-64b783f03f7a"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <title>Deploy Services: SimpleIDP</title>
+    
+    <para> The sections that follow cover preparing for, installing, and configuring the
+        administration tool as part of the services in &PRODUCTABBR;. </para>
+    
+    <section xml:id="doc-db016aba-b47a-4ea8-9b91-e118e85982b2">
+        <title>SimpleIDP: What You Need to Know Before Deployment</title>
+        <para>
+            In &PRODUCTABBR;, SimpleIDP is an identity provider that speaks 
+            the Security Assertion Markup Language (SAML). Among the tasks
+            handled by SimpleIDP are LDAP authentication for end-user 
+            applications and landing zone authentication. The following
+            are some things you should know about SimpleIDP before deployment:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>SimpleIDP provides Web authentication for
+                        &PRODUCTABBR; operators and other administrators when they sign in to
+                        &PRODUCTABBR; Portal and use &PRODUCTABBR; administrative
+                        applications.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    All back-end authentication and authorization membership 
+                    storage for SimpleIDP must be supplied by an LDAP 
+                    directory. We recommend filling this requirement using 
+                    OpenLDAP, as covered in 
+                    <xref linkend="doc-f4f8305d-43e2-4641-956e-ab66be20557b"/>.
+                    
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    For SimpleIDP, the LDAP directory must also manage the user 
+                    failed password lockout process as the directory is being 
+                    viewed as a centralized authentication source. Failed 
+                    password lockout for OpenLDAP can be achieved via the 
+                    deployment of the "ppolicy" overlay. More details about
+                    "ppolicy" can be found at
+                    <link xlink:show="new" xlink:href="http://www.openldap.org">linux.die.net/man/5/slapo-ppolicy</link>.
+                    
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    SimpleIDP keeps user session state information in memory 
+                    within Tomcat's session handling.
+                    For an active/active, multi-server redundant deployment, 
+                    Tomcat clustering would be required, otherwise 
+                    active/passive failover is recommended.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-250909e3-cb55-4a27-951b-fcda3261d56f">
+        <title>SimpleIDP: Installation</title>
+        <para>
+            Installation requirements for SimpleIDP:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    An Apache Tomcat server (see 
+                    <xref linkend="doc-ccb2e87b-47ee-4f3e-a45e-64c787ccd2fd"/>)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    An operating MongoDB deployment (see 
+                    <xref linkend="doc-65391812-90f6-40f9-a15d-09f439aa381e"/>)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    An operating OpenLDAP deployment (see 
+                    <xref linkend="doc-f4f8305d-43e2-4641-956e-ab66be20557b"/>)
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para> Use the following procedure to install the SimpleIDP service for &PRODUCTABBR;: </para>
+        <procedure>
+            <step>
+                <para>
+                    Ensure that you have an <filename>sli.properties</filename>
+                    file in the location matching the location defined as 
+                    <filename>sli.conf</filename> within your Tomcat 
+                    installation.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Copy the <filename>simple-idp.war</filename> file that is 
+                    provided into the Tomcat <filename>webapps</filename> 
+                    folder.
+                </para>
+                <note><para>All &PRODUCTABBR; java web applications should be deployed to the context specified by the .war filename. They should not be deployed to the root context in Tomcat.</para></note>
+            </step>
+            <step>
+                <para>
+                    The SimpleIDP service should auto-deploy and be available 
+                    within a few minutes.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-92fecf15-7376-4929-9b7b-a48925f476e1">
+        <title>SimpleIDP: Configuration</title>
+        <para>
+            The SimpleIDP is configured using the common 
+            <filename>sli.properties</filename> file. The following table 
+            documents the configuration properties that are used.
+        </para>
+        <table xml:id="table-0b1538ba-2946-4408-9605-4fee4981d28d">
+            <title>SimpleIDP Configuration Properties</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>Property</entry>
+                        <entry>Description &amp; Example</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry morerows="1">
+                            <para>sli.simple-idp.issuer-base</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Corresponds to the idp.id in the API. This is 
+                                the identifier of the SimpleIDP (as a SAML 
+                                identity provider) that the API (as a SAML 
+                                service provider) needs to trust.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Example:  
+                                <code>https://idp-server.example.com/simple-idp</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.cot </para>
+                        </entry>
+                        <entry>
+                            <para> SAML Circle of Trust, which defines which Service Providers this
+                                SimpleIDP will trust. The value is a comma separated list of
+                                key=value pairs where the key is the Issuer and value is the
+                                redirect endpoint URI. If this simple
+                                    idp instance is running in Sandbox mode, it needs to add
+                                    Production API service to its Circle of Trust.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:
+                                <code>https://api.example.com=http://api.example.com/api/rest/saml/sso/post</code></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.userSearchAttribute</para>
+                        </entry>
+                        <entry>
+                            <para>  LDAP attribute used to uniquely search for and
+                                authenticate users.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  uid </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.userObjectClass </para>
+                        </entry>
+                        <entry>
+                            <para> LDAP class used to uniquely search for and authenticate
+                                users.  </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  inetOrgPerson</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.groupSearchAttribute </para>
+                        </entry>
+                        <entry>
+                            <para> LDAP attribute used to uniquely search for a user's group
+                                membership. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  memberUid </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.groupObjectClass </para>
+                        </entry>
+                        <entry>
+                            <para> LDAP class used to uniquely search for a user's group
+                                membership </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  posixGroup </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.sandboxImpersonationEnabled </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Used when switching to Sandbox mode as
+                                    described in <xref linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f"/>. 
+                                    Should always be false in Production mode.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  false </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry><para>sli.simple-idp.sandbox.users</para></entry>
+                        <entry><para>SmallDatasetUsers,Small Sample Dataset,MediumDatasetUsers,Medium Sample Dataset</para></entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.ldap.urls </para>
+                        </entry>
+                        <entry>
+                            <para> A list of LDAP URLs for the available LDAP servers that
+                                can be used to authenticate against. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:
+                                <code>ldaps://ldap01.example.com:636,ldaps://ldap02.example.com:636</code> </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.simple-idp.ldap.base </para>
+                        </entry>
+                        <entry>
+                            <para> Base DN for the LDAP server which defines where the
+                                SimpleIDP will be looking for the various structures that
+                                it requires. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  <code>dc=domain,dc=tld</code> </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> log.path </para>
+                        </entry>
+                        <entry>
+                            <para> Location log files are written </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  <code>/var/log/tomcat</code> </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.mongodb.host </para>
+                        </entry>
+                        <entry>
+                            <para>Server hosting the mongo db instance and port used to connect to
+                                the host used to persist security events  </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example: localhost:27017 </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.mongodb.database </para>
+                        </entry>
+                        <entry>
+                            <para> Database where security events are persisted. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  sli </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para>sli.mongodb.keyencoding </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Tells &PRODUCTABBR;'s mongo db layer to
+                                    replace the given patterns found in keys with the replace
+                                    string. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Example:  sli.mongodb.keyencoding: \%:\%25,\\.:\%2E </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.api.ldap.user </para>
+                        </entry>
+                        <entry>
+                            <para> User account in the LDAP directory that has sufficient 
+                                privileges to create and modify accounts. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example:  cn=Admin_User,dc=domain,dc=tld </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.api.ldap.pass </para>
+                        </entry>
+                        <entry>
+                            <para> Password for the LDAP user above that has permission 
+                                to create and modify LDAP users. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example: 76F2FD74E0CEF4808FFD476EC604CFB4  </para>
+                            <para> See <xref linkend="doc-f7e2ecba-359a-44e5-9f6d-31154626032c"/>  for details.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> sli.encryption.ldapKeyAlias</para>
+                        </entry>
+                        <entry>
+                            <para> The alias used in the keystore to retrieve the key used for
+                                encyption and decryption </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example: This value should match what was configured in the keystore. </para>
+                            <para> See <xref linkend="doc-f7e2ecba-359a-44e5-9f6d-31154626032c"/>  for details.</para>    
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para>sli.encryption.ldapKeyPass</para>
+                        </entry>
+                        <entry>
+                            <para>The corresponding password of the alias.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Example: This value should match what was configured in the keystore.</para>
+                            <para> See <xref linkend="doc-f7e2ecba-359a-44e5-9f6d-31154626032c"/>  for details.</para>    
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <note>
+            <para>The SimpleIDP can service multiple LDAP structures at the same
+                level of ou=SLIAdmin, and provide authentication for additional unique organization
+                units should the need arise for testing.  This mode of use is not intended for
+                production use. The IDP URL to leverage this is
+                    <code><![CDATA[ https://<IDP FQDN>/simple-idp?realm=<unique LDAP organizational unit common name>]]></code>,
+                i.e., <code><![CDATA[ https://<IDP FQDN>/simple-idp?realm=SLIAdmin]]></code>.  For
+                information referencing the creation of Realms, please see the Administration Guide
+                section on "Creating and Managing Realms".</para>
+        </note>
+        <section xml:id="doc-5eb5b535-0003-421d-b8a4-758b018a93e3">
+            <title>LDAP Structure for &PRODUCTABBR; Users</title>
+            <para>
+                &PRODUCTABBR; handles two types of &PRODUCTABBR; users:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Users whose accounts are created and controlled in 
+                        &PRODUCTABBR; only. These accounts are administrative 
+                        in nature and are not associated with the identity 
+                        providers of any education organizations.
+                    </para>
+                    <para>
+                        Authentication for these accounts is handled by 
+                        SimpleIDP in &PRODUCTABBR;.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para> Users whose accounts exist outside of
+                            &PRODUCTABBR;, primarily in the directory services of education
+                            organizations, and have roles and permissions associated with data that
+                            has been ingested by the &PRODUCTABBR; Data Store. These accounts are
+                            end-users who use applications and manage data in &PRODUCTABBR;, but who
+                            do not have administrative access to &PRODUCTABBR; itself.
+                    </para>
+                    <para>
+                        Authentication for these accounts is handled by an
+                        identity provider from an education organization. That
+                        identity provider sends an SAML assertion, signed by
+                        a trusted certificate authority, back to the 
+                        application the user's signing in to. That assertion
+                        has the user ID and role information that the 
+                        &PRODUCTABBR; API needs to calculate access to 
+                        &PRODUCTABBR; data and services.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                SimpleIDP covers the first of these two types of users: the 
+                administrative users created and managed in &PRODUCTABBR; 
+                only. The remainder of this section focuses on those users
+                in the LDAP structure.
+            </para>
+            <para>
+                Users and groups for the &PRODUCTABBR; Admin Data Store are stored in LDAP under 
+                the Organizational Unit, henceforth known as <code>ou</code>, of SLIAdmin. Under the 
+                <code>ou=SLIAdmin</code> should be two more nodes, <code>ou=people</code> 
+                and <code>ou=groups</code>.
+            </para>
+            <para> The following groups must be defined. These correspond to roles in the
+                &PRODUCTABBR; API and are used to map users to the permissions which are granted for
+                user login access. </para>
+            <table xml:id="table-bb157d65-1b72-4e02-b6b7-cb234422ab34">
+                <title>LDAP Structure: Groups</title>
+                <tgroup cols="1">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <thead>
+                        <row>
+                            <entry>Group Name</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para> &OPERATORROLE; </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    SEA Administrator
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    LEA Administrator
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    Realm Administrator
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    ingestion_user
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    application_developer
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+            <para>
+                <note>
+                    <para>The application_developer LDAP group is Sandbox only and should not exist
+                        in Production. </para>
+                </note>Before a user can be serviced by the SimpleIDP, it must be properly
+                configured in LDAP with membership in the appropriate group. Users that will be
+                ingesting data must have the <code>posixAccount</code> objectclass, so that a
+                homeDirectory attribute can be created for the user in LDAP. The general strategy
+                should be to create all users with the following objectclasses:
+                    <code>inetOrgPerson</code>, <code>organziationPerson</code>,
+                <code>person</code>, <code>posixAccount</code>, and <code>top</code>. </para>
+            <para> The fields that the SimpleIDP is interested in for &PRODUCTABBR; admin users are
+                defined in the following table. </para>
+            <table xml:id="table-40d97e3b-0c09-4621-9954-fe05eebdb247">
+                <title>LDAP Structure: Attributes for &PRODUCTABBR; Admin Users</title>
+                <tgroup cols="2">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <colspec colname="firstCol" colwidth="4*"/>
+                    <thead>
+                        <row>
+                            <entry>Attribute</entry>
+                            <entry>Description</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    uid
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Used for username/password authentication. Could be an email 
+                                    address or username, but will be enforced as unique.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    cn
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Returned to the API as the users full name.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    userPassword
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Stores the users password.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    description*
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Stores additional information about the user (see below).
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    mail
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    User's email address 
+                                    (even if it is stored as the uid we also need it here).
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+            <para>
+                The description field holds additional info in the form of key=value 
+                pairs separated by commas. Two attributes are currently defined:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">tenant</emphasis> - The
+                            tenant in which this user belongs; &OPERATORROLE;s and application
+                            developers will have no tenant in Production.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">edOrg</emphasis> - The
+                            education organization this user is associated with (where they can
+                            perform administrative tasks); &OPERATORROLE;s and application
+                            developers will have no edOrg in Production.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <note>
+                <title>Sandbox Tip</title>
+                <para>
+                    While application developers do not have a <guilabel>tenant</guilabel>
+                        or <guilabel>edOrg</guilabel> in Production, they do have them when
+                        working in <link linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f">Sandbox mode</link>.
+                </para>
+            </note>
+            <para>
+                An example of the description field:
+            </para>
+            <programlisting><![CDATA[
+tenant=S1,edOrg=S1-DISTRICTONE
+					]]></programlisting>
+        </section>
+        
+    </section>
+    
+    <section xml:id="doc-c0922f99-b461-497c-a3fb-6e8f58b67a31">
+        <title>SimpleIDP: Troubleshooting During Deployment</title>
+        <para>
+            If you have issues during SimpleIDP deployment, check the following
+            troubleshooting points:
+        </para>
+        <orderedlist>
+            <listitem>
+                <para>
+                    Ensure that the .war file is readable by the Tomcat user, and that 
+                    the Tomcat user is able to extract the .war file, creating a folder matching 
+                    the first part of the name of the war file.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Review the Tomcat catalina.out file to determine if the SimpleIDP 
+                    application is failing to start.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If the SimpleIDP is successfully starting, but fails to recognize users 
+                    by prompting them with appropriate login window when the users are 
+                    re-directed to it, then a misconfiguration of the Circle of Trust variable 
+                    is likely.  Review your configuration, and ensure that your API name matches 
+                    the name that is configured within the circle of trust.
+                </para>
+            </listitem>
+        </orderedlist>
+    </section>
+
+</chapter>
+    
+
+        

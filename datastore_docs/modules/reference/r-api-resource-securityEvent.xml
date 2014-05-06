@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-securityEvent" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>securityEvent</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/securityEvent</filename>
+        This API call can contain two GET parameters, offset and limit for pagination.
+    </para>
+    <para>
+        Access a list of all the security events that the current user 
+        has permission to view.
+    </para>
+    <para>
+    	This is a JSON document that is returned with all of the events. The following fields
+    	are potentially in the JSON:
+    	<itemizedlist>
+    	<listitem><para>id: Unique Identifier for this entity.</para></listitem>
+		<listitem><para>entityType: The type of entity being called upon from the MongoDB.</para></listitem>
+		<listitem><para>tenantId: This is the tenant associated with the security event</para></listitem>
+		<listitem><para>user: This is the user that initiated the event</para></listitem>
+		<listitem><para>roles: These are the roles that the user has</para></listitem>
+		<listitem><para>targetEdOrgList: This is a list of the EdOrgs associated with the event</para></listitem>
+		<listitem><para>userEdOrg: This is the EdOrg associated with the user (still applicable?)</para></listitem>
+		<listitem><para>actionUri: This is the URI where the event was triggered</para></listitem>
+		<listitem><para>appId: This is the name of the application that triggered the event</para></listitem>
+		<listitem><para>executedOn: This is the hostname of the computer which triggered the event</para></listitem>
+		<listitem><para>origin: This is the IP of the user that triggered the event</para></listitem>
+		<listitem><para>credential: This is the access token the user had when the event triggered</para></listitem>
+		<listitem><para>userOrigin: This is the IP of the user that triggered the event</para></listitem>
+		<listitem><para>timeStamp: This is the time of the event</para></listitem>
+		<listitem><para>processNameOrId: This is the process number and hostname of the computer</para></listitem>
+		<listitem><para>className: This is the Java class that triggered the event</para></listitem>
+		<listitem><para>logLevel: This is the type of log item it was</para></listitem>
+		<listitem><para>logMessage: This is the message associated with the event</para></listitem>
+		</itemizedlist>
+    </para>
+    <para>The types of security events that can be stored are in the Security Events
+    table located in the <link linkend="doc-developer-security-events"> Security Events</link>
+    section of the document.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-securityEvent-get_example">
+        <title>Example GET Response: securityEvent</title>
+        <para>
+            Response:
+        </para>
+<programlisting><![CDATA[
+[
+    {
+        "executedOn": "inBloomServer23",
+        "tenantId": "Midgar",
+        "userEdOrg": "IL-DAYBREAK",
+        "appId": "ke9Dgpo3uI",
+        "timeStamp": "2013-12-02T17:10:21.647-05:00",
+        "processNameOrId": "22225@inBloomServer23",
+        "links": [
+            {
+                "rel": "self",
+                "href": "http://local.slidev.org:8080/api/rest/securityEvent/2013kk-893b93a5-5b9e-11e3-ba93-0024d7f53d68"
+            },
+            {
+                "rel": "custom",
+                "href": "http://local.slidev.org:8080/api/rest/securityEvent/2013kk-893b93a5-5b9e-11e3-ba93-0024d7f53d68/custom"
+            }
+        ],
+        "entityType": "securityEvent",
+        "credential": "4cf7a5d4-37a1-ca19-8b13-b5f95131ac85",
+        "targetEdOrgList": [
+            "IL-DAYBREAK"
+        ],
+        "id": "2013kk-893b93a5-5b9e-11e3-ba93-0024d7f53d68",
+        "actionUri": "http://local.slidev.org:8080/api/rest/securityEvent?limit=0",
+        "logLevel": "TYPE_INFO",
+        "className": "org.slc.sli.api.security.RightCheckFilterFactory$RightCheckResourceFilter",
+        "user": "linda.kim, Linda Kim",
+        "logMessage": "Access Denied:Failed to access URL because of insufficient rights."
+    },
+    {
+        "executedOn": "inBloomServer23",
+        "tenantId": "Midgar",
+        "appId": "API",
+        "timeStamp": "2012-05-24T10:01:43.663-04:00",
+        "processNameOrId": "3104@inBloomServer23",
+        "links": [
+            {
+                "rel": "self",
+                "href": "http://local.slidev.org:8080/api/rest/securityEvent/268406bf-83b5-4d43-9b56-c428e09areak"
+            },
+            {
+                "rel": "custom",
+                "href": "http://local.slidev.org:8080/api/rest/securityEvent/268406bf-83b5-4d43-9b56-c428e09areak/custom"
+            }
+        ],
+        "entityType": "securityEvent",
+        "targetEdOrgList": [
+            "IL-DAYBREAK"
+        ],
+        "id": "268406bf-83b5-4d43-9b56-c428e09areak",
+        "actionUri": "http://local.slidev.org:8082/api/login",
+        "userOrigin": "127.0.0.1",
+        "logLevel": "TYPE_ERROR",
+        "roles": [
+            "LEA Administrator",
+            "Realm Administrator",
+            "Ingestion User"
+        ],
+        "className": "org.slc.sli.sandbox.idp.controller.Login",
+        "user": "daybreakadmin",
+        "logMessage": "Failed login to IL-DAYBREAK by daybreakadmin."
+    }
+]
+]]>
+</programlisting>
+    </section>
+    
+</section>

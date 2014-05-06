@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-customRoles-id" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>customRoles/{id}</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/customRoles/{id}</filename>
+    </para>
+    <para>
+        Access information about a specific custom role using its unique 
+        identifier.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            PUT
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Updates the specified resource using the given 
+                            resource data. Available to developers to update 
+                            fields in their application registration and to 
+                            operators to change the registration status.
+                        </para>
+                        <para>
+                            Request:
+                            The request body for PUT must include the data 
+                            for the standard fields of the entire resource, 
+                            not just the fields you are updating. To form the 
+                            PUT request body, we recommend that you start 
+                            with a GET response body for the resource 
+                            you are updating, remove the metadata and links, 
+                            and edit the values for each field you want to 
+                            update. Note that trying to update a resource 
+                            that does not exist results in the 
+                            <varname>404 Not Found</varname> response code.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>204 No Content</varname> - 
+                            The response body is empty.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            DELETE
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Deletes the specified resource. 
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for DELETE. For 
+                            information on forming the DELETE request URI, see
+                            <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. 
+                            Note that trying to delete a resource that does 
+                            not exist results in the 
+                            <varname>404 Not Found</varname> response code.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>204 No Content</varname> - 
+                            The response body is empty.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-customRoles-id-get_example">
+        <title>Example GET Response: customRoles/{id}</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[{
+   "id": "4f6718f4-18bc-4a35-83d5-1817e6d72961",
+   "roles": [{
+       "groupTitle": "Educator",
+       "isAdminRole": false,
+       "names": ["Educator"],
+       "rights": ["READ_GENERAL", "WRITE_GENERAL", "AGGREGATE_READ", "READ_PUBLIC", "TEACHER_CONTEXT"]
+   }, {
+       "groupTitle": "IT Administrator",
+       "isAdminRole": true,
+       "names": ["IT Administrator"],
+       "rights": ["WRITE_RESTRICTED", "READ_GENERAL", "AGGREGATE_READ", "READ_PUBLIC", "READ_RESTRICTED", "WRITE_GENERAL", "WRITE_PUBLIC", "SECURITY_EVENT_VIEW", "APP_AUTHORIZE", "STAFF_CONTEXT"]
+   }, {
+       "groupTitle": "Leader",
+       "isAdminRole": false,
+       "names": ["Leader"],
+       "rights": ["READ_GENERAL", "AGGREGATE_READ", "READ_PUBLIC", "READ_RESTRICTED", "WRITE_GENERAL", "STAFF_CONTEXT"]
+   }, {
+       "groupTitle": "Aggregate Viewer",
+       "isAdminRole": false,
+       "names": ["Aggregate Viewer"],
+       "rights": ["AGGREGATE_READ", "READ_PUBLIC", "STAFF_CONTEXT"]
+   }],
+   "customRights": [],
+   "entityType": "customRole",
+   "metaData": {
+       "tenantId": "Midgar"
+   },
+   "realmId": "e5c12cb0-1bad-4606-a936-097b30bd47fe"
+}]]></programlisting>
+    </section>
+    
+</section>

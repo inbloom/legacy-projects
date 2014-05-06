@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+
+<book xml:id="docs-ingestion"
+    xmlns="http://docbook.org/ns/docbook"
+    xml:base="."
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>&INGESTIONPUBTITLE;</title>
+        <orgname>&COMPANY;</orgname>
+        <releaseinfo>&CURRENTRELEASEREVISION;</releaseinfo>
+        <!-- Legal notice added to title page during transformation to PDF. -->
+        <xi:include href="doc-ingestion-revhistory.xml"/>
+    </info>
+    
+    <chapter xml:id="ch-ingestion-overview">
+        <title>&PRODUCTABBR; Overview for Ingestion Users</title>
+        <para>
+            As an ingestion user, you should have a basic understanding of
+            the components and processes that make up &PRODUCTABBR;. The 
+            sections that follow provide an overview of &PRODUCT;.
+        </para>
+        <xi:include href="../modules/concepts/c-product_architecture.xml"/>
+        <xi:include href="../modules/concepts/c-core_entity_model.xml"/>
+    </chapter>
+    
+    <chapter xml:id="ch-ingestion-how_it_works">
+        <title>How Ingestion Works</title>
+        <para>
+            The sections that follow describe how data ingestion works in 
+            &PRODUCT;, including how &PRODUCTABBR; ingests, stores, and 
+            handles data.
+        </para>
+        <xi:include href="../modules/concepts/c-how_new_tenancies_get_started.xml"/>
+        <xi:include href="../modules/concepts/c-landing_zones.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_sequence.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_validation.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_job_and_its_resources.xml"/>
+        <xi:include href="../modules/concepts/c-how_ingestion_processes_data.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_schemas.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_security.xml"/>
+    </chapter>
+    
+    <chapter xml:id="ch-ingestion-how_to_prepare_and_ingest_data">
+        <title>How to Prepare and Ingest Data</title>
+        <para>
+            The sections that follow provide a brief overview and instructions
+            to perform data ingestion tasks for &PRODUCT;.
+        </para>
+        <xi:include href="../modules/tasks/t-how_to_prepare_data_for_ingestion.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion-offline_validation_tool.xml"/>
+        <xi:include href="../modules/tasks/t-how_to_ingest_data.xml"/>
+    </chapter>
+    
+    <chapter xml:id="ch-ingestion-delete_actions">
+        <title>How to Delete Data Through Ingestion</title>
+        <para>
+            The ingestion system features bulk deletion of data in addition to
+            ingestion. The sections that follow provide the reference and
+            instruction you need to use this feature.
+        </para>
+        <xi:include href="../modules/concepts/c-ingestion-action_element_type.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion-actions-delete.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion-actions-delete-forced.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion-actions-delete-safe.xml"/>
+        <xi:include href="../modules/reference/r-ingestion-action-delete-attributes.xml"/>
+    </chapter>
+    
+    <chapter xml:id="ch-ingestion-errors_and_warnings">
+        <title>Ingestion Logs and Error Handling</title>
+        <para>
+            The sections that follow define the log files associated with
+            ingestion, list the types of information you will find in those
+            files, and provide hints on how to handle the errors and warnings
+            found in those files.
+        </para>
+        <xi:include href="../modules/concepts/c-ingestion_logs.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_deltas.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_logs-parser.xml"/>
+        <xi:include href="../modules/concepts/c-ingestion_logs-example.xml"/>
+        <xi:include href="../modules/reference/r-ingestion_log_files.xml"/>
+        <xi:include href="../modules/reference/r-ingestion_errors_and_warnings.xml"/>
+    </chapter>
+    
+    <chapter xml:id="ch-ingestion-file_formats">
+        <title>Ingestion File Formats</title>
+        <para>
+            Use the sections that follow as a reference for the file formats
+            and constraints used when preparing data for &PRODUCTABBR;
+            data ingestion.
+        </para>
+        <xi:include href="../modules/reference/r-ingestion_file_conventions.xml"/>
+        <xi:include href="../modules/reference/r-ingestion_control_file_format.xml"/>
+        <xi:include href="../modules/reference/r-ingestion_data_file_format.xml"/>
+        <xi:include href="../modules/reference/r-ingestion_schema.xml"/>
+        <xi:include href="../modules/reference/r-ingestion_constraints.xml"/>
+    </chapter>
+    
+    <appendix xml:id="ch-ingestion-entity_mapping">
+        <title>Entity Mappings</title>
+        <xi:include href="../modules/reference/r-ingestion-entity_interchange_schema_mapping.xml"/>
+        <xi:include href="../modules/reference/r-ingestion-interchange_entity_mapping.xml"/>
+    </appendix>
+    
+    <appendix xml:id="ch-ingestion-natural_keys">
+        <title>Natural Keys</title>
+        <xi:include href="../modules/reference/r-ingestion-natural_keys.xml"/>
+    </appendix>
+    
+    <xi:include href="../modules/glossary.xml"/>
+    
+</book>

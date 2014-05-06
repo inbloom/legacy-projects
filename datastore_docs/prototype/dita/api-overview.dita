@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept-api">
+   <title>API</title>
+   <shortdesc>
+       This is an overview of the inBloom REST API: what it is, its features, 
+       and the core concepts used to describe it throughout inBloom 
+       documentation.
+   </shortdesc>
+    <conbody>
+        <p>
+            The inBloom REST API is a RESTful, client-server Web service with 
+            all the features you should expect in a robust REST API:
+        </p>
+        <ul id="api-overview-rest_features">
+            <li>
+                <p>
+                    Predictable, resource-oriented URIs
+                </p>
+            </li>
+            <li>
+                <p>
+                    HTTP methods to exchange representations of resources
+                </p>
+            </li>
+            <li>
+                <p>
+                    HTTP response codes to indicate API errors
+                </p>
+            </li>
+            <li>
+                <p>
+                    Built-in HTTP features, such as HTTP basic access authentication
+                </p>
+            </li>
+            <li>
+                <p>
+                    Support of common data interchange formats 
+                    (inBloom supports JSON and XML)
+                </p>
+            </li>
+            <li>
+                <p>
+                    Hypertext As The Engine Of Application State (HATEOAS) links in 
+                    response bodies to provide standardized navigation between 
+                    resources
+                </p>
+            </li>
+        </ul>
+        <p> 
+            The inBloom REST API is designed to be a Level 3 RESTful API in the 
+            Richardson Maturity Model. For more information on REST, see 
+            <i>REST in Practice</i> (J. Webber, S. Parastatidis, I.S. Robinson) 
+            at <xref href="http://restinpractice.com/book"
+           format="html" scope="external">http://restinpractice.com/book</xref>. 
+        </p>
+        <p>
+            The primary consumers of the REST API are applications that run on
+            the inBloom platform and the software developers behind those
+            applications. As an application developer, there are two main parts
+            of the inBloom REST API you can use:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    <b>System resources</b> - 
+                    Used to perform tasks specific to the inBloom platform, 
+                    such as authenticating a user or returning session 
+                    information.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <b>Data resources</b> - 
+                    Used to access education data in the inBloom data store 
+                    and perform common operations on that data 
+                    (create, read, update, delete) based on the current 
+                    users's permissions.
+                </p>
+            </li>
+        </ul>
+        <p>
+            Besides being familiar with REST, you should be comfortable with
+            XML and terms related to XML schemas. Descriptions around the
+            data resources in the REST API often overlap with common XML
+            terminology.
+        </p>
+        <p>
+            The following are some concepts and features to know when working
+            with the inBloom REST API:
+        </p>
+        <dl>
+            <dlentry>
+                <dt>API versions</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>Media types</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>Encryption</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>Identity provider (IDP)</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>Contextual authorization</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>OAuth 2.0</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>SAML 2.0</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>entities</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>attributes</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>data types</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>resource</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>resource representation</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>association</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+            <dlentry>
+                <dt>view</dt>
+                <dd>FIXME</dd>
+            </dlentry>
+        </dl>
+    </conbody>
+</concept>

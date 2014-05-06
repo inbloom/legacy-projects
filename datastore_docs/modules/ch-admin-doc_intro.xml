@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-6dfee7d7-2fcc-4604-a78f-0754c7e71714"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Introduction to &COMPANYABBR; Administration</title>
+    
+    <para> &COMPANY; supports technical administrators at all levels of the education organization
+        hierarchy. This part of &PRODUCTABBR;(TM) documentation instructs state and local administrators
+        on how to perform day-to-day administrative tasks. These tasks include the following: </para>
+    <itemizedlist>
+        <listitem>
+            <para> Logging in to &PRODUCTABBR; </para>
+        </listitem>
+        <listitem>
+            <para> Adding and updating data in the &PRODUCTABBR; Data Store </para>
+        </listitem>
+        <listitem>
+            <para> Browsing the &PRODUCTABBR; Data Store </para>
+        </listitem>
+        <!-- NOT YET APPLICABLE FOR ADMINS (8/10/2012)... <listitem>
+            <para>
+                Creating and managing &PRODUCTABBR; administrator user accounts
+            </para>
+        </listitem> -->
+        <listitem>
+            <para> Creating and managing realms within &PRODUCTABBR;, used to identify
+                authentication boundaries  </para>
+        </listitem>
+        <listitem>
+            <para> Mapping roles between &PRODUCTABBR; and an education organization's identity
+                provider </para>
+        </listitem>
+        <listitem>
+            <para> Authorizing applications to use &PRODUCTABBR; for a given local education agency,
+                including a brief overview of the application registration process </para>
+        </listitem>
+        <listitem>
+            <para> Delegating local education organization permissions to the state education
+                organization in the same hierarchy </para>
+        </listitem>
+        <listitem>
+            <para> Configuring the Dashboard application used to view and manage data in a
+                user-friendly interactive web application </para>
+        </listitem>
+    </itemizedlist>
+    <para> In addition to covering these tasks, we've included a section on how &PRODUCTABBR; access
+        control works, including user roles and permissions and how &PRODUCTABBR; handles
+        authentication and authorization. </para>
+    <note>
+        <title>The Initial Administrator Account</title>
+        <para> The initial administrator account for &PRODUCT; is set up by &COMPANYABBR; as an
+            account with the SEA administrator role. </para>
+    </note>
+    
+</chapter>

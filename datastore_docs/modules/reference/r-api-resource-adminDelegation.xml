@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-adminDelegation" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>adminDelegation</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/adminDelegation</filename>
+    </para>
+    <para>
+        Access a list of delegations relevant to the current user. If the 
+        user has the SEA Administrator role, this resource accesses delegation 
+        records for local-level education organizations that have delegated 
+        their security event monitoring to that state. If the user has the
+        LEA Administrator role, this resource accesses a list of delegations
+        for that user's education organization.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Creates a new resource using the given resource 
+                            data. This resource supports the POST operations 
+                            for LEA Administrators if an adminDelegation 
+                            entity has not already been created.
+                        </para>
+                        <para>
+                            Request:
+                            To form the POST request body, package all 
+                            required and other desired fields into a 
+                            conventional JSON document. It should be similar 
+                            to JSON response bodies returned when making a 
+                            GET request.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>201 Created</varname> - The 
+                            <varname>Location</varname> header contains the 
+                            URI of the new resource.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-adminDelegation-get_example">
+        <title>Example GET Response: adminDelegation</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[[{
+   "viewSecurityEventsEnabled": false,
+   "localEdOrgId": "b2c6e292-37b0-4148-bf75-c98a2fcc905f",
+   "id": "2012nq-cd0f2849-2f39-11e2-99f7-0811968a65b0"
+}]]]></programlisting>
+    </section>
+    
+</section>

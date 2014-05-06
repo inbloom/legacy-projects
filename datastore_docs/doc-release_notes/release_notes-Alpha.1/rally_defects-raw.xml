@@ -1,0 +1,780 @@
+<Objects>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6744774498" objectVersion="12" refObjectName="INGESTION: Duplicates should be reported" CreatedAt="Jun 15">
+      <CreationDate>2012-06-15T13:44:14.831Z</CreationDate>
+      <ObjectID>6744774498</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>While ingesting SDS IL-DAYBREAK, out of 325 studentSectionAssociation records only 297 were persisted to mongo db because of duplicates. At the end of the job processing a warning message should be reported for the duplicate records that were not persisted.</Description>
+      <Discussion />
+      <FormattedID>DE921</FormattedID>
+      <LastUpdateDate>2012-07-18T18:54:47.533Z</LastUpdateDate>
+      <Name>INGESTION: Duplicates should be reported</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5681078097" refObjectName="Olga Violett" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6744774499" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Priority>Not scheduled (Tech Debt)</Priority>
+      <Rank>499999610624.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5562057394" refObjectName="Nupur Pandey" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Error reports are not always clear regarding the records persisted. When there are duplicates within the XML file, or a record already exists, the ingestion engine will still update the record. However, this record count is not included in the Ingested records count.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6092715540" objectVersion="16" refObjectName="INGESTION: EducationOrganization references to Program not properly ingested" CreatedAt="Apr 18">
+      <CreationDate>2012-04-18T14:42:47.956Z</CreationDate>
+      <ObjectID>6092715540</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>SLI XSD educationOrganization has programReference as a string; it should be a reference   &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;This defect prevents program references inside of EdOrg from being resolved.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Priority would be defined by determining the important of this relationship.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Resolution for this would require changing the SLI xsd.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE198</FormattedID>
+      <LastUpdateDate>2012-07-17T22:22:38.021Z</LastUpdateDate>
+      <Name>INGESTION: EducationOrganization references to Program not properly ingested</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6092715541" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-05-08T18:46:01.576Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999980800.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5690356545" refObjectName="Shawn Marie Richards" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>This reference hasn't been implemented yet. As a result, the API won't provide a link from the EdOrg to the Program.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6007220536" objectVersion="18" refObjectName="INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference" CreatedAt="Apr 10">
+      <CreationDate>2012-04-10T18:18:46.193Z</CreationDate>
+      <ObjectID>6007220536</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Ingestion of School and EdOrg only supports a single representation of Ed-Fi parentEducationAgencyReference  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Alternate representations of parentEducationAgencyReference are not being resolved.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;This not just confined to this relationship. &amp;nbsp;However, the fix is not global but rather on a entity per entity basis&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE157</FormattedID>
+      <LastUpdateDate>2012-07-17T22:23:35.383Z</LastUpdateDate>
+      <Name>INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6007220537" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>500000018432.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Needs More Info</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125122291" refObjectName="Jonathan Tully" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Reference resolution is only supported as the default scenario that features no exceptional or error conditions. As a result, a user may ingest valid EdFi format with improper references that would fail to resolve.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6253298199" objectVersion="21" refObjectName="INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs" CreatedAt="May 3">
+      <CreationDate>2012-05-03T13:30:10.163Z</CreationDate>
+      <ObjectID>6253298199</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;Old name:&amp;nbsp;&lt;/div&gt;  &lt;span class="Apple-style-span" style="border-collapse: collapse; font-family: arial, helvetica, sans-serif; font-size: 11px; "&gt;  &lt;table class="dt-tbl" id="x4-gen2065" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: baseline; border-collapse: collapse; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(255, 255, 255); border-style: initial; border-color: initial; width: 1191px; box-sizing: border-box; background-position: initial initial; background-repeat: initial initial; "&gt;  &lt;tbody style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: baseline; box-sizing: border-box; "&gt;  &lt;tr style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: top; box-sizing: border-box; "&gt;  &lt;td id="x4-gen2073" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 4px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: normal; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: top; text-align: left; box-sizing: border-box; "&gt;[Need Ed-Fi clarification] Error found in US1876: Ingestion engine changes in support for Program: ProgramIdentifier required to be unique&lt;br /&gt;&lt;br /&gt;&lt;/td&gt;  &lt;/tr&gt;  &lt;/tbody&gt;  &lt;/table&gt;  &lt;/span&gt;  The current implementation of program ingestion requires that the programIdentifiers must be unique across the tenant, however, in EdFi, the programIdentifiers are required to be unique within an EdOrg.&amp;nbsp;    &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;The reference resolution for programs is not guaranteed to work correctly if there are multiple programs in different EdOrgs in the same tenant with the same programIdentifier.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE325</FormattedID>
+      <LastUpdateDate>2012-07-17T22:24:55.921Z</LastUpdateDate>
+      <Name>INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6253298200" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6354539145" refObjectName="[Need Ed-Fi clarification] Change ingestion to allow Program's ProgramId to be scoped to an EdOrg rather than a tenant." type="Defect" />
+      </Duplicates>
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-05-08T13:47:42.545Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999932416.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Requirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5861961373" refObjectName="Ingestion engine changes in support for Program" type="HierarchicalRequirement" />
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125487594" refObjectName="Simon Yau" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Ingestion process assumes that the Program ID is unique within a tenant, but this should be unique within the specified EdOrg instead. As a result, the reference could resolve incorrectly.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6183295926" objectVersion="13" refObjectName="INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline" CreatedAt="Apr 26">
+      <CreationDate>2012-04-26T20:00:34.645Z</CreationDate>
+      <ObjectID>6183295926</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;span style="font-family: calibri, arial, sans, sans-serif; font-size: 14px; text-align: left; white-space: pre-wrap; background-color: rgb(255, 255, 255); "&gt;Explicitly listed as not supported but DisciplineAction entity requires a reference to this Descriptor. &lt;/span&gt;</Description>
+      <Discussion />
+      <FormattedID>DE273</FormattedID>
+      <LastUpdateDate>2012-07-17T22:26:40.795Z</LastUpdateDate>
+      <Name>INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4814417296" refObjectName="Douglas Gore" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6183295927" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-05-11T20:59:47.598Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-05-11T20:59:47.598Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/5703111468" refObjectName="4.4" type="Iteration" />
+      <PlanEstimate>1.0</PlanEstimate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999926272.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;This descriptor is not currently supported. However, a reference to this descriptor is required for the DisciplineAction entity.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6554525058" objectVersion="24" refObjectName="SDK: Java client API library requires a SLIClient instance per user" CreatedAt="May 30">
+      <CreationDate>2012-05-30T15:23:49.154Z</CreationDate>
+      <ObjectID>6554525058</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>The Java client library is caching the SessionToken for the authenticated user. &amp;nbsp;To support a multi-user environment, this requires a instance of the SLIClient per authenticated user.&amp;nbsp;&amp;nbsp;   &lt;div&gt;The implied objective of the client library is to provide a convenient abstraction layer on top of the HTTP based API. The Session Token is low level detail and should be hidden from the client of the library.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;It is to be encapsulated in an instance of the SLIClient interface. &amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Note: The session token should be exposed in the RESTClient that provides a low level, HTTP-based interface to the API.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Tasks:&amp;nbsp;&lt;/div&gt;  &lt;div&gt;* Update the documentation to reflect that a user of the library needs to maintain an instance of SLIClient for every individual connected to the API. In the case of a web application this would be stored in the server side session.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;  &lt;br /&gt;* Update Dashboard/Portal to use these changes. This will require to remove the explicit use o the session token in all calls to the client library.&amp;nbsp;&lt;br /&gt;      &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;AC:&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;- Revised documentation in confluence that is delivered to Storm.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;/div&gt;  &lt;div&gt;Note: No new tests should be required.&amp;nbsp;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE641</FormattedID>
+      <LastUpdateDate>2012-07-19T17:14:38.073Z</LastUpdateDate>
+      <Name>SDK: Java client API library requires a SLIClient instance per user</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6554525059" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6004255130" refObjectName="Sandbox" type="Tag" />
+      </Tags>
+      <AffectsDoc>true</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501385" refObjectName="5.2" type="Iteration" />
+      <PlanEstimate>2.0</PlanEstimate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999508736.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Requirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6295935749" refObjectName="Improvements to the Java Client Library" type="HierarchicalRequirement" />
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4845319411" refObjectName="Aaron Saarela" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>DEFINED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205129202" refObjectName="Update dashboard" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205088468" refObjectName="Remove / refactor calls that take a sessionId" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205133981" refObjectName="Update documentation" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>The client library does not support multiple sessions. If used in a multi-session environment as is, then users can have conflicting actions, such as updating the same resource at the same time.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Workaround:&lt;/div&gt;&lt;div&gt;Create an instance of SLIClient for each connection to the API, then attach the SLIClient to the HttpSession. &amp;nbsp;Sample code for this is available in the AuthFiter.java class for the Sample application.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6708140987" objectVersion="25" refObjectName="INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg" CreatedAt="Jun 12">
+      <CreationDate>2012-06-12T19:34:29.609Z</CreationDate>
+      <ObjectID>6708140987</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;Super Admins should not be capable of ingesting EdOrgs above their own EdOrg.&amp;nbsp; Example:&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;- An LEA (District) Super Admin should not be able to ingest the SEA above them.&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt; &lt;div&gt;[JW]&amp;nbsp; They are then able to ingest sibling LEAs, State Staff, etc&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Security risk is medium-low. &amp;nbsp;Low impact. &amp;nbsp;Medium probability.&amp;nbsp;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE861</FormattedID>
+      <LastUpdateDate>2012-07-19T17:46:53.774Z</LastUpdateDate>
+      <Name>INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6708140988" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6046945587" refObjectName="Security Defect" type="Tag" />
+      </Tags>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475502482" refObjectName="5.3" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999495104.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780859" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Requirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6623153419" refObjectName="SPIKE - I want Edorgs to only be ingested which I am allowed to ingest based on my landing zone." type="HierarchicalRequirement" />
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Security-Medium/Low(SEC4)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>During ingestion process the landing zone is tolerant of any EdOrg within a tenant being ingested.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;For example, two LEAs belong to the same SEA. LEA #1 can ingest data for LEA #2 since they are both part of SEA. LEA #1 can also ingest data for SEA. This is not ideal since data specific to each LEA are not restricted, but it is functional and ingestion works properly.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6022169745" objectVersion="48" refObjectName="INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities" CreatedAt="Apr 11">
+      <CreationDate>2012-04-11T21:13:48.317Z</CreationDate>
+      <ObjectID>6022169745</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>The unique identifier for a Course in ingestion is CourseTitle. &amp;nbsp;It should be CourseCode.    &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;To be more precise, each CourseCode (can be many per Course) should be unique within the designated EdOrg, and each CourseCode should be able to identify the Course in isolation.&lt;/DIV&gt; &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;This situation could arise, for example, if a course was offered by both the Math department and Computer Science department of a school. &amp;nbsp;It's the same course, but each department would have their own course code.&lt;/DIV&gt; &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;Notes:&lt;/DIV&gt; &lt;DIV&gt;1. This defect is tracking the logic used to match an ingesting Course entity to one in the database. &amp;nbsp;Reference resolution for other types of entities to Course is is tracked by DE608.&lt;/DIV&gt; &lt;DIV&gt;2. The "schoolId" resolution from educationOrganizationReference is hardcoded to&amp;nbsp;Course/EducationOrganizationReference/EducationalOrgIdentity/EducationOrgIdentificationCode/ID as it has been (and is expected by SDS data at the moment). &amp;nbsp;Hardcoding this reference is common throughout entities as there is no generic infrastructure to resolve the reference properly. &amp;nbsp;This has been raised and Peter is in dicussion to create tech debt for tracking.&lt;/DIV&gt;</Description>
+      <Discussion />
+      <FormattedID>DE162</FormattedID>
+      <LastUpdateDate>2012-07-20T17:30:48.295Z</LastUpdateDate>
+      <Name>INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities</Name>
+      <Notes>&lt;DIV&gt;2012-06-20— adjusted to p3. not critical to get into Alpha in 4.7. will function as designed with minor errors, so this will be moved to 5.1&lt;/DIV&gt; &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;Initial fix for this was rendered obsolete by Hermod changes.&amp;nbsp; Waiting to hear if fix has been done on new code.&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;pbackes - Hermod says reimplement.&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;pbackes - 7/16 - Reclaimed from Pantheon.&lt;/DIV&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289467719" refObjectName="Megatron(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6022169746" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475503412" refObjectName="5.4" type="Iteration" />
+      <OpenedDate>2012-06-04T16:53:21.980Z</OpenedDate>
+      <PlanEstimate>3.0</PlanEstimate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999931136.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780851" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4921340700" refObjectName="Dwayne Williams" type="User" />
+      <TaskActualTotal>22.0</TaskActualTotal>
+      <TaskEstimateTotal>27.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6419046250" refObjectName="Understand the course identification requirements" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6419091748" refObjectName="Determine implementation approach" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407894021" refObjectName="Code review" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407894738" refObjectName="Acceptance tests" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407858839" refObjectName="Create custom transformer/matcher for Course" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407798398" refObjectName="Move Course to the the new ingestion pipeline" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Course entities are uniquely identified by course name within an education organization, rather than by course code.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6607447634" objectVersion="6" refObjectName="INGESTION: Section, school and session references in AttendanceEvent are ignored" CreatedAt="Jun 4">
+      <CreationDate>2012-06-04T16:15:20.917Z</CreationDate>
+      <ObjectID>6607447634</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;The transformation for attendance ignores references in the inbound Ed-Fi Interchange-StudentAttendance files including:&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;- AttendanceEvent/SectionReference&lt;/div&gt;  &lt;div&gt;- AttendanceEvent/SchoolReference&lt;/div&gt;  &lt;div&gt;- AttendanceEvent/SessionReference&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;Instead, transformation logic queries SLI for School and Session information for a student and transforms and persists attendance according to the query results.&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;Additionally, the code treats the condition where a student is associated with two schools as an error condition.&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;In the submitter's opinion, the way attendance is handled by this transformer is not what a customer would expect (ignoring explicit characterization of the attendance event - by school, section, session etc. - contained in the data).&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;It also seems like a questionable assumption that a student would not be attending two (or more) schools at the same time.&amp;nbsp; Attending a high school and vocational school is not uncommon, for one example.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE710</FormattedID>
+      <LastUpdateDate>2012-07-17T22:29:15.579Z</LastUpdateDate>
+      <Name>INGESTION: Section, school and session references in AttendanceEvent are ignored</Name>
+      <Notes>pbackes - I spoke with Ilya Bagrak regarding prioritization of this defect.&amp;nbsp; He believes this needs to wait until post-Alpha.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5259724155" refObjectName="Josh W" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289467719" refObjectName="Megatron(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6607447635" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-06-04T20:11:48.097Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999687680.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;The way AttendanceEvent entities are handled ignores explicit characterization of the attendance event - by school, section, session. As a result, AttendanceEvents for students attending multiple schools will not properly persist.&amp;nbsp;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6660010493" objectVersion="21" refObjectName="API: Field validation enumerations are not quoted correctly in API responses" CreatedAt="Jun 8">
+      <CreationDate>2012-06-08T15:21:59.330Z</CreationDate>
+      <ObjectID>6660010493</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>When POST/PUT to the API and validation fails on an enumerated field, the values should be (single-)quoted in the error response. This removes ambiguity when commas appear in the values. It would be impossible to determine value enumeration values from a parsing perspective. &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;"Agriculture, Food, and Natural Resources" and "Transportation, Distribution and Logistics"&amp;nbsp;are valid enum values, but it's not obvious below:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;{&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; "type": "Bad Request",&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; "message": "Validation failed: ValidationError [type=ENUMERATION_MISMATCH, fieldName=academicSubject, fieldValue=Agriculture, expectedTypes=[Agriculture, Food, and Natural Resources, Architecture and Construction, Business and Marketing, Communication and Audio/Visual Technology, Composite, Computer and Information Sciences, Critical Reading, ELA, Engineering and Technology, English, English Language and Literature, Fine and Performing Arts, Foreign Language and Literature, Health Care Sciences, Hospitality and Tourism, Human Services, Life and Physical Sciences, Manufacturing, Mathematics, Military Science, Miscellaneous, Other, Physical, Health, and Safety Education, Public, Protective, and Government Service, Reading, Religious Education and Theology, Science, Social Sciences and History, Social Studies, Transportation, Distribution and Logistics, Writing]]",&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; "code": 400&lt;/div&gt; &lt;div&gt;}&lt;/div&gt; &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE820</FormattedID>
+      <LastUpdateDate>2012-07-20T13:45:49.949Z</LastUpdateDate>
+      <Name>API: Field validation enumerations are not quoted correctly in API responses</Name>
+      <Notes>&amp;lt;Jerry July 20&amp;gt; &lt;div&gt;Fixed on a local branch.&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5511416521" refObjectName="Jerry Hung" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4983255020" refObjectName="Wolverine(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6660010494" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-07-20T13:44:56.224Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501383" refObjectName="5.2" type="Iteration" />
+      <OpenedDate>2012-06-08T18:00:18.644Z</OpenedDate>
+      <PlanEstimate>1.0</PlanEstimate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999601152.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780835" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Completed</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Fixed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5136589584" refObjectName="William Scott" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7195893786" refObjectName="Fix error/exception" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7195894524" refObjectName="Tests - enumeration validation error check" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Some fields contain enumerated values with commas even though they are single values. For example, the course.academicSubject field contains this single enumeration: "Agriculture, Food, and Natural Resources." This appears to be three distinct enumerated values in a validation error message.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6749904151" objectVersion="10" refObjectName="INGESTION: large ingestion in one tenant may delay visibility of new data in another tenant." CreatedAt="Jun 15">
+      <CreationDate>2012-06-15T20:39:56.591Z</CreationDate>
+      <ObjectID>6749904151</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;&amp;lt;scole 7/18/2012&amp;gt; There is now a spike to investigate how to get rid of the stamper as a continuously running background job US3339. That spike should result in stories to build a better solution at which this defect can be closed.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;formerly known as: "SLI security context tagging should be more efficient"&lt;/div&gt; &lt;div&gt;forderly known as: "SLI Should not have a Staff EdOrg Stamper (i.e. DE646 is not done)"&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; I am not going to open up DE646, but I believe that the EdOrg stamper side of the solution could be a mistake. &amp;nbsp;Why can't the code do the EdOrg stamping when rows are inserted into the DAL (even if it does it asynchronously), either through Ingestion or through the API.         &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;I am logging this as Sev2 because I believe that is how our customers will see it when their data doesn't come into the system in any predictable length of time.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Dwayne, if this is you, please feel free to come talk to me. &amp;nbsp;If somebody else is the right person, then assign it to that person and have them come talk to me.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE935</FormattedID>
+      <LastUpdateDate>2012-07-19T02:17:20.030Z</LastUpdateDate>
+      <Name>INGESTION: large ingestion in one tenant may delay visibility of new data in another tenant.</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6749904152" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>RC</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475502452" refObjectName="5.3" type="Iteration" />
+      <OpenedDate>2012-06-16T00:03:31.706Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999605248.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5160691016" refObjectName="Mark Porter" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;p class="p1"&gt;New data that is ingested or created through the API needs to be tagged before it will be visible to users. &amp;nbsp;The time taken to tag new data is dependent upon how large the dataset is, how much of the data is new, and the state of the tagger when the new data is created. &amp;nbsp;The tagging process runs across all tenants, implying that a large ingestion in one tenant may delay visibility of new data in not only that tenant, but in others as well.&lt;/p&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6707410230" objectVersion="14" refObjectName="DATA BROWSER: No error is displayed when user traverses data they are not authorized to access" CreatedAt="Jun 12">
+      <CreationDate>2012-06-12T18:36:14.870Z</CreationDate>
+      <ObjectID>6707410230</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;When navigating in the Databrowser, an error does not occur when trying to access a link from within a table entry to get entities to which the user does not have context. &amp;nbsp;Instead, the user is redirected to a previous page. This can cause confusion because it is unclear to a user what caused the error.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE857</FormattedID>
+      <LastUpdateDate>2012-07-17T22:32:40.412Z</LastUpdateDate>
+      <Name>DATA BROWSER: No error is displayed when user traverses data they are not authorized to access</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6707410231" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501377" refObjectName="5.2" type="Iteration" />
+      <OpenedDate>2012-06-12T18:36:14.885Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999612928.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>The Data Browser does not inform the user why there is no result (nothing is returned) when a user tries to navigate (click on URL) to data that he/she has no permissions to access.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6707414727" objectVersion="18" refObjectName="DATA BROWSER: No notification message is displayed when accessing an empty list" CreatedAt="Jun 12">
+      <CreationDate>2012-06-12T18:38:24.878Z</CreationDate>
+      <ObjectID>6707414727</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>If you request a list of entities that is empty the databrowser does nothing. It should at least tell you the list was empty.</Description>
+      <Discussion />
+      <FormattedID>DE858</FormattedID>
+      <LastUpdateDate>2012-07-19T01:13:25.131Z</LastUpdateDate>
+      <Name>DATA BROWSER: No notification message is displayed when accessing an empty list</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6707414728" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501377" refObjectName="5.2" type="Iteration" />
+      <OpenedDate>2012-06-12T18:38:24.906Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999613056.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;No error message occurs when a user clicks a URL that returns an empty list. This may cause confusion for the user.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6651604941" objectVersion="13" refObjectName="DATA BROWSER: Incorrect user name is displayed after re-login with different user (after session have expired)" CreatedAt="Jun 7">
+      <CreationDate>2012-06-07T20:41:25.330Z</CreationDate>
+      <ObjectID>6651604941</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Login as linda.kim to data browser  &lt;div&gt;Let your session expire (5 minutes, but not longer or else the rails session will expire too)&lt;/div&gt;  &lt;div&gt;Click on a link the data browser&lt;/div&gt;  &lt;div&gt;Login as rrogers&lt;/div&gt;  &lt;div&gt;Notice that the banner still says linda.kim&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE789</FormattedID>
+      <LastUpdateDate>2012-07-19T02:11:02.578Z</LastUpdateDate>
+      <Name>DATA BROWSER: Incorrect user name is displayed after re-login with different user (after session have expired)</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6651604942" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501377" refObjectName="5.2" type="Iteration" />
+      <OpenedDate>2012-06-07T20:41:25.344Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999613824.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>If the user tries to re-log in to the Data Browser as a different user after the prior user session has expired, the top right corner of the Data Browser will still display the old user's name.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Workaround: Users can close and relaunch the browser to see correct name displayed.&amp;nbsp;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6637386163" objectVersion="23" refObjectName="ADMIN TOOLS: Admin app not handling API session timeout" CreatedAt="Jun 6">
+      <CreationDate>2012-06-06T18:00:45.616Z</CreationDate>
+      <ObjectID>6637386163</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;&amp;lt;scole 6/18&amp;gt; Actual problem is that the API session times out and the admin app doesn't handle it for javascript calls.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  - In sandbox mode, came in to the application registration page with one application present.&lt;br /&gt;- Added a second application.&lt;br /&gt;- Deleted the newly created application.&lt;br /&gt;- Saw no change on screen - both applications still listed.&lt;br /&gt;- Reloaded page, only see the expected one application.</Description>
+      <Discussion />
+      <FormattedID>DE754</FormattedID>
+      <LastUpdateDate>2012-07-19T01:13:19.276Z</LastUpdateDate>
+      <Name>ADMIN TOOLS: Admin app not handling API session timeout</Name>
+      <Notes>Removed "MH Alpha.0" tag and setting "Release Note" == TRUE, as the workaround is to do a page refresh. &amp;nbsp;Should be addressed with a Release Note.  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;-m-&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6637386164" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>UAT/Stage</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501377" refObjectName="5.2" type="Iteration" />
+      <OpenedDate>2012-06-06T21:24:22.870Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999527296.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5690356545" refObjectName="Shawn Marie Richards" type="User" />
+      <TargetDate>2012-06-22T04:00:00.000Z</TargetDate>
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>In some cases, when the user tries to remove an application using the Application Registration Tool, the application is removed from the system, but still appears in the application list. Workaround: The user can refresh the page to see that the application is removed from the list.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6955162286" objectVersion="11" refObjectName="ADMIN TOOLS: Installed Application option requires a Redirect URL" CreatedAt="Jul 2">
+      <CreationDate>2012-07-02T16:09:54.640Z</CreationDate>
+      <ObjectID>6955162286</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>When checking the "Installed" option in developer's Application Registration page without filling in the "Redirect URL" field and saving results in an error "Redirect uri [sic] must not be blank".&lt;br /&gt;&lt;br&gt;According to the Dev Guide's "Authorizing Mobile Applications" section, currently available at http://dev.slcedu.org/docs/alpha0/data-store-developer-guide/adding-authorization-your-application/authorizing-mobile the redirect_url callback is not required for installed apps.&lt;br&gt;&lt;br&gt;Expected:&amp;nbsp; The "Installed" checkbox, if checked, should disable the "Redirect URL" field, and not require it to be filled in for successful form submission.&lt;br&gt;&lt;br&gt;Upon further consideration, it seems that an installed app wouldn't need a main application URL either, since it would not be accessed through the portal, but rather launched directly from the device on which it is installed.&lt;br&gt;&lt;br&gt;Not just a user interface issue; need to understand whether excluding application_url and redirect_uri from an entry in the SLI mongo application collection will break anything.</Description>
+      <Discussion />
+      <FormattedID>DE1148</FormattedID>
+      <LastUpdateDate>2012-07-18T14:35:29.350Z</LastUpdateDate>
+      <Name>ADMIN TOOLS: Installed Application option requires a Redirect URL</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5113808755" refObjectName="Jonathan Nanney" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6955162287" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4623989292" refObjectName="Persona:All_Users" type="Tag" />
+      </Tags>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <InProgressDate>2012-07-10T13:21:44.076Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429979" refObjectName="5.1" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999462400.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Completed</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Fixed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/6030811433" refObjectName="Pete Wenzel" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Even though the installed application authentication pattern does not require an OAuth redirect_url, the Redirect URL field in the Application Registration function must be populated in order to save the registration successfully.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7176313009" objectVersion="4" refObjectName="AUTH: StudentRecordAccess flag on StaffProgram and StaffCohort Associations is not honored" CreatedAt="Jul 17">
+      <CreationDate>2012-07-17T21:28:03.810Z</CreationDate>
+      <ObjectID>7176313009</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Security context resolution does not currently honor a studentRecrodAccess flag of false on a staffProgramAssocation or staffCohortAssocation. It does honor it for teachers, but not for non-teacher staff. All non-teacher staff have access to all students in their associated edorg and below regardless of the studentRecordAccess flag on any of their program or cohort associations.  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;font color="#ff0000"&gt;Solution TBD. We might decide to stay this path (but was mentioned by Pete W on a client meeting)&lt;/font&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1282</FormattedID>
+      <LastUpdateDate>2012-07-19T02:16:05.298Z</LastUpdateDate>
+      <Name>AUTH: StudentRecordAccess flag on StaffProgram and StaffCohort Associations is not honored</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7176313010" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475502452" refObjectName="5.3" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999475328.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>For a Staff (entity), the contextual access to students is resolved through an EdOrg. In short, the Staff has contextual access to all the students in the Staff's EdOrg hierarchy. Staff however could have associations to Programs and Cohorts, which (associations) have a StudentRecordAccess flag that could be False. This is ignored (for contextual resolution through Teacher (entity), this flag is honored) .&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6566632717" objectVersion="31" refObjectName="INGESTION: Referential integrity check can fail for some valid Ed-Fi entities" CreatedAt="May 31">
+      <CreationDate>2012-05-31T13:08:10.023Z</CreationDate>
+      <ObjectID>6566632717</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;Old name:&amp;nbsp;Attendance transformer does not pull session information for parent education organizations&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  If a school doesn't have any sessions, but it's parent LEA has many sessions (and the school implicity inherits the sessions), then attendance transformation will fail because no parent education organizations are ever checked for. Likewise, schoolSessionAssociation (which should most likely hold the inherited set of school to session associations) is never checked in the transformation, either.      &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE669</FormattedID>
+      <LastUpdateDate>2012-07-17T22:44:52.152Z</LastUpdateDate>
+      <Name>INGESTION: Referential integrity check can fail for some valid Ed-Fi entities</Name>
+      <Notes>re-wrote the table in release note description because it was not possible to make the XSL transformations represent the table properly in the final Release Note document. &amp;nbsp;The previous version is below.  &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;span class="rally-rte-class-0364f0831"&gt;During transformation of certain Ed-Fi entities into SLI data model, referential integrity may fail if the referenced entities are not part of the same ingestion job. The following entities are affected:&amp;nbsp;&lt;/span&gt;  &lt;div id="x4-gen1170" class="rally-rte-class-0e7dd125f"&gt;&lt;br class="rally-rte-class-01baae1b" /&gt;&lt;/div&gt; &lt;div class="rally-rte-class-0e7dd125f"&gt; &lt;table class="confluenceTable rally-rte-class-071516 rally-rte-class-0fa17bfa7"&gt; &lt;tbody class="rally-rte-class-0b8fa829a"&gt; &lt;tr class="rally-rte-class-0a73e62f rally-rte-class-00ec5d512"&gt; &lt;th id="x4-gen1178" class="confluenceTh rally-rte-class-0516cfbcd rally-rte-class-0f251a9f4"&gt;Transformed Ed-Fi entity&lt;/th&gt; &lt;th class="confluenceTh rally-rte-class-0516cfbcd rally-rte-class-0f251a9f4"&gt;Referenced Entities&lt;/th&gt; &lt;th id="x4-gen1171" class="confluenceTh rally-rte-class-0516cfbcd rally-rte-class-0f251a9f4"&gt;Additional Transformation Behavior&lt;/th&gt; &lt;/tr&gt; &lt;tr class="rally-rte-class-0a73e62f rally-rte-class-00ec5d512"&gt; &lt;td id="x4-gen1179" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;Assessment&lt;/td&gt; &lt;td class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;Assessment, AssessmentPeriodDescriptor, AssessmentFamily, AssessmentItem&lt;/td&gt; &lt;td id="x4-gen1172" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;AssessmentFamilyName in AssessmentFamily&amp;nbsp;is used to generated the&amp;nbsp;dot-delimited assessmentFamilyHierarchyName in Assessment in SLI.&amp;nbsp; All other data in AssessmentFamily data is not persisted.&lt;/td&gt; &lt;/tr&gt; &lt;tr class="rally-rte-class-0a73e62f rally-rte-class-00ec5d512"&gt; &lt;td id="x4-gen1180" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;Attendance&lt;/td&gt; &lt;td id="x4-gen1186" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;AttendanceEvent, StudentSchoolAssociation, School, Session&lt;/td&gt; &lt;td id="x4-gen1173" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;The transformation for attendance ignores explicit Section, School and Session references in the inbound Ed-Fi Interchange-StudentAttendance and queries the StudentSchoolAssociation and Session entities instead to determine how to populate the attendance entities in SLI.&amp;nbsp; Students being associated with more than one school is treated as an error.&amp;nbsp; Documented as a defect in DE710.&lt;/td&gt; &lt;/tr&gt; &lt;tr class="rally-rte-class-0a73e62f rally-rte-class-00ec5d512"&gt; &lt;td id="x4-gen1181" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;LearningObjective&lt;/td&gt; &lt;td id="x4-gen1174" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;LearningObjective&lt;/td&gt; &lt;td class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;0..N LearningObjectiveReference has been replace by a 0..1 parentLearningObjective reference in SLI.&amp;nbsp; Having multiple child/parent LearningObjective references for a LearningObjective is not currently supported.&lt;/td&gt; &lt;/tr&gt; &lt;tr class="rally-rte-class-0a73e62f rally-rte-class-00ec5d512"&gt; &lt;td id="x4-gen1176" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;StudentAssessment&lt;/td&gt; &lt;td id="x4-gen1175" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;StudentAssessment, StudentObjectiveAssessment, StudentAssessmentItem, AssessmentItem&lt;/td&gt; &lt;td class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;&amp;nbsp;&lt;/td&gt; &lt;/tr&gt; &lt;tr class="rally-rte-class-0a73e62f rally-rte-class-00ec5d512"&gt; &lt;td class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;StudentDisciplineIncidentAssociation&lt;/td&gt; &lt;td id="x4-gen1182" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;StudentDisciplineIncidentAssociation, DisciplineIncident&lt;/td&gt; &lt;td class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;&amp;nbsp;&lt;/td&gt; &lt;/tr&gt; &lt;tr class="rally-rte-class-0a73e62f rally-rte-class-00ec5d512"&gt; &lt;td class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;StudentTranscriptAssociation&lt;/td&gt; &lt;td class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;CourseTranscript&lt;/td&gt; &lt;td id="x4-gen1183" class="confluenceTd rally-rte-class-03bb6a1c8 rally-rte-class-0eb35c0f6"&gt;&amp;nbsp;&lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;/div&gt; &lt;div id="x4-gen1184" class="rally-rte-class-0e7dd125f"&gt;&lt;br class="rally-rte-class-01baae1b" /&gt;&lt;/div&gt; &lt;div id="x4-gen1185" class="rally-rte-class-0e7dd125f"&gt;&lt;b class="rally-rte-class-01baae1b"&gt;Workaround&lt;/b&gt;: Referenced entities should be (re)submitted as part of the same job.&lt;/div&gt; &lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125123223" refObjectName="Alexander Blum" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6566632718" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-07-12T14:50:13.122Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <ClosedDate>2012-07-12T14:50:29.694Z</ClosedDate>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-06-18T21:35:26.841Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429989" refObjectName="5.1" type="Iteration" />
+      <OpenedDate>2012-06-13T14:24:36.207Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999555072.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780841" refObjectName="PI5" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Closed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4913063397" refObjectName="Stanley Halka" type="User" />
+      <TargetDate>2012-07-11T04:00:00.000Z</TargetDate>
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>During transformation of certain Ed-Fi entities into SLI data model, referential integrity may fail if the referenced entities are not part of the same ingestion job. The Assessment, Attendance, LearningObjective, StudentAssessment, StudentDisciplineIncidentAssociation, and CourseTranscript entities have been affected.&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Workaround&lt;/b&gt;: Referenced entities should be re-submitted as part of the same job.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+</Objects>

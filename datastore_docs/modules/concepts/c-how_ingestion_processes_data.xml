@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-how_ingestion_processes_data"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>How the Ingestion System Processes Data</title>
+    
+    <para>
+        While processing an ingestion job, the ingestion system is responsible 
+        for generating a changeset to represent the changes to the
+        &PRODUCTABBR; data store. This <emphasis>changeset</emphasis> is an
+        object that indicates what should change in the data store in order to
+        bring the data up-to-date. It includes both what to add to the data 
+        store and what to change about existing data in the data store.
+    </para>
+    <para>
+        While creating the changeset, the ingestion system must resolve
+        entity references in the XML. This includes both entities within the
+        same ingestion job and to previously ingested entities.
+    </para>
+    <para>
+        The matching algorithm for resolving entities relies on a combination 
+        of each entity's fields to distinguish between insert and update 
+        operations in the &PRODUCTABBR; data store. For entities with unique 
+        tenant-wide identifiers (Student, Teacher, Staff, and Parent), the 
+        <varname>stateUniqueId</varname> attribute is used to uniquely match 
+        each ingested entity with the one already in the data store. If a 
+        match is found, the operation is an update. Otherwise, it is an insert.
+    </para>
+    <para>
+        Association entities are handled similarly. Newly added association 
+        entities are checked against existing association entities referring 
+        to the same objects in the data store. If the references match up, the
+        new association is considered an update. Otherwise, it is an insert. 
+    </para>
+    
+</section>

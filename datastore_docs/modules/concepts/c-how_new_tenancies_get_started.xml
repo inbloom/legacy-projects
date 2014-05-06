@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-how_new_tenancies_get_started"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>How New Tenancies Get Started</title>
+    
+    <para>
+        &PRODUCTABBR; identifies state and local education agencies as
+        different tenancies. Each 
+        <glossterm linkend="def-tenant">tenant</glossterm> has access to its
+        own set of data, and the same &PRODUCTABBR; data store can serve
+        multiple tenancies. In most cases, there exists a hierarchy of
+        tenancies served by the same data store: the state
+        <glossterm linkend="def-education_organization">education organizations</glossterm>
+        and the local levels below it (district, county, city, etc.).
+    </para>
+    <para>
+        When a new tenancy comes on board with &COMPANYABBR;, an existing
+        administrator for that &PRODUCTABBR; deployment must create the new
+        tenancy using administration tools. This process is covered in 
+        &PRODUCTABBR; administrator documentation. 
+    </para>
+    <para>
+        Part of on-boarding a new tenancy, the administrator must, at a minimum, 
+        create an administrator account that serves that tenancy. Then, either
+        that new administrator or another authoritative administrator must 
+        create the following for that tenancy
+        a <glossterm linkend="def-landing_zone">landing zone</glossterm>
+        and one or more users with the Ingestion User role. 
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                A <glossterm linkend="def-landing_zone">landing zone</glossterm>,
+                which is a group of resources allocated to ingesting data for
+                the tenancy.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                One or more &PRODUCTABBR; user accounts with the 
+                <emphasis>Ingestion User</emphasis> role. If you are ingesting
+                data, you must use the credentials of one of these accounts.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        With the administrators, landing zones, and ingestion users in place,
+        a tenancy can ingest its first set of data to the &PRODUCTABBR; data
+        store and, afterward, begin regular use of &PRODUCT;.
+    </para>
+    
+</section>

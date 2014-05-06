@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-301d3570-8120-4bd1-ae93-59f5a03a38e9"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy &PRODUCTABBR; Applications: Data
+        Browser</title>
+
+    <para>
+        The sections
+        that follow cover preparing for, installing, and configuring the Data Browser as part of the
+        applications in &PRODUCTABBR;. </para>
+    
+    <section xml:id="doc-2e56b691-b5ad-41ef-86bf-5b4152c20a59">
+        <title>Data Browser: What You Need to Know Before Deployment</title>
+        <para> 
+            The Data Browser is a web application that allows the end user 
+            to traverse data that is available through the RESTful API. 
+            The Data Browser is a read-only application, meaning that it
+            cannot be used to modify any of the data viewed.
+        </para>
+        <para>
+            Designated administrators for education organizations will likely 
+            use the Data Browser to validate ingested data. As described
+            in &PRODUCTABBR; administrator documentation, the Data Browser 
+            is listed as one of the available applications from the 
+            administrator home page for users with permission to use it. 
+            Data Browser users are part of the &PRODUCTABBR; hosted user
+            directory and in the federated directories for state and local
+            education agencies.
+        </para>
+    </section>
+    
+    <section xml:id="doc-351e172e-84c1-4288-a86f-eef36196a678">
+        <title>Data Browser: Installation</title>
+        <para>
+            Installation for the Data Browser requires the following:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A Rails server
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby Version Manager (rvm)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby 2.0.0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Bundler Ruby Gem <code>`gem install bundler`</code>
+                </para>
+            </listitem>
+            <listitem>
+                <para> A user account that can be authenticated by the operator identity provider
+                    with group membership in "&PRODUCTABBR; Administrators". </para>
+            </listitem>
+        </itemizedlist>
+        <para> Use the following procedure to install the Data Browser application for
+            &PRODUCTABBR;. These steps assume that you'll be locating the application into a
+                <filename>$RAILS_HOME</filename> folder, where
+                <filename>$RAILS_HOME/public</filename> is your <filename>$WWWROOT</filename>
+            folder: </para>
+        <procedure>
+            <step>
+                <para>
+                    Extract the admin software package to <filename>$RAILS_HOME</filename>.
+                </para>
+                <programlisting><![CDATA[
+tar xvzf -C $RAILS_HOME databrowser-package.tgz
+                            ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Change your current directory to <filename>$RAILS_HOME</filename>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Execute the following commands to install all of the pre-requisite 
+                    Ruby gems and compile the assets:
+                </para>
+                <programlisting><![CDATA[
+bundle install --deployment
+bundle exec rake assets:precompile
+                            ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Modify the <filename>$RAILS_HOME/config/deploy/team.rb</filename> file to define 
+                    the name of the environment. This will allow multiple configurations 
+                    to be placed in the <filename>config.yml</filename> file, although only one 
+                    configuration can be used at a time.
+                </para>
+                <programlisting><![CDATA[
+server "databrowser.example.com", :app, :web, :db, :primary => true
+set :rails_env, "production"
+                            ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Create a configuration file that represents your 
+                    environment, named <filename>$RAILS_HOME/config/config.yml</filename>.
+                    Use the following example as a guide.
+                </para>
+                <programlisting><![CDATA[
+production:
+api_base: https://api.example.com/api/rest
+redirect_uri: https://databrowser.example.com/callback
+portal_url: https://portal.example.com/headerfooter-portlet/api/secure/jsonws/headerfooter
+client_id: 10CharIden
+client_secret: 48CharacterRandomSecret
+show_edorg_table: true
+                            ]]></programlisting>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <code>api_base</code> - The URL where the application will need to connect 
+                            to in order to work with the API, as well as direct the user 
+                            for authentication.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <code>client_id</code> - A ten character random string [a-z|A-Z|0-9] that 
+                            represents the application for authentication to the API service. <emphasis>Important:</emphasis> Be sure to use the encrypted client_id from step 5.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <code>client_secret</code> - A forty eight character random string [a-z|A-Z|0-9] 
+                            that is used as a shared secret between the API and the application. <emphasis>Important:</emphasis> Be sure to use the encrypted client_secret from step 5.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <code>show_edorg_table</code> - true/false 
+                            Setting to determine whether or not to show the count table on the Education Organization 
+                            pages. This table will get displayed when Education Organiztions are shown. Even in a
+                            list of Education Organizations, each will have it's own table.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>
+                    Ensure that your configuration matches that of the API configuration file, 
+                    which should be bootstrapped into the Mongo database. Once verified, and 
+                    the configuration is located in the Mongo database within 
+                    the application collection, you are ready to proceed.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Access the server webroot with a web browser. You will be re-directed to the API, 
+                    which will re-direct you to the configured IDP.  If validated correctly, 
+                    you will then be redirected back to the API, and then back to the Data Browser 
+                    web application. In order to test the functionality of the application, you must
+                    be logged in to the Data Browser as a user that has access to some ingested data.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <!--
+    <section xml:id="doc-b742ede9-210c-4f6e-878b-d03dde668d35">
+        <title>Data Browser: Configuration</title>
+        <para>
+            FIXME... more to come
+        </para>
+    </section>
+    <section xml:id="doc-c9acdf96-c2a1-46e5-9796-1458eee9f09c">
+        <title>Data Browser: Troubleshooting During Deployment</title>
+        <para>
+            FIXME... more to come
+        </para>
+    </section>
+    -->
+    
+</chapter>

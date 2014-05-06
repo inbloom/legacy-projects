@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter 
+    xml:id="doc-10f4c2b3-93b4-4dce-adae-1a93feecc49c" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>&PRODUCTABBR; Data Ingestion</title>
+    </info>
+    <para>
+        <glossterm linkend="def-data_ingestion">Data ingestion</glossterm> is 
+        the process of uploading new and updated data to the &PRODUCTABBR; 
+        Data Store. Ingestion consumes data from one or more source files 
+        placed in an FTP server location and adds the data to the 
+        &PRODUCTABBR; Data Store. There may be applications designed to add, 
+        view, and edit one record at a time, but ingestion is designed to 
+        handle several dozen, to several thousand, data records at one time. 
+        Ingestion Users have access to the system tools necessary for 
+        ingestion.
+    </para>
+    
+    <section xml:id="doc-9aafba21-be2e-4cdc-b3f3-3d86c4cdcbd7">
+        <title>How Ingestion Works</title>
+        <para>
+            The ingestion process works like this:
+        </para>
+        <orderedlist>
+            <listitem>
+                <para>
+                    Files are prepared for ingestion and placed in a 
+                    <glossterm linkend="def-landing_zone">landing zone</glossterm>. 
+                    The landing zone is an FTP server location where you can 
+                    upload files to be ingested to the
+                    &PRODUCTABBR; Data Store. 
+                </para>
+                <para>
+                    &PRODUCTABBR; administrators can set up one or more of 
+                    these landing zones to serve a single data store. For 
+                    instructions on how to set up and manage landing zones, see
+                    <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>.
+                </para>
+            </listitem>
+            <listitem>
+                <para> 
+                    &PRODUCTABBR; checks for files in the configured 
+                    <glossterm linkend="def-landing_zone">landing zone</glossterm>. 
+                </para>
+            </listitem>
+            <listitem>
+                <para> 
+                    &PRODUCTABBR; kicks off the data ingestion process, 
+                    working through the files in the landing zone.  
+                </para>
+            </listitem>
+            <listitem>
+                <para> 
+                    When ingestion is complete, &PRODUCTABBR; administrators 
+                    can confirm that the newly ingested data is available in 
+                    the &PRODUCTABBR; Data Store. The &PRODUCTABBR; 
+                    Data Browser is an administration tool designed for this 
+                    purpose. 
+                </para>
+            </listitem>
+        </orderedlist>
+    </section> <!-- END of Data Ingestion Overview -->
+    
+    <section xml:id="doc-fe6b4f03-127c-45f2-b975-0c66ad9e43d9">
+        <title>Ingestion Users</title>
+        <para>
+            An &PRODUCTABBR; administrator does not need to be an 
+            Ingestion User to prepare data for ingestion or to use the 
+            ingestion validation and conversion tools. However, that user 
+            must have the Ingestion User role to ingest data into the 
+            &PRODUCTABBR; Data Store. The Ingestion User creates landing zones 
+            and uploads files to any landing zone associated with their
+            tenancy.
+        </para>
+        <para>
+            Any SEA, LEA, or Realm Administrator can be assigned the 
+            Ingestion User role, or an administrator can be designated as an 
+            Ingestion User only. For more information about user roles see 
+            <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+        </para>
+        <para>
+            An Ingestion User account cannot be moved between tenancies. The 
+            relationship between the account and the landing zone for a 
+            tenant persists, so an Ingestion User could inadvertently upload 
+            data for his new tenant to the old one. Therefore, if an Ingestion
+            User moves to a new tenancy, the old account for the user should 
+            be deleted and a new account should be created. 
+        </para>
+    </section>
+    
+    <section xml:id="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74">
+        <title>Creating and Managing Landing Zones</title>
+        <para>
+            The landing zone is an FTP server location where you can upload
+             files to be ingested to the &PRODUCTABBR; Data Store. To create 
+             and manage landing zones, you need an &PRODUCTABBR; administrator
+             account with the
+             <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>
+             role.
+        </para>
+        <para>
+            Use the following steps to create landing zones:
+        </para>
+        <procedure>
+            <step>
+                <para> Log in to &PRODUCTABBR; with your Ingestion User administrator account. </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Admin</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Create Landing Zone</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Create</guibutton>.
+                </para>
+                <para>
+                    After you click <guibutton>Create</guibutton>, you'll 
+                    receive an email with further instructions for ingesting 
+                    data using your new landing zone. For a detailed look at 
+                    these instructions, see 
+                    <xref linkend="doc-53e3a1af-a134-428e-a0e0-428bbd70dd20"/>.
+                </para>
+            </step>
+        </procedure>
+        <note>
+            <title>Landing Zones for Sandbox Developers</title>
+            <para>
+                Application developers who are using a Sandbox development
+                environment have a different experience when creating and
+                using landing zones. For documentation about landing zones and
+                data ingestion in a Sandbox, see developer documentation at
+                <link xlink:show="new" xlink:href="&DEVWEBSITE;">&DEVWEBSITE;</link>.
+            </para>
+        </note>
+        <!-- Questions to answer in future revisions:
+             What configuration options do I have for landing zones?
+             What are the approximate minimum and maximum processing times for data ingestion in a theoretical scenario?
+             What conditions will affect the speed of data ingestion and the validity of the content once saved to the data store?
+        -->
+    </section> <!-- END of Creating and Managing Landing Zones -->
+    
+    <section xml:id="doc-53e3a1af-a134-428e-a0e0-428bbd70dd20">
+        <title>Ingesting Data for the &PRODUCTABBR; Data Store</title>
+        <para>
+            Data ingestion starts by making a secure file transfer to a 
+            landing zone. To do this, upload files using an FTP client 
+            to the a landing zone configured for the target tenancy.
+            The results of the ingestion job are shown in messages
+            in a series of log files, which you can download from the
+            same landing zone.
+        </para>
+        <para>
+            The uploading and downloading is the easy part of ingestion.
+            The more complex and time-consuming task is preparing data
+            for ingestion. Data must be provided in XML files compliant 
+            with the &INGESTIONSCHEMANAME; schema, which
+            is the Ed-Fi Core &EDFIVERSION; schema plus the 
+            &PRODUCTABBR; extension schema. A control file must list
+            important information about the XML files to be ingested, and
+            all the files must be bundled into a single .zip archive for
+            uploading.
+        </para>
+        <para>
+            &COMPANYABBR; produces an ingestion guide that includes all the
+            details you need to prepare data for ingestion. It also provides
+            additional information on how ingestion works and how to
+            troubleshoot ingestion jobs based on log file messages.
+        </para>
+    </section> <!-- END of Ingesting Data for the inBloom Data Store -->
+    
+    <xi:include href="../modules/concepts/c-ingestion-sif.xml" />
+        
+</chapter>

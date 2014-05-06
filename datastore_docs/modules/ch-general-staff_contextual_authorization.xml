@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-54ba0efa-dd34-4m0f-b911-caf7a8c60606"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Contextual Authorization: Staff</title>
+    
+    <para>
+        The rules in this section apply specifically to users that are 
+        associated with the Staff context configured for user roles.
+    </para>
+    
+    <section xml:id="c-contextual_authorization-staff-edorg_assoc">
+        <title>Staff Context Relies on Education Organization</title>
+        <para>
+            <emphasis role="bold">RULE:</emphasis> 
+            <emphasis>If a Staff (user entity) is associated with a 
+                certain educationOrganization, then the user has the context 
+                necessary to access all the data within or below that
+                educationOrganization in the educationOrganization hierarchy, 
+                if a hierarchy exists.
+            </emphasis>
+        </para>
+        <para>
+            Staff can access data within their own education organization, and 
+            within any education organization that falls under that organization
+            in the hierarchy. The diagram below demonstrates this context 
+            relationship between users and education organizations.
+        </para>
+        <figure xml:id="figure-security-staff-educationOrganization-hierarchy">
+            <title>Staff and Education Organization Association</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" 
+                        fileref="images/security-staff-edorg-hierarchy.png" 
+                        width="750px" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" 
+                        fileref="../common/images/security-staff-edorg-hierarchy.png" width="7in"
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>
+            <emphasis role="bold">RULE (Current educationOrganization 
+            Association Constraint):</emphasis>  
+            <emphasis>If the Staff has no current 
+            <glossterm linkend="def-association">association</glossterm> 
+            with an educationOrganization, the user is not authorized to 
+            access the data associated with that organization, including 
+            the data about that user.
+            </emphasis>
+        </para>
+        <para>
+            Staff cannot access data for any education organization they are 
+            not associated with, including data about themselves.
+        </para>
+        <para>
+            Note that these specific rules apply for both Staff and Teacher.
+        </para>
+    </section>
+    
+    <section xml:id="c-contextual_authorization-staff-expired_assoc">
+        <title>Staff Context Expires When Association Ends</title>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>Staff A should not have access to Staff B or Teacher B 
+                if Staff B or Teacher B is no longer associated with Staff A's 
+                educationOrganization.</emphasis>
+        </para>
+        <para>
+            Staff cannot access data for teachers or staff that are no 
+            longer associated with their educationOrganization.
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>Staff should not have access to a Student that is not 
+                currently enrolled in a School within the Staff's 
+                educationOrganization, but was in the past, unless the 
+                (system-level configurable) grace period is greater than the 
+                time the student is not part of the school.</emphasis>
+        </para>
+        <para>
+            Staff cannot access data for students that are not enrolled in 
+            a school once the grace period for data access has expired. For 
+            example, if Jimmy was not enrolled in Daybreak High for the last 
+            3 months, and the grace period is 2 months, then the principal 
+            of Daybreak High cannot access Jimmy's data. If the grace period 
+            is 4 months, though, the principal can access Jimmy's data.
+        </para>
+        <para>
+            In an example of combined Staff rules, consider this scenario:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    James Does is Principal of Daybreak Elementary.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Mark Smith is former Staff (grace period has expired).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Matt Jones is a former Student (grace period has expired).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            In this scenario, James Doe will not be able to access Mark (Staff)
+            or Matt (Student).
+        </para>
+    </section>
+    
+    <section xml:id="c-contextual_authorization-staff-student_data">
+        <title>Staff Context with Student Data</title>
+        <para>
+            <emphasis role="bold">RULE:</emphasis> 
+            <emphasis>Staff has context with all of the present data
+            about current students in their educationOrganization(s).
+            </emphasis>
+        </para>
+        <para>
+            This is a restatement of the rules in
+            <xref linkend="c-contextual_authorization-staff-edorg_assoc"/>,
+            but referencing student data specifically.
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis> 
+            <emphasis>Staff has context to historical students data as it 
+            does to present data. Student historical data means current 
+            data about the student's past, such as past grades. The Staff 
+            rights to that data is based on their rights to the student
+            entity.
+            </emphasis>
+        </para>
+        <para>
+            While Staff has context to all the student historical data,
+            the Staff user's rights specify access to the following 
+            historical data entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Attendance
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    CourseTranscript
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    DisciplineAction
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    DisciplineIncident
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Grade
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Parent
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    ReportCard
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentAcademicRecord
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentAssessment
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentCohortAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentCompetency
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentDisciplineIncidentAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentGradebook
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentParentAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentProgramAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentSchoolAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentSectionAssociation
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+</chapter>
+
+
+        

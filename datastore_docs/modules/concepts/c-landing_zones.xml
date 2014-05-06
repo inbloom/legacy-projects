@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-landing_zones"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Landing Zones</title>
+    
+    <para>
+        Each tenancy in the &PRODUCTABBR; data store has one or more landing 
+        zones that can serve that tenancy. Unlike the &PRODUCTABBR;
+        REST API and applications built on it, the landing zone is designed to
+        handle a significant amount of data (thousands of records) as part of
+        a single operation.
+    </para>
+    <para>
+        From a user's perspective, the landing zone is a secure FTP server 
+        used to upload files for data ingestion. Any &PRODUCTABBR; user with 
+        the <emphasis>Ingestion User</emphasis> role can use those user 
+        credentials to connect to the landing zone and upload files.
+    </para>
+    <para>
+        Under the cover, the landing zone detects newly uploaded files and
+        begins the ingestion process. Each file uploaded launches a new 
+        ingestion job, and the job ID value contains the name of its
+        corresponding .zip file.
+    </para>
+    <para>
+        After handling each ingestion job, the landing zone contains a series 
+        of log files with messages that job. The files are named using the job 
+        ID and other identifying information. An ingestion user can download
+        these files from the same FTP server connection used to upload the
+        .zip files. 
+    </para>
+    <para>
+        Ingestion user documentation covers the details on how to form the
+        files to upload to the landing zone and how to read and interpret the
+        messages in the log files.
+    </para>
+    
+</section>

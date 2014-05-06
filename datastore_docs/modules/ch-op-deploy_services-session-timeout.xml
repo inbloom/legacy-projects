@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-22222ca4-22fd-2222-8a1a-e2222fc70d22"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Adjusting Session Timeouts</title>
+    <para>The default &PRODUCTABBR; configuration utilizes a timeout of 5 minutes, set in
+        milliseconds. These values can be easily changed in order to permit an operator of the
+        platform to adjust the session timeouts to meet operational requirements. </para>
+    <para>This value can be set for the API via the sli.session.length property. </para>
+    <para><programlisting><![CDATA[
+sli.session.length = 300000             
+               ]]></programlisting></para>
+ 
+    <para>In the above example, the setting is the 5 minute default, or 5 minutes * 60 seconds *
+        1000, which equals 300000 milliseconds. </para>
+    <para>To set this value to one hour, set it to the example below, or 60 minutes * 60 seconds *
+        1000, which equals 3600000 milliseconds. </para>
+    <para><programlisting><![CDATA[
+sli.session.length = 3600000            
+               ]]></programlisting></para>
+    <para>The Simple IDP process utilizes the Tomcat session cache and, as such, it is necessary to
+        extend the tomcat session lifetime.  </para>
+    <para>This property can be set in the system wide web.xml file located in
+        $TOMCAT_HOME/conf/web.xml. </para><para><programlisting><![CDATA[
+<session-config>
+   <session-timeout>30</session-timeout>
+</session-config>           
+               ]]></programlisting></para>
+    <para>The default value is 30 minutes. </para>
+    <para>In order to change it to one hour, change the value to 60 in the $TOMCAT_HOME/conf/web.xml
+        file. The configuration would then look like: </para>
+    <para><programlisting><![CDATA[
+<session-config>
+   <session-timeout>60</session-timeout>
+</session-config>            
+               ]]></programlisting></para>
+    <para>The Portal application will also need to be synchronized with the above timeout setting changes.  Update the portal-ext.properties file to have a session length matching the time set above.</para>    
+    <para>By default:<programlisting><![CDATA[
+session.timeout=5           
+               ]]></programlisting>  
+  </para>
+    <para>Set to sixty minutes:<programlisting><![CDATA[
+session.timeout=60           
+               ]]></programlisting>  
+    </para>  
+    
+</chapter>

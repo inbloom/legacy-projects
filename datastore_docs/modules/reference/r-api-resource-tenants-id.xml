@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-tenants-id" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>tenants/id</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/tenants/{id}</filename>
+    </para>
+    <para>
+        Access a record for a specific tenant. This resource is only 
+        available to administrators.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            PUT
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Updates the specified resource using the given 
+                            resource data.
+                        </para>
+                        <para>
+                            Request:
+                            The request body for PUT must include the data 
+                            for the standard fields of the entire resource, 
+                            not just the fields you are updating. To form the 
+                            PUT request body, we recommend that you start 
+                            with a GET response body for the resource 
+                            you are updating, remove the metadata and links, 
+                            and edit the values for each field you want to 
+                            update. Note that trying to update a resource 
+                            that does not exist results in the 
+                            <varname>404 Not Found</varname> response code.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>204 No Content</varname> - 
+                            The response body is empty.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            DELETE
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Deletes the specified resource. 
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for DELETE. For 
+                            information on forming the DELETE request URI, see
+                            <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. 
+                            Note that trying to delete a resource that does 
+                            not exist results in the 
+                            <varname>404 Not Found</varname> response code.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>204 No Content</varname> - 
+                            The response body is empty.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-tenants-id-get_example">
+        <title>Example GET Response: tenants/{id}</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[{
+  "id": "2012bg-0fa312bb-13e5-11e2-b201-0a6e60db102b",
+  "tenantId": "TestTenantNY",
+  "landingZone": [
+	{
+  	"ingestionServer": "rcingest01",
+  	"educationOrganization": "NY-STATE-NYC",
+  	"desc": null,
+  	"path": "/ingestion/lz/TestTenantNY/bb81cc088e3e6b056144dd60cd7ac675bc37c36a5d59143157f38f7a9b272aa7",
+  	"userNames": null
+	}
+  ],
+  "links": [
+	{
+  	"rel": "self",
+  	"href": "https://local.example.com/api/rest/v1/2012bg-0fa312bb-13e5-11e2-b201-0a6e60db102b"
+	},
+	{
+  	"rel": "custom",
+  	"href": "https://local.example.com/api/rest/v1/2012bg-0fa312bb-13e5-11e2-b201-0a6e60db102b/custom"
+	}
+  ],
+  "entityType": "tenant"
+}]]></programlisting>
+    </section>
+    
+</section>

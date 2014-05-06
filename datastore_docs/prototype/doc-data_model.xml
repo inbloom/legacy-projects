@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xml:id="doc-data_model"
+      xmlns="http://docbook.org/ns/docbook" 
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>Data Model</title>
+    </info>
+    
+    <chapter xml:id="domains">
+        <title>Data Domains</title>
+        <para>
+            Page about the data domains.
+        </para>
+    </chapter>
+    
+    <chapter xml:id="entities">
+        <title>Entities</title>
+        <para>
+            Page about the entities in the data model.
+        </para>
+    </chapter>
+    
+    <chapter xml:id="attributes">
+        <title>Attributes</title>
+        <para>
+            Page about the attributes for each entity in the data model.
+        </para>
+    </chapter>
+    
+    <chapter xml:id="types">
+        <title>Data Types</title>
+        <para>
+            Page about the data types in the data model.
+        </para>
+    </chapter>
+    
+</book>

@@ -1,0 +1,1442 @@
+<Objects>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6538459142" objectVersion="26" refObjectName="Better exception handling for a few cases" CreatedAt="May 29">
+      <CreationDate>2012-05-29T13:11:37.685Z</CreationDate>
+      <ObjectID>6538459142</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>In the ingestion catalina/jetty logs, I see the follow during the running of the negative acceptance tests:       &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;[Fatal Error] :-1:-1: Premature end of file.&lt;/div&gt;  &lt;div&gt;[Fatal Error] :31:4: The element type "Name" must be terminated by the matching end-tag "&amp;lt;/Name&amp;gt;".&lt;/div&gt;  &lt;div&gt;[Fatal Error] :17:5: The element type "Address" must be terminated by the matching end-tag "&amp;lt;/Address&amp;gt;".&lt;/div&gt;  &lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;The operators probably do not want to see the word 'Fatal' in the logs&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE626</FormattedID>
+      <LastUpdateDate>2012-11-12T18:16:55.912Z</LastUpdateDate>
+      <Name>Better exception handling for a few cases</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125038442" refObjectName="Thomas Shewchuk" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6538459143" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+      </Tags>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-06-21T17:12:09.581Z</OpenedDate>
+      <PlanEstimate>2.0</PlanEstimate>
+      <Priority>Not scheduled (Tech Debt)</Priority>
+      <Rank>500000115072.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4711866137" refObjectName="James Short" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>Some logged errors may not properly reflect the severity of issues.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>51</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6744774498" objectVersion="13" refObjectName="INGESTION: Duplicates should be reported" CreatedAt="Jun 15">
+      <CreationDate>2012-06-15T13:44:14.831Z</CreationDate>
+      <ObjectID>6744774498</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>While ingesting SDS IL-DAYBREAK, out of 325 studentSectionAssociation records only 297 were persisted to mongo db because of duplicates. At the end of the job processing a warning message should be reported for the duplicate records that were not persisted.</Description>
+      <Discussion />
+      <FormattedID>DE921</FormattedID>
+      <LastUpdateDate>2012-08-20T13:34:00.169Z</LastUpdateDate>
+      <Name>INGESTION: Duplicates should be reported</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5681078097" refObjectName="Olga Violett" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6744774499" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-08-20T13:34:00.134Z</OpenedDate>
+      <Priority>Not scheduled (Tech Debt)</Priority>
+      <Rank>499999873408.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5562057394" refObjectName="Nupur Pandey" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Error reports are not always clear regarding the records persisted. When there are duplicates within the XML file, or a record already exists, the ingestion engine will still update the record. However, this record count is not included in the Ingested records count.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7383353198" objectVersion="5" refObjectName="Handle more than one teacher of record" CreatedAt="Aug 2">
+      <CreationDate>2012-08-02T19:05:42.299Z</CreationDate>
+      <ObjectID>7383353198</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>It appears ingestion accepts a section with more than one teacher of record, the question is whether Dashboard needs to handle that scenario (ie. print out the list of teachers in the section info panel in section profile)</Description>
+      <Discussion />
+      <FormattedID>DE1458</FormattedID>
+      <LastUpdateDate>2012-10-02T17:45:35.185Z</LastUpdateDate>
+      <Name>Handle more than one teacher of record</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7383353199" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-08-02T20:47:17.813Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999617920.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539506010" refObjectName="Doris Ip" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>The ingestion service can currently accept more than one teacher for a single section. The dashboard does not currently support this behavior.&amp;nbsp;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6007220536" objectVersion="18" refObjectName="INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference" CreatedAt="Apr 10">
+      <CreationDate>2012-04-10T18:18:46.193Z</CreationDate>
+      <ObjectID>6007220536</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Ingestion of School and EdOrg only supports a single representation of Ed-Fi parentEducationAgencyReference  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Alternate representations of parentEducationAgencyReference are not being resolved.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;This not just confined to this relationship. &amp;nbsp;However, the fix is not global but rather on a entity per entity basis&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE157</FormattedID>
+      <LastUpdateDate>2012-07-17T22:23:35.383Z</LastUpdateDate>
+      <Name>INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6007220537" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>500000286080.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Needs More Info</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125122291" refObjectName="Jonathan Tully" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Reference resolution is only supported as the default scenario that features no exceptional or error conditions. As a result, a user may ingest valid EdFi format with improper references that would fail to resolve.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6253298199" objectVersion="21" refObjectName="INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs" CreatedAt="May 3">
+      <CreationDate>2012-05-03T13:30:10.163Z</CreationDate>
+      <ObjectID>6253298199</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;Old name:&amp;nbsp;&lt;/div&gt;  &lt;span class="Apple-style-span" style="border-collapse: collapse; font-family: arial, helvetica, sans-serif; font-size: 11px; "&gt;  &lt;table class="dt-tbl" id="x4-gen2065" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: baseline; border-collapse: collapse; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(255, 255, 255); border-style: initial; border-color: initial; width: 1191px; box-sizing: border-box; background-position: initial initial; background-repeat: initial initial; "&gt;  &lt;tbody style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: baseline; box-sizing: border-box; "&gt;  &lt;tr style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: top; box-sizing: border-box; "&gt;  &lt;td id="x4-gen2073" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 4px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: normal; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: top; text-align: left; box-sizing: border-box; "&gt;[Need Ed-Fi clarification] Error found in US1876: Ingestion engine changes in support for Program: ProgramIdentifier required to be unique&lt;br /&gt;&lt;br /&gt;&lt;/td&gt;  &lt;/tr&gt;  &lt;/tbody&gt;  &lt;/table&gt;  &lt;/span&gt;  The current implementation of program ingestion requires that the programIdentifiers must be unique across the tenant, however, in EdFi, the programIdentifiers are required to be unique within an EdOrg.&amp;nbsp;    &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;The reference resolution for programs is not guaranteed to work correctly if there are multiple programs in different EdOrgs in the same tenant with the same programIdentifier.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE325</FormattedID>
+      <LastUpdateDate>2012-07-17T22:24:55.921Z</LastUpdateDate>
+      <Name>INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6253298200" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6354539145" refObjectName="[Need Ed-Fi clarification] Change ingestion to allow Program's ProgramId to be scoped to an EdOrg rather than a tenant." type="Defect" />
+      </Duplicates>
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-05-08T13:47:42.545Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>500000203648.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Requirement rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5861961373" refObjectName="Ingestion engine changes in support for Program" type="HierarchicalRequirement" />
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125487594" refObjectName="Simon Yau" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Ingestion process assumes that the Program ID is unique within a tenant, but this should be unique within the specified EdOrg instead. As a result, the reference could resolve incorrectly.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6183295926" objectVersion="13" refObjectName="INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline" CreatedAt="Apr 26">
+      <CreationDate>2012-04-26T20:00:34.645Z</CreationDate>
+      <ObjectID>6183295926</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;span style="font-family: calibri, arial, sans, sans-serif; font-size: 14px; text-align: left; white-space: pre-wrap; background-color: rgb(255, 255, 255); "&gt;Explicitly listed as not supported but DisciplineAction entity requires a reference to this Descriptor. &lt;/span&gt;</Description>
+      <Discussion />
+      <FormattedID>DE273</FormattedID>
+      <LastUpdateDate>2012-07-17T22:26:40.795Z</LastUpdateDate>
+      <Name>INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4814417296" refObjectName="Douglas Gore" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6183295927" type="RevisionHistory" />
+      <Tags />
+      <AcceptedDate>2012-05-11T20:59:47.598Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-05-11T20:59:47.598Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/5703111468" refObjectName="4.4" type="Iteration" />
+      <PlanEstimate>1.0</PlanEstimate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>500000196992.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;This descriptor is not currently supported. However, a reference to this descriptor is required for the DisciplineAction entity.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6092715540" objectVersion="16" refObjectName="INGESTION: EducationOrganization references to Program not properly ingested" CreatedAt="Apr 18">
+      <CreationDate>2012-04-18T14:42:47.956Z</CreationDate>
+      <ObjectID>6092715540</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>SLI XSD educationOrganization has programReference as a string; it should be a reference   &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;This defect prevents program references inside of EdOrg from being resolved.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Priority would be defined by determining the important of this relationship.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Resolution for this would require changing the SLI xsd.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE198</FormattedID>
+      <LastUpdateDate>2012-07-17T22:22:38.021Z</LastUpdateDate>
+      <Name>INGESTION: EducationOrganization references to Program not properly ingested</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5860338209" refObjectName="Baxter Crabtree" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6092715541" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-05-08T18:46:01.576Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>500000248960.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5690356545" refObjectName="Shawn Marie Richards" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>This reference hasn't been implemented yet. As a result, the API won't provide a link from the EdOrg to the Program.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7333576342" objectVersion="3" refObjectName="UI - IE8 - Dashboard Builder - drag And drop on release doesn't always return the Page to the right state" CreatedAt="Jul 30">
+      <CreationDate>2012-07-30T17:23:58.415Z</CreationDate>
+      <ObjectID>7333576342</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>- on IE8 (dwu's machine), go to dashboard builder &lt;div&gt;- go to school profile and add a tab&lt;/div&gt; &lt;div&gt;- drag and drop and drop it before the page is swapped&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Sometimes, on a drag and drop on the dashboard builder, the page doesn't return to its initial state to display the page name.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;This is on IE8 only&lt;/div&gt; &lt;div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;/div&gt; &lt;div&gt;I showed Nitesh already.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1434</FormattedID>
+      <LastUpdateDate>2012-10-01T20:38:34.641Z</LastUpdateDate>
+      <Name>UI - IE8 - Dashboard Builder - drag And drop on release doesn't always return the Page to the right state</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7333576343" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-07-31T13:50:34.114Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999640704.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539506010" refObjectName="Doris Ip" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription />
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7773002287" objectVersion="9" refObjectName="dashboard may not display all data" CreatedAt="Sep 5">
+      <CreationDate>2012-09-05T14:26:03.761Z</CreationDate>
+      <ObjectID>7773002287</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>As a result of the solution to DE1546 (requests with chunk sizes of 0 or &amp;gt;1000 are throttled to 1000), the initial dashboard view (with the 4 dropdowns) may display only a subset of the full data that the database might have, without communicating to the user that some of the data is not being returned.</Description>
+      <Discussion />
+      <FormattedID>DE1647</FormattedID>
+      <LastUpdateDate>2012-10-02T19:09:18.411Z</LastUpdateDate>
+      <Name>dashboard may not display all data</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7773002288" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-09-10T20:36:36.648Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999468928.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5690356545" refObjectName="Shawn Marie Richards" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>When a large dataset is available, the initial dashboard view may only display a subset of the data. The dashboard currently does not display a message explaining that only a subset of data is displayed.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7603296866" objectVersion="6" refObjectName="Remove Attendance Rate" CreatedAt="Aug 22">
+      <CreationDate>2012-08-22T13:58:20.719Z</CreationDate>
+      <ObjectID>7603296866</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Remove Attendance Rate column from Attendance History and LOS. &lt;div&gt;Updating ATs is required.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1573</FormattedID>
+      <LastUpdateDate>2012-10-02T19:05:52.963Z</LastUpdateDate>
+      <Name>Remove Attendance Rate</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7603296867" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-08-22T14:00:49.545Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999552128.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Minor or Aesthetic Problem (Sev4)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5605866915" refObjectName="Takashi Osako" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>The current attendence record includes an attendance rate column that may not be accurate for some use cases. The column will be removed by default in a future release.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7383349299" objectVersion="6" refObjectName="Section Profile - Handle 403 error when making teacher call" CreatedAt="Aug 2">
+      <CreationDate>2012-08-02T19:04:35.571Z</CreationDate>
+      <ObjectID>7383349299</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;- ingest dashboardSadPath Data&lt;/div&gt; &lt;div&gt;- sec 145 has 2 teacher of record (cgray and jdoe)&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; When we get a 403 in the teacher call, we should handle it properly (display ?) or else, sectionInfo Panel doesn't get displayed &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;02 Aug 2012 14:27:56.400-0400 INFO &amp;nbsp;[btpool0-0] audit [cgray@45b02cb0-1bad-4606-a936-094331bd47fe] - Thu Aug 02 14:27:56 EDT 2012,6584@MABERNATHY-LPT,INFO,MABERNATHY-LPT,K2e7Dwhq5J,org.slc.sli.api.resources.security.RealmResource,Midgar,UnknownTargetEdOrg,cgray, Mr Charles Gray,,t-3a25993e-decc-4f7d-b7fe-9fe9544152d0,http://local.slidev.org:8080/api/rest/v1/teachers/2012ym-8c42cd7b-dccd-11e1-927c-ec9a74fc9eb0,,,Access Denied!&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Notes&lt;/div&gt; &lt;div&gt;- Maybe it's easier to repro on windows as MarkA was the one who saw this problem and this test has been running forever&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1457</FormattedID>
+      <LastUpdateDate>2012-10-02T19:12:49.635Z</LastUpdateDate>
+      <Name>Section Profile - Handle 403 error when making teacher call</Name>
+      <Notes>8/22 Doris: &amp;nbsp;This is not related to windows. &amp;nbsp;Other users and CI are seeing the problem. &amp;nbsp; I've disabled the particular sad path test for now until this defect is fixed.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7383349300" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-08-02T20:47:17.797Z</OpenedDate>
+      <Priority>Future Interim Release (P4)</Priority>
+      <Rank>499999618176.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539506010" refObjectName="Doris Ip" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Currently, making a teacher call for a section with two "teachers of record" returns a 403 error. This error can cause the sectionInfo panel to not display.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9080101105" objectVersion="24" refObjectName="SAMT: AP: Dev without &quot;Ingestion User&quot; role can still ingest data" CreatedAt="Oct 10">
+      <CreationDate>2012-10-10T17:11:39.980Z</CreationDate>
+      <ObjectID>9080101105</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>A sandbox application developer can provision a landing zone, and ingest data (and get a green, ok message at the web gui) even when that dev user does not have "Ingestion User" role.&lt;br /&gt;&lt;br&gt;Steps to Reproduce:&lt;br&gt;1. Provision a new Administrator (in my case it was rmiller@wgen.net)&lt;br&gt;2. From that Admin account, add a new developer (in my case it was ri_dawg@hotmail.com)&lt;br&gt;3. Do not give that user "Ingestion User" role&lt;br&gt;4. Log into portal using that new user (ri_dawg@hotmail.com)&lt;br&gt;5. From the Admin dashboard, select "Provision Landing Zone"&lt;br&gt;6. Choose "Autoload SLC sample data"&lt;br&gt;7. You will get the green success message, even though you should not have that right.&lt;br&gt;&lt;br&gt;To sweeten the pot a bit, the ingestion failed.. there was just a .error directory created under the dev users (ri_dawg@hotmail.com) landing zone.    &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;NOTE: Must be fixed by R1.0. Can not be rescheduled.&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Est Hr: &amp;nbsp;12&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1832</FormattedID>
+      <LastUpdateDate>2012-11-16T17:33:22.712Z</LastUpdateDate>
+      <Name>SAMT: AP: Dev without "Ingestion User" role can still ingest data</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4514290116" refObjectName="Ryan Farris" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9080101106" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>RC</Environment>
+      <FoundInBuild>Release Testing 0.62</FoundInBuild>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984972" refObjectName="66" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999160320.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/9075400758" refObjectName="1.X" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/8007522925" refObjectName="Riley Miller" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>DEFINED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9425037614" refObjectName="fix defect" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>No</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>An application developer has access to the Landing Zone provisioning tool, and can provision a landing zone but can not access it via SFTP. Therefore can not ingest data manually but can do so through auto provisioning.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>47</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9064699494" objectVersion="23" refObjectName="Change uniqueSectionCode length in EdFi extension" CreatedAt="Oct 9">
+      <CreationDate>2012-10-09T17:48:57.136Z</CreationDate>
+      <ObjectID>9064699494</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>DE1470 involved changing the uniqueSectionCode in the SLI data model.&amp;nbsp; Now that we are creating an EdFi xsd extension for other reasons, we should also modify the uniqueSectionCode there, so we can stop getting validation warnings during ingestion.     &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;1 (2hr)&lt;br /&gt;&lt;br /&gt;Shawn Marie Richards:&lt;br /&gt;* add long code to an acceptance test that checks for warnings&lt;br /&gt;* override UniqueSectionCode in EdFi extension&lt;br /&gt;* override everything that uses UniqueSectionCode in EdFi extension&lt;br /&gt;&lt;/div&gt; &lt;div&gt;* change needs to be submitted in documentation.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1823</FormattedID>
+      <LastUpdateDate>2012-11-19T16:52:36.998Z</LastUpdateDate>
+      <Name>Change uniqueSectionCode length in EdFi extension</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4814417296" refObjectName="Douglas Gore" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9064699495" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-11-19T16:52:36.903Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984989" refObjectName="66" type="Iteration" />
+      <OpenedDate>2012-10-12T15:17:30.589Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999161728.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/9075400773" refObjectName="1.X" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>In-Progress</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5690356545" refObjectName="Shawn Marie Richards" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>3.0</TaskEstimateTotal>
+      <TaskRemainingTotal>3.0</TaskRemainingTotal>
+      <TaskStatus>IN_PROGRESS</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9451294346" refObjectName="fix" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription />
+      <ReleaseIterationApplicableto>66</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9149110490" objectVersion="35" refObjectName="Posting an entity twice results in API 500" CreatedAt="Oct 16">
+      <CreationDate>2012-10-16T16:02:04.274Z</CreationDate>
+      <ObjectID>9149110490</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Due to work that went in for deterministic ids, it appears that when you post an entity containing the same natural keys, the API will respond with a 500 error message:      &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;{&lt;/div&gt;  &lt;div&gt;&amp;nbsp; &amp;nbsp; "type": "Internal Server Error",&lt;/div&gt;  &lt;div&gt;&amp;nbsp; &amp;nbsp; "message": "Internal Server Error: E11000 duplicate key error index: Midgar.student.$_id_ &amp;nbsp;dup key: { : \"b2ef46582397408724e309b84fbd68e42acc70d6_id\" }; nested exception is com.mongodb.MongoException$DuplicateKey: E11000 duplicate key error index: Midgar.student.$_id_ &amp;nbsp;dup key: { : \"b2ef46582397408724e309b84fbd68e42acc70d6_id\" }",&lt;/div&gt;  &lt;div&gt;&amp;nbsp; &amp;nbsp; "code": 500&lt;/div&gt;  &lt;div&gt;}&lt;/div&gt;  &lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Stack Trace:&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;org.springframework.dao.DuplicateKeyException: E11000 duplicate key error index: Midgar.student.$_id_ &amp;nbsp;dup key: { : "b2ef46582397408724e309b84fbd68e42acc70d6_id" }; nested exception is com.mongodb.MongoException$DuplicateKey: E11000 duplicate key error index: Midgar.student.$_id_ &amp;nbsp;dup key: { : "b2ef46582397408724e309b84fbd68e42acc70d6_id" }&lt;/div&gt;  &lt;div&gt; at org.springframework.data.mongodb.core.MongoExceptionTranslator.translateExceptionIfPossible(MongoExceptionTranslator.java:53) ~[spring-data-mongodb-1.0.4.RELEASE.jar:na]&lt;/div&gt;  &lt;div&gt; at org.springframework.data.mongodb.core.MongoTemplate.potentiallyConvertRuntimeException(MongoTemplate.java:1546) ~[spring-data-mongodb-1.0.4.RELEASE.jar:na]&lt;/div&gt;  &lt;div&gt; at org.springframework.data.mongodb.core.MongoTemplate.execute(MongoTemplate.java:370) ~[spring-data-mongodb-1.0.4.RELEASE.jar:na]&lt;/div&gt;  &lt;div&gt; at org.springframework.data.mongodb.core.MongoTemplate.insertDBObject(MongoTemplate.java:730) ~[spring-data-mongodb-1.0.4.RELEASE.jar:na]&lt;/div&gt;  &lt;div&gt; at org.springframework.data.mongodb.core.MongoTemplate.doInsert(MongoTemplate.java:633) ~[spring-data-mongodb-1.0.4.RELEASE.jar:na]&lt;/div&gt;  &lt;div&gt; at org.springframework.data.mongodb.core.MongoTemplate.insert(MongoTemplate.java:589) ~[spring-data-mongodb-1.0.4.RELEASE.jar:na]&lt;/div&gt;  &lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;There were tests that had been previously in validation.feature that look like they were removed in a bad merge. &amp;nbsp;I have added these tests back in and marked them with a @wip tag. There are new tests in teacher_validation.feature that also have been marked @wip.&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1876</FormattedID>
+      <LastUpdateDate>2012-11-19T18:22:13.328Z</LastUpdateDate>
+      <Name>Posting an entity twice results in API 500</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/7632741325" refObjectName="Ed C" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9149110491" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-11-01T12:49:59.907Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475507219" refObjectName="6.5" type="Iteration" />
+      <OpenedDate>2012-10-18T11:24:19.049Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999226752.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427242" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>In-Progress</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967718072" refObjectName="Jeff Stokes" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>9.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9323096811" refObjectName="uncomment @wip tests that were added in parallel for Teacher, make sure they are valid (2)" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9323096397" refObjectName="uncomment @wip tests that Jeff added back in (bad merge?) (1)" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9323099130" refObjectName="modifications to API/DAL? code (6)" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>No</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>Posting an entity twice would result in an API 500 error. We've changed features of the natural keys calculations which caused this error. We have fixed this defect.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>64</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7937999811" objectVersion="29" refObjectName="API call - /api/rest/tenant returns all tenant information" CreatedAt="Sep 19">
+      <CreationDate>2012-09-19T17:14:40.503Z</CreationDate>
+      <ObjectID>7937999811</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;&lt;b&gt;Application Behavior&lt;/b&gt;&lt;/div&gt; &lt;div&gt;The /api/rest/tenant API call returns the entire tenant collection when requested using a developer's OAuth token. &amp;nbsp;This occurs in both sandbox and production mode. &amp;nbsp;Tenant information includes:&amp;nbsp;&lt;/div&gt; &lt;div&gt;tenantId&lt;/div&gt; &lt;div&gt;dbName&lt;/div&gt; &lt;div&gt;landingZone, which includes: educationOrganization, path, ingestionServer, description, and userNames&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;The API requires that callers be an admin user (which developers are within their sandbox.)&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Vulnerability&lt;/b&gt;&lt;/div&gt; &lt;div&gt;The tenant and landingZone entities reveal some information about the inner workings of SLI and Ingestion such as dbName, landingZone path and server. &amp;nbsp;Additionally, the attacker learns userNames associated with that landing zone. &amp;nbsp;A malicious developer/attacker could use this information to further refine their attacks or as a starting point for a password bruteforce guessing attack against the usernames. &amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Risk Assessment&lt;/b&gt;&lt;/div&gt; &lt;div&gt;The likelihood of this is medium because (a) the attacker must be able to authenticate as a developer, (b) special access is required to use information such as dbName, landingZone path, and server and (c) the API call to retrieve this information is public and easily made by an authenticated user. &amp;nbsp;The impact of this attack is low due to the access required to use the information and due to other mitigating controls (such as account lockout) which should prevent password bruteforce attacks. &amp;nbsp;Therefore the overall severity is medium-low.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Mitigation&lt;/b&gt;&lt;/div&gt; &lt;div&gt;The api/rest/tenant call should only return the tenant the user belongs to; it may also be desirable to limit the landing zone information returned to the user. &amp;nbsp;&lt;/div&gt;</Description>
+      <Discussion>
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9511816080" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9511752996" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9511715917" type="ConversationPost" />
+      </Discussion>
+      <FormattedID>DE1722</FormattedID>
+      <LastUpdateDate>2012-11-16T20:14:55.266Z</LastUpdateDate>
+      <Name>API call - /api/rest/tenant returns all tenant information</Name>
+      <Notes>Tenants returned have "landingZone" object which contain educationOrganization, landing zone, ingestion server, etc.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4814417296" refObjectName="Douglas Gore" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7937999812" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6046945587" refObjectName="Security Defect" type="Tag" />
+      </Tags>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984989" refObjectName="66" type="Iteration" />
+      <OpenedDate>2012-09-20T19:10:53.409Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999234688.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/9075400773" refObjectName="1.X" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Security-Medium/Low(SEC4)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539506010" refObjectName="Doris Ip" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>No</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription />
+      <ReleaseIterationApplicableto>47</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/8108628528" objectVersion="28" refObjectName="Including the word Script in data results in blacklist filter error." CreatedAt="Oct 1">
+      <CreationDate>2012-10-01T18:44:23.581Z</CreationDate>
+      <ObjectID>8108628528</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;&lt;b style="background-color: rgb(255, 255, 0);"&gt;4 hours if we get the list from sec office.&lt;/b&gt;&lt;/div&gt; &lt;div&gt;&lt;b style="background-color: rgb(255, 255, 0);"&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt; &lt;div&gt;&lt;b style="background-color: rgb(255, 255, 0);"&gt;See Notes section below for response from security office on this defect.&lt;/b&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;This issue was reported by pilot site user who is using Sandbox environment.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Here is Pete Wenzel's comments on the issue:&lt;/b&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;When the user included the word “Script” in the data it results in a blacklist filter error. &amp;nbsp;“StringBlacklistStrategy” in the error message indicates it is a WGen issue, not OmniTI WAF. &amp;nbsp;I’ve generated the attached zip file that demonstrates this. &amp;nbsp;When ingesting ieo-script.zip, there are 2 problems:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;1. The error log states:&lt;/div&gt; &lt;/div&gt; &lt;blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"&gt; &lt;div&gt; &lt;div&gt;“ERROR &amp;nbsp;ERROR: There has been a data validation error when saving an entity&lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;div&gt;Error &amp;nbsp; &amp;nbsp; &amp;nbsp;INVALID_VALUE&lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;div&gt;Entity &amp;nbsp; &amp;nbsp; course&lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;div&gt;Field &amp;nbsp; &amp;nbsp; &amp;nbsp;courseTitle&lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;div&gt;Value &amp;nbsp; &amp;nbsp; &amp;nbsp;SCREENPLAY AND SCRIPT WRITING&lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;div&gt;Expected &amp;nbsp; [Invalid value caught by strict blacklisting strategy: StringBlacklistStrategy]”&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;/div&gt; &lt;/blockquote&gt; 2. And the job log file is empty. &amp;nbsp;There is no summary of files or entities processed.               &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Removing the word Script from data resolved the problem.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Any HTML element that is in the blacklist needs to have an open angle bracket prepended to the word to ensure that it is treated properly.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Tasks (VGM):&lt;/div&gt; &lt;div&gt;Compile list of fields in which script should not be blacklisted&lt;/div&gt; &lt;div&gt;Make SLI XSD changes so that fields above use&amp;nbsp;relaxedStringBlacklistStrategy, which protects against "&amp;lt;script" but not "script"&lt;/div&gt; &lt;div&gt;Verify with security that relaxed blacklist is sufficient for this list of fields&lt;/div&gt; &lt;div&gt;Cover with unit test&lt;/div&gt; &lt;div&gt;Make following changes suggested by Dan Fiedler:&lt;/div&gt; &lt;div&gt;&lt;span style="font-family: Tahoma; font-size: 10pt; "&gt;While we're on the subject,&lt;/span&gt;&lt;span style="font-family: Tahoma; font-size: 10pt; "&gt;&amp;nbsp;&lt;/span&gt;&lt;b style="font-family: Tahoma; font-size: 10pt; background-color: rgb(255, 255, 0); "&gt;we may want to add some additional strings to the string blacklist as we're making it more explicit (&amp;lt;div, &amp;lt;iframe, &amp;lt;frame, .fromCharCode, &amp;lt;input, &amp;lt;body, &amp;lt;link, &amp;lt;style, &amp;lt;object, &amp;lt;embed, and&lt;/b&gt;&lt;/div&gt; &lt;div&gt; &lt;div class="section"&gt;&lt;/div&gt; &lt;div class="section"&gt;&lt;/div&gt; &lt;div class="section"&gt;&lt;/div&gt; &lt;div class="section"&gt;&lt;/div&gt; &lt;div class="section"&gt;&lt;/div&gt; &lt;div class="section"&gt;&lt;/div&gt; &lt;div class="section"&gt;&lt;/div&gt; &lt;div class="layoutArea"&gt; &lt;div class="column"&gt; &lt;p&gt;&lt;span style="font-size: 10pt; font-family: Tahoma; background-color: rgb(255, 255, 0); "&gt;&lt;b&gt;additional triggerable JavaScript events onError, onMouse*) and relaxed string blacklist.&lt;/b&gt;&lt;/span&gt;&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;Recommended String Blacklist&lt;/div&gt; &lt;div&gt; &lt;ul&gt; &lt;li&gt;&amp;lt;script&lt;/li&gt; &lt;li&gt;&amp;lt;meta&lt;/li&gt; &lt;li&gt;&amp;lt;div&lt;/li&gt; &lt;li&gt;&amp;lt;iframe&lt;/li&gt; &lt;li&gt;&amp;lt;frame&lt;/li&gt; &lt;li&gt;&amp;lt;input&lt;/li&gt; &lt;li&gt;&amp;lt;body&lt;/li&gt; &lt;li&gt;&amp;lt;link&lt;a href="http://en.wikipedia.org/wiki/Main_Page"&gt;&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&amp;lt;style&lt;/li&gt; &lt;li&gt;&amp;lt;object&lt;/li&gt; &lt;li&gt;&amp;lt;embed&lt;/li&gt; &lt;li&gt;&amp;lt;bgsound&lt;/li&gt; &lt;li&gt;.fromCharCode&lt;/li&gt; &lt;/ul&gt; &lt;div&gt;And JavaScript event handlers:&amp;nbsp;&lt;/div&gt; &lt;div&gt; &lt;ul&gt; &lt;li&gt;FSCommand\s*=&lt;/li&gt; &lt;li&gt;onAbort\s*=&lt;/li&gt; &lt;li&gt;onActivate\s*=&lt;/li&gt; &lt;li&gt;...&lt;/li&gt; &lt;/ul&gt; &lt;div&gt;(Where \s* represents optional white space)&amp;nbsp;&lt;/div&gt; &lt;/div&gt; &lt;div&gt;Follow the above format (EventHandler\s*=) &amp;nbsp;for&amp;nbsp;&lt;/div&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; 1.&amp;nbsp; &amp;nbsp; &amp;nbsp; FSCommand() (attacker can use this when executed from within an embedded Flash object)&lt;br /&gt;&amp;nbsp;2.&amp;nbsp; &amp;nbsp; &amp;nbsp; onAbort() (when user aborts the loading of an image)&lt;br /&gt;&amp;nbsp;3.&amp;nbsp; &amp;nbsp; &amp;nbsp; onActivate() (when object is set as the active element)&lt;br /&gt;&amp;nbsp;4.&amp;nbsp; &amp;nbsp; &amp;nbsp; onAfterPrint() (activates after user prints or previews print job)&lt;br /&gt;&amp;nbsp;5.&amp;nbsp; &amp;nbsp; &amp;nbsp; onAfterUpdate() (activates on data object after updating data in the source object)&lt;br /&gt;&amp;nbsp;6.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforeActivate() (fires before the object is set as the active element)&lt;br /&gt;&amp;nbsp;7.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforeCopy() (attacker executes the attack string right before a selection is copied to the clipboard - attackers can do this with the execCommand&amp;nbsp; ("Copy") function)&lt;br /&gt;&amp;nbsp;8.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforeCut() (attacker executes the attack string right before a selection is cut)&lt;br /&gt;&amp;nbsp;9.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforeDeactivate() (fires right after the activeElement is changed from the current object)&lt;br /&gt;&amp;nbsp;10.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforeEditFocus() (Fires before an object contained in an editable element enters a UI-activated state or when an editable container object is control selected)&lt;br /&gt;&amp;nbsp;11.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforePaste() (user needs to be tricked into pasting or be forced into it using the execCommand("Paste") function)&lt;br /&gt;&amp;nbsp;12.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforePrint() (user would need to be tricked into printing or attacker could use the print() or execCommand("Print") function).&lt;br /&gt;&amp;nbsp;13.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBeforeUnload() (user would need to be tricked into closing the browser - attacker cannot unload windows unless it was spawned from the parent)&lt;br /&gt;&amp;nbsp;14.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBegin() (the onbegin event fires immediately when the element's timeline begins)&lt;br /&gt;&amp;nbsp;15.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBlur() (in the case where another popup is loaded and window looses focus)&lt;br /&gt;&amp;nbsp;16.&amp;nbsp; &amp;nbsp; &amp;nbsp; onBounce() (fires when the behavior property of the marquee object is set to "alternate" and the contents of the marquee reach one side of the window)&lt;br /&gt;&amp;nbsp;17.&amp;nbsp; &amp;nbsp; &amp;nbsp; onCellChange() (fires when data changes in the data provider)&lt;br /&gt;&amp;nbsp;18.&amp;nbsp; &amp;nbsp; &amp;nbsp; onChange() (select, text, or TEXTAREA field loses focus and its value has been modified)&lt;br /&gt;&amp;nbsp;19.&amp;nbsp; &amp;nbsp; &amp;nbsp; onClick() (someone clicks on a form)&lt;br /&gt;&amp;nbsp;20.&amp;nbsp; &amp;nbsp; &amp;nbsp; onContextMenu() (user would need to right click on attack area)&lt;br /&gt;&amp;nbsp;21.&amp;nbsp; &amp;nbsp; &amp;nbsp; onControlSelect() (fires when the user is about to make a control selection of the object)&lt;br /&gt;&amp;nbsp;22.&amp;nbsp; &amp;nbsp; &amp;nbsp; onCopy() (user needs to copy something or it can be exploited using the execCommand("Copy") command)&lt;br /&gt;&amp;nbsp;23.&amp;nbsp; &amp;nbsp; &amp;nbsp; onCut() (user needs to copy something or it can be exploited using the execCommand("Cut") command)&lt;br /&gt;&amp;nbsp;24.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDataAvailable() (user would need to change data in an element, or attacker could perform the same function)&lt;br /&gt;&amp;nbsp;25.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDataSetChanged() (fires when the data set exposed by a data source object changes)&lt;br /&gt;&amp;nbsp;26.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDataSetComplete() (fires to indicate that all data is available from the data source object)&lt;br /&gt;&amp;nbsp;27.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDblClick() (user double-clicks a form element or a link)&lt;br /&gt;&amp;nbsp;28.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDeactivate() (fires when the activeElement is changed from the current object to another object in the parent document)&lt;br /&gt;&amp;nbsp;29.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDrag() (requires that the user drags an object)&lt;br /&gt;&amp;nbsp;30.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDragEnd() (requires that the user drags an object)&lt;br /&gt;&amp;nbsp;31.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDragLeave() (requires that the user drags an object off a valid location)&lt;br /&gt;&amp;nbsp;32.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDragEnter() (requires that the user drags an object into a valid location)&lt;br /&gt;&amp;nbsp;33.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDragOver() (requires that the user drags an object into a valid location)&lt;br /&gt;&amp;nbsp;34.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDragDrop() (user drops an object (e.g. file) onto the browser window)&lt;br /&gt;&amp;nbsp;35.&amp;nbsp; &amp;nbsp; &amp;nbsp; onDrop() (user drops an object (e.g. file) onto the browser window)&lt;br /&gt;&amp;nbsp;36.&amp;nbsp; &amp;nbsp; &amp;nbsp; onEnd() (the onEnd event fires when the timeline ends.&lt;br /&gt;&amp;nbsp;37.&amp;nbsp; &amp;nbsp; &amp;nbsp; onError() (loading of a document or image causes an error)&lt;br /&gt;&amp;nbsp;38.&amp;nbsp; &amp;nbsp; &amp;nbsp; onErrorUpdate() (fires on a databound object when an error occurs while updating the associated data in the data source object)&lt;br /&gt;&amp;nbsp;39.&amp;nbsp; &amp;nbsp; &amp;nbsp; onFilterChange() (fires when a visual filter completes state change)&lt;br /&gt;&amp;nbsp;40.&amp;nbsp; &amp;nbsp; &amp;nbsp; onFinish() (attacker can create the exploit when marquee is finished looping)&lt;br /&gt;&amp;nbsp;41.&amp;nbsp; &amp;nbsp; &amp;nbsp; onFocus() (attacker executes the attack string when the window gets focus)&lt;br /&gt;&amp;nbsp;42.&amp;nbsp; &amp;nbsp; &amp;nbsp; onFocusIn() (attacker executes the attack string when window gets focus)&lt;br /&gt;&amp;nbsp;43.&amp;nbsp; &amp;nbsp; &amp;nbsp; onFocusOut() (attacker executes the attack string when window looses focus)&lt;br /&gt;&amp;nbsp;44.&amp;nbsp; &amp;nbsp; &amp;nbsp; onHelp() (attacker executes the attack string when users hits F1 while the window is in focus)&lt;br /&gt;&amp;nbsp;45.&amp;nbsp; &amp;nbsp; &amp;nbsp; onKeyDown() (user depresses a key)&lt;br /&gt;&amp;nbsp;46.&amp;nbsp; &amp;nbsp; &amp;nbsp; onKeyPress() (user presses or holds down a key)&lt;br /&gt;&amp;nbsp;47.&amp;nbsp; &amp;nbsp; &amp;nbsp; onKeyUp() (user releases a key)&lt;br /&gt;&amp;nbsp;48.&amp;nbsp; &amp;nbsp; &amp;nbsp; onLayoutComplete() (user would have to print or print preview)&lt;br /&gt;&amp;nbsp;49.&amp;nbsp; &amp;nbsp; &amp;nbsp; onLoad() (attacker executes the attack string after the window loads)&lt;br /&gt;&amp;nbsp;50.&amp;nbsp; &amp;nbsp; &amp;nbsp; onLoseCapture() (can be exploited by the releaseCapture() method)&lt;br /&gt;&amp;nbsp;51.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMediaComplete() (When a streaming media file is used, this event could fire before the file starts playing)&lt;br /&gt;&amp;nbsp;52.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMediaError() (User opens a page in the browser that contains a media file, and the event fires when there is a problem)&lt;br /&gt;&amp;nbsp;53.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseDown() (the attacker would need to get the user to click on an image)&lt;br /&gt;&amp;nbsp;54.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseEnter() (cursor moves over an object or area)&lt;br /&gt;&amp;nbsp;55.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseLeave() (the attacker would need to get the user to mouse over an image or table and then off again)&lt;br /&gt;&amp;nbsp;56.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseMove() (the attacker would need to get the user to mouse over an image or table)&lt;br /&gt;&amp;nbsp;57.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseOut() (the attacker would need to get the user to mouse over an image or table and then off again)&lt;br /&gt;&amp;nbsp;58.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseOver() (cursor moves over an object or area)&lt;br /&gt;&amp;nbsp;59.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseUp() (the attacker would need to get the user to click on an image)&lt;br /&gt;&amp;nbsp;60.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMouseWheel() (the attacker would need to get the user to use their mouse wheel)&lt;br /&gt;&amp;nbsp;61.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMove() (user or attacker would move the page)&lt;br /&gt;&amp;nbsp;62.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMoveEnd() (user or attacker would move the page)&lt;br /&gt;&amp;nbsp;63.&amp;nbsp; &amp;nbsp; &amp;nbsp; onMoveStart() (user or attacker would move the page)&lt;br /&gt;&amp;nbsp;64.&amp;nbsp; &amp;nbsp; &amp;nbsp; onOutOfSync() (interrupt the element's ability to play its media as defined by the timeline)&lt;br /&gt;&amp;nbsp;65.&amp;nbsp; &amp;nbsp; &amp;nbsp; onPaste() (user would need to paste or attacker could use the execCommand("Paste") function)&lt;br /&gt;&amp;nbsp;66.&amp;nbsp; &amp;nbsp; &amp;nbsp; onPause() (the onpause event fires on every element that is active when the timeline pauses, including the body element)&lt;br /&gt;&amp;nbsp;67.&amp;nbsp; &amp;nbsp; &amp;nbsp; onProgress() (attacker would use this as a flash movie was loading)&lt;br /&gt;&amp;nbsp;68.&amp;nbsp; &amp;nbsp; &amp;nbsp; onPropertyChange() (user or attacker would need to change an element property)&lt;br /&gt;&amp;nbsp;69.&amp;nbsp; &amp;nbsp; &amp;nbsp; onReadyStateChange() (user or attacker would need to change an element property)&lt;br /&gt;&amp;nbsp;70.&amp;nbsp; &amp;nbsp; &amp;nbsp; onRepeat() (the event fires once for each repetition of the timeline, excluding the first full cycle)&lt;br /&gt;&amp;nbsp;71.&amp;nbsp; &amp;nbsp; &amp;nbsp; onReset() (user or attacker resets a form)&lt;br /&gt;&amp;nbsp;72.&amp;nbsp; &amp;nbsp; &amp;nbsp; onResize() (user would resize the window; attacker could auto initialize with something like: &amp;lt;SCRIPT&amp;gt;self.resizeTo(500,400);&amp;lt;/SCRIPT&amp;gt;)&lt;br /&gt;&amp;nbsp;73.&amp;nbsp; &amp;nbsp; &amp;nbsp; onResizeEnd() (user would resize the window; attacker could auto initialize with something like: &amp;lt;SCRIPT&amp;gt;self.resizeTo(500,400);&amp;lt;/SCRIPT&amp;gt;)&lt;br /&gt;&amp;nbsp;74.&amp;nbsp; &amp;nbsp; &amp;nbsp; onResizeStart() (user would resize the window; attacker could auto initialize with something like: &amp;lt;SCRIPT&amp;gt;self.resizeTo(500,400);&amp;lt;/SCRIPT&amp;gt;)&lt;br /&gt;&amp;nbsp;75.&amp;nbsp; &amp;nbsp; &amp;nbsp; onResume() (the onresume event fires on every element that becomes active when the timeline resumes, including the body element)&lt;br /&gt;&amp;nbsp;76.&amp;nbsp; &amp;nbsp; &amp;nbsp; onReverse() (if the element has a repeatCount greater than one, this event fires every time the timeline begins to play backward)&lt;br /&gt;&amp;nbsp;77.&amp;nbsp; &amp;nbsp; &amp;nbsp; onRowsEnter() (user or attacker would need to change a row in a data source)&lt;br /&gt;&amp;nbsp;78.&amp;nbsp; &amp;nbsp; &amp;nbsp; onRowExit() (user or attacker would need to change a row in a data source)&lt;br /&gt;&amp;nbsp;79.&amp;nbsp; &amp;nbsp; &amp;nbsp; onRowDelete() (user or attacker would need to delete a row in a data source)&lt;br /&gt;&amp;nbsp;80.&amp;nbsp; &amp;nbsp; &amp;nbsp; onRowInserted() (user or attacker would need to insert a row in a data source)&lt;br /&gt;&amp;nbsp;81.&amp;nbsp; &amp;nbsp; &amp;nbsp; onScroll() (user would need to scroll, or attacker could use the scrollBy() function)&lt;br /&gt;&amp;nbsp;82.&amp;nbsp; &amp;nbsp; &amp;nbsp; onSeek() (the onreverse event fires when the timeline is set to play in any direction other than forward)&lt;br /&gt;&amp;nbsp;83.&amp;nbsp; &amp;nbsp; &amp;nbsp; onSelect() (user needs to select some text - attacker could auto initialize with something like: window.document.execCommand("SelectAll");)&lt;br /&gt;&amp;nbsp;84.&amp;nbsp; &amp;nbsp; &amp;nbsp; onSelectionChange() (user needs to select some text - attacker could auto initialize with something like: window.document.execCommand("SelectAll");)&lt;br /&gt;&amp;nbsp;85.&amp;nbsp; &amp;nbsp; &amp;nbsp; onSelectStart() (user needs to select some text - attacker could auto initialize with something like: window.document.execCommand("SelectAll");)&lt;br /&gt;&amp;nbsp;86.&amp;nbsp; &amp;nbsp; &amp;nbsp; onStart() (fires at the beginning of each marquee loop)&lt;br /&gt;&amp;nbsp;87.&amp;nbsp; &amp;nbsp; &amp;nbsp; onStop() (user would need to press the stop button or leave the webpage)&lt;br /&gt;&amp;nbsp;88.&amp;nbsp; &amp;nbsp; &amp;nbsp; onSyncRestored() (user interrupts the element's ability to play its media as defined by the timeline to fire)&lt;br /&gt;&amp;nbsp;89.&amp;nbsp; &amp;nbsp; &amp;nbsp; onSubmit() (requires attacker or user submits a form)&lt;br /&gt;&amp;nbsp;90.&amp;nbsp; &amp;nbsp; &amp;nbsp; onTimeError() (user or attacker sets a time property, such as dur, to an invalid value)&lt;br /&gt;&amp;nbsp;91.&amp;nbsp; &amp;nbsp; &amp;nbsp; onTrackChange() (user or attacker changes track in a playList)&lt;br /&gt;&amp;nbsp;92.&amp;nbsp; &amp;nbsp; &amp;nbsp; onUnload() (as the user clicks any link or presses the back button or attacker forces a click)&lt;br /&gt;&amp;nbsp;93.&amp;nbsp; &amp;nbsp; &amp;nbsp; onURLFlip() (this event fires when an Advanced Streaming Format (ASF) file, played by a HTML+TIME (Timed Interactive Multimedia Extensions) media tag, processes script commands embedded in the ASF file)&lt;br /&gt;&amp;nbsp;94.&amp;nbsp; &amp;nbsp; &amp;nbsp; seekSegmentTime() (this is a method that locates the specified point on the element's segment time line and begins playing from that point.&amp;nbsp; &amp;nbsp;The segment consists of one repetition of the time line including&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;(This list from&amp;nbsp;https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet)&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1760</FormattedID>
+      <LastUpdateDate>2012-11-19T16:29:27.720Z</LastUpdateDate>
+      <Name>Including the word Script in data results in blacklist filter error.</Name>
+      <Notes>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-059d22eb8{background-color: rgb(100.000000%, 100.000000%, 100.000000%)}.rally-rte-class-04ff23652{font-size: 11.000000pt; font-family: 'Calibri'; font-weight: 700}.rally-rte-class-0c4d42e4b{font-size: 11.000000pt; font-family: 'Calibri'}.rally-rte-class-04b90539c{font-size: 10pt; font-family: Tahoma; background-color: rgb(255, 255, 0);}.rally-rte-class-059178933{font-size: 8.000000pt; font-family: 'Tahoma'; font-weight: 700}.rally-rte-class-04558ad49{font-size: 8.000000pt; font-family: 'Tahoma'}.rally-rte-class-09f33d47{font-size: 12.000000pt; font-family: 'TimesNewRomanPSMT'}.rally-rte-class-00aa803b{font-size: 9.000000pt; font-family: 'ArialMT'}.rally-rte-class-09885d6ec{font-size: 9.000000pt; font-family: 'Arial'; font-weight: 700}.rally-rte-class-08fc58cfb{font-size: 9.000000pt; font-family: 'ArialMT'; background-color: rgb(100.000000%, 100.000000%, 100.000000%)}.rally-rte-class-026918fe1{font-size: 11.000000pt; font-family: 'Calibri'; color: rgb(0.000000%, 0.000000%, 100.000000%)}.rally-rte-class-0c681beb5{font-size: 10.000000pt; font-family: 'Tahoma'}.rally-rte-class-060a93d8{background-color: rgb(255, 255, 0);}&lt;/style&gt; &lt;div class="section"&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section rally-rte-class-059d22eb8"&gt; &lt;div class="section"&gt; &lt;div class="layoutArea"&gt; &lt;div class="column"&gt; &lt;p&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Subject: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;RE: Thoughts on blacklist defect: DE1760&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Date: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Thursday, October 4, 2012 9:53:01 AM Eastern Daylight Time &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;From: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Daniel Fiedler&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;To: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Baxter Crabtree&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;CC: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Sho Kikuchi, Boaz Gelbord &lt;/span&gt;&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class="section"&gt; &lt;div class="layoutArea"&gt; &lt;div class="column"&gt; &lt;p&gt;&lt;span class="rally-rte-class-04b90539c"&gt;&lt;b&gt;Allowing script is OK. The blacklist should ban "&amp;lt;script" without the quotes. -Dan &lt;/b&gt;&lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-059178933"&gt;From: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Baxter Crabtree&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;Sent: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Thursday, October 04, 2012 9:36 AM&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;To: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Daniel Fiedler&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;Cc: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Sho Kikuchi; Boaz Gelbord&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;Subject: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Re: Thoughts on blacklist defect: DE1760 &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-09f33d47"&gt;Also, I think this blacklisting solution is troublesome now that the whitelisting isn't being implemented. The blacklist was supposed to work in concert with the whitelist so that things like this don't happen to customers. In this case it seems capricious and arbitrary (although I understand the security implications) and it's difficult to justify this partial solution as it stands. &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Cheers, &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Baxter Crabtree Product Owner&lt;br /&gt; SLI&lt;br /&gt; Wireless Generation p: 919-­‐666-­‐2200 &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;e: bcrabtree@wgen.net s: bcrabtreewgen &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-04ff23652"&gt;From: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Baxter Crabtree &amp;lt;bcrabtree@wgen.net&amp;gt;&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Date: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Thursday, October 4, 2012 9:28 AM&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;To: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Daniel Fiedler &amp;lt;dfiedler@contractor.wgen.net&amp;gt;&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Cc: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Sliders-­‐Pantheon &amp;lt;Sliders-­‐Pantheon@wgen.net&amp;gt;, Sho Kikuchi &amp;lt;skikuchi@wgen.net&amp;gt;, Boaz Gelbord &amp;lt;bgelbord@wgen.net&amp;gt;, James Short &amp;lt;jshort@wgen.net&amp;gt;&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Subject: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Re: Thoughts on blacklist defect: DE1760 &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Dan, &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Below i's the text from the defect if you haven't seen it. Essentially, there could be a course called "Script writing" that causes an blacklist error. This is obviously not ideal and we need to think of a way to allow things like this. So the question is, can we allow "script"? &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-00aa803b"&gt;This issue was reported by pilot site user who is using Sandbox environment. &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-09885d6ec"&gt;Here is Pete Wenzel's comments on the issue: &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-00aa803b"&gt;When the user included the word “Script” in the data it results in a blacklist filter error. “StringBlacklistStrategy” in the error message indicates it is a WGen issue, not OmniTI WAF. I’ve generated the attached zip file that demonstrates this. When ingesting ieo-script.zip, there are 2 problems: &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-00aa803b"&gt;1. The error log states: &lt;/span&gt;&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt; &lt;div class="layoutArea"&gt; &lt;div class="column"&gt; &lt;p&gt;&lt;span class="rally-rte-class-08fc58cfb"&gt;“ERROR ERROR: There has been a data validation error when saving an entity&lt;/span&gt;&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class="section"&gt; &lt;div class="layoutArea"&gt; &lt;div class="column"&gt; &lt;p&gt;&lt;span class="rally-rte-class-00aa803b"&gt;2. And the job log file is empty. There is no summary of files or entities processed. Removing the word Script from data resolved the problem. &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Cheers, &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Baxter Crabtree Product Owner&lt;br /&gt; SLI&lt;br /&gt; Wireless Generation p: 919-­‐666-­‐2200 &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;e: &lt;/span&gt;&lt;span class="rally-rte-class-026918fe1"&gt;bcrabtree@wgen.net &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;s: bcrabtreewgen &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-04ff23652"&gt;From: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Daniel Fiedler &amp;lt;dfiedler@contractor.wgen.net&amp;gt;&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Date: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Tuesday, October 2, 2012 11:14 AM&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;To: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Boaz Gelbord &amp;lt;bgelbord@wgen.net&amp;gt;, James Short &amp;lt;jshort@wgen.net&amp;gt;&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Cc: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;Sliders-­‐Pantheon &amp;lt;Sliders-­‐Pantheon@wgen.net&amp;gt;, Sho Kikuchi &amp;lt;skikuchi@wgen.net&amp;gt; &lt;/span&gt;&lt;span class="rally-rte-class-04ff23652"&gt;Subject: &lt;/span&gt;&lt;span class="rally-rte-class-0c4d42e4b"&gt;RE: Thoughts on blacklist defect: DE1760 &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c681beb5"&gt;I need more context on the discussion (I only have these two short emails) but the blacklist can be made more specific and still be effective. I'd also note that unless we're talking about the small set of relaxed blacklist fields, angle brackets will be blocked by the character list. &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c681beb5"&gt;While we're on the subject, &lt;b class="rally-rte-class-060a93d8"&gt;we may want to add some additional strings to the string blacklist as we're making it more explicit (e.g. &amp;lt;div, &amp;lt;iframe, &amp;lt;frame, .fromCharCode, &amp;lt;input, &amp;lt;body, &amp;lt;link, &amp;lt;style, &amp;lt;object, &amp;lt;embed, and &lt;/b&gt;&lt;/span&gt;&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="section"&gt;         &lt;/div&gt; &lt;div class="layoutArea"&gt; &lt;div class="column"&gt; &lt;p&gt;&lt;span class="rally-rte-class-04b90539c"&gt;&lt;b&gt;additional JavaScript events such as onError, onMouse*, etc.) and relaxed string blacklist. &lt;/b&gt;&lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c681beb5"&gt;- Dan Fiedler &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&lt;span class="rally-rte-class-059178933"&gt;From: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Boaz Gelbord&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;Sent: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Tuesday, October 02, 2012 9:41 AM&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;To: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;James Short; Daniel Fiedler&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;Cc: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;Sliders-Pantheon; Sho Kikuchi&lt;br /&gt; &lt;/span&gt;&lt;span class="rally-rte-class-059178933"&gt;Subject: &lt;/span&gt;&lt;span class="rally-rte-class-04558ad49"&gt;RE: Thoughts on blacklist defect: DE1760 &lt;/span&gt;&lt;/p&gt; &lt;/div&gt; &lt;div class="column"&gt; &lt;p&gt;&lt;span class="rally-rte-class-0c681beb5"&gt;This should work for both the normal string blacklist&amp;nbsp;&lt;/span&gt;&lt;/p&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4814417296" refObjectName="Douglas Gore" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5591637355" refObjectName="Pantheon(Eng-NC,NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/8108628529" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>true</AffectsDoc>
+      <Attachments>
+         <Attachment rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/8108575769" refObjectName="ieo-script.zip" type="Attachment" />
+      </Attachments>
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <InProgressDate>2012-11-16T19:11:46.501Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984989" refObjectName="66" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999161472.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/9075400773" refObjectName="1.X" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Completed</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/6649862126" refObjectName="Kishore Ivatury" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>4.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9451214275" refObjectName="create new or edited blacklist items" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>No</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription />
+      <ReleaseIterationApplicableto>66</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6823101899" objectVersion="13" refObjectName="SFTP allows all file types" CreatedAt="Jun 21">
+      <CreationDate>2012-06-21T17:16:18.941Z</CreationDate>
+      <ObjectID>6823101899</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;&lt;b&gt;Application Behavior&lt;/b&gt;&lt;/div&gt; &lt;div&gt;The Landing Zone/SFTP endpoint of Ingestion allows users to upload any file type with any extension.&amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Vulnerability&lt;/b&gt;&lt;/div&gt; &lt;div&gt;A malicious user could upload a malicious file such as a virus, executable, or script that may be executed (perhaps by an operator looking to troubleshoot a problem.)&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;&lt;b&gt;Risk Assessment&lt;/b&gt;&lt;/div&gt; &lt;div&gt;Damage could include an attacker uploading malware (or content containing malware such as a PDF) that may be viewed by another ingestion user, leading to machine compromise and probable exposure of sensitive data. &amp;nbsp;Therefore the impact is high. &amp;nbsp;The likelihood is low because the user must be authenticated and the victim likely has to interact with whatever malicious file was uploaded. &amp;nbsp;Therefore the overall severity is medium. &amp;nbsp;&lt;/div&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Mitigation&lt;/b&gt;&lt;/div&gt; Limit file type acceptance by the LZ to expected file types, eliminating all other file types. &amp;nbsp;(Note however that some risk remains - an attacker might upload zip file with malicious contents and trick the operator or other into interacting with this malicious file. &amp;nbsp;This could be treated as a separate defect.) &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;The proposed change in the notes is good. &amp;nbsp;Please document in the runbook since this is a configuration change and link to the documentation for verification. &amp;nbsp;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1071</FormattedID>
+      <LastUpdateDate>2012-11-15T19:22:10.294Z</LastUpdateDate>
+      <Name>SFTP allows all file types</Name>
+      <Notes>&lt;div&gt;Configuration directive:&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;PathAllowFilter \.(tgz|zip|tar|Z|etc)&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Note: &amp;nbsp;do NOT use multiple PathAllowFilter directives; proftpd will only read the first one.&lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/7102568603" refObjectName="Dan O'Keefe" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289704709" refObjectName="Dark Knights (SysEng-NC,NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6823101900" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6046945587" refObjectName="Security Defect" type="Tag" />
+      </Tags>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <FoundInBuild>LZ</FoundInBuild>
+      <InProgressDate>2012-11-05T15:27:20.377Z</InProgressDate>
+      <OpenedDate>2012-07-10T13:39:25.623Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999835520.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>Configuration Change</Resolution>
+      <ScheduleState>In-Progress</ScheduleState>
+      <Severity>Security-Medium(SEC3)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5968970413" refObjectName="James Birk" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>This has been fixed in our testing environments. Passing to Storm for documentation.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>63</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6708140987" objectVersion="34" refObjectName="INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg" CreatedAt="Jun 12">
+      <CreationDate>2012-06-12T19:34:29.609Z</CreationDate>
+      <ObjectID>6708140987</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;This risk has been accepted and is going to be documented.&amp;nbsp;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;----&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Super Admins should not be capable of ingesting EdOrgs above their own EdOrg.&amp;nbsp; Example:&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;- An LEA (District) Super Admin should not be able to ingest the SEA above them.&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;[JW]&amp;nbsp; They are then able to ingest sibling LEAs, State Staff, etc&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Security risk is medium-low. &amp;nbsp;Low impact. &amp;nbsp;Medium probability.&amp;nbsp;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE861</FormattedID>
+      <LastUpdateDate>2012-09-11T20:43:36.910Z</LastUpdateDate>
+      <Name>INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967715433" refObjectName="Steve Peha" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289701840" refObjectName="Storm(Doc-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6708140988" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6046945587" refObjectName="Security Defect" type="Tag" />
+      </Tags>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-09-11T20:43:36.877Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999605888.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Requirement rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6623153419" refObjectName="SPIKE - I want Edorgs to only be ingested which I am allowed to ingest based on my landing zone." type="HierarchicalRequirement" />
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Security-Medium/Low(SEC4)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>During ingestion process the landing zone is tolerant of any EdOrg within a tenant being ingested.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;For example, two LEAs belong to the same SEA. LEA #1 can ingest data for LEA #2 since they are both part of SEA. LEA #1 can also ingest data for SEA. This is not ideal since data specific to each LEA are not restricted, but it is functional and ingestion works properly.&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6022169745" objectVersion="49" refObjectName="INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities" CreatedAt="Apr 11">
+      <CreationDate>2012-04-11T21:13:48.317Z</CreationDate>
+      <ObjectID>6022169745</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>The unique identifier for a Course in ingestion is CourseTitle. &amp;nbsp;It should be CourseCode.    &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;To be more precise, each CourseCode (can be many per Course) should be unique within the designated EdOrg, and each CourseCode should be able to identify the Course in isolation.&lt;/DIV&gt; &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;This situation could arise, for example, if a course was offered by both the Math department and Computer Science department of a school. &amp;nbsp;It's the same course, but each department would have their own course code.&lt;/DIV&gt; &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;Notes:&lt;/DIV&gt; &lt;DIV&gt;1. This defect is tracking the logic used to match an ingesting Course entity to one in the database. &amp;nbsp;Reference resolution for other types of entities to Course is is tracked by DE608.&lt;/DIV&gt; &lt;DIV&gt;2. The "schoolId" resolution from educationOrganizationReference is hardcoded to&amp;nbsp;Course/EducationOrganizationReference/EducationalOrgIdentity/EducationOrgIdentificationCode/ID as it has been (and is expected by SDS data at the moment). &amp;nbsp;Hardcoding this reference is common throughout entities as there is no generic infrastructure to resolve the reference properly. &amp;nbsp;This has been raised and Peter is in dicussion to create tech debt for tracking.&lt;/DIV&gt;</Description>
+      <Discussion />
+      <FormattedID>DE162</FormattedID>
+      <LastUpdateDate>2012-08-10T17:24:39.878Z</LastUpdateDate>
+      <Name>INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities</Name>
+      <Notes>&lt;DIV&gt;2012-06-20— adjusted to p3. not critical to get into Alpha in 4.7. will function as designed with minor errors, so this will be moved to 5.1&lt;/DIV&gt; &lt;DIV&gt;&lt;BR /&gt;&lt;/DIV&gt; &lt;DIV&gt;Initial fix for this was rendered obsolete by Hermod changes.&amp;nbsp; Waiting to hear if fix has been done on new code.&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;pbackes - Hermod says reimplement.&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;pbackes - 7/16 - Reclaimed from Pantheon.&lt;/DIV&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289467719" refObjectName="Megatron(Eng-NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6022169746" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-08-10T17:24:39.853Z</OpenedDate>
+      <PlanEstimate>3.0</PlanEstimate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>500000201856.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4921340700" refObjectName="Dwayne Williams" type="User" />
+      <TaskActualTotal>22.0</TaskActualTotal>
+      <TaskEstimateTotal>27.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/6419046250" refObjectName="Understand the course identification requirements" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/6419091748" refObjectName="Determine implementation approach" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407894021" refObjectName="Code review" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407894738" refObjectName="Acceptance tests" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407858839" refObjectName="Create custom transformer/matcher for Course" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/6407798398" refObjectName="Move Course to the the new ingestion pipeline" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>Course entities are uniquely identified by course name within an education organization, rather than by course code.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6607447634" objectVersion="6" refObjectName="INGESTION: Section, school and session references in AttendanceEvent are ignored" CreatedAt="Jun 4">
+      <CreationDate>2012-06-04T16:15:20.917Z</CreationDate>
+      <ObjectID>6607447634</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;The transformation for attendance ignores references in the inbound Ed-Fi Interchange-StudentAttendance files including:&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;- AttendanceEvent/SectionReference&lt;/div&gt;  &lt;div&gt;- AttendanceEvent/SchoolReference&lt;/div&gt;  &lt;div&gt;- AttendanceEvent/SessionReference&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;Instead, transformation logic queries SLI for School and Session information for a student and transforms and persists attendance according to the query results.&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;Additionally, the code treats the condition where a student is associated with two schools as an error condition.&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;In the submitter's opinion, the way attendance is handled by this transformer is not what a customer would expect (ignoring explicit characterization of the attendance event - by school, section, session etc. - contained in the data).&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;It also seems like a questionable assumption that a student would not be attending two (or more) schools at the same time.&amp;nbsp; Attending a high school and vocational school is not uncommon, for one example.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE710</FormattedID>
+      <LastUpdateDate>2012-07-17T22:29:15.579Z</LastUpdateDate>
+      <Name>INGESTION: Section, school and session references in AttendanceEvent are ignored</Name>
+      <Notes>pbackes - I spoke with Ilya Bagrak regarding prioritization of this defect.&amp;nbsp; He believes this needs to wait until post-Alpha.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5259724155" refObjectName="Josh W" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289467719" refObjectName="Megatron(Eng-NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6607447635" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <OpenedDate>2012-06-04T20:11:48.097Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999953792.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4938976510" refObjectName="Peter Backes" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>&lt;div&gt;The way AttendanceEvent entities are handled ignores explicit characterization of the attendance event - by school, section, session. As a result, AttendanceEvents for students attending multiple schools will not properly persist.&amp;nbsp;&lt;/div&gt;</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9492990529" objectVersion="5" refObjectName="Response data for API calls to api/rest/adminDelegation/myEdOrg contain full entity data, not just the body" CreatedAt="Nov 15">
+      <CreationDate>2012-11-15T16:19:21.641Z</CreationDate>
+      <ObjectID>9492990529</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-02331eaa7{margin: 0px 0px 0px 40px; padding: 0px; border: 0px; font-size: 11.818181991577148px; line-height: 1; font-family: Monaco, 'Andale Mono', 'Courier New', monospace; list-style-position: initial; list-style-image: initial; color: rgb(128, 128, 128); white-space: pre;}.rally-rte-class-05e09be92{margin: 0px; padding: 0px; border: 0px; font-size: 11.818181991577148px; line-height: 20px; font-family: inherit; color: rgba(0, 0, 0, 0.14902);}.rally-rte-class-08ffeb7fc{color: rgb(147, 161, 161);}.rally-rte-class-01967a1ed{color: rgb(38, 139, 210);}.rally-rte-class-01cbfcd43{color: rgb(25, 95, 145);}&lt;/style&gt; Example response:   &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;ol class="linenums rally-rte-class-02331eaa7"&gt; &lt;li class="L0 rally-rte-class-05e09be92"&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;{&lt;/span&gt;&lt;/li&gt; &lt;li class="L1 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"type"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"adminDelegation"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L2 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"entityId"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"2012nq-cd0f2849-2f39-11e2-99f7-0811968a65b0"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L3 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"stagedEntityId"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="kwd rally-rte-class-01cbfcd43"&gt;null&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L4 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"body"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;{&lt;/span&gt;&lt;/li&gt; &lt;li class="L5 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"viewSecurityEventsEnabled"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="kwd rally-rte-class-01cbfcd43"&gt;false&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L6 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"localEdOrgId"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"b2c6e292-37b0-4148-bf75-c98a2fcc905f"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L7 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"appApprovalEnabled"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="kwd rally-rte-class-01cbfcd43"&gt;true&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L8 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"id"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"2012nq-cd0f2849-2f39-11e2-99f7-0811968a65b0"&lt;/span&gt;&lt;/li&gt; &lt;li class="L9 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;},&lt;/span&gt;&lt;/li&gt; &lt;li class="L0 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"metaData"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;{&lt;/span&gt;&lt;/li&gt; &lt;li class="L1 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"tenantId"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"Midgar"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L2 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"isOrphaned"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"true"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L3 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"createdBy"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"sunsetadmin"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L4 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"updated"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="lit rally-rte-class-01cbfcd43"&gt;1352994583494&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;,&lt;/span&gt;&lt;/li&gt; &lt;li class="L5 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"created"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="lit rally-rte-class-01cbfcd43"&gt;1352993607450&lt;/span&gt;&lt;/li&gt; &lt;li class="L6 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;},&lt;/span&gt;&lt;/li&gt; &lt;li class="L7 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"aggregates"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;{&lt;/span&gt;&lt;/li&gt; &lt;li class="L8 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"calculatedValues"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;[]&lt;/span&gt;&lt;/li&gt; &lt;li class="L9 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;},&lt;/span&gt;&lt;/li&gt; &lt;li class="L0 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"embeddedData"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;{},&lt;/span&gt;&lt;/li&gt; &lt;li class="L1 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"denormalizedData"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;{},&lt;/span&gt;&lt;/li&gt; &lt;li class="L2 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"calculatedValues"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;{&lt;/span&gt;&lt;/li&gt; &lt;li class="L3 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;        &lt;/span&gt;&lt;span class="str rally-rte-class-01967a1ed"&gt;"calculatedValues"&lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;:&lt;/span&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt; &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;[]&lt;/span&gt;&lt;/li&gt; &lt;li class="L4 rally-rte-class-05e09be92"&gt;&lt;span class="pln rally-rte-class-08ffeb7fc"&gt;    &lt;/span&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;}&lt;/span&gt;&lt;/li&gt; &lt;li class="L5 rally-rte-class-05e09be92"&gt;&lt;span class="pun rally-rte-class-08ffeb7fc"&gt;}&lt;/span&gt;&lt;/li&gt; &lt;/ol&gt; &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2156</FormattedID>
+      <LastUpdateDate>2012-11-16T21:23:03.491Z</LastUpdateDate>
+      <Name>Response data for API calls to api/rest/adminDelegation/myEdOrg contain full entity data, not just the body</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9492990530" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <InProgressDate>2012-11-16T21:23:03.400Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984966" refObjectName="66" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999096704.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427212" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>In-Progress</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>In Progress</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125125890" refObjectName="Patrick Wolf" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>The API call that gives an info about what has been delegated by an LEA (api/rest/adminDelegation/myEdOrg) reveals unnecessary additional information.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>65</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9492712826" objectVersion="3" refObjectName="SEA's can't see delegation info when only security event viewing is delegated" CreatedAt="Nov 15">
+      <CreationDate>2012-11-15T16:02:04.087Z</CreationDate>
+      <ObjectID>9492712826</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;An LEA can delegate app authorization and security event viewing to an SEA. &amp;nbsp;If app authorization has been delegated, an SEA can call&amp;nbsp;&amp;nbsp;/api/rest/adminDelegation and see the delegation info for the LEA. &amp;nbsp;I would expect to see that same behavior if only security event viewing has been delegated, but that doesn't appear to be the case.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Example steps to reproduce&lt;/div&gt; &lt;div&gt;1. Log in as sunset admin to admin delegation tool and delegate "Approve Applications"&lt;/div&gt; &lt;div&gt;2. Do a rest call as an SEA admin and verify delegation info is visible&lt;/div&gt; &lt;div&gt;3. Log in as sunset admin to admin delegation tool and uncheck "Approve Applications", but check "View Security Events"&lt;/div&gt; &lt;div&gt;4. Do a rest call as an SEA admin. &amp;nbsp;An empty list is returned.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2155</FormattedID>
+      <LastUpdateDate>2012-11-16T15:23:08.154Z</LastUpdateDate>
+      <Name>SEA's can't see delegation info when only security event viewing is delegated</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9492712827" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984966" refObjectName="66" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999096960.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427212" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125125890" refObjectName="Patrick Wolf" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>The API call that returns what have been delegated (from the LEA) to SEA, gives no info (empty list) in case when only the viewing of security events has been delegated to the SEA.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>65</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9334984518" objectVersion="22" refObjectName="Sandbox developer onboarding email does not reflect recent login changes" CreatedAt="Nov 1">
+      <CreationDate>2012-11-01T16:04:36.866Z</CreationDate>
+      <ObjectID>9334984518</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Steps to reproduce:    &lt;div&gt;1. Go to https://sisko-admin.slidev.org/registration&lt;/div&gt;  &lt;div&gt;2. Register for a new sandbox account&lt;/div&gt;  &lt;div&gt;3. Receive and click email confirmation link&lt;/div&gt;  &lt;div&gt;4. Receive email about account verified/approved&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;What I expect:&lt;/div&gt;  &lt;div&gt;An email informing me the correct "what's next" steps&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;What I see:&lt;/div&gt;  &lt;div&gt;  &lt;p class="p1"&gt;&lt;span style="font-family: 'courier new', monospace; font-size: x-small;"&gt;Please use the steps below to complete the setup of your development environment:&lt;/span&gt;&lt;/p&gt;  &lt;p class="p1"&gt;&lt;font face="courier new, monospace" size="1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1. Browse to Shared Learning Collaborative portal at &lt;a href="https://sisko-portal.slidev.org/portal"&gt;&lt;span class="s1"&gt;https://sisko-portal.slidev.org/portal&lt;/span&gt;&lt;/a&gt;&lt;/font&gt;&lt;/p&gt;  &lt;p class="p1"&gt;&lt;font face="courier new, monospace" size="1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2. Select “Shared Learning Collaborative” and click "Go".&lt;/font&gt;&lt;/p&gt;  &lt;p class="p1"&gt;&lt;font face="courier new, monospace" size="1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;3. Use your email address and password to log in.&lt;/font&gt;&lt;/p&gt;  &lt;p class="p1"&gt;&lt;font face="courier new, monospace" size="1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;4. Click Admin in the upper right to go to the admin page.&lt;/font&gt;&lt;/p&gt;  &lt;p class="p1"&gt;&lt;font face="courier new, monospace" size="1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;5.&amp;nbsp;Click Provision Landing Zone.&lt;/font&gt;&lt;/p&gt;  &lt;p class="p1"&gt;&lt;font face="courier new, monospace" size="1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;6. Choose the sample data you intend to use: an SLC sample dataset or your own sample Ed-Fi data. Click "Assign" to complete your landing zone setup.&lt;/font&gt;&lt;/p&gt;  &lt;p class="p1"&gt;&lt;font face="courier new, monospace" size="1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;7. Follow instructions in the "Data Setup" email to upload the corresponding data set.&lt;/font&gt;&lt;/p&gt;  &lt;p class="p2"&gt;&lt;font size="2"&gt;With the recent changes, sandbox developers no longer go through the realm chooser route when logging in. Instead the developer has an option to click either "administer my sandbox" or "test application in my sandbox" links before providing login credentials.&lt;/font&gt;&lt;/p&gt;  &lt;p class="p2"&gt;&lt;font size="2"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/p&gt;  &lt;p class="p2"&gt;&lt;font size="2"&gt;This defect is to update the email body to reflect these changes.&lt;/font&gt;&lt;/p&gt;  &lt;p class="p2"&gt;&lt;font size="2"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/p&gt;  &amp;lt;scole&amp;gt;&lt;br /&gt;  &lt;p class="p1"&gt;The new text from UX, should read:&lt;/p&gt;  &lt;p class="p3"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1. Browse to Shared Learning Collaborative portal at&amp;nbsp;&lt;a href="https://sisko-portal.slidev.org/portal"&gt;&lt;span class="s1"&gt;https://sisko-portal.slidev.org/portal&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p class="p5"&gt;&lt;span class="s2"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2. Administer your sandbox by clicking the "Next" button under the heading "Administer My Sandbox" (&lt;/span&gt;As an aside - we should change the current heading from "Administering My Sandbox" to "Administer My Sandbox"&lt;span class="s2"&gt;)&lt;/span&gt;&lt;/p&gt;  &lt;div&gt;&lt;span class="s2"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt;  &lt;br /&gt;   &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2007</FormattedID>
+      <LastUpdateDate>2012-11-15T16:30:42.195Z</LastUpdateDate>
+      <Name>Sandbox developer onboarding email does not reflect recent login changes</Name>
+      <Notes>Nidhi: 11/01 - The Text after provisioning a LZ needs to be updated too.&amp;nbsp;      &lt;div&gt;Steps to Recreate:&lt;/div&gt;  &lt;div&gt;1. Provision &amp;nbsp;Landing Zone&lt;/div&gt;  &lt;div&gt;2. Autoload the small/medium sample data set&lt;/div&gt;  &lt;div&gt;3. Verify the text displayed.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Issue: See attached screenshot. The text needs to be updated on portal and in the email since we can no longer see the realm selector dropdown.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;p class="p1"&gt;&lt;br /&gt;&lt;/p&gt;  &lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9334984519" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments>
+         <Attachment rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/9340862180" refObjectName="Screen Shot 2012-11-01 at 7.36.05 PM.png" type="Attachment" />
+      </Attachments>
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <InProgressDate>2012-11-08T13:43:17.966Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475507189" refObjectName="6.5" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999160960.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427212" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>Code Change</Resolution>
+      <ScheduleState>Completed</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Fixed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5511416521" refObjectName="Jerry Hung" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>The email that the developer gets when on-boarding on Sandbox in one of the steps instructs the developer to select a realm from the drop down realm chooser instead of referencing the new realm page.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>64</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9191391114" objectVersion="23" refObjectName="Bad error msg given illegal chars in Custom Roles" CreatedAt="Oct 19">
+      <CreationDate>2012-10-19T14:59:35.363Z</CreationDate>
+      <ObjectID>9191391114</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>When adding a new Role Group, illegal characters return the following error message to customers:&lt;br /&gt;&lt;br&gt;{"type":"Bad Request","message":"Validation failed: ValidationError  [type=INVALID_VALUE, fieldName=names,  fieldValue=+_)(*&amp;amp;^%$#@!~\\][{}\":;'?&amp;gt;&amp;lt;,./,  expectedTypes=[Invalid value caught by strict blacklisting strategy:  CharacterBlacklistStrategy]]","code":400}&lt;br&gt;&lt;br&gt;This error message should instruct the customers that the values are not allowed. It should not reveal our code, or generally be this cryptic.</Description>
+      <Discussion />
+      <FormattedID>DE1908</FormattedID>
+      <LastUpdateDate>2012-11-15T16:46:01.417Z</LastUpdateDate>
+      <Name>Bad error msg given illegal chars in Custom Roles</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5125125890" refObjectName="Patrick Wolf" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9191391115" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <InProgressDate>2012-11-07T15:34:11.037Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475507189" refObjectName="6.5" type="Iteration" />
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999505024.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427212" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Completed</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Fixed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/8007522925" refObjectName="Riley Miller" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>Both in Sandbox and Production, when illegal characters are added for a Role group, instead of returning appropriate message, an error is returned revealing code.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>64</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9496664608" objectVersion="9" refObjectName="Dashboard: Select filter after listing section removes all student data" CreatedAt="Nov 15">
+      <CreationDate>2012-11-15T21:00:29.729Z</CreationDate>
+      <ObjectID>9496664608</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;br /&gt;&lt;br&gt;Steps to Reproduce:&lt;br&gt; &lt;ol&gt; &lt;li&gt;Ingest sample data set&lt;/li&gt; &lt;li&gt;log in as (Linda Kim|Reuben Harmon)&lt;/li&gt; &lt;li&gt;click "SLC Dashboards" app on the right hand column&lt;br /&gt;&lt;/li&gt; &lt;li&gt;choose {District,CAP0-D0},{School,CAP0-D0-HSch0},{Course,CAP0-D0-HScho0-cse9},{Section,,CAP0-D0-HS0-9-0-sec2} and click "Go"&lt;/li&gt; &lt;li&gt;From "Filter" pulldown menu, choose to filter on a field that exists for some students (ELL or 504, etc)&lt;/li&gt; &lt;li&gt;all students disappear, and the following error message is displayed:&lt;/li&gt; &lt;/ol&gt; &lt;div style="display: block;" id="dsh_dv_error" class="hidden"&gt;"There is no data available for your request. Please contact your IT administrator."&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2160</FormattedID>
+      <LastUpdateDate>2012-11-16T16:56:12.142Z</LastUpdateDate>
+      <Name>Dashboard: Select filter after listing section removes all student data</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4670846049" refObjectName="David Wu" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9496664609" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984976" refObjectName="66" type="Iteration" />
+      <OpenedDate>2012-11-16T16:10:05.654Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999235136.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/9075400760" refObjectName="1.X" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/8007522925" refObjectName="Riley Miller" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>No</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>When using SLC Dashboard and viewing a list of students, in some cases choosing a filter related to that student's "special needs" status will result in a "no students found" error.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>66</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/7953938034" objectVersion="8" refObjectName="Portal error if OAuth Callback URL doesn't begin with https" CreatedAt="Sep 20">
+      <CreationDate>2012-09-20T18:17:51.965Z</CreationDate>
+      <ObjectID>7953938034</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>"Something bad happened" error on portal if OAuth Callback URL in a registered app doesn't begin with "https". &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Steps to reproduce:&lt;/div&gt; &lt;div&gt;1:&lt;/div&gt; &lt;div&gt;&amp;nbsp; - register an application with a callback url that does not begin with 'https'&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; -OR-&lt;/div&gt; &lt;div&gt;&amp;nbsp; -edit an existing application's callback url to a url that does not begin with 'https'&lt;/div&gt; &lt;div&gt;2: go to portal, "Something bad happened" is returned.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;The callback URL we were using to produce this error was "whoneedshelp://oauthcallback". Android devices can use specially-crafted URLs to implement the OAuth flow, opening the browser to handle authentication and catching the callback's redirect within the app itself.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE1728</FormattedID>
+      <LastUpdateDate>2012-10-02T18:15:58.367Z</LastUpdateDate>
+      <Name>Portal error if OAuth Callback URL doesn't begin with https</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4653739154" refObjectName="Sivan Hermon" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7953938035" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <OpenedDate>2012-09-25T14:29:06.322Z</OpenedDate>
+      <Priority>Next Interim Release (P3)</Priority>
+      <Rank>499999381632.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5136589584" refObjectName="William Scott" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <ReleaseNoteDescription>If an application includes a callback URL that does not begin with, "https://" then an error message will be returned.</ReleaseNoteDescription>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9497231746" objectVersion="17" refObjectName="Sandbox Administer cannot see admin tab in portal - Not for 6.5" CreatedAt="Nov 15">
+      <CreationDate>2012-11-15T21:46:00.162Z</CreationDate>
+      <ObjectID>9497231746</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Admin tab in portal seems to require the Application Developer role to be visible. &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;This prevents Sandbox Admins from accessing the link to DAMT.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2162</FormattedID>
+      <LastUpdateDate>2012-11-16T20:10:06.021Z</LastUpdateDate>
+      <Name>Sandbox Administer cannot see admin tab in portal - Not for 6.5</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4514290116" refObjectName="Ryan Farris" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9497231747" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>RC</Environment>
+      <InProgressDate>2012-11-16T16:44:27.967Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984972" refObjectName="66" type="Iteration" />
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999100132.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/9075400758" refObjectName="1.X" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Completed</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4514290116" refObjectName="Ryan Farris" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>COMPLETED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9508045753" refObjectName="fix it(update the portal properties for sli admin roles)" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>No</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>As &amp;nbsp;a work around make sure that the sandbox admin also explicitly has application developer role.</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>65</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9138748209" objectVersion="33" refObjectName="Data migration scripts not completely migrating application data to new Sandbox" CreatedAt="Oct 15">
+      <CreationDate>2012-10-15T20:58:20.991Z</CreationDate>
+      <ObjectID>9138748209</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-08ff4499c{color: rgb(31, 73, 125); font-family: Arial, sans-serif; font-size: 9pt; }.rally-rte-class-01b00e57e{box-sizing: border-box; font-family: arial, helvetica, sans-serif; font-size: 11px; background-color: rgb(255, 255, 255);}.rally-rte-class-0514d4e4e{box-sizing: border-box;}.rally-rte-class-02c6b9b59{font-family: arial, helvetica, sans-serif; font-size: 11px; background-color: rgb(255, 255, 255);}.rally-rte-class-01b4ccf93{color: rgb(31, 73, 125); font-family: Arial, sans-serif; }&lt;/style&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;After script is created and tested, hand off to DK to tie a bow on it and put it in the runbooks.&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;Text added 11/15/2012&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;Pete Wenzel writes in email (found in Discussions)&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;b class="rally-rte-class-01b00e57e"&gt;"Through 6.5 (v1), user and app data must be preserved&amp;nbsp;&lt;i class="rally-rte-class-0514d4e4e"&gt;during upgrades&lt;/i&gt;.&lt;/b&gt;&lt;span class="rally-rte-class-02c6b9b59"&gt;"&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-02c6b9b59"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-02c6b9b59"&gt;That means for all upgrades in preparation for 1.0, this case must be met.&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;=-=-=-=-=-=-=-=-=-=-=-=-=-=&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;Previous Text from defect&lt;/span&gt;&lt;/div&gt; &lt;span class="rally-rte-class-08ff4499c"&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; I noticed that when I logged into the new Sandbox (build version 289) in "sandbox environment" realm, I did not see my app. However, I could see the app in app registration tool in "SLC" realm. Once I clicked on edit button and re-saved the app. I was able to see the app when I logged back into sandbox environment realm.&amp;nbsp;        &lt;/span&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;It seems like this is an issue with the data migration script. The app data is not being ported over completely from old sandbox to new. This will be an issue for the developers who have apps already registered on Sandbox.&lt;/span&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;font color="#1f497d" face="Arial, sans-serif"&gt;We are rushing to migrate to new sandbox before the&amp;nbsp;&lt;/font&gt;&lt;span class="rally-rte-class-01b4ccf93"&gt;NY camp this weekend, 10/20/2012.&lt;/span&gt;&lt;span class="rally-rte-class-01b4ccf93"&gt;&amp;nbsp;&lt;/span&gt;&lt;span class="rally-rte-class-01b4ccf93"&gt;It would be great if we can fix the scripts and move the data over correctly before new Sandbox is released.&amp;nbsp;&lt;/span&gt;&lt;span class="rally-rte-class-01b4ccf93"&gt;If we cannot provide a fix in time, we have to inform the users of the workaround in release notes.&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-08ff4499c"&gt;Pete is also seeing this issue. Here are his comments: "My apps did not port over.&lt;/span&gt;&lt;font color="#1f497d" face="Arial, sans-serif"&gt;&amp;nbsp;I had to enter the application registration for each app and resave before they became visible to emulated users. &amp;nbsp;Appears to be a data migration issue; either the EdOrg selections made in the Application Registration were not transferred properly, or the SEA/LEA Application Authorizations (which are invisible to Sandbox users) were not transferred. &amp;nbsp;Might be something we can work out in the data migration scripts and correct during the actual transition later this week, but let’s at least get it logged with the Release Notes flag to make sure the workaround is documented."&lt;/font&gt;&lt;/div&gt;</Description>
+      <Discussion>
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9166952160" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9164838316" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9163881753" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9164451349" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9164278501" type="ConversationPost" />
+         <ConversationPost rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/conversationpost/9497249352" type="ConversationPost" />
+      </Discussion>
+      <FormattedID>DE1871</FormattedID>
+      <LastUpdateDate>2012-11-19T16:29:51.486Z</LastUpdateDate>
+      <Name>Data migration scripts not completely migrating application data to new Sandbox</Name>
+      <Notes>&lt;div&gt;11/15/2012 BAXTER—&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Seems like this defect is reopened in advance of 1.0&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;10/18/2012 BAXTER—&amp;nbsp;&lt;/div&gt; &lt;div&gt; &lt;p class="p1"&gt;this is probably not any work at all, since there is no plan to migrate any more of those collections. &amp;nbsp;But it is a MH requirement to preserve those collections between &lt;b&gt;ALL&lt;/b&gt; future releases.&lt;/p&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; 10/17/2012 BAXTER—     &lt;div&gt; &lt;ul&gt; &lt;ul&gt; &lt;/ul&gt; &lt;/ul&gt; &lt;/div&gt; &lt;div&gt; &lt;ul&gt; &lt;li&gt;The migration script has been run. Apparently there isn't anything else that needs to be done. &amp;nbsp;Waiting on validation from engineering.&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt;</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/4645825098" refObjectName="Stephen Cole" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9138748210" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <InProgressDate>2012-10-18T15:08:38.747Z</InProgressDate>
+      <OpenedDate>2012-11-15T21:46:25.515Z</OpenedDate>
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999248256.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427212" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>In-Progress</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Open</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/6649862126" refObjectName="Kishore Ivatury" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>&lt;div&gt;&lt;span style="color: rgb(31, 73, 125); font-family: Arial, sans-serif; "&gt;PROBLEM:&amp;nbsp;&lt;/span&gt;&lt;span style="color: rgb(31, 73, 125); font-family: Arial, sans-serif; "&gt;A developer logs into the new Sandbox (build version 289) in "sandbox environment" realm and does not see their application.&lt;/span&gt;&lt;/div&gt;&lt;span style="color: rgb(31, 73, 125); font-family: Arial, sans-serif; "&gt;&lt;div&gt;&lt;span style="color: rgb(31, 73, 125); font-family: Arial, sans-serif; "&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;SOLUTION: A Developer will be able to see their application in app registration tool in "SLC" realm. The developer then will click on edit button and re-save the application. The developer will be able to see the app when logging back into sandbox environment realm.&lt;/span&gt;</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>65</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9510990554" objectVersion="7" refObjectName="Truncation limit for ingestion errors and warnings misconfigured in SLI Properties" CreatedAt="Nov 16">
+      <CreationDate>2012-11-16T19:14:23.307Z</CreationDate>
+      <ObjectID>9510990554</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;DIV&gt;Truncation limit was mistakenly set to 15&amp;nbsp; in properties file for both errors and warnings:&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;#Used to limit the total number of errors or warnings being printed&lt;BR /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; #if you change these two parameters, please make sure to change acceptanceTest ingestion_error_warning_count.feature&lt;BR /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sli.ingestion.errorsCountPerInterchange: 15&lt;BR /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; sli.ingestion.warningsCountPerInterchange: 15&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;&lt;/DIV&gt; &lt;DIV&gt;Limit should be 10000.&amp;nbsp; If the default is 10000, then the sli properties&amp;nbsp;above should be changed to 10000 and commented out.&amp;nbsp; If there is no default, then they should be changed to 10000 without commenting them out.&lt;/DIV&gt; &lt;DIV&gt;&amp;nbsp;&lt;/DIV&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2173</FormattedID>
+      <LastUpdateDate>2012-11-19T17:47:50.484Z</LastUpdateDate>
+      <Name>Truncation limit for ingestion errors and warnings misconfigured in SLI Properties</Name>
+      <Notes>[JW] Waiting for Olga to speak with A&amp;amp;M about acceptable truncation limit.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5259724155" refObjectName="Josh W" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289467719" refObjectName="Megatron(Eng-NJ)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9510990555" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>true</Blocked>
+      <Blocker rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/blocker/9537296437" type="Blocker" />
+      <Duplicates />
+      <Environment>Sandbox</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984982" refObjectName="66" type="Iteration" />
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999120384.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/9075400765" refObjectName="1.X" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Requirement rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7370941488" refObjectName="Configurable Truncation of Error File Errors and Warnings" type="HierarchicalRequirement" />
+      <Resolution>None</Resolution>
+      <ScheduleState>Defined</ScheduleState>
+      <Severity>Functions incorrectly (Sev2)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5259724155" refObjectName="Josh W" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>No</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>Each error file will be truncated after the maximum number of warnings and the maximum number of errors have been reached.&amp;nbsp; The maximum number of errors is 10000 per input file.&amp;nbsp; The maximum number of warnings is 10000 per input file.&lt;BR&gt;</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>61</ReleaseIterationApplicableto>
+      <TargetRelease>65</TargetRelease>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9325394038" objectVersion="22" refObjectName="DOC: Custom Roles Migration" CreatedAt="Oct 31">
+      <CreationDate>2012-10-31T20:18:07.943Z</CreationDate>
+      <ObjectID>9325394038</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>The format for the custom roles document has changed. &amp;nbsp;There is a script at&amp;nbsp;SLI/tools/customRolesMigration.rb that should be run to migrate the data. &amp;nbsp;This script requires no arguments. &amp;nbsp;Documentation just needs to be added to the runbooks telling the operator to run this script. &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;DO (11/5): This should be added as an operator release note, not a runbook update. Please place this in the 0.2.65 release notes.&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2004</FormattedID>
+      <LastUpdateDate>2012-11-13T22:36:09.289Z</LastUpdateDate>
+      <Name>DOC: Custom Roles Migration</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/7102568603" refObjectName="Dan O'Keefe" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289701840" refObjectName="Storm(Doc-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9325394039" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+      </Tags>
+      <AcceptedDate>2012-11-13T22:36:09.276Z</AcceptedDate>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Production</Environment>
+      <InProgressDate>2012-11-05T15:07:33.289Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475507213" refObjectName="6.5" type="Iteration" />
+      <Priority>Emergency Release (P2)</Priority>
+      <Rank>499999168384.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427236" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Accepted</ScheduleState>
+      <Severity>Causes system failure (Sev1)</Severity>
+      <State>Fixed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5113808755" refObjectName="Jonathan Nanney" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>2.0</TaskEstimateTotal>
+      <TaskRemainingTotal>2.0</TaskRemainingTotal>
+      <TaskStatus>IN_PROGRESS</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/task/9369124652" refObjectName="Update runbook" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription>Custom roles has changed to support a new "isAdminRole" right. As a result, you must migrate to the new custom roles framework by running a script on the command line. The script can be called using the following command:&amp;nbsp;SLI/tools/customRolesMigration.rb&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;</ReleaseNoteDescription>
+      <ReleaseIterationApplicableto>64</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9479004004" objectVersion="5" refObjectName="DOC: Additional 6.5 Operator Release Note - Tomcat HTTP Header Response Buffer Size" CreatedAt="Nov 14">
+      <CreationDate>2012-11-14T17:56:37.617Z</CreationDate>
+      <ObjectID>9479004004</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>Below is an additional release note for the 6.5 release advising the operator to make a configuration change to prevent potential call failures. &lt;div&gt; &lt;br /&gt;&amp;nbsp;  &lt;div&gt;------------------&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Enlargement of the HTTP Header Response Buffer in Tomcat:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;A case has been identified where the Apache Tomcat maxHttpHeaderbuffer is by default too small to properly service API clients when complex requests are being serviced to the API. &amp;nbsp;In order to mitigate the occurance of the response being too large for the default buffer, Tomcat must be tuned to enlarge the stock buffer.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;In order to mitigate this, set the following into every connector statement in server.xml:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style="background-color: rgb(255, 255, 255); font-family: monospace; font-size: medium; "&gt;maxHttpHeaderSize="16384"&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;The setting is not present in the server.xml connector examples, but the default is 4096 Bytes.&lt;/div&gt; &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2135</FormattedID>
+      <LastUpdateDate>2012-11-14T19:57:02.555Z</LastUpdateDate>
+      <Name>DOC: Additional 6.5 Operator Release Note - Tomcat HTTP Header Response Buffer Size</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/7102568603" refObjectName="Dan O'Keefe" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289701840" refObjectName="Storm(Doc-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9479004005" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+      </Tags>
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>Development/CI</Environment>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984987" refObjectName="66" type="Iteration" />
+      <Priority>None</Priority>
+      <Rank>499999107968.000</Rank>
+      <Recycled>false</Recycled>
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Backlog</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Scheduled</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/5761253931" refObjectName="Julia Kreger" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription />
+      <ReleaseIterationApplicableto>65</ReleaseIterationApplicableto>
+   </Defect>
+   <Defect rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/defect/9507319576" objectVersion="13" refObjectName="DOC: Runbook update: fix for DE856." CreatedAt="Nov 16">
+      <CreationDate>2012-11-16T14:25:52.071Z</CreationDate>
+      <ObjectID>9507319576</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLC Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-079e38b51{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-family: arial, helvetica, sans-serif; vertical-align: baseline; box-sizing: border-box; background-color: rgb(255, 255, 255);}.rally-rte-class-0fc30489d{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; box-sizing: border-box;}.rally-rte-class-00aa602e1{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; vertical-align: baseline; box-sizing: border-box;}.rally-rte-class-05f662f73{margin: 12px 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; vertical-align: baseline; box-sizing: border-box;}.rally-rte-class-06e55d419{margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; box-sizing: border-box;}.rally-rte-class-07783d554{box-sizing: border-box;}.rally-rte-class-058b52ee5{margin: 0px; padding: 10px 0px 10px 40px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; box-sizing: border-box; list-style: inherit;}.rally-rte-class-09f0f57f5{margin: 0px; padding: 0px 0px 0px 40px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; box-sizing: border-box; list-style: inherit;}.rally-rte-class-0066e7df1{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: decimal; box-sizing: border-box;}&lt;/style&gt; &lt;div class="rally-rte-class-079e38b51"&gt;&lt;span class="rally-rte-class-0fc30489d"&gt;&lt;font face="arial, helvetica, sans-serif" class="rally-rte-class-00aa602e1"&gt;The fix requires adding a new plain text key file which must be stored in a secure location with permissions set only to the rails apps. &amp;nbsp;There is a ruby script at "sli/sli/opstools/rails-encrypt-script/generateRailsKey.rb" to randomly generate this key file, and after generating the keyfile, please use encryptSMTPPass.rb in the same folder to encrypt email server's password.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt; &lt;div class="rally-rte-class-079e38b51"&gt; &lt;p class="p1 rally-rte-class-05f662f73"&gt;The additional deployment steps for admin tool are:&lt;/p&gt; &lt;p class="p1 rally-rte-class-05f662f73"&gt;&lt;span class="rally-rte-class-06e55d419"&gt;&lt;/span&gt;&lt;/p&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&lt;span class="rally-rte-class-00aa602e1"&gt;SKIP STEPS 1 to 3 if the key file has been generated prior, most likely for encrypting LDAP password.&lt;/span&gt;&lt;/div&gt; 1. Generate a key file with the script generateRailsKey.rb&amp;nbsp;       &lt;div class="rally-rte-class-06e55d419"&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; script usage: generateRailsKey &amp;lt;key file path&amp;gt;&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt; &lt;span class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; example: &amp;nbsp;&lt;/span&gt;       &lt;div class="rally-rte-class-0fc30489d"&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ruby generateRailsKey.rb ../../sli/data-access//dal/keyStore/localRailsKey       &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sample output:&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;encryption_keyfile: /Users/ycao/Projects/git/sli/sli/data-access/dal/keyStore/localRailsKey       &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; encryption_iv: \xAB\xED\xC8w\xCF\xD0\b\x8A\xC7\x13\x89:\t\xC2(D&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&lt;br /&gt;&lt;/div&gt; &lt;span class="rally-rte-class-0fc30489d"&gt;2. Set the key file read permissions to the rails apps only;&lt;/span&gt;       &lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&lt;span class="rally-rte-class-0fc30489d"&gt;&lt;br class="rally-rte-class-07783d554" /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt; &lt;span class="rally-rte-class-0fc30489d"&gt; &lt;span class="rally-rte-class-0fc30489d"&gt;3. Add the properties generated by the script to the relevant profile in admin-tools/admin-rails/config/config.yml:&lt;/span&gt;&lt;br class="rally-rte-class-07783d554" /&gt;       &lt;ol class="ol1 rally-rte-class-058b52ee5"&gt; &lt;ol class="rally-rte-class-09f0f57f5"&gt; &lt;li class="li1 rally-rte-class-0066e7df1"&gt;&lt;font face="arial, helvetica, sans-serif" class="rally-rte-class-00aa602e1"&gt;encryption_keyfile&lt;/font&gt;&lt;/li&gt; &lt;li class="li1 rally-rte-class-0066e7df1"&gt;&lt;font face="arial, helvetica, sans-serif" class="rally-rte-class-00aa602e1"&gt;encryption_iv&lt;/font&gt;&lt;/li&gt; &lt;/ol&gt; &lt;/ol&gt; &lt;/span&gt; &lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&lt;span class="rally-rte-class-0fc30489d"&gt;&lt;br class="rally-rte-class-07783d554" /&gt;&lt;/span&gt;&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&lt;span class="rally-rte-class-0fc30489d"&gt;4. Generate encrypted email password by using the keyfile generated in step 1&lt;/span&gt;&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;script usage: encryptSMTPPass &amp;lt;key file&amp;gt; &amp;lt;password&amp;gt;&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;example:&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;ruby encryptSMTPPass.rb&amp;nbsp;/Users/ycao/Projects/git/sli/sli/data-access/dal/keyStore/localRailsKey&amp;nbsp;"test1234"&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;sample output:&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; email_password: 95163f4dcd8cdf1b5c082659f7ac6a25&amp;nbsp;&lt;br class="rally-rte-class-07783d554" /&gt;&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&lt;br /&gt;&lt;/div&gt; &lt;div class="rally-rte-class-0fc30489d"&gt;&lt;span class="rally-rte-class-0fc30489d"&gt;5. Update "email_password" field in&amp;nbsp;admin-tools/admin-rails/config/config.yml&lt;/span&gt;&lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; &lt;br /&gt;       &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>DE2166</FormattedID>
+      <LastUpdateDate>2012-11-19T15:54:18.900Z</LastUpdateDate>
+      <Name>DOC: Runbook update: fix for DE856.</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/7828043649" refObjectName="Ryan Malynn" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/project/5289701840" refObjectName="Storm(Doc-NC)" type="Project" />
+      <Ready>false</Ready>
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/9507319577" type="RevisionHistory" />
+      <Tags />
+      <AffectsDoc>false</AffectsDoc>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Duplicates />
+      <Environment>UAT/Stage</Environment>
+      <InProgressDate>2012-11-17T20:26:15.306Z</InProgressDate>
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/8120984987" refObjectName="66" type="Iteration" />
+      <Priority>None</Priority>
+      <Rank>499999086720.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427236" refObjectName="1.0 PI6" type="Release" />
+      <ReleaseNote>true</ReleaseNote>
+      <Resolution>None</Resolution>
+      <ScheduleState>Completed</ScheduleState>
+      <Severity>Usable but incorrect behavior (Sev3)</Severity>
+      <State>Fixed</State>
+      <SubmittedBy rallyAPIMajor="1" rallyAPIMinor="39" ref="https://rally1.rallydev.com/slm/webservice/x/user/7091067063" refObjectName="Yang C" type="User" />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Affectsuserfacingdocumentation>Yes</Affectsuserfacingdocumentation>
+      <ReleaseNoteDescription />
+      <ReleaseIterationApplicableto>65</ReleaseIterationApplicableto>
+   </Defect>
+</Objects>

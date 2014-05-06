@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion_data_file_format"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Data File Format</title>
+    
+    <para>
+        Data files are standard XML following the schema described in
+        <xref linkend="r-ingestion_schema"/>. When these files are validated,
+        the validation process includes checking to ensure that these files are
+        valid XML.
+    </para>
+    
+</section>

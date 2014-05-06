@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-2d6bc8f1-0290-46a3-8823-3e83f1f2d60a"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Adding User Authentication to Applications</title>
+    <note>
+        <para>
+            This section is meant primarily for &PRODUCTABBR; developers.
+        </para>
+    </note>
+    <para> &PRODUCTABBR; requires unauthenticated users to sign in before using &PRODUCTABBR;
+        applications and services. This authentication is performed through an integrated process in
+        which the &PRODUCTABBR; identity provider uses SAML to interact with an education
+        organization's existing directory services and/or single-sign on (SSO) solution. After
+        authentication, a user has an established session with &PRODUCTABBR; and can use one or more
+        applications that share the tokens for that session. </para>
+    <para> Whenever your application uses REST API resources to interact with the &PRODUCTABBR;
+        Secure Data Service, it must do so on behalf of an authenticated user. &PRODUCTABBR; does
+        not allow anonymous access to the &PRODUCTABBR; Secure Data Service. It's important that
+        your application is compliant with the &COMPANYABBR; <link xlink:show="new"
+            xlink:href="&DEVWEBSITEROOT;/terms-of-use">Terms of Use</link> and <link
+            xlink:show="new" xlink:href="&DEVWEBSITEROOT;/privacy-policy">Privacy Policy</link>. </para>
+    <para>
+        The sections that follow cover the key tasks your application
+        performs with regards to user authentication with links to more
+        detailed &PRODUCTABBR; documentation.
+    </para>
+    <section xml:id="doc-21762718-33f8-4524-a8cb-fb830523742c">
+        <title>User Authentication Process Overview</title>
+        <para>&PRODUCTABBR; uses SAML to communicate with an education organization's IDP to authenticate a user and generate an OAuth token for the API session. The process is displayed in the following diagram:</para>
+        <figure xml:id="figure-oauth-application-flow">
+            <title>An Overview of the OAuth Application Workflow</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" format="PNG" 
+                        fileref="images/oauth-flow.png" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" format="PNG" 
+                        fileref="../commom/images/oauth-flow.png" scalefit="1" width="7in"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>The steps outlined above are as follows:</para>
+        <procedure>
+            <step>
+                <para><emphasis>OAuth/Authorize</emphasis> - The client's application server redirects to the &PRODUCTABBR; API to request user authentication.</para>
+            </step>
+            <step>
+                <para><emphasis>(optional) Realm Discovery</emphasis> - If a realm has not already been provided, the user will be prompted to select a realm.</para>
+            </step>
+            <step>
+                <para><emphasis>SAML Request</emphasis> - The API sends a SAML request for user authentication through the browser to the education organization's identity provider (IDP). <emphasis>Note:</emphasis> If the user does not already have an existing API session, then &PRODUCTABBR; will force authentication.</para><!-- Note: Is this accurate? Removed: If you do have an existing API session, then &PRODUCTABBR; will leave it up to the IDP. -->
+            </step>
+            <step>
+                <para><emphasis>Login</emphasis> - The user logs in to the education organization's identity provider.</para>
+            </step>
+            <step>
+                <para><emphasis>SAML Assertion</emphasis> - If authenticated, the education organization's identity provider sends a SAML assertion through the browser that includes the user's authentication attributes to the &PRODUCTABBR; API.</para>
+            </step>
+            <step>
+                <para><emphasis>Return OAuth Code</emphasis> - The API returns the authorization code to the application.</para>
+            </step>
+            <step>
+                <para><emphasis>OAuth/Token</emphasis> - The application sends a request to the API with its authorization code and other attributes to generate a token for the API session.</para>
+            </step>
+        </procedure>
+        <para>The token is then used for subsequent API calls and is valid for the application's session.</para>
+        <para><emphasis>Note:</emphasis> Steps 1, 6, and 7 are all part of the OAuth 2.0 authentication process. For more information on OAuth 2.0, please see the documentation for the <link xlink:show="new" xlink:href="http://tools.ietf.org/html/draft-ietf-oauth-v2-31">OAuth 2.0 Authorization Framework</link>.</para>
+    </section>
+    <section xml:id="doc-aae15793-bc6c-434d-97b8-afc8f96ab75e">
+        <title>Signing In, Creating Sessions</title>
+        <para>
+            &COMPANYABBR; has documented how authentication works in
+            <xref linkend="doc-c5442e0f-9e71-4de0-b761-f82af8bf4792"/>. Included
+            are examples of SAML interactions such as those your application will
+            need to have with an education organization's identity provider. 
+            When planning how your application authenticates users, use that 
+            documentation as your primary resource.
+        </para>
+        <note>
+            <para>
+                &COMPANYABBR; recommends using a third-party OAuth 2.0 
+                client library, many of which are freely available in a variety of 
+                programming languages.
+            </para>
+        </note>
+        <para>
+            While that documentation is comprehensive, providing details you'll
+            need to have for your design and implementation, it doesn't narrow
+            down what the authentication process looks like from the developers'
+            perspective. For that, see the process described here:
+        </para>
+        <orderedlist>
+            <listitem>
+                <para> When a user first tries to use an &PRODUCTABBR; application, or when a user's
+                    session times out, &PRODUCTABBR; must authenticate the user using the OAuth 2.0
+                    protocol. The application first redirects the user's browser to the &RESTAPI;
+                    (behavior compliant with OAuth 2.0 standard). </para>
+                <programlisting><![CDATA[
+REDIRECT $BASE_URL/api/oauth/authorize?response_type=code&client_id=Eg6eseKRzN&\
+redirect_uri=https://example.com/callback
+                    ]]></programlisting>
+                <para>
+                    There are three arguments passed in this call:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <varname>response_type</varname> - 
+                            Currently, the only supported response type is
+                            <userinput>code</userinput>.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>client_id</varname> - 
+                            This is the client ID value of your application, assigned by
+                            &COMPANYABBR; when you registered the application.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <varname>redirect_uri</varname> - 
+                            This must be the same value that you provided during application 
+                            registration. If <guilabel>https://example.com</guilabel> was registered 
+                            as the <varname>redirect_uri</varname>, then the <varname>redirect_uri</varname> 
+                            provided may be appended to that URL as shown in the previous example. 
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    Besides these three arguments, the redirect call can also include a state 
+                    parameter, which can be set to anything the application wants, and which is 
+                    returned as a parameter in the callback.
+                </para>
+                <programlisting><![CDATA[
+REDIRECT $BASE_URL/api/oauth/authorize?response_type=code&client_id=Eg6eseKRzN&\
+redirect_uri=https%3A%2F%2Fexample.com%3A2000%2Fcallback&\
+state=B9e6wryg6mxfqQ9oqymrzLhrMlw3k8Eh3EQ%2B44V9EWo%3D
+                    ]]></programlisting>
+                <para>
+                    The &PRODUCTABBR; API takes control of the authentication process for the
+                    next step.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    After the user authenticates, the &RESTAPI; uses the 
+                    <varname>redirect_uri</varname> (provided in the previous call) to pass 
+                    the OAuth verification code back to the application (behavior compliant 
+                    with OAuth 2.0 standard).
+                </para>
+                <programlisting><![CDATA[
+https://example.com/callback?code=UAiSPh&state=B9e6wryg6mxfqQ9oqymrzLhrMlw3k8Eh3EQ%2B44V9EWo%3D
+                    ]]></programlisting>
+                <para>
+                    At this point, the application takes control of the authentication process. 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    After the user's authentication is verified, the application uses the 
+                    OAuth verification code to obtain a session token for use in calls to 
+                    the &RESTAPI;. This is a standard OAuth 2.0 call. In the following example,
+                    the <varname>redirect_uri</varname> is a required parameter that must match 
+                    the registered callback URL.
+                </para>
+                <programlisting><![CDATA[            
+GET $BASE_URL/api/oauth/token?redirect_uri=https://example.com&grant_type=authorization_code&\
+code=UAiSPh&\
+client_id=Eg6eseKRzN&\
+client_secret=FqXBla26esaLGcVfhlcLnePOEmeHuez7JpmnR9pLg6RkThqF 
+                    ]]></programlisting>           
+                <para>
+                    The response to this call is a valid OAuth access token, which the application
+                    uses in subsequent calls to the &RESTAPI;.
+                </para>
+            </listitem>
+        </orderedlist>
+    </section>
+    <section xml:id="doc-e80edaf8-9eb5-4af3-9b55-e6e825441f55">
+        <title>Checking the Session</title>
+        <para>
+            The application can check a user's session when necessary to
+            determine whether and who is signed in. The session check
+            call looks like this:
+        </para>
+        <programlisting><![CDATA[
+GET $BASE_URL/api/rest/system/session/check
+            ]]></programlisting>
+        <para>
+            If there's no currently authenticated user, the session check 
+            response looks something like this:
+        </para>
+        <programlisting><![CDATA[
+{
+ "authenticated": false,
+ "redirect_user": "$BASE_URL/api/oauth/authorize?response_type=code”
+}
+            ]]></programlisting>
+        <para>
+            If there's an authenticated user, the session check response
+            has a body similar to the following example:
+        </para>
+        <programlisting><![CDATA[
+{
+   "all_roles":[<information about all available roles, removed for brevity>]
+   "authenticated":true,
+   "full_name":"Linda Kim",
+   "granted_authorities":[
+      "Educator"
+   ],
+"sliRoles":[
+      "Educator"
+   ],
+   "user_id":"linda.kim@IL"
+}
+            ]]></programlisting>
+    </section>
+    <section xml:id="doc-5162bacd-8279-4fe4-9267-4857651c6f54">
+        <title>Using Authorization Tokens During a Session</title>
+        <para>
+            After establishing a session, an application should use the current,
+            active OAuth authorization token in its HTTP header for each 
+            &RESTAPI; request during that session. This is the same process
+            you used in forming calls through a REST client as described in
+            <xref linkend="doc-446e4850-fba0-45bc-917c-92cbbbe6d827"/>.
+        </para>
+    </section>
+    <section xml:id="doc-8c6fa0d0-e978-4340-a4e4-de913f6869f5">
+        <title>Signing Out</title>
+        <para> &PRODUCTABBR; applications handle signing out as follows: </para>
+        <itemizedlist>
+            <listitem>
+                <para> When a user signs out of &PRODUCTABBR;, typically from an application
+                    interface, that user's session is terminated only from &PRODUCTABBR;. The
+                    session that user has with the education organization's identity provider
+                    remains, even though that session is no longer shared by the &PRODUCTABBR;
+                    application. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    After signing out from an &PRODUCTABBR; application, the 
+                    user must sign in again to use that application. This is
+                    true whether or not there's a valid session with the 
+                    education organization's identity provider. The application
+                    checks for an existing identity provider session upon login
+                    and creates the new tokens for a new &PRODUCTABBR; session. 
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            To add sign-out functionality to your application, call the logout
+            URI from the REST API. Use the call shown below, replacing the base
+            URL variable as appropriate:
+        </para>
+        <programlisting><![CDATA[
+GET $BASE_URL/api/rest/system/session/logout
+        ]]></programlisting>
+        <para>
+            The JSON response to this call should look like this:
+        </para>
+        <programlisting><![CDATA[
+{
+  "logout" : "true",
+  "msg": "You are logged out of inBloom"
+}
+        ]]></programlisting>
+    </section>
+    <section xml:id="doc-97823ef9-12f9-4ea5-a232-56cb0e20b963">
+        <title>Timing Out</title>
+        <para> Each identity provider has a configurable timeout period that controls the lifespan
+            of its own tokens. The &PRODUCTABBR; identity provider also has a session timeout, which
+            causes an error code response to any REST API calls made with that token following the
+            timeout threshold. The timeout threshold is 1 hour for Sandbox mode and 20 minutes for
+            Production mode. The &PRODUCTABBR; identity provider extends its timeout with each API
+            call so that sessions last for a certain number of minutes past the last call. Then a
+            timeout occurs, the application should redirect the user to sign in as if it was a first
+            attempt. </para>
+    </section>
+    <section xml:id="doc-6c1ea191-8512-4829-bd88-dcbe57318c0a">
+        <title>Handling Response Codes, Including Errors</title>
+        <para>
+            Ensure that your application handles errors gracefully. For example,
+            an HTTP 404 response code should indicate to the user that the requested
+            results do not exist, while an HTTP 401 should indicate that the
+            user isn't authorized to view the requested results.
+        </para>
+    </section>
+</chapter>
+
+        

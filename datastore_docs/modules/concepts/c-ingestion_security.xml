@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_security"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Security</title>
+    
+    <para>
+        Security concerns for ingestion users include how those users
+        authenticate with the landing zone, and how data is encrypted during 
+        while uploading files and downloading logs.
+    </para>
+    
+    <section xml:id="c-ingestion_security-authentication">
+        <title>Authentication</title>
+        <para>
+            The FTP server for the landing zone authenticates each ingestion 
+            user against the &PRODUCTABBR; directory. The ingestion user signs
+            in to the landing zone from an FTP client using normal 
+            authentication (username/password) and secure protocols and ports
+            (SFTP/SSH). These credentials should match one of the &PRODUCTABBR;
+            user accounts with the ingestion user role for that tenancy. 
+            These accounts are created and managed by the &PRODUCTABBR; 
+            administrators for that tenancy.
+        </para>
+    </section>
+    <section  xml:id="c-ingestion_security-authorization">
+        <title>Authorization</title>
+        <para>
+            The &PRODUCTABBR; CEM maintains an internal mapping between
+            landing zones, tenants, and education organizations. An ingestion 
+            user role covers one or more tenancies, typically associated with
+            some point in the education organization hierarchy. Thus, as an 
+            ingestion user, you can only access the landing zones and upload 
+            data for the tenancies in which you have the ingestion user role.
+        </para>
+        <para>
+            An administrative account, including an ingestion user, inherits
+            tenant and education organization associations when that account
+            is created. These associations will not change as a result of any
+            subsequent changes to that information in the &PRODUCTABBR;
+            directory. Thus, if any important identifying information changes
+            for an ingestion user, an administrator for that user's tenancy
+            should delete those ingestion user accounts and create new ones with
+            the desired information. This identifying information includes a
+            name referenced in the user's username (such as "jsmith" becoming
+            "jjones").
+        </para>
+    </section>
+    
+    <section  xml:id="c-ingestion_security-encryption">
+        <title>Encryption</title>
+        <para>
+            To protect 
+            <glossterm linkend="def-pii">personally identifiable information (PII)</glossterm>, 
+            the ingested files containing student data are encrypted during 
+            transmission and storage, and that data is only delivered to 
+            &PRODUCTABBR; applications using a secure network protocol. 
+        </para>
+    </section>
+    
+</section>

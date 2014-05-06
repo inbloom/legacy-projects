@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-c16da7d8-5385-4c51-8809-d4bb5e6148f5" xml:base="."
+    xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>Introduction</title>
+    <para>inBloom’s core functionality, the Secure Data Services (SDS), is a multiuser,
+        transaction-based Database. The inBloom SDS is run either as Software as a Service (SaaS)
+        where inBloom manages the operation or an Operator model, where a provider opts to maintain
+        their own instance of the software.</para>
+    <para>An inBloom managed deployment offers is a secure, cloud-hosted data store designed for
+        states and districts. An Operator instance is responsible for maintaining the service with
+        the same expectations for performance, security, and availability as inBloom has for our
+        managed instance. Operators are encouraged to align with an established level of technical
+        and business standards to offer stakeholders a secure and optimal experience and are
+        expected not to change the provided inBloom APIs so that applications can use them no matter
+        which instance of the service their customers opt to use.</para>
+    <para>Whether a SaaS or an Operator model, the inBloom SDS securely maintains data about state
+        and district’s organizational structure, schools, and employees, as well as information on
+        student enrollment, biographical and achievement data. In implementing inBloom’s SDS
+        solution, states and districts load data to the SDS data store through high-volume data
+        interfaces.</para>
+    <para>The goal of inBloom’s SDS is to provide a level of data interoperability that allows
+        states, districts, schools and teachers to tailor resources and learning applications to
+        their local and individual needs securely by providing an API. The Secure Data Service API
+        makes the process of sharing individual learning tools and strategies easier and more
+        efficient. Overcoming these data interoperability barriers is the ultimate objective of
+        inBloom’s SDs and are core to enabling the products and strategies that drive personalized
+        learning in the classroom.</para>
+    <para>This Runbook provides procedures, requirements and recommendations for installing,
+        configuring, running, and upgrading the inBloom Secure Data Services (SDS). Additionally,
+        this Runbook should be used to understand the practices and procedures for the efficient use
+        of inBloom’s SDS.</para>
+    <sect1 xml:id="doc-ff943989-e3b8-439e-96a1-ee48f7f34c2e">
+        <title>Scope</title>
+        <para> This guide is intended for system engineers, system operators, and system
+            administrators, each of whom are responsible for specific tasks in the process of
+            standing up an inbloom deployment.. </para>
+    </sect1>
+    <sect1 xml:id="doc-6d545148-58cc-4e41-be34-8b8e5dd3ecb8">
+        <title>Typographic Conventions</title>
+        <para> The following table describes the typographic conventions that this document uses to
+            enhance semantic meaning. </para>
+        <table xml:id="table-6c79a49e-8c8e-4128-80a1-71b4b8817fe2">
+            <title>Typographic Conventions</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>Format</entry>
+                        <entry>Used for</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                <guibutton>Bold</guibutton>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> GUI controls that the user interacts with such as buttons, folder
+                                tabs, icons, and so forth. </para>
+                            <para>
+                                <emphasis role="bold">Example</emphasis>: Check the <guibutton>Not
+                                    Available</guibutton> check box. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <emphasis>Italic</emphasis>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> First use of words, emphasis, document titles, and variable text. </para>
+                            <para>
+                                <emphasis role="bold">Example</emphasis>: See the <citetitle>REST
+                                    API Reference</citetitle>. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>Monospace</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> Code examples, file names, field names. </para>
+                            <para>
+                                <emphasis role="bold">Example</emphasis>: Apply the following patch
+                                to <filename>/etc/sysconfig/iptables</filename>. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Line break in code blocks </para>
+                        </entry>
+                        <entry>
+                            <para> When a string of code on a single line is too long to display in
+                                the code block shown; standard UNIX convention for code wrapping </para>
+                            <para>
+                                <emphasis role="bold">Example</emphasis>: </para>
+                            <programlisting><![CDATA[
+command -optionOne sampleValue -optionTwo sampleValue \
+-anotherOption sampleValue
+                                    ]]></programlisting>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </sect1>
+    <sect1 xml:id="doc-24dd0bbc-6635-4ead-afab-a16086bdf4e2">
+        <title>Security </title>
+        <para>All Operators should be prepared to ensure compliance with industry security best
+            practices and procedures. Operators are encouraged to meet refined criteria for security
+            and privacy of data as well as systems performance and have complete access to inBloom's
+            security toolsets and support. </para>
+        <para>inBloom recommends that an Operator of inBloom’s technology implement a complete
+            information security program, including preventive, detective, and reactive controls
+            that cover technical, physical, and administrative security commensurate with security
+            controls that inBloom currently has in place. </para>
+    </sect1>
+    <sect1>
+        <title>Assumptions</title>
+        <para> The following guidelines provide the recommended hardware and software necessary to
+            sustain a delivery model that will support multiple customers at scale. Further
+            identification of critical path to Operator success can be defined with assistance from
+            inBloom staff during an initial review of ecosystem assets at potential Operator sites.
+            The following guidelines provide system requirements to execute a full scale deployment
+            of inBloom Secure Data Services. In addition to the following lists of hardware,
+            software, and technologies, inBloom can advise on personnel required to staff, implement
+            and maintain an Operator environment, as well as provide optimal customer care to
+            stakeholders. </para>
+        <para>inBloom recommends that staff involved in the deployment of inBloom Secure Data
+            Service have 3-5 years experience with Linux  and with load balancing and distributed
+            file systems. </para>
+        <para/>
+        <sect2>
+            <title> Hardware </title>
+            <para>Operator hardware needs will vary depending on the volume of data and number of
+                students your Operator program aims to support. Maintaining an efficient system will
+                require the use of numerous physical or virtual servers of a caliber that would meet
+                typical business operations for handling large datasets and frequent, concurrent
+                connections by external parties via the internet. Operators are expected to have N+1
+                redundancy in an active-active configuration for all servers, as well as appropriate
+                firewall and intrusion detection, and load balancing technologies. An Operator can
+                expect to provide hardware to enable and maintain the following components of the
+                inBloom service offering: <emphasis role="bold"/></para>
+            <para><emphasis role="bold">Database Servers</emphasis></para>
+            <para>Database (Mongo 2.x)</para>
+            <para>Database Config</para>
+            <para><emphasis role="bold">API/Search Servers</emphasis></para>
+            <para>Internet application interface (API)Search messaging queue - </para>
+            <para>ActiveMQSearch Indexer - </para>
+            <para>ElasticSearchSearch Processing/MessagingSearch Box - </para>
+            <para>customer feeds to APIs</para>
+            <para><emphasis role="bold">Web/Application Servers</emphasis></para>
+            <para>Web Server (Apache 2.2 / Tomcat / Java 1.6 / Ruby 2.0 / Rails 3.x)</para>
+            <para>Data Browser</para>
+            <para>Dashboard</para>
+            <para>Portal (liferay)</para>
+            <para>System Tools-admin authorization management for IT Admins</para>
+            <para><emphasis role="bold">General Servers</emphasis></para>
+            <para>File System (Gluster/NFS currently used)</para>
+            <para>Firewall (ModSecurity)</para>
+            <para>Identity Provider (SimpleIDP currently used)</para>
+            <para>Federated directory service (LDAP)</para>
+            <para>Learning Registry Node</para>
+            <para><emphasis role="bold">Customer Data Administration</emphasis></para>
+            <para>Landing zone boxes</para>
+            <para>Ingestion</para>
+            <para>Bulk Extract </para>
+            <para>File delivery system (SFTP/SSH</para>
+            <para/>
+       </sect2>
+        <sect2> 
+        <title>Software</title>
+        <para>InBloom has applied a variety of software in the creation of its offerings. While not
+                all of the software listed below may be required within a particular Operator
+                instance, the inBloom Runbook best practices provides assistance with the
+                installation and proper configuration of the software. An Operator can expect to
+                install the following software to enable and maintain the inBloom service offering: </para>
+            <para>MongoDB - Document database used to store education data and system
+                configuration</para>
+            <para>ActiveMQ - Messaging system for asynchronous processing</para>
+            <para>Gluster - Distributed file system for batch-processing XML ingestion files</para>
+            <para>ElasticSearch - Search software used for some search operations</para>
+            <para>OpenLDAP - Directory server for configuration of system-wide tools and
+                administrators</para>
+            <para>Tomcat - Java application server for API and other applications</para>
+            <para>Apache - Web server used for load balancing and firewall via mod security</para>
+            <para>Linux - Host operating system, specifically Ubuntu 12.04</para>
+            <para>Chef - Systems configuration tool (to manage policy and host
+                configurations)</para>
+            <para>Gazzang - Encrypts file systems to protect data at rest (MongoDB and
+                GlusterFS)</para>
+            <para>SSL - Certificate Management</para>
+            <para>VPN - Management</para>
+            <para>JumpBox - Security alerts</para>
+            <para>Atlassian – Issue tracking and public backlog (JIRA, Confluence)</para>
+        
+        </sect2>
+    </sect1>
+</chapter>
+
+        

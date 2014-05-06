@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<book 
+    xml:id="module-portal" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>Document Module: &COMPANYABBR; Portal</title>
+    </info>
+    
+    <preface xml:id="preface-module-sdk">
+        <title>Introduction</title>
+        <para>
+            This documentation module covers content about the
+            &COMPANYABBR; Portal. It is not currently intended as
+            a standalone document.
+        </para>
+    </preface>
+    
+    <chapter xml:id="doc-a0f294fb-e385-4222-a192-a6d8b6b66043">
+        <title>Using the &COMPANYABBR; Portal</title>
+        <para>
+            The Portal is the common entry point for all &COMPANYABBR;
+            web applications.
+        </para>
+        <para>
+            Future revisions of this document will include helpful
+            instructions for locating the Portal, signing in to the
+            &COMPANYABBR;, and accessing &COMPANYABBR; web applications.
+        </para>
+    </chapter>
+    
+</book>
+
+        

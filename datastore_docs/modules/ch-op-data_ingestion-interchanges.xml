@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-18e61b99-88ac-415e-8460-7e5796826b6b"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Ingestion: Interchange and Entity Support</title>
+    
+    <para>&PRODUCTABBR; supports all 13 Ed-Fi interchanges. However, &PRODUCTABBR; does not currently support every Ed-Fi entity.</para>
+    <para>The following table describes each of the Ed-Fi interchanges as well as the related entities that &PRODUCTABBR; currently supports:</para>
+    <para>
+        <table frame="all">
+            <title/>
+            <tgroup cols="2">
+                <colspec colname="c1" colnum="1" colwidth="1*"/>
+                <colspec colname="c2" colnum="2" colwidth="2.8*"/>
+                <thead>
+                    <row>
+                        <entry>Interchange Name</entry>
+                        <entry>Supported Entities</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>Education Organization</entry>
+                        <entry>StateEducationAgency, LocalEducationAgency, School, Location,
+                            ClassPeriod, Course, and Program </entry>
+                    </row>
+                    <row>
+                        <entry>Master Schedule</entry>
+                        <entry>Section and CourseOffering </entry>
+                    </row>
+                    <row>
+                        <entry>Assessment Metadata</entry>
+                        <entry>
+                            <para>AssessmentFamily, Assessment, AssessmentPeriodDescriptor,
+                                PerformanceLevelDescriptor, ObjectiveAssessment,
+                                LearningObjective, and LearningStandard</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>Staff Association</entry>
+                        <entry>Staff, Teacher, TeacherSchoolAssociation,
+                            TeacherSectionAssociation, and
+                            StaffEducationOrgAssignmentAssociation </entry>
+                    </row>
+                    <row>
+                        <entry>Student Parent</entry>
+                        <entry>Student, Parent, and StudentParentAssociation </entry>
+                    </row>
+                    <row>
+                        <entry>Student Assessment</entry>
+                        <entry>StudentReference, AssessmentReference, StudentAssessment,
+                            StudentObjectiveAssessment, and StudentAssessmentItem </entry>
+                    </row>
+                    <row>
+                        <entry>Education Org Calendar</entry>
+                        <entry>Session and GradingPeriod </entry>
+                    </row>
+                    <row>
+                        <entry>Student Enrollment</entry>
+                        <entry>StudentSchoolAssociation and StudentSectionAssociation </entry>
+                    </row>
+                    <row>
+                        <entry>Student Grade</entry>
+                        <entry>StudentAcademicRecord, CourseTranscript, GradebookEntry,
+                            StudentGradebookEntry, ReportCard, Grade, StudentCompetency, 
+                            CompetencyLevelDescriptor, LearningObjective, and
+                            StudentCompetencyObjective </entry>
+                    </row>
+                    <row>
+                        <entry>Student Program</entry>
+                        <entry>StudentProgramAssociation </entry>
+                    </row>
+                    <row>
+                        <entry>Student Cohort</entry>
+                        <entry>Cohort, StudentCohortAssociation, and StaffCohortAssociation
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>Student Discipline</entry>
+                        <entry>DisciplineIncident, StudentDisciplineIncidentAssociation, and
+                            DisciplineAction </entry>
+                    </row>
+                    <row>
+                        <entry>Student Attendance</entry>
+                        <entry>AttendanceEvent </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </para>
+    
+</chapter>

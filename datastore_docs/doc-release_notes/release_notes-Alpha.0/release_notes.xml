@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE article [
+<!ENTITY % slc_entities SYSTEM "../../common/docbook_entities-slc.ent">
+%slc_entities;
+<!ENTITY RELEASE "Alpha.0">
+]>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xml:id="release_notes" version="5.0">
+    
+    <info>
+        <title>&COMPANY; &RELEASE; Release Notes</title>
+    </info>
+
+    <para>
+        &RELEASE; is the initial release of the &COMPANYABBR; technology 
+        services, education dashboards, and documentation.
+    </para>
+    <para>
+        With this release, &COMPANYABBR; provides application developers with
+        access to a sandbox &COMPANYABBR; environment and a series of 
+        dedicated developer camps taking place over the next several months 
+        [[[FIXME: link "developer camps" to the corresponding URL for info]]]. 
+        While accessing their sandbox, developers can ingest &COMPANYABBR; 
+        sample data sets, sign in as different users with varying roles, and
+        create new applications that interact with the data using the 
+        &COMPANYABBR; REST API. These applications can perform the same tasks
+        available to state and district tenants.
+    </para>
+    <para>
+        REMINDER: The Sandbox MUST NOT contain actual student data. Users
+        should load only artificial or fabricated data into the sandbox. 
+        The &COMPANYABBR; provides sample fabricated data sets available 
+        for download from the Sandbox Developer Web Site at 
+        <link xlink:href="http://dev.slcedu.org/getting-started/sandbox/">http://dev.slcedu.org/getting-started/sandbox/</link>.
+    </para>
+    
+    <section xml:id="sect-release_notes-whats_in_alpha">
+        <title>What's in this release?</title>
+        <para>
+            For more information about what's in this release, see
+            <link xlink:href="http://slcedu.org/sites/default/files/downloads/SLC%20Alpha%20Scope%20and%20Timeline%2005-25-2012_1.pdf">SLC Alpha Environment: Alpha Release Scope &amp; Timeline</link>
+        </para>
+    </section>
+    
+    <xi:include href="rally_defects.xml"/>
+    
+    <xi:include href="rally_stories.xml"/>
+    
+    <section xml:id="sect-release_notes-web_browser_compatibility">
+        <title>Web Browser Compatibility</title>
+        <para>
+            &COMPANYABBR; educator dashboard is best viewed in Internet Explore 8+, 
+            Firefox 6+, Safari 4+ with 1024x768 as the minimum recommended screen 
+            resolution. 
+        </para>
+    </section>
+    
+</article>

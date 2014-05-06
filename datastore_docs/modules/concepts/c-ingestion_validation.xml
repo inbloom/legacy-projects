@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_validation"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Validation</title>
+    
+    <para>
+        During its validation phases, the ingestion system checks the 
+        consistency of the job control file and validates the XML files
+        against the XML schemas for ingestion. The control file format is 
+        defined in <xref linkend="r-ingestion_control_file_format"/>. 
+        The XML schemas are described in
+        <xref linkend="c-ingestion_schemas"/>.
+    </para>
+    
+</section>

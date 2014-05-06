@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-9aafba37-be2e-4cdc-b3f3-3d86c4cdcba0"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Ingestion: Overview</title>
+    
+    <para>
+        <glossterm linkend="def-data_ingestion">Data ingestion</glossterm>,
+        sometimes simply called <firstterm>ingestion</firstterm>, is one of
+        two ways to add data to the &PRODUCTABBR; Data Store. Ingestion
+        is designed to handle several dozen to several thousand data records
+        at one time. This is different from &PRODUCTABBR; web applications 
+        designed to add, view, and edit one record at a time.
+    </para>
+    <para>
+        Data ingestion consumes data from one or more source files.
+        The process works like this:
+    </para>
+    <orderedlist>
+        <listitem>
+            <para>
+                &PRODUCTABBR; checks whether there are files in a
+                configured <glossterm linkend="def-landing_zone">landing zone</glossterm>.
+                The landing zone is an FTP server location where you can upload
+                files to be ingested to the &PRODUCTABBR; Data Store.
+            </para>
+            <para>
+                &PRODUCTABBR; administrators can set up one or more of these landing 
+                zones to serve a single data store. For instructions on how to 
+                set up and manage landing zones, see
+                <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                &PRODUCTABBR; kicks off the data ingestion process, working
+                through the files in the landing zone. For details about how
+                to ingest data, see
+                <xref linkend="doc-53e3a1af-a134-428e-a0e0-428bbd70dd20"/>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                When ingestion's complete, &PRODUCTABBR; administrators can confirm
+                that the newly ingested data is available in the &PRODUCTABBR;
+                Data Store. You can use the Data Browser administration tool 
+                that's for this purpose.
+            </para>
+        </listitem>
+    </orderedlist>
+    <para>
+        Use the links in the bulleted list above to access additional
+        ingestion-related documentation.
+    </para>
+    <section>
+        <title>Prerequisites to Ingestion</title>
+        <para>Before you can ingest data, you must:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Have the appropriate user role that will allow you to
+                        ingest data. &PRODUCTABBR; provides an <emphasis>Ingestion
+                            User</emphasis> role.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Be authorized to work with data 
+                    for a specific educational organization.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Have access to a configured 
+                    landing zone. A landing zone is an FTP server location 
+                    that will store your XML files while they are being 
+                    ingested.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            If you don't already have a landing zone, 
+            the next step will be to set up your landing zone. If you already
+            have your landing zone set up, please skip to 
+            <xref linkend="doc-6b9d21e0-0d62-4ab7-996d-9b40bccdd422"/>.
+        </para>
+    </section>
+    
+</chapter>

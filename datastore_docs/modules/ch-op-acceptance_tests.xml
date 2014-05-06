@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-dee333f1-6430-4e5b-8947-1b3fbbb02e97"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <title><phrase role="1.0.68-changed">Running Automated Acceptance Tests</phrase></title>
+<section>
+    <title>Bulk Extract E2E Tests in Production</title>
+    <para role="1.3.76-added">This section has been added to instruct the E2E testing for bulk extract.</para>
+    <para>
+        <procedure>
+            <step>
+                <para>Log into the staging environment as an application developer to setup the
+                        application. </para>
+            </step>
+            <step>
+                <para>Create an application. The following fields must be set to the provided
+                        values; all values not specified may be set as needed.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Name: 'Bulk Extract 2 End'</para>
+                    </listitem>
+                    <listitem>
+                        <para>Installed: Checked</para>
+                    </listitem>
+                    <listitem>
+                        <para>Bulk Extract: Checked</para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>When the application is created and the state of the application is "In
+                        Progress", find the client ID and shared secret. Add these properties into
+                        the E2E test property files, located at
+                        <filename>acceptance-tests/test/features/utils/properties.yml</filename>:</para>
+                <programlisting><![CDATA[
+bulk_extract_testapp_client_id:
+"yourclientid"
+
+
+bulk_extract_testapp_secret:
+"yourappssharedsecretstring"
+]]>
+                </programlisting>
+            </step>
+            <step>
+                <para>SSH into a server in the staging environment that has access to the Mongo db.
+                        Find the application you created and update the application document to have
+                            <code>allowed_for_all_edorgs = true</code> and
+                            <code>authorized_for_all_edorgs = false</code>.</para>
+                <para>The Mongo query below does that if you replace the client id with the one from
+                        your application. This should not be done in a production environment. This
+                        prevents issues around the pre-existing application developer logging in and
+                        not knowing which Standard-SEA to approve. If this is done in production,
+                        this testing bulk extract application is seen by all districts as an
+                        application to approve similar to the inBloom Dashboards. We do not want
+                        this testing application to actually be used.</para>
+                <programlisting> <![CDATA[
+$>
+mongo sli
+
+
+mongos>
+ db.application.update({"body.client_id":"YourClientID"},{$set:
+ {'body.allowed_for_all_edorgs':true,
+'body.authorized_for_all_edorgs':false
+
+}})
+             ]]>
+                </programlisting>
+            </step>
+            <step>
+                <para> In your local environment, create a X.509 certificate/key pair for use by the
+                        new application. The following command creates the certificate/key pair. If
+                        you do not want to create a new certificate/key pair, you can reuse the
+                        existing <filename>pike.crt</filename> and <filename>pike.key</filename>
+                        in the test directory. If you proceed using the existing pair, those are the
+                        certificates and keys you need to utilize in the next steps instead of the
+                        generated pair.</para>
+                <programlisting> <![CDATA[
+$>
+ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout $inBloom_HOME/acceptance-tests/test/features/utils/keys/pike.key
+ -out $inBloom_HOME/acceptance-tests/test/features/utils/keys/pike.crt
+                ]]>
+              </programlisting>
+                <para> The tests use the rc_env property from the E2E property file to determine the
+                        name of the certificate and key pair. For the certificate and key pair generated in the previous step,
+                        the rc_env value would need to be set as "pike".</para>
+                <programlisting> <![CDATA[
+rc_env:
+"pike"
+]]>
+              </programlisting>
+            </step>
+            <step>
+                <para> Copy the certificate to the server that triggers the bulk extract as well as
+                        all of the API servers. Example SCP commands are shown below, but other
+                        frameworks could be utilized to ensure the file is distributed to all the
+                        servers.</para>
+                <programlisting> <![CDATA[
+$>
+scp
+
+acceptance-tests/test/features/utils/keys/pike.crt
+ username@rcingest01.pike:~
+
+
+$>
+scp
+
+acceptance-tests/test/features/utils/keys/pike.crt
+ username@rcapi01.pike:~
+
+
+$>
+scp
+
+acceptance-tests/test/features/utils/keys/pike.crt
+ username@rcapi02.pike:~   
+                ]]>
+                </programlisting>
+            </step>
+            <step>
+                <para>Import the certificate to each of those servers' truststores with the alias
+                        being the applications client ID. This must be performed on all API servers
+                        and the server where bulk extract is triggered. An alternative path is that
+                        you could import the certificate to a truststore locally and then push that
+                        to all the required servers. The issue with that approach is that the
+                        application must be created before the certificate is imported as the
+                        application's client ID must be known. This cannot be known until the
+                        application is registered. </para>
+                <programlisting> <![CDATA[
+ $>
+ keytool -import
+
+-file
+
+~/pike.crt
+ -keystore /path/to/your/truststore.jks
+ -alias
+
+yourclientid
+                ]]>
+                </programlisting>
+            </step>
+            <step>
+                <para>
+                    Restart the Tomcat servers so that the new keystore is reloaded by Tomcat.
+                </para>
+            </step>
+            <step>
+                <para>
+                    The bulk extract tests require a few other properties in the E2E property file to be
+                    set. It is recommended that the absolute path be used in setting these properties.
+                </para>
+                <programlisting><![CDATA[
+bulk_extract_script:
+"on the machine running bulk extract, path to the bulk extract script"
+
+
+bulk_extract_output_directory:
+"on the machine running bulk extract, path to where the bulk extracts are generated"
+
+
+bulk_extract_jar_loc:
+"on the machine running bulk extract, path to where the bulk extract jar file is located (it can be inside a tar.gz file)"
+
+
+bulk_extract_properties_file:
+"on the machine running bulk extract, path to the sli.properties used by bulk extract"
+
+
+bulk_extract_keystore_file:
+"on the machine running bulk extract, path to the keystore"
+
+
+extract_to_directory:
+"on the local machine running the tests, where to store fetched bulk extract files"
+]]>
+                </programlisting>
+                <para>
+                    In addition, there's an additional property called "ssh_user" which the tests use
+                    to ssh into the server where bulk extract is located.
+                </para>
+                <programlisting><![CDATA[
+ssh_user:
+"username@server"
+]]>
+                </programlisting>
+            </step>
+        </procedure>
+    </para>
+</section>
+<section>
+    <title>Bulk Extract E2E Tests in Sandbox</title>
+    <para role="1.13.91-added">This section has been added to instruct the E2E testing for bulk extract in Sandbox Mode.</para>
+    <para>
+        <procedure>
+            <step>
+                <para>Log into the staging environment as the test's sandbox application developer to setup the
+                        application. The user needed to log into for this setup is configured in the
+                    <filename>acceptance-tests/test/features/utils/properties.yml</filename> file, under the
+                    following properties:
+                    <programlisting> <![CDATA[
+developer_sb_email_imap_registration_user 
+developer_sb_email_imap_registration_user_email
+developer_sb_email_imap_registration_pass
+                    ]]>
+                    </programlisting>
+                   </para>
+            </step>
+            <step>
+                <para>Create an application. The following fields must be set to the provided
+                        values; all values not specified may be set as needed.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Installed: Checked</para>
+                    </listitem>
+                    <listitem>
+                        <para>Bulk Extract: Checked</para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>When the application is created and the state of the application is "In
+                        Progress", find the client ID and shared secret. Add these properties 
+                        along with the name of the app into the E2E test property files, located at
+                        <filename>acceptance-tests/test/features/utils/properties.yml</filename>:</para>
+                <programlisting><![CDATA[
+
+bulk_extract_testapp_name : "yourappname"
+
+
+bulk_extract_testapp_client_id: "yourclientid"
+
+
+bulk_extract_testapp_secret : "yourappssharedsecretstring"
+]]>
+                </programlisting>
+            </step>
+            <step>
+                <para> In your local environment, create a X.509 certificate/key pair for use by the
+                        new application. The following command creates the certificate/key pair. If
+                        you do not want to create a new certificate/key pair, you can reuse the
+                        existing <filename>sisko.crt</filename> and <filename>sisko.key</filename>
+                        in the test directory. If you proceed using the existing pair, those are the
+                        certificates and keys you need to utilize in the next steps instead of the
+                        generated pair. </para>
+                <programlisting> <![CDATA[
+$>
+ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout $inBloom_HOME/acceptance-tests/test/features/utils/keys/sisko.key
+ -out $inBloom_HOME/acceptance-tests/test/features/utils/keys/sisko.crt
+                ]]>
+              </programlisting>
+                <para> The tests use the rc_env property from the E2E property file to determine the
+                        name of the certificate and key pair. For the certificate and key pair generated in the previous step,
+                        the rc_env value would need to be set as "sisko".</para>
+                <programlisting> <![CDATA[
+rc_env:
+"sisko"
+]]>
+                </programlisting>
+            </step>
+            <step>
+                <para> Copy the certificate to the server that triggers the bulk extract as well as
+                        all of the API servers. Example SCP commands are shown below, but other
+                        frameworks could be utilized to ensure the file is distributed to all the
+                        servers.</para>
+                <programlisting> <![CDATA[
+$>
+scp
+
+acceptance-tests/test/features/utils/keys/sisko.crt
+ username@rcingest01.sisko:~
+
+
+$>
+scp
+
+acceptance-tests/test/features/utils/keys/sisko.crt
+ username@rcapi01.sisko:~
+
+
+$>
+scp
+
+acceptance-tests/test/features/utils/keys/sisko.crt
+ username@rcapi02.sisko:~   
+                ]]>
+                </programlisting>
+            </step>
+            <step>
+                <para>Import the certificate to each of those servers' truststores with the alias
+                        being the applications client ID. This must be performed on all API servers
+                        and the server where bulk extract is triggered. An alternative path is that
+                        you could import the certificate to a truststore locally and then push that
+                        to all the required servers. The issue with that approach is that the
+                        application must be created before the certificate is imported as the
+                        application's client ID must be known. This cannot be known until the
+                        application is registered. </para>
+                <programlisting> <![CDATA[
+ $>
+ keytool -import
+
+-file
+
+~/sisko.crt
+ -keystore /path/to/your/truststore.jks
+ -alias
+
+yourclientid
+                ]]>
+                </programlisting>
+            </step>
+            <step>
+                <para>
+                    Restart the Tomcat servers so that the new keystore is reloaded by Tomcat.
+                </para>
+            </step>
+            <step>
+                <para>
+                    The bulk extract tests require a few other properties in the E2E property file to be
+                    set. It is recommended that the absolute path be used in setting these properties.
+                </para>
+                <programlisting><![CDATA[
+bulk_extract_script:
+"on the machine running bulk extract, path to the bulk extract script"
+
+
+bulk_extract_output_directory:
+"on the machine running bulk extract, path to where the bulk extracts are generated"
+
+
+bulk_extract_jar_loc:
+"on the machine running bulk extract, path to where the bulk extract jar file is located (it can be inside a tar.gz file)"
+
+
+bulk_extract_properties_file:
+"on the machine running bulk extract, path to the sli.properties used by bulk extract"
+
+
+bulk_extract_keystore_file:
+"on the machine running bulk extract, path to the keystore"
+
+
+extract_to_directory:
+"on the local machine running the tests, where to store fetched bulk extract files"
+]]>
+                </programlisting>
+                <para>
+                    In addition, there's an additional property called "ssh_user" which the tests use
+                    to ssh into the server where bulk extract is located.
+                </para>
+                <programlisting><![CDATA[
+ssh_user:
+"username@server"
+]]>
+                </programlisting>
+            </step>
+        </procedure>
+    </para>
+</section>
+<section>
+    <title>Remaining E2E tests</title>
+    <para> The acceptance tests were developed in tandem with the platform. They can be used to
+        validate the functionality of a running system. These tests are inherently destructive to
+        data and will likely break a running/live Production system. </para>
+    
+    <section xml:id="doc-7e1c8227-eaa1-4802-b1eb-534e50690a88">
+        <title>Acceptance Tests: Prerequisites</title>
+
+        <note>
+            <para> These instructions are written to be operating system agnostic. However the bulk
+                of the test creation, and on-going development takes place on Unix-like platforms
+                (Linux, MacOS). Use on a Windows platform may introduce additional dependencies or
+                differing configuration. </para>
+        </note>
+        <warning>
+            <title>WARNING</title>
+            <para>
+                If you are not bootstrapping the applications, you should export a 
+                copy of your applications collection prior to performing these tests.
+            </para>
+            <para> Certain Mongo collections are modified, deleted, or added to during these tests.
+                Please use caution when running tests against an environment where sensitive data
+                exists. It is advised to use <command>mongodump/mongorestore</command> before and
+                after running tests. Do not attempt to run this on a system that has already been
+                released into Production. </para>
+        </warning>
+        <para>
+            In order to perform these tests, you will need:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Access to the Mongo database, either through a mongos install running on your 
+                    testing machine, or TCP access to a remote mongos service (mongos), possibly through a port forward.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Access all servers via their web URLs.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Access to the LDAP servers(s), possibly through an ssh port forward.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Access to the ingestion landing zone.
+                    Access to the ingestion landing zone will require an overarching service account to be 
+                    created and loaded into your OpenLDAP deployment. This account must have a home directory 
+                    adjacent to the ingestion tenant folders. It also needs certificate authentication to be enabled 
+                    in your local SSH config, as well as remote landing zone configuration. If using ProFTPD, 
+                    the landing zone server side public key will need to be in RFC4716 format. You may 
+                    need to have your local SSH configuration redirect the connection to a different port. 
+                    You may also need to have a NAT rule applied, either locally or on an intermediate point 
+                    between your testing machine and the landing zone server(s).
+                </para>
+            </listitem>
+      <!-- likely delete    <listitem>
+                <para>
+                    The ingestion server(s) will need to be started with the configuration 
+                    <code>sli.ingestion.tenant.loadDefaultTenants</code> set to true. The tests require three tenant 
+                    landing zones to be created by and monitored by the ingestion servers.
+                </para>
+            </listitem> -->
+            <listitem>
+                <para>
+                    A copy of the acceptance tests from the platform code base.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby 2.0.0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby gems installed
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Selenium installed - <code>`gem install selenium`</code> and <code>`selenium install`</code>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby Rake - <code>`gem install rake`</code>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby Bundler - <code>`gem install bundler`</code>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    MongoDB command line tools available in your preferred command shell.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Firefox web browser installed locally. Firefox 8.0 appears to work the best 
+                    with the Selenium toolkit, however newer versions such as 10.0 seem to respond 
+                    well to Selenium 2.17.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If on a headless Linux machine, you will want to install something like the Xvfb.
+                </para>
+            </listitem>
+            <listitem>
+                <para>The Linux Kernel settings must be updated to increase open file descriptors
+                    because Mongo utilizes a high number. This is done by adding the following to
+                    /etc/security/limits.conf on all Tomcat and Mongo machines. This can be verified
+                    by running 'ulimit -n' on the command line.</para>
+                <itemizedlist>
+                    <listitem><para>soft nofile 2000</para></listitem>
+                    <listitem><para>hard nofile 2000</para></listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-6afe9946-9d25-4890-ad12-a64129fd62d8">
+        <title>Acceptance Tests: Set Up and Execute</title>
+        <procedure>
+            <step>
+                <para>
+                    You should begin with a relatively clean system. That is, no data in the 
+                    landing zones and no data in the Mongo database.
+                </para>
+            </step>
+            <step>
+                <para>
+                    An API server must be restarted so the database will be appropriately bootstrapped.
+                </para>
+            </step>
+     <!-- likely delete       <step>
+                <para>
+                    An ingestion server must be restarted with the 
+                    <code>sli.ingestion.tenant.loadDefaultTenants</code> option set to true, so the ingestion server 
+                    will pre-populate the database with tenant data needed to run the tests. Normally that 
+                    data would be created manually by a person performing an on boarding procedure. 
+                </para>
+            </step> -->
+            <step>
+                <para> From your <filename>acceptance-tests</filename> folder, perform the following
+                        command to install the Ruby dependencies that are required by the tests. </para>
+                <programlisting><![CDATA[
+bundle install --deployment
+					]]></programlisting>
+            </step>
+            <step>
+                <para>Ensure that a main operator account exists in the LDAP server with the credentials: <code>slcoperator/slcoperator1234</code></para>
+            </step>
+            <step>
+                <para role="85-added">Import lidf file containing entries to support generic ed orgs
+                and Charter School scenarios into LDAP server using the append option.
+                The lidf file can be obtained from the repository here:
+                <code>datastore/sli/acceptance-tests/test/data/LDAP_LDIF/IL-Charter.ldif</code></para>
+            </step>
+            <step>
+                <para>
+                    Modify <filename>acceptance-tests/test/features/utils/properties.yml</filename>
+                    to match your environment. Use the following example file to
+                    understand the configuration requirements.
+                </para>
+                <para role="85-info">The following properties were added for testing generic ed orgs
+                    and Charter School scenarios in RC starting in release 1.10.85.<itemizedlist>
+                        <listitem>
+                            <para><emphasis>charter_email_imap_registration_user</emphasis>: The
+                                LEA Admin user for testing Charter School scenarios in RC.</para>
+                        </listitem>
+                        <listitem>
+                            <para><emphasis>charter_email_imap_registration_user_email</emphasis>:
+                                The LEA Admin email for testing Charter School scenarios in RC.</para>
+                        </listitem>
+                        <listitem>
+                            <para><emphasis>charter_email_imap_registration_pass</emphasis>:
+                                The LEA Admin password for testing Charter School scenarios in RC.</para>
+                        </listitem>
+                        <listitem>
+                            <para><emphasis>ci_charter_idp_redirect_url</emphasis>: IDP and Redirect
+                                Endpoint URL for Charter School Realm Management in RC.</para>
+                        </listitem>
+                    </itemizedlist>
+                </para>
+                <para role="1.3.76-info">Updated properties for E2E testing. The following
+                        properties were properties were added for testing bulk extract: <itemizedlist>
+                            <listitem>
+                                <para><emphasis>rc_env</emphasis>: The name of the .crt file
+                                    associated with the preexisting Bulk Extract E2E app. If using
+                                    the bundled test cert 'pike.crt' you would just set this
+                                    property to "pike".</para>
+                            </listitem>
+                            <listitem>
+                                <para><emphasis>api_ssl_server_url</emphasis>: The path to the API's
+                                    SSL connector. Since the API should already be running on SSL,
+                                    this should be the same as the api_server_url property.</para>
+                            </listitem>
+                            <listitem>
+                                <para><emphasis>bulk_extract_testapp_client_id</emphasis>: The
+                                    client ID of the preexisting Bulk Extract E2E
+                                    application.</para>
+                            </listitem>
+                            <listitem>
+                                <para><emphasis>bulk_extract_testapp_secret</emphasis>: The shared
+                                    secret of the preexisting Bulk Extract E2E application.</para>
+                            </listitem>
+                            <listitem>
+                                <para><emphasis>ssh_user</emphasis>: This is the user and the host
+                                    where the bulk extract is to be triggered. It is assumed that
+                                    the user has set up password free login through a public key. It
+                                    is also assumed the user has sudo privilege to execute the bulk
+                                    extract shell script and to read from/write to the directory
+                                    defined in the output_directory property, which defines the
+                                    directory on the server which will hold the triggered extract. </para>
+                            </listitem>
+                            <listitem>
+                                <para><emphasis>extract_to_directory</emphasis>: This is the
+                                    directory local to where the E2E test is being run from and
+                                    defines where to save the extract after fetching it through the
+                                    API.</para>
+                            </listitem>
+                        </itemizedlist>
+                </para>
+                <programlisting><![CDATA[
+dashboard_server_address: "https://dashboard.example.com"
+dashboard_app_prefix: "/dashboard"
+dashboard_landing_page: "/"
+dashboard_api_server_uri: "https://api.example.com"
+realm_page_url: "https://api.example.com/api/oauth/authorize"
+browser: "firefox"
+rc_env: "yourserver"
+admintools_server_url: "https://admin.example.com"
+api_server_url: "https://api.example.com"
+minisb_admintools_server_url: "https://yourserversandbox.example.com"
+api_server_url: "https://yourserver-api.example.com"
+api_ssl_server_url: "https://yourserver-api.example.com"
+databrowser_server_url: "https://databrowser.example.com"
+sli_idp_server_url: "https://idp01.example.com/simple-idp/"
+sea_idp_server_url: "https://idp01.example.com/simple-idp/"
+lea_idp_server_url: "https://idp01.example.com/simple-idp/"
+ingestion_db: "localhost"
+ingestion_db_port: 27018
+ingestion_database_name: "sli"
+ingestion_batchjob_db: "localhost"
+ingestion_batchjob_database_name: "ingestion_batch_job"
+ingestion_batchjob_db_port: 27018
+lz_server_url: "lzserver.example.com"
+lz_sftp_port: "443"
+ingestion_server_url: "ingestionserver01.example.com"
+ingestion_username: "ingestion"
+ingestion_password: "yourpassword"
+ingestion_remote_lz_path: "/ingestion/lz"
+ingestion_mode: "remote"
+ingestion_destination_data_store: "../ingestion/ingestion-service/target/ingestion/logs/"
+ingestion_healthcheck_url: "http://local.example.com:8000/ingestion-service/healthcheck"
+ingestion_properties_file: "../config/properties/sli.properties"
+ingestion_log_directory: "../ingestion/ingestion-service/target/ingestion/logs/"
+ingestion_index_validation: true
+ingestion_rc_tenant: ""
+ingestion_rc_edorg: ""
+activemq_host: "localhost"
+ingestion_timeout_override_seconds: 0
+
+#Bulk Extract Configuration
+bulk_extract_script: "/opt/bulkextract/local_bulk_extract.sh"
+bulk_extract_output_directory: "/bulkextract/extracts/"
+bulk_extract_jar_loc: "/opt/bulkextract/bulk_extract.tar.gz"
+bulk_extract_properties_file: "/opt/tomcat/apache-tomcat-7.0.27/conf/sli.properties"
+bulk_extract_keystore_file: "/opt/tomcat/encryption/ciKeyStore.jks"
+
+#Bulk Extract Pre-existing App, used in RC E2E Tests
+bulk_extract_testapp_client_id: "9y2071pair"
+bulk_extract_testapp_secret: "lqrbj26161mopqozni5vmyxc5ws21hdzoi5i9q02hpy5azuo"
+
+sif_db: "localhost"
+sif_port: 27018
+sif_database_name: "sli"
+sif_zis_address_trigger: "http://local.example.com:8087/mock-zis/trigger"
+
+sli_database_name: "sli"
+
+DB_HOST: "localhost"
+DB_PORT: 27018
+api_database_name : "sli"
+sampleApp_server_address: "https://sample-app.server.example.com:8081/"
+simpleIDP_realm_server_address: "https://api.example.com/"
+simpleIDP_realm_params: "response_type%3dcode%26client_id%3dfm67sH6vZZ%26redirect_uri%3dhttps://sample-app.server.example.com:8081/sample/callback"
+simpleIDP_login_url: "https://idp.example.com/simple-idp"
+simpleIDP_realm_SLI: "SimpleIDP Test Realm - SLI"
+simpleIDP_realm_suffix: "Local"
+ldap_hostname: ldap01.example.com
+ldap_port: 636
+ldap_use_ssl: true
+ldap_base: "ou=SLIAdmin,dc=domain,dc=tld"
+ldap_admin_user: cn=LDAP User,ou=People,dc=domain,dc=tld
+ldap_admin_pass: s3cure3p@ssword
+minisb_ldap_hostname: localhost #local.example.com
+minisb_ldap_port: 1637
+minisb_ldap_use_ssl: true
+minisb_ldap_base: "ou=Admin,ou=rcEnvironment,dc=domain,dc=tld"
+minisb_ldap_admin_user: cn=Admin,ddc=domain,dc=tld
+minisb_ldap_admin_pass: password
+user_registration_app_production_url: "https://admin.example.com"
+user_registration_app_sandbox_url: "https://admin.example.com"
+user_registration_app_host_url: "dev.inbloom.com"
+registration_app_suffix: "/registration"
+sb_get_started: "inbloom.org/getting-started"
+samt_app_suffix: "/users"
+validation_base_suffix: "/user_account_validation"
+user_registration_email: devldapuser@example.com
+user_registration_pass: test1234
+email_smtp_host: smtp-server.example.com
+email_smtp_port: 3000
+email_imap_host: smtp-server.example.com
+email_imap_port: 993
+email_imap_registration_user: devldapuser
+email_imap_registration_user_email: devldapuser@example.com
+email_imap_registration_pass: s3cur3p@assword
+
+# For CI environments
+email_imap_hostname: imap.gmail.com
+email_imap_portname: 993
+
+#SEA Admin creds - For RC Only
+primary_email_imap_registration_user: testuser0@example.com
+primary_email_imap_registration_user_email: testuser0@example.com
+primary_email_imap_registration_pass: password #pass to access gmail inbox: password
+
+#LEA Admin creds - For RC Only
+secondary_email_imap_registration_user: testuser1@example.com
+secondary_email_imap_registration_user_email: testuser1@example.com
+secondary_email_imap_registration_pass: password #pass to access gmail inbox: password
+                    
+#LEA Admin creds for Charter School - For RC Only
+charter_email_imap_registration_user: charter.wgen@gmail.com
+charter_email_imap_registration_user_email: charter.wgen@gmail.com
+charter_email_imap_registration_pass: liferaywgen1234 #pass to access gmail inbox: liferaywgen1234
+
+#Developer creds
+developer_email_imap_registration_user: testdev@example.com
+developer_email_imap_registration_user_email: testdev@example.com
+developer_email_imap_registration_pass: password #pass to access gmail inbox: password
+
+#Landing zone
+landingzone: yourserver-lz.example.com
+landingzone_port: 443
+
+sandbox_tenant: testdevsb2@example.com
+tenant: RCTestTenant
+edorg: STANDARD-SEA
+
+ci_idp_redirect_url: https://yourserver-sidp.example.com/sliidp?realm=RCTestTenant
+                    
+# IDP and Redirect Endpoint URL for Charter School Realm Management
+ci_charter_idp_redirect_url: https://pike-sidp.slidev.org/sliidp?realm=IL-Charter
+
+ssh_user: user@rcingest01.yourserver
+extract_to_directory: /jenkins
+developer_realm: "your Developer Realm"
+portal_server_address: "https://yourserver-portal.example.com"
+minisb_portal_server_address: "https://yourserversandbox.example.com"
+portal_app_suffix: "/portal"
+
+ci_artifact_idp_type: "none"
+
+                    ]]></programlisting>
+            </step>
+        </procedure>
+
+        <para>
+            <code>FAILSLOW=false</code> may not be appropriate for all tests.  However, if a test fails, this property
+            will allow the tests to continue to execute.  Output from the test will be displayed 
+            to the executing terminal. You may want to forward the DISPLAY to an 
+            X11 server if you wish to view the web browser automation.
+        </para>
+         <para>
+            To run the end to end integration tests, you must edit your properties.yml to use the mongo hostnames and ports defined 
+            by the port forwarding.  Please see an example property file in <code>acceptance-tests/test/features/utils/properties_pike_e2e.yml</code> for production 
+            mode and <code>acceptance-tests/test/features/utils/properties_sisko_e2e.yml</code> for sandbox mode.
+            This property file uses a different port forward to the main mongo cluster and the server where the <code>ingestion_batch_job</code> db exists.  Also
+            note that multiple email addresses and credentials are needed for these tests.  It is recommended that a set of gmail email addresses be created for 
+            these tests. Use the following set of commands:
+        </para>
+
+        <programlisting><![CDATA[
+cd acceptance-tests
+export DISPLAY=:6.0
+export LANG=en_US.UTF-8
+bundle install --deployment
+bundle exec rake FAILSLOW=true RUN_ON_RC=1 rcTests         #for production mode
+bundle exec rake FAILSLOW=true RUN_ON_RC=1 rcSandboxTests  #for sandbox mode
+         ]]></programlisting>
+
+         <para>
+            These initiate a clean up step of the test tenant "RCTestTenant" as well as a set of LDAP accounts associated with
+            the test.  These steps require a port forward to both a mongos service and the LDAP server(s).  Then the test initiates
+            a full end to end smoke test of the system including full onboarding, LZ provisioning, ingestion, app registration, 
+            databrowser and dashboard testing with SmallSampleDataSet, and finishes with an ingestion purge.
+        </para>
+        
+        <note>
+            <para>
+                The above commands are for Linux, and will be different for other environments.
+            </para>
+        </note>
+        <note>
+            <para>
+                Some tests may fail due to the configuration mode of the software.
+                For example, when the software is in 
+                Sandbox mode, 
+                some of the application security control tests fail as the Sandbox behavior mode 
+                changes the expected behavior of the software.
+                <phrase role="1.3-info">[1.3 revisions shown; see
+                    <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/7361608877">US3416</link>]</phrase>
+            </para>
+        </note>
+    </section>
+    
+    <section xml:id="doc-dbb44061-15ca-44df-8351-1426ac1a7b7a">
+        <title>A quick script for cleaning the Mongo Database</title>
+        <note>
+            <para>
+                This script assumes it that it is being executed on localhost with MongoDB connectivity 
+                on the local host. If you need to run against a remote MongoDB instance, you should modify the 
+                Mongo command line accordingly.
+            </para>
+        </note>
+        <programlisting><![CDATA[
+#!/bin/bash
+mongo sli<<EOF
+db.application.drop()
+db.applicationAuthorization.drop()
+db.assessment.drop()
+db.attendance.drop()
+db.cohort.drop()
+db.course.drop()
+db.custom_entities.drop()
+db.disciplineAction.drop()
+db.disciplineIncident.drop()
+db.educationOrganization.drop()
+db.error.drop()
+db.grade.drop()
+db.gradebookEntry.drop()
+db.learningObjective.drop()
+db.learningStandard.drop()
+db.parent.drop()
+db.program.drop()
+db.realm.drop()
+db.roles.drop()
+db.schoolSessionAssociation.drop()
+db.section.drop()
+db.securityEvent.drop()
+db.session.drop()
+db.staff.drop()
+db.staffCohortAssociation.drop()
+db.staffEducationOrganizationAssociation.drop()
+db.staffProgramAssociation.drop()
+db.student.drop()
+db.studentAcademicRecord.drop()
+db.studentAssessmentAssociation.drop()
+db.studentCohortAssociation.drop()
+db.studentDisciplineIncidentAssociation.drop()
+db.studentParentAssociation.drop()
+db.studentProgramAssociation.drop()
+db.studentSchoolAssociation.drop()
+db.studentSectionAssociation.drop()
+db.studentSectionGradebookEntry.drop()
+db.studentTranscriptAssociation.drop()
+db.teacherSchoolAssociation.drop()
+db.teacherSectionAssociation.drop()
+db.tenant.drop()
+db.userAccount.drop()
+db.userSession.drop()
+db.calendarDate.drop()
+db.gradingPeriod.drop()
+db.reportCard.drop()
+db.studentSectionAssociation.drop()
+db.studentSectionGradebookEntry.drop()
+EOF
+        ]]></programlisting>
+    </section>
+    
+    <section xml:id="doc-1273315c-b74a-4a6b-bc8d-b8484f1c55af">
+        <title>Rebalancing the Sandbox</title>
+        <para>If multiple tenants are onboarding concurrently, then the MongoDB limitation of one
+            simultaneous chunk move may cause a tenant's <code>moveChunk</code> command to fail. The
+            system is fully functional if this happens, but a tenant's data may not be evenly
+            distributed among shards. This could result in decreased stability if the primary shard
+            eventually containing more data than other shards. The MongoDB balancer cannot be used
+            because of issues with inaccurate counts when chunks are being migrated.  To resolve the
+            issue, a maintenance window must be used to disable ingestion and run the
+            balancer.</para>
+        <para>In the MongoDB shell, use the following command to enable the balancer:</para>
+        <programlisting>
+<![CDATA[sh.setBalancerState(true);]]>            
+        </programlisting>
+        <para> The MongoDB logs and the result of the sharding status command below can be used to
+            determine when balancing has completed: </para>
+        <programlisting>
+<![CDATA[db.printShardingStatus();]]>            
+        </programlisting>
+        <para> The balancing time depends on the differences in the data sizes on the shards.
+            Running the following command in the MongoDB shell disables the balancer: </para>
+        <programlisting>
+<![CDATA[sh.setBalancerState(false);]]>            
+        </programlisting>
+        <para>Balancing is an incremental operation. As a result, balancing does not need to fully
+            complete to return correct system functionality.</para>
+        <para><phrase role="1.0.65-info">Added section for rebalancing Sandbox. 
+            <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840/detail/userstory/9511670463">US4889</link>.</phrase></para>
+    </section>
+    <section xml:id="doc-db2c1e9b-bc18-4f1a-974f-de490a9c4179">
+        <title>Sample Application Installation</title>
+        <para>
+            This sample application is a simple hello world-style app designed to demonstrate
+            OAuth authentication and Java client library usage.
+        </para>
+        <para>
+            The source for the sample app can be found in the distribution in the 
+            <filename>sample</filename> directory. The sample app is provided as an Apache 
+            Maven project. To build the file, run <command>mvn clean package</command> from 
+            the root of the distribution. This will build the client-api and sample application.
+        </para>
+        
+        <section xml:id="doc-944b3971-7bb0-408f-9236-16a61eae42b8">
+            <title>Prerequisites</title>
+            <para>
+                Before running the sample application, your application must have access to some data within the system.
+            </para>
+            <note>
+                <title><phrase>Sandbox Tip</phrase></title>
+                <para>
+                    <phrase>Prerequisites for the sample application vary based on whether you're
+                    operating in Production or Sandbox mode. 
+                    Note those differences in the lists that follow.</phrase>
+                    <phrase role="1.3-info">[1.3 revisions shown; see <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/7361608877">US3416</link>]</phrase>
+                </para>
+            </note>
+            <para>
+                <emphasis>Prerequisites in Production mode:</emphasis>
+            </para>
+            <orderedlist>
+                <listitem>
+                    <para>
+                        A request for a new application must be submitted and approved.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        One or more States or Districts must approve your application’s access to their Educational Organizations’ data.
+                    </para>
+                </listitem>
+            </orderedlist>
+            <para>
+                <emphasis>Prerequisites in Sandbox mode:</emphasis>
+            </para>
+            <orderedlist>
+                <listitem>
+                    <para>
+                        A landing zone must be created.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Valid data must be ingested into the landing zone.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        You must submit a request for a new application. The request will be automatically approved.
+                    </para>
+                </listitem>
+            </orderedlist>
+            <para>
+                <phrase role="1.3-changed">Please see the application developer documentation at 
+                <link xlink:show="new" xlink:href="&DEVWEBSITE;">&DEVWEBSITE;</link>
+                    for more information on how to satisfy these prerequisites.</phrase>
+                <phrase role="1.3-info">[1.3 revisions shown; see <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/userstory/7361608877">US3416</link>]</phrase>
+            </para>
+        </section>
+        
+        <section xml:id="doc-d0095d3c-6d45-4e87-94e5-092d21625f6b">
+            <title>Configuration</title>
+            <para>
+                The application requires some configuration before it can run.
+            </para> 
+            <table xml:id="table-e2fb567c-de73-4a3c-90d8-c60b14ac3944">
+                <title>Sample Application Configuration</title>
+                <tgroup cols="2">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <colspec colname="secondCol" colwidth="2*"/>
+                    <thead>
+                        <row>
+                            <entry>Property</entry>
+                            <entry>Details</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.sample.apiUrl
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The URL of the &PRODUCTABBR; REST API. Please ensure the URL matches the desired environment 
+                                    (Developer Sandbox, Production, etc). For example, for the Sandbox: 
+                                    <uri>https://api.sandbox.example.com/</uri>.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.sample.callbackUrl
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The OAuth callback URL for the sample application. The &PRODUCTABBR; system will redirect to this URL after a user authenticates with their Identity Provider. This must match the <property>redirect_url</property> configured when requesting a new application. For example, <uri>https://your.domain/sample/callback</uri>. 
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.sample.clientId
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The unique string that identifies this application. This id is provided after the request for a new &PRODUCTABBR; application is approved.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.sample.clientSecret
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Secret used to authenticate this application. Care should be taken to ensure this value is secure*. This secret is provided after the request for a new &PRODUCTABBR; application is approved.
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+            <para>
+                * Production apps should ensure this value is encrypted or otherwise locked down.
+            </para>
+            <para>
+                The sample application looks for the <filename>sample.properties</filename> file by 
+                looking up the value of a Java System Property called <property>sli.conf</property>.
+            </para>
+        </section>
+        
+        <section xml:id="doc-973e8c87-367b-45ae-8673-f9c03614c7ba">
+            <title>Running using Jetty</title>
+            <para>
+                The sample application can be easily run via Maven and Jetty. The provided <filename>pom.xml</filename> is configured to look for the <filename>sample.properties</filename> file inside the sample directory.
+            </para>
+            <para>
+                To run the sample application using Jetty, ensure the <filename>sample.properties</filename> is properly configured, then run <command>mvn jetty:run</command>. Maven will download Jetty and start the sample app on port 8081.
+            </para>
+        </section>
+        
+        <section xml:id="doc-30ad0c9f-82ca-4696-ace6-b8f2f7447bb9">
+            <title>Running using Tomcat</title>
+            <procedure>
+                <step>
+                    <para>
+                        Ensure the <filename>sample.properties</filename> file is setup and accessible to apps running under Tomcat.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Configure the Java System Property <property>sli.conf</property> to point to the location of the <filename>sample.properties</filename> file. This can be done by editing the <filename>catalina.sh</filename> or <filename>catalina.bat</filename> file so that JAVA_OPTS contains <property>-Dsli.conf=/path/to/sample.properties</property>.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Build the sample project using <command>mvn clean package</command> in the distribution’s sample directory.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Copy the <filename>sample.war</filename> file from the target directory into Tomcat’s webapps directory.
+                    </para>
+                    <note><para>All &PRODUCTABBR; java web applications should be deployed to the context specified by the .war filename. They should not be deployed to the root context in Tomcat.</para></note>
+                    <para><phrase role="1.0.67-info">Added note to add deployment warning.</phrase></para>
+                </step>
+                <step>
+                    <para>
+                        Start Tomcat.
+                    </para>
+                </step>    
+            </procedure>
+        </section>
+        
+        <section xml:id="doc-27702e66-471a-494c-b8b4-3cd33eee6cd8">
+            <title>Using the Sample Application</title>
+            <para>
+                To access the sample application once it is running:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Visit the sample application's URL in your browser at <uri>http://your.domain/sample/students</uri>.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        The sample application will redirect you to the &PRODUCTABBR; system for authentication. Choose the appropriate Realm, and enter your credentials to authenticate with the Identity Provider.
+                    </para>
+                </step>
+                <step>
+                    <para> After authentication, the &PRODUCTABBR; system will redirect you back to
+                        the sample application. </para>
+                </step>
+                <step>
+                    <para>
+                        The sample application will display your name, a list of the roles applied for the currently logged-in user, and any students that the logged-in user can view. If you do not see any students, it could be caused by one of two issues. Either students may not exist within the Educational Organizations for which the application is approved, or the authenticated user may not have the appropriate context to see any students (for example, a teacher may not have any students associated with his or her sections).
+                    </para>
+                </step>
+            </procedure>
+        </section>
+    </section>
+</section>
+</chapter>

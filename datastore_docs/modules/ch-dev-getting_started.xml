@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-e6a4907e-ba37-4a47-ae37-d74d64aec528"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Sign Up and Log In</title>
+    
+    <para> Before you can develop applications for &PRODUCTABBR;, you need a developer account and
+        the URLs and credentials for accessing your developer resources. The sections that follow
+        step you through signing up for an account and logging in to access those resources. </para>
+    
+    <section xml:id="doc-104ea878-4308-40fc-a47e-c406c882b981">
+        <title>Sign up for a Developer Account</title>
+        <para> In the &COMPANYABBR;-hosted Sandbox development environment, you register for an
+            account from the &COMPANYABBR; <link xlink:href="&DEVWEBSITE;/sandbox"
+                >Sandbox Developer Page</link>. Once you have a Sandbox account, you can also use
+            this account to access the &PRODUCTABBR; Production environment. </para>
+        <para> Use the following steps to sign up for a developer account with an
+            &COMPANYABBR;-hosted Sandbox: </para>
+        <procedure>
+            <step>
+                <para>
+                    Open a web browser, go to the
+                    <link xlink:href="&DEVWEBSITE;/sandbox">Sandbox Developer Page</link>,
+                    and click <guibutton>Sandbox Registration</guibutton> 
+                    from the menu at the left.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Complete and submit the registration form.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Read and accept the terms of use and privacy policy.
+                </para>
+            </step>
+            <step>
+                <para> After you receive a verification email from &COMPANYABBR;, click the link in
+                    that email to activate your account. </para>
+                <para>
+                    Once you confirm your email address, you will receive a 
+                    second email with important information about your account,
+                    including the Web address to use when logging in to your 
+                    Sandbox.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-165bcc80-298e-497e-9767-97f027cedd32">
+        <title>Log In to the Sandbox</title>
+        <para> During your developer registration, you should receive an email with the URL to use
+            to log in and get started with your Sandbox. This includes the address to your Sandbox.
+            If you're using the &COMPANYABBR; hosted Sandbox, this is
+                <citetitle>https://portal.&HOSTEDSANDBOX;</citetitle>. </para>
+        <para>Only authenticated users with appropriate rights are allowed to view or modify data.
+            All SLI resources in the  &COMPANYABBR; system are secured using LDAP authentication,
+            role-based security rights, and context-specific access controls. Because of this
+            security, you must start each Sandbox session by signing in appropriately. </para>
+        <para>For more information about how to sign in to the Sandbox to test applications, see
+                <xref linkend="doc-1183979d-7e63-4991-a2d4-42b3274a5def"/>.</para>
+        <para> To log in and complete the setup of your Sandbox, use the following steps: </para>
+        <procedure>
+            <step><para>Using your preferred Web browser, navigate to the Sandbox URL. </para></step>
+            <step>
+                <para> Enter your developer account credentials and click
+                        <guibutton>Login</guibutton>. </para>
+            </step>
+            <step>
+                <para>Click <guibutton>Administer my Sandbox</guibutton>.</para>
+                <para> If this is your first access to the Sandbox, or if you are accessing it after
+                    a recent upgrade to the software license, click <guibutton>Agree</guibutton> to
+                    accept the <guilabel>License Agreement</guilabel>. </para>
+            </step>
+            <step>
+                <para> Click <guibutton>Admin</guibutton> to access links to the system tools you
+                    need for performing administrative tasks, including additional setup steps. </para>
+                <para>
+                    To complete your Sandbox setup, do both of the following.
+                    Each task is covered in its own chapter to follow:
+                </para>
+                <orderedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Add sample data to the Secure Data
+                                Service</emphasis> - The &RESTAPI; cannot return data if you do not
+                            have any to return. To upload sample data to your Sandbox, such as one
+                            of the free sample data sets from &COMPANYABBR;, follow the procedures
+                            in <xref linkend="doc-f6fa6643-0616-4a70-8172-86a000fc4da3"/>. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Register your application in the Sandbox</emphasis> - 
+                            To perform secure transactions with the
+                            &RESTAPI;, your application will need client
+                            ID and shared secret values to authenticate with
+                            &PRODUCTABBR;. These values are set up when you
+                            register the application in the &PRODUCTABBR;. 
+                            You don't have to have the application running yet
+                            in order to do this, and you can update this
+                            registration with new information when you do. To
+                            register an application in your Sandbox environment,
+                            follow the procedures in
+                            <xref linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"/>.
+                        </para>
+                    </listitem>
+                </orderedlist>
+            </step>
+        </procedure>
+    </section>
+    <section xml:id="doc-e3823e13-3282-4951-9100-27ad80f65b9f">
+        <title>Log In to Production</title>
+        <para>You can use the account you created in the Sandbox to log in to the &PRODUCTABBR;
+            Production environment, where you can register your application for use.</para>
+    <procedure>
+        <step><para>Using your preferred Web browser, navigate to the &COMPANYABBR; Production URL. </para></step>
+        <step><para>Select the &COMPANYABBR; App Developers realm. </para></step>
+        <step><para>Sign in using the credentials for your Sandbox application developer account. </para>
+        <para>Once you log in to Production, you can register you application for use. For more
+            information about registering your application in Production, see <xref
+                linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/>.</para>
+        </step>
+    </procedure>
+    </section>
+    
+    <!-- <section xml:id="doc-5d399552-8517-41dd-9235-1a9d0f95b002">
+        <title>Recover or Update Your Password</title>
+        <para>
+            The login screens for the &PRODUCTABBR; Portal include a
+            <guilabel>Forget your password?</guilabel> link. Click this link
+            and follow the instructions to recover your password. You must
+            enter the email address associated with your account and the text
+            you see in the CAPTCHA window.
+        </para>
+    </section> -->
+
+</chapter>

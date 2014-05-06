@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-saml-metadata" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>saml/metadata</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/saml/metadata</filename>
+    </para>
+    <para>
+        Access the service provider metadata for the API.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-saml-metadata-get_example">
+        <title>Example GET Response: saml/metadata</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://local.example.com:8080">
+   <SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://local.example.com:8080/api/rest/saml/slo/redirect"
+         ResponseLocation="http://local.example.com:8080/api/rest/saml/slo/redirect" />
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://local.example.com:8080/api/rest/saml/slo/post"
+         ResponseLocation="http://local.example.com:8080/api/rest/saml/slo/post" />
+      <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://local.example.com:8080/api/rest/saml/slo/soap" />
+      <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="http://local.example.com:8080/api/rest/saml/SPMniRedirect/metaAlias/sp"
+         ResponseLocation="http://local.example.com:8080/api/rest/saml/SPMniRedirect/metaAlias/sp" />
+      <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://local.example.com:8080/api/rest/saml/SPMniPOST/metaAlias/sp"
+         ResponseLocation="http://local.example.com:8080/api/rest/saml/SPMniPOST/metaAlias/sp" />
+      <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="http://local.example.com:8080/api/rest/saml/SPMniSoap/metaAlias/sp"
+         ResponseLocation="http://local.example.com:8080/api/rest/saml/SPMniSoap/metaAlias/sp" />
+      <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+      <NameIDFormat> urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+      <NameIDFormat> urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+      <NameIDFormat> urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</NameIDFormat>
+      <NameIDFormat> urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName</NameIDFormat>
+      <NameIDFormat> urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos</NameIDFormat>
+      <NameIDFormat> urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName</NameIDFormat>
+      <AssertionConsumerService index="0" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="http://local.example.com:8080/api/rest/saml/sso/artifact" />
+      <AssertionConsumerService isDefault="true" index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://local.example.com:8080/api/rest/saml/sso/post" />
+      <AssertionConsumerService index="2" Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="http://local.example.com:8080/api/rest/saml/sso/paos" />
+   </SPSSODescriptor>
+</EntityDescriptor>]]></programlisting>
+    </section>
+    
+</section>

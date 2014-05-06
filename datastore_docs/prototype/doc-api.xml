@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<book xml:id="doc-api"
+      xmlns="http://docbook.org/ns/docbook" 
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>API</title>
+    </info>
+    
+    <xi:include href="doc-api-overview.xml"/>
+    <xi:include href="doc-api-getting_started.xml"/>
+    <xi:include href="doc-api-parameters_and_patterns.xml"/>
+    <xi:include href="doc-api-resources.xml"/>
+    <xi:include href="doc-api-resources-sample.xml"/>
+    <xi:include href="doc-api-live_query_form.xml"/>
+    
+</book>

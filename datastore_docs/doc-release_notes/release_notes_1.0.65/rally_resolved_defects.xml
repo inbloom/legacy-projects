@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_issues">
+  <title>Resolved Issues</title>
+  <para>
+                The following is a list of previously reported issues which 
+                have been resolved in the Alpha.1 release. Click defect title to see additional description:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="DE1759">DE1759: Open Source Dashboard fails on Tomcat</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE215">DE215: Sorting in App Registration Tool</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1679">DE1679: SEA/LEA Federated End User Can Have Only One Role</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1825">DE1825: POSTing to a studentSectionAssociation without a beginDate causes a 500 error</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1606">DE1606: Admin application returns generic errors when realm is not created.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1571">DE1571: Sandbox: can't disable application's data access to edorgs</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1920">DE1920: Editing of schools not limited by context</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1284">DE1284: Data Browser should deny use to users who don't have admin right</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1550">DE1550: Ed org stamper not properly stamping cohorts</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1688">DE1688: Using a negative limit causes a 500 error in API</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE910">DE910: Application registration edorg display needs to handle more than 50 edorgs (5 points)</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1932">DE1932: Negative offset on paging does nothing</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1948">DE1948: Can't walk down the edorg hierarchy through hateos links</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2047">DE2047: Stale databrowser cookie causes failure of databrowser</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2055">DE2055: Long-Lived session token generator not updated to work with db-per-tenant</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2114">DE2114: Linda kim can not access staffEducationOrgAssignmentAssociations</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2088">DE2088: Learning Objectives resource broken</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1906">DE1906: Limit behavior changed for some entities between 4.7 and 6.1</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2035">DE2035: Sandbox impersonation login is forced every time</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1970">DE1970: 500 errors after creating and reading cohorts for teacher</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2090">DE2090: Assessments resource broken</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2091">DE2091: CompetencyLevelDescriptor &amp; CompetencyLevelDescriptorTypes resource broken</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2066">DE2066: Adding excludeFields results in 500</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1757">DE1757: Using includeFields query parameter on PII fields results in response not being unencrypted</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1911">DE1911: /courseTranscripts API endpoint returns records of type studentTranscriptAssociations</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2030">DE2030: First time using portal SEA/LEA admins have no admin apps</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1764">DE1764: Implement missing teacher context resolver for studentCompetencyObjectives</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1969">DE1969: Custom Roles can't identify Realm correctly and fails</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1910">DE1910: Paging through some entities results in duplicate records</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1873">DE1873: Paging through students results in spurious 403 and 500 errors and incomplete results</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="DE1759">
+    <title>DE1759: Open Source Dashboard fails on Tomcat</title>
+    <para>The open source dashboard currently does not work when run on Tomcat, but does work on Jetty. Workaround: Use Jetty to run the open source dashboard.</para>
+  </section>
+  <section xml:id="DE215">
+    <title>DE215: Sorting in App Registration Tool</title>
+    <para>The app developer cannot sort the existing applications in the application registration tool.</para>
+  </section>
+  <section xml:id="DE1679">
+    <title>DE1679: SEA/LEA Federated End User Can Have Only One Role</title>
+    <para>An SEA/LEA end user can havemultiple user roles mapped to multiple SLI roles. Currently the system gives the user permissions that are equal to a union of his/her list of roles. This can potentially provide the user access beyond his/her authorization in a certain context. The system should give permission to the user that are equal to the intersection of the user's list of roles.</para>
+  </section>
+  <section xml:id="DE1825">
+    <title>DE1825: POSTing to a studentSectionAssociation without a beginDate causes a 500 error</title>
+    <para>POSTing to a studentSectionAssociation without a beginDate causes a 500 error.400 validation error would be expected.</para>
+  </section>
+  <section xml:id="DE1606">
+    <title>DE1606: Admin application returns generic errors when realm is not created.</title>
+    <para>While on-boarding in Production, if the tenant have not created yet the realm, but tries to access the admin tool, he/she gets generic errors not indicating/explaining the user that the proper on-boarding sequence must be followed.</para>
+  </section>
+  <section xml:id="DE1571">
+    <title>DE1571: Sandbox: can't disable application's data access to edorgs</title>
+    <para>In Sandbox, if a user enables/authorizes a certain app to for a certain EdOrg, he/she cannot revoke the access through the admin interface in the portal.</para>
+  </section>
+  <section xml:id="DE1920">
+    <title>DE1920: Editing of schools not limited by context</title>
+    <para>Because the EdOrgs are global, everyone with a role that has Write Public right can modify any EdOrg.</para>
+  </section>
+  <section xml:id="DE1284">
+    <title>DE1284: Data Browser should deny use to users who don't have admin right</title>
+    <para>Users that don't have IT Administrator role (both in Sandbox &amp;amp; Production) cannot access the Admin page of the Portal, hence see and access the Data Browser. However, if they know the direct address of the Data Browser, they can bypass the Portal.Note: Starting 6.4, the Data Browser application will allow only users that have the Admin Right (https://rally1.rallydev.com/#/4711755666d/detail/userstory/7673686315)</para>
+  </section>
+  <section xml:id="DE1550">
+    <title>DE1550: Ed org stamper not properly stamping cohorts</title>
+    <para>Teacher/Staff cannot access Program/Cohort that is associated with an EdOrg above them, even though they are directly associated with it.</para>
+  </section>
+  <section xml:id="DE1688">
+    <title>DE1688: Using a negative limit causes a 500 error in API</title>
+    <para>If the limit was set to a negative value on an API call (e.g. ?limi t= -1), a 500 error was returned. Now a 400 error is returned.</para>
+  </section>
+  <section xml:id="DE910">
+    <title>DE910: Application registration edorg display needs to handle more than 50 edorgs (5 points)</title>
+    <para>The list of LEAs in the enablement part of application registration tool (both in Production and Sandbox) does not list more than 50 LEAs.The solution: Now we are able to list more than 50 EdOrgs. What is valuable to be pointed out in user doc as well is that we display flat SEA to LEA hierarchy. What this means is that there can be multiple levels of LEAs and we cannot know who is the 'owner' of the data, because the SEA super admin can choose to create LEA super admin (that will 'own' the data) for whatever LEA (at any level) they want. Hence, instead of showing a LEA hierarchy, we will show a flat list. The application itself of course, will be enabled for the LEA for which a LEA super admin exists. LEAs that are selected and for which there is no LEA super admin will be unused (selected for nothing).</para>
+  </section>
+  <section xml:id="DE1932">
+    <title>DE1932: Negative offset on paging does nothing</title>
+    <para>Negative offsets in relation to paging are now handled properly.</para>
+  </section>
+  <section xml:id="DE1948">
+    <title>DE1948: Can't walk down the edorg hierarchy through hateos links</title>
+    <para>HATEOAS links for child EdOrgs are missing, making the user unable to traverse down the hierarchy (EdOrgs below)</para>
+  </section>
+  <section xml:id="DE2047">
+    <title>DE2047: Stale databrowser cookie causes failure of databrowser</title>
+    <para>In the Sandbox in impersonation mode, if the developer wants to test the Data Browser with 2 different users (switching between them; log out with one and then impersonate with another one), the Data Browser will fail. He/she will have to delete the cookie to be able to do the switch.</para>
+  </section>
+  <section xml:id="DE2055">
+    <title>DE2055: Long-Lived session token generator not updated to work with db-per-tenant</title>
+    <para>The Long-Lived session token generator is not updated to work with db-per-tenant. The script needs to be updated to work with the new data layout.</para>
+  </section>
+  <section xml:id="DE2114">
+    <title>DE2114: Linda kim can not access staffEducationOrgAssignmentAssociations</title>
+    <para>Teacher gets an error to accessstaffEducationOrgAssignmentAssociations.</para>
+  </section>
+  <section xml:id="DE2088">
+    <title>DE2088: Learning Objectives resource broken</title>
+    <para>The/learningObjectivesresource was returning an error. It now responds properly.</para>
+  </section>
+  <section xml:id="DE1906">
+    <title>DE1906: Limit behavior changed for some entities between 4.7 and 6.1</title>
+    <para>For some entities, the number of results returned is not honoring the offset and limit request. This occurred in sandbox and production.</para>
+  </section>
+  <section xml:id="DE2035">
+    <title>DE2035: Sandbox impersonation login is forced every time</title>
+    <para>In Sandbox, logged user is asked to (re)log in every time he/she switches the user that he/she is impersonating with.</para>
+  </section>
+  <section xml:id="DE1970">
+    <title>DE1970: 500 errors after creating and reading cohorts for teacher</title>
+    <para>Unexpected 500 and 403 errors are sometimes returned when a Teacher tries to access cohorts.</para>
+  </section>
+  <section xml:id="DE2090">
+    <title>DE2090: Assessments resource broken</title>
+    <para>The /assessments resource was returning an error. It now responds properly.</para>
+  </section>
+  <section xml:id="DE2091">
+    <title>DE2091: CompetencyLevelDescriptor &amp; CompetencyLevelDescriptorTypes resource broken</title>
+    <para>[[ IMPORTANT NOTE TO DAN: This needs to be checked off against API reference because it looks like we're removing endpoints here. Check with Ryan and Bushra about how this should be handled. SInce the URLs have never worked, no one could ever have written code against them. So removing them may not be a big deal. ]]_______________________________________/competencyLevelDescriptorTypes endpoint has been removed. This applies to the following urls:https://example.com/api/rest/v1/competencyLevelDescriptorTypes https://example.com/api/rest/v1/competencyLevelDescriptorTypes/{id} https://example.com/api/rest/v1/competencyLevelDescriptorTypes/{id}/calculatedValues https://example.com/api/rest/v1/competencyLevelDescriptorTypes/{id}/customThere is nocompetencyLevelDescriptorTypes collection. Therefore, there is no data to return. There are competencyLevelDescriptorTypes which are embedded in other objects, but theses descriptor types are not identified by id's.These endpoints have been previously returning errors, so there is no replacement endpoint to use. They were never functional. These endpoints have simply been removed.</para>
+  </section>
+  <section xml:id="DE2066">
+    <title>DE2066: Adding excludeFields results in 500</title>
+    <para>Certain uses of excludeFields were causing errors. These have been resolved. excludeFields can now also be used with includeFields. In this case, excludeFields takes precedence.</para>
+  </section>
+  <section xml:id="DE1757">
+    <title>DE1757: Using includeFields query parameter on PII fields results in response not being unencrypted</title>
+    <para>When a user passed in an includeFields query parameter on a PII field, the results returned were still encrypted.Now, whenever includeFields is used, the type and metadata are also included.</para>
+  </section>
+  <section xml:id="DE1911">
+    <title>DE1911: /courseTranscripts API endpoint returns records of type studentTranscriptAssociations</title>
+    <para>A naming convention mismatch relating to the /courseTranscripts API endpoint was returning records of type studentTranscriptAssociations. It now returns courseTranscripts with type courseTranscript.</para>
+  </section>
+  <section xml:id="DE2030">
+    <title>DE2030: First time using portal SEA/LEA admins have no admin apps</title>
+    <para>In production mode SEA admin users did not see any administrative applications in the portal in the onboarding process until they had provisioned a landing zone.</para>
+  </section>
+  <section xml:id="DE1764">
+    <title>DE1764: Implement missing teacher context resolver for studentCompetencyObjectives</title>
+    <para>A security context resolver for Teacher (user) andstudentCompetencyObjective (entity) was added to assure correct enforcement of security model business rules.</para>
+  </section>
+  <section xml:id="DE1969">
+    <title>DE1969: Custom Roles can't identify Realm correctly and fails</title>
+    <para>Existenceof multiple realms for a single EdOrg are showing unauthorized data, realms from other tenants and are not permitting creation of custom roles.</para>
+  </section>
+  <section xml:id="DE1910">
+    <title>DE1910: Paging through some entities results in duplicate records</title>
+    <para>The API often returns duplicate records when using the paging functionality to page through a large result set. This occurs in both sandbox and production.</para>
+  </section>
+  <section xml:id="DE1873">
+    <title>DE1873: Paging through students results in spurious 403 and 500 errors and incomplete results</title>
+    <para>The API often returns 403 or 500 HTTP error codes or incomplete results when using the paging functionality to page through a large result set. This occurs in both sandbox and production.</para>
+  </section>
+</section>

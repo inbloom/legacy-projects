@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-dashboard-customization-tutorial-types_of_pages"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Types of Pages in the Dashboard</title>
+    
+    <para>
+        The &PRODUCTABBR; Dashboard supports two different 
+        types of pages:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                List pages display a summary of data for members of a group.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Profile pages display the details for each member of that group.
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</section>

@@ -1,0 +1,421 @@
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; characterset=ISO-8859-1"/>
+    <title>inBloom technology 1.10.85 Release Notes</title>
+</head>
+    
+<body>
+    
+    <div class="article">
+        
+        <h1 class="title">inBloom technology 1.10.85 Release Notes</h1>
+        
+        <p>
+            <a href="#whatsNew">What's New</a><br />
+            <a href="#dataModelUpdates">Data Model Updates</a><br />
+            <a href="#ingestionSchemaUpdates">Ingestion Schema Updates</a><br />
+            <a href="#apiUpdates">API Updates</a><br />
+            <a href="#actionsRequiredOnUpdate">Actions Required on Update</a><br />
+            <a href="#resolvedIssues">Resolved Issues</a><br />
+            <a href="#knownIssues">Known Issues</a><br />
+            <a href="#webBrowserCompatibility">Web Browser Compatibility</a><br />
+            <a href="#limitations">Known Limitations</a>
+        </p>
+        
+        <h3>Caution</h3>
+        <p>
+            The inBloom sandbox environment MUST NOT contain real data,
+            including educational records or personally identifiable 
+            information (PII) for students or educators. Make sure to 
+            use only artificial or fabricated data. inBloom provides 
+            fabricated sample data sets, available for download or
+            as a selection when setting up your sandbox online.
+        </p>
+        
+        <hr />
+        
+        <h2 id="whatsNew">What's New?</h2>
+        
+        <h3>Consolidated and more flexible modeling of Education Organizations</h3>
+        <p>
+            Previously, there were three entities that could be used for ingesting Education Organizations (State Education Agency, Local Education Agency and School).     The current release contains the following changes:
+        </p>
+        <p>
+           <ul>
+              <li>
+                  <p>The data model now contains one entity type for ingesting Education Organizations: EducationOrganization which can be used to model any educational organization.  State EducationAgency, LocalEducationAgency and School have been removed from the ingestion schema.
+                  </p>
+              </li>
+              <li>
+                  <p>An EducationOrganization can be categorized in one or more ways.  The category can be an SEA, LEA, School or other user-supplied values through ingestion.
+                  </p>
+              </li>
+              <li>
+                  <p>References to other Education Organizations from an EducationOrganization will require a ParentEducationOrganizationReference instead of the type specific references that have been required to date.  
+                  </p>
+              </li>
+              <li>
+                  <p>An EducationOrganization may have multiple parents to accomodate real-world cases like Local Education Agencies parenting to multiple Education Service Centers.
+                  </p>
+              </li>
+              <li>
+                  <p>Any EducationOrganization may parent to any other EducationOrganization (differs from parent type constraints of the former State Education Agency and Local Education Agency types). 
+                  </p>
+              </li>
+              <li>
+                  <p>Other entity types that have associations to an EducationOrganization will continue to use the same association types as usual, depending upon the educationOrganizationCategoryType value(s).
+                  </p>
+              </li>
+              <li>
+                  <p>See <a href="#dataModelUpdates">Data Model Updates</a> for more detail
+                  </p>
+              </li>
+
+           </ul>
+        
+        
+        
+        <h2 id="ingestionSchemaUpdates">Ingestion Schema Updates</h2>
+        	<h3>Generic Education Organization and Multiple Parent Support:</h3>
+	           <p>
+                        In order to support generic education organizations and multiple parents, the following changes have been made to the ingestion schema:
+                  </p>
+                  <p>
+                     <ul>
+			   <li>
+                               <p>SLC-LocalEducationAgency, SLC-School and SLC-StateEducationAgency types have been removed.  All education organizations will be supported in ingestion via the generic EducationOrganization type.
+                               </p>
+                           </li>
+                           <li>
+                               <p>Local Education Agency and School specific attributes have been moved to the generic SLC-EducationOrganization type including:
+                               </p>
+			       <p>
+                                   <ul>
+                                      <li><p>LEACategory (from SLC-LocalEducationAgency)</p></li>
+				      <li><p>GradesOffered (from SLC-School)</p></li>
+				      <li><p>SchoolCategories (from SLC-School)</p></li>
+				      <li><p>SchoolType (from SLC-School)</p></li>
+                                      <li><p>CharterStatus (from SLC-LocalEducationAgency/SLC-School) </p></li>
+                                      <li><p>TitleIPartASchoolDesignation (from SLC-School)</p></li>
+				      <li><p>MagnetSpecialProgramEmphasisSchool (from SLC-School)</p></li>
+	 	                      <li><p>AdministrativeFundingControl (from SLC-School)</p></li>
+				   </ul>
+                                </p>
+                           </li>
+                           <li>
+                               <p>In the SLC-EducationOrganization type, the element OtherOrganizationCategories has been added within a choice structure that includes OrganizationCategories.  OtherOrganizationCategories is of type SLC-OtherEducationOrganizationCategoriesType which is defined as a string up to 75 characters in length.  During ingestion, values in OrganizationCategories and OtherOrganizationCategories are consolidated into one list and stored in the organizationCategories field of the educationOrganization collection in the data store.
+                               </p>
+                           </li>
+		           <li>
+                               <p>In the educationOrganization type, the maximum occurrences for parentEducationAgencyReference has been changed to unbounded (maxOccurs='unbounded') in order to support multiple parents.
+                               </p>
+                           </li>
+                        </ul>
+        
+        <h2 id="dataModelUpdates">Data Model Updates</h2>
+        
+	     <h3>Generic Education Organization and Multiple Parent Support:</h3>
+		<p>
+                   <ul>
+                      <li> <p>localEducationAgency and stateEducationAgency types have been removed.  These education organizations will be supported via the generic educationOrganization type. </p> </li>
+                      <li> <p>Local Education Agency and School specific attributes have been moved to the generic educationOrganization type including:</p>
+			   <p>
+                              <ul>
+                                  <li><p>gradesOffered (from school)</p></li>
+                                  <li><p>schoolCategories (from school)</p></li>
+				  <li><p>schoolType (from school)</p></li>
+			          <li><p>charterStatus (from localEducationAgency/school)</p></li>
+			          <li><p>titleIPartASchoolDesignation (from school)</p></li>
+			          <li><p>magnetSpecialProgramEmphasisSchool (from school)</p></li>
+			          <li><p>administrativeFundingControl (from school)</p></li>
+			          <li><p>LEACategory (from localEducationAgency)</p></li>
+			      </ul>
+                           </p>
+                      </li>
+                      <li> <p>In the educationOrganization type, the educationOrganizationCategoryType has been changed from an enumeration to a string with a maximum length of 75 characters in order to support any type of education organization. </p> </li>
+                      <li> <p>In the educationOrganization type, the maximum occurrences for parentEducationAgencyReference has been changed to unbounded (maxOccurs='unbounded') in order to support multiple parents.</p> </li>
+                   </ul>
+                </p>
+         <h3>DE2947 - Adding gradeLevel in Student works in API but not through bulk ingestion</h3>
+         <p>In the student entity, gradeLevel and schoolId attributes - intended to store a student's current grade level and school - have been removed to avoid confusion and potentially inconsistent data.</p>
+        <p>Rules for determining a student's current grade level and school id in the inBloom Dashboard and which could be used in external ETL processes are as follows:</p>
+        <p>  
+            <ul>
+               <li> <p>studentSchoolAssociation records are queried and current gradeLevel and schoolId are retrieved from the record that has the latest EntryDate where the exitWithdrawalDate is either null or greater than the current date.</p>
+               </li>
+            </ul>
+         <p>
+             
+        
+        <h2 id="apiUpdates">API Updates</h2>
+        <p>
+            This release includes the following changes to the API:
+        </p>
+        
+        
+        <h3>Added</h3>
+        <p>
+            No resources were added in this release.
+        </p>
+        
+        <h3>Deprecated</h3>
+        <p>
+            No resources were deprecated in this release.
+        </p>
+        
+        <h3>New and Updated Fields</h3>
+        <p>
+            gradeLevel and schoolId have been removed from the student endpoint.
+        </p>
+        
+        <h2 id="actionsRequiredOnUpdate">Actions Required on Update</h2>
+        <p>
+            No action is required by users on update.
+        </p>
+        
+        <h2 id="resolvedIssues">Resolved Issues</h2>
+        
+        <p>
+            The following is a list of previously reported issues which have
+            been resolved this release.
+        </p>
+        
+        <h3>DE2947: Adding gradeLevel in Student works in API but not through bulk ingestion</h3>
+        <p>
+            As described in the What's New - Data Model Updates section above, gradeLevel and schoolId have been removed from the student endpoint.
+        </p>
+        
+        
+        
+        <h2 id="knownIssues">Known Issues</h2>
+        <p>
+            The following are the open defects currently used to track known 
+            issues in this release.
+        </p>
+        <h3>DE2950: Cyclic ParentEducationOrganizationReferences within tenant data may render tenant inaccessible.</h3>
+        <p>Data must be evaluated prior to ingestion or updates through the API to ensure that it does not contain or would not introduce ParentEducationOrganizationReference cycles.
+        </p>
+
+        <h3>DE198: EducationOrganization references to Program are not properly ingested.</h3>
+        <p>
+            The programReference is not yet implemented for 
+            educationOrganization entities. As a result, the API does not 
+            provide a link between educationOrganization and program entities.
+        </p>
+        <h3>DE273: A DisciplineDescriptor is not currently supported in Interchange-StudentDiscipline.</h3>
+        <p>
+            This descriptor is not currently supported. However, a 
+            reference to this descriptor is required for the DisciplineAction
+            entity.
+        </p>
+        <h3>DE325: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs.</h3>
+        <p>
+            The ingestion process assumes that the Program ID is unique 
+            within a tenant, but this should be unique within the specified 
+            EdOrg instead. As a result, the reference could resolve incorrectly.
+        </p>
+        <h3>DE408: Aggregate Viewers cannot see themselves.</h3>
+        <p>
+            Users with the Aggregate Viewer role cannot see their own 
+            Teacher or Staff entity.
+        </p>
+        <h3>DE710: Section, school and session references in AttendanceEvent are ignored.</h3>
+        <p>
+            The way AttendanceEvent entities are handled ignores explicit 
+            characterization of the attendance event - by school, section, 
+            session. As a result, AttendanceEvents for students attending 
+            multiple schools do not properly persist.
+        </p>
+        <h3>DE1434: Internet Explorer 8 users may experience issues when using the dashboard builder.</h3>
+        <p>
+            If you are using Internet Explorer 8 and the dashboard builder, 
+            then intermittently the release after a drag and drop does not 
+            return the page to the correct state.
+        </p>
+        <h3>DE1457: Making a teacher call for a section with two "teachers of record" returns a 403 error.</h3>
+        <p>
+            Making a teacher call for a section with two "teachers of record" 
+            returns a 403 error. This error can cause the sectionInfo panel 
+            to not display.
+        </p>
+        <h3>DE1458: The ingestion service is able to handle more than one teacher of record.</h3>
+        <p>
+            The ingestion service can accept more than one teacher for 
+            a single section. The dashboard does not currently support 
+            this behavior.
+        </p>
+        <h3>DE1573: Attendance Rate should be removed.</h3>
+        <p>
+            The current attendance record includes an attendance rate 
+            column that may not be accurate for some use cases. The 
+            column could be removed by default in a future release.
+        </p>
+        <h3>DE1647: Dashboard may not display all data.</h3>
+        <p>
+            When a large dataset is available, the initial dashboard view 
+            may only display a subset of the data. The dashboard currently 
+            does not display a message explaining this scenario.
+        </p>
+        <h3>DE1728: An error occurs if an OAuth Callback URL does not begin with "HTTPS".</h3>
+        <p>
+            If an application includes a callback URL that does not begin 
+            with "https://", then an error message is returned.
+        </p>
+        <h3>DE2079: HATEOS links don't always work as expected.</h3>
+        <p>
+            The HATEOS links that the API returns may not work as expected 
+            in all cases. The contextual URI rewrites convert some API 
+            requests. Some of these converted requests may not return 
+            what is expected.
+        </p>
+        <h3>DE2160: Selecting a filter after listing a section removes all student data.</h3>
+        <p>
+            When viewing a list of students using the inBloom Dashboard, 
+            choosing a filter related to that student's "special needs" 
+            status results in a "no students found" error.
+        </p>
+        <h3>DE2300: There is a 250 result limit on global entities contained in elasticsearch.</h3>
+        <p>
+            When querying the following entities, results are limited to a 
+            maximum of 250 returns:
+        </p>
+        <ul>
+            <li><p>/assessments</p></li>
+            <li><p>/competencyLevelDescriptor</p></li>
+            <li><p>/learningObjectives</p></li>
+            <li><p>/learningStandards</p></li>
+            <li><p>/studentCompetencyObjectives</p></li>
+        </ul>
+        
+        <h3>DE2833: Deletes from Interchanges aside from InterchangeAssessmentMetadata does not work for ObjectiveAssessement and possibly others.</h3>
+        <p>
+            The Action Entity type can be present in any interchange 
+            and should support deletion of any entity type. Currently, 
+            the Action Entity with the type attribute set to DELETE will 
+            only support deletion of entities within the interchange in 
+            which the Action Entity is present. 
+        </p>
+        <h3>DE2851: Newly created student entity is unsearchable.</h3>
+        <p>
+            After creating a student entity, it cannot be retrieved from the 
+            API endpoint.
+        </p>
+        <h3>DE2852: Updating a learningObjective entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2853: Updating a learningStandard entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2857: Updating a courseOffering entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2914: Delta bulk extract behavior is incorrect for force delete of Assessment followed by an ObjectiveAssessment update in the same delta interval.</h3>
+        <p>
+            There is a condition where "AssessmentItem", "ObjectiveAssessment", 
+            "StudentAssessmentItem", or "StudentObjectiveAssessment" instances 
+            refer to a parent entity instance that does not exist in the data 
+            store (because of forced deletion of that entity or out of order 
+            ingestion). If these dependent entities are updated, then a 
+            "hollow" parent entity which includes the dependent entity instance 
+            data is included in the bulk extract. The correct behavior is 
+            that there is no entry in the bulk extract when the referred to 
+            entity instance does not exist.
+        </p>
+        <h3>DE2930: Total count being returned in API header is incorrect.</h3>
+        <p>
+            This case surfaces entities that have been enabled for contextual
+            roles and the user has different roles in different edorgs.
+        </p>
+        
+        <h2 id="webBrowserCompatibility">Web Browser Compatibility</h2>
+        <p>
+            inBloom technology Dashboard is best viewed in 
+            Internet Explorer 8+, Firefox 6+, Safari 4+ 
+            with 1024x768 as the minimum recommended screen 
+            resolution.
+        </p>
+        
+        <h2 id="limitations">Known Limitations</h2>
+        <p> 
+            Known limitations in this release are summarized as follows:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    <strong>Landing Zone File Size Limit</strong> - 
+                    Currently the Sandbox landing zones enforce a size 
+                    limit of 5 MB for ingestion archive files, 
+                    corresponding to approximately 150-25MB of 
+                    uncompressed XML data, or about 150,000-250,000 
+                    records. In this release, ingesting a data set of 
+                    this size should take less than 5 minutes.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Unsupported Ed-Fi Entities</strong> - 
+                    Some Ed-Fi entities are not yet supported and, thus, 
+                    not consumable through data ingestion. For additional 
+                    information, see the 
+                    <a href="https://inbloom.org/library">inBloom Ingestion Guide</a>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Educator Dashboard</strong> - 
+                    Not all ingestible data is displayed in inBloom 
+                    educator dashboards, including discipline incidents, 
+                    cohorts or student competencies.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Aggregate Viewer Roles</strong> - 
+                    Aggregate Viewer roles do not yet provide aggregate 
+                    view of data.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>API Custom Data Size Limit</strong> - 
+                    Maximum currently enforced size of a custom data 
+                    resource in API is 128KB. The theoretical maximum 
+                    object size supported by the software platform is 
+                    16MB, but a more practical restriction of 128KB has 
+                    been placed on it in order to encourage efficient 
+                    data management practices and application responsiveness. 
+                    Custom data fields are not intended to be used to 
+                    store multimedia content or other types of 
+                    human-readable documents, for example. Such resources 
+                    are better served through existing web-based 
+                    infrastructure.
+                </p>
+            </li>
+        </ul>
+        
+        <div class="footer">
+            <p>
+                Copyright © 2013 inBloom, Inc. and its affiliates.
+            </p>
+            <p>
+                This document and the information contained herein is provided 
+                on an "AS IS" basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, 
+                EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY 
+                THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY 
+                RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS 
+                FOR A PARTICULAR PURPOSE.
+            </p>
+        </div>
+        
+    </div> <!-- END of div class "article" -->
+
+</body>
+
+</html>

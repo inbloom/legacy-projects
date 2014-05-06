@@ -1,0 +1,230 @@
+<html><head><cmeta http-equiv="Content-Type" content="text/html; characterset=ISO-8859-1"><title>inBloom technology 1.2.74 Release Notes</title><link rel="stylesheet" type="text/css" href="css/slc-techpubs.css"><meta name="generator" content="DocBook XSL Stylesheets V1.77.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="header"><a href="http://www.inbloom.org/for-developers" target="_blank"><img src="images/slcheader_960.png"></a></div><div class="article"><div class="titlepage"><div><div><h1 class="title"><a name="release_notes"></a>inBloom technology 1.2.74 Release Notes</h1></div></div><hr></div>
+  <div class="toc"><p><b>Table of Contents</b></p><dl>
+  <dt><span class="section"><a href="#sect-ingestion_changes">Updates to the Ingestion Schema</a></span></dt>
+  <dt><span class="section"><a href="#sec-api_changes">Update to the API Schema</a></span></dt>
+  <dt><span class="section"><a href="#sect-release_notes-resolved_issues">Resolved Issues</a></span></dt>
+  <dt><span class="section"><a href="#sect-release_notes-known_issues">Known Issues</a></span></dt>
+  <dt><span class="section"><a href="#sect-release_notes-web_browser_compatibility">Web Browser Compatibility</a></span></dt></dl></div>  
+  
+  <!-- ***********************************************************What's New************************************************************************************* -->  
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sect-release_notes-whats_new"></a>What's New?</h2> 
+  <p>The following new features were added between 1.2.69 and 1.2.74:</p> 
+  <ul>
+    <li><strong>Manage multiple realms using a single SEA or LEA</strong> - A realm admin is able to add and manage multiple realms/IDPs using a single user. Additionally, when multiple realms are present, custom roles are updated separately for each realm.  When making changes to custom roles, the realm admin must first choose the realm they are going to be updating.</li>
+    <li><strong>API Version 1.2</strong> - An additional API version is now supported. See <A HREF="http://www.inbloom.org/for-developers" target="_blank">inBloom for Developers</A> for complete information on the multiple versions of the API.</li>
+    <li><p><strong>System-Wide Configurable Association Grace Period</strong> - The API applies a grace period to expired associations of Teacher, Staff and Student, which prevents data from becoming unavailable by extending it's contextual validity range by the number of days specified. 
+      This ensures that fictional test data in the Sandbox remains accessible after the EndDate of EducationOrg-, School-, Section-, Program- and Cohort-related 
+      associations, as well as data that depends on Session EndDate.</p>
+      <p>Assume the date is May 1 2013 and the EndDate of a StudentSectionAssociation for Section 3 Physics is March 1 2013. 
+        If the grace period is configured to 100 days, then the student is considered as enrolled and thus available to that teacher of that section. There is no grace period in the Production environment.</p>
+    </li>
+    <li><strong>Extended list of global entities</strong> - inBloom has extended the list of the global entities that are available to every user in a tenant. The new entities are: 
+      <ul>
+        <li>/course</li>
+        <li>/courseOffering</li>
+        <li>/gradingPeriod</li>
+        <li>/graduationPlan</li>
+        <li>/program</li>
+        <li>/section</li>
+        <li>/session</li>
+        <li>/studentCompetencyObjective</li>
+      </ul></li>
+    <li><strong>Elevated "Self" rights</strong> - Additional rights can be assigned to user roles that elevate the level of access a user has for fields that represent themselves. Example: A teacher can be given access to fields relating to themselves that they would not be able to access for other teachers.</li>
+    <li><strong>Bulk Extract</strong> - The first phase of work has been completed to support large scale export of system data using a new URI, <code>/bulk/extract</code>. The current implementation of this feature returns sample data.</li>
+    <li><strong>Safe Deletion</strong> - The inBloom platform supports "safe" deletion (deletion of individual entities with referential integrity checking) through bulk ingestion for a limited set of entities.  If an entity that is safe deleted has any entities that refer to it, then an attempt to safe delete that entity will not succeed and raise an error. 
+      Forced deletion and cascading deletion are currently not supported. The entities that can be safe deleted are:
+      <ul>
+        <li>Assessment</li>
+        <li>AssessmentFamily</li>
+        <li>CalendarDate</li>
+        <li>Cohort</li>
+        <li>Course</li>
+        <li>CourseOffering</li>
+        <li>GradingPeriod</li>
+        <li>Parent</li>
+        <li>School</li>
+        <li>Section</li>
+        <li>Session</li>
+        <li>*StaffEducationOrgAssignmentAssociation</li>
+        <li>Student</li>
+        <li>StudentAssessment</li>
+        <li>*StudentCohortAssociation</li>
+        <li>*StudentParentAssociation</li>
+        <li>*StudentSchoolAssociation</li>
+        <li>Teacher</li>
+        <li>*TeacherSchoolAssociation</li>
+        <li>*TeacherSectionAssociation</li>
+      </ul>
+      <p>For entities listed with an asterisk, the whole entity with all the required fields must be presented in the Action Wrapper. 
+        All other entities may be deleted by the reference type or the whole entity.</p>
+    </li>
+  </ul>
+
+<!-- ***********************************************************Ingestion Schema Issues*********************************************************************** -->
+</div></div></div><p></p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sect-ingestion_changes"></a>Updates to the Ingestion Schema</h2></div></div></div>
+  <p>We have modified the ingestion schema, in many cases using extensions and restrictions. The following section describes those changes.</p>
+  <!--<p>Of note:</p> 
+  <ul> 
+    <li>If there is an extension, use that extension in place of the original Ed-Fi entity.</li>
+    <li>If there is a restriction, use the restriction in place of the original Ed-Fi Entity.</li>
+    <li>Several entities have been marked <strong>Temporary</strong>. This indicates that the entity will have future additions and is not currently in its SLC-Entity form.</li>
+  </ul>-->
+ <!-- <h2>Domain Entities</h2> -->
+  <ul style="line-height: 1.5em;">
+    <li><strong>SLC-AttendanceEvent</strong> - The SchoolYear field is now required.</li> 
+    <li><strong>SLC-Grade</strong> - The SchoolYear field is now required.</li>
+    <li><strong>SLC-ReportCard</strong> - The SchoolYear field is now required.</li>
+    <li><strong>SLC-StudentAcademicRecord</strong> - The SchoolYear field is now required.</li>
+    <li><strong>SLC-GradeReference</strong> - Added StudentReference, SchoolReference, GradingPeriod and SchoolYear.</li>
+    <li><strong>SLC-ReportCardReference</strong> - Added SchoolYear.</li>
+    <li><strong>SLC-StudentAcademicRecordReference</strong> - Added SchoolYear.</li>
+    <li><strong>SLC-ObjectiveAssessment</strong> - Added required reference of type SLC-AssessmentReferenceType. Changed AssessmentItemReference to type SLC-AssessmentItemReference.</strong></li>
+    <li><strong>SLC-StudentAssessmentItem</strong> - Changed StudentReference to type SLC-StudentReferenceType.</li>
+    <li><strong>SLC-StudentAssessment</strong> - Changed StudentReference to type SLC-StudentReferenceType.</li>
+    <li><strong>SLC-Assessment</strong> - Changed AssessmentPeriodDescriptorReferenceType to type SLC-AssessmentPeriodDescriptorReferenceType. Changed AssessmentFamilyReference to type SLC-AssessmentFamilyReferenceType. A reference to Section is not supported.</li>
+    <li><strong>SLC-AssessmentFamily</strong> - Added to replace AssessmentFamily. It contains SLC-AssessmentFamilyReferenceType and SLC-AssessmentPeriodDescriptorReferenceType. </li>
+    <li><strong>SLC-ObjectiveAssessment</strong> - Reference to LearningStandard is no longer supported.</li>
+    <li><strong>SLC-StudentAssessmentItem</strong> - Reference to StudentObjectiveAssessment is no longer supported.</li>
+    <li><strong>SLC-AssessmentReferenceType</strong> - Changed AssessmentIdentity from optional to required.  This reference is used by SLC-AssessmentItem, SLC-ObjectiveAssessment, SLC-StudentAssessment. SLC-StudentAssessmentIdentityType - which is used by SLC-StudentAssessmentItem and SLC-StudentObjectiveAssessment, contains SLC-AssessmentReferenceType.</li>
+  </ul>   
+  <para><strong>SLC-ActionType</strong> -  This new SLC type is the verb wrapper that surrounds a sequence of objects to be operated on. This type has the following attributes:
+  <ul>
+    <li>ActionType (Optional): This attribute specifies the HTTP method being performed on the object. Only the DELETE action is currently supported.</li>
+    <li>Cascade (Optional): This boolean attribute specifics whether to cascade update or delete operation. Cascade = True is currently not allowed.</li>
+    <li>MaxObjects(Optional): This integer attribute specifies the maximum number of total objects allowed to be affected by the operation.  If absent, use system default.  If zero, unbounded</li>
+  </ul></para>
+ <!-- 
+  <h2>Associations</h2>
+  <ul style="line-height: 1.5em;">
+  </ul>
+  
+  <h2>Extended Reference Types</h2>
+  <ul style="line-height: 1.5em;">
+    
+ </ul> 
+
+  <h2>Common Types</h2>
+  <ul>
+  </ul> -->
+ 
+  
+  
+  
+  
+  <!-- ***********************************************************API Schema Issues******************************************************************************** -->
+  <p></p></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sec-api_changes"></a>Updates to the API Schema</h2></div></div></div>
+   
+  <p> The following section describes all of the changes to the API for the 1.2.74 release:</p>
+
+ <h2>Added Resources</h2>
+    <p>The following resources have been added to the API:</p>
+    <ul>
+      <li>/bulk/extract</li>
+      <li>/yearlyAttendances</li>
+      <li>/students/{id}/studentAcademicRecords/courseTranscripts</li>
+      <li>/students/{id}/studentAcademicRecords/courseTranscripts/courses</li>
+    </ul>
+    
+ <!--   <h2>Removed Resources</h2>
+    <p>The following resources have been removed from the API and are no longer supported:</p>
+    <ul>
+    </ul> -->
+    
+<h2>Deprecated Resources</h2>
+    <p>Several resources have been deprecated. You can still use these resources, however they will eventually be removed. The deprecated resources are:</p>
+    <ul>
+      <li>/students/{id}/courseTranscripts</li>
+      <li>/students/{id}/courseTranscripts/courses</li>
+    </ul>
+    
+ <!--   <h2>Non-queryable Resources</h2><!-- Change this
+    <p>Some resources previously allowed for arbitrary queries, such as /assessments?assessmentName="SAT" or /assessments?assessmentName=~"^S[\w]+T". This capability has been blocked for the following resources:</p>
+    <ul></ul> -->
+    
+ <!--   <h2>Cardinality Changes</h2>
+    <p>The number of maximum or minimum occurences for several elements have changed. In some cases, this will make a formerly optional element now required. The following elements have changed:</p>
+    <ul></ul> -->
+    
+ <h2>Fields Added</h2>
+   <p>The following fields have been added:</p>
+    <ul>
+      <li>gradebookEntry.learningStandands</li>
+      <li>gradebookEntry.learningObjectives</li>
+      <li>grade.schoolYear</li>
+      <li>reportCard.schoolYear</li>
+      <li>studentAcademicRecord.schoolYear</li>
+    </ul>
+    
+<!--    <h2>Element Name Changes</h2>
+    <p>The following elements have changed their names:</p>
+    <ul></ul> -->
+  </div>
+ </div>
+  
+  
+  
+<!-- ***********************************************************Resolved Issues************************************************************************************* -->
+  <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sect-release_notes-resolved_issues"></a>Resolved Issues</h2></div></div></div><p>
+                The following is a list of previously reported issues which have been resolved in between 1.2.69 and 1.2.74 release. 
+  </p><div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="itemizedlist"></div>
+    
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE162"></a>DE162: Course name is used to uniquely identify and refer to Course entities.</h3></div></div></div><p>UniqueCourseId has been added to Course and is now used as part of the natural key.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE626"></a>DE626: Improved exception handling is needed for ingestion.</h3></div></div></div><p>The new XML parser implementation has addressed the poor exception handling that previously was experienced.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2173"></a>DE2173: The truncation limit for ingestion errors and warnings is configured incorrectly.</h3></div></div></div><p>Each error file is truncated after the maximum number of warnings and the maximum number of errors are reached. The maximum number of errors is 10000 per input file. The maximum number of warnings is 10000 per input file.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2314"></a>DE2314: Admin or API should handle invalid EdOrgs when saving an application in the Sandbox.</h3></div></div></div><p>When an application developer saves an application in the Sandbox and that application has an existing allowed_edorg that no longer exists, then you get a 400 error "edorg is outside your tenant". </p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2333"></a>DE2333: Admin Delegation for Application Approval is not showing all applications.</h3></div></div></div><p>Delegating Application Authorization is not working correctly.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2398"></a>DE2398: Installed Application Authentication Support</h3></div></div></div><p>The workflow and authentication process has been clarified for "installed" applications.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2415"></a>DE2415: The autoload sample data set email instructions are wrong.</h3></div></div></div><p>The email instructions for autoloading sample data set were incorrect. The message text has been updated.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2447"></a>DE2447: A malicious API user with 'WRITE_GENERAL' right can modify global entities such as EdOrg.</h3></div></div></div><p>An end user with WRITE_GENERAL can use this right to incorrectly update data categorized as Public, such as EdOrg, Learning Standard, Learning Objective. This has been addressed.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2466"></a>DE2466: Accessing a student by studentUniquestateIdstudent returns an empty collection using API.	</h3></div></div></div><p>The response is an empty collection when using the API to access a student by using the /students?studentUniqueStateId=800000019 URI.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2486"></a>DE2486: Application EdOrg authorization does not save when using Internet Explorer.</h3></div></div></div><p>Application developers cannot enable their applications for EdOrgs. This is because they cannot save when using the most recent major Internet Explorer versions.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2510"></a>DE2510: LEA application authorization gives a SEA full access to data in the tenant.</h3></div></div></div><p>	If a single LEA authorizes an application where an SEA exists, then the SEA users are able to access the data for all of the LEAs in the tenant and not just for the LEA that have authorized the data.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2522"></a>DE2522: Course transcripts are not available through the API.</h3></div></div></div><p>The URL v1/students/{id}/courseTranscripts returned an empty list even when course transcript information was available. The URL now behaves correctly.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2523"></a>DE2523: Teachers cannot see courses tied to a SEA.</h3></div></div></div><p>When courses are defined at the SEA level, a user that is authenticated in the data store as a Teacher gets a 403 error when trying to access their courses through the LEA.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2603"></a>DE2603: A query with offset parameters always returns an empty list for public entities.</h3></div></div></div><p>Queries with offset parameters made with public entities were returning empty lists. For example, v1/assessment?Offset=10 returned no assessment entities even if data existed. Offsets with queries on public entities now work as expected.</p></div>   
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2629"></a>DE2629: PerformanceBaseType lacks "Pass" and "Fail" as choices (present since Ed-Fi 1.0.03).</h3></div></div></div><p>An enumeration mismatch error related to assessment performance levels was corrected with the addition of "Pass" and "Fail" choices to the PerformanceBaseType.</p></div>
+    <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2663"></a>DE2663: Non-transitive access through LearningObjectives to StudentCompetencies should be disallowed for both staff and teachers.</h3></div></div></div><p>Non-transitive access through LearningObjectives to StudentCompetencies was disallowed for both the Staff and Teacher roles to improve path-based security.</p></div>
+    
+    <!--  <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE"></a>text</h3></div></div></div><p>text</p></div>   TEMPLATE -->
+    
+    
+    
+    
+<!-- ***********************************************************Known Issues************************************************************************************* -->   
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sect-release_notes-known_issues"></a>Known Issues</h2></div></div></div><p>
+ 
+                The following are the open defects currently used to track known issues in the 1.2.74 release.
+    
+    </p><div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="itemizedlist">
+              
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE198"></a>DE198: EducationOrganization references to Program are not properly ingested.</h3></div></div></div><p>This reference is not implemented yet. As a result, the API does not provide a link from the EdOrg to the Program.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE273"></a>DE273: A DisciplineDescriptor is not currently supported in Interchange-StudentDiscipline.</h3></div></div></div><p>This descriptor is not currently supported. However, a reference to this descriptor is required for the DisciplineAction entity.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE325"></a>DE325: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs.</h3></div></div></div><p>The ingestion process assumes that the Program ID is unique within a tenant, but this should be unique within the specified EdOrg instead. As a result, the reference could resolve incorrectly.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE408"></a>DE408: Aggregate Viewers cannot see themselves.</h3></div></div></div><p>Users with the Aggregate Viewer role cannot see their own Teacher or Staff entity.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE710"></a>DE710: Section, school and session references in AttendanceEvent are ignored.</h3></div></div></div><p>The way AttendanceEvent entities are handled ignores explicit characterization of the attendance event - by school, section, session. As a result, AttendanceEvents for students attending multiple schools do not properly persist.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE921"></a>DE921: Duplicates are not reported.</h3></div></div></div><p>Error reports are not always clear regarding the records persisted. When there are duplicates within the XML file, or a record already exists, the ingestion engine still updates the record. However, this record count is not included in the ingested records count. </p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1434"></a>DE1434: Internet Explorer 8 users may experience issues when using the dashboard builder.</h3></div></div></div><p>If you are using Internet Explorer 8 and the dashboard builder, then intermittently the release after a drag and drop does not return the page to the correct state.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1457"></a>DE1457: Making a teacher call for a section with two "teachers of record" returns a 403 error.</h3></div></div></div><p>Making a teacher call for a section with two "teachers of record" returns a 403 error. This error can cause the sectionInfo panel to not display.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1458"></a>DE1458: The ingestion service is able to handle more than one teacher of record.</h3></div></div></div><p>The ingestion service can accept more than one teacher for a single section. The dashboard does not currently support this behavior.</p></div>        
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1573"></a>DE1573: Attendance Rate should be removed.</h3></div></div></div><p>The current attendance record includes an attendance rate column that may not be accurate for some use cases. The column could be removed by default in a future release.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1647"></a>DE1647: Dashboard may not display all data.</h3></div></div></div><p>When a large dataset is available, the initial dashboard view may only display a subset of the data. The dashboard currently does not display a message explaining this scenario.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1728"></a>DE1728: An error occurs if an OAuth Callback URL does not begin with "HTTPS".</h3></div></div></div><p>If an application includes a callback URL that does not begin with "https://", then an error message is returned.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2079"></a>DE2079: HATEOS links don't always work as expected.</h3></div></div></div><p>The HATEOS links that the API returns may not work as expected in all cases. The contextual URI rewrites convert some API requests. Some of these converted requests may not return what is expected.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2160"></a>DE2160: Selecting a filter after listing a section removes all student data.</h3></div></div></div><p>When viewing a list of students using the inBloom Dashboard, choosing a filter related to that student's "special needs" status results in a "no students found" error.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2300"></a>DE2300: There is a 250 result limit on global entities contained in elasticsearch.</h3></div></div></div><p>When querying the following entities, results are limited to a maximum of 250 returns: <ul><li>/assessments</li><li>/competencyLevelDescriptor</li><li>/learningObjectives</li><li>/learningStandards</li><li>/studentCompetencyObjectives</li></ul></p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2725"></a>DE2725: Updating an entity does not correctly update the search index.</h3></div></div></div><p>When an existing entity in the system is updated, that entity is not updated in elasticsearch and becomes unsearchable.</p></div> 
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2765"></a>DE2765: Ruby on Rails version before 3.2.13 have multiple known security vulnerabilities.</h3></div></div></div><p>The Gemfile needs to be updated to Rails 3.2.13.</p></div> 
+      
+      <!--  <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE"></a>text</h3></div></div></div><p>text</p></div>   TEMPLATE -->             
+
+
+ <!-- ***********************************************************Browser Disclaimer******************************************************************************** -->              
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sect-release_notes-web_browser_compatibility"></a>Web Browser Compatibility</h2></div></div></div><p>
+            inBloom technology Dashboard is best viewed in Internet Explorer 8+, 
+            Firefox 6+, Safari 4+ with 1024x768 as the minimum recommended screen 
+            resolution. 
+        </p></div></div><div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="footer"><p>
+          Copyright © 2013 inBloom, Inc. and its affiliates.
+            </p><p>
+              This document and the information contained herein is provided on an "AS IS" basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+            </p></div></body></html>

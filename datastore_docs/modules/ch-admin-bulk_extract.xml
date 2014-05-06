@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter 
+    xml:id="doc-10f4c2b3-14b5-4dce-adae-1a93frrcc51c" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>&PRODUCTABBR; Bulk Data Extraction</title>
+    </info>
+    <para>
+        Bulk Data Extraction is 
+        the process of extracting large amounts of data from the &PRODUCTABBR; Data Store.
+        Bulk Extract creates a file for each
+        <glossterm linkend="def-education_organization">education organization</glossterm>
+        that has an authorized bulk extract application, as well as a public data extract for the tenant, 
+        allowing those applications to use a local copy of certain data from the &PRODUCTABBR; Data Store. 
+    </para>
+    <para>
+        The extract file is available
+        as a full extract (all data) or a delta extract (all data that has changed
+        since the last extract) and contains all data for that education organization and its descendants. 
+        Top level education organization extract is a special case, see <xref linkend="c-bulk_extract-top-edOrg"/> for additional details.
+        Additionally, each extract contains previous year student and staff data from their respective previous education organizations.
+        For more information on previous year data, see <xref linkend="doc-9aafba23-af2e-4cdc-b3f3-3d86c4cdcbd7"/> and <xref linkend="doc-9aafba23-af2e-4cdc-b3f3-3d86c4cdcbd8" />.
+    </para>
+    <para>
+        The public data extract is a special case where a bulk extract provides all public data and
+        Cohort for the tenant without consideration of the education organization. 
+        <emphasis role="bold">Cohort is being handled as public data only for Bulk extract.</emphasis>
+    </para>
+    
+    <section xml:id="doc-9aafba23-af2e-4cdc-b3f3-3d86c4cdcbd7">
+        <title>Previous Year Student Data</title>
+        <para>
+            In order to provide a clear history on a student's academic past, previous year student data is
+            provided in each education organization extract file. Previous year student data is data
+            related to a student from a previous academic year, either from the same education
+            organization or from a different one.
+        </para>
+        <para>
+            The table below specifies date attributes or date attributes of a referenced entity
+            that are used to determine whether an entity is from a previous academic year. 
+        </para>
+        <table xml:id="table-bc6e3198-5c9a-5dd1-aa4d-b05d3f71d03e">
+            <title>Previous Year Student Dated Attributes</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="2*"/>
+                <colspec colname="secondCol" colwidth="4*"/>
+                <thead>
+                    <row>
+                        <entry>Entity</entry>
+                        <entry>Attribute</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para> attendance </para>
+                        </entry>
+                        <entry>
+                            <para> schoolYear </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> courseTranscript </para>
+                        </entry>
+                        <entry>
+                            <para> studentAcademicRecord.schoolYear </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> disciplineIncident</para>
+                        </entry>
+                        <entry>
+                            <para> incidentDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> disciplineAction </para>
+                        </entry>
+                        <entry>
+                            <para> 	disciplineDate </para>
+                        </entry>
+                    </row>
+                   <row>
+                        <entry>
+                            <para> grade </para>
+                        </entry>
+                        <entry>
+                            <para> 	schoolYear </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> gradebookEntry </para>
+                        </entry>
+                        <entry>
+                            <para> dateAssigned </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> reportCard </para>
+                        </entry>
+                        <entry>
+                            <para> 	schoolYear </para>
+                        </entry>
+                    </row>
+
+                    <row>
+                        <entry>
+                            <para> studentAcademicRecord </para>
+                        </entry>
+                        <entry>
+                            <para> schoolYear </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentAssessment </para>
+                        </entry>
+                        <entry>
+                            <para> administrationDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentCohortAssociation </para>
+                        </entry>
+                        <entry>
+                            <para> beginDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentCompetency </para>
+                        </entry>
+                        <entry>
+                            <para> studentSectionAssociation.beginDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentDisciplineIncidentAssociation </para>
+                        </entry>
+                        <entry>
+                            <para> disciplineIncident.incidentDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentGradebookEntry </para>
+                        </entry>
+                        <entry>
+                            <para> gradebookEntry.dateAssigned </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentProgramAssociation </para>
+                        </entry>
+                        <entry>
+                            <para> beginDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentSchoolAssociation </para>
+                        </entry>
+                        <entry>
+                            <para> entryDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentSectionAssociation </para>
+                        </entry>
+                        <entry>
+                            <para> beginDate </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para>
+            The following entities do not have a dated attribute and appear
+            in the extract file of every education organization that the student
+            is related to.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    parent
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    student
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    studentParentAssociation
+                </para>
+            </listitem>
+        </itemizedlist>
+
+    </section>
+
+    <section xml:id="doc-9aafba23-af2e-4cdc-b3f3-3d86c4cdcbd8">
+    <!-- Staff Related Entities !-->
+        <title>Previous Year Staff Data</title>
+        <para>
+            In order to provide a clear history on a staff's academic past, previous year staff data is
+            provided in each education organization extract file. Previous year staff data is data
+            related to a staff from a previous academic year, either from the same education
+            organization or from a different one.
+        </para>
+
+    <para>
+        The table belows specifies date Attributes or date Attributes of a referenced entity that are used to
+        determine whether an entity is from a previous academic year.
+    </para>
+    <table xml:id="table-bc6e3198-5c9a-5dd1-aa4d-b05d3f71d04e">
+        <title>Previous Year Staff Dated Attributes</title>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="2*"/>
+            <colspec colname="secondCol" colwidth="4*"/>
+            <thead>
+                <row>
+                    <entry>Entity</entry>
+                    <entry>Attribute</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para> staffCohortAssociation </para>
+                    </entry>
+                    <entry>
+                        <para> beginDate </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para> staffEducationOrganizationAssociation </para>
+                    </entry>
+                    <entry>
+                        <para> beginDate </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para> teacherSchoolAssociation </para>
+                    </entry>
+                    <entry>
+                        <para> teacher.staffEducationOrganizationAssociation.beginDate </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para> teacherSectionAssociation </para>
+                    </entry>
+                    <entry>
+                        <para> beginDate </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </table>
+    <para>
+        The following entities do not have a dated attribute, and will appear in extract files of the education organizations that they have an association with.
+    </para>
+    
+    <itemizedlist>
+        <listitem>
+            <para>
+                staff
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                teacher
+            </para>
+        </listitem>
+    </itemizedlist>
+
+        <para>
+             See the <link xlink:show="new" xlink:href="http://inbloom.org/resources/documentation/developer/data-store-logical-model">&COMPANYABBR;
+             Data Store Logical Model</link> reference for information on data entities and their related fields.
+         </para>
+         <para>
+             See the <link xlink:show="new" xlink:href="http://www.inbloom.org/for-developers">&COMPANYABBR;
+             Developer Documentation</link> reference for information on Bulk Extract.
+         </para>
+    </section>
+    <xi:include href="../modules/concepts/c-bulk_extract-top-edOrg.xml"/>
+</chapter>

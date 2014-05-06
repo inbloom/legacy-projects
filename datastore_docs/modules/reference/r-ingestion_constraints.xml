@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion_constraints"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Constraints</title>
+    
+    <section xml:id="r-ingestion_constraints-keys">
+        <title>Key Fields</title>
+        <para>
+            Each entity instance described in the XML data files must have
+            values for its key fields. The natural keys associated with
+            interchanges and entities are listed in
+            <xref linkend="r-ingestion-natural_keys"/>
+        </para>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-ordering">
+        <title>Ordering Constraints</title>
+        <para>
+            Some constraints around ingestion cover how to manage dependencies 
+            when handling data that spans multuple interchanges. Example 
+            scenarios where these constraints are important include:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Entities within the same interchange refer to each other, 
+                    and they span multiple XML files in the same ingestion job
+                    (entity-specific interchange-level).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A single ingestion job contains data from multiple 
+                    interchanges.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    An entity in one ingestion job refers to entities 
+                    ingested by a different ingestion job.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    An entity in one interchange in a single ingestion job 
+                    refers to entities in other interchanges in the same job.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <caution>
+            <title>Caution</title>
+            <para>
+                &PRODUCT; no longer supports XML ID referencing in data to be
+                ingested. Any ID/IDREF pairs within an XML ingestion data file 
+                will not be resolved during ingestion. Instead, they are either
+                silently ignored except or, for any "ref=" notation that 
+                violates the XML schema for a particular entity, reported to the 
+                user as a warning.
+            </para>
+        </caution>
+    </section>
+    
+ <!-- Removing per DE2736   <section xml:id="r-ingestion_constraints-assessment">
+        <title>Assessment Entity Constraints</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    For related <varname>Assessment</varname> entity 
+                    instances, all data for the associated interchange 
+                    (<varname>AssessmentMetadata</varname>) must be 
+                    submitted together.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    For entities related to <varname>Attendance</varname> 
+                    in <varname>EducationOrganization</varname>, 
+                    <varname>EducationOrgCalendar</varname>, and 
+                    <varname>StudentEnrollment</varname>, all interchanges 
+                    must be submitted either before or with 
+                    <varname>StudentAttendance</varname> data.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section> -->
+    
+    <section xml:id="r-ingestion_constraints-assessmentdata">
+        <title>AssessmentMetadata Interchange Constraints</title>
+        <para>
+            The <varname>AssessmentMetadata</varname> interchange supports 
+            ingestion of the following entities: 
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <varname>AssessmentFamily</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>Assessment</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>AssessmentItem</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>AssessmentPeriodDescriptor</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>ObjectiveAssessment</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>LearningObjective</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>LearningStandard</varname>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            References to entities within the same interchange must resolve 
+            to entities ingested as part of the same or a previous ingestion
+            job.
+        </para>
+        <para>
+            Entity constraints are listed in the following table.
+        </para>
+        <informaltable>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="3*"/>
+                <colspec colname="secondCol" colwidth="4*"/>
+                <colspec colname="thirdCol" colwidth="4*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Entity
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Referenced Entity
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Interchange
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                AssessmentFamily
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                AssessmentFamily
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                AssessmentMetadata
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Assessment
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> AssessmentItem, AssessmentFamily, AssessmentPeriodDescritptor,
+                                ObjectiveAssessment, Section </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                AssessmentMetadata, MasterSchedule
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                AssessmentPeriodDescriptor
+                            </para>
+                        </entry>
+                        <entry/>
+                        <entry/>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                ObjectiveAssessment
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Assessment, AssessmentItem, LearningObjective,
+                                LearningStandard, ObjectiveAssessment
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                AssessmentMetadata
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                AssessmentItem
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                LearningStandard
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                AssessmentMetadata
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                LearningObjective
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                LearningStandard, LearningObjective
+                            </para>
+                        </entry>
+                        <entry/>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                LearningStandard
+                            </para>
+                        </entry>
+                        <entry/>
+                        <entry/>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-educationorganization">
+        <title>EducationOrganization Interchange Constraints</title>
+        <para>
+            The <varname>EducationOrganization</varname> interchange 
+            supports ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <varname>EducationOrganization</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>Course</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>CompetencyLevelDescriptor</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>Program</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>ClassPeriod</varname>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            An <varname>EducationOrganization</varname> entity provides the 
+            authorization context for all &PRODUCTABBR; users. Thus, it is 
+            critical that every &PRODUCTABBR; user is tied to a particular 
+            tier within the <varname>EducationOrganization</varname> hierarchy.
+            During on-boarding for an education organization, a tenancy's
+            administrator(s), corresponding to LEAs within the hierarchy, are
+            identified by an EducationOrganization entity with an OrganizationCategory set to "Local Education Agency".
+            Ingestion users of an LEA must be associated (using a unique 
+            staff identifier) to an ingested 
+            EducationOrganization with an appropriate OrganizationCategory. For more
+            information about the implementation of identity services with 
+            &PRODUCTABBR;, see the &PRODUCTABBR; administrator documentation.
+        </para>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-educationorgcalendar">
+        <title>EducationOrgCalendar Interchange Constraints</title>
+        <para>
+            The <varname>EducationOrgCalendar</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <varname>Session</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>GradingPeriod</varname>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-staffassociation">
+        <title>StaffAssociation Interchange Constraints</title>
+        <para>
+            The <varname>StaffAssociation</varname> interchange supports 
+            ingestion of the following entities: 
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <varname>Staff</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>StaffEducationOrgAssignmentAssociation</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>Teacher</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>TeacherSchoolAssociation</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>TeacherSectionAssociation</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>StaffProgramAssociation</varname>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            When teachers and staff access &PRODUCTABBR; data and applications,
+            &PRODUCTABBR; must establish correspondence between the users who 
+            are signed in (and their roles) and the <varname>Staff</varname> 
+            and <varname>Teacher</varname> entities in the data store. Each 
+            <varname>Staff</varname> and <varname>Teacher</varname> entity 
+            with &PRODUCTABBR; access permissions must be associated with
+            identity credentials served by the Identity Provider. Specifically,
+            the unique ID (<varname>StaffUniqueStateId</varname> or 
+            <varname>TeacherUniqueStateId</varname>) and 
+            <varname>LoginId</varname> must match the login credentials used 
+            to authenticate against the IDP. In addition, the
+            <varname>StaffEducationOrgAssignmentAssociation</varname> must 
+            have an endDate that has not expired yet.
+        </para>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentassessment">
+        <title>StudentAssessment Interchange Constraints</title>
+        <para>
+            The <varname>StudentAssessment</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <varname>StudentAssessment</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>StudentObjectiveAssessment</varname>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>StudentAssessmentItem</varname>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            References to entities within the same interchange must resolve 
+            to entities ingested as part of the same or a previous job.
+        </para>
+        <para>
+            Entity constraints are listed in the following table.
+        </para>
+        <informaltable>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="3*"/>
+                <colspec colname="secondCol" colwidth="4*"/>
+                <colspec colname="thirdCol" colwidth="4*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Entity
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Referenced Entity
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Interchange
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                StudentAssessment
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Student, Assessment
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                StudentParent, AssessmentMetadata
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                StudentObjectiveAssessment
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                StudentAssessment, ObjectiveAssessment
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                StudentAssessment, AssessmentMetadata
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                StudentAssessmentItem
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                StudentAssessment, StudentObjectiveAssessment,
+                                AssessmentItem
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                StudentAssessment, AssessmentMetadata
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentattendance">
+        <title>StudentAttendance Interchange Constraints</title>
+        <para>
+            The <varname>StudentAttendance</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <varname>AttendanceEvent</varname>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentcohort">
+        <title>StudentCohort Interchange Constraints</title>
+        <para>
+            The <varname>StudentCohort</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Cohort
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentCohortAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StaffCohortAssociation
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentdiscipline">
+        <title>StudentDiscipline Interchange Constraints</title>
+        <para>
+            The <varname>StudentDiscipline</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    DisciplineIncident
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentDisciplineIncidentAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    DisciplineAction
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentgrade">
+        <title>StudentGrade Interchange Constraints</title>
+        <para>
+            The <varname>StudentGrade</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    StudentAcademicRecord
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    CourseTranscript
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    GradebookEntry
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentGradebookEntry
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    ReportCard
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Grade
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentCompetency
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    CompetencyLevelDescriptor
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    LearningObjective
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentCompetencyObjective
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentenrollment">
+        <title>StudentEnrollment Interchange Constraints</title>
+        <para>
+            The <varname>StudentEnrollment</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    StudentSchoolAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentSectionAssociation
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentparent">
+        <title>StudentParent Interchange Constraints</title>
+        <para>
+            The <varname>StudentParent</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Student
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Parent
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentParentAssociation
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            When students and parents access &PRODUCTABBR; data and 
+            applications, &PRODUCTABBR; must establish correspondence between 
+            the users who are signed in (and their roles) and 
+            <varname>Student</varname> and <varname>Parent</varname> entities 
+            in the data store. Each <varname>Student</varname> and
+            <varname>Parent</varname> entity with &PRODUCTABBR; access 
+            permissions must be associated with identity credentials served 
+            by the Identity Provider. Specifically, the unique ID
+            (<varname>StudentUniqueStateId</varname> or 
+            <varname>ParentUniqueStateId</varname>) and 
+            <varname>LoginId</varname> must match the login
+            credentials used to authenticate against the IDP. 
+        </para>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-studentprogram">
+        <title>StudentProgram Interchange Constraints</title>
+        <para>
+            The <varname>StudentProgram</varname> interchange supports 
+            ingestion of the following entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    StudentProgramAssociation
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-ingestion_constraints-teacherschoolassociation">
+        <title>TeacherSchoolAssociation Entity Constraints</title>
+        <para>
+            For every <varname>TeacherSchoolAssociation</varname>, there 
+            must be a <varname>StaffEducationOrgAssignmentAssociation</varname>
+            with an <varname>endDate</varname> that has not expired yet.
+        </para>
+    </section>
+    
+</section>

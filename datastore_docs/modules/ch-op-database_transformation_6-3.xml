@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+
+<chapter xml:id="doc-82271e02-dc46-4cf0-b371-b6bd229ab970"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Release 6.1 to 6.3 Database Transformation</title>
+    <para>The 61to63DBMigration.sh script is a utility that performs a sequence of of updates and
+        deletions to the sli database in order to facilitate the move to the per-tenant database
+        model. <note>
+            <para> The 61to63DBMigration.sh script is coded to operate only on a database named
+                “sli”. Deviation from this name in an environment requires modification of the
+                script.  </para>
+        </note></para>
+    <para>The end result is that the core “sli” database contains only key collections with metadata
+        for the &PRODUCTABBR; application stack to operate, while the newly created tenant databases
+        house the required key records. </para>
+    <para>All ingested data is purged by this process and will need to be re-ingested by the tenant
+        or Sandbox user, while preserving key tenant or Sandbox user configuration post
+        re-ingestion.</para>
+    <para>The following actions are performed by this process:<itemizedlist>
+        <listitem><para>Addition of a hashed dbName field to each tenant collection entry.</para></listitem>
+        <listitem><para>Migration of the tenant’s customRole, custom_entitites, applicationAuthorization, and adminDelegation collection entries from the sli database to the new tenant database.</para></listitem>
+        <listitem><para>Deletion of all collections that contain tenant data from the sli database.</para></listitem>
+        </itemizedlist></para>
+    <section>
+        <title>Executing the Database Transformation</title>
+        <para>These steps are the upgrade sequence of events in which the 61to63DBMigration.sh
+            script is executed. Since exact operator processes, data volumes, and environmental
+            differences can vary, the software operator should be consulted to identify an
+            appropriate overall downtime estimation. </para>
+        <procedure>
+            <step>
+                <para>Stop all API, Ingestion, and SimpleIDP services.</para>
+            </step>
+            <step>
+                <para>Complete a backup of the:</para>
+                <itemizedlist>
+                    <listitem><para>SLI database</para></listitem>
+                    <listitem><para>LDAP</para></listitem>
+                    <listitem><para>sli.properties configuration
+                        file</para></listitem>
+                </itemizedlist> 
+                <para>in order to ensure that there is a point in time snapshot of the
+                    configuration, and data that can be restored should an issue be encountered and
+                    environment rollback is deemed necessary.</para>
+            </step>
+            <step>
+                <para>Complete an upgrade to Mongo 2.2., if not already completed, to ensure that
+                    all running mongo databases and mongos services are 2.2.0.</para>
+            </step>
+            <step>
+                <para>Execute the 61to63DBMigration.sh script from a instance with a running mongos
+                    service. </para>
+                <para>In the WGen test environment, with an sli database size of approximately 2GB,
+                    execution of this script took less than one minute.</para>
+            </step>
+            <step>
+                <para>Disable the mongo balancer. Open the mongo command line while connected to a
+                    mongos service, and execute the following commands on the mongos command line: </para>
+            <substeps>
+                <step><para>use config</para></step>
+                <step><para>db.settings.update( { _id: "balancer" }, { $set : { stopped: true } } , true );</para></step>
+            </substeps>
+                <note><para>Additional information on this step is covered in the Release 6.3 Environmental Specification document.</para></note>
+            </step>
+            <step>
+                <para>Restart all mongos services.</para>
+            </step>
+            <step>
+                <para>Deploy Release 6.3 software in accordance with the 6.3 Environment
+                    Specification and Release Notes.</para>
+            </step>
+            <step><para>Restart API, Ingestion, and Simple IDP services.</para></step>
+        </procedure>
+    </section>
+    <section>
+        <title>End User Post Transformation Process</title>
+        <para>Once the data transformation is completed, the Tenant/Sandbox/Developer Administrative
+            users must do the following:</para>
+    <procedure>
+        <step><para>Re-provision the Landing Zone utilized by visiting “Provision Landing Zone” in the Admin interface.</para></step>
+        <step><para>Re-Ingest the desired data set.</para></step>
+        <step><para>Once ingestion is finished, developers need to re-approve the ingested Educational
+                    Organizations to utilize the registered applications.</para>
+            <note>
+                    <para>In a Production environment, this item is performed only by
+                        Developers.</para>
+                </note></step>
+    </procedure>
+    </section>
+</chapter>

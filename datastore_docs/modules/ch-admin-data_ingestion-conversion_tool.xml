@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter 
+    xml:id="doc-0ca0c4cd-4a5b-41a0-b414-29979fe5bf08" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+   
+        <title>Ingestion File Conversion Tool</title>
+    
+    
+    <para>The &PRODUCTABBR; can only ingest files that are compliant with the current Ed-Fi
+                schema. &COMPANYABBR; provides an file conversion tool to convert an organization's
+                data into Ed-Fi standard XML files, ready for ingestion by the &PRODUCTABBR;. </para>
+            <para>
+                This is one of the open source applications from &COMPANYABBR;. 
+                You can download the source from the &COMPANYABBR; Github repository: 
+                <link xlink:show="new" xlink:href="https://github.com/inbloom/csv2xml">https://github.com/inbloom/csv2xml</link>.
+            </para>
+            <note>
+                <para>
+                    Any data that is not supported by the Ed-Fi schema will be 
+                    ignored by the converter. For more information on the latest 
+                    Ed-Fi schema, please download the 
+                    <link xlink:href="http://www.ed-fi.org/wp-content/uploads/2011/06/Ed-Fi-Core-1.0.01.xsd_.zip" xlink:show="new">Ed-Fi schema zip file</link>.
+                </para>
+            </note>
+            <para>
+                The sections that follow provide instructions for installing and
+                using this tool.
+            </para>  
+            <section xml:id="doc-bebf896a-00df-48c5-a3e8-b710f03a2318"><title>CSV File Formatting</title>
+                <para>Before you use the tool to convert CSV files, your CSV files must: <itemizedlist>
+                        <listitem>
+                            <para>contain data that is compliant with the latest Ed-Fi schema. For
+                                more information on the latest Ed-Fi schema, please download the
+                                    <link
+                                    xlink:href="http://www.ed-fi.org/wp-content/uploads/2011/06/Ed-Fi-Core-1.0.01.xsd_.zip"
+                                    xlink:show="new">Ed-Fi schema zip file</link>.</para>
+                        </listitem>
+                        <listitem>
+                            <para>contain records that are sorted in ascending order.</para>
+                        </listitem>
+                        <listitem>
+                            <para>not contain data that conflicts with data in another CSV file you
+                                are importing. This tool does not check data integrity across CSV
+                                files.</para>
+                        </listitem>
+                    </itemizedlist></para>
+            </section>  
+             <section xml:id="doc-8f12a708-caeb-4729-a292-de9862c6845a">
+                <title>Installing the File Conversion Tool</title>
+                <para> This tool is written in Java and maintained as an Eclipse project. To get
+                    started with the tool, you need to download it and open the project in the
+                    Eclipse integrated development environment. </para>
+                <procedure>
+                    <step>
+                        <para>
+                            Download the zip file for the sample project from
+                            <link xlink:show="new" xlink:href="https://github.com/inbloom/">https://github.com/inbloom/</link>.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Unzip the file into a folder on your computer such 
+                            as <filename>C:\inBloom_project</filename> or
+                            <filename>Documents/inBloom_project</filename>.
+                        </para>
+                    </step>
+                   <step> 
+                        <para>
+                            Import the files into Eclipse as a Java project. 
+                        </para>
+                    </step> 
+                </procedure>
+                <para>
+                    The project is built and tested using Java 1.6.0_31 and Eclipse 
+                    Indigo with SP1. The following is a look at the structure of
+                    the project:
+                </para>
+                <programlisting><![CDATA[    
+--csv2xml
+    .classpath
+    .project
+        --src
+            --org
+                --slc
+                    --sli
+                        --sample
+                            --entities
+                            --transform
+    --data
+    --edfiXsd
+            ]]></programlisting>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <filename>csv2xml</filename> is the project's root folder
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <filename>src/org/slc/sli/sample/entities</filename> 
+                            contains JAXB java source code for all SLI-EdFi entities
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <filename>src/org/slc/sli/sample/transform</filename> 
+                            contains the source code of the CSV2XML transformer
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <filename>data</filename> contains the sample CSV files 
+                            for this project
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <filename>edfiXsd</filename> contains the SLI-EdFi 
+                            schema XSD files
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </section>
+            <section xml:id="doc-377fb22d-4334-487a-813b-f034a1933b0f"><title>Sample Project Files</title>
+                <para> The project includes sample files to use for familiarizing yourself with the
+                    conversion process.  View the sample files in the <filename>data</filename>
+                    folder. The following list reflects the contents of those files at the time of
+                    this writing: </para>
+                <itemizedlist>
+                    <listitem>
+                        <para><filename>Student.csv</filename></para>
+                        <programlisting><![CDATA[
+StudentUSI,Verification,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,Sex,BirthDate,ProfileThumbnail,HispanicLatinoEthnicity,RacialCategory
+100000,Previously verified school records,Mr,Brett,Sergio,Townsend,,Male,1997-13-03,,1,Asian
+100001,Other official document,Mr,Lee,Rick,Yang,,Male,2000-13-30,thumbnail,1,American Indian - Alaskan Native
+100002,Previously verified school records,Ms,Angelique,Ann,Meyer,,Female,2001-13-20,,1,White            
+            ]]></programlisting>
+                    </listitem>
+                    <listitem>
+                        <para><filename>StudentAddress.csv</filename></para>
+                        <programlisting><![CDATA[
+StudentUSI,AddressType,StreetNumberName,City,StateAbbreviation,PostalCode,NameOfCounty
+100001,Physical,477 Ash Street,JAMAICA,NY,11433,Queens
+100001,Other,520 Hill Street,BOONVILLE,NY,13309,Oneida
+100002,Billing,582 Valley Street,NORWOOD,NY,13668,Saint Lawrence               
+            ]]></programlisting>
+                    </listitem>
+                    <listitem>
+                        <para><filename>StudentLanguage.csv</filename></para>
+                        <programlisting><![CDATA[
+StudentUSI,Language
+100001,Spanish
+100001,English
+100002,Turkish                
+            ]]></programlisting>
+                    </listitem>
+                    <listitem>
+                        <para><filename>Parent.csv</filename></para>
+                        <programlisting><![CDATA[
+ParentUSI,Verification,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,Sex
+900000,Other non-official document,Mr,Tracy,Marc,Pugh,,,Male
+900001,Parents affidavit,Ms,Louisa,Christine,Mullins,,,Female
+900002,State-issued ID,Mr,Allan,Allan,Edwards,Jr,,Male                
+            ]]></programlisting>
+                    </listitem>
+                    <listitem>
+                        <para><filename>StudentParentAssociation.csv</filename></para>
+                        <programlisting><![CDATA[
+StudentUSI,ParentUSI,Relation,PrimaryContactStatus,LivesWith,EmergencyContactStatus
+100000,900000,Father,1,0,0
+100000,900001,Mother,0,0,0
+100001,900002,Father,0,1,1
+            ]]></programlisting>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    Based on this data, we know the following:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Student 100000 does not have an address and does not know any languages.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Student 100001 has two addresses and knows both Spanish and English.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Student 100002 has one address and knows Turkish.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            The <filename>Parent.csv</filename> file lists three parents.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Student 100000 is associated with parent 900000 and parent 900001.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Student 100001 is associated with parent 900002.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </section> 
+           <section xml:id="doc-a2b3d4be-fe50-4d8c-b88b-4682a7f731bd">
+                <title>Converting Sample Data Files</title>
+                <para> To provide instructions for using the file conversion tool, we're including
+                    steps for using sample CSV files from the project for your first walk through.
+                    Doing so will allow you to learn the process with clean, simple files. The
+                    walkthrough converts data from five distinct CSV files into a single XML file.
+                    The generated XML file will include student, parent, and
+                    student-parent-association entities. </para>
+                <para> After this walkthrough, you should be able to replicate the steps with your
+                    own CSV files.</para>
+                <para> First you must update the source code for the package.   The source code in
+                    the <filename>org.slc.sli.sample.entities</filename> package is generated by a
+                    JAXB utility (<filename>xjc.sh/xjc.exe</filename>). Start by updating this
+                    package whenever &PRODUCTABBR; supports a new version of the Ed-Fi schema. This
+                    ensures your converted files will be compliant with the latest version of the
+                    Ed-Fi schema supported in &PRODUCTABBR;: </para>
+                <procedure>
+                    <step>
+                        <para>
+                            Download the updated schema files from Ed-Fi.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Replace the schema files in the project folder 
+                            named <filename>edfiXsd</filename> with the schema 
+                            files from step one.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Open a cmd/shell window and go to the 
+                            <filename>edfiXsd</filename> folder.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Execute the command 
+                            <command>xjc -b -Ed-Fi-Core.xjb -p org.slc.sli.sample.entities</command>.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Replace all java code in 
+                            <filename>org.slc.sli.sample.entities</filename> 
+                            with the newly generated code from step four.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Update Adapter2.java with the following code:
+                        </para>
+                        <programlisting><![CDATA[
+                            
+//
+// This file was generated by the JavaTM Architecture for XML Binding(JAXB) Reference Implementation, vJAXB 2.1.10 in JDK 6
+// See <a href=">
+// Any modifications to this file will be lost upon recompilation of the source schema.
+// Generated on: 2012.04.20 at 03:09:04 PM EDT
+//
+ 
+package org.slc.sli.sample.entities;
+ 
+import java.util.Calendar;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+ 
+public class Adapter2
+    extends XmlAdapter<String, Calendar>
+{
+    public Calendar unmarshal(String value) {
+        return (javax.xml.bind.DatatypeConverter.parseDate(value));
+    }
+ 
+    public String marshal(Calendar value) {
+        if (value == null) {
+            return null;
+        }
+        return (javax.xml.bind.DatatypeConverter.printDateTime(value).substring(0, 10));
+    }
+}
+                        ]]></programlisting>
+                    </step>
+                </procedure>
+                <procedure>
+           <para>Once you update the package's source code you can convert the default sample data. </para>         
+                    <step>
+                        <para> Import the project as a maven project into eclipse. </para>
+                    </step>
+                    <step>
+                        <para> Right click on the CSV2XMLTransformer.java source file and select
+                                <guimenuitem>Run… As Java Application</guimenuitem>. </para>
+                    </step>
+                </procedure>
+                <para>The program will run the default sample data, generating students, parents and
+                    student-relationships, in an XML Interchange file.</para>
+            </section>   
+           
+            <section xml:id="doc-794acc7f-ea0e-488a-a7d8-a19ad902994e"><title>Converting Your Files</title>
+                <para>The easiest way to generate your files is to replace the sample files in the
+                    project directory and follow the same steps as you did with the sample files. In
+                    order to generate different XML files, it is necessary to change the
+                    input/output files in the CSV2XMLTransformer.java source file. </para>
+                <procedure>
+                    <step><para>Replace the sample files in the project with your CSV files.</para></step>
+                    <step><para>Open CSV2XMLTransformer.java and change the input/output files to match your file names. This
+                            code can be found around lines 78 to 87.</para></step>
+                    <step>
+                        <para>
+                            Open a cmd/shell window and go to the 
+                            <filename>edfiXsd</filename> folder.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Execute the command 
+                            <command>xjc -b -Ed-Fi-Core.xjb -p org.slc.sli.sample.entities</command>.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Replace all java code in 
+                            <filename>org.slc.sli.sample.entities</filename> 
+                            with the newly generated code from step four.
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Update Adapter2.java with the following code:
+                        </para>
+                        <programlisting><![CDATA[
+                            
+//
+// This file was generated by the JavaTM Architecture for XML Binding(JAXB) Reference Implementation, vJAXB 2.1.10 in JDK 6
+// See <a href=">
+// Any modifications to this file will be lost upon recompilation of the source schema.
+// Generated on: 2012.04.20 at 03:09:04 PM EDT
+//
+ 
+package org.slc.sli.sample.entities;
+ 
+import java.util.Calendar;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+ 
+public class Adapter2
+    extends XmlAdapter<String, Calendar>
+{
+    public Calendar unmarshal(String value) {
+        return (javax.xml.bind.DatatypeConverter.parseDate(value));
+    }
+ 
+    public String marshal(Calendar value) {
+        if (value == null) {
+            return null;
+        }
+        return (javax.xml.bind.DatatypeConverter.printDateTime(value).substring(0, 10));
+    }
+}
+                        ]]></programlisting>
+                    </step>
+                    <step>
+                        <para> Import the project as a maven project into eclipse. </para>
+                    </step>
+                    <step>
+                        <para> Right click on the <filename>CSV2XMLTransformer.java</filename>
+                            source file and select <command>Run… As Java Application</command>. </para>
+                    </step>
+                </procedure>
+                <para>The program will run your CSV files and output an XML Interchange file. </para>
+            </section>
+           
+</chapter>

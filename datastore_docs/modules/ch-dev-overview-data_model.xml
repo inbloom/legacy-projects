@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-2f7e7714-d9a7-4052-bf71-cbbf2ec46660"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Model Overview</title>
+
+    <para> As an application developer, you will likely develop your software to interact with the
+        inBloom Secure Data Service. The Secure Data Service organizes data according to the inBloom
+        Secure Data Service Logical Model. The data model describes the database schema for K-12
+        educational organization data which education organizations add to the inBloom Secure Data
+        Service. </para>
+    <para> &COMPANYABBR; has documented the details of the data model in the <link
+            xlink:href="https://www.inbloom.org/sites/default/files/docs-developer/data_model.html"
+            >inBloom Secure Data Service Logical Model</link> . Developers should use this as a
+        reference when planning how to reference specific data and relationships within &PRODUCT;. </para>
+    <para> The inBloom Secure Data Service is based on the Ed-Fi Core XML Schema.
+        &COMPANYABBR;-specific variations on the Ed-Fi schema include using custom data fields.The
+        Ed-Fi Unifying Data Model was developed by the Ed-Fi Alliance with input from state and
+        local education agencies, vendors and teachers. The model lists all the possible data fields
+        that states and districts can choose to collect when using a data management system like the
+        inBloom Secure Data Service.Note: inBloom has no ownership of student data. Individual
+        states and districts continue to own and control student data stored using the inBloom
+        Secure Data Service. inBloom complies with all laws on this matter, which prohibit inBloom
+        from sharing or selling any student information or data. States and districts decide what
+        student data is collected and stored, and how that data is used, just as they always
+        have.For additional information about Ed-Fi and the principles of the Ed-Fi Unifying Data
+        Model, go to: <link xlink:href="http://www.ed-fi.org/"/></para>
+    <section xml:id="doc-5089d139-200f-4d96-8f7a-61308be4f30e">
+        <title>Core Concepts for the &PRODUCTABBR; Data Model</title>
+        <para> The following are the core concepts used throughout this documentation when
+            discussing the inBloom Secure Data Service. </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-entity">entity</glossterm> - The entity component of the
+                    industry standard entity-attribute-value model (EAV) used to describe a data
+                    model, such as the model for the inBloom Secure Data Service. An entity is the
+                    item or object being stored. In &PRODUCTABBR;, each entity in the Secure Data
+                    Service also corresponds to a <glossterm linkend="def-resource"
+                        >resource</glossterm> in the REST API. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-attribute">attribute</glossterm> - The attribute
+                    component of the industry standard entity-attribute-value model (EAV) used to
+                    describe a data model, such as the model for the inBloom Secure Data Service. An
+                    attribute is a property or parameter for a given entity. In &PRODUCTABBR;, each
+                    attribute in the Secure Data Service corresponds to the name portion of a
+                    name/value pair in the request and response bodies used in the REST API. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-required_attribute">required attribute</glossterm> - 
+                    An attribute that must have a value in order for the 
+                    entity to be created or updated in the data store.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-non-required_attribute">non-required attribute</glossterm> - 
+                    An attribute that does not require a value in order for the 
+                    entity to be created or updated in the data store.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-custom_data">custom data</glossterm> - 
+                    Data associated with an entity but that isn't part of the 
+                    &COMPANYABBR; data model. Developers can add custom data in
+                    order to save important information that isn't already
+                    covered in the &COMPANYABBR;'s schema. Later sections of
+                    this document covers how to create, query, and maintain 
+                    custom data.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    <section xml:id="doc-73c0c9e8-5972-489e-911a-968d7e6a0fac">
+        <title>Data Types and Custom Data</title>
+        <para>
+            The <xref linkend="data_model-entities"/> section in the data 
+            model documentation identifies the data type for each attribute.
+            Also, for each enumerated data type, the document identifies the
+            data types for each element in the enumeration. If you trace the 
+            inheritance of types through the document, you'll eventually find 
+            a mapping back to a 
+            <link xlink:show="new" xlink:href="http://www.w3.org/TR/xmlschema-2/">W3C standard data type</link>.
+        </para>
+        <para> Entities in &PRODUCTABBR; include an option for custom data. When custom data is an
+            option for an entity, you can use the <varname>includeCustom</varname> global parameter
+            when forming API calls with the URI for that entity (see <xref
+                linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e"/>). The data type associated with
+            custom data fields in the &PRODUCTABBR; REST API is the JSON binary large object (blob)
+            type. </para>
+    </section>
+    
+</chapter>

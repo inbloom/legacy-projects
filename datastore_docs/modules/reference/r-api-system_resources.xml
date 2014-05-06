@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="r-api-system_resources" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>&RESTAPI; System Resources</title>
+    
+    <para>
+        The following is a list of the &RESTAPI; resources used to 
+        interact with &PRODUCT; for basic system operations, such as
+        session management and authentication. Click the links provided 
+        for more information and examples on how to use each resource:
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="3*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <colspec colname="thirdCol" colwidth="4*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>API System Resource (relative URIs)</para>
+                    </entry>
+                    <entry>
+                        <para>Methods</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-adminDelegation"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, POST
+                        </para>
+                    </entry>
+                    <entry morerows="1">
+                        <para>
+                            Access a list of delegations relevant to the 
+                            current user. If the user is an SEA Administrator
+                            for a state, this resource accesses delegation
+                            records for any education organizations that have
+                            delegated their security event monitoring to that state.
+                            If the user is an LEA Administrator, this resource
+                            accesses a list of delegations for that user's education 
+                            organization.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-adminDelegation-myEdOrg"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, PUT
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-applicationAuthorization"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, POST
+                        </para>
+                    </entry>
+                    <entry morerows="1">
+                        <para>
+                            Access a list of education organizations and 
+                            the applications (registered in &PRODUCTABBR;)
+                            that each is approved to use.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-applicationAuthorization-id"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, PUT
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-apps"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, POST
+                        </para>
+                    </entry>
+                    <entry morerows="1">
+                        <para>
+                            Access a list of all applications registered 
+                            in this &PRODUCT; system. For current
+                            users with an application developer role,
+                            this supports POST operations.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-apps-id"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, PUT, DELETE
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-bulk-extract"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Access a sample bulk extract payload. The payload
+                            consists of all the data for a fictional tenancy
+                            (for a fictional educational organization) 
+                            corresponding with the Small Sample Data Set 
+                            provided to application developers by
+                            &COMPANY;.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-customRoles"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, POST
+                        </para>
+                    </entry>
+                    <entry morerows="1">
+                        <para>
+                            Access a list of custom roles available for 
+                            the current user's realm. This resources is 
+                            only available to realm administrators to 
+                            view custom roles for that realm.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-customRoles-id"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, PUT, DELETE
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-provision"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Provision a tenant and landing zone. 
+                            Additional actions must be taken beyond this 
+                            request to enable the user's ability to access 
+                            that landing zone. Those actions require 
+                            access to the &PRODUCTABBR; LDAP and are not 
+                            available to external applications.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-realm"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, POST
+                        </para>
+                    </entry>
+                    <entry morerows="1">
+                        <para>
+                            Access a list of at most one realm associated 
+                            with the current user, typically only 
+                            applicable to a realm or LEA Administrator.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-realm-id"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, PUT, DELETE
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-saml-sso-post"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Authenticate a user using a valid SAML 
+                            response from an education organization's 
+                            identity provider (IDP). This is typically 
+                            submitted directly by the browser during 
+                            authentication.
+                        </para>
+                        <para>
+                            Application types: all types requiring user
+                            authentication
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-saml-metadata"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Access the service provider metadata for the 
+                            API.
+                        </para>
+                        <para>
+                            Application types: all types requiring user
+                            authentication
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-securityEvent"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Access a list of all the security events 
+                            that the current user has permission to view.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-system-support-email"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Access the support email associated with 
+                            this &PRODUCT; system.
+                        </para>
+                        <para>
+                            Application types: all types
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-system-session-check"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry morerows="2">
+                        <para>
+                            Manage the session between the current 
+                            active user and the &PRODUCT; system.
+                        </para>
+                        <para>
+                            Application types: all types requiring user
+                            authentication
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-system-session-logout"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-system-session-debug"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-tenants"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry morerows="2">
+                        <para>
+                            Access a list of tenants in this &PRODUCT;
+                            system. A current user must be an adminsitrator
+                            to access this information.
+                        </para>
+                        <para>
+                            The "preload" resource is used to preload one
+                            of the available sample datasets into the 
+                            specified tenant. This POST-only resource is 
+                            only available in the sandbox environment used
+                            by application developers.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-tenants-id"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, PUT, DELETE
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-tenants-id-preload"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-userapps"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Access the list of all applications available 
+                            to the current user. Applications are 
+                            filtered based on the user's role and the 
+                            applications approved for the user's education 
+                            organization.
+                        </para>
+                        <para>
+                            Application types: all types requiring user
+                            authentication
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-users"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET, POST
+                        </para>
+                    </entry>
+                    <entry morerows="2">
+                        <para>
+                            Access a list of the administrative user 
+                            accounts that the current user has permission 
+                            to access. For developers in the sandbox 
+                            environment, this involves other developer 
+                            accounts that share tbe sandbox. For a 
+                            production &PRODUCTABBR; system, SEA 
+                            administrators recieve a list of all users 
+                            in their tenant, and LEA Administrators 
+                            receive a list of all users in their 
+                            education organization.
+                        </para>
+                        <para>
+                            The "edorgs" resource accesses a list of 
+                            stateOrganizationID values that the current 
+                            user has permission to access. For SEA 
+                            Administrators, this includes all education 
+                            organizations in a tenant. For LEA 
+                            Administrators, this includes their current 
+                            education organization.
+                        </para>
+                        <para>
+                            Application types: &PRODUCTABBR; administration
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-users-id"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            DELETE
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            <xref linkend="r-api-resource-users-edorgs"/>
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <!-- column expanded from previous row -->
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+</chapter>

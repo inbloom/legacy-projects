@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-54ba0efa-dd34-4b0f-b911-caf7a8c94065"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Contextual Authorization Rules</title>
+    
+    <para> Context refers to the combined conditions under which a user or application exists
+        relative to the data in the &PRODUCTABBR; Secure Data Service. This starts with user roles
+        and permissions, and extends to other conditions that affect context. This includes the
+        education organization to which the user is assigned, whether the application was granted
+        permission to that education organization, and the date and time the user is attempting to
+        access data. </para>
+    <para>
+        The &PRODUCTABBR; system determines a user's access to data based on
+        that context. A user who has effective permission to access data, with 
+        all these conditions in place, may be said to have "context with"
+        that data. The permissions themselves may be referred to as
+        "contextual access."
+    </para>
+    <para>
+        Contextual authorization is the set of rules that &PRODUCTABBR; uses
+        to determine a user's contextual access. The rules rely on the following
+        user characteristics:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para> Each user is associated with a single and unique entity in the &PRODUCTABBR;
+                Secure Data Service: <varname>Staff</varname>, <varname>Teacher</varname>,
+                    <varname>Parent</varname>, or <varname>Student</varname>. </para>
+        </listitem>
+        <listitem>
+            <para>
+                Each staff or teacher user has a context of 
+                <varname>Staff</varname>, <varname>Teacher</varname>, or both 
+                based on how the &PRODUCTABBR; administrator has configured 
+                custom user roles and contexts for the system.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        This section describes the authorization rules that govern the 
+        context-based authorization for the 
+        <glossterm linkend="def-federated">federated</glossterm> users
+        of an education organization (those configured in &PRODUCTABBR;
+        to authenticate by that organization's IDP), enforced through 
+        the &PRODUCTABBR; REST API. These rules 
+        are used in conjunction with the permissions associated with a user's 
+        role to determine access to data, or the user's 
+        <glossterm  linkend="def-effective_permissions">effective permissions</glossterm>.
+        For a more complete understanding of how &PRODUCTABBR; determines 
+        effective permissions see 
+        <xref linkend="doc-016d8db7-11ec-4bf0-9028-1f5a6e81782b"/>. 
+    </para>
+    <para> Throughout this chapter are references to <glossterm linkend="def-entity"
+            >entities</glossterm> from the &PRODUCTABBR; Secure Data Service. For a comprehensive
+        list of entities, organized by <glossterm linkend="def-data_domain">data domain</glossterm>
+        and broken down by <glossterm linkend="def-attribute">attributes</glossterm>, visit <link
+            xlink:show="new"
+            xlink:href="https://inbloom.org/sites/default/files/docs-developer/data_model.html"
+            >https://inbloom.org/sites/default/files/docs-developer/data_model.html</link>. </para>
+    
+    <section xml:id="doc-8d0237d2-0f35-4f73-a51b-33a6ddce7bf9">
+        <title>Global Authorization Rules</title>
+        <para>
+            While most of the business rules for contextual authorization 
+            relate to specific entities or contexts, the following rules
+            apply to all users:
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>Any context resolution in the &PRODUCTABBR; model starts with the context of
+                the user's role in an educationOrganization in the &PRODUCTABBR; Secure Data
+                Service. Every successfully authenticated user (through federation) must be
+                associated with at least one staff role in the Secure Data Service in order to
+                access any data in &PRODUCTABBR;.</emphasis>
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis> 
+            <emphasis>No user from a 
+            <glossterm linkend="def-tenant">tenant</glossterm> 
+            should be able to access any data from another tenant.</emphasis>
+            There is no exception to this rule.
+        </para>
+        <para>
+            A tenant acts as a permissions boundary. Even if two 
+            districts (A and B) belong to a same State S, if they are 
+            deployed as separate tenants, no users from A will be able to
+            access B. In addition, if State S is not in a tenant with 
+            any of the districts, state users will not be able to access 
+            the district's data. 
+        </para>
+        <para>
+            For more about tenants, 
+            see <xref linkend="doc-37d742c3-43b7-4f1e-a471-61be1ffe7e6c"/>.
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>Every authenticated user in &PRODUCTABBR; can access 
+            the information about any educationOrganization that exists in 
+            that user's (own) 
+            <glossterm linkend="def-tenant">tenancy</glossterm>.</emphasis>
+        </para>
+        <para>
+            Education organization information is public. For example, if 
+            School A and School B are schools in State S, and State S is 
+            on-boarded as a single tenant, then a teacher from School A can
+            access the School B name, address, and other entities, even 
+            though School B does not belong in the same education organization
+            as School A. However, users can only have write access to 
+            data within their own education organization.
+        </para>
+    </section>
+    
+    <section xml:id="doc-1a553c59-9ecc-45bd-89e7-e094e3938fb8">
+        <title>Global Entities</title>
+        <para>
+            Global entities are entities that are truly global within the 
+            context of a tenant. Every user in the tenant has access to 
+            them.
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>Everyone in a tenant has access to global 
+            entities.</emphasis>
+        </para>
+        <para>
+            Assessments is an example of a global entity. An assessment, 
+            such as the SAT, is not tied to a specific education organization
+            or section (an optional association is possible). Since assessments 
+            are considered to be global, they cannot be associated with a
+            context. The following entities are considered to be global:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>/assessments</para>
+            </listitem>
+            <listitem>
+                <para>/competencyLevelDescriptors</para>
+            </listitem>
+            <listitem>
+                <para>/courseOfferings</para>
+            </listitem>
+            <listitem>
+                <para>/courses</para>
+            </listitem>
+            <listitem>
+                <para>/educationOrganizations</para>
+            </listitem>
+            <listitem>
+                <para>/gradingPeriods</para>
+            </listitem>
+            <listitem>
+                <para>/graduationPlans</para>
+            </listitem>
+            <listitem>
+                <para>/learningObjectives</para>
+            </listitem>
+            <listitem>
+                <para>/learningStandards</para>
+            </listitem>
+            <listitem>
+                <para>/programs</para>
+            </listitem>
+            <listitem>
+                <para>/schools</para>
+            </listitem>
+            <listitem>
+                <para>/sections</para>
+            </listitem>
+            <listitem>
+                <para>/sessions</para>
+            </listitem>
+             <listitem>
+                <para>/studentCompetencyObjectives</para>
+            </listitem>
+        </itemizedlist>
+        <note>
+            <para>
+                These entities are protected with the 
+                READ_PUBLIC and WRITE_PUBLIC rights.
+            </para>
+        </note>
+    </section>
+    
+    <section xml:id="doc-18125e10-2ed3-4f25-9e5a-0e6f2c0e477c">
+        <title>Orphan Entities</title>
+        <para>
+            An Orphan Entity is an 
+            <glossterm linkend="def-entity">entity</glossterm> that has no 
+            <glossterm linkend="def-association">association</glossterm> 
+            (yet) with other entity. For example, a Student entity was 
+            created, but it was not yet associated with an EdOrg. 
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>The creator of an orphan entity has context 
+            with (can access) that data entity.</emphasis>
+        </para>
+        <para>
+            Once the creator associates the entity with something else 
+            in the system, the creator's ability to view that entity 
+            goes back to the regular access rules. In addition, the
+            next rule applies.
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>You can only associate two entities if you have 
+            context with both entities.</emphasis>
+        </para>
+        <para>
+            Thus, it is not possible to create a student and then associate
+            that student to a school or section that you do not have context 
+            with.
+        </para>
+    </section>
+        
+</chapter>

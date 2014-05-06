@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_schemas"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Schemas</title>
+    
+    <section xml:id="c-ingestion_schemas-ed-fi_core">
+        <title>Ed-Fi Core Schema</title>
+        <para>
+            The structure of the &PRODUCT; data store is organized based on 
+            the Ed-Fi Core standard. Ed-Fi Core was created as a unifying 
+            logical data model for educational data. The Ed-Fi Core XML 
+            schema aligns with the Common Education Data Standards (CEDS) 
+            (<link xlink:show="new"  xlink:href="ceds.ed.gov">ceds.ed.gov</link>).
+            By aligning with Ed-Fi, the &PRODUCTABBR; ingestion schema also 
+            aligns with CEDS.
+        </para>
+        <para>
+            The inBloom ingestion schema currently conforms to Ed-Fi Core 
+            version &EDFIVERSION;. The XML schema describing it is available 
+            for download from 
+            <link xlink:href="&EDFISCHEMALINK;">ed-fi.org</link>.
+        </para>
+    </section>
+    
+    <section xml:id="c-ingestion_schemas-extensions">
+        <title>&PRODUCTABBR; Extensions to Ed-Fi</title>
+        <para>
+            &COMPANYABBR; has extended the Ed-Fi Core XML schema to achieve the
+            following goals:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Remove XML IDREF support
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Constrain entity references to use one pattern of natural
+                    keys for referencing entities
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Remove support for unused entities
+                    and for unused attributes of supported entities
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Add attributes to supported entities
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Make optional attributes of supported entities mandatory
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Restructure reference types to use nested references
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Make identity types within reference objects mandatory
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            For ingestion users, these extensions are expressed through
+            a series of XSD files available for download from &COMPANYABBR;.
+            Look for "inBloom ingestion extension schemas" at
+            <link xlink:href="https://inbloom.org/library" xlink:show="new">https://inbloom.org/library</link>.
+        </para>
+    </section>
+    
+    <section xml:id="c-ingestion_schemas-interchange">
+        <title>Interchange Schemas</title>
+        <para>
+            Interchange schemas define XML representations of 
+            particular data spaces for transport between systems. From an
+            XML perspective, an interchange is a group of entities and 
+            associations. Different interchange schemas may be used to
+            reflect different use cases.
+        </para>
+        <para>
+            &PRODUCTABBR; interchange schemas are largely based on the
+            Ed-Fi interchange schemas. &PRODUCTABBR; covers most, but not all,
+            entities in the Ed-Fi Core standard. &PRODUCTABBR; consolidates
+            some of the Ed-Fi entities for the sake of scalability and
+            performance, both for bulk data ingestion and for data interaction
+            using the REST API.
+        </para>
+        <para>
+            The interchange schemas are listed in
+            <xref linkend="r-ingestion-entity_interchange_schema_mapping"/>
+            along with the entities they map to for both Ed-Fi and
+            &INGESTIONSCHEMANAME;.
+        </para>
+        <para>
+            Ingestion users specify these interchanges in the control file 
+            when preparing data for ingestion. Look for these interchanges
+            as part of the "inBloom ingestion extension schemas" available
+            from 
+            <link xlink:href="https://inbloom.org/library" xlink:show="new">https://inbloom.org/library</link>.
+        </para>
+    </section>
+    
+</section>

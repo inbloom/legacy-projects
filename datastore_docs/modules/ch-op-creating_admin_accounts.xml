@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-84fd19a8-bca9-457f-a1b0-7f79504880a2"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Creating Administrator Accounts</title>
+    
+    <para>
+        An &COMPANYABBR; Operator on-boarding a new tenant must create 
+        the accounts for the tenant administrators. &OPERATORROLE;s can 
+        use the Manage Administrator Accounts system tool to create 
+        new administrative users. 
+    </para>
+    <para>
+        Use the following steps to create a new administrative user:
+    </para>
+    <procedure>
+        <step>
+            <para>
+                Log in to &PRODUCTABBR; using your operator account.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Admin</guibutton> to open the
+                administrator home page.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Manage Administrator Accounts</guibutton>
+                under System Configuration to open the 
+                <guilabel>Manage Administrator Accounts</guilabel> page.
+            </para>
+        </step>
+        <step>
+            <para>
+                Scroll to the bottom of the page and click the 
+                <guibutton>Add User</guibutton> button to open
+                the <guilabel>Add a User</guilabel> page.
+            </para>
+            <!-- IMPORTANT! Update this image as needed when the UI changes. -->
+            <figure xml:id="figure-OP-Adding-New-Admin-User">
+                <title>Creating a New Administrative User</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" 
+                            fileref="images/op_aamt_create_admin.png" 
+                            width="750px" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" 
+                            fileref="../common/images/op_aamt_create_admin.png" 
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </step>
+        <step>
+            <para>
+                Complete the form with the new user information.
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Full Name</emphasis> - 
+                        Enter the user's first name and last name. 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Email</emphasis> - 
+                        Enter the user's email address. All users
+                        that you create will receive emails that 
+                        allow them to activate their accounts.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Role</emphasis> - Select a role 
+                        for the user. The first user created for a 
+                        district must have the 
+                        <xref linkend="def-sea_administrator"/>
+                        role.
+                        <emphasis>Note:</emphasis> You can add 
+                        ingestion and realm administration rights 
+                        for users regardless of the user's 
+                        primary role. 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Ingestion User</emphasis> - 
+                        Select whether or not to give this user the 
+                        ability to ingest data to &PRODUCTABBR;.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Realm Administrator</emphasis> - 
+                        Select whether or not to give this user the 
+                        ability to administer a realm.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Tenant</emphasis> - Add a tenant for 
+                        the user, if applicable. 
+                        <emphasis>Note:</emphasis> This field only 
+                        appears for operators that are using this tool.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Education Organization</emphasis> - 
+                        Add an education organization for the user, 
+                        if applicable. 
+                        <emphasis>Note:</emphasis> When an
+                        <xref linkend="def-lea_administrator"/>
+                        uses this tool, the Education Organization 
+                        field will be restricted to that user's
+                        education organization.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Save</guibutton>. The system should 
+                return you to the the 
+                <guilabel>Manage Administrator Accounts</guilabel> page.
+            </para>
+        </step>
+    </procedure>
+    <para>
+        The user will appear in the table on the 
+        <guilabel>Manage Administrator Accounts</guilabel> page. The
+        user will also receive an email that starts the account 
+        activation process.
+    </para>
+    <para>
+        If you need to change a user's contact information, role, or 
+        tenant, click <guibutton>Edit</guibutton>. If you need to 
+        delete a user, click <guibutton>Delete</guibutton>.
+    </para>
+    
+    <!--    <section xml:id="doc-1e66129e-de95-4f8f-b5fb-4dd15c4b4f4c"><title>Creating Administrative Accounts with LDAP</title><para>The new LDAP account should be
+        created in accordance with the following schema, which is represented in LDIF format: </para>
+    <programlisting><![CDATA[
+dn: cn=Username,ou=people, ou=SLIAdmin, ou=Prod, dc=slcedu, dc=org
+givenName: <FirstName>
+sn: <LastName>
+userPassword: <Password>
+loginShell: /sbin/nologin
+uidNumber: 500
+gidNumber: <Group Membership Id>
+displayName: <80e7f8e4c713a7c2495807c5c7a69dcf>
+mail: <Email Address>
+uid: <Username>
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+cn: <Username>
+homeDirectory: </home/users/iladmin>
+description: tenant=<State>,edOrg=<LEA-Name>
+        ]]></programlisting>
+    <para>Updated <property>loginShell</property> to use <filename>/sbin/nologin</filename> rather than <filename>/bin/nologin</filename>.</para>
+    <para>The variables in the schema are as follows:</para>
+    <para>
+        <table frame="all" xml:id="table-39cb8a48-4789-4b9b-b148-6116dfe8c99b">
+            <title>Schema Variables</title>
+            <tgroup cols="3">
+                <colspec colname="c1" colnum="1" colwidth="1*"/>
+                <colspec colname="c2" colnum="2" colwidth="4*"/>
+                <colspec colname="newCol3" colnum="3" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>Variable</entry>
+                        <entry>Notes</entry>
+                        <entry>Example</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>givenName</entry>
+                        <entry>This is the administrative user's first name.</entry>
+                        <entry>John</entry>
+                    </row>
+                    <row>
+                        <entry>sn</entry>
+                        <entry>This is the administrative user's last name (or surname). </entry>
+                        <entry>Doe</entry>
+                    </row>
+                    <row>
+                        <entry>userPassword</entry>
+                        <entry>Initially the operator will have to generate the password and then
+                            communicate it to the admin user. Then, the user can use the password
+                            reset tool to update. Please see the displayName information.</entry>
+                        <entry>examplepwd</entry>
+                    </row>
+                    <row>
+                        <entry>gidNumber</entry>
+                        <entry>This is the groupId number. The current value should always be set to
+                            113.</entry>
+                        <entry>113</entry>
+                    </row>
+                    <row>
+                        <entry>displayName</entry>
+                        <entry>The displayName is a system-generated hexadecimal token that is used
+                            for email validation. This token is generated when users create their
+                            own accounts in the developer forum. However, for an operator creating
+                            an administrative account on behalf of a user, this field should be left
+                            blank. When displayName is blank, &PRODUCTABBR; will send the user to
+                            enter a new password when they first sign in.</entry>
+                        <entry>Leave blank</entry>
+                    </row>
+                    <row>
+                        <entry>mail</entry>
+                        <entry>This is the email address for the new administrator user. This is
+                            specified by the operator when creating the account. </entry>
+                        <entry>jdoe@example.com</entry>
+                    </row>
+                    <row>
+                        <entry>uid</entry>
+                        <entry>This is a unique identifier that the administrative user will use to
+                            log in with. The ID is stored as text and is provided by the operator
+                            when creating the administrator account. </entry>
+                        <entry>jdoe@example.com</entry>
+                    </row>
+                    <row>
+                        <entry>cn</entry>
+                        <entry>This is the common name of the user in LDAP. This may be equal to the
+                            uid, but it is not required to be the same. </entry>
+                        <entry>jdoe@example.com</entry>
+                    </row>
+                    <row>
+                        <entry>homeDirectory</entry>
+                        <entry>This is the directory for the user's landing zone. This is set when
+                            the user creates their landing zone using the creation tool. </entry>
+                        <entry>/path/to/tenant/Il/&lt;sha hash of the user's EdOrg></entry>
+                    </row>
+                    <row>
+                        <entry>Tenant</entry>
+                        <entry>The tenant to which the user belongs. This should be equal to the
+                            state.</entry>
+                        <entry>Illinois</entry>
+                    </row>
+                    <row>
+                        <entry>EdOrg</entry>
+                        <entry>The educational organization to which the user belongs. This should
+                            be equal to the user's LEA-Name.</entry>
+                        <entry>IL-DAYBREAK</entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </para>
+    <para> An &OPERATORROLE; can use any tool they like for administering the LDAP directory. One
+            possibility is to do it from the command line using the standard administration tools
+            provided with OpenLDAP. This command would be similar to: </para>
+    <programlisting><![CDATA[
+$ ldapadd -h [host] -p [port] -D [DN of Manager] -f [LDIF-filename] -W
+        ]]></programlisting>
+    
+    <section xml:id="doc-25d95a1d-a571-4b71-afc4-575e3426cda5">
+        <title>Adding Users to LDAP Groups</title>
+        <para>When an administrative user is added, the user must be added to the appropriate LDAP group. The group to which a user is added will dictate the administrative tasks that the user can perform.</para>
+            <note><para role="1.0.67-added">The first user created for a district must have an SEA Administrator Role
+                    and be added to the SEA Administrator LDAP group.</para></note>
+        <para>The &PRODUCTABBR; LDAP groups are:</para>
+        <table frame="all" xml:id="table-07f5f41b-8cf6-4f08-87b7-0460233d59a8">
+            <title>&PRODUCTABBR; LDAP Groups</title>
+            <tgroup cols="4">
+                <colspec colname="c1" colnum="1" colwidth="1.36*"/>
+                <colspec colname="c2" colnum="2" colwidth="1.36*"/>
+                <colspec colname="c4" colnum="3" colwidth="1*"/>
+                <colspec colname="c6" colnum="4" colwidth="1.73*"/>
+                <thead>
+                    <row>
+                        <entry>Role</entry>
+                        <entry>LDAP Group Name</entry>
+                        <entry>Association</entry>
+                        <entry>Accessible System Tools</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>SLC Operator</entry>
+                        <entry>SLC Operator</entry>
+                        <entry>Global</entry>
+                        <entry>Approve Application Registration, Approve Developer/Vendor Account,
+                                Security Events Page</entry>
+                    </row>
+                    <row>
+                        <entry>SEA Administrator</entry>
+                        <entry>SEA Administrator</entry>
+                        <entry>EdOrg (State), Tenant</entry>
+                        <entry>Security Events Page, Authorize Application**</entry>
+                    </row>
+                    <row>
+                        <entry>LEA Administrator</entry>
+                        <entry>LEA Administrator</entry>
+                        <entry>EdOrg (District), Tenant</entry>
+                        <entry>Authorize Application, Delegate Districts Permissions Page, Security
+                                Events Page</entry>
+                    </row>
+                    <row>
+                        <entry>Sandbox Administrator*</entry>
+                        <entry>Sandbox Administrator</entry>
+                        <entry>EdOrg, Tenant</entry>
+                        <entry>Security Events Page, Authorize Application</entry>
+                    </row>
+                    <row>
+                        <entry>Realm Administrator</entry>
+                        <entry>Realm Administrator</entry>
+                        <entry>Realm, Tenant</entry>
+                        <entry>Manage Realm, Create Custom Roles</entry>
+                    </row>
+                    <row>
+                        <entry>Application Developer</entry>
+                        <entry>application_developer</entry>
+                        <entry>Application, Tenant* (for Sandbox)</entry>
+                        <entry>Register Application</entry>
+                    </row>
+                    <row>
+                        <entry>Ingestion User</entry>
+                        <entry>ingestion_user</entry>
+                        <entry>Tenant, EdOrg</entry>
+                        <entry>Create Landing Zone </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para><emphasis>*</emphasis> - This information is only applicable to the Sandbox environment. The Sandbox environment for &PRODUCTABBR; is used for developing and testing applications before being the applications are deployed in Production.</para>
+        <para><emphasis>**</emphasis> - This tool is only available to an SEA administrator if permissions for viewing security events have been delegated from the LEA. </para>
+        <para><phrase role="1.5-info">[Added section for v. 1.5. This section added as part of <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7907336788">DE1690</link>.]</phrase></para>
+    </section>
+    
+    <section xml:id="doc-328a820d-d5d8-47b6-99fd-21d85d7ebed1">
+        <title>Deleting and Temporarily Disabling Administrative Accounts</title>
+        <para>To delete an administrative user, remove the UID of the user from all LDAP groups and delete the LDAP entry for that user's UID.</para>
+        <para>To temporarily disable an administrator's access, remove the user from all groups on the LDAP server. The user will still be able to authenticate, but that user will not have access to any administrative functions.</para>
+        <para><phrase role="1.5-info">[Added section for v. 1.5. This section added as part of <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7677812452">DE1617</link>.]</phrase></para>
+    </section>  
+    </section> -->
+   
+</chapter>

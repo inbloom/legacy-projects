@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-6070966a-44d7-4b6b-97e6-c5bf93a584fd"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Development Overview</title>
+    
+    <para>Besides knowing the data store's logical model, you should also know how &COMPANYABBR; has
+        modeled its developer resources. The sections that follow give you a brief look at the tools
+        &COMPANYABBR; provides for &PRODUCT; development. </para>
+    
+    <section xml:id="doc-0ef98d24-b663-4af8-9a88-1f18e8c5db7d">
+        <title>Sandbox and Production Environments</title>
+        <para>&COMPANYABBR; hosts a Sandbox and a Production environment that can be used for
+            application development: </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">&PRODUCTABBR; Sandbox</emphasis> is a self-contained
+                    &PRODUCTABBR; instance designed for developing application prototypes and
+                    testing them against &PRODUCTABBR; APIs and features. The Sandbox mimics the
+                    &PRODUCTABBR; Production environment, while providing features that support
+                    application development. Since the Sandbox is completely isolated from
+                    Production, you can try out ideas and develop systems without impacting the
+                    &PRODUCTABBR; Secure Data Service, applications, or services. The Sandbox terms
+                    of use prohibit the use of PII data within the Sandbox environment. </para>
+                 
+                      
+                     
+                <para>Later
+                    sections describe how to get started using this Sandbox. </para>
+                 
+                 </listitem>
+            
+            <listitem>
+                <para>
+                    <emphasis role="bold">&PRODUCTABBR; Production</emphasis> is a real world
+                    instance of &PRODUCTABBR;. It hosts real, live data and gives you an accurate
+                    look at how the application works for selected users. Developers can access
+                    Production using the &PRODUCTABBR; App Developers realm.</para>
+                
+            </listitem>
+        </itemizedlist>
+        
+        <para>&COMPANYABBR; provides a unified account experience for developers. A developer
+            registers for an account in the Sandbox and can then use the same account credentials to
+            log into the &PRODUCTABBR; App Developer realm in Production. The permissions available
+            to developers vary depending on the type of environment the developer is logged in to.
+            While developers can access Production to register their applications, it is expected
+            that the Sandbox will be used for the bulk of application testing and development. </para>
+        <note>
+                <para>Later sections that cover using a Sandbox environment may not apply when working in Production. </para>
+            </note>
+        <table xml:id="table-f3053a65-a069-4d78-a934-721f511264de">
+            <title>Differences Between Sandbox and Production Environments</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="*1"/>
+                <colspec colname="secondCol" colwidth="*2"/>
+                <colspec colname="thirdCol" colwidth="*2"/>
+                <thead>
+                    <row>
+                        <entry>Description</entry>
+                        <entry>Sandbox</entry>
+                        <entry>Production</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>New Developer Account Creation </para>
+                        </entry>
+                        <entry>
+                            <para>Automatically approved after registration. </para>
+                        </entry>
+                        <entry>
+                            <para>Cannot create new accounts in Production. You can log in to
+                                Production using the account you created in the Sandbox. </para>
+                        </entry>
+                    </row>
+                    <!-- Row hidden, not really a "difference" between
+                         Sandbox and Production.
+                    <row>
+                        <entry>
+                            <para>
+                                Application Approval
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Developer/vendor must authorize their application(s) 
+                                for use by specific education organizations.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Developer/Vendor must authorize their application(s) 
+                                for use by specific education organizations.
+                            </para>
+                        </entry>
+                    </row> -->
+                    <!-- No longer a difference (see DE1304)
+                    <row>
+                        <entry>
+                            <para>
+                                Application Authorization (for an education organization)
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Automatically approved at state and district levels.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Education organizations must authorize application(s) 
+                                to grant access to their data.
+                            </para>
+                        </entry>
+                    </row> -->
+                    <row>
+                        <entry>
+                            <para> Tenancy (This is the set of data a user has administrative access
+                                to.) </para>
+                        </entry>
+                        <entry>
+                            <para>Each developer is assigned a Sandbox tenancy upon registration and
+                                can only access that tenancy. For your Sandbox tenancy, you can
+                                ingest data, use bulk extract, authenticate users, and register
+                                applications in the Sandbox. </para>
+                        </entry>
+                        <entry>
+                            <para>Multiple tenants exist in the same environment. A developer can
+                                only access the tenant that is specifically designated for
+                                application development. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Identity Provider (IDP) </para>
+                        </entry>
+                        <entry>
+                            <para>&PRODUCTABBR; Simple IDP. Authentication is emulated, but not
+                                federated. </para>
+                        </entry>
+                        <entry>
+                            <para>&PRODUCTABBR; IDP for vendor accounts. Tenant-provided, federated
+                                IDP for end-user accounts. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Developer Authorization </para>
+                        </entry>
+                        <entry>
+                            <para>Developer has full administrative rights to his or her Sandbox. </para>
+                        </entry>
+                        <entry>
+                            <para>Developer only has rights to register applications. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>End-user Authentication </para>
+                        </entry>
+                        <entry>
+                            <para>Sample end user accounts are available via impersonation using the
+                                developer's credentials. </para>
+                        </entry>
+                        <entry>
+                            <para>Users are created and managed by the &COMPANYABBR; and/or tenant
+                                administrators. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Personally Identifiable Information (PII) </para>
+                        </entry>
+                        <entry>
+                            <para>The Sandbox terms of use prohibit the use of PII data within the
+                                Sandbox environment. </para>
+                        </entry>
+                        <entry>
+                            <para>PII data is available; applications must ensure this data is
+                                properly secured. PII data is controlled by the SEA or LEA. </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        
+    </section>
+    <section xml:id="doc-cbc82183-eb02-49ba-b23e-df63aa09c83e">
+        <title>Developer Collaboration in the Sandbox</title>
+        <para>When you register for a Sandbox account, you are assigned your own tenancy. The
+            tenancy exists as a boundary for data and registered applications. You can create new
+            developer accounts within your tenancy, which grants these developers access to all of
+            your data and applications, but you cannot give an existing developer accounts access to
+            your tenancy.</para>
+        <para>Any changes a developer makes to data or applications within a tenancy effects all
+            developers within that tenancy. For example, if one developer adds a custom dataset, all
+            other developers within that tenancy will be able to use it. If the custom dataset
+            contains data that overlaps other data that already existed in the data store, then the
+            original data is overwritten. </para>
+        <para>Changes to applications, such as a change to an application name or disabling an
+            application for an EdOrg, also effect all developers. Therefore, it is recommended that
+            developers collaborating within a tenancy work closely together and communicate changes. </para>
+    </section>
+    <section xml:id="doc-9227ba9e-ac20-4927-9175-0e9c7d9f2da6">
+        <title>&PRODUCTABBR; Development Workflow</title>
+        <para>The following steps will help you use and test your application with
+            &PRODUCTABBR;:</para>
+        <procedure>
+            <step><para>First, request an account. To sign up for an account, see <xref
+                        linkend="doc-104ea878-4308-40fc-a47e-c406c882b981"/>.</para>
+               
+            </step>
+            <step><para>Register your application. </para>
+            <itemizedlist>
+                <listitem><para>To register your application in the Sandbox, for testing and development, see <xref
+                                linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"/>.</para></listitem>
+                <listitem><para>To register your application in Production, for deployment, see <xref
+                                linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/>. In Production,
+                    application registration requires approval by an &OPERATORROLE; after
+                            registration.</para> </listitem>
+            </itemizedlist>
+            </step>
+            <step><para>If you are using the Sandbox environment, sign into the Sandbox and:</para>
+            <substeps>
+                <step><para> Add data. We recommend you add an &COMPANYABBR; sample data set. See <xref
+                                linkend="doc-19d3f129-1c43-40ba-92c7-2a43ec8e07fe"/>.</para></step>
+                <step><para> Create accounts for any other developers that also need Sandbox access for application
+                            development and testing. See <xref
+                                linkend="doc-f19e289d-6dbc-4c79-8e82-4c98bfe4ea9d"/>.</para></step>
+                <step><para> Test your application in the Sandbox. See <xref
+                                linkend="doc-1183979d-7e63-4991-a2d4-42b3274a5def"/>.</para></step>
+            </substeps></step>
+            
+            <step><para>To aid in application development, you can use </para>
+            <itemizedlist>
+                <listitem><para>the &RESTAPI;. See <xref linkend="doc-193b3c84-0860-4f18-941b-0195189219a5"/>. To install a
+                            REST client, see <xref linkend="doc-446e4850-fba0-45bc-917c-92cbbbe6d827"/>.</para></listitem>
+                <listitem><para>the &SDK;. See <xref linkend="doc-c85c7881-e332-4e17-9fd3-a0ab4ffff6fb"/>. To set up the SDK, see <xref linkend="doc-8e10cfc3-e620-4c60-8f1f-c95aaa018a66"/>.</para> </listitem>
+                <listitem><para> information about developing common application features. See <xref
+                                linkend="doc-558e7426-7ed2-46f1-b4a2-5223a3917770"/>.</para></listitem>
+                <listitem><para> provided sample application code. See <xref
+                                linkend="doc-7d0c43eb-49e7-494f-9db9-a2c05c0e4590"/>.</para></listitem>
+            </itemizedlist>
+            </step>   
+        </procedure>
+    </section>
+   
+</chapter>

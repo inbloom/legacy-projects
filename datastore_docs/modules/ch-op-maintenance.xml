@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-12eca9ce-1966-4dfd-a3d5-67876e1109f6"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Recommended Maintenance &amp; Troubleshooting for &PRODUCTCAPS;</title>
+    
+    <para> This chapter covers some of &COMPANYABBR;'s recommended practices for maintaining
+        &PRODUCTABBR; over time, including monitoring, troubleshooting and disaster recovery. </para>
+    
+    <section xml:id="doc-d24c8efe-4b45-45a6-91bb-b41b26f57fc1">
+        <title>Assumptions</title>
+        <para>
+            System operators will perform all standard operational tasks, such as patching and monitoring.
+        </para>
+    </section>
+    
+    <section xml:id="doc-c058dde8-86a9-4c5a-b7f9-e2aa16ae6dc0">
+        <title>Monitoring</title>
+        <para>
+            We recommend that you monitor these system items:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    CPU usage
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Memory usage
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Network usage
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Disk I/O usage (specifically, a method to identify I/O wait or I/O bottlenecks)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    File system usage
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Host/Service availability
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    (Cloud environment such as Amazon EC2) Network stack statistics for TCP connection errors
+                </para>
+            </listitem>
+        </itemizedlist>
+        <note>
+            <para>
+                The specific tools and methods used to monitor the above items depend on the facility’s existing 
+                capabilities and forward-looking operational requirements.
+            </para>
+        </note>
+    </section>
+    
+    <section xml:id="doc-32d38a46-5409-4d4a-93gjhgd4-219996b65645">
+        <title>Ingestion Troubleshooting</title>
+        <para>
+            <emphasis>Releasing Ingestion Tenant Onboarding Lock</emphasis>
+        </para>
+        <para>Ingestion locks a tenant while it is spinning up a tenant's database. If an ingestion
+            process dies or is killed in the middle of database spin up, then the lock on the tenant
+            needs to be manually released. </para>
+        <para>
+            This can be done with the following command:
+        </para>
+        <para>
+            <command>
+                <![CDATA[mongo —host<HOST> sli —eval 'db.tenant.update({"body.tenantId" : <Tenant Id>}, {$unset : {"body.tenantIsReady" : 1}})']]>
+            </command>
+        </para>
+    </section>
+    
+    <!--    
+    <section xml:id="doc-06db7f8c-7084-4549-b600-3c4633df926c">
+        <title>Troubleshooting Across the Infrastructure</title>
+        <para>
+            FIXME... more to come
+        </para>
+    </section> -->
+        
+    <!-- 
+    <section xml:id="doc-ac8b1c69-9207-4ed0-aed9-afb0bbca69d3">
+        <title>Disaster Recovery</title>
+        <para>
+            FIXME... more to come
+        </para>
+    </section> -->
+
+</chapter>
+
+        

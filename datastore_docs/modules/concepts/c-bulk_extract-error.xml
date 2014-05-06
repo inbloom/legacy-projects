@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-bulk_extract-error"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Bulk Extract Error Reporting</title>
+    
+    <para>
+        Basic error reporting metrics are captured during the creation 
+        of the bulk extract data files. In the same directory as the 
+        data files, <filename>error.txt</filename> is created to
+        report errors that occurred during bulk extraction. 
+    </para> 
+    <para>
+        The <filename>error.txt</filename> file indicates that errors 
+        occurred during the process, and the latest successful full 
+        extract should be obtained. A list is included to provide 
+        more specific information about the type of errors that were 
+        encountered. The file lists the number of errors that occurred 
+        per entity type.
+    </para>
+    <programlisting><![CDATA[Errors occurred during generation of the extract.  Please obtain the latest successful full extract.
+
+6 errors occurred for entity type learningObjective
+15 errors occurred for entity type studentSectionAssociation
+9 errors occurred for entity type studentAssessment
+3 errors occurred for entity type course
+11 errors occurred for entity type studentSchoolAssociation
+1 errors occurred for entity type staff
+3 errors occurred for entity type student
+1 errors occurred for entity type grade
+7 errors occurred for entity type courseTranscript
+1 errors occurred for entity type staffProgramAssociation
+1 errors occurred for entity type studentParentAssociation
+5 errors occurred for entity type studentAcademicRecord
+2 errors occurred for entity type attendance
+1 errors occurred for entity type parent
+22 errors occurred for entity type studentGradebookEntry
+1 errors occurred for entity type gradingPeriod
+1 errors occurred for entity type studentCohortAssociation
+1 errors occurred for entity type section
+67 errors occurred for entity type learningStandard
+1 errors occurred for entity type staffEducationOrganizationAssociation
+1 errors occurred for entity type studentCompetency
+1 errors occurred for entity type graduationPlan
+7 errors occurred for entity type courseOffering
+2 errors occurred for entity type assessment
+1 errors occurred for entity type staffCohortAssociation]]></programlisting>  
+    
+</section>

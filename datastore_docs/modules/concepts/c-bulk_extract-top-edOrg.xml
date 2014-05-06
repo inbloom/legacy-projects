@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-bulk_extract-top-edOrg"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Top Level Education Organization Extract</title>
+    
+    <para>
+        An education organization is considered as top level if it
+        doesn't have any parent education organization. For example
+        a State Education Agency can be a top level education organization
+        for a tenant. 
+    </para> 
+    <para>
+        Top level education organization extract is a special case. 
+        The extract contains only the private data that belongs to that
+        education organization. It will not have any data that belongs
+        to its descendant education organizations (unlike other education
+        organization extracts). This is applicable to both full and delta
+        extracts.
+    </para>
+    <para>
+        Changes in the education organization heirarchy within a tenant may
+        change the contents of an education organization's extract file.
+    </para>
+     <itemizedlist>
+            <listitem>
+                <para>
+                    If a top level education organization adopts a parent,
+                    it ceases to be treated as top level and will be treated
+                    as any other education organization for the purposes of Bulk Extract.
+                    The extracts generated after this update for this 
+                    education organization will include the data associated with its 
+                    descendant education organizations.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If an education organization loses all of its parent education organizations,
+                    it will be treated as a top level education organization. The extracts
+                    generated for this education organization after this update will cease
+                    to include data associated with it's descendant education organizations.
+                </para>
+            </listitem>
+     </itemizedlist>               
+    
+</section>

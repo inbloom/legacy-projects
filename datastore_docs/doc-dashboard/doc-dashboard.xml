@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<book xml:id="dashboard-customization"
+    xmlns="http://docbook.org/ns/docbook"
+    xml:base="."
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <info>
+        <title>&PRODUCTABBR; Dashboard Customization</title>
+        <releaseinfo>
+            v. &CURRENTRELEASEREVISION;
+        </releaseinfo>
+        <revhistory>
+            <revision>
+                <revnumber>1.8.81</revnumber>
+                <date>7/19/2013</date>
+                <revdescription>
+                    <para>
+                        Initial document release. This is the first time
+                        this content has been published. This stand-alone
+                        document was created as its first form of delivery.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>1.9.82</revnumber>
+                <date>8/2/2013</date>
+                <revdescription>
+                    <para>
+                        Added section covering translating between entities
+                        and attributes in the logical data model and the JSON
+                        dot notation required for the dashboard.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>1.10.83</revnumber>
+                <date>8/16/2013</date>
+                <revdescription>
+                    <para>
+                        Moved section covering JSON dot notation to an
+                        appendix and added a table of the known fields
+                        supported in the dashboard.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>1.12.90</revnumber>
+                <date>11/22/2013</date>
+                <revdescription>
+                    <para>
+                        Made some fixes on field names, correcting test
+                        results field.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>&CURRENTRELEASEREVISION;</revnumber>
+                <date>&CURRENTRELEASEDATE;</date>
+                <revdescription>
+                    <para>
+                        No changes associated with this revision.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </info>
+    
+    <chapter xml:id="c-dashboard-customization-doc_purpose">
+        <title>Purpose of this Document</title>
+        <para>
+            &PRODUCT; includes a dashboard application that educators can 
+            use to examine education data from the data store. IT staff for 
+            state and district school systems can customize the dashboard 
+            experience to best meet the needs of their educators. 
+            Customizations are expressed using 
+            JavaScript Object Notation (JSON), a lightweight data exchange 
+            format (see 
+            <link xlink:href="http://json.org">json.org</link>). 
+            This document provides a tutorial and reference for those 
+            charged with implementing these customizations.
+        </para>
+        <para>
+            Using this document as a guide, the reader should be able to:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Identify key components in a pre-defined dashboard 
+                    configuration expressed in JSON.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Write JSON to express customizations to the dashboard, 
+                    using the default configuration as a starting point 
+                    and reference. 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Use the inBloom Dashboard interface to upload that 
+                    custom JSON.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The content in this standalone publication may be included as
+            part of other documents in future releases.
+        </para>
+    </chapter>
+    
+    <chapter xml:id="c-dashboard-customization-guidelines">
+        <title>The Basics</title>
+        <xi:include href="../modules/reference/r-dashboard-customization-json_guidelines.xml"/>
+    </chapter>
+    
+    <chapter xml:id="c-dashboard-customization-tour">
+        <title>Tour of Dashboard Customization Points</title>
+        <xi:include href="../modules/concepts/c-dashboard-customization-tutorial-intro.xml"/>
+        <xi:include href="../modules/concepts/c-dashboard-customization-tutorial-json.xml"/>
+        <xi:include href="../modules/tasks/t-how_to_upload_dashboard_customizations.xml"/>
+        <xi:include href="../modules/concepts/c-dashboard-customization-tutorial-types_of_pages.xml"/>        
+        <xi:include href="../modules/concepts/c-dashboard-customization-tutorial-list_pages.xml"/>
+        <xi:include href="../modules/concepts/c-dashboard-customization-tutorial-profile_pages.xml"/>
+    </chapter>
+    
+    <chapter xml:id="c-dashboard-customization-reference">
+        <title>Dashboard Customization Reference</title>
+        <xi:include href="../modules/reference/r-dashboard-customization-json_reference.xml"/>
+    </chapter>
+    
+    <xi:include href="../modules/reference/r-dashboard-customization-dot_notation_for_fields.xml"/>
+    <xi:include href="../modules/reference/r-dashboard-customization-sample_json.xml"/>
+    
+</book>

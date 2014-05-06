@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+   
+<chapter xml:id="doc-c1825fe2-244f-4cef-8d4e-df180999258b"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>inBloom Architecture </title>
+    
+    <xi:include href="../modules/concepts/c-product_architecture.xml"/>
+
+    <section>
+    <title>Platform Sizing</title>
+    <para><emphasis>Redundancy</emphasis></para>
+    <para>To protect against server failure, each server or component should have some type of secondary server or running component. 
+        For MongoDB, this is done by using replica sets with three members so that all data is stored three times and MongoDB’s failover 
+        mechanism can handle server failures. For other types of servers, this is done by having at least one secondary server and leveraging
+        a load balancer to minimize the end-user impact.</para>
+    <para><emphasis>Scaling</emphasis></para>
+    <para>Scaling of front-end servers (API, Dashboard, Portal) is done by adding additional application instances behind the load balancers.
+        Details to each specific front-end application is covered within each application’s section. 
+        Scaling of the database servers is accomplished by adding shards. Each shard is a MongoDB replica set of three servers.</para>
+    <para><emphasis>Scaling and Sizing Variables</emphasis></para>
+    <itemizedlist>
+        <listitem>
+            <para>Number of students and quantity of data per student</para>
+            <itemizedlist>
+                <listitem><para>Supporting more students or more data per student requires scaling the &PRODUCTABBR; database to hold more data. 
+                    The &PRODUCTABBR; database is sized to allow holding all indexes and 10% of data in memory. This is so most database queries are not disk I/O bound.</para>
+                </listitem>
+                <listitem><para>Supporting more years of historical data requires scaling the &PRODUCTABBR; database as described above.</para>
+                </listitem>
+            </itemizedlist>
+        </listitem>
+        <listitem>
+            <para>
+                End-User Driven Load
+            </para>
+            <itemizedlist>
+                <listitem><para>Supporting more API, Dashboard, or Portal load requires adding servers and might also
+                            require adding more &PRODUCTABBR; database shards. This is primarily expected to
+                            be supported by scaling the API layer, and with that the number of &PRODUCTABBR;
+                            database shards is driven by memory requirements more than API load. As
+                            a result, more &PRODUCTABBR; database shards are not always needed.</para></listitem>
+            </itemizedlist>
+        </listitem>
+    </itemizedlist>
+    <para><emphasis>Sizing</emphasis></para>
+    <para>The Environment Specification document provides configuration details for each type of
+            server. This is a summary of those details. Estimates for data store infrastructure are
+            based on use of Amazon m2.4xlarge size instances or the equivalent hardware. Use of
+            differing hardware specifications results in different shard counts for the
+            data store.</para>
+    <table xml:id="table-cfb70e2a-2375-4710-94b2-522ccfa72e20">
+        <title></title>
+        <tgroup cols="4">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <colspec colname="thirdCol" colwidth="2*"/>
+            <colspec colname="forthCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>Server Type</entry>
+                    <entry>Minimal with Redundancy</entry>
+                    <entry>5,000,000 Students with 4 Years Data</entry>
+                    <entry>Additional 1,000,000 Students with 4 Years Data</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>Portal</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 Tomcat</para></listitem>
+                        <listitem><para>2 MySQL</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>3 Tomcat</para></listitem>
+                        <listitem><para>2 MySQL</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>0.25 Tomcat</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+                <row>
+                    <entry>Dashboard</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 Tomcat</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>3 Tomcat</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>0.25 Tomcat</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+                <row>
+                    <entry>Data Browser</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 Ruby/Rails</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 Ruby/Rails</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>Not Applicable</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+                <row>
+                    <entry>Admin</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 Ruby/Rails</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 Ruby/Rails</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>Not Applicable</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+                <row>
+                    <entry>API</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 Tomcat</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>7 Tomcat</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>0.5 Tomcat</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+                <row>
+                    <entry>Data store</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 MongoDB Shards (9 servers)</para></listitem>
+                        <listitem><para>3 Mongo Config</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>23 MongoDB Shards (69 servers)</para></listitem>
+                        <listitem><para>3 Mongo Config</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>4-5 MongoDB Shards (12-15 servers)</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+                <row>
+                    <entry>IDP</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 SimpleIDP</para></listitem>
+                        <listitem><para>2 OpenLDAP</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 SimpleIDP</para></listitem>
+                        <listitem><para>2 OpenLDAP</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>Not Applicable</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+                <row>
+                    <entry>Ingestion</entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 LandingZones</para></listitem>
+                        <listitem><para>2 GlusterFS</para></listitem>
+                        <listitem><para>2 ActiveMQ</para></listitem>
+                        <listitem><para>2 Ingestion</para></listitem>
+                        <listitem><para>1 MongoDB shard (3 servers)</para></listitem>
+                        <listitem><para>3 Mongo Config</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>2 LandingZones</para></listitem>
+                        <listitem><para>2 GlusterFS</para></listitem>
+                        <listitem><para>2 ActiveMQ</para></listitem>
+                        <listitem><para>7 Ingestion</para></listitem>
+                        <listitem><para>1 MongoDB shard (3 servers)</para></listitem>
+                        <listitem><para>3 Mongo Config</para></listitem>
+                    </itemizedlist></entry>
+                    <entry><itemizedlist>
+                        <listitem><para>1 Ingestion</para></listitem>
+                    </itemizedlist></entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </table>
+    
+    </section>    
+</chapter>
+
+        

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-ac3b1d3f-8545-4010-b16a-ac2dfc03f2e9"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>On-boarding Districts </title>
+    
+    <para>
+        On-boarding is the process of setting up your district to 
+        use &PRODUCTABBR;. The on-boarding process involves setting 
+        up user accounts, ingesting data for your district into
+        the &PRODUCTABBR; Data Store, and (if applicable) enabling 
+        applications to access the data you have ingested.
+    </para>
+    <para>
+        Most districts will on-board using the process described in
+        <xref linkend="doc-bb5b1c66-92a2-4101-a495-ade0e991b585"/>.
+    </para>
+    
+    <section xml:id="doc-bb5b1c66-92a2-4101-a495-ade0e991b585">
+        <title>On-boarding With Bulk Ingestion</title>
+        <para>
+            Use the following steps for on-boarding with bulk ingestion:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    &OPERATORROLE; creates an SEA Administrator using 
+                    the Administrative Account Management Tool. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    SEA Administrator creates a Realm Administrator and 
+                    an Ingestion User using the Manage Administrator 
+                    Accounts system tool. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ingestion User prepares files for ingestion. See 
+                    the &COMPANYABBR; data ingestion guide, available 
+                    for download from the
+                    <link xlink:href="&DEVWEBSITE;">&DEVWEBSITE;</link>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ingestion User logs into &COMPANYABBR; and creates a 
+                    landing zone. See
+                    <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ingestion User ingests the data into the &PRODUCTABBR; 
+                    Data Store. See the directions in the email you receive 
+                    after creating a landing zone.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Realm Administrator creates a realm. See 
+                    <xref linkend="doc-c5b7a5c9-68b2-47a8-9b05-7de98af76288"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    SEA Administrator creates LEA Administrator in the 
+                    Local Level Education Agency. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    LEA administrator approves Data Browser application, 
+                    or a third party application created for the district, 
+                    to access data. See 
+                    <xref linkend="doc-52300d92-835c-474f-899d-fe5e5bd7367b"/>.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            Once this process is complete, any staff included in the 
+            ingestion data that have an IT Administrator role can log 
+            into the system and make API calls through any approved
+            application.
+        </para>
+    </section>  
+    
+    <section xml:id="doc-7d98de2e-3f28-4cc8-8179-7815f0bb9119">
+        <title>On-boarding SIF Districts</title>
+        <para>
+            Districts that use SIF data also on-boarding using bulk 
+            ingestion. However, SIF data must be converted into an Ed-Fi 
+            compliant format before it can be ingested to the
+            &PRODUCTABBR; Data Store. Districts that use SIF data should 
+            work with 
+            <link xlink:show="new" xlink:href="http://www.cpsiltd.com">CPSI</link>
+            to format and ingest their data.
+        </para>
+        <para>
+            Use the following steps to on-board a district that uses SIF 
+            data:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Contact 
+                    <link xlink:show="new" xlink:href="http://www.cpsiltd.com">CPSI</link>
+                    for assistance in formatting and ingesting SIF data.
+                </para>
+            </step>
+            <step>
+                <para>
+                    &OPERATORROLE; creates an SEA Administrator using the 
+                    Manage Administrator Accounts system tool. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para></step>
+            <step>
+                <para>
+                    SEA Administrator creates an Ingestion User account 
+                    for CPSI using the Administrative Account Management 
+                    Tool. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+                <note>
+                    <para>
+                        The SEA Administrator should work with CPSI to make 
+                        sure the account has the proper credentials.
+                    </para>
+                </note>
+            </step>
+            <step>
+                <para>
+                    SEA Administrator creates a Realm Administrator using 
+                    the Manage Administrator Accounts system tool. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    SEA Administrator creates a landing zone and shares 
+                    the landing zone information with CPSI. See 
+                    <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>.
+                </para>
+                <note>
+                   <para>
+                       The SEA Administrator should work with CPSI to ensure
+                       that the landing zone is created properly for CPSI 
+                       use during ingestion.
+                   </para>
+                </note>
+            </step>
+            <step>
+                <para>
+                    CPSI uses the Ingestion User account and the landing 
+                    zone to ingest data into the &PRODUCTABBR; Data Store 
+                    on behalf of the SIF district.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Realm Administrator creates a realm. See 
+                    <xref linkend="doc-c5b7a5c9-68b2-47a8-9b05-7de98af76288"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    SEA Administrator creates LEA Administrator in the 
+                    Local Level Education Agency. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    LEA administrator approves Data Browser application, 
+                    or a third party application created for the district,
+                    to access data. See 
+                    <xref linkend="doc-52300d92-835c-474f-899d-fe5e5bd7367b"/>.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            Once this process is complete, any staff included in the 
+            ingestion data that have an IT Administrator role can log 
+            into the system and make API calls through any approved
+            application.
+        </para>
+    </section>
+    
+    <section xml:id="doc-9baa2956-b845-4795-91ba-e47cbddf9669">
+        <title>On-boarding With Minimal Ingestion</title>
+        <para>
+            On-boarding with minimal ingestion is an atypical process 
+            used to resolve issues a district may have when trying to 
+            on-board via bulk ingestion. Do not follow this process
+            unless you are sure that it applies to your district.
+        </para>
+        <para>
+            Use the following steps to on-board with minimal ingestion:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    &OPERATORROLE; creates an SEA Administrator using the 
+                    Administrative Account Management Tool. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    SEA Administrator creates a Realm Administrator and an 
+                    Ingestion User using the Manage Administrator Accounts 
+                    system tool. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ingestion User modifies provided XML files to match the 
+                    setup for their district. See 
+                    <xref linkend="doc-3dd56370-9d60-45f4-baca-a58afa71fbf2"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ingestion User updates the MainControlFile.ctl file. See 
+                    <xref linkend="doc-3dd56370-9d60-45f4-baca-a58afa71fbf2"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ingestion User logs into &PRODUCTABBR; and creates a 
+                    landing zone. See
+                    <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ingestion User ingests the data into the &PRODUCTABBR; 
+                    Data Store. See the directions in the email you receive 
+                    after creating a landing zone.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Realm Administrator creates a realm. See 
+                    <xref linkend="doc-c5b7a5c9-68b2-47a8-9b05-7de98af76288"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    SEA Administrator creates LEA Administrator in the 
+                    Local Level Education Agency. See 
+                    <xref linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    LEA administrator approves Data Browser application, 
+                    or a third party application created for the district, 
+                    to access data. See 
+                    <xref linkend="doc-52300d92-835c-474f-899d-fe5e5bd7367b"/>.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            Once this process is complete, any staff included in the 
+            ingestion data that have an IT Administrator role can log 
+            into the system and make API calls through any approved
+            application.
+        </para>
+     <section xml:id="doc-3dd56370-9d60-45f4-baca-a58afa71fbf2">
+         <title>Template File Set Up for On-boarding With Minimal Ingestion</title>
+         <para>
+             Before data can be ingested, the Ingestion User must download 
+             and set up the provided template files. The template files 
+             include the following:
+         </para>
+         <itemizedlist>
+             <listitem>
+                 <para>
+                     InterchangeEducationOrganization.xml - used to set up 
+                     the hierarchy of education organizations, including the
+                     state and the local systems (district, county, etc.)
+                     that fall under the state.
+                 </para>
+             </listitem>
+             <listitem>
+                 <para>
+                     InterchangeStaffAssociation.xml - used to create the 
+                     Staff entity for a local level education organization
+                 </para>
+             </listitem>
+             <listitem>
+                 <para>
+                     MainControlFile.ctl - defines the set of inbound XML 
+                     data to be ingested 
+                 </para>
+             </listitem>
+         </itemizedlist>
+        <para>
+            Use the following steps to set up the template files:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Get the template files from your &OPERATORROLE;.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Open InterchangeEducationOrganization.xml and replace 
+                    the data in the file with the data specific to your 
+                    organization. For example, you would replace
+                    <code>_ID of State Level Education Organization_</code>
+                    with the ID for your state.
+                </para>
+                <note>
+                    <para>
+                        The data you provide in the XML file must exactly 
+                        match any data for your state and district that 
+                        is already contained in the data store. If there 
+                        are conflicts, the data in the XML file will not 
+                        ingest properly.
+                    </para>
+                </note>
+                <para>
+                    When you have updated the file be sure to save all 
+                    of your changes.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Open InterchangeStaffAssociation.xml and replace the 
+                    data in the file with the data specific to the staff 
+                    in your district.
+                </para>
+                <note>
+                    <para>
+                        As previously stated, the data you provide in the 
+                        XML file must exactly match any data for your 
+                        district that is already contained in the aata store.
+                    </para>
+                </note>
+                <para>
+                    When you have finished updating the file, be sure to 
+                    save all your changes.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Create a zip file that contains the updated
+                    InterchangeEducationOrganization.xml,  
+                    InterchangeStaffAssociation.xml, and
+                    MainControlFile.ctl files. For proper ingestion, 
+                    this zip file must not contain any folders and 
+                    should only contain those three files.
+                </para>
+            </step>
+        </procedure>
+        <note>
+            <para>
+                You can download and use the 
+                <link xlink:href="https://github.com/inbloom/ingestion-validation" xlink:show="new">Ingestion Validation Tool</link>
+                to validate your zip file.
+            </para>
+        </note>
+        </section>
+    </section>
+    
+</chapter>

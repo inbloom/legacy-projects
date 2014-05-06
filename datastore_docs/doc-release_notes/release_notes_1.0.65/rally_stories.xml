@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_limitations">
+  <title>Known Limitations</title>
+  <para>
+                Known limitations in the Alpha.1 release can be summarized as follows:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+                        Currently the Sandbox landing zones enforce a size limit of 1 MB for 
+                        ingestion archive files, corresponding to approximately 30-50MB 
+                        of uncompressed XML data, or about 30,000-50,000 records. 
+                        In Alpha.1, ingesting a data set of this size should take less than 5
+                        minutes.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Some Ed-Fi entities are not yet supported and, thus,
+                        not consumable through data ingestion. For additional 
+                        information, see the
+                        <citetitle>SLC Data Ingestion White Paper</citetitle>
+                        from
+                        <link xlink:href="http://dev.slcedu.org/documentation">dev.slcedu.org/documentation</link>.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Bulk data extracts are not yet supported.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Not all ingestible data is displayed in SLC 
+                        educator dashboards, including discipline incidents, 
+                        full attendance records, current courses, and grades.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Leader roles do not yet provide aggregate view of data.
+                    </para>
+    </listitem>
+  </itemizedlist>
+  <para>
+                The following are the user stories currently used to track known
+                limitations in the Alpha.1 release. Click a linked story ID and
+                title in the list to view for more details:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="US2970">US2970: CONTINUED ALPHA ENHANCEMENTS</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2792">US2792: Epic: Ingestion Progress</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US360">US360: Measure ingestion performance</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2966">US2966: Custom Authorization Model</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="US2970">
+    <title>US2970: CONTINUED ALPHA ENHANCEMENTS</title>
+    <para/>
+  </section>
+  <section xml:id="US2792">
+    <title>US2792: Epic: Ingestion Progress</title>
+    <para>During bulk data ingestion, there is no progress indication for an ingestion job until the job is complete.The uploaded .zip file is immediately removed from the user's landing zone and the job log file(s) do not appear in its place until the job is complete.</para>
+  </section>
+  <section xml:id="US360">
+    <title>US360: Measure ingestion performance</title>
+    <para/>
+  </section>
+  <section xml:id="US2966">
+    <title>US2966: Custom Authorization Model</title>
+    <para/>
+  </section>
+</section>

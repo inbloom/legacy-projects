@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-bf953f34-4820-4465-9fc7-6376d34d4865"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&SDK; Overview</title> 
+    
+    <para>
+        &COMPANYABBR; provides the &SDK; as a convenient option for 
+        Java programmers when developing applications that use the &RESTAPI;. 
+        This documentation covers setting up and using the Java SDK.
+    </para>
+    <para>
+        Before you can access the SDK, you'll need to do the following:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Have a developer account with the &COMPANYABBR; as
+                described in
+                <xref linkend="doc-e6a4907e-ba37-4a47-ae37-d74d64aec528"/>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Register your application so that you can use in your
+                development environment. See
+                <xref linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"/>
+                for application registration in a Sandbox development 
+                environment, and see
+                <xref linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/>
+                for Production application registration.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        Note the following values configured or assigned during the application
+        registration process. You'll need these when using the SDK:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <varname>apiURL</varname> - 
+                The base URL of where the &RESTAPI; is hosted. The URLs of all 
+                REST API requests will be relative to this URL. This will be in
+                the form <filename>$BASE_URL/api/rest/v1/</filename>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <varname>clientId</varname> -
+                A unique ID of the client assigned during application 
+                registration. 
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <varname>clientSecret</varname> -
+                A cryptographically secure secret shared between the client and
+                the REST API service, assigned alongside the client ID during 
+                application registration. 
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <varname>callbackURL</varname> -
+                If you're developing a web application, this is the URL where
+                you're currently hosting the application. During development,
+                this is likely a persistent test server location that's
+                running your application.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <note>
+        <title>Java Version Required for the SDK</title>
+        <para>
+            The SDK requires Java version 6 or later. 
+            The library has been created and tested with JDK 6.
+        </para>
+    </note>
+    
+</chapter>

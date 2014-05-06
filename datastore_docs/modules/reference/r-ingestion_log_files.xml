@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion_log_files"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Log Files</title>
+    
+    <para>
+        Ingestion job log files include the following identifiers in their 
+        filenames:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The job ID ("jobId") is a unique identifier assigned to each 
+                new job by the ingestion pipeline, and it contains the name 
+                of the ingested file and an epoch time string.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The resource ID ("resourceId") refers to the name of a 
+                specific file within with a job.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The table below summarizes the types of log files, when they are 
+        created, and how they are formatted:
+    </para>
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="3*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>File Naming Convention</para>
+                    </entry>
+                    <entry>
+                        <para>When Created</para>
+                    </entry>
+                    <entry>
+                        <para>Content Format</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para><filename>job-&lt;jobId&gt;.log</filename></para>
+                    </entry>
+                    <entry>
+                        <para>Once for every job</para>
+                    </entry>
+                    <entry>
+                        <programlisting><![CDATA[INFO <jobId information>
+INFO <jobId information>
+INFO <per resource persisted record count>
+INFO <configuration parameters>
+INFO <overall success or failure>
+INFO <total records processed>]]></programlisting>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para><filename>job_warn-&lt;jobId&gt;.log</filename></para>
+                    </entry>
+                    <entry>
+                        <para>Job-level (non-resource specific) warnings present</para>
+                    </entry>
+                    <entry>
+                        <programlisting><![CDATA[WARN <warning detail>]]></programlisting>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para><filename>job_error-&lt;jobId&gt;.log</filename></para>
+                    </entry>
+                    <entry>
+                        <para>Job-level (non-resource specific) errors present</para>
+                    </entry>
+                    <entry>
+                        <programlisting><![CDATA[ERROR <error detail>]]></programlisting>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para><filename>warn.&lt;resourceId&gt;-&lt;jobId&gt;.log</filename></para>
+                    </entry>
+                    <entry>
+                        <para>Resource-level warnings present</para>
+                    </entry>
+                    <entry>
+                        <programlisting><![CDATA[WARN <warning detail>]]></programlisting>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para><filename>error.&lt;resourceId&gt;-&lt;jobId&gt;.log</filename></para>
+                    </entry>
+                    <entry>
+                        <para>Resource-level errors present</para>
+                    </entry>
+                    <entry>
+                        <programlisting><![CDATA[ERROR <error detail>]]></programlisting>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+</section>

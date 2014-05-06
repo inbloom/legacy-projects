@@ -1,0 +1,29 @@
+<p>
+    When an inner reference is not resolved, the resolution of an outer 
+    reference should fail, but it doesn't. This issue can potentially 
+    lead to references that are resolved incorrectly when they should,
+    instead, fail. This could affect the following entities:
+</p>
+<ul>
+    <li>
+        grade
+    </li>
+    <li>
+        schoolSessionAssociation
+    </li>
+    <li>
+        section
+    </li>
+    <li>
+        staffCohortAssociation
+    </li>
+    <li>
+        studentCohortAssociation
+    </li>
+    <li>
+        studentCompetency
+    </li>
+    <li>
+        studentSectionGradebookEntry
+    </li>
+</ul>

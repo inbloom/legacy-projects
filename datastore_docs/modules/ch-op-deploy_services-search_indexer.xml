@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-1d5d3261-4e52-4684-9df1-d111fd19ecce"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Services: Search Indexer</title>
+    
+    <section xml:id="doc-1d6fc4f3-f574-4e3c-afb0-3d03d7d40fed">
+        <title>What You Need to Know Before Deployment</title>
+        <para>
+            The Search Indexer is a Java application that transfers data from the Mongo database
+            into the elasticsearch database. The search URIs in the REST API query data from this
+            elasticsearch database. The correct functionality of these URIs is dependant on the
+            Search Indexer.</para>
+    </section>
+    
+    <section xml:id="doc-86910071-48dc-4e7d-98c6-48a0a08f7ffb">
+        <title>Installation</title>
+       <procedure>
+           <step>
+               <para>
+                   Copy <filename>search_indexer.tar.gz</filename> 
+                   and <filename>script
+                        local_search_indexer.sh</filename> 
+                   to your installation directory.
+               </para>
+           </step>
+           <step>
+               <para>Modify the following variables from the script as needed for your environment:</para>
+               <programlisting><![CDATA[
+INDEXER_CONFIG="/etc/sysconfig/search-indexer"   # location of external configuration file
+
+        DEFAULT_CHECK_SLI_CONF="$ROOT/../config/properties/sli.properties"
+        DEFAULT_CHECK_KEYSTORE="$ROOT/../data-access/dal/keyStore/ciKeyStore.jks"
+        DEFAULT_SEARCH_INDEXER_JAR="$ROOT/target/search-indexer-1.0-SNAPSHOT.jar"
+        DEFAULT_MAX_MEMORY="1024m"
+        DEFAULT_MIN_MEMORY="1024m"
+        DEFAULT_REMOTE_COMMAND_PORT=10024
+
+        SEARCH_INDEXER_OPT=""
+        SEARCH_INDEXER_COMMAND_OPTIONS=""
+
+        CHECK_SLI_CONF=0
+        CHECK_KEYSTORE=0
+        CHECK_SEARCH_INDEXER_TAR=0
+
+        RUN_EXTRACT=0
+        RUN_HELP=0
+        RUN_STOP=0
+        RUN_START=0
+
+        REMOTE_COMMAND_PORT=0
+
+        SLI_CONF="sli.conf"
+        SLI_ENCRYPTION_KEYSTORE="sli.encryption.keyStore"
+
+        SEARCH_INDEXER_LOG="search-indexer.log"               
+               ]]></programlisting>
+               <note><para>The DAL encryption key which is utilized by Ingestion and the API
+                        platform components, which is commonly referred to as ciKeyStore.jks in the
+                        platform development environments, must be made available to the
+                        search-indexer processes as the search indexer leverges the DAL to retrieve
+                        information for indexing in elasticsearch. </para></note>
+           </step>
+           
+       </procedure> 
+    </section>
+    
+    <section xml:id="doc-3e52a648-3671-4977-8a14-f2777cd7d57c">
+        <title>Configuration</title>
+        <para>The search indexer requires some new properties in the sli.properties file. Properties
+            that have the default value provided are not required in sli.properties.</para>
+        <para>
+            <table frame="all" xml:id="table-39cb8a48-4789-4b9b-b148-6226wfe8c99b">
+                <title>Schema Variables</title>
+                <tgroup cols="3">
+                    <colspec colname="c1" colnum="1" colwidth="1.81*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1*"/>
+                    <colspec colname="newCol3" colnum="3" colwidth="3.54*"/>
+                    <thead>
+                        <row>
+                            <entry>Property</entry>
+                            <entry>Default</entry>
+                            <entry>Description</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.mongodb.host
+                                </para> 
+                            </entry>
+                            <entry>
+                                <para>localhost:27017</para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Hostname and TCP Port for MongoDB data
+                                    store access which is utilized for data 
+                                    extraction from the DAL which is then 
+                                    imported to elasticsearch 
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.mongodb.database
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Data store default database name
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.url
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>This value would be the Internal load
+                                    balancer, which spreads requests across the elasticsearch
+                                    cluster</para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.username
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Search engine cluster username
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.password
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Search engine cluster password
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.encryption
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Set to true when search engine cluster 
+                                    username and password are encrypted 
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.embedded
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>false</para>
+                            </entry>
+                            <entry>
+                                <para>This setting should always be set to
+                                    false in a production environment.  It is intended to only be
+                                    used in conjunction with localized development testing.</para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.extract. \
+                                    runOnStartup 
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Trigger extract on search-indexer startup. 
+                                    If set to true, the application drops the 
+                                    existing indexes and re-indexes the whole 
+                                    data set. It is recommended to set to 
+                                    true for only one node for the first 
+                                    startup.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.extract. \
+                                    schedule
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Cron-like syntax. Schedule on which the 
+                                    node runs reconcile jobs. Each node must 
+                                    have its own non-overlapping schedule, or
+                                    only one scheduler should be set to 
+                                    periodic extracts. <emphasis>Example:
+                                    node 1 runs every Sunday, the other ones 
+                                    do not run at all because the year 2011 
+                                    is in the past</emphasis>:
+                                </para>
+                                <programlisting><![CDATA[
+search-indexer1:  sli.search.indexer.extract.schedule = 0 0 0 ? * SUN
+search-indexer2:  sli.search.indexer.extract.schedule = 0 0 1 1 * *
+search-indexer3:  sli.search.indexer.extract.schedule = 0 0 2 1 * *
+search-indexer4:  sli.search.indexer.extract.schedule = 0 0 3 1 * *
+                                    ]]></programlisting>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.broker.uri
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    ActiveMQ broker URI -
+                                    failover:(tcp://host1:61616,tcp://host2:61616,tcp://..). 
+                                    This is utilized for retrieving work items 
+                                    form SARJE that are stored in ActiveMQ. 
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.sarje. \
+                                    sub.topic
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    /topic/oplog_subscribe
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Topic for sarje oplogagents where they 
+                                    expect to receive subscriptions
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.sarje. \
+                                    sub.req.queue
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    /queue/subscription/pol
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Queue for sarje oplog agents where they 
+                                    send get subscription requests 
+                                    (to be replied to subscription topic)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.queue.name
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    search
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Name for the dedicated queue to receive 
+                                    oplog events that the search app is 
+                                    subscribed to.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.log.level
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Log level for the app
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.log.path
+                                </para>
+                            </entry>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Directory for the log file
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.config
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    index-config.json
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Config file that contains index information
+                                    and mappings
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.retryCount
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    2
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Number of retries indexer makes in case of 
+                                    a recoverable error from indexing with 
+                                    the elasticsearch
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer. \
+                                    retryWaitMillis
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    2000
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Number of milliseconds between retries
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.dir.extract
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    data/tmp
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Directory where temporary files are placed
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.dir.inbox
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    data/inbox
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Drop off directory
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.loader.thread. \
+                                    number
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    5
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Number of threads for loading extract files
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.search. \
+                                    connTimeout
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    5000
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Connection timeout on search engine 
+                                    connection
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.search. \
+                                    readTimeout
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    10000
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Read timeout on search engine connection
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer. \
+                                    aggregatePeriodInMillis
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    500
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Time to aggregate messages in the queue 
+                                    before sending out 
+                                    (<varname>sli.search.indexer.bulkSize</varname>
+                                    is max message allowed in memory)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer.bulkSize
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    5000
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Max messages in memory to batch before 
+                                    sending out
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer. \
+                                    indexerWorkerPoolSize
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    4
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Number of threads that are communicating 
+                                    with search cluster
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer. \
+                                    service.port
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    10024
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Port used for ad-hoc commands 
+                                    (extract, extract &lt;tenantId&gt;,
+                                    reconcile, reconcile &lt;tenantId&gt;...)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.eventbus.mongodb. \
+                                    database
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    eventbus
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Database name for sarje-specific 
+                                    collections
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.search.indexer. \
+                                    sarje.sub.jobsCollection
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    jobs
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Database collection that stores sarje 
+                                    subscriptions
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </para>
+        <para>Below is an example of the required parameters for the
+            search-indexer process to run.  Please note, that these parameters must be merged with
+            the general sli.properties parameters, such as sli.search.* parameters, which are used
+            by the application and are environment specific. </para>
+        <programlisting><![CDATA[
+sli.search.indexer.broker.uri = failover:(tcp://host1:61616,tcp://host2:61616,tcp://..) 
+sli.search.indexer.queue.name = search
+sli.search.indexer.extract.runOnStartup = false
+sli.search.indexer.extract.schedule = 0 0 0 ? * SUN
+sli.search.indexer.log.level = INFO
+sli.search.indexer.log.path = /opt/search-indexer/logs
+sli.search.indexer.dir.inbox = /opt/search-indexer/data/inbox
+sli.search.indexer.dir.extract = /opt/search-indexer/data/tmp
+sli.search.indexer.sarje.sub.topic = /topic/oplog_subscribe
+sli.search.indexer.sarje.sub.req.queue = /queue/subscription/poll         
+]]></programlisting>    
+    </section>
+    <section>
+        <title>Encryption for ElasticSearch Username and Password</title>
+        <para>In order to encrypt the values for sli.search.username and
+            sli.search.password values, you need to utilize the encryption tool, and execute the
+            respective commands below to generate the values. </para>
+        <para><programlisting><![CDATA[
+java -jar encryption-tool-1.0-SNAPSHOT.jar <dal_encryption_keystore_location> <dal_keystore_password> <dal_key_alias> <dal_key_password> <username>
+java -jar encryption-tool-1.0-SNAPSHOT.jar <dal_encryption_keystore_location> <dal_keystore_password> <dal_key_alias> <dal_key_password> <password>          
+               ]]></programlisting></para>
+    </section>
+    <section xml:id="doc-30977213-f97e-4f0d-b101-3863bce1b412">
+        <title>Running</title>
+        <para>To start the indexer:</para>
+        <programlisting><![CDATA[
+$ sh scripts/local_search_indexer.sh start          
+               ]]></programlisting>
+        <para>To stop the indexer:</para>
+        <programlisting><![CDATA[
+$ sh scripts/local_search_indexer.sh stop               
+               ]]></programlisting>
+    </section>
+    <section xml:id="doc-ebeb9168-ca20-47c5-b3b8-8e4bc68e4d0c">
+        <title>Maintenance and Troubleshooting</title>
+        <section xml:id="doc-3ddafffc-fb7d-4866-a3f8-3d39ea0fa331">
+            <title>Mongo reconnect</title>
+            <para>The search indexer will automatically reconnect if Mongo goes down and restarts, or if connectivity is intermittently lost due to network issues. </para>
+        </section>
+        <section xml:id="doc-0aa1de34-8d6e-4400-9f1c-e6fac18d61ca">
+            <title>ActiveMQ failover and reconnect</title>
+            <para>The search indexer supports ActiveMQ failover and reconnect scenarios. Supply the
+                proper value in the sli.search.indexer.broker.uri configuration parameter. For
+                example: <code>"failover:(tcp://primary:61616,tcp://secondary:61616)"</code></para>
+            <para>Information on failover transport URI for ActiveMQ can be found at <link xlink:href="http://activemq.apache.org/failover-transport-reference.html">http://activemq.apache.org/failover-transport-reference.html</link>. </para>
+        </section>
+        <section xml:id="doc-0a66d3f4-e6a0-42a5-8875-9424fa147000">
+            <title>ElasticSearch troubleshooting</title>
+            <section xml:id="doc-ac9d0cef-416a-4c1a-a0ef-fd27ef5ba603">
+                <title>Stats</title>
+                <para>Stats contains index size information can be used for adjusting the cluster
+                    size. The total size for the cluster should not go over 70% of the available
+                    memory on the machines.</para>
+                <programlisting><![CDATA[
+curl --user name:password -XGET http://localhost:9200/_stats    
+               ]]></programlisting>
+            </section>
+            <section xml:id="doc-ddc44263-0285-4111-83c5-dbf20d06e575">
+                <title>Mappings</title>
+                <para>This displays mappings for all available indexes in the cluster. API depends
+                    on indexes to have the proper mapping for context.schoolId - as not-analyzed
+                    field.</para>
+                <programlisting><![CDATA[
+ curl --user name:password -XGET http://localhost:9200/_mapping   
+               ]]></programlisting>
+            </section>
+            <section xml:id="doc-e8193dbc-1a1a-4ce7-b3a4-bf771d17fbcc">
+                <title>Cluster Health</title>
+                <para>If status is RED for over a period of time, the cluster entered a bad state.
+                    The easiest way to resolve the issue is to stop the nodes, delete the data
+                    directory, start the cluster, and initiate search-indexer extract.</para>
+                <programlisting><![CDATA[
+ curl --user name:password -XGET http://localhost:9200/_cluster/health?pretty=true   
+               ]]></programlisting>
+            </section>
+            <section xml:id="doc-4e0b14c3-a236-41c0-854e-cd91f9202986">
+                <title>Delete</title>
+                <para>This command is to manually delete the index. Indexer's extract <command>tenantId</command> command can also be used to delete the index and re-load it.</para>
+                <programlisting><![CDATA[
+curl --user name:password -XDELETE 'http://localhost:9200/{tenant dbName}/{entity type}'    
+               ]]></programlisting>
+            </section>
+            <section xml:id="doc-a0d8c013-d6cd-4a6a-8c67-0311b3a7244d">
+                <title>Count</title>
+                <para>Returns document count for the tenant for a specific entity type.</para>
+                <programlisting><![CDATA[
+curl --user name:password -XGET 'http://localhost:9200/{tenant dbName}/{entity type}/_count'    
+               ]]></programlisting>
+            </section>
+        </section>
+        <section xml:id="doc-95aa510a-9b38-46d8-9f93-b623ed89f918">
+            <title>Available Commands</title>
+            <para>This is a full list of the <filename>local_search_indexer.sh</filename> script
+                commands. The reconcile and extract commands are used to ensure the primary data
+                store and search data store are in sync and that the API Search functionality runs
+                correctly.</para>
+                <table frame="all">
+                    <title>Search Indexer Commands</title>
+                    <tgroup cols="2">
+                        <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+                        <colspec colname="c2" colnum="2" colwidth="2.0*"/>
+                        <thead>
+                            <row>
+                                <entry>Command</entry>
+                                <entry>Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>reconcile</entry>
+                                <entry><para>Trigger search reconciliation process for all tenants. The process will compare search store and the primary data store and only re-index if there are changes.</para></entry>
+                            </row>
+                            <row>
+                                <entry>reconcile &lt;tenantId></entry>
+                                <entry>Trigger reconcile for a specific tenantId. It is recommended
+                                    to run this command if a SARJE oplog agent for a particular
+                                    Mongo shard has gone down for over 10 minutes.</entry>
+                            </row>
+                            <row>
+                                <entry>extract</entry>
+                                <entry>Trigger full re-indexing. All existing indexes will be
+                                    dropped and full re-indexing from the primary data store will
+                                    take place.</entry>
+                            </row>
+                            <row>
+                                <entry>extract &lt;tenantId> </entry>
+                                <entry>Trigger full re-indexing for a tenant.</entry>
+                            </row>
+                            <row>
+                                <entry>stop</entry>
+                                <entry>Exit search-indexer gracefully after 5 seconds.</entry>
+                            </row>
+                            <row>
+                                <entry>stop n</entry>
+                                <entry>Exit search-indexer gracefully after n seconds.</entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            
+        </section>
+        <section xml:id="doc-8df3ead3-08fb-48cf-ab9d-d0e0395bcf16">
+            <title>Search Indexer Segmentation Faults</title>
+            <para>Some combinations of operating systems and the software stack may cause the search
+                indexer to experience segmentation faults with JDK 1.6._31. Upgrading the JVM for
+                the search indexer to JDK 1.6._45 or later should resolve the issue.</para>
+        </section>
+    </section>
+    
+    
+</chapter>

@@ -1,0 +1,91 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title></title><link rel="stylesheet" type="text/css" href="../css/techpubs.css"><meta name="generator" content="DocBook XSL Stylesheets V1.77.1"><link rel="home" href="index.html" title="API"><link rel="up" href="index.html" title="API"><link rel="prev" href="doc-api-resources.html" title="API Resources"><link rel="next" href="doc-api-live_query_form.html" title="Live API"><script xmlns:d="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" src="../js/live_query_form.js"></script></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:d="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" id="header-branding-block"><div id="header-branding-logo"><img src="../images/inbloom-logo-on-white-100.png"></div><div id="header-doctitle">
+                Developer Documentation
+            </div><div id="header-search"><div id="header-search-entry">
+                    Enter search term
+                </div><div id="header-search-button">
+                    Search
+                </div></div><ul id="menu-top"><li class="selected"><a href="../api/index.html">API</a></li><li><a href="../sdk/index.html">SDK</a></li><li><a href="../data_model/index.html">Data Model</a></li><li><a href="../sandbox/index.html">Sandbox Guide</a></li><li><a href="../security/index.html">Security Guide</a></li></ul></div><div xmlns:d="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" id="menu-left"><ul><li><a href="../api/doc-api-overview.html" target="_top">Overview</a></li><li><a href="../api/doc-api-getting_started.html" target="_top">Getting Started</a></li><li><a href="../api/doc-api-parameters_and_patterns.html" target="_top">Parameters</a><ul><li><a href="../api/doc-api-parameters_and_patterns.html#doc-api-parameters" target="_top">Parameters</a></li><li><a href="../api/doc-api-parameters_and_patterns.html#doc-api-patterns" target="_top">Patterns</a></li></ul></li><li><a href="../api/doc-api-resources.html" target="_top">Resources</a><ul><li><a href="../api/api-resource-data-sample.html" target="_top">students</a></li></ul></li><li><b><a href="../api/doc-api-live_query_form.html" target="_top">Live API</a></b><ul><li style="font-size:smaller"><i>Test your GET requests with live sample data!</i></li></ul></li></ul></div><div class="chapter" id="api-resource-data-sample"><div class="titlepage"><div><div><h1 class="title"></h1></div></div></div><p></p><div id="sample_resource">
+    <div class="resource-title">
+        students
+    </div>
+    <div class="resource-information">
+        <div class="resource-information-col1">
+            <div class="resource-uri">
+                <div class="resource-uri-label">
+                    URI Structure: 
+                </div>
+                <div class="resource-uri-structure">
+                    https://example.com/api/rest/v1.0/students
+                </div>
+            </div>
+            <div class="resource-description">
+                <p>
+                    This entity represents an individual for whom 
+                    instruction, services and/or care are provided in 
+                    an early childhood, elementary or secondary 
+                    educational program under the jurisdiction of a 
+                    school, education agency, or other institution or 
+                    program. A student is a person who has been enrolled 
+                    in a school or other educational institution. 
+                    For more information, see the schema for the 
+                    <a href="data_model-entity-student">Student</a>
+                    resources. For this open ended URI, only current 
+                    and directly associated entities are returned. 
+                    For teachers, this is 
+                    /sections/{IDs}/studentSectionAssociations/students. 
+                    {IDs} represents a list of section IDs to which the 
+                    teacher is currently associated. For staff, 
+                    this is /schools/{IDs}/studentSchoolAssociations/students. 
+                    {IDs} represents a list of the school or education 
+                    organization IDs to which the staff is currently 
+                    associated.
+                </p>
+            </div>
+            <div class="resource-parameters">
+                <div class="resource-parameters-label">
+                    Parameters
+                </div>
+                <div class="resource-parameters-table">
+                    [parameters table here]
+                </div>
+            </div>
+        </div>
+        <div class="resource-information-col2">
+            <div class="resource-methods_and_availability">
+                <p>
+                    <b>Methods</b><br>
+                    GET, POST
+                </p>
+                <p>
+                    <b>Availability</b><br>
+                    Since version 1.0 or before
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="resource-example">
+        <div id="live_query_form-row1">
+            <div id="live_query_form-userrole">
+                Example
+            </div>
+            <div id="live_query_form-apiversion">
+                API Version
+            </div>
+        </div>
+        <div id="live_query_form-row2">
+            Response
+        </div>
+    </div>
+</div></div><div xmlns:d="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" id="footer-branding-block"><div id="footer-branding-logo"><img src="../images/inbloom-logo-on-white-100.png"></div><div id="footer-branding-legal"><p>
+                    Copyright &copy; 2012 inBloom, Inc. and its affiliates.
+                </p><p>
+                    inBloom is a trademark of inBloom, Inc.
+                </p><p>
+                    This document and the information contained herein is provided on an "AS IS" 
+                    basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
+                    LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT 
+                    INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS 
+                    FOR A PARTICULAR PURPOSE.
+                </p></div></div></body></html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+   
+<chapter xml:id="doc-8291ab14-d35f-4e30-a7c5-cea618de1251"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Platform: Messaging Queue</title>
+    
+    <para>
+        Requirements:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Oracle Java JDK 
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Apache AcitveMQ 5.6.0 - http://activemq.apache.org
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+    <section xml:id="doc-c35250d9-e232-4609-b934-38eefc9e24bc">
+        <title>Setting up ActiveMQ</title>
+        <para>Apache ActiveMQ is an open source (Apache 2.0 licensed) message broker which fully
+            implements the Java Message Service 1.1 (JMS). It provides enterprise features like
+            clustering, multiple message stores, and ability to use any database as a JMS
+            persistence provider besides VM, cache, and journal persistence. </para>
+        <para>ActiveMQ is used by the ingestion service and the SARJE Oplog
+            Agent service. It is recommended that each service uses a dedicated ActiveMQ server. The
+            steps below are the same for each ActiveMQ server.</para>
+        <procedure>
+            <step>
+                <para>
+                    Install the Apache ActiveMQ software and create <code>activemq</code> user. 
+                </para>
+                <programlisting><![CDATA[
+wget http://www.eng.lsu.edu/mirrors/apache/activemq/apache-activemq/5.6.0/apache-activemq-5.6.0-bin.tar.gz
+useradd activemq -d /opt/activemq
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Expand tar file to <code>/opt</code>, set permissions for <code>activemq</code> user and symlink <code>activemq</code>.
+                </para>
+                <programlisting><![CDATA[
+tar -xzf apache-activemq-5.6.0-bin.tar.gz -C /opt/
+chown -R activemq: /opt/apache-activemq-5.6.0 
+cd /opt && ln -s apache-activemq-5.6.0 activemq
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Edit and copy provided init script.
+                </para>
+                <programlisting><![CDATA[
+cp /opt/activemq/bin/linux-x86-64/activemq  /etc/init.d/
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Edit the following fields to point to the ActiveMQ home directory locations and 
+                    enable running as the activemq user.
+                </para>
+                <programlisting><![CDATA[
+vi /etc/init.d/activemq
+ACTIVEMQ_HOME="/opt/activemq"
+WRAPPER_CMD="/opt/activemq/bin/linux-x86-64/wrapper"
+WRAPPER_CONF="/opt/activemq/bin/linux-x86-64/wrapper.conf"
+RUN_AS_USER=activemq
+PIDDIR="/tmp"
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Edit <filename>wrapper.conf</filename> to include the current ActiveMQ home directory locations.
+                </para>
+                <programlisting><![CDATA[
+vi /opt/activemq/bin/linux-x86-64/wrapper.conf
+
+set.default.ACTIVEMQ_HOME=/opt/activemq/
+set.default.ACTIVEMQ_BASE=/opt/activemq
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Enable ActiveMQ to start at startup. 
+                </para>
+                <programlisting><![CDATA[
+chkconfig --add activemq
+                    ]]></programlisting>
+            </step>
+            <step>
+                <programlisting><![CDATA[
+set memoryLimit (under destinationPolicy) for queue to 750mb
+set memoryLimit (under destinationPolicy) for topic  to 750mb
+set memoryUsage (under systemUsage) for broker to 1gb 
+ 
+set producerFlowControl (under destinationPolicy) for topic to false
+set producerFlowControl (under destinationPolicy) for queue to false   
+                            ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Enable ActiveMQ broker for stomp protocol. This is used 
+                    by the SARJE Oplog Agent and the 
+                    ProFTPD+publish_file_uploaded.rb script
+                    configured in 
+                    <xref linkend="doc-39d9acf8-5152-4b75-bf26-022d13e46d91"/>
+                </para>
+                <para>Add the following inside of  &lt;transportConnectors> in activemq.xml: </para>
+                <programlisting><![CDATA[
+ <transportConnector name="stomp" uri="stomp://0.0.0.0:61613"/>
+                            ]]></programlisting>
+            </step>
+            <step><para> Ensure that the port configured for stomp (e.g. 61613) is opened to the landing zone servers
+                that will be running ProFTPD.</para></step>
+            <step>
+                <para>
+                    Start ActiveMQ.
+                </para>
+                <programlisting><![CDATA[
+service activemq start
+                    ]]></programlisting>
+            </step>
+        </procedure>
+    </section>
+   
+</chapter>

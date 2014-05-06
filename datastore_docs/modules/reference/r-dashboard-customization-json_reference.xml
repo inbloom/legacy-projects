@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-dashboard-customization-json_reference"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>JSON Reference for the &PRODUCTABBR; Dashboard</title>
+    
+    <para>
+        All available component IDs that can be used in your 
+        &PRODUCTABBR; Dashboard customization appear in a series 
+        of default JSON files installed with the application. These 
+        files are all installed in the same directory. Contact a 
+        member of the IT staff managing your inBloom deployment to 
+        request a copy of the JSON files in that directory. Then, 
+        use those files in combination with this document as a 
+        reference while composing your JSON.
+    </para>
+    <para>
+        The JSON structure for dashboard configuration starts with 
+        a "config" object at the top level. Under the "config" 
+        object is a list of components to include in the 
+        configuration. Each component is one of the following:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                LAYOUT
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                PANEL
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                TAB
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                GRID
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                WIDGET
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                FIELD
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        In the JSON, the component is expressed as a string-value pair 
+        where the string identifies the component, and the value is an 
+        object with its own series of members. Those members are 
+        string-value pairs defined in 
+        <xref linkend="r-dashboard-json-component_object_members"/>.
+        This table refers to additional tables with further details 
+        about each member.
+    </para>
+    
+    <section xml:id="r-dashboard-json-component_object_members">
+        <title>Members in Each Component Object</title>
+        <informaltable xml:id="table-dashboard-json-component_object_members">     
+            <?dbfo keep-together="always"?>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Value Type
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Description
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                id
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The internal ID used by the dashboard. When 
+                                customizing an existing component, this 
+                                should be the same value as the predefined 
+                                dashboard component that you want to customize.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                type
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Component type: LAYOUT, PANEL, TAB, GRID, 
+                                WIDGET, or FIELD
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                data
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                JSON object
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                A JSON object that defines how to retrieve the 
+                                data that "fills" the component.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                items
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Array (optional)
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                For components that act as containers for other 
+                                component, this is an array of components to 
+                                contain. The following type-specific rules 
+                                apply:
+                            </para>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        For LAYOUT, "items" can be of any type
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        For TAB, "items" is a sequence of PANEL 
+                                        components
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        For PANEL, "items" is a sequence of 
+                                        table objects containing the members 
+                                        described in 
+                                        <xref linkend="r-dashboard-json-table_object_members"/>
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+    <section xml:id="r-dashboard-json-table_object_members">
+        <title>Members in Table Objects</title>
+        <informaltable xml:id="table-dashboard-json-table_object_members">
+            <?dbfo keep-together="always"?>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Value Type
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Description
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                name
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The displayed title of the table 
+                                (appears above the table).
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                condition
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                JSON object (optional)
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                A restriction on the values of a single 
+                                field to a given set of values. This is 
+                                specified by a field-value pair as follows:
+                            </para>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        <emphasis>field</emphasis> - 
+                                        (string) Name of the field to restrict
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        <emphasis>value</emphasis> - 
+                                        (array of strings) List of allowed 
+                                        values the field may take on
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                            <para>
+                                There is no filtering on a field other than to 
+                                restrict it to a given set of explicit values. 
+                                Also, there is no filtering across multiple 
+                                fields.
+                            </para>
+                            <para>
+                                See 
+                                <xref linkend="r-dashboard-json-complex_tables_and_conditions"/>
+                                for hints on determining the field-value pairs 
+                                you need for your custom dashboard experience.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                items
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Array (optional)
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                A sequence of the columns of data for the 
+                                table. Columns appear in the order specified. 
+                                Each column is a sequence of column objects 
+                                containing the members described in 
+                                <xref linkend="r-dashboard-json-column_object_members"/>.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+    <section xml:id="r-dashboard-json-complex_tables_and_conditions">
+        <title>Complex Tables and Conditions</title>
+        <para>
+            Each table corresponds to a data query that returns data in a 
+            structured format. Elements within the data can be described 
+            using this structure when the top element is not sufficient 
+            in your customizations. For example, to sort on the value of 
+            "Scale" for a state reading test, your JSON might contain the 
+            following:
+        </para>
+        <programlisting><![CDATA[sortField: 'assessments.StateTest Reading.Scale score']]></programlisting>
+        <para>
+            You can target these elements by knowing how data is logically 
+            identified and organized in the &PRODUCTABBR; data store. For more 
+            about the logical data model, see 
+            <link xlink:href="https://inbloom.org/sites/default/files/docs-developer/data_model.html">&PRODUCTABBR; Data Store Logical Model</link>,
+            part of &PRODUCTABBR; developer documentation.
+        </para>
+    </section>
+    
+    <section xml:id="r-dashboard-json-column_object_members">
+        <title>Members in Column Objects</title>
+        <para>
+            A column of data in a table is described in JSON using a 
+            string-value pair. That pair can represent one of two things:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A single column of data. This object features a 
+                    series of string-value pairs described in 
+                    <xref linkend="r-dashboard-json-single_column_pairs"/>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A column group. This is a logical group of columns 
+                    or other column groups with a single title, which 
+                    appears above that group. The column group object 
+                    contains only two string-value pairs:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            name - A string that represents the title 
+                            of the group
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            items - An array of objects, each of which 
+                            is a column group or a single column
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="r-dashboard-json-single_column_pairs">
+        <title>Pairs in a Single Column</title>
+        <informaltable xml:id="table-dashboard-json-single_column_pairs">
+            <?dbfo keep-together="always"?>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="thirdCol" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Value Type
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Description
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                name
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The name (title) of the column as it 
+                                appears in the table header on the dashboard.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                width
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Integer
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                How wide, in pixels, to make the column.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                field
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The data field to display. This is specific 
+                                to the entity type used in the table, and it 
+                                can be a path like "name.fullName". See
+                                <xref linkend="r-dashboard-json-dot_notation"/>
+                                for a hint on how to construct the correct
+                                dotted notation for the field.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                style
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                CSS that can control the visual look of each 
+                                cell. For valid values, see the styles 
+                                defined in the CSS files that ship with 
+                                &PRODUCTABBR; Dashboard.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                sorter
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The ordering rules to apply to the column 
+                                values. If absent, values are ordred as 
+                                character strings. Valid values are: 
+                                "int", "Enum", "ProxyInt", "LetterGrade", 
+                                "LettersAndNumbers".
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                formatter
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The visualization logic used in rendering 
+                                the table cell. Values are: "CutPoint", 
+                                "CutPointReverse", "PercentBar", "Lozenge", 
+                                "FuelGaugeWithScore", "FuelGauge", "Grade", 
+                                "TearDrop", "restLink", "dataColorBox", 
+                                "searchNameResults".
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                params
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                JSON object
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Parameters that control how the cell is 
+                                rendered or sorted. These parameters are 
+                                specific to each different "sorter" and 
+                                "formatter" specified prior to this 
+                                "params" member. Note that all the 
+                                parameters for the "sorter" and "formatter" 
+                                are combined together into this single 
+                                object. See the following tables for a 
+                                list of the values:
+                            </para>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        <xref linkend="r-dashboard-json-sorter_params"/>
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        <xref linkend="r-dashboard-json-formatter_params"/>
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+        
+        <section xml:id="r-dashboard-json-sorter_params">
+            <title>Members for "params" based on "sorter" value</title>
+            <informaltable xml:id="table-dashboard-json-sorter_params">
+                <?dbfo keep-together="always"?>
+                <tgroup cols="4">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <colspec colname="secondCol" colwidth="1*"/>
+                    <colspec colname="thirdCol" colwidth="1*"/>
+                    <colspec colname="fourthCol" colwidth="2*"/>
+                    <thead>
+                        <row>
+                            <entry>
+                                <para>
+                                    Value of "sorter"
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Value Type
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Description
+                                </para>
+                            </entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    Enum
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    sortEnum
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Array
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Enumerated values to sort on. The order 
+                                    of values in the array controls the 
+                                    order of rows in the table.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    ProxyInt
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    ProxyInt
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Field to sort on.
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </informaltable>
+        </section>
+        
+        <section xml:id="r-dashboard-json-formatter_params">
+            <title>Members for "params" based on "formatter" value</title>
+            <para>
+                For the meaning and use of each of these parameters, see 
+                the definition of the formatter function in the 
+                JavaScript file that ships with &PRODUCTABBR; Dashboard.
+            </para>
+            <informaltable xml:id="table-dashboard-json-formatter_params">
+                <?dbfo keep-together="always"?>
+                <tgroup cols="3">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <colspec colname="secondCol" colwidth="1*"/>
+                    <colspec colname="thirdCol" colwidth="1*"/>
+                    <thead>
+                        <row>
+                            <entry>
+                                <para>
+                                    Value of "formatter"
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Value Type
+                                </para>
+                            </entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    CutPoint
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    cutPoints
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Array
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    CutPointReverse
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    cutPoints
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Array
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry morerows="2">
+                                <para>
+                                    PercentBar
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    reverse
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (various)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    low
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Boolean
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    medium
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Boolean
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry  morerows="6">
+                                <para>
+                                    FuelGauge, FuelGaugeWithScore
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    name
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    valueField
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    fieldName
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    cutPointsArray
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Array
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    perfLevel
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (various)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    perfLevelClass
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (various)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    fuelGaugeWidth
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (various)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry  morerows="1">
+                                <para>
+                                    restLink
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    link
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    level
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    String
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    dataColorBox
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    style
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (various)
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </informaltable>
+        </section>
+        
+    </section>
+    
+</section>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-d6c53933-f760-494d-a52e-e1c68513eda2"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title><phrase>Managing User Roles and Rights</phrase></title>
+    
+    <para> &COMPANYABBR; assigns user roles and rights based on the roles configured in the
+        &PRODUCTABBR;. You should ensure that the roles configured in &PRODUCTABBR; align with those
+        associated with users in the &PRODUCTABBR; Secure Data Service. In Production, those user
+        roles are managed by the identity provider (IDP) for an <glossterm
+            linkend="def-education_organization">education organization</glossterm>. </para>
+    <para> 
+        In &PRODUCTABBR;, you can create, edit, and delete roles and role 
+        groups using the Create Custom Roles system tool. For each role 
+        group, you can assign one or more roles and select one or more 
+        rights to associate with that group. 
+    </para>
+    <para> 
+        &PRODUCTABBR; provides several default role groups. However, if the 
+        roles in your education organization's IDP do not already match the 
+        roles and rights contained in these role groups, you will need to 
+        map new or existing roles from this tool to the roles that IDP. 
+    </para>
+    <para>
+        <xref linkend="figure-admin_tools-role_mapping-default-annotated"/> shows the Create Custom
+        Roles system tool. </para>
+    <figure xml:id="figure-admin_tools-role_mapping-default-annotated">
+        <title>Create Custom Roles Page</title>
+        <mediaobject>
+            <imageobject role="fo">
+                <imagedata align="center"
+                    fileref="../common/images/admin_tools-role_mapping-default.png" width="8.0in"
+                    scalefit="1"/>
+            </imageobject>
+            <imageobject role="html">
+                <imagedata align="center" 
+                    fileref="images/admin_tools-role_mapping-default.png" 
+                    scalefit="1"/>
+            </imageobject>
+        </mediaobject>
+    </figure>
+    <para>
+        The following is a description of the interface features shown:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <emphasis role="bold">Group Name</emphasis> - Name of the role group to which
+                one or more roles belong. Rights are assigned by group, rather than by role, and one
+                or more roles can be managed under a single group. The default groups are Aggregate
+                Viewer, Leader, IT Administrator, and Educator. </para>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis role="bold">Roles</emphasis> – Names of the roles associated with the
+                group. These should map to the roles within your education organization's identity
+                provider. The default roles are Aggregate Viewer, Leader, IT Administrator, Educator
+                and Student. </para>
+            <note>
+                <para>
+                    Each role name must be unique across all role groups. In 
+                    other words, you cannot have two roles with the same name, 
+                    and the same role cannot occur in two or more role groups.
+                </para>
+            </note>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis role="bold">Rights</emphasis> – Permissions that a 
+                group has. Permissions relate to the ability to read and write
+                individual data categories as outlined in 
+                <xref linkend="doc-7eda3ec2-ce9b-472f-9255-7e8206fdcd7a"/>. 
+                You can modify the rights for a role group at any time.
+                Note that staff roles also require a context right. That means 
+                that each staff role should have one or both of the 
+                <varname>STAFF_CONTEXT</varname> and
+                <varname>TEACHER_CONTEXT</varname> rights. 
+                Context rights are not applicable to students and parents.
+            </para>
+        </listitem>
+       <listitem>
+            <para><emphasis role="bold">Rights for Self</emphasis> - This section allows you to assign different rights to a user for Self 
+                than they would have for other entities for which they have context. As an example, a teacher can have access to their own private data
+                without also requiring the permission to see the private data for other teachers they have context with.</para>
+        </listitem>
+        <listitem>
+            <para><emphasis role="bold">Admin Role</emphasis> – This is a role, also referred to
+                as the isAdminRole flag, that should only be applied to groups that administer the
+                system. By default, this role belongs to the IT Administrator.  A user with multiple
+                roles assigned is only considered an administrative user if all of those roles have
+                the <emphasis>isAdminRole</emphasis> marked as true.</para>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis role="bold">Action Buttons</emphasis> – This section displays the edit
+                and delete (trashcan) buttons. When you click <guibutton>Edit</guibutton>, the group
+                becomes editable. When you click <guibutton>Delete</guibutton>, the entire row is
+                deleted. </para>
+            <note>
+                <para>
+                    The default roles and role groups can be edited or deleted.
+                    This allows you to modify their rights or to remove 
+                    them completely from your &PRODUCTABBR; instance.
+                </para>
+            </note>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis role="bold">Add Role Group</emphasis> – This button lets you create a
+                new role group. This allows you to extend the roles beyond the four default roles
+                that come standard in &PRODUCTABBR;. When you click this button, an editable row appears
+                at the bottom of the table. See <xref
+                    linkend="doc-9b8588a6-9672-4762-a1c4-9ed364d68e0b"/> for more details. </para>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis role="bold">Reset to Defaults</emphasis> – This button restores your
+                roles and rights to the &PRODUCTABBR; default roles and rights. </para>
+        </listitem>
+    </itemizedlist>
+    
+    <section xml:id="doc-9b8588a6-9672-4762-a1c4-9ed364d68e0b">
+        <title>Adding a New Role Group</title>
+        <para>
+            If you want to extend the types of roles beyond &PRODUCTABBR;'s 
+            default roles, you must create a new role group.
+        </para>
+        <para>
+            To add a new role group:
+        </para>
+        <procedure>
+            <step>
+                <para>Log in to &PRODUCTABBR;.</para>
+                <substeps>
+                    <step><para>If you are logging into a Sandbox, click <guibutton>Administer my Sandbox</guibutton>.</para></step>
+                </substeps>
+            </step>
+            <step>
+                <para>Click <guilabel>Admin</guilabel>.</para>
+            </step>
+            <step>
+                <para>Click <guilabel>Create Custom Roles</guilabel> under System Tools.</para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Add Role Group</guibutton> at the bottom 
+                    of the page. An editable row appears at the bottom of 
+                    the table.
+                </para>
+                <figure xml:id="figure-admin_tools-role_mapping-edit_mode">
+                    <title>An Editable Row for a New Role Group<inlinemediaobject>
+                            <imageobject>
+                                <imagedata/>
+                            </imageobject>
+                        </inlinemediaobject><inlinemediaobject>
+                            <imageobject>
+                                <imagedata
+                                    fileref="../common/images/Updated%20Figure%209%20An%20Example%20of%20a%20New%20Role%20Group.png"
+                                />
+                            </imageobject>
+                        </inlinemediaobject></title>
+                    <mediaobject>
+                        <imageobject role="fo"/>
+                        <imageobject role="html">
+                            <imagedata align="center" 
+                                fileref="images/admin_tools-role_mapping-edit_mode.png" 
+                                scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+            <step>
+                <para>
+                    Enter the name of the group. The role group should have 
+                    a logical name for the roles within the group. 
+                    For example, <guilabel>School Board Personnel</guilabel>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Enter a name for the role that you want to add for the 
+                    group. When you are satisfied with the name, click 
+                    <guibutton>Add</guibutton>.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Once added, the role will appear below the role 
+                            name input. You can click 
+                            <guibutton>X</guibutton> to delete the role.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            You can add multiple roles for a single role group. 
+                            For example, <guilabel>Superintendent</guilabel> 
+                            and <guilabel>School Board Member</guilabel>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>
+                    Select a right to give to the role group. 
+                    Click <guibutton>Add Right</guibutton>. 
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Once added, the right will appear below the 
+                            <guilabel>Right Name</guilabel> drop-down menu. 
+                            You can click <guibutton>X</guibutton> to 
+                            remove the right.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            You can grant multiple rights to a single role 
+                            group.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <figure xml:id="figure-admin_tools-role_mapping-schoolboard_example">
+                    <title>An Example of a New Role Group<inlinemediaobject>
+                            <imageobject>
+                                <imagedata/>
+                            </imageobject>
+                        </inlinemediaobject><inlinemediaobject>
+                            <imageobject>
+                                <imagedata
+                                    fileref="../common/images/Updated%20Figure%209%20An%20Example%20of%20a%20New%20Role%20Group%20v2.png"
+                                />
+                            </imageobject>
+                        </inlinemediaobject></title>
+                    <mediaobject>
+                        <imageobject role="fo"/>
+                        <imageobject role="html">
+                            <imagedata align="center" 
+                                fileref="images/admin_tools-role_mapping-schoolboard_example.png" 
+                                scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+            <step><para>If you want the members of the group to have administrative rights, check the <guilabel>Admin
+                        Role</guilabel> box.</para>
+       <!--         <para>You should also check this box when making a student custom role group if you
+                    want to be able to see the student log in information in the Data Browser. </para> -->
+            </step>
+            <step>
+                <para>
+                    When you're finished, click <guibutton>Save</guibutton> 
+                    to create the role group. The role group appears at the 
+                    bottom of the table.
+                </para>
+            </step>
+        </procedure>
+    </section>    
+    
+    <section xml:id="doc-3f3a0352-95d9-486e-9dd1-e53ebbe2b570">
+        <title>Multiple Local IDP Roles Mapped to One &PRODUCTABBR; Role</title>
+        <para>
+            It is possible to map multiple roles from your local IDP to a single &PRODUCTABBR; role. In this case, the user only receives the rights that are included in all of the roles from the local IDP. This prevents users from viewing unauthorized data.
+        </para>
+        <para>
+            For example, if you are a principal in school A and a teacher in school B, you will only have the rights associated with the teacher for both school A and school B.
+        </para>
+    </section>
+    <section xml:id="docs-1f287266-28e7-4bbd-b46d-6a216699494e">
+        <title>Managing Custom Roles for Multiple Realms</title>
+        <para>
+            Education organizations can manage custom roles independently for 
+            multiple realms. If you are administering multiple realms, 
+            clicking Create Custom Roles directs you to list of the
+            available realms. To manage the custom roles for a particular 
+            realm, click the Custom Roles button to modify the roles for that 
+            realm. After accessing the Custom Roles page for the specific 
+            realms, modify the custom roles as you would in a single realm
+            environment.
+        </para>
+        <figure xml:id="figure-realm-select">
+            <title>A Multiple Realm Example</title>
+            <mediaobject>
+                <imageobject role="fo">
+                    <imagedata align="center"
+                        fileref="../common/images/realm-select.png" width="7.5in"
+                        scalefit="1"/>
+                </imageobject>
+                <imageobject role="html">
+                    <imagedata align="center" 
+                        fileref="images/realm-select.png" 
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </section>
+</chapter>

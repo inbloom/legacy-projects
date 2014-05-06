@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-bulk-extract-lea" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>bulk/extract/{EducationAgencyId}</title>
+    
+    <para>
+        URI syntax without version:
+        <filename>https://example.com/api/rest/bulk/extract/{EducationAgencyId}</filename>
+    </para>
+    <para>
+        URI syntax with version:
+        <filename>https://example.com/api/rest/vX.Y/bulk/extract/{EducationAgencyId}</filename> where X.Y
+        identifies a specific REST API version. This resource 
+        returns data based on the latest REST API version, even if 
+        another valid API version is specified. If an invalid version is 
+        specified, the request returns a "404 Not Found" code.
+    </para>
+    <para>
+        See <xref linkend="r-api-resource-bulk-extract-list" />
+        for how to return a list of extracts that are available
+        at education organizations.
+    </para>
+    <para>
+        <emphasis role="bold">An education organization extract </emphasis> includes
+        data for that organization and all of its descendants, previous year student data
+        from a student's previous education organizations, as well as previous year staff data from a staff's previous education organizations.  
+        Top level education organization extract is a special case, see <xref linkend="c-bulk_extract-top-edOrg"/> for additional details.
+        The extract is provided
+        as a full extract (all data) or a delta extract (all data that has changed since
+        the last delta extract). If the education organization does not have any data, the full extract will be empty.
+        
+        The following entities may be included in an education
+        organization extract:
+    </para>
+    <itemizedlist>
+        <listitem><para>attendance</para></listitem>
+        <listitem><para>courseTranscript</para></listitem>
+        <listitem><para>disciplineAction</para></listitem>
+        <listitem><para>disciplineIncident</para></listitem>
+        <listitem><para>grade</para></listitem>
+        <listitem><para>gradebookEntry</para></listitem>
+        <listitem><para>parent</para></listitem>
+        <listitem><para>reportCard</para></listitem>
+        <listitem><para>staff</para></listitem>
+        <listitem><para>staffCohortAssociation</para></listitem>
+        <listitem><para>staffEducationOrganizationAssociation</para></listitem>
+        <listitem><para>staffProgramAssociation</para></listitem>
+        <listitem><para>student</para></listitem>
+        <listitem><para>studentAcademicRecord</para></listitem>
+        <listitem><para>studentAssessment</para></listitem>
+        <listitem><para>studentCohortAssociation</para></listitem>
+        <listitem><para>studentDisciplineIncidentAssociation</para></listitem>
+        <listitem><para>studentParentAssociation</para></listitem>
+        <listitem><para>studentProgramAssociation</para></listitem>
+        <listitem><para>studentSchoolAssociation</para></listitem>
+        <listitem><para>studentSectionAssociation</para></listitem>
+        <listitem><para>teacher</para></listitem>
+        <listitem><para>teacherSchoolAssociation</para></listitem>
+        <listitem><para>teacherSectionAssociation</para></listitem>
+    </itemizedlist>
+    <para>
+        Security is enforced, so only authorized data is included in the 
+        response.
+    </para>
+    <para>
+        Regardless of a user's name and assigned role(s), the 
+        <varname>BULK_EXTRACT</varname> right is required to access this 
+        resource. In addition to the right, the 
+        <guibutton>Bulk Extract</guibutton> checkbox must be selected for the calling application 
+        during application registration. See 
+        <xref linkend="doc-d4e4f6c6-490d-4a5a-928b-c87b4c1352bb"/> 
+        and <xref linkend="c-bulk_extract-authentication"/>.
+    </para>
+    <para>
+        For a description of the file format of the response, see 
+        <xref linkend="r-bulk_extract-files"/>.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested data for the specified education organization.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The response body 
+                            contains the contents of the requested extract files.
+                        </para>
+                        <para>
+                            This request results in the <code>404 Not Found</code>
+                            if any of the following are true:
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    The API version specified is invalid.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    No authorized agencies were found for the 
+                                    requesting user/application.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    The bulk extract file is missing for the 
+                                    supported tenant.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+</section>

@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-fb69ed23-c9f6-4efe-9838-3d3b44b8bb7f"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+        
+    <title>Preparations &amp; Assumptions</title>
+        
+    <para>
+        This chapter covers the preparations you need to make prior to
+        an &PRODUCTABBR; deployment. It also describes the assumptions
+        this document makes about what you already know and what
+        resources are available to you.
+    </para>
+    
+    <sect1 xml:id="doc-1668f44b-4e63-4790-90a2-a1495da8ef7d">
+        <title><phrase>Preparations &amp; Assumptions: Documentation</phrase></title>
+        <para>
+            <phrase>This document covers the instructions and supporting information
+            you need to deploy a Production &PRODUCTABBR; environment. The
+            target audience is a system administrator who has experience
+            in installing and configuring enterprise software. Ideally, the 
+            reader has experience working on a UNIX or Linux command line
+            and some experience installing or managing software and services
+            on a Linux system.</phrase>
+        </para>
+        <para>
+            Additional documentation resources can be found at 
+            <filename>&DEVWEBSITE;</filename>, targeted to other 
+            &PRODUCTABBR; audiences:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    &PRODUCTABBR; administrator documentation targets the
+                    day-to-day activities of administrating &PRODUCTABBR; 
+                    for an education organization, including state
+                    and local (district, county, etc.) school systems.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The &PRODUCT; data ingestion guide includes instructions,
+                    information, and reference for adding data to the
+                    the &PRODUCTABBR; Data Store, including preparing data
+                    for ingestion and managing and troubleshooting the
+                    ingestion process.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Software developer documentation targets setting up 
+                    and using development tools for creating web and 
+                    mobile applications for &PRODUCTABBR;.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </sect1>
+
+    <sect1 xml:id="doc-4b3fd8e2-bf03-4235-80bc-bd03a4924c4f">
+        <title>Preparations &amp; Assumptions: Operating System</title>
+        <para>
+            An operator of a multi-server environment is advised to make use of a GID and 
+            UID synchronization or management system, such as LDAP, to ensure 
+            that user and group IDs across the system remain unique. This is of particular 
+            importance where the system will be using GlusterFS between the 
+            landing zone and ingestion servers.  Failure to have such a system will complicate 
+            installation and potentially reduce the overall security of the system, since ingestion 
+            servers must be able to read and write to files that have been written to the 
+            landing zone by users.
+        </para>
+        <para>
+            All Production servers are assumed to be able to obtain access to the 
+            Internet at large in order to perform updates of software and in particular Ruby gems 
+            as the platform's needs evolve.
+        </para>
+    </sect1>
+    
+    <sect1 xml:id="doc-87089348-3e8f-4708-8a19-4b2b552f7d2c">
+        <title>Preparations &amp; Assumptions: Software</title>
+        <para>
+            Topics in this section may refer to the following products and/or technology:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Red Hat Enterprise Linux (RHEL) – Red Hat's licensed commercial Linux 
+                    distribution. See 
+                    <link xlink:show="embed" xlink:href="http://www.redhat.com/products/enterprise-linux/">http://www.redhat.com/products/enterprise-linux/</link>.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Later sections will refer to RHEL 6.2. The operator must define a base 
+            operating system image that can be provisioned to run &PRODUCTABBR; components. The 
+            &PRODUCTABBR; development team built a base image on top of RHEL 6.2, but these guidelines 
+            can be modified to work with other operating systems.
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Add EPEL to your yum repositories. See: http://fedoraproject.org/wiki/EPEL.  
+                    EPEL provides some additional packages that we'll refer to later.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Install the following packages:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            ruby
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            ruby-irb
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            rubygems
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            libselinux-ruby
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            augeas-libs
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            ruby-augeas
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            ruby-shadow
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            rubygem-stomp
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            rubygem-sqlite3-ruby
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            sqlite-devel
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para> Remove (if installed) OpenJDK and install a JDK from Sun. &PRODUCTABBR; was
+                    developed against the latest stable version 6 JDK. </para>
+            </step>
+            <step>
+                <para>
+                    Disable SELinux
+                </para>
+            </step>
+            <step>
+                <para>
+                    Edit the file <filename>/etc/aliases</filename>, if desired, to redirect email 
+                    for "root" to a monitored email address or mailing list. 
+                    Don't forget to run <code>newaliases</code> to update your MTA's alias 
+                    table.
+                </para>
+            </step>
+            <step>
+                <para> Install, configure, and enable <code>ntpd</code> on all hosts. It's very
+                    important for the proper functioning of &PRODUCTABBR; for all of the servers
+                    system clocks to be in sync with a good common time source. We have found the
+                    following values in <filename>/etc/sysctl.conf</filename> to be useful: </para>
+                <programlisting><![CDATA[
+net.ipv4.conf.all.send_redirects=0
+net.ipv4.conf.all.accept_source_route=0
+net.ipv4.conf.default.accept_source_route=0
+net.ipv4.conf.all.accept_redirects=0
+net.ipv4.conf.default.accept_redirects=0
+net.ipv4.conf.all.secure_redirects=0
+net.ipv4.conf.default.secure_redirects=0
+net.ipv4.conf.all.log_martians=1
+net.ipv4.icmp_echo_ignore_broadcasts=1
+net.ipv4.icmp_ignore_bogus_error_responses=1
+net.ipv4.conf.all.rp_filter=1
+net.ipv4.conf.default.rp_filter=1
+net.ipv4.tcp_syncookies = 1
+net.ipv4.ip_forward = 0
+net.bridge.bridge-nf-call-ip6tables = 0
+net.bridge.bridge-nf-call-iptables = 0
+net.bridge.bridge-nf-call-arptables = 0
+kernel.msgmnb = 65536
+kernel.msgmax = 65536
+kernel.shmmax = 68719476736
+kernel.shmall = 4294967296
+kernel.sysrq = 0
+kernel.core_uses_pid = 1
+kernel.exec-shield = 1
+kernel.randomize_va_space = 1
+fs.suid.dumpable = 0
+                ]]></programlisting>
+            </step>
+        </procedure>
+        <para>
+            This document assumes that the Puppet configuration manager will be 
+            used to apply fine-grained configurations, additional security hardening, 
+            and post-installation steps.
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    <code>rpm -ihv http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-5.noarch.rpm</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>yum update</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>yum install ruby ruby-irb rubygems libselinux-ruby facter augeas-libs ruby-augeas ruby-shadow rubygem-stomp puppet git</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    Download the Linux x64 (64-bit) RPM from:
+                    <link xlink:show="new" xlink:href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u31-download-1501634.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk-6u31-download-1501634.html</link>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>sh jdk-6u31-linux-x64-rpm.bin</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>rpm -e java-1.6.0-openjdk</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>sed -i -r -e 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    Edit <filename>/etc/aliases</filename>, uncomment the alias for <code>root</code>, and change 
+                    it to redirect to <filename>root@example.com</filename>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>newaliases</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    Append the following text to the <filename>/etc/rc.d/rc.local</filename> file:
+                </para>
+                <programlisting><![CDATA[
+# Create & enable 1G of swap space in AWS ephemeral storage
+if [ `mount | cut -d " " -f 3 | grep "/mnt" | wc -l` -ne 0 ]; then
+  dd if=/dev/zero of=/mnt/swap bs=1M count=1024 > /dev/null 2>&1
+  mkswap /mnt/swap > /dev/null 2>&1
+  swapon /mnt/swap > /dev/null 2>&1
+fi
+                ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig audited off</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig autofs off</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig cups off</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig ip6tables off</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig netfs off</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig puppet on</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig snmpd on</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>chkconfig xinetd off</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>mkdir /usr/share/logstash &amp;&amp; curl -o /usr/share/logstash/logstash-1.1.0-monolithic.jar http://semicomplete.com/files/logstash/logstash-1.1.0-monolithic.jar</code>
+                </para>
+            </step>
+        </procedure>
+        <para> It may be sufficient for you to use the vendor-provided Ruby environment. However,
+            &PRODUCTABBR; was developed against a more up-to-date revision of Ruby than what was
+            included with the RHEL 6.2 operating system product. In order to maintain consistent
+            control over the Ruby interpreter used, and all Ruby gems installed, we leveraged RVM
+            (http://rvm.io). </para>
+        <procedure>
+            <step>
+                <para>
+                    Install RVM. Follow all of the instructions to make sure that the root 
+                    account and the Rails account (on hosts running Rails) are using rvm.
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>rvm install 2.0.0-p353</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <code>rvm --default use 2.0.0-p353</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    You may also need to log in as the Rails user, on Rails hosts, and <code>rvm use 2.0.0-p353</code>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Install gems for bundler, Rails, and passenger.
+                </para>
+            </step>
+        </procedure>
+    </sect1>
+    
+    <sect1 xml:id="doc-14312c8b-94bf-4f67-9106-615e5669f248">
+        <title>Preparations &amp; Assumptions: Networking</title>
+        <para><phrase>
+            The following are important assumptions about networking for
+            &PRODUCTABBR;. Be sure to take any actions necessary to 
+            prepare your network:</phrase>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para><phrase>
+                    In regards to operating system network architecture, 
+                    software components require only forward name resolution 
+                    and IPv4 connectivity. The software has not been tested 
+                    with IPv6, so IPv6 should be disabled, if possible, in a 
+                    Production environment.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    No direct connection is needed between the &PRODUCTABBR;
+                    identity provider and an education organization's
+                    identity provider in order to support end-user 
+                    authentication. However, the SAML assertion created by the
+                    education organization's identity provider must be signed 
+                    with a certificate that the &PRODUCTABBR; API can trust.
+                    This means that the certificate is signed by a trusted
+                    Certificate Authority (CA). For more about identity
+                    provider deployment, see
+                    <xref linkend="doc-e0234334-2b25-4fb8-8eff-64b783f03f7a"/>.
+                    
+                </para>
+            </listitem>
+        </itemizedlist>
+    </sect1>
+    
+    <sect1 xml:id="doc-8a62b484-d50b-4b14-bd40-3375b33bf654">
+        <title>Preparations &amp; Assumptions: Security</title>
+        <para> This document contains recommendations concerning configurations of the various
+            platforms such as RHEL, Tomcat, and others that the &PRODUCTABBR; codebase is built
+            upon. These configurations do not necessarily include all the necessary hardening to
+            ensure the underlying platform is secure before the deployment of &PRODUCTABBR;. The
+            overall configuration and hardening requirements may differ depending on the specifics
+            of the operational environment in which the software is deployed. However, industry
+            best-practices for the hardening of system components should be adhered to in all cases.  </para>
+        <sect2>
+            <title>Mitigation of Click-jacking Attempts</title>
+            <para>Click-jacking is when attacker creates a transparent iFrame to trick users into
+                executing arbitrary actions in the target application.  Because the iFrame is
+                transparent, the users may not be aware that they are executing malicious code when
+                they click on something which appears to be a normal part of &PRODUCTABBR;. </para>
+            <para>Mitigation of click jacking can be done through the X-Frame-Options directive in
+                httpd.conf. This header instructs the browser on whether or not delivered content
+                can be framed. Options for this header are: SAMEORIGIN, DENY, AND ALLOW-FROM. To accomplish this, the following line should be used:</para>
+         <programlisting> <![CDATA[
+Header always append X-Frame-Options "Allow-From  \ https://rcportal.slidev.org"
+                ]]>
+            </programlisting> 
+            <para>This option (with the correct host name for your environment) should be added to
+                every instance of Apache in the environment.<note><para>This option is not supported in all browsers.</para></note></para>
+             </sect2>
+    </sect1>
+    
+    <sect1 xml:id="doc-448c97b6-12ad-465e-941d-6317c59a0606">
+        <title><phrase>Preparations and Assumptions: Cookies and Proxying</phrase></title>
+        <para>If SSL is terminated at a proxy and traffic to tomcat is via HTTP, then the proxy server must be configured with the <property>X-Forwarded-Proto</property> header so that cookies set to <property>secure=true</property> are not dropped.</para>
+    </sect1>
+    
+    <sect1 xml:id="doc-6c35d228-cf06-4a56-92b0-d4c0274c1c4e">
+        <title>Blocking Web Crawler Indexing</title>
+        <para>It isn’t always appropriate to allow indexing via public web crawlers. Googlebot is probably the most well known current crawler, but web crawlers (or “spiders”) are used by many web search engines. It may be best to block these web crawlers from indexing some pages.</para>
+        
+        <para>There are at least three known ways to block web crawlers:</para> 
+        
+        <sect2>
+            <title>Option 1: Robots.txt File</title>
+            <para>Create a file called <filename>robots.txt</filename> and put it in the web-root directory. Include the following lines in the file:</para>
+            <programlisting><![CDATA[
+User-agent: *
+Disallow: /
+                ]]>
+            </programlisting>
+            <para>This will block web crawlers that specifically look for <filename>robots.txt</filename>. Historically, only GoogleBot looks for a <filename>robots.txt</filename> file.</para>
+        </sect2>
+        
+        <sect2>
+            <title>Option 2: Noindex Meta Tag</title>
+            <para>Include this meta tag in the &lt;head&gt; section of each page that should not be indexed:</para>
+            <para>&lt;meta name="robots" content="noindex"&gt;</para>
+            <note><para>While GoogleBot rarely misses a <filename>robots.txt</filename> file, GoogleBot does occasionally miss the noinded meta tag. This seems to happen most often when GoogleBot has navigated to the page via an internal link.</para></note>
+        </sect2>
+        
+        <sect2>
+            <title>Option 3: .htaccess and User Agent Blocking</title>
+            <para>In the <filename>.htaccess</filename> file in the top level of the top web directory, place the following lines:</para>
+            <programlisting><![CDATA[
+BrowserMatchNoCase GoogleBot crawler_blocked 
+BrowserMatchNoCase Yahoo crawler_blocked
+Order Deny,Allow 
+Deny from env=crawler_blocked           
+            ]]></programlisting>
+            <para>
+                In this case, there is a case-less match against the string, 
+                "GoogleBot" and the string, "Yahoo" in the user agent 
+                advertised by the browser. Access is denied via the 
+                <varname>env</varname> variable declared as 
+                <property>crawler_blocked</property>, which will block every 
+                user agent string assigned to it above. Note that wildcards 
+                are not necessary for partial string matching.
+            </para>
+
+        <para>For a fairly complete list of crawler user agent strings, please read <link xlink:show="new" xlink:href="http://www.useragentstring.com/pages/Crawlerlist/">http://www.useragentstring.com/pages/Crawlerlist/</link>.</para>
+            
+        </sect2>
+        
+    </sect1>
+    
+    <sect1 xml:id="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f">
+        <title>Preparations and Assumptions: Sandbox Mode</title>
+        <para>
+            &PRODUCTABBR; can be run in two modes:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Production mode</emphasis> is the expected 
+                    deployment scenario covered in this documentation.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Sandbox mode</emphasis> is used when the 
+                    &PRODUCTABBR; deployment should serve as a Sandbox and testing 
+                    environment for developing applications. In Sandbox mode, 
+                    &PRODUCTABBR; users have abilities they wouldn't typically have
+                    Production:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Users can perform tasks like application registration 
+                            without requiring an administrator's approval.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Users can also authenticate directly with
+                                &PRODUCTABBR; identity provider (SimpleIDP) without relying on
+                                integrated authentication with an education organization's directory
+                                service. Using this direct authentication, each user can impersonate
+                                any user or role in the &PRODUCTABBR; Data Store.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+        <note>
+            <title>Sandbox Tip</title>
+            <para>
+                If you're deploying &PRODUCTABBR; in Sandbox mode, note the Sandbox-specific
+                configuration and tips (like this one) throughout this document.
+            </para>
+        </note>
+    </sect1>
+    <sect1 xml:id="doc-40f76ef1-7536-49db-96f0-3686d5c97818">
+        <title>Preparation and Assumptions:  Federation of Sandbox with Production for Application Developer Accounts</title>
+        <para>Application developers that deploy &PRODUCTABBR; applications utilize a single account
+            for accessing both Sandbox and Production.  This is accomplished by federating the
+            Sandbox Identity Provider with the &PRODUCTABBR; Production system and allowing
+            developers to select the Sandbox Identify Provider from the list of choices presented
+            when accessing the system.  If the &PRODUCTABBR; Sandbox instance is not available,
+            application developers cannot log in to create, access, edit, or enable Production
+            applications. </para>
+        <para>The federation of the &PRODUCTABBR; Sandbox and Production instances is accomplished
+            via SAML.  The application developer's web browser facilitates passing of SAML messages
+            between systems, which does not require direct network communications between the
+            Sandbox and Production environment.  The only network topology constraint imposed upon
+            the system is for the application developer to be able to access both Sandbox and
+            Production environments via HTTPS at the same time. </para>
+    </sect1>
+    <sect1 xml:id="doc-dbdc4d82-63e7-4357-90aa-c5fef2470db2">
+        <title>Preparation and Assumptions:  Sandbox and Production Deployment Version Constraints</title>
+        <para>To support the federation of the &PRODUCTABBR; Production and Sandbox instances,
+            versions of deployed Production and Sandbox software must be the same to ensure proper
+            operation of the system.  To support staggered updates of Production and Sandbox
+            systems, attempts will be made to ensure new releases of Sandbox are compatible with the
+            latest previous version of the Production environment. Having Sandbox and Production be
+            more than one minor release apart, or operating a newer Production system alongside an
+            older Sandbox system, is not supported. </para>
+    </sect1>
+    
+</chapter>
+
+
+        

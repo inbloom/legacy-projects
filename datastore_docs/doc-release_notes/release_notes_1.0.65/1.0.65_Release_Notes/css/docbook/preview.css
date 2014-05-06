@@ -1,0 +1,15 @@
+@import "hideColspec.css";
+
+/*
+===========================================
+    Docbook CSS for author preview area. 
+===========================================
+*/
+
+xref:before{
+    content: url("img/link.png");
+}
+
+olink[targetdoc][targetptr]:before {
+    content: url('img/olink.png');
+}

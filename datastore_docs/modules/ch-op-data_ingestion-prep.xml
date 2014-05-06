@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-6b9d21e0-0d62-4ab7-996d-9b40bccdd422"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Ingestion: Preparing the Ingestion Job</title>
+    
+    <para>
+        Once the landing zone has been configured, 
+        you must prepare your data for ingestion. An ingestion job includes:</>
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                One or more XML files. These 
+                files are data interchanges that include Ed-Fi XML.
+                <!-- FIXME: Should I link here to more about interchanges? To the Ed-Fi Developer page? -->
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                A control file (.ctl) 
+                that describes the XML files to the system.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The files can be provided as a compressed .zip file or can be 
+        provided as straight .xml and .ctl files.
+        The next section provides more details
+        about how to prepare your files for ingestion.
+    </para>
+    
+    <section xml:id="doc-35c9c4cc-4386-4f66-bcc6-514c160587e8">
+        <title>Preparing the Interchange XML Files</title>
+        <para>
+            All XML files are validated 
+            against the Ed-Fi 1.0.07 core schema. For more information on the 
+            current Ed-Fi standards, please visit 
+            <link xlink:href="http://www.ed-fi.org/technical-documentation/" xlink:show="new">Ed-Fi's Technical Documentation</link>
+            page. 
+        </para>
+        <!-- This tool is not yet ready for production
+        <para>
+            &COMPANYABBR; provides an file conversion tool to convert an 
+            organization's data into XML files that comply with the Ed-Fi
+            schema. You may find this useful for use or for reference as you
+            prepare your data for ingestion. For complete details on
+            downloading and using this tool, see
+            <xref linkend="doc-523538ed-1b29-4160-aefb-0d949637993c"/>.
+        </para> -->
+        <note>
+            <para>
+                Make sure that the files use UTF-8 
+                encoding. This should appear at the top of your XML files: 
+            </para>
+            <programlisting><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>]]></programlisting>
+        </note>
+    </section>
+    
+    <section xml:id="doc-cf3b3031-1f45-4288-8f27-23895c8d7552">
+        <title>Control File Preparation</title>
+        <para>
+            The control file is a comma-separated values (CSV) file that 
+            describes the XML files in the job. The control file informs the 
+            system which interchanges are included in the job and maps the 
+            interchanges to the files.
+        </para>
+        <para>
+            A sample line in the control 
+            file takes the format:
+        </para>
+        <programlisting><![CDATA[<file format>,<interchange>,<filename>,<MD5 File Checksum>]]></programlisting>
+        <para>
+            Each of these control file elements
+            is described in the table below:
+        </para>
+        <table xml:id="table-36cd6f01-4f47-48bc-a571-2ed8ca72ac87">
+            <title>Control File Contents</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="thirdCol" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry>Name</entry>
+                        <entry>Description</entry>
+                        <entry>Example</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                File Format
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This describes the data format of the file. Since Ed-Fi XML is the only supported format, this should always be set to <filename>edfi-xml</filename>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                edfi-xml
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Interchange
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This describes the interchange included in the file. This tells the system which entities and data will be included within the file so that they can be treated accordingly.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                EducationOrganization
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Filename
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This tells the system which file to map to the interchange.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <filename>EducationOrganization.xml</filename>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                MD5 File Checksum
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This is a 32-hexadecimal digit MD5 hash that ensures that the file has not been altered.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                7ef82935deec321496407ed57b4b151c
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para>
+            Use these rules when forming the 
+            control file:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Only include one file per line.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Do not include spaces between 
+                    commas and the next value. Spaces will not be removed when 
+                    the file is parsed.
+                </para>
+            </listitem>
+        </itemizedlist>
+        
+        <section xml:id="doc-bdfc74f0-35cb-40f2-a4ea-25ba5e0eb37e">
+            <title>Job Parameters</title>
+            <para>
+                You can specify several parameters
+                in the control file to direct the system to perform operations
+                other than ingestion. There are currently two supported 
+                parameters:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <command>@dry-run</command> - Indicates that the
+                            contents of the job should not be added to the data store.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <command>@purge</command> - 
+                        Deletes all previously ingested data from this tenant. 
+                        All other content of the control file is ignored.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        
+        <section xml:id="doc-bdddc2a8-6f57-490d-be9a-df3c0489cae8">
+            <title>Example Control File</title>
+            <para>
+                A typical ingestion control file 
+                might look like:
+            </para>
+            <programlisting><![CDATA[
+edfi-xml,StudentEnrollment,data.xml,756a5e96e330082424b83902908b070a
+            ]]></programlisting>
+        </section>
+        
+    </section>
+    
+</chapter>
+

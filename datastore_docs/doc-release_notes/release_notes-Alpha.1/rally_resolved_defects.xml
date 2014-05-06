@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_issues">
+  <title>Resolved Issues</title>
+  <para>
+                The following is a list of previously reported issues which 
+                have been resolved in the Alpha.1 release. Click defect title to see additional description:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="DE1329">DE1329: Data migration in support of CourseOffering</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE563">DE563: INGESTION: Some uses of IDREF are not supported</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE212">DE212: INGESTION: Processed files are left in a hidden directory</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE356">DE356: DASHBOARD: Enrollment History - Teacher cannot see the names of past schools their students attended</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE230">DE230: DASHBOARD: Student column in list of students suggests that it's sorted when first loaded</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE80">DE80: INGESTION: Some fields of LocalEducationAgency are not persisted</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE716">DE716: ADMIN TOOLS: Version field in App Registration Tool only accepts numeric input</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE792">DE792: DASHBOARD: Previous and next arrow icons are missing on Search results page  (IE8).</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE780">DE780: DASHBOARD: Search button is not displaying properly. The icon is missing. (IE8)</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE129">DE129: DASHBOARD: Using browser's back button on student profile page may result in error (Safari)</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE925">DE925: INGESTION: AttendanceEvents occurring outside Session time interval are not persisted</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE911">DE911: INGESTION: Irregular error logging when same data set is ingested multiple times</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE778">DE778: INGESTION: Nested references not handled correctly in all cases</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE811">DE811: INGESTION: Ingestion begins processing valid zip files prematurely</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE608">DE608: INGESTION: References to Course by other entities do not use CourseCode</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE85">DE85: INGESTION: CourseOffering is ingested in a way that deviates from Ed-Fi</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE87">DE87: INGESTION: Section entity is ingested in a way that deviates from Ed-Fi</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE828">DE828: INGESTION: Session entity Grading Period reference not fully supported</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE682">DE682: API: Duplicate links in certain types of resource responses</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1083">DE1083: PORTAL: When a user reports a problem via portal no email is sent to SLC</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE885">DE885: PORTAL: Users with same UniqueStaffId in different states/tenants are treated as the same user</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE694">DE694: SDK: Sample application should handle lack of access more elegantly than an ISE 500</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE194">DE194: INGESTION: Not all .tmp files deleted from the user's landing zone after processing is complete</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1072">DE1072: INGESTION: Ingestion job will begin processing a new job even though previous job has not yet completed</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE642">DE642: DASHBOARD: Population selection widget incorrectly populated (custom entity)</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="DE1329">
+    <title>DE1329: Data migration in support of CourseOffering</title>
+    <para>CourseOffering entity ingestion is now supported by SLI, and the existing tenant data has been migrated over. However, some of the CourseOffering fields (e.g. localCourseCode, localCourseId, and schoolId) have been filled with fixture data. Users expecting to use the contents of CourseOffering entities should re-ingest their data.</para>
+  </section>
+  <section xml:id="DE563">
+    <title>DE563: INGESTION: Some uses of IDREF are not supported</title>
+    <para>InterchangeEducationorganization/School/ClassPeriodReference, InterchangeEducationorganization/School/LocationReference, and some others are currently not supported by IDREF resolution.</para>
+  </section>
+  <section xml:id="DE212">
+    <title>DE212: INGESTION: Processed files are left in a hidden directory</title>
+    <para>Ingestion process leaves files in ingestion landing zone folder lz/inbound/.done. This uses unnecessary space.Workaround: Manually delete files in .done folder</para>
+  </section>
+  <section xml:id="DE356">
+    <title>DE356: DASHBOARD: Enrollment History - Teacher cannot see the names of past schools their students attended</title>
+    <para>In the Dashboard's Enrollment History panel, teachers cannot see the names of past schools a student attended even if the student has not changed districts. While the dates of enrollment and other data appear, the school name left blank.</para>
+  </section>
+  <section xml:id="DE230">
+    <title>DE230: DASHBOARD: Student column in list of students suggests that it's sorted when first loaded</title>
+    <para>Lists of students suggest that they are sorted alphabetically on load, however they are not. Workaround: Press the normal sort button in the header.</para>
+  </section>
+  <section xml:id="DE80">
+    <title>DE80: INGESTION: Some fields of LocalEducationAgency are not persisted</title>
+    <para>The LEACategory, CharterStatus,LocalEducationAgencyReference, and EducationServiceCenterReference fields of LocalEducationAgency entities are ignored.</para>
+  </section>
+  <section xml:id="DE716">
+    <title>DE716: ADMIN TOOLS: Version field in App Registration Tool only accepts numeric input</title>
+    <para>When creating or editing an application in Application Registration Tool, the user can only use integers or floating point number to describe the version.</para>
+  </section>
+  <section xml:id="DE792">
+    <title>DE792: DASHBOARD: Previous and next arrow icons are missing on Search results page  (IE8).</title>
+    <para>The pagination icons are missing on the Dashboard's search results page in Internet Explorer 8. However, the buttons do still function. </para>
+  </section>
+  <section xml:id="DE780">
+    <title>DE780: DASHBOARD: Search button is not displaying properly. The icon is missing. (IE8)</title>
+    <para>The search button in the Dashboard's header is missing an expected magnifying glass search icon. However, the button still functions properly.</para>
+  </section>
+  <section xml:id="DE129">
+    <title>DE129: DASHBOARD: Using browser's back button on student profile page may result in error (Safari)</title>
+    <para>When browsing student profiles in the Dashboard while using Safari, using the back button can intermittently cause an error message.Workaround: Refreshing the page is a temporary workaround.</para>
+  </section>
+  <section xml:id="DE925">
+    <title>DE925: INGESTION: AttendanceEvents occurring outside Session time interval are not persisted</title>
+    <para>AttendanceEvents will not be ingested if School is not in Session during the time of that event, and no error is reported.</para>
+  </section>
+  <section xml:id="DE911">
+    <title>DE911: INGESTION: Irregular error logging when same data set is ingested multiple times</title>
+    <para>Occasionally Ingestion gives error report when there is no error.</para>
+  </section>
+  <section xml:id="DE778">
+    <title>DE778: INGESTION: Nested references not handled correctly in all cases</title>
+    <para>When an inner reference is not resolved, the resolution of the outer reference should fail, but doesn't.This issue can potentially lead to references being resolved incorrectly when they should fail. The issue can affect the grade, schoolSessionAssociation, section, staffCohortAssociation, studentCohortAssociation, studentCompetency, and studentSectionGradebookEntry entities.</para>
+  </section>
+  <section xml:id="DE811">
+    <title>DE811: INGESTION: Ingestion begins processing valid zip files prematurely</title>
+    <para>Ingestion can sometimes begin processing valid zip files before they are fully uploaded to the ingestion landing zone.</para>
+  </section>
+  <section xml:id="DE608">
+    <title>DE608: INGESTION: References to Course by other entities do not use CourseCode</title>
+    <para>Entities referencing Course use CourseTitle (not CourseCode and EdOrg as specified by Ed-Fi) to uniquely identify a Course entity. Users will see inconsistencies with local descriptions of Courses until the entity is properly handled.</para>
+  </section>
+  <section xml:id="DE85">
+    <title>DE85: INGESTION: CourseOffering is ingested in a way that deviates from Ed-Fi</title>
+    <para>The CourseOffering entity is ingested in a way that deviates from the Ed-Fi definition. Users may see inconsistencies with local descriptions of courses.</para>
+  </section>
+  <section xml:id="DE87">
+    <title>DE87: INGESTION: Section entity is ingested in a way that deviates from Ed-Fi</title>
+    <para>The Section entity is ingested in a way that deviates from the Ed-Fi definition. This is related to a CourseOffering defect. Users may see inconsistencies with local descriptions of courses and sections.</para>
+  </section>
+  <section xml:id="DE828">
+    <title>DE828: INGESTION: Session entity Grading Period reference not fully supported</title>
+    <para>EducationOrganizationIdentificationCode is not supported as a form of reference.Workaround: UseStateOrganizationId as the reference insideGradingPeriodIdentity.</para>
+  </section>
+  <section xml:id="DE682">
+    <title>DE682: API: Duplicate links in certain types of resource responses</title>
+    <para>In the response bodies of certain resources, links with identical names and results may appear. However, both forms of the duplicated URIs resolve correctly.It looks like the link of the form ""http://local.slidev.org:8080/api/rest/v1/students/2012av-f0902396-bee2-11e1-b871-0811960672a8/studentDisciplineIncidentAssociations/disciplineIncidents" is returning a 404 if it is empty, which is not the correct behavior.</para>
+  </section>
+  <section xml:id="DE1083">
+    <title>DE1083: PORTAL: When a user reports a problem via portal no email is sent to SLC</title>
+    <para>The Report a Problem form in the portal does not currently send a problem report to SLC. Workaround: Manually report a problem by sending email to issues@dev.slcedu.orgWe added the flag for the operator to enable/disable encryption on email credentials.</para>
+  </section>
+  <section xml:id="DE885">
+    <title>DE885: PORTAL: Users with same UniqueStaffId in different states/tenants are treated as the same user</title>
+    <para>Users with same UniqueStaffId in different states/tenants are treated as the same user.</para>
+  </section>
+  <section xml:id="DE694">
+    <title>DE694: SDK: Sample application should handle lack of access more elegantly than an ISE 500</title>
+    <para>This error occurs when the authenticated user doesn't have any contextual data or does not have rights to access the application.Workaround:Identify a user in theingesteddataset that has contextual data associated. Eg. A teacher with sections and students.SLC Operator must enable the application for the user's Educational Organization.</para>
+  </section>
+  <section xml:id="DE194">
+    <title>DE194: INGESTION: Not all .tmp files deleted from the user's landing zone after processing is complete</title>
+    <para>Workaround: Users can delete the files manually.    Rejected: .tmp files are no longer generated.    </para>
+  </section>
+  <section xml:id="DE1072">
+    <title>DE1072: INGESTION: Ingestion job will begin processing a new job even though previous job has not yet completed</title>
+    <para>Ingestion job will begin processing a new job even if the previous job has not yet completed. Workaround: verify that a job is completed prior to uploading another job</para>
+  </section>
+  <section xml:id="DE642">
+    <title>DE642: DASHBOARD: Population selection widget incorrectly populated (custom entity)</title>
+    <para>The population selection widget on dashboard student page does not populate correctly for a dataset if the LEA does not have associated custom data.</para>
+  </section>
+</section>

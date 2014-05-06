@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-bulk_extract-files"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Bulk Extract Files</title>
+ 
+    <para>
+        Encryption is used to secure interactions with the bulk extract
+        API resource. The response for the bulk extract URI uses a 
+        128-bit cipher-block chaining AES encryption, and the key is
+        encrypted with RSA encryption.
+    </para>   
+    <para>
+        The first 256 bytes of the response are the initialization 
+        vector encrypted with the public key. The next 256 bytes are the 
+        AES key encrypted with the public key. The rest of the response
+        is the tar file payload.
+    </para>
+    <para>
+        The payload returned is in the form of a <filename>.tar</filename> 
+        file containing the following:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                A metadata file: <filename>metadata.txt</filename>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                A series of JSON data files compressed with GNU zip (gzip)
+            </para>
+        </listitem> 
+    </itemizedlist>
+    <para>
+        To access the contents of the <filename>.tar</filename> file, 
+        you must first decrypt the initialization vector with your RSA 
+        private key. Next, decrypt the AES key with your RSA private key. 
+        The AES key is then used to decrypt the <filename>.tar</filename> 
+        file.
+    </para>
+    <para>
+        The <filename>metadata.txt</filename> file has the following 
+        fields:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <varname>metadata_version</varname>: 
+                This field indicates the metadata file 
+                version. The current version is 1.0.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <varname>api_version</varname>: 
+                This field specifies the version of the API to which
+                the data in the data files adheres. The current version
+                is v1.3.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <varname>timeStamp</varname>: 
+                This field provides a timestamp for when the export
+                started. The timestamp is in ISO standard time/date 
+                format.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        Example <filename>metadata.txt</filename>:
+    </para>
+    <programlisting><![CDATA[
+metadata_version=1.0 api_version=v1.3 timeStamp=2013-10-31T14:30:23.56-07:00
+]]></programlisting>
+    <para> The compressed archive of JSON files contains one <filename>.json.gz</filename> file for
+        each &PRODUCTABBR; Secure Data Service entity. These files are named according to that
+        entity ("EntityType"<filename>.json.gz</filename>). Each <filename>.gz</filename> file can
+        be decompressed to extract the JSON data file. </para>
+    <para>
+        Each of these extracted entities corresponds to a data resource 
+        which is also exposed in the REST API and described in
+        <xref linkend="data_model"/>. 
+    </para>
+    <para> 
+        Example: The file <filename>educationOrganization.json.gz</filename> 
+        is extracted to get <filename>educationOrganization.json</filename>,
+        containing a JSON array of educationOrganization resources.
+    </para>
+    <note>
+        <para>
+            If an entity has optional fields that have not been set 
+            (their value is empty/null), bulk extract may or may not 
+            return those fields in the JSON data file.
+        </para>
+    </note> 
+    
+<!--    <section xml:id="doc-52072f2e-c889-4969-904c-2304a61cdc2c">
+        <title>Delta Files</title>
+        <para>
+            Delta extracts include all entities that were created or 
+            updated since the last delta extract. The timing of full 
+            extracts are never considered when determining what is 
+            included in a delta extract.
+        </para>
+        <para>
+            Delta extracts only include entities that were directly 
+            created or updated since the last delta extract. If an 
+            entity establishes a contextual relationship for an
+            education organization to other entities (such as a new 
+            StudentSchoolAssociation), those other entities are not 
+            included in the delta extract. The application will have 
+            to retrieve a full extract to obtain those entities.
+            Similarly, when an entity is removed or updated in such 
+            a way that it breaks contextual permissions to other 
+            entities (such as a StudentSchoolAssociation's endDate is 
+            added), those other entities are not included in the 
+            delta extract.
+        </para>
+        <para>
+            Encryption for delta extracts is the same 
+            as for full extracts.
+        </para>
+    </section> -->
+    
+    <section xml:id="doc-5ef6bc4c-e2cd-4a76-80ac-834b3a4887be">
+        <title>Deleted Files</title>
+        <para>
+            The extracts for deletions are different than for full extracts 
+            or the other cases of delta extracts. The JSON entity is not 
+            returned for deletes. Instead, the delete file contains the entity 
+            type and instance ID for all entities deleted in a tenant.
+        </para>
+        <para>
+            Example delete entity:
+        </para>
+        <programlisting><![CDATA[
+{
+ "entityType": "student",.
+ "id": "2aee3b91e81d6c1b7ccbbf9e9dcd06df9f8969f8_id"
+}
+]]></programlisting>
+        <para>
+            If the entity is in the delete file and also in the delta 
+            extract, it specifies the entity was deleted and then re-created.
+        </para>
+        <para>
+            Deletes resulting from a purge operation show a different
+            result. A purge operation is a series of deletes performed on 
+            tenant data performed through the ingestion system.
+            Each purge through ingestion is reported in the delta bulk extract 
+            as a single purge event.
+        </para>
+        <para>
+            In the following example, "entityType" shows that this is a 
+            "purge" event, and "date" is the timestamp in when that purge 
+            occurred:
+        </para>
+        <programlisting><![CDATA[{"id":null,"entityType":"purge","date":"2013-05-28T10:59:15.530-04:00"}]]></programlisting>
+        <para>
+            Other important things to note about purge events shown in the 
+            deltas:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If an extract operation starts during a purge operation, or
+                    the other way around, the behaviors of each operation will
+                    be inconsistent.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Between two delta extract operations, only the last (latest)
+                    purge event is reported.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    All events that have occurred before a purge are not reported,
+                    regardless of the type of purge that was performed.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If tenant data is purged using <varname>@purge</varname>, 
+                    bulk extract is unusable until the data is re-ingested and 
+                    bulk extract applications are re-authorized.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Security is enforced for modified entities, so only authorized data 
+            is included in the response. Security is not enforced 
+            for deleted entities because only the objectID and the EntityType 
+            are being included instead of PII. 
+        </para>
+    </section>
+    
+</section>

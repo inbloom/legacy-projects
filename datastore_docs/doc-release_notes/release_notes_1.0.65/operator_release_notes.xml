@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE article [
+<!ENTITY % slc_entities SYSTEM "../../common/docbook_entities-slc.ent">
+%slc_entities;
+<!ENTITY RELEASE "0.2.63">
+]>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xml:id="release_notes" version="5.0">
+    
+    <info>
+        <title>&COMPANY; &RELEASE; Operator Release Notes</title>
+    </info>
+
+       <para>The following are the operator release notes for &RELEASE;.</para>
+
+    <!-- <xi:include href="rally_op_resolved_defects.xml"/> -->
+    
+    <!--<xi:include href="rally_op_defects.xml"/>-->
+    
+    <!--<xi:inlcude href="rally_op_stories.xml"/>-->
+    
+</article>

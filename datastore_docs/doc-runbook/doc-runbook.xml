@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<book xml:id="runbook"
+      xml:base="."
+      xmlns="http://docbook.org/ns/docbook" 
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>&PRODUCTCAPS; Runbook</title>
+        <orgname>&COMPANY;</orgname>
+        <!-- Legal notice added to title page during transformation to PDF. -->
+        <releaseinfo>&CURRENTRELEASEREVISION;</releaseinfo>
+        <xi:include href="../doc-runbook/doc-runbook-revhistory.xml"/>
+    </info>
+    
+    <part xml:id="doc-926ae17d-849b-49d5-9a13-95b67d855d8f">
+        <info>
+            <title>Preparing for a Deployment of &PRODUCTABBR; Secure Data Services</title>
+        </info>
+        <xi:include href="../modules/ch-op-runbook_intro.xml"/>
+        <xi:include href="../modules/ch-op-planning_deployment.xml"/>
+    </part>
+    
+    <part xml:id="doc-e737c00d-835a-4214-84a9-48a16a9fd45e">
+        <info>
+            <title>Deploying Third Party Components</title>
+        </info>
+        <xi:include href="../modules/ch-op-deploy_platform-data_stores.xml"/>
+        <xi:include href="../modules/ch-op-deploy_platform-app_servers.xml"/>
+        <xi:include href="../modules/ch-op-deploy_platform-messaging_queue.xml"/>
+        <xi:include href="../modules/ch-op-deploy_platform-directory_service.xml"/>
+        <xi:include href="../modules/ch-op-deploy_platform-elastic_search.xml"/>
+    </part>
+    
+    <part xml:id="doc-13e3c498-4d6c-4da1-8564-f9bc57d31d37">
+        <info>
+            <title>Deploying &PRODUCTABBR; Secure Data Service Core Components </title>
+        </info>
+        <xi:include href="../modules/ch-op-deploy_services-key_setup.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-simpleidp.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-rest_api.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-landing_zones.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-ingestion.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-bulk_extract.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-search_indexer.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-sarje.xml"/>
+        <xi:include href="../modules/ch-op-deploy_services-session-timeout.xml"/>
+    </part>
+    
+    <part xml:id="doc-523c2fd1-5b3c-4d8e-ab9e-0c8a44e1f868">
+        <info>
+            <title>Deploying &PRODUCTABBR; Secure Data Service Applications</title>
+        </info>
+        <xi:include href="../modules/ch-op-deploy_apps-admin_tool.xml"/>
+        <xi:include href="../modules/ch-op-deploy_apps-portal.xml"/>
+        <xi:include href="../modules/ch-op-deploy_apps-dashboard.xml"/>
+        <xi:include href="../modules/ch-op-deploy_apps-data_browser.xml"/>
+        <xi:include href="../modules/ch-op-deploy_apps-sandbox.xml"/>
+    </part>
+    
+    <part xml:id="doc-092c87f8-b2ca-4233-a1cb-9d198e8a9328">
+        <info>
+            <title>Tests and Maintenance for &COMPANYABBR;</title>
+        </info>
+        <xi:include href="../modules/ch-op-acceptance_tests.xml"/>
+        <xi:include href="../modules/ch-op-resetting-environment.xml"/>
+        <xi:include href="../modules/ch-op-maintenance.xml"/>
+    </part>
+    
+    <part xml:id="doc-fc627adb-c838-4540-b5d1-125298faa05a">
+        <info>
+            <title>&PRODUCTCAPS; Management</title>
+        </info>
+        <xi:include href="../modules/ch-op-creating_admin_accounts.xml"/>
+        <!-- Managing Operator Accounts. This is SAMT. It will replace several chapters. -->
+        <!--<xi:include href="../modules/ch-op-managing_operator_and_admin_accounts.xml"/>-->
+        <!-- Approving Developer Accounts 
+             This was removed in 68 as part of US5089 (unified accounts) -->
+        <!--  <xi:include href="../modules/ch-op-approving_developer_accounts.xml"/> --> 
+        <xi:include href="../modules/ch-op-handling_application_registration_requests.xml"/>
+        <xi:include href="../modules/reference/r-security-event_logs-db.xml"/>
+        <xi:include href="../modules/reference/r-security-notifications.xml"/>
+    </part>
+    
+    <xi:include href="../modules/glossary.xml"/>
+        
+</book>

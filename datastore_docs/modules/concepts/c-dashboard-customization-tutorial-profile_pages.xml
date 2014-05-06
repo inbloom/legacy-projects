@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-dashboard-customization-tutorial-profile_pages"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Profile Pages</title>
+    
+    <para>
+        Assuming you are looking at the dashboard following
+        <xref linkend="t-how_to_upload_dashboard_customizations"/>,
+        click the name "Matt Sollars" in the list view to open the profile 
+        page for that student.
+    </para>
+    <para>
+        The customization points of a profile page 
+        are the title and contents of the tabs shown in the profile view. 
+        Tabs can display a sequence of panels and grids. For example, the 
+        "Middle School Overview" tab is the first tab that the user sees 
+        when clicks on the name of a student. That tab is composed of one 
+        panel and one grid. The following is the JSON for that tab.
+    </para>
+    <programlisting><![CDATA[{
+    id:"tab8",
+    name:"Middle School Overview",
+    type:"TAB",
+    condition:{
+        (removed for brevity)
+    }, 
+    items:[
+        {
+            id:"contactInfo",
+            type:"PANEL"
+        }, 
+        {
+            id:"enrollmentHist",
+            name:"Student Enrollment Panel",
+            type:"GRID"
+        }
+    ]
+}]]></programlisting>
+    <para>
+        In the above configuration, note that there is no indication of 
+        the data to be provided. The dashboard relies on the default 
+        behavior of that component to determine what entities and fields 
+        to include. All available component IDs are covered in the sample
+        provided for the tutorial, and they are defined in
+        <xref linkend="c-dashboard-customization-reference"/>. 
+        Use the "condition" array for any tabs that you would like to 
+        preview; in this case, do this by making the tab available to the 
+        8th grade or by navigating to a grade and student that makes sense 
+        for that ID.
+    </para>
+    <para>
+        In places where the "listOfStudents" component is used on the list 
+        page, the column headings can be customized. That is not the case for
+        the components that can be used in tabs. In most cases, the column 
+        names displayed are the entity field names. Also, formatters in in 
+        table cells are not available other than for "listOfStudents".
+    </para>
+    <para>
+        Other than "listOfStudents", the "assessmentHist" component provides 
+        some ability to constrain what data is shown. You can extend this 
+        component so that the type of assessments to be displayed 
+        (the Assessment Family) can be specified in the JSON:
+    </para>
+    <programlisting><![CDATA["assessmentHistAPE":{
+    id:"assessmentHistAPE",
+    parentId:"assessmentHist",
+    type:"GRID",
+    name:"Test History : AP English",
+    data:{
+        cacheKey:'assessmentHistAPE',
+        params:{
+            assessmentFamily:"AP.AP Eng"
+        }
+    }
+}]]></programlisting>
+    
+</section>

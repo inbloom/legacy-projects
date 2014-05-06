@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE glossary[
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<glossary xml:id="glossary" xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <glossdiv xml:id="slc_glossdiv">
+        <title>&PRODUCTABBR;Glossary</title>
+        
+        <glossentry xml:id="def-access_context">
+            <glossterm>access context</glossterm>
+            <glossdef>
+                <para>
+                    The combined conditions under which a user or application
+                    is accessing content in &PRODUCTABBR;. This includes
+                    the users role(s), the education organization(s) to which
+                    the user's assigned, and the application that user's 
+                    signed in to.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-access_token">
+            <glossterm>access token</glossterm>
+            <glossdef>
+                <para>
+                    An object that encapsulates a user's authenticated session
+                    with an application, including their access privileges.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+<!-- DE417: Commenting out since aggregate data is not yet implemented
+            <glossentry xml:id="def-aggregate_data">
+            <glossterm>aggregate data</glossterm>
+            <glossdef>
+                <para>
+                    Data that does not exist explicitly in the &PRODUCTABBR;
+                    Data Store, but that's calculated dynamically using values
+                    in the data store. Example: A schools cummulative
+                    attendance record for the year, calulated from the
+                    day-by-day attendance record for each student.
+                </para>
+            </glossdef>
+        </glossentry> -->
+        
+        <glossentry xml:id="def-aggregated_viewer">
+            <glossterm>Aggregated Viewer</glossterm>
+            <glossdef>
+                <para>Reserved user role</para>
+              <!--  DE417: Commenting out because this definition is not applicable until aggregate data is available
+                  <para>
+                    One of the user roles in &PRODUCTABBR;. Users with
+                    this role can only view
+                    <glossterm linkend="def-aggregate_data">aggregate data</glossterm>
+                    and cannot view individual data such as student records.
+                </para> -->
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-application_developer">
+            <glossterm>Application Developer</glossterm>
+            <glossdef>
+                <para> An administrator role under the grouping of <glossterm
+                        linkend="def-inbloom_administrator">&PRODUCTABBR; administrators</glossterm>
+                    assigned to software developers who will be using components of &PRODUCTABBR;
+                    while developing software designed to read and edit data from the &PRODUCTABBR;
+                    Secure Data Service. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-application_registration">
+            <glossterm>application registration</glossterm>
+            <glossdef>
+                <para>
+                    The process used by an application developer or 
+                    &PRODUCTABBR; administrator to
+                    request access to the &PRODUCTABBR;. This registration
+                    process ensures that application has both credentials to
+                    authenticate with &PRODUCTABBR; and permission to
+                    access &PRODUCTABBR; resources (REST API, Data Store, etc.).
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-association">
+            <glossterm>association</glossterm>
+            <glossdef>
+                <para> A rule set in the &PRODUCTABBR; Secure Data Servicewhich ties together
+                    instances of two given <glossterm linkend="def-entity">entities</glossterm>. An
+                    association may exist as an <glossterm linkend="def-entity">entity</glossterm>
+                    itself (and thus as a <glossterm linkend="def-resource">resource</glossterm> in
+                    the REST API), or it may be expressed as a <glossterm
+                        linkend="def-direct_reference">direct reference</glossterm> under each
+                    entity it's associating. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-attribute">
+            <glossterm>attribute</glossterm>
+            <glossdef>
+                <para> The attribute component of the industry standard entity-attribute-value model
+                    (EAV) used to describe a data model, such as the model for the &PRODUCTABBR;
+                    Secure Data Service. An attribute is a property or parameter for a given entity.
+                    In &PRODUCTABBR;, each attribute in the Secure Data Service corresponds to the
+                    name portion of a name/value pair in the request and response bodies used in the
+                    REST API. </para>
+                <para>
+                    See also
+                    <glossterm linkend="def-required_attribute">required attribute</glossterm>,
+                    <glossterm linkend="def-non-required_attribute">non-required attribute</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-authentication">
+            <glossterm>authentication</glossterm>
+            <glossdef>
+                <para>
+                    The process of verifying that a user is who they
+                    claims to be by providing a set of accepted
+                    <glossterm linkend="def-security_credentials">security credentials</glossterm>. 
+                    For example, to authenticate with a certain system, 
+                    John Smith provides a valid user name and password that 
+                    matches his 'jsmith' user account.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-authorization">
+            <glossterm>authorization</glossterm>
+            <glossdef>
+                <para>
+                    The process of determining what resources a user has
+                    permission to access and what actions that user has
+                    permission to perform. For example, after John Smith
+                    <glossterm linkend="def-authentication">authenticates</glossterm>
+                    to a system, the system authorizes him to view data
+                    associated with the students in his classes.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-callback_url">
+            <glossterm>callback URL</glossterm>
+            <glossdef>
+                <para>
+                    See <glossterm linkend="def-redirect_uri">redirect URI</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-client_id">
+            <glossterm>client ID</glossterm>
+            <glossdef>
+                <para>
+                    An ID that uniquely identifies an application to &PRODUCTABBR;.
+                    The client ID is granted by the &COMPANYABBR; during the 
+                    <glossterm linkend="def-application_registration">application registration</glossterm>
+                    process.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-client_secret">
+            <glossterm>client secret</glossterm>
+            <glossdef>
+                <para>
+                    A value that, in combination with the 
+                    <glossterm linkend="def-client_id">client ID</glossterm>, 
+                    enables your application to authenticate with &PRODUCTABBR;. 
+                    The client secret is granted by the &COMPANYABBR; during the
+                    <glossterm linkend="def-application_registration">application registration</glossterm>
+                    process. 
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-common_field">
+            <glossterm>common field</glossterm>
+            <glossdef>
+                <para>
+                    Fields that all REST API resources have, including
+                    <code>id</code> (the unique identifier of the resource),
+                    <code>entityType</code>, and <code>metaData</code>.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-standard_field">standard field</glossterm>,
+                    <glossterm linkend="def-view">view</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-context">
+            <glossterm>context</glossterm>
+            <glossdef>
+                <para> The combined conditions under which a user or application exists relative to
+                    data in the &PRODUCTABBR; Secure Data Service. A context for a given user is
+                    expressed as a combination of user role(s), the education organization(s) to
+                    which the user's assigned, and the application a user's currently using to
+                    interact with &PRODUCTABBR;. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-security_credentials">
+            <glossterm>security credentials</glossterm>
+            <glossdef>
+                <para>
+                    A unique combination of text or digital objects used
+                    to gain access to protected content. This is typically
+                    a user name and password, though some systems might
+                    require rotating key codes or key cards.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-custom_data">
+            <glossterm>custom data</glossterm>
+            <glossdef>
+                <para>
+                    Data associated with an 
+                    <glossterm linkend="def-entity">entity</glossterm> but that
+                    isn't part of the &COMPANYABBR; data model. Developers can
+                    add this data to store data beyond what's covered in the 
+                    &COMPANYABBR; schema.
+                    The &COMPANYABBR; developer documentation covers how to create, 
+                    query, and maintain custom data.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-data_domain">
+            <glossterm>data domain</glossterm>
+            <glossdef>
+                <para> A logical organization of <glossterm linkend="def-entity"
+                        >entities</glossterm> in the &PRODUCTABBR; data model, used to express how a
+                    group of entities from the &PRODUCTABBR; Secure Data Service relate to each
+                    other in a given real-world scenario. </para>
+            </glossdef>
+        </glossentry>
+        
+        <!-- Older term defined in the ID Integration whitepaper
+        <glossentry xml:id="def-data_category">
+            <glossterm>data category</glossterm>
+            <glossdef>
+                <para>
+                    A predefined list of student data fields in the
+                    &COMPANYABBR; Data Store.
+                </para>
+            </glossdef>
+        </glossentry> -->
+        
+        <glossentry xml:id="def-data_ingestion">
+            <glossterm>data ingestion</glossterm>
+            <glossdef>
+                <para> The process used to import (ingest) a large amount of data to the
+                    &PRODUCTABBR; Secure Data Service. This is performed using an ingestion utility
+                    specifically designed to handle these large, process-intensive operations.
+                    Ingestion bypasses the need for a long series of POST operations using the
+                    &PRODUCTABBR; REST API. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-dataset">
+            <glossterm>dataset</glossterm>
+            <glossdef>
+                <para> Any set of data from the &PRODUCTABBR; Secure Data Service that's identified
+                    by some common feature. </para>
+            </glossdef>
+        </glossentry>
+        
+  <!-- DE417: Commenting out because delegated authentication is not yet implemented
+        <glossentry xml:id="def-delegated_authentication">
+            <glossterm>delegated authentication</glossterm>
+            <glossdef>
+                <para>
+                    An authentication approach in which users authenticate against a directory 
+                    service that resides outside of the &COMPANYABBR; (provided by the education 
+                    organization), and the identity of the user is not shared with other 
+                    &COMPANYABBR; applications. Users must sign in separately for each 
+                    &COMPANYABBR; application.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-authentication">authentication</glossterm>,
+                    <glossterm linkend="def-federated_authentication">federated authentication</glossterm>,
+                    <glossterm linkend="def-directory">directory</glossterm>, 
+                    <glossterm linkend="def-education_organization">education organization</glossterm>
+                </para>
+            </glossdef>
+        </glossentry> -->
+        
+        <glossentry xml:id="def-direct_reference">
+            <glossterm>direct reference</glossterm>
+            <glossdef>
+                <para>
+                    An <glossterm linkend="def-attribute">attribute</glossterm>
+                    for an <glossterm linkend="def-entity"/> whose
+                    purpose is to identify an instance of another entity.
+                    Example: A <emphasis>Section</emphasis> entity includes a
+                    direct reference of <emphasis>session</emphasis> which
+                    identifies a specific <emphasis>Session</emphasis> entity.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-directory">
+            <glossterm>directory</glossterm>
+            <glossdef>
+                <para>
+                    A service that manages user identities and those users'
+                    roles and permissions within a specific security boundary. 
+                    Directory service implementations can vary,
+                    including anything from a customized OpenLDAP to Microsoft's 
+                    Active Directory. The &COMPANYABBR; recognizes directory 
+                    services from an
+                    <glossterm linkend="def-education_organization">education organization</glossterm>
+                    as an
+                    <glossterm linkend="def-authentication">authentication</glossterm>
+                    resource to which &COMPANYABBR; administrators can map user
+                    <glossterm linkend="def-role">roles</glossterm> and
+                    from which &COMPANYABBR; can authenticate users with those
+                    mapped roles.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-education_organization">
+            <glossterm>education organization</glossterm>
+            <glossdef>
+                <para>
+                    A generic term used to refer to a level in the 
+                    hierarchy of education agencies. An education organization
+                    may be a state school system, a county/district school 
+                    system, or an individual school. This documentation may 
+                    refer to specific education organizations using terms
+                    like state education agency (SEA) for state systems and 
+                    local education agency (LEA) for county/district systems.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-educator">
+            <glossterm>Educator</glossterm>
+            <glossdef>
+                <para>
+                    One of the user roles in &PRODUCTABBR;. Users with
+                    this role can view data only associated with students 
+                    actively enrolled in current class sections.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-effective_permissions">
+            <glossterm>effective permissions</glossterm>
+            <glossdef>
+                <para>
+                    The permissions a user has to data after combining the
+                    <glossterm linkend="def-role">roles</glossterm> that user
+                    is assigned to, the rules for which roles take priority,
+                    and the specific 
+                    <glossterm linkend="def-context">context</glossterm>
+                    from which that user is operating (such as the application 
+                    the user is using or the current date and time). This
+                    can also apply to applications.
+                </para>
+            </glossdef>
+        </glossentry>    
+        
+        <!-- Commented out to handle TA5096 on DE1161, addressing concerns from InfoSec
+        <glossentry xml:id="def-encrypted_data_fields">
+            <glossterm>encrypted data fields</glossterm>
+            <glossdef>
+                <para>
+                    These are fields in which data is
+                    encrypted in the &PRODUCTABBR; Data Store. A field is 
+                    marked for encryption using an attribute in the data model.
+                </para>
+            </glossdef>
+        </glossentry>   -->
+        
+        <glossentry xml:id="def-entity">
+            <glossterm>entity</glossterm>
+            <glossdef>
+                <para> The entity component of the industry standard entity-attribute-value model
+                    (EAV) used to describe a data model, such as the model for the &PRODUCTABBR;
+                    Secure Data Service. An entity is the item or object being stored. In
+                    &PRODUCTABBR;, each entity in the Secure Data Servicealso corresponds to a
+                        <glossterm linkend="def-resource">resource</glossterm> in the REST API. </para>
+            </glossdef>
+        </glossentry>    
+        
+        <glossentry xml:id="def-federated">
+            <glossterm>federated</glossterm>
+            <glossdef>
+                <para>
+                    An authentication approach in which users authenticate against a directory 
+                    service that resides outside of the &COMPANYABBR; (provided by the education 
+                    organization), and the identity of the user is shared with other
+                    &COMPANYABBR; applications through use of the
+                    <glossterm linkend="def-saml">SAML</glossterm> protocol. Users can sign in
+                    to one &COMPANYABBR; application, and they're automatically signed in to other
+                    &COMPANYABBR; applications operating in the same browser.
+                </para>
+                <para>
+                    The &COMPANYABBR; requires that each federated user must 
+                    map to a <emphasis>Staff</emphasis> or 
+                    <emphasis>Teacher</emphasis> 
+                    user entity in &PRODUCTABBR;, created during
+                    <glossterm linkend="def-data_ingestion">data ingestion</glossterm>
+                    or through the &PRODUCTABBR; REST API.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-authentication">authentication</glossterm>,
+                    <glossterm linkend="def-federated_authentication">federated authentication</glossterm>,
+                    <glossterm linkend="def-directory">directory</glossterm>,
+                    <glossterm linkend="def-education_organization">education organization</glossterm>
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-federated_agency">
+            <glossterm>federated agency</glossterm>
+            <glossdef>
+                <para>
+                    A general term used when speaking of a federated state,
+                    county, or district school system.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-federated_authentication">
+            <glossterm>federated authentication</glossterm>
+            <glossdef>
+                <para>
+                    An authentication setup in which multiple different
+                    systems that require user 
+                    <glossterm linkend="def-authentication">authentication</glossterm>
+                    are linked together to share a common
+                    <glossterm linkend="def-directory">directory</glossterm>
+                    of users. Federation is a common means of providing 
+                    single sign-on (SSO) functionality across multiple 
+                    services and applications.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-authentication">authentication</glossterm>
+                   <!-- <glossterm linkend="def-delegated_authentication">delegated authentication</glossterm> -->
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-federation">
+            <glossterm>federation</glossterm>
+            <glossdef>
+                <para>
+                    In the &COMPANYABBR;, this term refers to a group of
+                    identity providers that the &COMPANYABBR; identity provider
+                    trusts.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-identity_provider">identity provider</glossterm>
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-general_data">
+            <glossterm>General data</glossterm>
+            <glossdef>
+                <para>
+                    A category of data identified by &PRODUCTABBR;
+                    for the purpose of assigning all the same permissions 
+                    to data in that category. Any data not identified as
+                    <glossterm linkend="def-public_data">Public data</glossterm>
+                    or
+                    <glossterm linkend="def-restricted_data">Restricted data</glossterm>
+                    is considered <guilabel>General data</guilabel>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-hosted">
+            <glossterm>hosted</glossterm>
+            <glossdef>
+                <para>
+                    A term describing something that exists with &PRODUCTABBR;
+                    and is managed as part of &PRODUCTABBR;.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-identity_provider">
+            <glossterm>identity provider</glossterm>
+            <glossdef>
+                <para>
+                    A computer system that stores user identity information
+                    such as user names, passwords, and roles, and provides
+                    a way for other computer systems to access this data.
+                    An identity provider may be a
+                    <glossterm linkend="def-directory">directory</glossterm>
+                    or a service acting on behalf of one or more
+                    directories.
+                </para>
+                <para>
+                    &COMPANYABBR; often uses the common industry abbreviation
+                    <citetitle>IDP</citetitle> when referring to an identity
+                    provider.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-product_administrator">
+            <glossterm>&PRODUCTABBR; Administrator</glossterm>
+            <glossdef>
+                <para>
+                    A user responsible for the day-to-day tasks of managing
+                    access and data in a deployed &PRODUCT; system. This
+                    general term describes two specific &PRODUCTABBR;
+                    administrator roles:
+                    <glossterm linkend="def-lea_administrator">LEA Administrator</glossterm>
+                    and
+                    <glossterm linkend="def-sea_administrator">SEA Administrator</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-product_directory">
+            <glossterm>&PRODUCTABBR; directory</glossterm>
+            <glossdef>
+                <para>
+                    A <glossterm linkend="def-directory">directory</glossterm>
+                    contained within &PRODUCT; used to authenticate users with
+                    administrative roles for that &PRODUCT; system, such as an
+                    <glossterm linkend="def-product_administrator">&PRODUCTABBR; Administrator</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-ingestion_user">
+            <glossterm>Ingestion User</glossterm>
+            <glossdef>
+                <para>
+                    One of the 
+                    <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm>
+                    roles. This role targets users whose responsibility it is
+                    to use landing zones and the ingestion application for
+                    <glossterm linkend="def-data_ingestion">data ingestion</glossterm>
+                    in &PRODUCTABBR;.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-installed_application">
+            <glossterm>installed application</glossterm>
+            <glossdef>
+                <para>
+                    Software applications that use the &COMPANYABBR;, but that require
+                    the end user to install some amount of the software outside of the 
+                    &COMPANYABBR;. These are different from web applications, which
+                    are network applications that can run in any supported Web browser
+                    without installing additional software (except, perhaps, third-party
+                    browser plugins such as Flash). Examples of installed applications
+                    include mobile and embedded applications.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-it_administrator">
+            <glossterm>IT Administrator</glossterm>
+            <glossdef>
+                <para>
+                    One of the user roles in &PRODUCTABBR;. Users with
+                    this role have all the permissions of users with the
+                    <glossterm linkend="def-leader">Leader</glossterm>
+                    roles plus the ability to create new users and to define 
+                    custom permissions.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-landing_zone">
+            <glossterm>landing zone</glossterm>
+            <glossdef>
+                <para>
+                    An SFTP-accessible directory location that is reserved for files 
+                    to be ingested using the &COMPANYABBR;'s data ingestion 
+                    process. &COMPANYABBR; administrators can set up one or more 
+                    landing zones to serve a single data store.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-data_ingestion">data ingestion</glossterm>
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-lea_administrator">
+            <glossterm>LEA Administrator</glossterm>
+            <glossdef>
+                <para> 
+                    One of the 
+                    <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm> 
+                    roles. This role targets users who serve as
+                    &PRODUCTABBR; administrators at the county or district
+                    level, below the state level (LEA = local education agency).
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-leader">
+            <glossterm>Leader</glossterm>
+            <glossdef>
+                <para>
+                    One of the user roles in &PRODUCTABBR;. Users with
+                    this role can view data related only to those educational
+                    organizations to which they're associated.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-logged_data_fields">
+            <glossterm>logged data fields</glossterm>
+            <glossdef>
+                <para>
+                    These are fields whose access by the &PRODUCTABBR; REST API triggers 
+                    logging an event. This designation is not part of the data model; it 
+                    currently resides in multiple places within the &PRODUCTABBR; application 
+                    code.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-non-required_attribute">
+            <glossterm>non-required attribute</glossterm>
+            <glossdef>
+                <para>
+                    An <glossterm linkend="def-attribute">attribute</glossterm>
+                    that does not require a value in order for the entity 
+                    to be created or updated in the data store.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-oauth">
+            <glossterm>OAuth</glossterm>
+            <glossdef>
+                <para>
+                    An protocol for authorization published as an open standard by
+                    Internet Engineering Task Force (IETF). The protocol allows a user
+                    to share private resources from one site (web application, network
+                    service, etc.) with another site by supplying authentication
+                    tokens rather than sharing that user's authentication credentials.
+                    The OpenID protocol has similar functionality, but it's distinctly
+                    different from OAuth.
+                </para>
+                <para>
+                    &COMPANYABBR; uses the OAuth protocol in combination with
+                    <glossterm linkend="def-saml">SAML</glossterm>.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-authentication">authentication</glossterm>,
+                    <glossterm linkend="def-authorization">authorization</glossterm>
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-operator">
+            <glossterm>Operator</glossterm>
+            <glossdef>
+                <para>
+                    An
+                    <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm>
+                    role for assigning permissions to users responsible
+                    for deploying &PRODUCTABBR; or handling the
+                    administrative side of the
+                    <glossterm linkend="def-application_registration">application registration</glossterm>
+                    process.
+                </para>
+            </glossdef>
+        </glossentry>
+        <glossentry xml:id="def-parent">
+            <glossterm>Parent</glossterm>
+            <glossdef>
+                <para> One of the user roles in &PRODUCTABBR;. Users in the default <glossterm
+                    linkend="def-parent">Parent</glossterm> role group can only view public
+                    data, Student_Owned data, and Student_General data. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-permissions">
+            <glossterm>permissions</glossterm>
+            <glossdef>
+                <para> The rules that govern a user's or application's access to data, such as the
+                    education data in the &PRODUCTABBR; Secure Data Service</para>
+                <para>
+                    Basic permissions are no access, read-only, and read-write. 
+                    &PRODUCTABBR; applies these basic permissions to each 
+                    data point, and related data points are designated by
+                    categories. Permissions are assigned to these categories
+                    rather than to individual data points. Administrators 
+                    create <glossterm linkend="def-role">roles</glossterm> to
+                    manage permissions to these categories, and users
+                    receive permissions based on their roles.
+                </para>
+                <para>
+                    See also: <glossterm linkend="def-effective_permissions">effective permissions</glossterm>
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-pii">
+            <glossterm>Personally Identifiable Information (PII)</glossterm>
+            <glossdef>
+                <para>
+                    Information that can be used, either alone or with other
+                    resources, to uniquely identify, contact, or locate a 
+                    single person.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-public_data">
+            <glossterm>Public data</glossterm>
+            <glossdef>
+                <para>
+                    A category of data identified by &PRODUCTABBR;
+                    for the purpose of assigning all the same permissions 
+                    to data in that category. Data identifes as public
+                    data is data that typical
+                    <glossterm linkend="def-education_organization">education organizations</glossterm>
+                    can make available publicly (outside of the organization).
+                    Example: A school's street address and phone number.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-realm">
+            <glossterm>realm</glossterm>
+            <glossdef>
+                <para>
+                    An &PRODUCTABBR; concept used to identify the context of
+                    authentication for a user or application. This can be a
+                    district that has its own identity service for authentication, 
+                    or it could be an organization of districts that share an 
+                    identity service. The highest available realm is a state.
+                    In &PRODUCTABBR;, user IDs are unique only within a
+                    <glossterm linkend="def-tenant">tenancy</glossterm>, so it's
+                    not recommended that a single realm be used to serve multiple
+                    tenants.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-realm_administrator">
+            <glossterm>Realm Administrator</glossterm>
+            <glossdef>
+                <para>
+                    One of the 
+                    <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm>
+                    roles. This role targets users who serve as &PRODUCTABBR; administrators at the 
+                    <glossterm linkend="def-realm">realm</glossterm> level.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-redirect_uri">
+            <glossterm>redirect URI</glossterm>
+            <glossdef>
+                <para>
+                    For user authentication in &COMPANYABBR;, this is a target
+                    URI within an application to which a user is redirected 
+                    after successful authentication. This URI is registered with
+                    the &COMPANYABBR; during the
+                    <glossterm linkend="def-application_registration">application registration</glossterm>
+                    process. Also called a <firstterm>callback URL</firstterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-required_attribute">
+            <glossterm>required attribute</glossterm>
+            <glossdef>
+                <para>
+                    An <glossterm linkend="def-attribute">attribute</glossterm>
+                    that must have a value in order for the entity to be created 
+                    or updated in the data store.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-resource">
+            <glossterm>resource</glossterm>
+            <glossdef>
+                <para> Under the industry standard representational state transfer (REST) software
+                    architecture, this is any meaningful concept around which a user interaction can
+                    occur. Resources in the &PRODUCTABBR; REST API share <glossterm
+                        linkend="def-common_field">common fields</glossterm> such as a unique
+                    identifier value. Types of resources include Secure Data Serviceentities, event
+                    logs, and security administration. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-resource_representation">
+            <glossterm>resource representation</glossterm>
+            <glossdef>
+                <para>
+                    A textual representation of the current state (GET) or intended state
+                    (PUT, POST, DELETE) of a resource. The REST API supports JSON and XML
+                    representations of resources.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-restricted_data">
+            <glossterm>Restricted data</glossterm>
+            <glossdef>
+                <para>
+                    A category of data identified by &PRODUCTABBR;
+                    for the purpose of assigning all the same permissions 
+                    to data in that category. Data identifed as restricted
+                    data is data that typical
+                    <glossterm linkend="def-education_organization">education organizations</glossterm>
+                    must keep confidential, whether by law or for the safety
+                    of educators and students.
+                    Example: A student's status for receiving a free or reduced lunch.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <!-- Commented out to handle TA5096 on DE1161, addressing concerns from InfoSec
+        <glossentry xml:id="def-restricted_data_fields">
+            <glossterm>restricted data fields</glossterm>
+            <glossdef>
+                <para>
+                    These fields aid in determining the viewing rights for certain 
+                    roles. A field is marked restricted using an attribute in the
+                    data model. Example usage: An <emphasis>Educator</emphasis>
+                    may be prevented from viewing restricted data fields.
+                </para>
+            </glossdef>
+        </glossentry> -->
+        
+        <glossentry xml:id="def-role">
+            <glossterm>role</glossterm>
+            <glossdef>
+                <para>
+                    A mapping between a set of permissions and the data to
+                    which it applies. A role is typically identified by the 
+                    title of a group of users that should have that role,
+                    such as <emphasis>student</emphasis> or
+                    <emphasis>educator</emphasis>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-role_mapping">
+            <glossterm>role mapping</glossterm>
+            <glossdef>
+                <para>
+                    The process of assigning an authenticated
+                    user from the local directory service of an
+                    <glossterm linkend="def-education_organization">education organization</glossterm>
+                    (typically at the state or county/district level)
+                    to one of the default roles in &PRODUCTABBR;.
+                    This creates what &PRODUCTABBR; refers to as its
+                    <glossterm linkend="def-federated">federated</glossterm>
+                    users.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-sandbox">
+            <glossterm>Sandbox</glossterm>
+            <glossdef>
+                <para>
+                    Industry standard term to refer to a non-Production environment
+                    where software developers can develop and test their code.
+                    The &COMPANYABBR; includes a feature-rich Sandbox environment
+                    for use in developing applications to use with the &COMPANYABBR;.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-school_district">
+            <glossterm>school district</glossterm>
+            <glossdef>
+                <para>
+                    An <glossterm linkend="def-education_organization">education organization</glossterm>
+                    in &PRODUCTABBR;'s assumed hierarchy of education organizations.
+                    <!-- FIXME, verifiy: A school district, or just "district," can reside directly under
+                    a "state," or it can be a sub-level/child of another district. -->
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-sea_administrator">
+            <glossterm>SEA Administrator</glossterm>
+            <glossdef>
+                <para> 
+                    One of the 
+                    <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm>
+                    roles. This role targets users who serve as
+                    &PRODUCTABBR; administrators at the state level 
+                    (SEA = state education agency).
+                </para>
+            </glossdef>
+        </glossentry>        
+        
+        <glossentry xml:id="def-saml">
+            <glossterm>Security Assertion Markup Language (SAML)</glossterm>
+            <glossdef>
+                <para>
+                    An XML-based markup language and associated protocol published by the
+                    Organization for the Advancement of Structured Information Standards (OASIS).
+                    SAML is an open standard for exchanging authentication and authorization 
+                    betwen security domains. The primary goal of SAML is to facilitate
+                    creating a single sign-on (SSO) solution between multiple web 
+                    applications.
+                </para>
+                <para>
+                    &COMPANYABBR; uses the SAML language in combination with the
+                    <glossterm linkend="def-oauth">OAuth</glossterm> protocol.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-authentication">authentication</glossterm>,
+                    <glossterm linkend="def-authorization">authorization</glossterm>,
+                    <glossterm linkend="def-security_domain">security domains</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-security_domain">
+            <glossterm>security domain</glossterm>
+            <glossdef>
+                <para>
+                    A virtual security boundary shared by multiple computers,
+                    services, and applications. Applications and services within a
+                    security domain trust a common security token from an
+                    <glossterm linkend="def-identity_provider">identity provider</glossterm>
+                    that serves that domain.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-security_event_logs">
+            <glossterm>security event logs</glossterm>
+            <glossdef>
+                <para> Data in the &PRODUCTABBR; Secure Data Serviceused to record security events,
+                    such as events related to signing in and out of the &PRODUCTABBR;, creating or
+                    deleting administrators, and accessing certain restricted data. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-slc_operator">
+            <glossterm>&OPERATORROLE;</glossterm>
+            <glossdef>
+                <para>
+                    One of the 
+                    <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm>
+                    roles. This role targets users whose responsibility it is
+                    to use deploy and maintain software in &PRODUCTABBR;.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-inbloom_administrator">
+            <glossterm>&PRODUCTABBR; administrator</glossterm>
+            <glossdef>
+                <para>
+                    A user created in &PRODUCTABBR; hosted directory
+                    service (within &PRODUCTABBR;) rather than using the 
+                    external education organization's directory service
+                    to which &PRODUCTABBR; is linked. Roles defined
+                    under this set of &PRODUCTABBR; administrators
+                    include those responsible for setting up and maintaining 
+                    an &PRODUCTABBR; deployment. See also:
+                    <glossterm linkend="def-hosted_directory">&PRODUCTABBR; hosted directory</glossterm>
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-hosted_directory">
+            <glossterm>&PRODUCTABBR; hosted directory</glossterm>
+            <glossdef>
+                <para> A directory service that's part of the set of services deployed as part of
+                    &PRODUCTABBR;, whose purpose is to manage administrator roles specific to
+                    &PRODUCTABBR;. This directory service is considered an internal component of
+                    &PRODUCTABBR;, and it's separate from the external directory service to which
+                    educators, students, and other people in the &PRODUCTABBR; Secure Data Service
+                    are mapped. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-standard_field">
+            <glossterm>standard field</glossterm>
+            <glossdef>
+                <para>
+                    A field that is a part of a resource representation, as determined by the
+                    schema of the resource.
+                </para>
+                <para>
+                    See also <glossterm linkend="def-common_field">common field</glossterm>,
+                    <glossterm linkend="def-view">view</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-student">
+            <glossterm>Student</glossterm>
+            <glossdef>
+                <para> One of the user roles in &PRODUCTABBR;. Users in the default <glossterm
+                        linkend="def-student">Student</glossterm> role group can only view public
+                    data, Student_Owned data, and Student_General data. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-tenancy">
+            <glossterm>tenancy</glossterm>
+            <glossdef>
+                <para>
+                    The set of data that a given user has administrative access 
+                    to based on that user's combination of 
+                    <glossterm linkend="def-role">roles</glossterm> and
+                    <glossterm linkend="def-context">context</glossterm>.
+                </para>
+                <para>
+                    For specific use when assigning user roles, see 
+                    <glossterm linkend="def-tenant">Tenant</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry> 
+        
+        <glossentry xml:id="def-tenant">
+            <glossterm>tenant</glossterm>
+            <glossdef>
+                <para> A single set of self-consistent data that is logically isolated within the
+                    &PRODUCTABBR; Secure Data Service. A single state-level <glossterm
+                        linkend="def-education_organization">education organization</glossterm> is a
+                    tenancy, and it is possible for multiple other tenancies (for multiple
+                    county/district education organizations) exist within the same state. </para>
+                <para>
+                    See also: <glossterm linkend="def-tenancy">tenancy</glossterm>
+                </para>
+            </glossdef>
+        </glossentry> 
+        
+        <glossentry xml:id="def-uid">
+            <glossterm>unique identifier</glossterm>
+            <glossdef>
+                <para> An identifying object, typically a string of characters, that's unique among
+                    all objects within a given system. The unique identifier for objects in the
+                    &COMPANYABBR; Secure Data Sevices are structured similar to the UUID standard
+                    (set by the Open Software Foundation), but deviate from that standard by adding
+                    to that ID string. </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-user_registration">
+            <glossterm>user registration</glossterm>
+            <glossdef>
+                <para>
+                    The process by which an administrator for &PRODUCTABBR;
+                    adds new users to the system, including assigning roles to
+                    those users for the purpose of determining the user's
+                    <glossterm linkend="def-effective_permissions">effective permissions</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-verification_code">
+            <glossterm>verification code</glossterm>
+            <glossdef>
+                <para>
+                    A code that verifies that the credentials provided by a user have been
+                    authenticated against the identity directory that contains that user's
+                    account. A verification code enables your application to obtain an 
+                    <glossterm linkend="def-access_context">access token</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+        <glossentry xml:id="def-view">
+            <glossterm>view</glossterm>
+            <glossdef>
+                <para>
+                    A set of data that extends the view of the original 
+                    resource. By default, a GET request to the 
+                    &RESTAPI; does not return views. A global parameter 
+                    can be used to request views. 
+                </para>
+                <para>
+                    See also
+                    <glossterm linkend="def-common_field">common field</glossterm>,
+                    <glossterm linkend="def-standard_field">standard field</glossterm>,
+                    <glossterm linkend="def-resource">resource</glossterm>.
+                </para>
+            </glossdef>
+        </glossentry>
+        
+    </glossdiv>
+    
+</glossary>
+    
+
+        

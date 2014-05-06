@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-securityEvent-id" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>securityEvent/{id}</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/securityEvent/{id}</filename>
+    </para>
+    <para>
+        Access a record for a security event that the current user 
+        has permission to view.
+    </para>
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-securityEvent-get_example">
+        <title>Example GET Response: securityEvent/{id}</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[
+{
+    "executedOn": "inBloomServer23",
+    "tenantId": "Midgar",
+    "userEdOrg": "IL-DAYBREAK",
+    "appId": "inBloom Data Browser",
+    "timeStamp": "2013-11-11T12:20:14.118-05:00",
+    "processNameOrId": "13202@inBloomServer23",
+    "origin": "127.0.0.1:42435",
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://local.slidev.org:8080/api/rest/securityEvent/2013ul-86db2b6d-4af5-11e3-a896-3c970e84e830"
+        },
+        {
+            "rel": "custom",
+            "href": "http://local.slidev.org:8080/api/rest/securityEvent/2013ul-86db2b6d-4af5-11e3-a896-3c970e84e830/custom"
+        }
+    ],
+    "entityType": "securityEvent",
+    "credential": "c-3c70f474-8640-4d05-8d33-bed784df399a",
+    "targetEdOrgList": [
+        "IL-DAYBREAK"
+    ],
+    "id": "2013ul-86db2b6d-4af5-11e3-a896-3c970e84e830",
+    "actionUri": "http://local.slidev.org:8080/api/rest/saml/sso/post",
+    "userOrigin": "127.0.0.1:42435",
+    "logLevel": "TYPE_INFO",
+    "roles": [
+        "IT Administrator"
+    ],
+    "className": "org.slc.sli.api.resources.security.SamlFederationResource",
+    "user": "jstevenson",
+    "logMessage": "jstevenson from tenant Midgar logged successfully into inBloom Data Browser by slcdeveloper."
+}
+  ]]>
+</programlisting>
+    </section>
+    
+</section>

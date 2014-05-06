@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_limitations">
+  <title>Known Limitations</title>
+  <para>
+                Known limitations in the Alpha.0 release can be summarized as follows:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+                        When sandbox users ingest data sets through the landing zone,
+                        they may experience longer-than-expected load times.
+                        To address this, we have set a size limit of 1 MB for 
+                        ingestion archive files, corresponding to approximately 30-50MB 
+                        of uncompressed XML data, or about 30,000-50,000 records. 
+                        In Alpha.0, ingesting a data set of this size should take 
+                        about 15 minutes. This load time issue first appeared during
+                        the initial transition to the Alpha.0 operational environment,
+                        and is currently under diagnosis. Please check the 
+                        Sandbox Developer Web Site at 
+                        <link xlink:href="http://dev.slcedu.org/getting-started/sandbox/">http://dev.slcedu.org/getting-started/sandbox/</link>
+                        for daily updates on this issue. 
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Some Ed-Fi entities are not yet supported and, thus,
+                        not consumable through data ingestion. For additional 
+                        information, see the
+                        <citetitle>SLC Data Ingestion White Paper</citetitle>
+                        from
+                        <link xlink:href="http://dev.slcedu.org/documentation">dev.slcedu.org/documentation</link>.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Bulk data extracts are not yet supported.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Not all ingestible data is displayed in SLC 
+                        educator dashboards, including discipline incidents, 
+                        full attendance records, current courses, and grades.
+                    </para>
+    </listitem>
+    <listitem>
+      <para>
+                        Leader roles do not yet provide aggregate view of data.
+                    </para>
+    </listitem>
+  </itemizedlist>
+  <para>
+                The following are the user stories currently used to track known
+                limitations in the Alpha.0 release. Click a linked story ID and
+                title in the list to view for more details:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="US2844">US2844: Enable Sandbox users to switch between already provisioned LZ</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2660">US2660: App Permissions - Assigning Existing Data Category Rights</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US1727">US1727: Stable URLs for Student Profile Pages</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2724">US2724: Remove "Attendance and Discipline" Tab Until Data is Available</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2786">US2786: Admin: Provision Landing Zone shouldn't require EdOrg Entry</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2714">US2714: Add Pagination to List of Students</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US1030">US1030: Current Courses and Grades Panel</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US2121">US2121: Password Reset for SLI Hosted Users</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="US1032">US1032: Attendance History Panel in Student Profile</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="US2844">
+    <title>US2844: Enable Sandbox users to switch between already provisioned LZ</title>
+    <para>In sandbox the user can only provision a landing zone for a particular educational organization once, which limits them from switching between landing zones for retesting with data that they used before. There is no limitation to the number of landing zones they can provision using a custom educational organization.Workaround:If the user wants to re-ingest a sample dataset and can not re-provision the landing zone, the best way is to create a custom landing zone and update the sample data to have the matching high level ed-org.</para>
+  </section>
+  <section xml:id="US2660">
+    <title>US2660: App Permissions - Assigning Existing Data Category Rights</title>
+    <para>An application that is authorized by a LEA, can access the LEA's data based on the user's permissions (on which behalf the application is accessing LEA's data) and the application features/capabilities. There is no additional restriction that LEA can impose other than 'blanket' access (application can or cannot access LEA's data on user's behalf). Additional functionality will be built to allow the LEA to choose what rights over the existing data categoriesto give to certain application. The intersection of the user's and application's permissions and the application's capabilitieswill define in which way the user will be able to access the LEA's data. For example, if an application allows editing of general student data, and a user with IT Administrator role (which gives permission for editing student data) is using the application, he/she will not be able to edit any student data if this right has not been given to the application by the LEA.</para>
+  </section>
+  <section xml:id="US1727">
+    <title>US1727: Stable URLs for Student Profile Pages</title>
+    <para>In Dashboard, student profile and list URLs are unique and can be bookmarked, but will change at a later time, and with the ingestion of new data, so they are not permanently canonical at this time.</para>
+  </section>
+  <section xml:id="US2724">
+    <title>US2724: Remove "Attendance and Discipline" Tab Until Data is Available</title>
+    <para>In some cases depending on configuration, a blank "Attendance and Discipline" tab may appear in Student Profiles.</para>
+  </section>
+  <section xml:id="US2786">
+    <title>US2786: Admin: Provision Landing Zone shouldn't require EdOrg Entry</title>
+    <para>When provisioning a landing zone, the user must provision the landing zone at the edOrg they are a part of.</para>
+  </section>
+  <section xml:id="US2714">
+    <title>US2714: Add Pagination to List of Students</title>
+    <para>Dashboard displays a maximum of 50 students in a selected section, and does not support pagination at this time.</para>
+  </section>
+  <section xml:id="US1030">
+    <title>US1030: Current Courses and Grades Panel</title>
+    <para>Student Profiles do not yet have a tab displaying a student's current courses and associated grades, even when this data is ingested into SLI.</para>
+  </section>
+  <section xml:id="US2121">
+    <title>US2121: Password Reset for SLI Hosted Users</title>
+    <para>If an SLI hosted directory user has forgotten own password, he/she will have to ask the SLC Operator (in an offline process) to reset the password for him/her. A feature will be added to the SLI Identity Providerthat will allow the SLI hosted directory users to reset their password.</para>
+  </section>
+  <section xml:id="US1032">
+    <title>US1032: Attendance History Panel in Student Profile</title>
+    <para>Attendance and discipline data are not yet available in Student Profiles.</para>
+  </section>
+</section>

@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-30c9bb52-e5c8-44c7-aa17-9da8082ca479"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy &PRODUCTABBR; Applications: Administration Tool</title>
+
+    <para> The sections that follow cover preparing for, installing, and configuring the
+        administration tool as part of the applications in &PRODUCTABBR;. </para>
+    
+    <section xml:id="doc-f900e899-0d97-4d91-8344-0269f866b802">
+        <title>Administration Tool: What You Need to Know Before Deployment</title>
+        <para>
+            The administration application provides a number of back-end management functions to the 
+            users, however nearly all interaction with the application will take place via the Portal 
+            interface.  This means that the application is largely dependent upon the interface 
+            provided by the Portal, and back-end API connectivity.
+        </para>
+        <para>
+            The sole exception to the administration application's use via Portal is the developer 
+            registration URL which can be found at the <code>/registration</code> URI path on the administration 
+            servers.  It is used to create an entry in an LDAP directory for new users.  The application 
+            has no integrated password controls of its own, and as such it is necessary to 
+            leverage the password controls of the LDAP directory.  If the LDAP Directory is OpenLDAP, we 
+            recommend the deployment of the ppolicy overlay to implement password controls.  
+        </para>
+        <para>
+            In order to support password validation and controls external to the &PRODUCTABBR; application, passwords 
+            are transmitted from the administration application to the OpenLDAP server in clear text.  
+            Use of mandatory SSL encryption to the OpenLDAP server is highly recommended, along with 
+            configuring the LDAP Server to use a secure default password hashing method such as SSHA, 
+            and Password Policy Configuration to hash user passwords.
+        </para>
+        <para>
+            Information on the configuration and use of the ppolicy overlay can be found at 
+            http://www.openldap.org/doc/admin24/overlays.html. 
+        </para>
+    </section>
+    
+    <section xml:id="doc-e6a7fddf-3b76-4a55-9bd3-3f93de6384c2">
+        <title>Administration Tool: Installation</title>
+        <para>
+            Installation for the administration tool requires:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A Rails server
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby Version Manager (rvm)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ruby 2.0.0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Bundler Ruby Gem <code>`gem install bundler`</code>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A user account that can be authenticated by the operator's identity provider 
+                    with group membership in "&PRODUCTABBR; Administrators".
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Use the following procedure to install the administration tool application
+            for &PRODUCTABBR;. These steps assume that you'll be locating the 
+            application into a <code>$RAILS_HOME</code> folder, where <code>$RAILS_HOME/public</code> is your 
+            <code>$WWWROOT</code> folder:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Extract the Admin software package to <code>$RAILS_HOME</code>.
+                </para>
+                <programlisting><![CDATA[
+tar xvzf -C $RAILS_HOME admin-package.tgz
+                            ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Change your current directory to <code>$RAILS_HOME</code>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Execute the following commands to install all of the
+                    the prerequisite Ruby Gems and compile the assets:
+                </para>
+                <programlisting><![CDATA[
+bundle install --deployment
+bundle exec rake assets:precompile
+                ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Modify the <filename>$RAILS_HOME/config/deploy/team.rb</filename> file to define 
+                    the name of the environment. This will allow multiple configurations 
+                    to be placed in the <filename>config.yml</filename> file, although only one 
+                    configuration can be used at a time.
+                </para>
+                <programlisting><![CDATA[
+server "admin.example.com", :app, :web, :db, :primary => true
+set :rails_env, "production"
+                ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Generate a key file with the script <filename>generateRailsKey.rb</filename>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Generate encrypted LDAP password by using the keyfile generated in the previous step.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Generate encrypted SMTP password by using the keyfile generated in step 5.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Set the key file read permissions to the rails apps only.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Add the properties generated by the script to the relevant profile in <filename>$RAILS_HOME/config/config.yml</filename>:
+                </para>
+                <orderedlist>
+                    <listitem><para>encryption_keyfile</para></listitem>
+                    <listitem><para>encryption_iv</para></listitem>
+                </orderedlist>
+            </step>
+            <step>
+                <para>
+                    Update ldap_pass in <filename>$RAILS_HOME/config/config.yml</filename>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Update the <emphasis>email_password</emphasis> field in <filename>$RAILS_HOME/config/config.yml</filename>.
+                </para>
+            </step>
+            <step>
+                <para> Next, you will need to have a configuration file that represents your
+                    environment placed on top of <filename>$RAILS_HOME/config/config.yml</filename>.
+                    Below is an example followed by a description of each option. 
+                </para>
+                    <note>
+                        <para> The URLs in this configuration example may be
+                            subject to change in your environment or situation. Therefore,
+                            pre-deployment verification is always recommended. </para>
+                    </note>
+                <programlisting><![CDATA[
+production:
+api_base: https://api.example.com/api/rest
+
+#Encrypted properties.
+client_id: 10CharIden
+client_secret: 48CharacterRandomSecret
+encryption_keyfile: <path to the keyfile>
+encryption_iv: <initialization vector>
+
+redirect_uri: https://admin.example.com/callback 
+ldap_host: ldap.server.name
+ldap_port: 636
+ldap_use_ssl: false 
+ldap_base: ou=SLIAdmin,ou=ouFolder,dc=domain,dc=tld
+ldap_user: cn=Admin_User,dc=domain,dc=tld
+ldap_pass: AboveUserPassword
+email_sender_name: inBloom Administrator
+email_sender_address: noreply@example.com
+email_host: smtp.example.com
+email_port: 25
+email_username: amazonSesUsername
+email_password: amazonSesPassword
+email_tls: true
+email_replace_uri: https://adminurl.example.com
+is_sandbox: false
+admin_realm: Shared Learning Collaborative
+redirect_slc_url: http://www.inbloom.org
+email_sender_name_user_reg_app: Administrator
+email_sender_address_user_reg_app: noreply@example.com
+password_policy: ["password must satisfy password policy"]
+support_email: support\@example.com
+portal_url: https://rcportal.example.com/portal
+recaptcha_disable: false
+recaptcha_pub: recaptcha_API_Public_Key
+recaptcha_priv: recapthca_API_Private_Key
+<<<<<<< .merge_file_6eUsxL
+devslc_url: http://ww.inbloom.org/
+terms_url: http://www.inbloom.org/terms-of-use
+privacy_policy_url: http://www.inbloom.org/privacy-policy
+sample_data_url: http://www.inbloom.org/for-developers/sandbox
+app_dev_documentation_link: http://www.inbloom.org/for-developers/sandbox
+=======
+devslc_url: http://www.inbloom.org
+terms_url: http://inbloom.org/terms-of-use
+privacy_policy_url: http://inbloom.org/privacy-policy
+sample_data_url: http://inbloom.org/getting-started/sandbox
+app_dev_documentation_link: http://inbloom.org/getting-started
+>>>>>>> .merge_file_UL3mMv
+reset_password_lifespan: 86400
+# sandbox only
+#maximum_user_count: 500]]>
+                </programlisting>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            api_base - The URL where the application will need to connect 
+                            in order to work with the API, as well as direct the user 
+                            for authentication.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            client_id - A ten character random string [a-z|A-Z|0-9] that 
+                            represents the application for authentication to the API service. <emphasis>Important:</emphasis> Be sure to use the encrypted client_id from step 5.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            client_secret - A forty eight character random string [a-z|A-Z|0-9] 
+                            that is used as a shared secret between the API and the application. <emphasis>Important:</emphasis> Be sure to use the encrypted client_secret from step 5.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            encryption_keyfile - The location of the encryption keyfile for the client_id and client_secret.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            encryption_iv - The initialization vector that, when combined with the keyfile, defines the encryption cipher. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            redirect_uri - The URL that is passed to the API in the initial 
+                            re-direct that informs the API where to return the user to.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            ldap_host - This is the hostname for LDAP connectivity.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para> ldap_port - This is the port for LDAP connectivity. </para>
+                    </listitem>
+                    <listitem>
+                        <para> ldap_use_ssl - This  enables or disables using  the SSL protocol to
+                            connect to the LDAP server.  </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            ldap_base - This is the base DN that the admin application would be working 
+                            from.  This would be the same DN that the IDP would be looking toward for 
+                            the operator/administrative realm authentication.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            ldap_user - This is a user account in the LDAP directory that has sufficient 
+                            privileges to create and modify accounts.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            ldap_pass - This is the password for the LDAP user above that has permission 
+                            to create and modify LDAP users.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_sender_name - The text name for emails sent from the admin application.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_sender_address - The email address for emails sent from the admin application.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_host - Hostname that serves as a relay for the admin server host(s).
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_port - Port for email server.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_username - User name used to authenticate with the SMTP server.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_password - Password used to authenticate with the SMTP server.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_tls - Turns on TLS/SSL for SMTP.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_replace_uri - This is the URI that is substituted in the email notifications. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            is_sandbox - This flag tells the application to operate in 
+                            <link linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f">Sandbox mode</link>
+                            </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            admin_realm - This is the name of the administrative realm.  This must match the API 
+                            configuration.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para> redirect_slc_url - This is the URL for the current developer website. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_sender_name_user_reg_app - The text name that the application registration 
+                            email is sent from.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            email_sender_address_user_reg_app - The email address that the application 
+                            registration email is sent from.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            password_policy - This is a text value along the lines of ["password must be 6-12 characters 
+                            and not a dictionary word"] that is used to inform users what the password policy is, based 
+                            on the configuration of the LDAP server.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            terms_url - URL to where the terms of use is located.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            privacy_policy_url - URL to where the privacy policy is located.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            support_email - The support email address.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            portal_url - This is the URL to the Portal login, used for registration emails.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            recaptcha_disable - This true/false flag controls if recaptcha validation is 
+                            enabled or disabled.  Disabling recaptcha should only be used for testing. 
+                            The captcha will still be displayed along with an error message indicating 
+                            validation is disabled.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            recaptcha_pub - The recaptcha API public key. Obtain from http://www.google.com/recaptcha.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para> recaptcha_priv - The recaptcha API private key. Obtain from
+                            http://www.google.com/recaptcha. </para>
+                    </listitem>
+                    <listitem>
+                        <para>devslc_url - Link to developer site.</para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            app_dev_documentation_link - Link to the Application Developer documentation.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            sample_data_url - Sandbox-specific URL which points the developer
+                                or vendor to the sample data that may be ingested into their Sandbox.
+                                Only applicable in <link linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f">Sandbox mode</link>.
+                                Example: <filename>http://inbloom.org/getting-started/sandbox</filename>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            maximum_user_count - The maximum number of developer/vendor accounts that can be registered.  
+                                This should only be set in <link linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f">Sandbox mode</link>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <note>
+                    <title>Sandbox Tip</title>
+                    <para>
+                        <phrase>When configuring &PRODUCTABBR; in <link linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f">Sandbox mode</link>,
+                            don't miss the following parameters from the list above:
+                            <parameter>is_sandbox</parameter>, <parameter>sample_url</parameter>, <parameter>maximum_user_count</parameter></phrase>
+                    </para>
+                </note>
+            </step>
+            <step>
+                <para>
+                    Ensure that your configuration matches that of the API configuration file, 
+                    which should be bootstrapped into the Mongo database upon API startup if no 
+                    previous application entries are found in the database.  Once the API has been 
+                    started, and the application entry has been created in the Mongo database, 
+                    you are ready to proceed.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Access the server webroot with a web browser. You will be re-directed to the API, 
+                    which will re-direct you to the configured IDP. If validated correctly, 
+                    you will then be redirected back to the API, and then back to the admin web 
+                    application.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-410bc10d-d1c9-430b-a1c6-ea617f64cf1d">
+        <title>Administration Tool: Configuration</title>
+        <para>
+            The administration application provides a number of back-end management 
+            functions to the users, however nearly all interaction with the application 
+            will take place via the Portal interface.  As such, the application is largely 
+            dependent upon the interface provided by the Portal, and back-end API 
+            connectivity.
+        </para>
+        <para>
+            The sole exception to the administration application's use via Portal is the developer 
+            registration URL which can be found at the <code>/registration</code> URI path on the administration 
+            servers.  It is used to create an entry in an LDAP directory for new users.  The application 
+            has no integrated password controls of its own, and as such it is necessary to 
+            leverage the password controls of the LDAP directory.  If the LDAP Directory is OpenLDAP, we 
+            recommend the deployment of the ppolicy overlay to implement password controls.  
+        </para>
+        <para>
+            Information on the configuration and use of the ppolicy overlay can be 
+            found at 
+            <link xlink:show="new" xlink:href="http://www.openldap.org/doc/admin24/overlays.html">http://www.openldap.org/doc/admin24/overlays.html</link>. 
+        </para>
+    </section>
+    
+    <!-- 
+    <section xml:id="doc-c09b9173-1f8b-4971-baaa-bdf9d087a2b7">
+        <title>Administration Tool: Troubleshooting During Deployment</title>
+        <para>
+            FIXME... more to come
+        </para>
+    </section> -->
+    
+</chapter>

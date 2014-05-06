@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-dc270232-ca74-4adf-948f-dabe36c62098"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&RESTAPI; Overview</title>
+
+    <para>
+        The &RESTAPI; is a RESTful, client-server Web service with the 
+        following features:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Predictable, resource-oriented URIs
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                HTTP methods to exchange representations of resources
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                HTTP response codes to indicate API errors
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Built-in HTTP features such as HTTP basic access authentication
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Support of JSON and XML data-interchange formats
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Hypertext As The Engine Of Application State (HATEOAS) 
+                constraint to provide standardized link relations
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The &RESTAPI; is designed to be a Level 3 RESTful API in the Richardson
+        Maturity Model. For more information, see 
+        <citetitle>REST in Practice</citetitle>
+        (J. Webber, S. Parastatidis, I.S. Robinson) at 
+        <link xlink:show="new" xlink:href="http://restinpractice.com/book/">http://restinpractice.com/book/</link>.
+    </para>
+    <note>
+        <para>REST API examples follow these conventions:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <varname>$BASE_URL</varname> - Represents the base URL of the specific REST API
+                    deployment you're working with. It includes the hostname for the server hosting
+                    the REST API, and you can expect that hostname to vary different between a
+                    Production and Sandbox environments. You will see <varname>$BASE_URL</varname>
+                    followed by "/api" for each API call, and "/api/rest" specifically for RESTful
+                    calls to the data store. </para>
+                <para>
+                    If you're using the &COMPANYABBR;-hosted developer
+                    Sandbox 
+                    (<link xlink:show="new" xlink:href="&DEVWEBSITE;/sandbox">&DEVWEBSITE;/sandbox</link>),
+                    the <code>$BASE_URL$</code> value is:
+                    <emphasis role="bold"><filename>api.&HOSTEDSANDBOX;</filename></emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    All requests and responses are shown in JSON format, and 
+                    some examples also show their XML equivalents
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    For clarity, the syntax of examples shows how the example 
+                    would appear when using a developer-focused REST client or
+                    when using a command-line HTTP utility such as cURL. 
+                    Special characters, such as query operators and spaces,
+                    are assumed to be converted to their appropriate 
+                    URL-escaped versions by the underlying tool or library
+                    (like "hello world" becoming "hello%20world").
+                </para>
+            </listitem>
+        </itemizedlist>
+    </note>
+    
+    <section xml:id="doc-51873440-3773-47e7-8720-be09da6e89d1">
+        <title>Core Concepts for the &RESTAPI;</title>
+        <para>
+            The following are the core concepts used throughout this 
+            documentation when discussing the &RESTAPI;:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-resource">resource</glossterm> - Under the REST
+                    architecture, this is any meaningful concept around which a user interaction can
+                    occur. Resources in the &PRODUCTABBR; REST API share common fields as a unique
+                    identifer, which is based on, but does not strictly follow, the UUID standard.
+                    Types of resources include Secure Data Serviceentities, event logs, and security
+                    administration. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-resource_representation">resource representation</glossterm> -
+                    A textual representation of the current state (GET) or intended state
+                    (PUT, POST, DELETE) of a resource. The REST API supports JSON and XML
+                    representations of resources.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-association">association</glossterm> - A rule set in the
+                    &COMPANYABBR; Secure Data Service which ties together instances of two given
+                        <glossterm linkend="def-entity">entities</glossterm>. An association may
+                    exist as an <glossterm linkend="def-entity">entity</glossterm> itself (and thus
+                    as a <glossterm linkend="def-resource">resource</glossterm> in the REST API), or
+                    it may be expressed as a <glossterm linkend="def-direct_reference">direct
+                        reference</glossterm> under each entity it's associating. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-common_field">common field</glossterm> -
+                    Fields that all REST API resources have, including
+                    <code>id</code> (the unique identifier for the resources), 
+                    <code>entityType</code>, and <code>metaData</code>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-standard_field">standard field</glossterm> -
+                    A field that is a part of a resource representation, as determined by the
+                    schema of the resource. 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <glossterm linkend="def-view">view</glossterm> -
+                    A set of data that extends the view of the original resource.  
+                    By default, a GET request does not return views. A global parameter 
+                    can be used to request views.
+                </para>
+            </listitem>
+            <!-- <listitem>
+                    <para>
+                        <glossterm linkend="def-pii">Personally Identifiable Information (PII)</glossterm> -
+                        Data that has additional security constraints because it can be
+                        used to uniquely identify one or more people. This includes data 
+                        that can be used to contact, locate, or impersonate those people.
+                    </para>
+                </listitem> -->
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-a4d44cc3-e87f-4c23-92be-3d6366df7e4c">
+        <title>&RESTAPI; Features</title>
+        <para> 
+            The following table provides an overview of the &RESTAPI;
+            for quick reference. The chapters and sections that follow
+            cover the details you need for your application development tasks.
+        </para>
+        <table xml:id="table-10c2d853-51f4-4758-96b7-c0a2cd8e1a52">
+            <title>Features of the &RESTAPI;</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            REST API Feature
+                        </entry><entry>
+                            &PRODUCTABBR; Implementation
+                        </entry><entry>
+                            Explanation
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                Architecture
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                RESTful
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                REST-style client/server architecture with HATEOAS constraint. 
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Protocol
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                HTTPS
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                APIs are exclusively exposed through HTTPS.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Base URL
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <code>$BASE_URL/api/rest</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> Use this URL to locate REST API resources. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>REST API Version </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                v<emphasis>N.N</emphasis> URI path element
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This immediately follows the base URL in the
+                                the URI for each API resource. Use both the
+                                major and minor parts of the version number
+                                (as in "v1.1"). If you include only the major
+                                number (as in "v1"), the API will default to
+                                the latest minor version associated with that
+                                major version.
+                            </para>
+                            <programlisting><![CDATA[$BASE_URL/api/rest/v1.1/students]]></programlisting>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                HTTP methods
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GET, PUT, POST, DELETE
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>Standard REST implementation.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Media Types
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                JSON, XML
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> To explicitly request a content type in the Accept header,
+                                specify one of these: </para>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        <code>application/vnd.slc+json</code></para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        <code>application/vnd.slc+xml</code></para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Response Codes
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                HTTP
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&PRODUCTABBR; uses conventional HTTP response codes to indicate success
+                                or failure of an API request. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Application Authentication
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                OAuth 2.0, SAML 2.0
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&PRODUCTABBR; uses a combination of OAuth 2.0 and SAML 2.0 protocols to
+                                allow web-based authentication and authorization, including
+                                single sign-on (SSO). </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Encryption
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                HTTPS
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>Network traffic between an application and the &PRODUCTABBR; requires
+                                SSL/TLS. Connecting over HTTPS is handled by the &PRODUCTABBR; API
+                                libraries over standard ports to ensure portability,
+                                accessibility, and mobility.</para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    
+    <section xml:id="data_model-xsd">
+        <title>XML Schema Definition (XSD) for the REST API</title>
+        <para> The schema describing access to the Secure Data Servicethrough the REST API is
+            provided through the XSD file linked here: </para>
+        <para>
+            <link xlink:show="new" xlink:href="xsd/inbloom-api.xsd">XSD for the API</link>
+        </para>
+    </section>
+    
+</chapter>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-users-id" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>users/id</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/users/{id}</filename>
+    </para>
+    <para>
+        Access to delete a specific administrator or developer account 
+        from the target &PRODUCTABBR; deployment.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            DELETE
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Deletes the specified resource. 
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for DELETE. For 
+                            information on forming the DELETE request URI, see
+                            <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. 
+                            Note that trying to delete a resource that does 
+                            not exist results in the 
+                            <varname>404 Not Found</varname> response code.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>204 No Content</varname> - 
+                            The response body is empty.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-users-id-delete_example">
+        <title>Example DELETE Request: users/{id}</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[DELETE /api/rest/users/test.user.3@example.com]]></programlisting>
+    </section>
+    
+</section>

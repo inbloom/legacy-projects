@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-20134ec0-8fb6-4e3d-ab6a-50106fabb54b"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Delegating Permissions to the State Education Organization</title>
+
+    <para> 
+        A local education organization (such as a district or county
+        school system) can delegate some administrative responsibilities
+        the state education organization in its hierarchy. That local
+        organization can delegate the right to view security events 
+        on the organization's behalf.
+    </para>
+    <para>
+        The <glossterm linkend="def-lea_administrator">LEA administrator</glossterm>
+        role is the administrator role associated with the local education 
+        organizations which can delegate these permissions. The recipient
+        of the delegated permissions has the state level administrator role,
+        <glossterm linkend="def-sea_administrator">SEA administrator</glossterm>.
+    </para>
+    <para>
+        For example, if a District D is part of State S, an
+        <glossterm linkend="def-lea_administrator">LEA Administrator</glossterm>
+        for District D can delegate security event viewing permission 
+        to State S. In this case, an
+        <glossterm linkend="def-sea_administrator">SEA Administrator</glossterm>
+        for State S will be able to view security events on behalf of District D.
+    </para>
+    <para>
+        Use the following steps to delegate permissions to the state level 
+        education organization:
+    </para>
+    <procedure>
+        <step>
+            <para> 
+                Log in to &PRODUCTABBR; using your LEA administrator 
+                account.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Admin</guibutton> to open the administrator
+                home page.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Delegate Administration</guibutton> under 
+                System Tools.
+            </para>
+            <!-- IMPORTANT: be sure to update this image as the UI changes -->
+            <figure xml:id="figure-admin_tools-permission_delegation-usage_example">
+                <title>The Delegate Administration Page</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" 
+                            fileref="images/admin_tools-permission_delegation-usage_example.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG" 
+                            fileref="../common/images/admin_tools-permission_delegation-usage_example.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </step>
+        <step>
+            <para>
+                Choose which permissions you would like to delegate.
+                Reference the following documentation as needed to 
+                supplement your use of this tool:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <!-- Security events -->
+                        <xref linkend="doc-4ee7afee-e5c8-4dbb-bb3b-f382e186afe1"/>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </step>
+    </procedure>
+    
+</chapter>

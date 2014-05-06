@@ -1,0 +1,281 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_issues">
+  <title>Known Issues</title>
+  <para>
+                The following are the defects currently used to track known
+                issues in the Alpha.0 release. Click a linked defect ID and
+                title in the list to view for more details:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="DE563">DE563: INGESTION: Some uses of IDREF are not supported</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE157">DE157: INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE325">DE325: INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE273">DE273: INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE198">DE198: INGESTION: EducationOrganization references to Program not properly ingested</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE641">DE641: SDK: Java client API library requires a SLIClient instance per user</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE356">DE356: DASHBOARD: Enrollment History - Teacher cannot see the names of past schools their students attended</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE230">DE230: DASHBOARD: Student column in list of students suggests that it's sorted when first loaded</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE162">DE162: INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE710">DE710: INGESTION: Section, school and session references in AttendanceEvent are ignored</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE80">DE80: INGESTION: Some fields of LocalEducationAgency are not persisted</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE820">DE820: API: Field validation enumerations are not quoted correctly in API responses</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE857">DE857: DATA BROWSER: No error is displayed when user traverses data they are not authorized to access</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE858">DE858: DATA BROWSER: No notification message is displayed when accessing an empty list</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE789">DE789: DATA BROWSER: Incorrect user name is displayed after re-login with different user (after session have expired)</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE754">DE754: ADMIN TOOLS: Admin app not handling API session timeout</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE911">DE911: INGESTION: Irregular error logging when same data set is ingested multiple times</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE921">DE921: INGESTION: Duplicates should be reported</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE212">DE212: INGESTION: Processed files are left in a hidden directory</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE935">DE935: INGESTION: large ingestion in one tenant may delay visibility of new data in another tenant.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE861">DE861: INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE608">DE608: INGESTION: References to Course by other entities do not use CourseCode</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE85">DE85: INGESTION: CourseOffering is ingested in a way that deviates from Ed-Fi</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE87">DE87: INGESTION: Section entity is ingested in a way that deviates from Ed-Fi</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE682">DE682: API: Duplicate links in certain types of resource responses.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1072">DE1072: INGESTION: Ingestion job will begin processing a new job even though previous job has not yet completed</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE828">DE828: INGESTION: Session entity Grading Period reference not fully supported</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE194">DE194: INGESTION: Not all .tmp files deleted from the user's landing zone after processing is complete</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE694">DE694: SDK: Sample application should handle lack of access more elegantly than an ISE 500</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1083">DE1083: PORTAL: When a user reports a problem via portal no email is sent to SLC</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="DE563">
+    <title>DE563: INGESTION: Some uses of IDREF are not supported</title>
+    <para>InterchangeEducationorganization/School/ClassPeriodReference and InterchangeEducationorganization/School/LocationReference among others are currently not supported by IDREF resolution.</para>
+  </section>
+  <section xml:id="DE157">
+    <title>DE157: INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference</title>
+    <para>Reference resolution is only supported as the default scenario that features no exceptional or error conditions. As such a user may ingest valid EdFi format with improper references that would fail to resolve.</para>
+  </section>
+  <section xml:id="DE325">
+    <title>DE325: INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs</title>
+    <para>Ingestion process assumes that the Program ID is unique within a tenant, this should really be unique within the specified EdOrg. The potential is that the reference could resolve incorrectly.</para>
+  </section>
+  <section xml:id="DE273">
+    <title>DE273: INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline</title>
+    <para>Entity not being ingested but a reference to it may exist in another entity.</para>
+  </section>
+  <section xml:id="DE198">
+    <title>DE198: INGESTION: EducationOrganization references to Program not properly ingested</title>
+    <para>This is a reference which hasn't been implemented, the effect is that the API won't provide a link from the EdOrg to the Program.</para>
+  </section>
+  <section xml:id="DE641">
+    <title>DE641: SDK: Java client API library requires a SLIClient instance per user</title>
+    <para>The client library does not support multiple sessions. If used in a multi session environment as is, then users can have conflicting actions eg. update the same resource at the same time.Workaround:Create an instance of SLIClient for each connection to the API, then attach the SLIClient to the HttpSession. Sample code for this is available in the AuthFiter.java class for the Sample application.</para>
+  </section>
+  <section xml:id="DE356">
+    <title>DE356: DASHBOARD: Enrollment History - Teacher cannot see the names of past schools their students attended</title>
+    <para>In Dashboard's Enrollment History panel, teachers cannot see the names of past schools a student attended, even when they are in the same district. The dates of enrollment and other data do appear, but school name is blank.</para>
+  </section>
+  <section xml:id="DE230">
+    <title>DE230: DASHBOARD: Student column in list of students suggests that it's sorted when first loaded</title>
+    <para>Lists of students suggest that they are sorted alphabetically on load, however they are not. Pressing the normal sort button in the header works around this issue.</para>
+  </section>
+  <section xml:id="DE162">
+    <title>DE162: INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities</title>
+    <para>Course entities are uniquely identified by course name within an education organization, rather than by course code.</para>
+  </section>
+  <section xml:id="DE710">
+    <title>DE710: INGESTION: Section, school and session references in AttendanceEvent are ignored</title>
+    <para>The way AttendanceEvent entities are handled ignores explicit characterization of the attendance event - by school, section, session, so AttendanceEvents for students attending multiple schools will not properly persisted.</para>
+  </section>
+  <section xml:id="DE80">
+    <title>DE80: INGESTION: Some fields of LocalEducationAgency are not persisted</title>
+    <para>LEACategory,CharterStatus,LocalEducationAgencyReference,EducationServiceCenterReference fields of LocalEducationAgency entities are currently ignored.</para>
+  </section>
+  <section xml:id="DE820">
+    <title>DE820: API: Field validation enumerations are not quoted correctly in API responses</title>
+    <para>Some fields contain enumerated values with commas even though they are single values. For example, the course.academicSubject field contains this single enumeration: "Agriculture, Food, and Natural Resources." This appears to be three distinct enumerated values in a validation error message.</para>
+  </section>
+  <section xml:id="DE857">
+    <title>DE857: DATA BROWSER: No error is displayed when user traverses data they are not authorized to access</title>
+    <para>The Data Browser does not inform the user why there is no result (nothing is returned) when a user tries to navigate (click on URL) to data that he/she has no permissions to access.</para>
+  </section>
+  <section xml:id="DE858">
+    <title>DE858: DATA BROWSER: No notification message is displayed when accessing an empty list</title>
+    <para>If a user click a URL that returns an empty list, there is no message that states that. The user might get an impression that the URL is incorrect.</para>
+  </section>
+  <section xml:id="DE789">
+    <title>DE789: DATA BROWSER: Incorrect user name is displayed after re-login with different user (after session have expired)</title>
+    <para>If the user tries to re-log in in the Data Browser with a different user, after the session of the prior user was expired, the top right corner of the Data Browser will still show the old user's name.Workaround: Users can close and relaunch the browser to see correct name displayed.</para>
+  </section>
+  <section xml:id="DE754">
+    <title>DE754: ADMIN TOOLS: Admin app not handling API session timeout</title>
+    <para>In some cases, when the user tries to remove an application in the Application Registration Tool, the application is removed from the system, but it still appears in the application list. The user should refresh the page, so the application is removed from the list.</para>
+  </section>
+  <section xml:id="DE911">
+    <title>DE911: INGESTION: Irregular error logging when same data set is ingested multiple times</title>
+    <para>Occasionally Ingestion gives error report when there is no error.</para>
+  </section>
+  <section xml:id="DE921">
+    <title>DE921: INGESTION: Duplicates should be reported</title>
+    <para>Error reports are not always clear regarding the records persisted. When there are duplicates within the XML file, or a record already exists, ingestion engine will update the record, but this record count is not included in the Ingested records count.</para>
+  </section>
+  <section xml:id="DE212">
+    <title>DE212: INGESTION: Processed files are left in a hidden directory</title>
+    <para>Ingestion process leaves files in ingestion landing zone folder lz/inbound/.doneWorkaround: Manually delete files in .done folder</para>
+  </section>
+  <section xml:id="DE935">
+    <title>DE935: INGESTION: large ingestion in one tenant may delay visibility of new data in another tenant.</title>
+    <para>New data that is ingested or created through the API needs to be tagged before it will be visible to users. The time taken to tag new data is dependent upon how large the dataset is, how much of the data is new, and the state of the tagger when the new data is created. The tagging process runs across all tenants, implying that a large ingestion in one tenant may delay visibility of new data in not only that tenant, but in others as well.</para>
+  </section>
+  <section xml:id="DE861">
+    <title>DE861: INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg</title>
+    <para>During ingestion process the landing zone is tolerant of any EdOrg within a tenant being ingested. For example, two LEAs belong to the same SEA. LEA #1 can ingest data for LEA #2 since they are both part of SEA. LEA #1 can also ingest data for SEA. This is not ideal since there is not restriction to data specific to each LEA, but it is functional and ingestion works properly.</para>
+  </section>
+  <section xml:id="DE608">
+    <title>DE608: INGESTION: References to Course by other entities do not use CourseCode</title>
+    <para>Entities referencing Course use CourseTitle (not CourseCode and EdOrg as specified by Ed-Fi) to uniquely identify a Course entity. Users will see inconsistencies with local descriptions of Courses until the entity is properly handled.</para>
+  </section>
+  <section xml:id="DE85">
+    <title>DE85: INGESTION: CourseOffering is ingested in a way that deviates from Ed-Fi</title>
+    <para>The CourseOffering entity is ingested in a way that deviates from the Ed-Fi definition. Users may see inconsistencies with local descriptions of courses.</para>
+  </section>
+  <section xml:id="DE87">
+    <title>DE87: INGESTION: Section entity is ingested in a way that deviates from Ed-Fi</title>
+    <para>The Section entity deviates from the Ed-Fi definition and is related to a defect where CourseOffering is not handled properly. Users may see inconsistencies with local descriptions of courses and sections until the CourseOffering defect is resolved.</para>
+  </section>
+  <section xml:id="DE682">
+    <title>DE682: API: Duplicate links in certain types of resource responses.</title>
+    <para>In the response bodies of certain resources, links with identical names and results may appear. However, both forms of the duplicated URIs resolve correctly.</para>
+  </section>
+  <section xml:id="DE1072">
+    <title>DE1072: INGESTION: Ingestion job will begin processing a new job even though previous job has not yet completed</title>
+    <para>Ingestion job will begin processing a new job even though previous job has not yet completed. Workaround: verify that a job is completed prior to uploading another job</para>
+  </section>
+  <section xml:id="DE828">
+    <title>DE828: INGESTION: Session entity Grading Period reference not fully supported</title>
+    <para>EducationOrganizationIdentificationCode is not supported as a form of reference.Workaround: UseStateOrganizationId as the reference insideGradingPeriodIdentity.</para>
+  </section>
+  <section xml:id="DE194">
+    <title>DE194: INGESTION: Not all .tmp files deleted from the user's landing zone after processing is complete</title>
+    <para>Workaround: users can delete the files manually.</para>
+  </section>
+  <section xml:id="DE694">
+    <title>DE694: SDK: Sample application should handle lack of access more elegantly than an ISE 500</title>
+    <para>This error occurs when the authenticated user doesn't have any contextual data or does not have rights to access the application.Workaround:Identify a user in the dataset ingested that has contextual data associated. Eg. a teacher with sections and students.SLC Operator has to enable the application for the user's Educational Organization.</para>
+  </section>
+  <section xml:id="DE1083">
+    <title>DE1083: PORTAL: When a user reports a problem via portal no email is sent to SLC</title>
+    <para>Currently, using report a problem form in the portal does not send a problem report to SLC. Workaround: manually report a problem by sending email to issues@dev.slcedu.org</para>
+  </section>
+</section>

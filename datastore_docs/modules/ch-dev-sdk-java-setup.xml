@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-8e10cfc3-e620-4c60-8f1f-c95aaa018a66"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <title>Setting Up the Java SDK</title>
+    
+    <para>
+        Begin setup by downloading the following:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The <link xlink:show="new" xlink:href="&GITHUBURL;/java-sdk">Java SDK</link> 
+                distribution, containing the SDK itself and 
+                sample application code, available from
+                <link xlink:show="new" xlink:href="&GITHUBURL;/">&GITHUBURL;/</link>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The Java SDK reference, which is an index and supporting files 
+                with documentation about each class and method in the SDK, 
+                available from this link:
+                <link xlink:show="new" xlink:href="sdk-reference.zip">sdk-reference.zip</link>
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The following sections cover two ways you can unpack and use this 
+        SDK distribution.
+    </para>
+    <section xml:id="doc-e1a2d9e1-61bc-4976-9db6-1aedba3f2d50">
+        <title>Java SDK: Applications Managed with Maven</title>
+        <para>
+            The Java client library and sample application are distributed as 
+            source code built using 
+            <link xlink:show="new" xlink:href="http://maven.apache.org/">Apache Maven</link>.
+            As of this writing, the SDK binaries are not available through a 
+            publicly accessible Maven repository.
+        </para>
+        <para>
+            To use the SDK with Maven, use the following steps:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Unzip the SDK distribution you downloaded from the 
+                    &COMPANYABBR;.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Change to the <filename>client</filename> directory in the 
+                    SDK distribution and run the following command. This 
+                    compiles the SDK and installs it in your local Maven 
+                    repository:
+                </para>
+                <programlisting><![CDATA[
+mvn clean install
+                        ]]></programlisting>
+                <para>
+                    Alternately, you can deploy the artifact to your remote 
+                    Maven repository using <command>mvn deploy</command>. 
+                    Please see the Maven documentation for more information on
+                    the Maven deploy plugin.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Include the following Maven dependency in your Java 
+                    application:
+                </para>
+                <programlisting><![CDATA[
+<dependency>
+    <groupId>org.slc.sli</groupId>
+    <artifactId>client-api</artifactId>
+    <version>1.0-SNAPSHOT</version>                  
+</dependency>
+                        ]]></programlisting>
+            </step>
+        </procedure>
+    </section>
+    <section xml:id="doc-a6fcab86-a21b-4fe7-9341-4bffafc78e7b">
+        <title>Java SDK: Applications Not Managed with Maven</title>
+        <para>
+            The easiest way to get started with the SDK is to use Maven to 
+            manage the dependencies. If you're not using Maven, though, you can
+            use a pre-built JAR file containing the SDK. This JAR file is
+            included in the SDK distribution, but it does not include any of
+            its required dependencies. The table included in the steps below 
+            lists the required dependencies and where to obtain them.
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Unzip the SDK distribution you downloaded from the 
+                    &COMPANYABBR;.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Change to the <filename>client</filename> directory in the 
+                    SDK distribution, and run the following command:
+                </para>
+                <programlisting><![CDATA[
+mvn clean package
+                        ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Copy <filename>client-api-1.0-SNAPSHOT.jar</filename> 
+                    into your application's classpath.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ensure all required dependencies listed below are included 
+                    in the application's classpath.
+                </para>
+                <table xml:id="table-90dfdef4-a56b-450b-b460-963c6fcd07b8">
+                    <title>Java SDK Dependencies</title>
+                    <tgroup cols="4">
+                        <thead>
+                            <row>
+                                <entry>Name</entry>
+                                <entry>Version</entry>
+                                <entry>Purpose</entry>
+                                <entry>Location</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row>
+                                <entry>
+                                    <para>
+                                        JAX-RS API *
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        2.0-m01
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        REST client API
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <link xlink:show="new" xlink:href="http://jersey.java.net/">http://jersey.java.net/</link>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        Glassfish jersey-client
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        2.0-m01
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        REST client implementation
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <link xlink:show="new" xlink:href="http://jersey.java.net/">http://jersey.java.net/</link>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        Apache Commons IO
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        2.1
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Utility library
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <link xlink:show="new" xlink:href="http://commons.apache.org/io/">http://commons.apache.org/io/</link>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        Apache Commons CLI
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        1.2
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Utility library
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <link xlink:show="new" xlink:href="http://commons.apache.org/cli/">http://commons.apache.org/cli/</link>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        Jackson
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        1.9.1
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        JSON de/serializer
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <link xlink:show="new" xlink:href="http://jackson.codehaus.org/Home">http://jackson.codehaus.org/Home</link>
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        Scribe
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        1.3.0
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        OAuth library
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <link xlink:show="new" xlink:href="https://github.com/fernandezpablo85/scribe-java">https://github.com/fernandezpablo85/scribe-java</link>
+                                    </para>
+                                </entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+                <para>
+                    * As of this writing, JAX-RS API was not included as part 
+                    of the standard Java distribution. If future Java updates 
+                    include JAX-RS as a standalone technology, the 
+                    Java-endorsed standards override mechanism may be needed 
+                    to use the required JAX-RS API version. See 
+                    <link xlink:show="new" xlink:href="http://docs.oracle.com/javase/6/docs/technotes/guides/standards/">http://docs.oracle.com/javase/6/docs/technotes/guides/standards/</link>
+                    for more information on endorsed standards.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+</chapter>
