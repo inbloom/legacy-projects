@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+ 
+<chapter xml:id="doc-6f950272-7fad-4552-b3ca-3ae6a5b88ed9"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Services: Ingestion</title>
+    
+    <para> The sections that follow cover preparing for, installing, and configuring the data
+        ingestion service as part of the services in &PRODUCTABBR;. </para>
+    
+    <section xml:id="doc-2974f4b2-7dbd-4677-a17a-e3ca2fd7460f">
+        <title>Ingestion: What You Need to Know Before Deployment</title>
+        <para>
+            Ingestion and landing zone share a common filesystem. It's very important to 
+            have a shared filesystem in place before launching landing zone and ingestion 
+            services. &PRODUCTABBR; was developed against GlusterFS as the shared filesystem solution, 
+            and this is also the recommended solution for Production environments.
+        </para>
+        <para>
+            The GlusterFS is mounted as <filename>/ingestion</filename> on both the ingestion 
+            and landing zone hosts. The ingestion server will create the underlying 
+            directory structure once it starts up.
+        </para>
+        <para>
+            Ingestion should be thought of and is a group of servers to facilitate the import 
+            of large datasets.
+        </para>
+        <para>
+            An "Ingestion Group" consists of a minimum of one Maestro server running Tomcat 
+            and ActiveMQ with <varname>X</varname> number of pit nodes running Tomcat only. 
+            The value <varname>X</varname> amount of pit nodes is the number necessary to 
+            ingest the appropriate amount of data for a tenant in a reasonable amount of time.
+            Use these guidelines for deployment:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Each Maestro is at minimum an AWS m2.4xlarge machine running Tomcat and ActiveMQ.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Each pit is at minimum an AWS m2.4xlarge machine running Tomcat only.
+                </para>
+            </listitem>
+            <listitem>
+                <para> Each ingestion cluster will need one Mongo IS database served from a Mongo
+                    replica set containing at a minimum 3 servers.</para>
+            </listitem>
+            <listitem>
+                <para>Tomcat must be running as root</para>
+            </listitem>
+        </itemizedlist>
+        <figure xml:id="figure-deploy-ingestion">
+            <title/>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" format="PNG" 
+                        fileref="&IMAGEDIR;/deploy-ingestion.jpg" 
+                        width="7in" scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </section>
+    
+    <section xml:id="doc-4c35338f-613e-4a37-8867-5c20a1f73a41">
+        <title>Ingestion: Installation</title>
+        <para>
+            Installation requirements for the ingestion service:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    GlusterFS
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A Tomcat server (see <xref linkend="doc-ccb2e87b-47ee-4f3e-a45e-64c787ccd2fd"/>)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Java JDK
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    ActiveMQ (see <xref linkend="doc-8291ab14-d35f-4e30-a7c5-cea618de1251"/>)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Access to the LDAP directory that the SimpleIDP utilizes
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para> 
+            To install the ingestion service for &PRODUCTABBR;, first ensure 
+            that your GlusterFS filesystem is configured and mounted as 
+            described in 
+            <xref linkend="doc-cd43f442-ddb7-4e76-a338-183e45baf09f"/>. Then 
+            use the following steps to complete the ingestion service 
+            installation: 
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Install Sun JDK.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Install Apache Tomcat.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Install Apache ActiveMQ.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Tune the stock <filename>server.xml</filename> for your 
+                    environment.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Tune the stock <filename>catalina.sh</filename> for your 
+                    hardware.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Tune the stock <filename>catalina.sh</filename> for your 
+                    hardware.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Place the <filename>ingestion.war</filename> file in 
+                    <filename>$TOMCAT_HOME/webapps/</filename>.
+                </para>
+                <note>
+                    <para>
+                        All &PRODUCTABBR; Java web applications should be 
+                        deployed to the context specified by the .war 
+                        filename. They should not be deployed to the root 
+                        context in Tomcat.
+                    </para>
+                </note>
+            </step>
+            <step>
+                <para>
+                    Place the <filename>sli.properties</filename> file in 
+                    <filename>$TOMCAT_HOME/conf/</filename>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Start Tomcat.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Start ActiveMQ.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            You can follow the Tomcat startup process in 
+            <filename>$TOMCAT_HOME/logs/catalina.out</filename> 
+            and the ingestion application process in 
+            <filename>$TOMCAT_HOME/logs/ingestion.log</filename>.
+        </para>
+    </section>
+    
+    <section xml:id="doc-87cdc519-1a84-4976-9a44-7eb6ed437a71">
+        <title>Ingestion: Configuration</title>
+        <para>
+            The main configuration file for ingestion is the <filename>sli.properties</filename> file, 
+            which is kept in <filename>$TOMCAT_HOME/conf/sli.properties</filename>.
+        </para>
+        <para>
+            Modify the contents to suit your own environment:
+        </para>
+        <programlisting><![CDATA[
+sli.tenant.ingestionServers = SET_LIST_OF_INGESTION_SERVERS
+sli.tenant.landingZoneMountPoint = /ingestion/lz
+sli.ingestion.batchjob.mongodb.database = ingestion_batch_job
+sli.ingestion.batchjob.mongodb.host = SET_INGESTIONMONGO_HOST
+sli.ingestion.batchjob.mongodb.port = 27017
+sli.ingestion.errors.tracking = true
+sli.ingestion.warnings.tracking = true
+sli.ingestion.securityEvent.capSize = 
+sli.ingestion.healthcheck.user = admin
+sli.ingestion.healthcheck.pass = admin
+landingzone.inbounddir = /ingestion/lz/
+sli.ingestion.topic.command = activemq:topic:ingestion.command
+sli.ingestion.exception.message.log = true
+sli.ingestion.log.level = info
+sli.ingestion.queue.workItem.host = SET_ACTIVEMQ_HOST
+sli.ingestion.queue.workItem.port = 61616
+sli.ingestion.queue.workItem.secondaryhost = 
+sli.ingestion.queue.workItem.secondaryport = 
+sli.ingestion.queue.options = keepAlive=true&jms.prefetchPolicy.queuePrefetch=0&wireFormat.maxInactivityDurationInitalDelay=60000&trackMessages=true
+sli.ingestion.queue.brokerUrl = tcp://${sli.ingestion.queue.workItem.host}:${sli.ingestion.queue.workItem.port}?${sli.ingestion.queue.options}
+sli.ingestion.queue.maxConnections = 25
+sli.ingestion.queue.maximumActive = 500
+sli.ingestion.queue.workItem.queueURI = seda:IngestionWorkItem
+sli.ingestion.queue.workItem.concurrentConsumers = 4
+sli.ingestion.queue.pit.uriOptions = &transferExchange=true
+sli.ingestion.queue.parser.queueURI: activemq:queue:IngestionParser 
+sli.ingestion.queue.parser.concurrentConsumers: 8 
+sli.ingestion.queue.parser.uriOptions: 
+sli.ingestion.parser.batch.size = 1000
+sli.ingestion.purge.batch.size = 30000
+sli.ingestion.nodeType = standalone
+sli.ingestion.tenant.loadDefaultTenants = true
+sli.ingestion.tenant.tenantPollingRepeatInterval = 5s
+sli.ingestion.referenceSchema.referenceCheckEnabled = false
+sli.ingestion.errorsCountPerInterchange = 10000
+sli.ingestion.warningsCountPerInterchange = 10000
+sli.ingestion.totalRetries = 5
+sli.ingestion.dataset.sample = {"small":["SmallSampleDataSet.zip"],"medium":["MediumSampleDataSet.zip"]}
+sli.mongodb.connections = 30 
+sli.stagingmongodb.connections = 20 
+sli.ingestion.batchjobmongodb.connections = 20
+sli.mongodb.keyencoding: \%:\%25,\\.:\%2E
+sli.ingestion.queue.landingZone.queueURI: activemq:queue:ingestion.landingZone
+ ]]></programlisting>
+        <para>
+            The API configuration in the <filename>sli.properties</filename> file must be updated 
+            to include the following ingestion parameters.
+        </para>
+        <programlisting><![CDATA[
+sli.tenant.ingestionServers = server1,server2,server3,server4
+sli.tenant.landingZoneMountPoint = /ingestion/lz
+                ]]></programlisting>
+        <para>
+            These settings are used when a landing zone is created.
+        </para>
+        <para>
+            The ingestion service must be configured to have -Xmx40G available.
+        </para>
+        <para>Edit the catalina.sh or the setenv.sh scripts located in $TOMCAT_HOME to apply certain
+            environment variables that ingestion uses on start up. Add the following into the
+            JAVA_OPTS string: </para>
+        <programlisting><![CDATA[
+-Xms40G -Xmx40G -XX:+UseParallelGC -XX:PermSize=512m -XX:MaxPermSize=512m
+            ]]></programlisting>
+        <para>
+            It should look something like this:
+        </para>
+        <programlisting><![CDATA[
+JAVA_OPTS="-Xms40G -Xmx40G -XX:+UseParallelGC -XX:PermSize=512m
+-XX:MaxPermSize=512m -Dsli.env=rc
+-Dsli.encryption.keyStore=/opt/tomcat/encryption/ciKeyStore.jks
+-Dsli.encryption.properties=/ opt/tomcat/encryption/ciEncryption.properties
+-Dsli.trust.certificates=/opt/tomcat/trust/ trustedCertificates -Dsli.conf=/opt/tomcat/apache-tomcat-7.0.27/conf/sli.properties
+-Dlogging.path=/ var/log/tomcat/ -Dapi.perf.log.path=/var/log/tomcat/" 
+            ]]></programlisting>
+        
+    </section>
+    
+    <section xml:id="doc-bb320489-8b75-4d76-9c9b-9bab3960efa9">
+        <title>Index Validation</title>
+        <para>On start-up, the ingestion server will validate indexes against
+            the ingestion batch job and &PRODUCTABBR; databases. On initiation of an ingestion job,
+            the server will validate indexes against the tenant database for which the job is
+            submitted.</para>
+        <para> The validation mechanism uses the following files to validate indexes on each of
+            these respectively: </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <filename>ingestion_batch_job_indexes.js</filename>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <filename>sli_indexes.js</filename>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <filename>tenantDB_indexes.txt</filename>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>  The output from this index validation is written to the ingestion log file in the
+            following format: </para>
+        <screen><![CDATA[
+            Index verified/missing : <collection name> <keys>, <unique field>
+         ]]></screen>
+        <para>If the indexes are found to be invalid on start up of the server,
+            the server will exit. If they are found to be invalid upon initiation of an ingestion
+            job, then that job will exit.</para>
+    </section>
+    
+    <section xml:id="doc-461eb294-e855-4f90-a42f-45fc0de7d775">
+        <title>Ops Tools</title>
+        <para>
+            The ops tools scripts perform common tasks in within the platform.
+        </para>
+        <para> The edorg_stamper.rb Ruby script should be executed before any
+            data is loaded into &PRODUCTABBR;. This program run continuously to update user access
+            to &PRODUCTABBR; records. edorg_stamper updates non-teacher staff access, determining
+            contextual relationships between records and educational organizations. </para>
+        <para> The script default to the &PRODUCTABBR; database. If that must be modified, change
+            the script configuration. </para>
+    </section>
+    
+    <section xml:id="doc-7e22b448-b321-41c3-8687-16837a2d251d">
+        <title>Implementing the CPSI Environment in Amazon's AWS</title>
+        <para> The CPSI environment provides an integration between the &COMPANYABBR; Ed-Fi
+            ingestion service and education agencies that use the Schools Interoperability Framework
+            (SIF) protocol for interchange of student data. The CPSI environment is able to provide
+            a SIF endpoint for the education agency and translate the incoming data stream to Ed-Fi
+            suitable for ingestion by &PRODUCTABBR;. The environment includes several Windows Server
+            2008 hosts to run the CPSI software and provide the SIF and ingestion interfaces. The
+            system software will be setup and configured by CPSI and will run in an automated
+            fashion with little monitoring required. These instructions provide the basic
+            environment suitable for the hosting and setup of the software by CPSI. </para>
+        <!-- Note: We may want to link the user to documentation either for CPSI or at amazon. -->
+        <para>
+            To implement the CPSI environment:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Create a VPC (Virtual Private Cloud) in the AWS which 
+                    allows for a VPN of at least 8 IP addresses.
+                </para>
+            </step>
+            <step>
+                <para>
+                    In the VPC created above, create a VPN containing at least 
+                    8 IP addresses.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Spin up three (3) m1.large instances and give them static 
+                    IP addresses within the block in the VPN created above.
+                </para>
+                <para>
+                    The three instances should be running Windows 2008 Server 
+                    R2 for the operating system and should include both IIS 
+                    and MSSQL.
+                </para>
+                <para>
+                    For the following steps, please assume the following 
+                    hostnames: CPSI01, CPSI02, CPSI03.
+                </para>
+            </step>
+            <step>
+                <para>
+                    CPSI01 and CPSI03 should be given elastic IP (EIP) 
+                    addresses so that they can communicate externally:
+                </para>
+                <para>
+                    CPSI01 must communicate with the outside world via 
+                    ssl/443 and remote desktop protocol (RDP).
+                </para>
+                <para>
+                    CPSI03 must communicate with 
+                    <emphasis>ingestion only</emphasis> via its and ingestions 
+                    elastic IPs, via ssl/443.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Create an Internet Gateway for this VPC.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Create a route table containing the VPC's subnet and 
+                    connect it to the internet gateway created in the previous 
+                    step.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Three security groups should be created. Security Group 1 
+                    will correspond to CPSI01, Security Group 2 will 
+                    correspond to CPSI02, and Security Group 3 will correspond 
+                    to CPSI03.
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            Security Group 1:
+                        </para>
+                        <substeps>
+                            <step>
+                                <para>
+                                    Inbound 443/ssl from a list of public IP 
+                                    addresses from which files will be accepted 
+                                    via EIP.
+                                </para>
+                            </step>
+                            <step>
+                                <para>
+                                    Inbound Remote Desktop Protocol (RDP) from 
+                                    a list of public IP addresses for 
+                                    maintenance.
+                                </para>
+                            </step>
+                            <step>
+                                <para>
+                                    Any port/all protocol TO -> CPSI02, CPSI03.
+                                </para>
+                            </step>
+                            <step>
+                                <para>
+                                    Outbound any port/all protocol.
+                                </para>
+                            </step>
+                        </substeps>
+                    </step>
+                    <step>
+                        <para>
+                            Security Group 2:
+                        </para>
+                        <substeps>
+                            <step>
+                                <para>
+                                    Inbound any port/all protocol 
+                                    FROM &lt;- CPSI01, CPSI03.
+                                </para>
+                            </step>
+                            <step>
+                                <para>
+                                    Outbound any port/all protocol 
+                                    TO -&gt; CPSI01, CPSI03.
+                                </para>
+                            </step>
+                        </substeps>
+                    </step>
+                    <step>
+                        <para>
+                            Security Group 3:
+                        </para>
+                        <substeps>
+                            <step>
+                                <para>
+                                    Outbound 443/ssl 
+                                    TO -&gt; ingestion (via EIP).
+                                </para>
+                            </step>
+                            <step>
+                                <para>
+                                    Inbound any port/all protocol 
+                                    FROM &lt;- CPSI01, CPSI02.
+                                </para>
+                            </step>
+                            <step>
+                                <para>
+                                    Outbound any port/all protocol 
+                                    TO -&gt; CPSI01, CPSI02.
+                                </para>
+                            </step>
+                        </substeps>
+                    </step>
+                </substeps>
+            </step>
+            <step>
+                <para>
+                    Add a route from the EIP of CPSI03 TO -&gt; the ELB for 
+                    the landing zone.
+                </para>
+            </step>
+        </procedure>
+        <note>
+            <para>
+                It is recommended that standard security best practices are 
+                observed in this environment. For more information, please 
+                see the 
+                <link xlink:show="new" xlink:href="http://benchmarks.cisecurity.org/en-us/?route=default">security benchmarks</link> 
+                at the Center for Internet Security for more details.
+            </para>
+        </note>
+    </section>
+    
+    <!-- 
+    <section xml:id="doc-4aee25ad-b961-408e-8bff-77f0eaa4e8dd">
+        <title>Ingestion: Troubleshooting During Deployment</title>
+        <para>
+            FIXME... more to come
+        </para>
+    </section> -->
+
+</chapter>
+    
+
+        

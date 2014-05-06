@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-89bc006a-de0f-4db5-816f-a4efe05eef68"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Default Applications in the Sandbox</title>
+
+    <para>
+        Before continuing with your Sandbox setup, take a moment to look at
+        the default applications available to you when you sign in to the
+        Sandbox. You can use these applications to assist your 
+        development work. The Portal itself is an application, and the Portal 
+        interface links to applications from two locations:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Under the <guilabel>My Applications</guilabel> list on the 
+                right side of the Portal
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                On the administration page accessed by clicking
+                <guilabel>Admin</guilabel>
+                (applicable if the user has the
+                <guilabel>IT Administrator</guilabel> role)
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The Portal and some of the default Sandbox applications are briefly 
+        described in the sections that follow.
+    </para>
+    <section xml:id="doc-6277ab86-c69a-4555-ba08-76f661b53aed">
+        <title>Portal</title>
+        <para>Portal is the entry point to the &PRODUCTABBR; system. Here you see the available
+            applications you are authorized to use for end-user type tasks, such as viewing and
+            editing data in the Data Store. The set of applications, shown under <guilabel>My
+                Applications</guilabel> on the right of Figure 3, depends on the roles assigned to
+            the current user. </para>
+        <figure xml:id="figure-sandbox-portal">
+            <title/>
+            <mediaobject>
+                <imageobject role="fo">
+                    <imagedata align="center"
+                        fileref="../common/images/portal-admin_welcome.png" width="7.5in" 
+                        scalefit="1"/>
+                </imageobject>
+                <imageobject role="html">
+                    <imagedata align="center"
+                        fileref="images/portal-admin_welcome.png" 
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </section>
+    <section xml:id="doc-4dd89e2c-3cac-4e79-94a4-1ededf5a27a7">
+        <title>&COMPANYABBR; Dashboards</title>
+        <para>
+            The &COMPANYABBR; Dashboard is a context-aware data reporting 
+            application. Using the &COMPANYABBR; Dashboards, you can browse 
+            to specific schools, classes, and sections to which that user 
+            has access. To open and use this application, sign in to the
+            Sandbox environment as one of the users in your sample data set
+            that has access to certain data in the data store. From the 
+            Portal page, click the 
+            <guibutton>&COMPANYABBR; Dashboards</guibutton> link under
+            <guilabel>My Applications</guilabel>. Use the drop-down lists
+            to select data associated with that user, such as the students
+            in a given section that an educator is teaching.
+        </para>
+        <figure xml:id="figure-sandbox-dashboard">
+            <title/>
+            <mediaobject>
+                <imageobject role="fo">
+                    <imagedata align="center"
+                        fileref="../common/images/sandbox-dashboard.png" 
+                        scalefit="1" width="7.5in"/>
+                </imageobject>
+                <imageobject role="html">
+                    <imagedata align="center"
+                        fileref="images/sandbox-dashboard.png" 
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </section>
+    <section xml:id="doc-6e954ad4-d3f3-454f-a57d-776c0b2ec6b9">
+        <title>&COMPANYABBR; Data Browser</title>
+        <para>
+            The &COMPANYABBR; Data Browser is a debugging tool that users
+            with the <guilabel>IT Administrator</guilabel> role can use to
+            examine ingested data. To access this application when 
+            impersonating a user in the Sandbox, select the
+            <guilabel>IT Administrator</guilabel> role when signing in.
+            After signing in, click <guibutton>Admin</guibutton> to access the administrator page. 
+            From there, click
+            <guibutton>&COMPANYABBR; Data Browser</guibutton>.
+        </para>
+        <para> When you open the &COMPANYABBR; Data Browser, you're directed to a context-specific
+            home page. The home page contains a number of HTML links you can click to traverse the
+            Secure Data Service structure and browse the data in your tenancy. </para>
+        <figure xml:id="figure-sandbox-data_browser_dev">
+            <title><inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="ch-dev-sandbox-default_apps.png"/>
+                    </imageobject>
+                </inlinemediaobject></title>
+            <mediaobject>
+              
+                <imageobject role="html">
+                    <imagedata align="center" 
+                        fileref="images/data_browser_home.png" 
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </section>
+    
+</chapter>

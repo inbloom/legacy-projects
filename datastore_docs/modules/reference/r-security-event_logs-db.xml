@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-74271d84-d606-456c-bc4b-5956286a9777"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Security Event Logs</title>
+    
+    <para>
+        &PRODUCTABBR; logs security events for users and applications. The
+        sections that follow cover what events are logged in &PRODUCTABBR;, 
+        how to access logs, and what permissions &PRODUCTABBR; users need to 
+        view logged events.
+    </para>
+    <note>
+        <para>
+            Several security events can be viewed using the 
+            <varname>securityEvent</varname> resource in the REST API.
+            For more information about this resource, see the securityEvent
+            resource listing (part of the &PRODUCTABBR; developer documentation)
+            at <link xlink:show="new" xlink:href="https://inbloom.org/sites/default/files/docs-developer/c-api-app_functions-security_admin.html">https://inbloom.org/sites/default/files/docs-developer/c-api-app_functions-security_admin.html</link>.
+        </para>
+    </note>
+    <section xml:id="doc-08e4c0e6-1636-46c5-aed2-90a108cf6ec4">
+        <title>Security Event Logs: Which Events Are Logged</title>
+        <para>
+            Logged security events include the following:
+        </para>
+        <informaltable xml:id="table-8b83ce43-acbd-89b7-9c17-a38b20ce6889">
+            <tgroup cols="5">
+                <colspec colname="firstCol" colwidth="2*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="newCol3" colwidth="1*"/>
+		<colspec colname="db"      colwidth="1*" />
+                <colspec colname="newCol3" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>Event</entry>
+                        <entry>Origin</entry>
+                        <entry>Log File</entry>
+			                  <entry>Logged to DB</entry>
+                        <entry>Log Name</entry>
+                    </row>
+                </thead>
+        		<tbody>
+        			<row>
+        				<entry>
+        					<para>Bulk Extract request header preconditions failed</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Range header doesn't match format</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>If range is not syntactically valid</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request for singlePartFileResponse</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request for multiPartsFileResponse</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>FileResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Logout: status</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>SecuritySessionResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>restricted entity is accessed</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>False</para></entry>
+        				<entry><para>ResourceAccessLog</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>LEA's delegation is enabled/disabled</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>AdminDelegationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Application granted access to EdOrg data</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>ApplicationAuthorizationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>EdOrg data access has been revoked</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>ApplicationAuthorizationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role rights validation failed</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role unique roles check failed</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role invalid realm specified</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to create custom role Already exists: </para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Created custom role with id:</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed to update realmId</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Updated Role by id</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Deleted Role by ID</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>CustomRoleResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Realm [name] {updated,deleted,created}</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>RealmResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>SAML Message received from [origin] is invalid</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>SamlFederationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>HttpServletRequest is missing</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>SamlFederationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[principal id] from tenant [tenant] logged successfully into [applicationDetails]</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>SamlFederationResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>{created,updated,deleted} user</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>UserResource</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Access denied to user</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>False</para></entry>
+        				<entry><para>AccessDeniedException</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Access denied for user because they are incorrectly associated</para>
+        				</entry>
+        				<entry><para>API</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>False</para></entry>
+        				<entry><para>AccessDeniedException</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Ingestion process started.</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>ControlFilePreProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] considered for processing: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] records ingested successfully: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] records deleted successfully: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>[file] [filename] records not considered for processing: [n]</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful processing of all files.</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Not all records completely processed</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Number of records processed</para>
+        				</entry>
+        				<entry><para>Ingestion</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>JobReportingProcessor</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Runtime Exception</para>
+        				</entry>
+        				<entry><para>IDP</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>Login</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful Login</para>
+        				</entry>
+        				<entry><para>IDP</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>Login</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed Login</para>
+        				</entry>
+        				<entry><para>IDP</para></entry>
+        				<entry><para>security.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>Login</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Request to stream sample bulk extract</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request to stream EdOrg data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Received request to stream EdOrg data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed request to stream SEA public data, missing edOrgId</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Received request for list of links for all SEAs and LEAs for this user/app</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successful request for list of links for all SEAs and LEAs for this user/app</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Received request to stream EdOrg delta bulk extract data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed delta request, missing LEA id</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed delta request, missing date</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Failed request for EdOrg delta bulk extract data</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>No bulk extract support for: [LEA]</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>No authorized EdOrgs for application</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>Successfully retrieved SEA/LEA list for application</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        			<row>
+        				<entry>
+        					<para>App must provide client side X509 certificate</para>
+        				</entry>
+        				<entry><para>Bulk Extract</para></entry>
+        				<entry><para>audit.log</para></entry>
+        				<entry><para>True</para></entry>
+        				<entry><para>BulkExtract</para></entry>
+        			</row>
+        		</tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+    <section xml:id="doc-b021fba4-9117-4ae6-a719-c284ba251994">
+        <title>Security Event Logs: Permissions for Viewing</title>
+        <para>
+            The table below lists the permissions assigned to administrator 
+            roles for viewing security event logs.
+        </para>
+        <informaltable xml:id="table-9b83ce43-acbd-49b7-9c17-a38b20ce6209">
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>Administrator Role</entry>
+                        <entry>Security Events Log Permissions</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                &OPERATORROLE;
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                View all successful and failed login events 
+                                through the &PRODUCTABBR; IDP that are 
+                                associated with that user's &PRODUCTABBR; 
+                                instance.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                SEA Administrator
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                (SEA = state education agency)
+                            </para>
+                            <para>
+                                View all successful and failed login attempts 
+                                for the super-administrators at the state 
+                                level, within the same Tenant, and associated
+                                with the same education organization as that 
+                                user.
+                            </para>
+                            <para>
+                                NOTE: Access to login data for LEAs that have 
+                                delegated rights to this SEA are not available
+                                in this product release.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                LEA Administrator
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                (LEA = local education agency)
+                            </para>
+                            <para>
+                                View all successful and failed login attempts
+                                All successful and failed login attempts for \
+                                LEA Super-administrators 
+                                who are associated with the same education
+                                organization as the logged in LEA.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+        <para>
+            The security log location is specified in 
+            <filename>/api/src/main/resources/logback.xml</filename>. 
+            The current default location is 
+            <filename>${log.path}/audit-%d{yyyy-MM-dd}.log</filename>.         
+        </para>
+        <para>
+            <property>log.path</property> is specified in 
+            <filename>sli.properties</filename> which by default is set to
+            <property>log.path = target/logs</property>
+        </para>
+        <para>
+            An example log file entry:
+        </para>
+        <programlisting><![CDATA[2012-08-13T13:05:18.070-0400 [btpool0-2] - \
+Mon Aug 13 13:05:18 EDT 2012,21304@WOCKHAM-LPT,INFO,WOCKHAM-LPT,\
+fo9Dypo38I,class org.slc.sli.api.resources.v1.DefaultCrudEndpoint,Lowbac,\
+UnknownTargetEdOrg,jdoe, Jane Doe,,cacd9227-5b14-4685-babe-31230476cf3b,\
+http://example.com/api/rest/v1/students,,,\
+restricted entity "students" is accessed.]]></programlisting>
+    </section>
+    
+</chapter>

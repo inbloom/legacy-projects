@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-c5b7a5c9-68b2-47a8-9b05-7de98af76288"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Creating and Managing Realms</title>
+    
+    <para> 
+        A <glossterm linkend="def-realm">realm</glossterm> serves as an
+        authentication context for a user or application. This means a realm 
+        is an identity provider (IDP) whose authentication services are 
+        integrated with a given &PRODUCTABBR; deployment, providing access 
+        to data and applications for that &PRODUCTABBR;. The highest available 
+        realm is a state, though districts may have their own identity 
+        providers, too. 
+    </para>
+    <para> 
+        The Manage Realm system tool is available to 
+        <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrators</glossterm>
+        with a role of 
+        <glossterm linkend="def-realm_administrator">Realm Administrator</glossterm>.
+    </para>
+    <!-- IMPORTANT: be sure to update the image(s) here as the UI changes -->
+   
+    <para>To create a realm:</para>
+    <procedure>
+        <step>
+            <para> Log in to &PRODUCTABBR; using your Realm Administrator account. </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Admin</guibutton>.
+            </para>
+        </step>
+        <step>
+            <para> Click <guibutton>Manage Realm</guibutton> under System Tools. If no realms exist,
+                then the Manage Realm - Create New Realm page opens.</para>
+            <figure xml:id="figure-Adding-New-Realm">
+                <title>Creating a New Realm</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" 
+                            fileref="images/admin_tools_create_realm.png" 
+                            width="750px" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" 
+                            fileref="../common/images/admin_tools_create_realm.png" 
+                            width="3in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>When you click Manage Realms, if at least one realm already exists then the realm selection page opens. To create another realm, click the Add new button and the Manage Realm page opens.</para>
+            <figure xml:id="figure-Another-Realm">
+                <title>Creating Another Realm</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" 
+                            fileref="images/realm-select.png" 
+                            width="750px" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" 
+                            fileref="../common/images/realm-select.png" 
+                            width="6in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </step>
+        <step>
+            <para>Fill out the form.</para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Display Name</emphasis> - Enter the name 
+                        that should appears in the realm page where the users
+                        in the
+                        <glossterm linkend="def-education_organization">education organization</glossterm>
+                        education organization users can select and sign 
+                        in to its own identity provider (IDP). These would
+                        be users of the 
+                        <glossterm linkend="def-federated">federated</glossterm>
+                        agency.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>IDP URL</emphasis> - Enter the SAML identifier (URL) for the
+                        federated agency's IDP.</para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Redirect Endpoint</emphasis> - Enter the URL to be used for making
+                        authentication requests to the federated agency's IDP.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Artifact Resolution Endpoint</emphasis> - Enter the URL to be used
+                        for sending artifact resolution requests to the federated agency's IDP.</para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>IDP Source ID</emphasis> - Enter the hex-encoded source ID to
+                        be used to identify the federated agency's IDP.
+                        This string is matched with the source ID contained in the SAML artifact sent by
+                        the IDP.  The SAML 2.0 standard contains more details about the IDP Source ID format.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Realm Identifier</emphasis> - Enter the unique value that
+                        identifies your realm. This identifier allows applications to send users
+                        directly to this realm to sign in, bypassing the realm selection
+                        screen.</para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                <emphasis>
+                Note: The Artifact Resolution Endpoint and IDP Source ID fields are optional as a pair;
+                both must either be blank or non-blank. 
+                </emphasis>
+            </para>
+        </step>
+        <step><para>Click <guibutton>Save</guibutton>.</para></step>
+    </procedure>
+</chapter>

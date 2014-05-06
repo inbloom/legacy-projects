@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE article [
+<!ENTITY % slc_entities SYSTEM "../../common/docbook_entities-slc.ent">
+%slc_entities;
+<!ENTITY RELEASE "Alpha.1">
+]>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xml:id="release_notes" version="5.0">
+    
+    <info>
+        <title>&COMPANY; &RELEASE; User Release Notes</title>
+    </info>
+
+    <para>
+        The &RELEASE; release is the second release in the Alpha phase of the &COMPANYABBR; technology services, education dashboards, and documentation.
+    </para>
+    <para>
+        This release brings the deployment of an &COMPANYABBR; sandbox environment for application developers. The sandbox allows developers to ingest &COMPANYABBR; sample data sets, sign in as users with varying roles, and create new applications that interact with data using the &COMPANYABBR; REST API. Sandbox applications can perform the same tasks as those currently available to state and district tenants. To further aid application developers, &COMPANYABBR; will be hosting a series of dedicated developer camps over the coming months.
+    </para>    
+    <para>
+        &RELEASE; also brings with it the deployment of multi-tenant production environments for pilot states.
+    </para>    
+    <caution>
+        <para>
+        The &COMPANYABBR; sandbox environment MUST NOT contain real student data. Make sure to use only artificial or fabricated data. 
+        The &COMPANYABBR; provides sample fabricated data sets available for download from the Sandbox Developer Web Site at <link xlink:href="http://dev.slcedu.org/getting-started/sandbox/">http://dev.slcedu.org/getting-started/sandbox/</link>.
+        </para>
+    </caution>    
+    <section xml:id="sect-release_notes-whats_in_alpha">
+        <title>What's in this release?</title>
+        <para>
+            For more information about what's planned for the Alpha releases, see
+            <link xlink:href="http://slcedu.org/sites/default/files/downloads/SLC%20Alpha%20Scope%20and%20Timeline%2005-25-2012_1.pdf">SLC Alpha Environment: Alpha Release Scope &amp; Timeline</link>
+        </para>
+    </section>
+    
+    <section xml:id="sect-migrating-to-this-release">
+        <title>Migrating to this Release</title>
+        <para>
+            CourseOffering entity ingestion is now supported by SLI, and the existing tenant data has been migrated over. However, some of the CourseOffering fields (e.g. localCourseCode, localCourseId, and schoolId) have been filled with fixture data. Users expecting to use the contents of CourseOffering entities should re-ingest their data.
+        </para>
+    </section>
+
+    <xi:include href="rally_resolved_defects.xml" />
+    
+    <xi:include href="rally_defects.xml"/>
+    
+    <xi:include href="rally_stories.xml"/>
+    
+    <section xml:id="sect-release_notes-web_browser_compatibility">
+        <title>Web Browser Compatibility</title>
+        <para>
+            &COMPANYABBR; educator dashboard is best viewed in Internet Explore 8+, 
+            Firefox 6+, Safari 4+ with 1024x768 as the minimum recommended screen 
+            resolution. 
+        </para>
+    </section>
+    
+</article>

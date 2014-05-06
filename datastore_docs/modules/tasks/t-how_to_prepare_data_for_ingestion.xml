@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="t-how_to_prepare_data_for_ingestion"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>How to Prepare Data for Ingestion</title>
+    
+    <para>
+        Data is ingested from a .zip archive file containing one control file 
+        and one or more XML data files. Data ingestion operations for 
+        &PRODUCTABBR; require that the data files are compliant with the 
+        ingestion schema described in &PRODUCTABBR; ingestion documentation.
+    </para>
+    
+    <section xml:id="t-prepare_data_for_ingestion-data_files">
+        <title>Prepare the XML Data Files</title>
+        <para>
+            The XML data files must meet the following requirements:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Must be valid XML files
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Must validate against the &INGESTIONSCHEMANAME; ingestion 
+                    schema, as covered in
+                    <xref linkend="r-ingestion_schema"/>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Must meet certain constraints to ensure dependencies are
+                    handled in the correct order, as covered in
+                    <xref linkend="r-ingestion_constraints"/>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The top-level education organization in the 
+                    data files, typically a state education agency (SEA),
+                    must match the education organization defined 
+                    when the landing zone was created
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Assemble these files using your preferred processing and editing
+            tools. In most cases, data conversion is necessary to ensure the
+            data is in the right XML schema. &COMPANYABBR; provides assistance
+            to on-board education organizations, including facilitating the
+            conversion of data in preparation for ingestion.
+        </para>
+        <para>
+            For use in validating content throughout the ingestion process,
+            &COMPANYABBR; publishes the ingestion XSDs. While preparing
+            data, you can use your preferred XML validation tools to validate
+            against these XSDs. You may also find the open source
+            validation tool useful, as described in
+            <xref linkend="c-ingestion-offline_validation_tool"/>.
+        </para>
+    </section>
+    
+    <section xml:id="t-prepare_data_for_ingestion-control_file">
+        <title>Prepare the Control File</title>
+        <para>
+            After preparing the data XML files, as described in
+            <xref linkend="t-prepare_data_for_ingestion-data_files"/>,
+            create a text file to serve as the control file for an ingestion
+            job. Name the file using the ".ctl" extension. In your preferred 
+            text editor, add lines to the control file using 
+            <xref linkend="r-ingestion_control_file_format"/> as a guide.
+        </para>
+        <para>
+            There should be one control file for each ingestion job, and a job
+            corresponds to a single .zip archive uploaded to the landing zone.
+            Be sure there is a line in the control file for each XML data file
+            included in the same job (same .zip archive), and that there are 
+            no lines for files that are not in the job.
+        </para>
+    </section>
+    
+    <section xml:id="t-prepare_data_for_ingestion-zip_archive">
+        <title>Prepare the .zip Archive File</title>
+        <para>
+            The landing zone for &PRODUCTABBR; ingestion only accepts .zip 
+            archive files. Create a .zip file that meets the following 
+            requirements:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Includes the control file plus the XML data files listed 
+                    within that control file.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Has a flat file structure; all files are at the same
+                    directory level, with no subdirectories.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Is created using the "Deflate" method for compression.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+</section>

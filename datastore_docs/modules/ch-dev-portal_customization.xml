@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-0be599ab-0a18-439f-87b2-3313a5e77211"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Creating a Custom &PRODUCTABBR; Portal</title>
+    
+    <para>&PRODUCTABBR; comes with a default Portal that allows users to access &PRODUCTABBR;
+        applications. &COMPANYABBR; recognizes that states and districts may wish to customize their
+        Portal. While the default Portal cannot be customized, several API calls can be used as
+        building blocks to create a separate custom Portal. </para>
+    
+    <section xml:id="doc-28a3d4cc-2ad6-4200-bb59-1cddbb5307cd">
+        <title>&PRODUCTABBR; Portal Overview</title>
+        <para>The default &PRODUCTABBR; Portal consists of several web applications packaged in an iframe. Creating a custom Portal requires the following:</para>
+        <itemizedlist>
+            <listitem>
+                <para>Links to user applications. In the default Portal, these links appear on the
+                    right side of the home screen under the <guilabel>Applications</guilabel>
+                    header.</para>
+            </listitem>
+            <listitem>
+                <para>Links to &PRODUCTABBR; administrative system tools. The admin system tools,
+                    such as Create Landing Zone and Manage Administrator Accounts, allow
+                    &COMPANYABBR; administrators to manage an &PRODUCTABBR; instance. In the default
+                    &PRODUCTABBR; Portal, these applications are located on the
+                        <guilabel>Admin</guilabel> page under the <guilabel>System Tools</guilabel>
+                    heading.</para>
+            </listitem>
+            <listitem>
+                <para>Links to the configuration pages for each user application. In the default
+                    Portal, these links are located on the <guilabel>Admin</guilabel> page under the
+                        <guilabel>Application Configuration</guilabel> heading.</para>
+            </listitem>
+            <listitem>
+                <para>The Portal header and footer. In the default Portal, the header contains a
+                    link to the <guilabel>Admin</guilabel> page, a link to the report a problem
+                    form, and a logout link. You can use &COMPANYABBR;'s default header and footer,
+                    or you can provide a custom header and footer.</para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-636d0415-98fd-4e80-a017-135142a1cf79">
+        <title>API Calls for Applications</title>
+        <para>To create your own Portal, you must retrieve links to all available applications. Use the following API calls to get the links:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    GET <uri>$BASE_URL/api/rest/userapps?is_admin=true</uri> to retrieve the list of administrative applications. An example response:
+                </para>
+                <programlisting><![CDATA[
+{"vendor":"inBloom",
+"behavior":"Full Window App",
+"version":"0.0",
+"is_admin":true,
+"image_url":"https://example.com/portal/assets/icon.png",
+"description":"The inbloom Portal application is the primary access portal.",
+"name":"Portal"
+,"application_url":"https:example.com/portal",
+"administration_url":"https://example.com/portal"},
+{"vendor":"inBloom",
+"behavior":"Full Window App",
+"version":"0.0",
+"is_admin":true,
+"image_url":"https://example.com/assets/icon.png",
+"description":"The inBloom Data Browser allows developers and administrators to access all available information in the &COMPANYABBR; Data Store.",
+"name":"inBloom Data Browser",
+"application_url":"https://example.com",
+"administration_url":"https://example.com"}                    
+]]>
+                </programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    GET <uri>$BASE_URL/api/rest/userapps?is_admin=false</uri> to get the list of user applications. An example response:
+                </para>
+                <programlisting><![CDATA[
+{"vendor":"inBloom",
+"behavior":"Full Window App",
+"version":"A.0",
+"is_admin":false,
+"image_url":"https://example.com/dashboard/static/images/dashboard_icon.jpg",
+"description":"The inBloom Dashboards allow you to see information about students in lists and profiles.",
+"name":"inBloom Dashboards",
+"application_url":"https://example.com/dashboard",
+"administration_url":"https://example.com/dashboard/service/config"},
+{"behavior":"iframe App",
+"vendor":"wgen",
+"version":"1.0",
+"is_admin":false,
+"description":"Release testing",
+"name":"Release test",
+"application_url":"http://example.com",
+"administration_url":"http://example.com"},
+{"behavior":"iframe App",
+"vendor":"wgen",
+"version":"1.0","is_admin":false,
+"image_url":"http://example.com/.a/6a0133f3a4072c970b0153910e98b6970b-800wi",
+"description":"test",
+"name":"test",
+"application_url":"http://example.com",
+"administration_url":"http://example.com"}
+]]></programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    If an application has a configuration page set, then the URL for the application's configuration page is defined in the <property>administration_url</property> property that is returned in the response for GET <uri>$BASE_URL/api/rest/userapps?is_admin=false</uri>. For example, the configuration URL for the first application in the previous example code block is <uri>https://example.com/dashboard</uri>. <property>administration_url</property> is an optional field and may not be set for every application.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-203bc4e9-5eae-4ed8-874e-5c9ee25e2684">
+        <title>Using a Custom Header and Footer</title>
+        <para>The Portal's header and footer are set using properties in the
+                <filename>sli.properties</filename> file. This file is set up and maintained by an
+            &COMPANYABBR; Operator.</para>
+        <para>To use a custom header and footer, change the <property>portal.header.url</property> to point to the URL of your custom header and change <property>portal.footer.url</property> to point to the URL of your custom footer. For example:</para>
+        <programlisting><![CDATA[
+portal.footer.url = https://example.com/headerfooter-portlet/api/secure/jsonws/headerfooter/get-footer
+portal.header.url = https://example.com/headerfooter-portlet/api/secure/jsonws/headerfooter/get-header
+        ]]></programlisting>
+        <para>It may be easiest to start by copying the default &PRODUCTABBR; header and footer and then modifying the code.</para>
+        <para>You can retrieve the HTML code for the default header at <link xlink:show="new" xlink:href="https://portal.sandbox.inbloom.org/headerfooter-portlet/api/secure/jsonws/headerfooter/get-header?isAdmin=true">https://portal.sandbox.inbloom.org/headerfooter-portlet/api/secure/jsonws/headerfooter/get-header?isAdmin=true</link>.</para>
+        <para>You can retrieve the HTML code for the default footer at <link xlink:show="new" xlink:href="https://portal.sandbox.inbloom.org/headerfooter-portlet/api/secure/jsonws/headerfooter/get-footer?isAdmin=true">https://portal.sandbox.inbloom.org/headerfooter-portlet/api/secure/jsonws/headerfooter/get-footer?isAdmin=true</link>.</para>
+    </section>
+    
+    <section xml:id="doc-c4fd7c41-71e4-4897-a479-4b06d1b48ac5">
+        <title>Adding the Report a Problem Section</title>
+        <para>The default Portal includes a link to the <guilabel>Report a Problem</guilabel> page. While you cannot currently call this entire form, you can create a similar form and send form submissions to your operator's email address.</para>
+        <para>To retrieve your operator's email address, GET <uri>$BASE_URL/api/rest/v1/system/support/email</uri>.</para>
+    </section>
+    
+    <section xml:id="doc-cbabbba5-4a61-4927-adc3-ab7b1dbfe293">
+        <title>Adding the Logout Call</title>
+        <para>
+            To add the log out call to your customized Portal, GET <uri>$BASE_URL/api/rest/v1/system/session/logout</uri>.
+        </para>
+        <para><emphasis>Note:</emphasis> This logs the user out of the &PRODUCTABBR; platform, including all &COMPANYABBR; applications.</para>
+    </section>
+    
+</chapter>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-core_entity_model"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&PRODUCTABBR; Core Entity Model</title>
+    
+    <para>
+        The &PRODUCT; Core Entity Model (CEM) is based on the Ed-Fi Unifying 
+        Data Model. &PRODUCT; maintains a one-to-one mapping between the two 
+        models for the majority of the entities. However, some Ed-Fi entities 
+        have been merged into a single entity or split into multiple entities 
+        in the &PRODUCTABBR; CEM. 
+    </para>
+    <para>
+        The &COMPANYABBR; data ingestion subsystem, which handles bulk data
+        additions and updates to the &COMPANYABBR; data store, uses Ed-Fi XML 
+        schemas as the primary format for the source data. To handle the
+        differences between the &COMPANYABBR; CEM and the Ed-Fi data model,
+        &COMPANYABBR; provides an Ed-Fi XML schema extension.
+    </para>
+    <para>
+        Deviations from Ed-Fi, and the entity-level mapping between the
+        &COMPANYABBR; CEM and the Ed-Fi Unifying Data Model, are published in
+        &PRODUCTABBR; ingestion documentation.
+    </para>
+    
+</section>

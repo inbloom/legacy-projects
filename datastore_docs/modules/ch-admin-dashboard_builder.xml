@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-602784c9-bad6-4a1a-9806-3e86014cb9be"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Modifying Your District's Dashboard</title>
+    
+    <para>The &PRODUCTABBR; Dashboard provides users access to data for schools, courses, sections,
+        teachers, and students in a navigable and easy-to-read format. </para>
+    
+    <para>The &PRODUCTABBR; Dashboard is initially set up according to the process outlined in <xref
+            linkend="doc-b41f34d8-6366-487c-8f1e-aa699af52b77"/>. After the initial setup, an LEA
+        administrator can modify the layout for their Dashboard using the &PRODUCTABBR; Dashboard
+        builder application as described in this document.</para>
+    
+    <section xml:id="doc-bec573e4-985c-45d6-b833-ae6a46a6fafc">
+        <title>Terms</title>
+        <para>Before you continue, please understand the following terms:</para>
+        <itemizedlist>
+            <listitem><para><emphasis>Profile</emphasis> - A profile is a collection of logically related data organized by scope. The default profiles on the Dashboard are the Dashboard Profile, School Profile, Student Profile, State Education Organization Profile, Education Organization Profile, Teacher Profile, and Section Profile.</para></listitem>
+            <listitem><para><emphasis>Page</emphasis> - Profiles are made up of one or more pages. Pages help organize the data panels and appear as tabs on a profile.</para></listitem>
+            <listitem><para><emphasis>Panel</emphasis> - Contained within each page are one or more panels that display data for the profile. Panels can currently be added or removed from a pre-defined library, broken down by profile. For example, a teacher panel can be added to the education organization's profile.</para></listitem>
+        </itemizedlist>
+        <para>For example, a school profile could include pages for teachers and students. Within
+            the students page, you may have panels for grades, attendance, or just general
+            information.</para>
+    </section>
+    
+    <section xml:id="doc-a175052e-5e92-4e99-8062-01245321e9f9">
+        <title>Modifying a Profile</title>
+        <para>To modify a profile:</para>
+        <procedure>
+            <step>
+                <para>Log into &PRODUCTABBR;.</para>
+            </step>
+            <step>
+                <para>Click on the &PRODUCTABBR; Dashboard.</para>
+            </step>
+            <step>
+                <para>In the address bar, add <uri>/builder/index.html</uri> to the end of the URL.</para>
+            </step>
+            <step>
+                <para>Click the <guibutton>Profiles</guibutton> menu. The menu expands to display the list of available profiles.</para>
+            </step>
+            <step>
+                <para>
+                    Click the name of the profile that you want to edit. The profile page appears.
+                </para>
+                <figure xml:id="figure-schoolprofile">
+                    <title>An Example School Profile</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="center" format="PNG" 
+                                fileref="images/schoolprofile.png" 
+                                scalefit="1" width="750px"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" format="PNG" 
+                                fileref="../common/images/schoolprofile.png" 
+                                scalefit="1" width="7in"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>A</emphasis> - The tabs display the individual pages/tabs that
+                            will display for the profile. In the example school profile, the school
+                            profile displays tabs for <guilabel>Subjects and Courses</guilabel> and
+                                <guilabel>Teachers</guilabel>. Click a tab to view that tab's
+                            configuration. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>B</emphasis> - Click the <guibutton>Add Page</guibutton> button to add a new page to the profile. Once you have added the page, you can add panels that are available for the profile.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>C</emphasis> - The page title describes the tab as it will appear on the Dashboard profile. Click the <guibutton>Edit</guibutton> button to change the text for the page/tab title. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>D</emphasis> - The active panels are displayed and can be rearranged using a drag and drop feature. Hover over the panel to activate the ability to remove a panel or to change the order of panels.  
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>E</emphasis> - Click the <guibutton>Add available panels</guibutton> button to add new panels to the page. When you click the button, a dialog appears that allows you to select from panels available for the profile.   
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>F</emphasis> - Click <guibutton>Show Page Source Code</guibutton> to display the JSON code for a profile page. This allows you to easily share configurations with other administrators, as well as make changes to your Dashboard pages in a way not currently supported by the builder interface. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>G</emphasis> - Click <guibutton>Remove Tab</guibutton> to remove the page/tab from the profile.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>H</emphasis> - Click <guibutton>Restore</guibutton> to reset the profile to its most recently saved state.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>I</emphasis> - Click <guibutton>Publish Layout</guibutton> to update your district's Dashboard with your changes. <emphasis>Note:</emphasis> You will be prompted to confirm the changes before the profile is updated for your education organization.  
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-e9495e5e-241d-4749-bcd6-d121d2061fb1">
+        <title>Panels</title>
+        <para>The &PRODUCTABBR; Dashboard comes with a default library of data panels. Each panel
+            can be added to or removed from its associated profile. The &PRODUCTABBR; Dashboard does
+            not currently support the ability to modify the panel library.</para>
+        <figure xml:id="figure-schoolpanels">
+            <title>Available Panels for a School Profile</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" format="PNG" 
+                        fileref="images/schoolpanels.png" 
+                        scalefit="1" width="750px"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" format="PNG" 
+                        fileref="../common/images/schoolpanels.png" 
+                        scalefit="1" width="7in"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </section>
+</chapter>

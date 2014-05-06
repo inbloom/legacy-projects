@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter 
+    xml:id="doc-1f7d2be5-f37f-463a-95c0-92693de69b15" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+
+        <title>Offline Validation Tool</title>
+    
+    
+    <para> When you ingest data files for &PRODUCT;, the ingestion process includes validating your
+        data files. To minimize the risk of handling validation errors during ingestion, your
+        preparation steps should include validating your data files and correcting any invalid
+        content. You can perform this validation using an open source Offline Validation Tool (OVT)
+        provided as a free download from the &COMPANYABBR; Github repository (<link xlink:show="new"
+            xlink:href="&GITHUBURL;">&GITHUBURL;</link>). </para>
+    <para>
+        This section covers how to install and use the OVT.
+    </para>
+    
+    <section xml:id="doc-df06d1ee-6a5f-4446-9b2f-4b87b6206cfe">
+        <title>System Requirements</title>
+        <para>
+            The OVT has the following system requirements:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Java Runtime Environment (JRE) 1.6
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    512 MB available memory
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    50 Mb available space for the tool
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Extra space for validating the XML file:
+                    a minimum of double the file size of the XML file
+                    you are validating
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Write permission to the home directory of the tool
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-ee85c1f1-ac23-45a0-9f91-1ecbeb625430">
+        <title>Using the Tool</title>
+        <para>
+            Use the following procedure to set up and run the OVT:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    In your web browser, open the &COMPANYABBR; Github 
+                    repository:
+                    <link xlink:show="new" xlink:href="&GITHUBURL;">&GITHUBURL;</link>
+                </para>
+            </step>
+            <step>
+                <para>
+                    Click the following sequence to navigate and download
+                    the OVT:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <guibutton>ingestion-validation</guibutton>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <guibutton>bin</guibutton>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <guibutton>OfflineValidationTool.zip</guibutton>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <guibutton>View Raw</guibutton>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    Your web browser should begin downloading the file
+                    <filename>OfflineValidationTool.zip</filename>. If
+                    necessary, specify where you want to save the file on
+                    your local computer.
+                </para>
+            </step>
+            <step>
+                <para> 
+                    Unzip the file you downloaded
+                    (<filename>OfflineValidationTool.zip</filename>)
+                    into a folder on your computer, such as 
+                    <filename>C:\OfflineValidationTool</filename>.
+                    This is the application directory for the tool.
+                </para>
+                <para>
+                    The application directory includes the following:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            The <filename>lib</filename> directory contains
+                            the dependent libraries.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            The 
+                            <filename>ingestion-validation-1.0-{version}-SNAPSHOT.jar</filename> 
+                            file is the executable file for the tool.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            The <filename>OfflineValidationTool.sh</filename> 
+                            file is a script for running the tool on Unix and Linux platforms.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            The <filename>OfflineValidationTool.bat</filename> file 
+                            is a script for running the tool on a Windows platform.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para> 
+                    Run the script appropriate for your local computer
+                    using the corresponding steps below.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            <emphasis role="bold">On a Microsoft Windows system:</emphasis>
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Open the <guilabel>Run</guilabel> command dialog. This
+                    may be in your <guilabel>Start</guilabel> menu, or you
+                    may need to press the Windows key + R to open it.
+                </para>
+                <para>
+                    As an alternative, you can also open the Windows
+                    command prompt application and enter the command from there.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Use the dialog browse and select
+                    <filename>OfflineValidationTool.bat</filename> from
+                    the application directory. Then, place your cursor in
+                    the text box and add the path to the zip file you want
+                    to validate (shown as "$ZipFilePath" here):
+                </para>
+                <programlisting><![CDATA[
+C:\OfflineValidationTool.bat $ZipFilePath
+                        ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>OK</guibutton> to run the command.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            <emphasis role="bold">On a Linux- or UNIX-based system,
+                including a Mac:</emphasis>
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Open a terminal application on the system; on a Mac,
+                    you can start
+                    <filename>Terminal.app</filename> under
+                    <filename>Applications/Utilities/</filename>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Make the shell script file executable from the
+                    command line:
+                </para>
+                <programlisting><![CDATA[
+chmod +x OfflineValidationTool.sh
+                        ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Run the shell script using the path to the zip
+                    file you want to validate as an argument to the
+                    command (shown as "$ZipFilePath" here):
+                </para>
+                <programlisting><![CDATA[
+./OfflineValidationTool.sh $ZipFilePath
+                        ]]></programlisting>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-430197e6-ddc2-4aea-8a7f-eca95a1e942d">
+        <title>View the Results</title>
+        <para> 
+            Output from the OVT consists of the following:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A log file in the input folder, alongside the files
+                    you validated, with information and errors about the
+                    validation process
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Text in the console window, where you ran the script,
+                    with any errors in using the tool
+                </para>
+            </listitem>
+        </itemizedlist>
+        <note>
+            <para>
+                The OVT is an open source tool written in Java. Application
+                developers can download, view, and build the OVT source
+                code from 
+                <link xlink:show="new" xlink:href="&GITHUBURL;">&GITHUBURL;</link>.
+            </para>
+        </note>
+    </section>
+    
+</chapter>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_sequence"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Sequence</title>
+    
+    <para>
+        The following is the sequence of events that happen when ingesting
+        data for the &PRODUCTABBR; data store. See &PRODUCTABBR; ingestion
+        documentation for details about the files involved and how to create
+        and use them:
+    </para>
+    <orderedlist>
+	<listitem>
+	    <para>
+		Preparation:
+	    </para>
+		<orderedlist>  	
+		<listitem>
+		<para>
+		 When a new tenancy comes on board the inBloom operator creates the tenancy.
+		</para>
+			<orderedlist>
+				<listitem>
+					<para>
+					   inBloom operator will create the first administrator account that serves that tenancy.  From this point on, additional administrator accounts can be created by any existing administrator account (tenant administrators).  
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+					Tenant administrator creates their own landing zone.
+					</para>
+				</listitem>
+			</orderedlist>
+		</listitem>
+		</orderedlist>
+	</listitem>
+        <listitem>
+            <para>
+                A user creates a .zip archive file containing one control file
+                and one or more of XML data files.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                A user uses an sFTP client to upload the .zip archive file to
+		the landing zone for the target tenancy.  The sFTP server 
+		for Production is &PRODFTPSERVER;. Login credentials match those of the tenant administrator's inBloom login.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The ingestion system picks up the .zip archive and creates a
+                corresponding ingestion job.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The ingestion system parses and validates the .zip archive.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The ingestion system parses and validates the control file
+                within the .zip archive.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The ingestion system validates the XML files within the .zip
+                archive.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The ingestion system parses those XML files and creates objects 
+                from the data. The details about this part of the process
+                are described in
+                <xref linkend="c-how_ingestion_processes_data"/>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The ingestion system continues to process the data objects
+                until all data is processed and all changes are persisted to 
+                the &PRODUCTABBR; data store.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The ingestion system adds log files for the ingestion job and
+                its individual XML files to the landing zone for access by
+                ingestion users. The log files contain errors, warnings, 
+                statistics, and other status information.
+            </para>
+        </listitem>
+    </orderedlist>
+    <para>
+        If any part of handling an ingestion job fails, then some or all of
+        the data may not be persisted to the &PRODUCTABBR; data store. See
+        <xref linkend="c-ingestion_logs"/> for details on how to determine
+        where failures happened and what to do about them.
+    </para>
+    
+</section>

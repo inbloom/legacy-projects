@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion_file_conventions"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion File Conventions</title>
+    
+    <para>
+        All files uploaded for ingestion should follow these conventions:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                They should be UTF-8 encoded unless otherwise specified. 
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Machine-readable timestamps use epoch (UNIX) time. 
+                Since an epoch time string is used in the job ID value for 
+                ingestion jobs, you can find them in the file names for log 
+                and error files produced by each job.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Human-readable timestamps use a formatted date/time string.
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</section>

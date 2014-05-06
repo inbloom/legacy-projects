@@ -1,0 +1,157 @@
+This file provides:
+    * Quick History of DocBook Usage for inBloom Docs
+    * DocBook Reference Links
+    * Tools for DocBook Work
+    * DocBook Terms
+    * How the Doc Deliverables Are Built With DocBook
+
+-- Quick History of DocBook Usage for inBloom Docs ----------------------
+In March 2012, DocBook was selected as the XML standard for producing the
+source from which user-facing inBloom documentation could be generated. 
+The reason for selecting DocBook was a combination of the following:
+
+    * The versatility and modularity of using an XML standard source
+    * Documentation engineer experience with DocBook XML specifically
+    * The need for a quick turnaround in producing the first publications 
+      for the API
+
+The original documentation team later determined that selecting the 
+better-maintained, more versatile DITA standard would significantly 
+improve the maintainability of the documentation over time. As of this 
+writing, no effort has been made to switch to that standard except to 
+begin organizing the XML content using DITA principles (such as dividing 
+content into task, reference, and concept modules).
+
+-- DocBook Reference Links ----------------------------------------------
+There is no inBloom-specific guide to writing DocBook XML and XSL, but
+there are plenty of examples available in this repository. You can use
+an editor that autocompletes or validate against the schema (see the
+"tools" section below). In addition to that, though, bookmark the following 
+resources for general DocBook instructions and reference:
+
+DocBook 5: The Definitive Guide (the guide to the XML content development)
+    http://docbook.org/tdg5/en/html/
+
+DocBook XSL: The Complete Guide (the guide to custom formatting for output)
+    http://www.sagehill.net/docbookxsl/
+
+Additional references for XSL development (used when changing doc format):
+    For HTML output...
+    http://docbook.sourceforge.net/release/xsl/current/doc/html/
+    For FO output, which is used in PDFs...
+    http://docbook.sourceforge.net/release/xsl/current/doc/fo/
+
+
+-- Tools for DocBook Work -----------------------------------------------
+DocBook XML, like other XML code, can be edited in any text editor. For 
+the best editing experience, though, use an IDE designed for editing and 
+validating XML and XSL. Eclipse, for example, has extensions that support 
+validating against a given XML schema. 
+
+The original documentation team for inBloom developed content using the 
+oXygen Editor (http://www.oxygenxml.com/), which has rich tools for 
+developing XSL and XML, and for validating and building the the documents 
+from within the interface. The oXygen Editor natively recognizes DocBook 
+and DITA schemas and includes tools for building docs and converting code 
+in those schemas.
+
+OXYGEN SETUP NOTE: The datastore_doc repository has an oXygen project file
+                   called "techpubs.xpr". Open this file in oXygen to begin
+                   working. Transformations are configured as part of this
+                   project, making doc generation possible from within
+                   oXygen. However, it's the recommendation of the
+                   technical writing team to use the command line script
+                   (see "README") rather than the transformations in oXygen
+                   so that you are not relying on the oXygen configuration.
+                   
+                   See oXygen documentation for details on how to open, 
+                   edit, and validate files in the oXygen UI.
+                 
+Final generation of document deliverables is script-driven rather than
+performed within a GUI tool. The script uses Saxon and xsltproc for 
+DocBook XML transformations, plus Apache FOP to transform FO output
+into PDF. For more information, see the "README" and "SETUP" files in
+this "datastore_docs" repository.
+
+-- DocBook Terms -------------------------------------------------------
+Some terms to know as you work with DocBook:
+    * book, article, part, section - DocBook XML entities that have 
+      been used as dividing points when producing modular content. 
+      inBloom publications produced from DocBook XML are "books" from 
+      the DocBook perspective.
+    * XSLT - The process of changing an XML file into some other file 
+      format using XSL transform (XSLT) language. The XSLT may use a 
+      single stylesheet file (.xsl) or in a linked series of files that 
+      inherit from each other.
+    * datastore_doc repo - The repository that serves as the version 
+      control system for user-facing inBloom documentation, currently 
+      hosted at Github:
+      https://github.com/inbloomdev/datastore_docs
+
+-- How the Doc Deliverables Are Built With DocBook ---------------------
+DocBook is an XML schema that describes a document. DocBook has a strict 
+hierarchy (set-->book-->part-->chapter-->section) unlike the more common
+DITA standard, which organizes content by its purpose in a document rather
+than by part of a hierarchy.
+
+As with other XML, XSLT can be used to transform XML contents into a 
+different type of output. An XSL processor like xsltproc, Xalan, or Saxon
+must be used to process the XML using a given XSLT. DocBook XSL was created 
+to transform DocBook XML into several different types of document output. 
+This project uses only the HTML and FO types (the FO is used to produce PDF).
+
+DocBook XSL can be extended to customize the document output, similar to the
+way you would use styles and formatting in Word documents. Customizations 
+include such things as how chapters break across HTML files, what the PDF 
+title page looks like, and how fonts and text alignment are applied for 
+different document components. This project makes use of custom XSL files 
+for each document, each inheriting from a set of common custom XSLs that 
+apply across all documents.
+
+This project also uses an XML entities file for maintaining commonly used
+terms that are subject to change over time, such as company and product
+names and the current version of the product.
+
+The underlying processes of transforming DocBook XML in this project are
+as follows:
+
+    PDF deliverables:
+    DocBook XML 
+        ---(xsltproc processor using XSL file)---> 
+            FO file 
+                ---(fop processor)---> 
+                    PDF file
+    Example (admin doc):
+    doc-admin/doc-admin.xml 
+        ---(xsltproc using doc-admin/admin.xsl)---> 
+            doc-admin.fo 
+                ---(fop processor)---> 
+                    doc-admin.pdf
+    NOTE: Whether in oXygen or running this by a script at the command line,
+          this is a one-step process, and the FO file is hidden from the
+          user by deleting it at the end of the process.
+
+    Developer documentation (HTML):
+    modules/autogenerated/eapplication.wadl 
+        ---(Saxon processor using common/api-wadl-to-docbook.xsl)---> 
+            DocBook XML (auto-rest_api_resources-*.xsl)
+    modules/autogenerated/schema.xml 
+        ---(Saxon processor using common/schema-to-docbook.xsl)---> 
+            DocBook XML (auto-data_model.xml)
+    doc-developer/doc-developer.xml 
+        ---(xsltproc processor using common/inbloom-html-chunk.xsl)---> 
+            doc-developer (directory with HTML output)
+    NOTE: When running the command line script, this is a one-step process.
+          In oXygen, though, both eapplication.wadl and schema.xml must be
+          opened and transformed separately before opening and transforming
+          doc-developer.xml, and then this is follows by running the
+          assembleSupportingFiles.sh script at a command line.
+
+NOTE: The "eapplication.wadl" and "schema.xml" files come from the
+      autogenerated content produced from a script in the inBloom code
+      repository. For more information about generating and using these
+      files, see the "README" in this datastore_docs repository.
+
+For the instructions and information for how to run these document builds, 
+see the "README" in this datastore_docs repository.
+

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-c4a980ed-5b5a-4ec2-a1ad-d1507a23d6b7"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Creating Developer Accounts</title>
+    
+    <para>When you first sign up for a developer account in the Sandbox, you will receive a
+        developer account with permissions that allow you to perform development tasks, administer
+        your Sandbox, and ingest data.</para>
+    <para> Your Sandbox includes a tool for creating new users with the same permissions or a
+        subset of the permissions. For example, you may decide to create several applications
+        developers to work on your application, but only one person who will ingest data. </para>
+    <para>
+        When creating a new account, you can create users with the following 
+        roles:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <emphasis>Sandbox Administrators</emphasis> can perform most of the administrative
+                tasks in a Sandbox. This includes creating new developer accounts,
+                registering applications, and creating landing zones. </para>
+            <para>
+                <emphasis>Only users with this role can sign in to Production and submit
+                    application registration requests in Production.</emphasis>
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis>Application Developers</emphasis> can use the Register Application system
+                tool to register their applications for a Sandbox instance. </para>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis>Ingestion Users</emphasis> can use the <guilabel>Create Landing
+                    Zone</guilabel> system tool to set up and configure <glossterm
+                    linkend="def-landing_zone">landing zones</glossterm>. A landing zone allows
+                users with ingestion rights to upload Ed-Fi XML, which will then be ingested into
+                the database and then used for application development. When Ingestion Users in the
+                same Sandbox tenant are assigned the same EdOrg, they share a landing zone and can
+                see each other's uploads and log messages.</para>
+        </listitem>
+    </itemizedlist>
+    
+    <section xml:id="doc-f19e289d-6dbc-4c79-8e82-4c98bfe4ea9d">
+        <title>Creating a New Developer</title>
+        <para>
+            To create a new developer:
+        </para>
+        <procedure>
+            <step>
+                <para> Log in to your Sandbox. </para>
+            </step>
+            <step>
+                <para>Click <guibutton>Administer My Sandbox</guibutton>.</para>
+                <para>
+                    If this is your first access to the Sandbox, or if
+                    you are accessing it after a recent upgrade to the software
+                    license, click <guibutton>Agree</guibutton> to accept the 
+                    <guilabel>License Agreement</guilabel>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Admin</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para> 
+                    Click <guibutton>Manage Developer Accounts</guibutton> 
+                    under <guilabel>System Tools</guilabel> to open
+                    the Manage Developer Accounts page.
+                </para>
+            </step>
+            <step>
+                <para> 
+                    Scroll to the bottom of the page and click the 
+                    <guibutton>Add User</guibutton> button.
+                </para>
+                <figure xml:id="figure-Adding-New-Sandbox-Admin">
+                    <title>Creating a New Developer</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="center" 
+                                fileref="images/sandboxadmin_creates_sandboxadmin.png" 
+                                width="7.5in" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/sandboxadmin_creates_sandboxadmin.png" 
+                                scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+            <step>
+                <para>
+                    Fill out the form in the <guilabel>Add a User</guilabel> 
+                    page.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Full Name</emphasis> - Enter the user's 
+                            first name and last name. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Email</emphasis> - Enter the user's email 
+                            address. All users that you create will receive 
+                            emails that allow them to activate their
+                            accounts.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Role</emphasis> - Select a primary role 
+                            for the user. 
+                            <emphasis>Note:</emphasis> If you select 
+                            <guilabel>Sandbox Administrator</guilabel>, you 
+                            can still add the 
+                            <guilabel>Ingestion User</guilabel> or 
+                            <guilabel>Application Developer</guilabel> roles 
+                            using the checkboxes on this form. However, only a 
+                            Sandbox Administrator can create new administrative
+                            users.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Application Developer</emphasis> - 
+                            Select whether or not to give the user the 
+                            application developer role.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Ingestion User</emphasis> - Select whether or not to give this
+                            user the ability to ingest data to your Sandbox. </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Save</guibutton>. The application should
+                    redirect you to the 
+                    <guilabel>Manage Administrator Accounts</guilabel> page.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            The user will appear in the table on the 
+            <guilabel>Manage Administrator Accounts</guilabel> page. The user will
+            also receive an email that begins the process of activating an 
+            account.
+        </para>
+        <para>
+            If you need to change an existing user's contact information or 
+            role, click <guibutton>Edit</guibutton>. If you need to delete 
+            a user, click <guibutton>Delete</guibutton>.
+        </para>
+    </section>
+    
+    <section xml:id="doc-32cc1b9c-5589-41af-b422-888f44ef91cc">
+       <title>User Account Activation</title>
+       <para> After you've created a new user, the user must activate the account. The following is
+            the process for activating a new account: </para>
+        <procedure>
+            <step>
+                <para>
+                    The user receives an email containing a link to the 
+                    first page in the account activation process. The user 
+                    clicks the link to go to the first page.
+                </para>
+            </step>
+            <step>
+                <para> The user enters his or her email address as the user ID. Once the user
+                    submits the form, an email is sent to the user that contains a link to the
+                        <guilabel>Reset Password</guilabel> page. The user clicks the link in the
+                    email to go to the <guilabel>Reset Password</guilabel> page. </para>
+            </step>
+            <step>
+                <para> The user enters a password. Once the page is saved, the user's administrative
+                    account is activated for the Sandbox. </para>
+            </step>
+        </procedure>
+        <para>
+            The user will receive a welcome email once the process is 
+            complete and the account is active.
+        </para>
+   </section>
+    
+</chapter>

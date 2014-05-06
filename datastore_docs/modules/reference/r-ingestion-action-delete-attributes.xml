@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion-action-delete-attributes"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Action Attributes for ActionType="DELETE"</title>
+    
+    <para>
+        The following are the attributes you can use to control delete
+        actions through ingestion. These are attributes of the
+        <varname>Action</varname> entity in the XML that apply when attribute 
+        <varname>ActionType="DELETE"</varname>:
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="4">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="1*"/>
+            <colspec colname="thirdCol" colwidth="1*"/>
+            <colspec colname="fourthCol" colwidth="3*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>Attribute</para>
+                    </entry>
+                    <entry>
+                        <para>Data Type</para>
+                    </entry>
+                    <entry>
+                        <para>Default Value</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            Cascade
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Boolean
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            False
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            If this is True, the ingestion system attempts
+                            to propagate the delete to referring objects.
+                            This eliminates having existing records that refer
+                            to a deleted record.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            Force
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Boolean
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            True
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            This is only relevant when Cascade="False". In
+                            that case, setting Force to False creates a
+                            "safe delete," which means that the ingestion
+                            system will fail and produce an error when 
+                            one or more other records referring to the
+                            target record. If Force is True, referring records
+                            remain unchanged, still referring to the deleted
+                            record.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            LogViolations
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Boolean
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            True
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            This is only relevant when Force="True". In
+                            that case, LogViolations="True" causes the system
+                            to log information for objects that are left in 
+                            the system (orphaned data), identifying them as 
+                            integrity violations. This information is posted in
+                            the log files for the corresponding ingestion job.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+</section>

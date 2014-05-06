@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-1183979d-7e63-4991-a2d4-42b3274a5def"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <title>Testing Your Application in the Sandbox</title>
+    
+    <para>You can log in to the Sandbox as a test user from the sample data set you added using the
+        procedure <xref linkend="doc-f6fa6643-0616-4a70-8172-86a000fc4da3"/>. When you log in as a
+        test user, you can use your application as if your were a user who has the role and
+        permissions of the test user. </para>
+    <para>The &PRODUCTABBR;-provided small and medium datasets provide test users with common
+        &PRODUCTABBR; roles, as described in <xref
+            linkend="doc-3e1677bd-a02f-44a0-9c73-4eaaa1e1b064"/>. If you are using a custom dataset
+        that contains a role not included in the default roles, you can define the custom role's
+        permissions. See <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/> for more
+        information about defining custom roles.</para>
+    <procedure>
+        <step>
+            <para>Navigate to the URL for your Sandbox. </para><para>If you're using the &COMPANYABBR; hosted Sandbox, your Sandbox URL is: <emphasis
+                    role="bold"
+                    ><filename>https://portal.sandbox.inbloom.org</filename>.</emphasis>
+            </para>
+            <para>If you're not going through the portal, you can start from your application by
+                making an OAuth call. See <xref
+                    linkend="doc-2d6bc8f1-0290-46a3-8823-3e83f1f2d60a"/>. </para>
+        </step>
+        <step>
+            <para> Complete the login form with your application developer account credentials, and
+                click <guibutton>Login</guibutton>. </para>
+            <para>You will use this page to select a test user to sign in as. <figure
+                    xml:id="figure-Adding-New-Admin-User">
+                    <title>Test User Login</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="center" fileref="images/sandbox_test_user_login.png"
+                                scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure><inlinemediaobject>
+                    <imageobject>
+                        <imagedata
+                            fileref="../common/images/Figure%2013%20Manually%20Specify%20a%20User.png"
+                        />
+                    </imageobject>
+                </inlinemediaobject></para>
+        </step>
+        <step><para>Select</para>
+            <itemizedlist>
+                <listitem><para><guilabel>Use Sample User</guilabel> to log in by selecting a sample user from your
+                        dataset.</para></listitem>
+                <listitem><para><guilabel>Manually Specify a User</guilabel> to log in using a specific test user that you
+                        know the credentials for.</para></listitem>
+            </itemizedlist>
+        </step>
+        <step><para>If you selected <guilabel>Use Sample User</guilabel></para>
+            <substeps>
+                <step><para>Select the sample dataset you want to test with.</para></step>
+                <step><para>Select the user you want to use to test. Each user is associated with a role, so it is recommended that you select a user based on which role is most relevant to your test purposes.</para></step>
+                <step><para>Click <guibutton>Test As This User</guibutton>.</para></step>
+            </substeps></step>
+        <step> <para>If you selected <guilabel>Manually Specify a User</guilabel><figure
+            xml:id="figure-Manually-Specify">
+            <title></title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" fileref="images/sandbox_test_user_manually.png"
+                        width="7.5in" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                            <imagedata align="center"
+                                fileref="../common/images/sandbox_test_user_manually.png"
+                                scalefit="1"/>
+                        </imageobject>
+            </mediaobject>
+        </figure>
+        </para>
+        <substeps>
+            <step><para>Enter the login credentials of the user you want to test with. This user must be included in
+                        the data set you uploaded.</para></step>
+            <step><para>Specify the role of the user</para><substeps>
+                <step><para>If testing with one of the common &PRODUCTABBR; roles, select it from the <guilabel>Test as
+                                    this Role</guilabel> menu.</para></step>
+                <step><para>If testing with a custom role, enter the role in the <guilabel>Custom Role</guilabel>
+                                field.</para></step>
+            </substeps></step>
+            <step><para>Select whether the user is a <guimenuitem>student</guimenuitem>, <guimenuitem>parent</guimenuitem>, or a
+                            <guimenuitem>staff</guimenuitem> member from the <guilabel>With
+                            userType</guilabel> menu.</para>
+             <!--   <note><para>All of the default &PRODUCTABBR; roles are <guimenuitem>staff</guimenuitem>. If you want to
+                            test as a <guimenuitem>student</guimenuitem>, you must first create a
+                            custom role for students. See <xref
+                                linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/> for more
+                            information about creating custom roles. When creating a custom role for
+                            students, make sure you select the <guibutton>Admin Role</guibutton> box
+                            if you want to use the Data Browser to see log in information for the
+                            student.</para>
+                    <para>Remember, the custom role must match the role of the user in the data
+                            set. </para></note> -->
+            </step>
+            <step><para>Click <guibutton>Test As This User</guibutton>.</para></step>
+        </substeps>
+        </step>
+        <step>
+            <para> If you were logged in to the Sandobx URL, click the link for your application from
+                the <guilabel>My Applications</guilabel> list there. If you were making an OAuth
+                call directly from your application, you should be redirected to the application
+                after logging in. </para>
+        </step>
+    </procedure>    
+    <para> During development, you can also examine what data a test user has access to. To do this,
+        sign in to the Sandbox as described above, then use the Dashboard application to explore
+        student, parent, teacher, and other educational data in the data store. </para>
+    <note xml:id="note-b41e4ec6-29e3-44db-9baf-f28d249cdd9e">
+        <title>Why User Role Selection is Necessary for Testing</title>
+        <para> When you log in to &PRODUCTABBR; as an application developer, the &PRODUCTABBR;
+            identity provider (IDP) determines the rights you have upon signing in. If you were
+            signing in as a user from the data store, though, it would be the education
+            organization's IDP, not &PRODUCTABBR;, that determines your user roles and rights. In
+            Production, operators configure &PRODUCTABBR; to authenticate users from those IDPs. In
+            the Sandbox, though, you don't have that IDP connection to authenticate with. Instead,
+            you must select which role you want the user to take upon signing in. &PRODUCTABBR;
+            assigns the role for your test user based on this selection. That role is only good for
+            that session. </para>
+    </note>
+    
+</chapter>

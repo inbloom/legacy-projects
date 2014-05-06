@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_issues">
+  <title>Resolved Issues</title>
+  <para>
+                The following is a list of previously reported issues which 
+                have been resolved in the Alpha.1 release. Click defect title to see additional description:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="DE818">DE818: Make log level configurable from outside of the Ingestion Service package</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1314">DE1314: Update production dev account welcome email text to include link to documentation.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE460">DE460: Access to student list was not logged.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1166">DE1166: Any user from SLC hosted directory can upload files to landing zone</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE228">DE228: System log file rotation</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1291">DE1291: Ingestion job fails when zip files are dropped in an lz with a soft linked path</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1330">DE1330: Migrate StudentSectionGradebookEntry to StudentGradebookEntry</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="DE818">
+    <title>DE818: Make log level configurable from outside of the Ingestion Service package</title>
+    <para>Operators deploying already prepared ingestion service packages may need to change the Log Level for issue traceability. Currently logback.xml has the log level embedded in it and can't be configured by the operator.</para>
+  </section>
+  <section xml:id="DE1314">
+    <title>DE1314: Update production dev account welcome email text to include link to documentation.</title>
+    <para>Operator steps: 1.Add a property to the admin app's config.yml. This property needs to exist in both sandbox and production mode. property: app_dev_documentation_link sandbox value  app_dev_documentation_link:http://dev.slcedu.org/getting-started/sandbox production value  app_dev_documentation_link:http://dev.slcedu.org/getting-started/</para>
+  </section>
+  <section xml:id="DE460">
+    <title>DE460: Access to student list was not logged.</title>
+    <para>Under certain circumstances, the audit log does not capture a teacher's access to a related student's personally identifiable information.</para>
+  </section>
+  <section xml:id="DE1166">
+    <title>DE1166: Any user from SLC hosted directory can upload files to landing zone</title>
+    <para>Operator migration:         1.Rename the LDAP groups "Ingestion User" and "Application Developer" groups  In LDAP, rename ",ou=SLIAdmin,ou=groups,cn=Ingestion User"  to ",ou=SLIAdmin,ou=groups,cn=ingestion_user" In LDAP, rename ",ou=SLIAdmin,ou=groups,cn=Application Developer" to ",ou=SLIAdmin,ou=groups,cn=application_developer"   2.On all Landing Zone hosts (SFTP servers), create a file /etc/proftpd.allowed.group that contains the group "ingestion_user"  3.On all Landing Zone hosts (SFTP servers), update the PAM configuration to enforce group membership for SFTP logins.  Change/etc/pam.d/ldap-auth to include the following line as the first "auth" directive auth    required   pam_listfile.so onerr=fail item=group sense=allow file=/etc/proftpd.allowed.group</para>
+  </section>
+  <section xml:id="DE228">
+    <title>DE228: System log file rotation</title>
+    <para>By default, no policy is applied to manage log file rotation.</para>
+  </section>
+  <section xml:id="DE1291">
+    <title>DE1291: Ingestion job fails when zip files are dropped in an lz with a soft linked path</title>
+    <para>Operators should not have dynamic links in configuration parameters. Ingestion job to fails when ZIP files are placed in an landing zone with a soft-linked path.This is an invalid configuration. Any queries done with the real path afterward will produce errors.</para>
+  </section>
+  <section xml:id="DE1330">
+    <title>DE1330: Migrate StudentSectionGradebookEntry to StudentGradebookEntry</title>
+    <para>This script migrates data from StudentSectionGradebookEntry to StudentGradebookEntry.How to run the script:1.) chmod +x /sli/opstools/migration/collection_migration        2.) ./collection_migration  : studentSectionGradebookEntry studentGradebookEntry</para>
+  </section>
+</section>

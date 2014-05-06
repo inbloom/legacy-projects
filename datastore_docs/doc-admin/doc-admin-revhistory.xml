@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE revhistory [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<revhistory xml:id="docs-administrator-revhistory"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <revision>
+        <revnumber>1.2.72</revnumber>
+        <date>3/19/2013</date>
+        <revdescription>
+            <para>
+                Added Aggregate Viewer user role to the list of 
+                default user roles.
+            </para>
+            <para>
+                The Contextual Authorization Rules section was 
+                reorganized for clarity.
+            </para>
+            <para>
+                Updated sections on ingestion to refer to trim out instructions
+                beyond configuring the landing zone and, instead, refer to 
+                the new ingestion guide for how to prepare and ingest data.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.73</revnumber>
+        <date>4/13/2013</date>
+        <revdescription>
+            <para>
+                There were no revisions in this document for the 1.2.73 release.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.74</revnumber>
+        <date>4/17/2013</date>
+        <revdescription>
+            <para> There were no revisions in this document for the 1.2.74 release. </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.3.75</revnumber>
+        <date>4/30/2013</date>
+        <revdescription>
+            <para> Added information for bulk ingestion.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.3.76</revnumber>
+        <date>5/15/2013</date>
+        <revdescription>
+            <para>Removed chapter on CVS file conversion tool for
+            ingestion; the tool is not currently actively
+            maintained.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.4.77</revnumber>
+        <date>5/29/2013</date>
+        <revdescription>
+            <para>No changes were made to this document for this release.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.5.78</revnumber>
+        <date>6/12/2013</date>
+        <revdescription>
+            <para>No changes were made to this document for this release.</para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.6.79</revnumber>
+        <date>6/26/2013</date>
+        <revdescription>
+            <para>Updated chapter on integrated authentication to include
+            a new check performed during the authentication process:
+            check the value of "staffClassification", under
+            "staffEdOrgAssignmentAssociation" in the user's record
+            in the inBloom data store.</para>
+            <para>
+               Information has been added around the new default role, Student. Much of the content around roles and permissions is updated to reflect
+               this new role. Also included are the current authorization rules for users logging in as a student.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.7.80</revnumber>
+        <date>7/07/2013</date>
+        <revdescription>
+            <para>
+                Revised the section covering the default user roles to include
+                the role group concept, the permissions assigned by role group,
+                and the newly added roles for each role group.
+            </para>
+            <para>
+                Added new information to section covering how &PRODUCTABBR;
+                determines a user's permissions, and updated the screenshot
+                for the custom roles tool showing the default configuration.
+            </para>
+            <para>
+                Added new authorization rules for users logging in as a student.
+            </para>
+        </revdescription>
+    </revision>    
+    <revision>
+        <revnumber>1.8.81</revnumber>
+        <date>7/19/2013</date>
+        <revdescription>
+            <para>
+                Information has been added around the new default role, Parent. Much of the content around roles and permissions is updated to reflect
+                this new role. Also included are the current authorization rules for users logging in as a parent.
+            </para>
+        </revdescription>
+    </revision>   
+    <revision>
+        <revnumber>1.9.82</revnumber>
+        <date>8/2/2013</date>
+        <revdescription>
+            <para>
+                Added a note in the section about security even logs to draw
+                attention to the securityEvents resources in the REST API.
+                Also cleaned up the table covering what security events are
+                logged.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.11.86</revnumber>
+        <date>9/27/2013</date>
+        <revdescription>
+            <para>
+                The new Staff and Teacher contexts, and their affect on
+                determining user permissions, were added in the chapters
+                covering user rights and roles.
+            </para>
+            <para>
+                Contextual authorization chapters were updated to reflect
+                the Staff and Teacher contexts, and to remove program and
+                cohort rules that were not applicable.
+            </para>
+            <para>
+                Updated Manage Applications section to reflect changes to
+                application authorization procedures.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.88</revnumber>
+        <date>10/25/2013</date>
+        <revdescription>
+            <para>
+                Updated Manage Applications section to reflect changes to
+                application authorization procedures.
+            </para>
+            <para>
+                Ability for LEA Admins to authorize applications has been restored.  Hosted
+                Admins (SEA and LEA) can authorize any and all education organizations
+                in their education organization hierarchy using a tree control on the
+                Application Authorization Dashboard.
+            </para>
+			<para>
+				Updated SecurityEvents API call documentation to refer to updated Developer Guide.  Updated the descriptions of Logged Events.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.89</revnumber>
+        <date>11/08/2013</date>
+        <revdescription>
+            <para>
+                Bulk extract documentation update.
+            </para>
+            <para>
+                Removed notes for application delegation as
+                the functionality no longer exists.
+            </para>
+            <para>
+                Removed mentions of targetEdOrg because that property is no longer being used.
+                Removed mention of log files as they are inaccessible.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.90</revnumber>
+        <date>11/22/2013</date>
+        <revdescription>
+            <para>
+                Federated users may now be given the right to view security events through the API (through the SECURITY_EVENT_VIEW
+                right). This gives them the ability to use the /api/rest/securityEvent and /api/rest/securityEvent/{id} resources
+                for education organizations within their purview.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.13.91</revnumber>
+        <date>12/6/2013</date>
+        <revdescription>
+            <para>
+                Updated example of API's SAML metadata.
+            </para>
+            <para>
+                Added instruction for obtaining certificate used by API for digital signing.
+            </para>
+            <para>
+                Added description and screenshot of the addition of the Artifact Resolution Endpoint
+                and IDP Source ID fields to the Manage Realm system tool.
+            </para>
+            <para>
+                Added instruction for obtaining and adding API's client certificate.
+            </para>
+            <para>
+                Added description about encrypted assertion for artifact binding.
+            </para>
+            <para>
+                Added section describing new APP_AUTHORIZE right for federated users.  Updated Manage Applications section to reflect
+                new ability of federated users to authorize applications.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.14.92</revnumber>
+        <date>12/20/2013</date>
+        <revdescription>
+            <para>
+                Updated description of public data bulk extract.
+            </para>
+            <para>
+                Added description of top level education organization extract.
+            </para>
+            <para>
+                Added description about encrypted assertion for post.
+            </para>
+            <para>
+                Updated description of default user roles.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.15.94</revnumber>
+        <date>1/21/2014</date>
+        <revdescription>
+            <para>Added description of configuration details for Data Browser.</para>
+        </revdescription>
+    </revision>
+    <!--revision>
+        <revnumber>&CURRENTRELEASEREVISION;</revnumber>
+        <date>&CURRENTRELEASEDATE;</date>
+        <revdescription>
+            <para>No changes were made to this document for this release.</para>
+        </revdescription>
+    </revision-->
+    
+</revhistory>
+
+        

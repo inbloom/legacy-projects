@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-13c4458d-a74d-4c38-b2e6-de92bd055f77"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&RESTAPI; Methods, Parameters, and Operators</title>
+
+    <para> Use this chapter as a reference for the HTTP methods (GET, PUT, POST, DELETE, PATCH),
+        parameters, and operators you can use when forming requests to the &RESTAPI;. For a guide to
+        the URI patterns, see <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. For a list
+        of resources in the REST API, see <xref linkend="rest_api_resources"/>. </para>
+    
+    <section xml:id="doc-c5682fe0-c170-44a4-8a9a-8be08c979459">
+        <title>HTTP Methods</title>
+        <para>
+            Applications access the REST API using standard HTTP methods, which
+            correspond to traditional CRUD methods, as the following table shows. 
+        </para>
+        <table xml:id="table-07f80296-f4fd-4f57-b202-61cf265da57a">
+            <title>&RESTAPI;: HTTP Methods</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Method
+                            </para>
+                        </entry>
+                        <entry namest="secondCol" nameend="thirdCol">
+                            <para>
+                                &PRODUCTABBR; Method Implementation Details
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry morerows="1">
+                            <para>
+                                GET (Read)
+                            </para>
+                        </entry>
+                        <entry namest="secondCol" nameend="thirdCol">
+                            <para>
+                                Requests the specified resource or collection of resources
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                REQUEST:
+                            </para>
+                            <para>
+                                There is no request body for GET. When forming your GET request
+                                URI, use REST API's
+                                <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                                and 
+                                <link linkend="doc-804f7a98-a348-438a-a1a8-5c9eb39c9c12">URI patterns</link>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                RESPONSE:
+                            </para>
+                            <para>
+                                <parameter>200 OK</parameter> - The <emphasis>TotalCount</emphasis> header
+                                contains the number of items that were returned. The response body 
+                                contains the requested resource representations, including HATEOAS 
+                                links to reachable URIs.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para>
+                                DELETE (Delete)
+                            </para>
+                        </entry>
+                        <entry namest="secondCol" nameend="thirdCol">
+                            <para>
+                                Deletes the specified resource
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                REQUEST:
+                            </para>
+                            <para>
+                                There is no request body for DELETE. 
+                                For information on forming the DELETE request URI, see
+                                <link linkend="doc-804f7a98-a348-438a-a1a8-5c9eb39c9c12">URI patterns</link>.
+                                Note that trying to delete a resource that does not exist results 
+                                in the <parameter>404 Not Found</parameter> response code.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                RESPONSE:
+                            </para>
+                            <para>
+                                <parameter>204 No Content</parameter> - The response body is empty.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para>
+                                POST (Create)
+                            </para>
+                        </entry>
+                        <entry namest="secondCol" nameend="thirdCol">
+                            <para>
+                                Creates the given resource
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                REQUEST:
+                            </para>
+                            <para>
+                                The request body for POST must include the required fields defined in the 
+                                <link linkend="data_model">data model</link>. To form the POST request body, package 
+                                all required and other desired fields into a conventional JSON document. It should be 
+                                similar to JSON response bodies found when doing a GET request. For 
+                                information on forming the POST request URI, see
+                                <link linkend="doc-804f7a98-a348-438a-a1a8-5c9eb39c9c12">URI patterns</link>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                RESPONSE:
+                            </para>
+                            <para>
+                                <parameter>201 Created</parameter> - The <varname>Location</varname> 
+                                header contains the URI of the new resource. 
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para>
+                                PUT (Update)
+                            </para>
+                        </entry>
+                        <entry namest="secondCol" nameend="thirdCol">
+                            <para>
+                                Replaces an existing resource with the given resource
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                REQUEST:
+                            </para>
+                            <para>
+                                The request body for PUT must include the data for the standard fields of the entire resource, 
+                                not just the fields you're updating. To form the PUT request body, we recommend that you 
+                                start with a GET response body for the resource you're updating, remove the metadata and links, 
+                                and edit the values for each field you want to update. For information on forming the PUT request URI, 
+                                see <link linkend="doc-804f7a98-a348-438a-a1a8-5c9eb39c9c12">URI patterns</link>. 
+                                Note that trying to update a resource that does not exist results in the <parameter>404 Not Found</parameter> 
+                                response code.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                RESPONSE:
+                            </para>
+                            <para>
+                                <parameter>204 No Content</parameter> - The response body is empty.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para> PATCH (Update) </para>
+                        </entry>
+                        <entry namest="secondCol" nameend="thirdCol">
+                            <para> While the PUT method completely replaces a document, PATCH allows
+                                you to make partial changes to that document. You can do this by
+                                providing only the document fields that you want to replace. For
+                                each field in the request, PATCH fully overwrites that field on the
+                                document, including arrays and maps. PATCH has no effect on fields
+                                other than those specified in the request.  </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                REQUEST:
+                            </para>
+                            <para>The request body for PATCH must includes only the fields you want
+                                to update for that resource. To form the PATCH request body, start with a GET response body for the resource
+                                you are updating and remove the metadata and fields you are not
+                                updating. Edit the values for each field you want to update. Note that trying to update a
+                                resource that does not exist results in the 404 Not Found response code.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                RESPONSE:
+                            </para>
+                            <para>
+                                <parameter>204 No Content</parameter> - The response body is empty.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para><emphasis>Note:</emphasis> When using the PUT OR PATCH methods to modify an entity, be aware that entities not
+            explicitly being modified can also be effected in certain instances.</para>
+        <para>Example: If you make an update to an Assessment entitiy that modifies the
+            assessmentPeriodDescriptor fields, this can potentially cause updates to multiple
+            Assessment entitties that share the same AssessmentPeriodDescriptor.</para>
+        <para>Review the <link linkend="data_model">inBloom Secure Data Services Logical
+                Model</link> documentation for the specific details of individual entities.</para>
+    </section>
+    
+    <section xml:id="doc-445cd563-3f7a-421a-87dc-f4438ddd22ea">
+        <title>HTTP Response Codes</title>
+        <para>
+            &PRODUCTABBR; uses conventional HTTP response codes to indicate the success or 
+            failure of an API request, as the following table shows. For more 
+            information, see 
+            <link xlink:show="new" xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.htm</link>. 
+        </para>
+        <table xml:id="table-6f65fd78-8a30-4c56-9fda-f15ba49229f4">
+            <title>&RESTAPI;: HTTP Response Codes</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="4*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            Response Code Family
+                        </entry>
+                        <entry>
+                            Response Code Description
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                1xx Informational
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Not used by &PRODUCTABBR;.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                2xx Success
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The client request was received, understood, accepted, and processed by the server.
+                            </para>
+                            <para>
+                                <code>200 OK</code> – The request was processed as expected. </para>
+                            <para>
+                                <code>201 Created</code> – The request created an entity. </para>
+                            <para>
+                                <code>202 Accepted</code> – The request has been acknowledged
+                                but cannot be processed in real time. </para>
+                            <para>
+                                <code>204 No Content</code> – The response from a PUT operation. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                3xx Redirection
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The client must take addition action to complete the request.
+                            </para>
+                            <para>
+                                <code>301 Moved Permanently</code> - The requested resource has
+                                been moved to another location. </para>
+                            <para>
+                                <code>304 Not Modified</code> – The requested resource has not
+                                been modified. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                4xx Client Error 
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> The request failed due to an error on the client
+                                (application) side. </para>
+                            <para>
+                                <code>400 Bad Request</code> – Often the result of a missing
+                                required value. </para>
+                            <para>
+                                <code>401 Unauthorized</code> – A valid API key was not
+                                provided, or the client is not authenticated or does not have
+                                appropriate permissions. </para>
+                            <para>
+                                <code>402 Request Failed</code> – The request was valid, but the
+                                request failed. </para>
+                            <para>
+                                <code>403 Access Denied</code> – The user was not authorized to
+                                perform the requested action. </para>
+                            <para>
+                                <code>404 Not Found</code> – The specified resource could not be
+                                found. </para>
+                            <para>
+                                <code>409 Conflict</code> – The request could not be processed
+                                because of a conflict in the request. </para>
+                            <para>
+                                <code>412 Precondition Failed</code> – The request was made with
+                                arguments that do not conform to the API contract. </para>
+                            <para>
+                                <code>413 Request entity too large</code> – The request made was
+                                deemed too large to accept. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                5xx Server Error
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The request failed due to an error on the server (&PRODUCTABBR;) side.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section> 
+    
+    <section xml:id="doc-15aeebd8-8ffe-430d-9735-20b4e760de2e">
+        <title>HTTP Response Headers</title>
+        <para> &PRODUCTABBR; uses conventional HTTP response headers with a few additions.
+            These additions can be seen in the following table. For more information, see <link
+                xlink:show="new" xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"
+                >http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html</link>. </para>
+        <table xml:id="table-eecc19a3-cac6-4748-8f1a-beaf2b0d0b4d">
+            <title>&RESTAPI;: Custom HTTP Response Headers</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="5*"/>
+                <colspec colname="thirdCol" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry>Response Header</entry>
+                        <entry>Response Header Description</entry>
+                        <entry>HTTP Method</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>Location </para>
+                        </entry>
+                        <entry>
+                            <para>This response header specifies the location of a resource.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                POST
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Link</para>
+                        </entry>
+                        <entry>
+                            <para>This response header specifies the next set of results when
+                                paging. </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GET
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>TotalCount</para>
+                        </entry>
+                        <entry>
+                            <para>This response header specifies the total number of results.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GET
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>X-RequestedPath</para>
+                        </entry>
+                        <entry>
+                            <para>This response header specifies the originally requested path.</para>
+                            <para>Example: <code>/students</code></para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GET
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>X-ExecutedPath</para>
+                        </entry>
+                        <entry>
+                            <para>This response header specifies the path the API  executed after inferring context. </para>
+                            <para>Example: <code>sections/id1,id2,id3/studentSectionAssociations/students</code></para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GET
+                            </para>
+                        </entry>
+                    </row>
+                    
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    
+    <section xml:id="doc-94c6ee68-e2fb-4343-9204-782353e172e4">
+        <title>Error Codes</title>
+        <para>
+            HTTP response codes, which are returned in the header, are intended for use in
+            program control. When the API responds with an error code, the response body
+            provides additional information, as the following table shows. 
+        </para>
+        <table xml:id="table-9b54f0f3-64c4-4a9a-b945-e26cb8857646">
+            <title>&RESTAPI;: Error Codes</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            Error Code
+                        </entry>
+                        <entry>
+                            Reason for Error
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>code</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> 
+                                Numeric HTTP response code, for example,
+                                <code>404</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>message</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Human-readable reason for the error, for example, 
+                                "Entity not found: {requested entity}"
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>type</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Text version of the response code, for example, "Not Found"
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>statusCode</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Reserved for future use
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    
+    <section xml:id="doc-5ee14672-28bd-487e-b6a5-51570151a92e">
+        <title>Global Parameters</title>
+        <para> Global parameters can be used to build query segments that filter, sort, and paginate
+            the resources that a GET returns. They are called global because they can be used in
+            requests for any resource. Query segments get added to the uri in the form of query
+            parameters. </para>
+        <para> 
+            The following table lists and provides examples of global parameters. 
+        </para>
+        <table xml:id="table-5f3ad5cf-97e8-43a8-8bea-5e572e03eb5c">
+            <title>&RESTAPI;: Global Parameters</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            Parameter
+                        </entry>
+                        <entry>
+                            Value
+                        </entry>
+                        <entry>
+                            Description
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>includeCustom</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                String
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Specifies whether or not the response should include custom
+                                data for that resource. Default value is <code>false</code>,
+                                otherwise can be set to <code>true</code>.
+                            </para>
+                            <para>
+                                For more about custom data, see 
+                                <xref linkend="doc-73c0c9e8-5972-489e-911a-968d7e6a0fac"/>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>includeFields</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Comma-delimited list of field names
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> (Filtering) Specifies the names of standard fields to be
+                                included in each returned resource. All other standard fields
+                                are omitted. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="firstCol" nameend="thirdCol">
+                            <para>
+                                <code>/sections?includeFields=sequenceOfCourse,populationServed</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>excludeFields</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Comma-delimited list of field names
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> (Filtering) Specifies the names of standard fields to be
+                                excluded from each returned resource. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="firstCol" nameend="thirdCol">
+                            <para>
+                                <code>/sections?excludeFields=populationServed</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>views</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Comma-delimited list of field names
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Explicitly specifies the names of enriched views
+                                to be included as part of each returned resource,
+                                in addition to the standard fields.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="firstCol" nameend="thirdCol">
+                            <para>
+                                <code>/students/{studentId}?views=assessments,attendances,gradebook,transcript</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>offset</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Non-negative integer
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> (Pagination) Specifies the index of the first resource to
+                                include, relative to the first resource in the collection. Array
+                                numbering begins at zero. If not specified, the default value of
+                                <classname>offset</classname> is 0. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>limit</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Non-negative integer
+                            </para>
+                        </entry>
+                        <entry>
+                            <para> (Pagination) Specifies the maximum number of resources to
+                                return. If not specified, the default value of
+                                <classname>limit</classname> is 1000. A
+                                <classname>limit</classname> value of 0 returns all possible
+                                resources. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="firstCol" nameend="thirdCol">
+                            <para>
+                                <code>/sections?offset=0&amp;limit=4</code>
+                            </para>
+                            <para>
+                                <code>/sections?offset=3&amp;limit=4</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>sortBy</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Field name
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                (Sorting) Specifies the name of the field to sort the results set by.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>sortOrder</classname>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                ascending, descending
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                (Sorting) Specifies the order to sort the results set by.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="firstCol" nameend="thirdCol">
+                            <para>
+                                <code>/sections?sortBy=uniqueSectionCode&amp;sortOrder=descending</code>
+                            </para>
+                        </entry>
+                    </row>
+		    <row>
+			<entry>
+			    <para>
+                                <classname>currentOnly</classname>
+                            </para>
+			</entry>
+			<entry>
+			    <para>
+                                true, false
+                            </para>
+			</entry>
+			<entry>
+			    <para>
+                                This parameter allows for querying the api for only the current enitites.
+                                By default, all entities are returned. Setting this parameter to true will
+				return only entities that are active as determined by their beginDate and 
+                                endDate fields. If the entity does not have these fields, then it will
+                                always be returned. The one exception is studentSchoolAssociation, this
+                                setting will effect the return of those entities even though it uses entryDate
+                                and exitWithdrawDate.
+                            </para>
+			</entry>
+
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>predicate</classname>
+                            </para>
+                        </entry>
+                        <entry/>
+                        <entry>
+                            <para>
+                                Reserved for future use.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>expandDepth</classname>
+                            </para>
+                        </entry>
+                        <entry/>
+                        <entry>
+                            <para>
+                                Reserved for future use.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>method</classname>
+                            </para>
+                        </entry>
+                        <entry/>
+                        <entry>
+                            <para>
+                                Reserved for future use.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <classname>suppressResponseCodes</classname>
+                            </para>
+                        </entry>
+                        <entry/>
+                        <entry>
+                            <para>
+                                Reserved for future use.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    
+    <section xml:id="doc-96624aa3-2264-44e2-95ea-fa68079d0626">
+        <title>Query Operators</title>
+        <para>Query operators can be used to build query segments that filter on match conditions
+            between the given name-value pair and the corresponding field of the resource. These are
+            added as query parameters. The API functionally combines these parameters as a logical
+            AND.  </para>
+        <para>
+            The following table lists and provides examples query operators. 
+        </para>
+        <table xml:id="table-cde7c3ea-dab7-43bc-ae80-919c6fec20b2">
+            <title>&RESTAPI;: Query Operators</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="5*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            Operator
+                        </entry>
+                        <entry>
+                            Description with Examples
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>=</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Equality
+                            </para>
+                            <para>
+                                <code>/students?name.firstName=Matt</code>
+                            </para>
+                            <para>
+                                <code>/courses?courseTitle=Senior%20Homeroom</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>!=</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Inequality
+                            </para>
+                            <para>
+                                <code>/sections?sequenceOfCourse!=2</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>&lt;</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Less than
+                            </para>
+                            <para>
+                                <code>/sections?sequenceOfCourse&lt;2</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>&lt;=</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Less than or equal to
+                            </para>
+                            <para>
+                                <code>/sections?sequenceOfCourse&lt;=3&amp;uniqueSectionCode=~English</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>&gt;</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Greater than
+                            </para>
+                            <para>
+                                <code>/sections?sequenceOfCourse&gt;1</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>&gt;=</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Greater than or equal to
+                            </para>
+                            <para>
+                                <code>/sections?sequenceOfCourse&gt;=1</code>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <code>=~</code>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Regular expression (“like”). Matches if the given string appears anywhere in the field.
+                            </para>
+                            <para>
+                                <code>/sessions?term=~Fall</code>
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    
+</chapter>

@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-8ec60b81-46f8-40ef-ae34-a68c81b33d3f"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Using the Java SDK in Application Development</title>
+    <para>
+        The Java client library is structured in two layers:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The low-level layer is an implementation of the 
+                <guilabel>RESTClient</guilabel> interface. It handles all 
+                HTTP based interaction with the API and encapsulates 
+                OAuth authentication.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The higher level layer is an implementation of the 
+                <guilabel>SLIClient</guilabel> interface. It isolates the 
+                underlying HTTP protocol (of the 
+                <guilabel>RESTClient</guilabel>) and provides convenient 
+                methods to create, retrieve and manipulate entities managed 
+                by the API.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        &COMPANYABBR; recommends using the higher-level 
+        <guilabel>SLIClient</guilabel> and to only resort to the lower level 
+        <guilabel>RESTClient</guilabel> if absolutely necessary. We will 
+        provide example code for both use cases. 
+    </para>
+    <section xml:id="doc-95714c09-c94e-423d-a216-ee9f99238fd8">
+        <title>Java SDK: Authentication</title>
+        <para>
+            To authenticate and access the API, you'll need to follow the 
+            OAuth 2.0 authentication flow. Currently, only Web-based 
+            authentication is supported. 
+        </para>
+        <para>
+            Even if you're using higher level <classname>SLIClient</classname>
+            to communicate with the API, all authentication is handled by the 
+            lower level <classname>RESTClient</classname>. The 
+            <classname>RESTClient</classname> class largely hides the details 
+            of the OAuth 2.0 flow and makes authentication simple. An instance 
+            of <classname>RESTClient</classname> is passed to the constructor 
+            of the <classname>SLIClient</classname> implementation, and it's
+            retrieved from that instance when performing an authentication task.
+        </para>
+        <para>
+            The example below demonstrates using
+            <classname>RESTClient</classname> for authentication.
+            Typically, your application should execute this code for every 
+            incoming request that requires authentication. In a Java Servlet 
+            container (such as Apache Tomcat), this is may be best executed in
+            a filter. Note that the following "request" refers to requests that
+            your web application receives, and the "response" refers to 
+            responses your application sends to the user interface. Be sure to
+            see the annotations below the example for more details:
+        </para>
+        <programlisting><![CDATA[
+...
+  1 SLIClient client = (SLIClient) httpRequest.getSession().getAttribute("client");
+  2 if (client == null) {
+  3     RESTClient restClient = new BasicRESTClient(apiUrl, clientId, clientSecret, callbackUrl);
+  4     client = new BasicClient(restClient);
+  5     ((HttpServletResponse) response).sendRedirect(client.getRESTClient().getLoginURL().toExternalForm());
+  6     httpRequest.getSession().setAttribute("client", client);
+  7 } else if (CALL_BACK_PATH.equals(httpRequest.getRequestURI())) {
+  8     String code = httpRequest.getParameter("code");
+  9     Response apiResponse = null;
+ 10     apiResponse = client.getRESTClient().connect(code);
+ 11     if ((apiResponse == null) || (apiResponse.getStatus() != 200)) {
+ 12         // Authentication to the API failed: return the appropriate error to the user via a redirect
+ 13     } else {
+ 14         ((HttpServletResponse) response).sendRedirect(afterCallbackRedirect);
+ 15     }
+ 16 } else {
+ 17     chain.doFilter(request, response);
+ 18 }
+...
+        ]]></programlisting>
+        <para>
+            In the example above:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Request and response are instances of 
+                    <classname>HttpServletRequest</classname> and 
+                    <classname>HttpServletResponse</classname> respectively.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Line 1</emphasis>: Check whether the requesting user has
+                    authenticated or initiated authentication previously. If so, an instance of
+                        <classname>BasicClient</classname> would have been stored in the server-side
+                    session. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Line 2-6</emphasis>: If the user is 
+                    not authenticated, create a new 
+                    <classname>RESTClient</classname> instance and wrap an 
+                    instance of 
+                    <classname>SLIClient</classname> around it. The arguments 
+                    to the constructor of 
+                    <classname>BasicRESTClient</classname> 
+                    (<varname>apiUrl</varname>, <varname>clientId</varname>, 
+                    <varname>clientSecret</varname>, 
+                    <varname>callbackUrl</varname>) are associated with the 
+                    application registration settings defined in
+                    <xref linkend="doc-bf953f34-4820-4465-9fc7-6376d34d4865"/>.
+                    After creating the instance, redirect the user to the 
+                    login screen of their SSO (single sign-on) system. 
+                    Send a redirect to the connecting client which requires the 
+                    user to sign in.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Line 7-25</emphasis>: Handles the 
+                    callback after a user was successfully authenticated by 
+                    the SSO system. <varname>CALL_BACK_PATH</varname> has to 
+                    match the path of the callback URI that was entered 
+                    during application registration. Retrieve the encapsulated 
+                    instance of <classname>RESTClient</classname> from the 
+                    client instance, and set the the OAuth 
+                    credentials ("code") on the 
+                    <classname>RESTClient</classname> instance using the 
+                    connect method. 
+                </para>
+                <para>
+                    Calling the connect method of 
+                    <classname>RESTClient</classname> finalizes the OAuth flow 
+                    and marks successful authentication of the user. 
+                    After that, redirect the user to a URL. That URL is 
+                    application-dependent; it's the URL that was requested 
+                    prior to authentication, or it's a default URL.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Line 16-18</emphasis>:
+                    Process the request in the case where the user is
+                    already authenticated.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            For a complete implementation see 
+            <filename>org.slc.sli.sample.oauth.AuthFilter</filename>
+            in the sample application.
+        </para>
+    </section>
+    <section xml:id="doc-0a4721e4-321d-43e0-ad90-1ab79e098c13">
+        <title>Java SDK: Sending  REST API Requests with <classname>SLIClient</classname></title>
+        <para>
+            The sections that follow address issues related to sending 
+            requests to the &RESTAPI; after the user is authenticated (as 
+            described in
+            <xref linkend="doc-95714c09-c94e-423d-a216-ee9f99238fd8"/>). 
+            Thus, your application assumes a client role. A "request" refers 
+            to a request to the REST API initiated by your code, and "response"
+            refers to the responses returned by the REST API through the SDK.
+        </para>
+        <para>
+            The following sections use the higher-level 
+            <classname>SLIClient</classname> to make requests to the API. 
+            The <classname>SLIClient</classname> aims at hiding the use of the 
+            underlying HTTP protocol.
+        </para>
+        <section xml:id="doc-17e425d4-c970-4379-a789-55d9078ec899">
+            <title>Working with Entities</title>
+            <para>
+                The Java client library offers convenient methods to create, 
+                read, update, and delete (CRUD) entities through calls to the 
+                REST API. These high-level methods are available through the 
+                <classname>BasicClient</classname> class, which itself builds 
+                on the <classname>RESTClient</classname> class for low-level 
+                REST operations. The specific entity types and their attributes 
+                are documented in the API and data model documentation at 
+                <link xlink:show="new" xlink:href="&DEVWEBSITE;/">&DEVWEBSITE;</link>. For
+                more information about the details of the data model see <xref
+                    linkend="doc-2f7e7714-d9a7-4052-bf71-cbbf2ec46660"/>.
+            </para>
+            <para>
+                <emphasis role="bold">Create an Entity.</emphasis>
+            </para>
+            <para>
+                A new entity is created by instantiating 
+                <classname>GenericEntity</classname> and passing it to the 
+                create method of <classname>BasicClient</classname>. 
+                <classname>GenericEntity</classname> comprises the target 
+                resource (collection) as well as the entity data. Here is an 
+                example with explanation below:
+            </para>
+            <programlisting><![CDATA[
+...
+  1 Map<String, Object> body = new HashMap<String, Object>();
+  2 body.put("cohortIdentifier", "ACC-TEST-COH-1");
+  3 body.put("cohortType", "Academic Intervention");
+  4
+  5 Entity cohort = new GenericEntity(ResourceNames.COHORTS, body);
+  6 List<Entity> collection = new ArrayList<Entity>();
+  7 try {
+  8     String id = client.create(student);
+  9 } catch (SLIClientException e) {
+ 10     // creation of entity failed in the API
+ 11 }
+...
+            ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 1-3:</emphasis> Assemble 
+                        the data of the entity in a map. (See the API and data
+                        model documentation for the attributes, data types, and 
+                        cardinality). This example includes the required 
+                        attributes for a cohort.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 5-11:</emphasis> Associate
+                        the data with a resource (collection) by creating an 
+                        instance of <classname>GenericEntity</classname>,
+                        and <methodname>create</methodname> the entity 
+                        remotely using the create method of 
+                        <classname>client</classname> (an instance of 
+                        <classname>BasicClient</classname>).
+                    </para>
+                    <para>
+                        The <methodname>create</methodname> method returns the 
+                        ID value of the newly created entity. If the entity 
+                        could not be created, handle an 
+                        <classname>SLIClientException</classname> thrown by 
+                        the REST API.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                <emphasis role="bold">Read an Entity.</emphasis>
+            </para>
+            <para>
+                Retrieving an individual entity uses the same approach as 
+                querying a collection of entities. An optional 
+                <parameter>id</parameter> parameter of the 
+                <methodname>read</methodname> method identifies the entity to 
+                be retrieved.
+            </para>
+            <programlisting><![CDATA[
+...
+  1 List<Entity> collection = new ArrayList<Entity>();
+  2 try {
+  3     client.read(collection, ResourceNames.STUDENTS, id, BasicQuery.EMPTY_QUERY);
+  4     if (collection.size() == 1) {
+  5         // process the retrieved entity
+  6     }
+  7 } catch (SLIClientException e) {
+  8     // Unable to process the request in the API 
+  9 }
+...
+            ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 1-9:</emphasis> Create a 
+                        list of <classname>Entity</classname> objects to 
+                        contain the returned entity. The 
+                        <methodname>read</methodname> method of 
+                        <classname>BasicClient</classname> takes an optional 
+                        <parameter>id</parameter> argument that identifies the 
+                        requested entity. The optional query (which would 
+                        restrict the result set) is empty.
+                    </para>
+                    <para>
+                        Handle an <classname>SLIClientException</classname>,
+                        which is thrown if the call failed within the API, 
+                        such as if the entity could not be found.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                <emphasis role="bold">Update an Entity.</emphasis>
+            </para>
+            <para>
+                To update an entity, the entire entity has to be provided (not 
+                just the updated fields). Partial update of an entity is 
+                currently not supported using the SDK. A safe pattern for 
+                updating an entity is to first retrieve it using a 
+                read, then submitting the same entry with the modifications.
+            </para>
+            <programlisting><![CDATA[
+...
+  1 try {
+  2     client.read(collection, ResourceNames.STUDENTS, id, BasicQuery.EMPTY_QUERY);
+  3     if (collection.size() == 1) {
+  4         Entity foundStudent = collection.get(0);
+  5         Map<String, Object> studentData = foundStudent.getData();
+  6
+  7         // manipuate the student data
+  8
+  9         client.update(foundStudent);
+ 10     }
+ 11 } catch (SLIClientException e) {
+ 12     // either the update or read call failed in the API 
+ 13 }
+...
+            ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 1-2:</emphasis> Assume that
+                        the <parameter>id</parameter> contains the ID of the 
+                        entity to update. Start by retrieving that entity.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 3-10:</emphasis> Change the
+                        data of the entity and update it in the API. Note that 
+                        the <methodname>update</methodname> method of 
+                        <classname>client</classname> (an instance of 
+                        <classname>SLIClient</classname>) writes the entire 
+                        entity to the API.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 11-13:</emphasis> If any of
+                        the operations (read, update) fails in the API, handle
+                        the <classname>SLIClientException</classname> thrown
+                        by the REST API.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                <emphasis role="bold">Delete an Entity.</emphasis>
+            </para>
+            <para>
+                To delete an entity, the library requires the resource type 
+                and the entity ID. 
+            </para>
+            <programlisting><![CDATA[
+...
+  1 try {
+  2     client.delete(ResourceNames.STUDENTS, id);
+  3 } catch (SLIClientException e) {
+  4     // delete failed in the API 
+  5 }
+...
+            ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 1-5:</emphasis> Delete the 
+                        entity with identifier <parameter>id</parameter> for 
+                        the given resource type (in this case "students"). If
+                        the delete fails, handle the 
+                        <classname>SLIClientException</classname> 
+                        thrown by the REST API.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-36202613-4b16-4b74-bfc3-eea155d6e1ae">
+            <title>Working with Collections</title>
+            <para>
+                All entities are stored in a collection. As shown earlier, you 
+                can retrieve individual entities by their IDs. That was a 
+                special case of querying a collection. The SDK provides a 
+                simple way to query collections by using the query builder 
+                provided by <classname>BasicQuery</classname>.
+            </para>
+            <programlisting><![CDATA[
+...
+  1 List<Entity> collection = new ArrayList<Entity>();
+  2 try {
+  3     client.read(collection, ResourceNames.TEACHERS,
+  4             BasicQuery.Builder.create().filterEqual("sex", "Male")
+  5                                        .sortBy("name.firstName")
+  6                                        .sortDescending()
+  7                                        .build());
+  8     if (collection.size() > 0) {
+  9         // process the resulting entities
+ 10     }
+ 11 } catch (SLIClientException e) {
+ 12     LOG.error("RESPONSE:" + e.getMessage());
+ 13 }
+... 
+            ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 1-10:</emphasis> Create an 
+                        empty collection container (subclass of 
+                        <classname>LinkedList</classname>) to hold the results
+                        of the query. Use the 
+                        <classname>BasicQuery.Builder</classname> to define the
+                        specifics of the query. Then, pass the completed query 
+                        to the <methodname>read</methodname> method of 
+                        <classname>BasicClient</classname>. Process the results
+                        by iterating over the returned collection.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Lines 11-13:</emphasis> Handle
+                        the <classname>SLIClientException</classname> thrown if
+                        the request failed in the API. Note that no exception 
+                        will be thrown if the result is empty since an empty 
+                        collection is actually a valid result. 
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+    </section>
+    <section xml:id="doc-e732c0e8-d2b9-498e-856f-71981b40ab6b">
+        <title>Java SDK: Sending  REST API Requests with <classname>RESTClient</classname></title>
+        <para>
+            The previous section provided examples on how to use the 
+            higher-level <classname>SLIClient</classname> to make requests to 
+            the &RESTAPI;. This section covers how to use the lower-level 
+            <classname>RESTClient</classname> to make those same requests.
+        </para>
+        <para>
+            All methods of the <classname>RESTClient</classname> return a 
+            response that's an instance of 
+            <classname>javax.ws.rs.core.Response</classname>, which is part of 
+            the standard Java Web services library. An instance of that class 
+            provides an interface to the results of the underlying HTTP request.
+        </para>
+        <section xml:id="doc-5ae836e3-9aba-446b-8d53-632bcc0fdfba">
+            <title>HTTP POST Request to Create Object</title>
+            <programlisting><![CDATA[
+...
+  1 ObjectMapper mapper = new ObjectMapper(); 
+  2 String jsonObj = mapper.writeValueAsString(entity);
+  3 URL url = URLBuilder.create(client.getBaseURL()).entityType(resourceType).build();
+  4 Response response = client.postRequest(url, jsonObj);
+  5      
+  6 if (response.getStatus() != Status.CREATED.getStatusCode()) { 
+  7     // error handling
+  8 }
+  9     
+ 10 String resourceLocation = response.getHeaders().getHeaderValues("Location").get(0);
+...
+                ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 1-2:</emphasis>
+                        Create a JSON String representation of the entity.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 3:</emphasis>
+                        Construct the URL endpoint based on the entity's type.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 4:</emphasis>
+                        <classname>RESTClient</classname> Send a post request 
+                        to the URL to create the entity.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 6-8:</emphasis>
+                        Check the response status code to make sure the request 
+                        was handled properly.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 10:</emphasis>
+                        Retrieve the newly created entity using a GET request
+                        from this location.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-dd45d063-282b-4e26-aa76-e0fc015944f5">
+            <title>HTTP GET Request to Read Object</title>
+            <programlisting><![CDATA[
+...
+   1 response = client.getRequest(new URL(resourceLocation));
+   2 if (response.getStatus() != Status.OK.getStatusCode()) {
+   3     // error handling
+   4 }   
+   5 String result = response.readEntity(String.class);
+...
+             ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 1:</emphasis>
+                        The "location" is the URL that represents the entity to
+                        be retrieved.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 2-4:</emphasis>
+                        Check the response status code to make sure the request
+                        was handled properly.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 5:</emphasis>
+                        The retrieved object is returned in the entity body of 
+                        the response.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-5a68cd62-cba0-4afc-9f98-7b7a44785135">
+            <title>HTTP PUT Request to Read Object</title>
+            <programlisting><![CDATA[
+...
+   1 try {  
+   2     JsonNode student = mapper.readTree(studentBody);
+   3     Iterator<JsonNode> it = student.path("address").getElements();
+   4     while (it.hasNext()) { 
+   5         JsonNode address = it.next();
+   6         String streetAddr =  address.path("streetNumberName").getTextValue();
+   7         if ("817 Oakridge Farm Lane".equals(streetAddr)) {
+   8             ((ObjectNode) address).put("streetNumberName", newAddress);
+   9         }   
+  10     }
+  11     
+  12     String updated  = mapper.writeValueAsString(student);
+  13     Response response = client.putRequest(new URL(resourceLocation), updated);
+  14     if (response.getStatus() != Status.NO_CONTENT.getStatusCode()) {
+  15         //error handling
+  16     }
+  17 } catch (Exception e) {
+  18     //error handling
+  19 }
+...
+            ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 2:</emphasis>
+                        Create a <classname>JsonNode</classname> object from 
+                        a string representing a <classname>Student</classname>
+                        object, which was retrieved from a GET request.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 3-10:</emphasis>
+                        There are potentially multiple addresses associated 
+                        with a <classname>Student</classname> object. Iterate 
+                        over all addresses. If the 
+                        <classname>Street</classname> address equals 
+                        "817 Oakridge Farm Lane", replace it with a new address.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 12:</emphasis>
+                        Serialize the student <classname>JsonNode</classname> 
+                        to a string with updated addresses.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 13-16:</emphasis>
+                        Update the <classname>Student</classname> object and 
+                        check the response status code.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 17-19:</emphasis>
+                        Handle errors.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-edbaef45-3eed-4dc0-b8a2-6a383b11582d">
+            <title>HTTP DELETE Request to Read Object</title>
+            <programlisting><![CDATA[
+...
+  1 URL resourceURL = new URL(resourceLocation);
+  2 Response response = client.deleteRequest(resourceURL);
+  3 if (response.getStatus() != Status.NO_CONTENT.getStatusCode()) {
+  4     //error handling
+  5 }
+...
+            ]]></programlisting>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 1:</emphasis>
+                        Create a URL endpoint.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 2:</emphasis>
+                        Send a DELETE request to the URL.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Line 3-5:</emphasis>
+                        Check the response status code to make sure the 
+                        request was handled properly.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+    </section>
+    
+</chapter>

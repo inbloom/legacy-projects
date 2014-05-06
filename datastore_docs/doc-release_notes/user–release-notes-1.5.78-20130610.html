@@ -1,0 +1,372 @@
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; characterset=ISO-8859-1"/>
+    <title>inBloom technology 1.5.78 Release Notes</title>
+</head>
+    
+<body>
+    <div class="header">
+        <!-- <a href="http://www.inbloom.org/for-developers" target="_blank">
+            <img src="images/slcheader_960.png"></a> -->
+    </div>
+    
+    <div class="article">
+        
+        <h1 class="title">inBloom technology 1.5.78 Release Notes</h1>
+        <hr />
+        
+        <h2>What's New?</h2>
+        
+        <h3>Bulk Extract - Purge Events</h3>
+        
+        <p>
+            Bulk Extract's Delta Deletes file reports purge events performed 
+            through the ingestion system. Purge events are reported differently
+            than deletes events. For details, see documentation for the bulk 
+            extract API.
+        </p>
+        
+        <h3>Bulk Extract - Error Reporting</h3>
+        
+        <p>
+            Basic error reporting metrics are captured during the creation of 
+            the bulk extract data files. In the same directory as the data 
+            files, error.txt is created to report errors that occurred during 
+            bulk extraction. 
+        </p>
+        <p>
+            The error.txt file indicates that errors occurred during the 
+            process and the latest successful full extract should be 
+            obtained. A list is included to provide more specific information 
+            about the type of errors that were encountered. The file lists 
+            the number of errors that occurred per entity type.
+        </p>
+        <p>Example: 2 errors occurred for entity type student</p>
+        
+        <h3>Bulk Extract - Full (top-level) LEA Extract</h3>
+        
+        <p>
+            The following entities are now supported in the full (top-level) 
+            LEA Extract: Cohort, StudentCohortAssocation, StaffCohortAssocation,
+            Section, StudentSectionAssocation, TeacherSectionAssocation, 
+            GradebookEntry, StudentGradebookEntry, StudentCompetency, 
+            CourseTranscript, DisciplineAction, DisciplineIncident, 
+            StudentDisciplineIncidentAssociation, and GraduationPlan. 
+            For a full list of supported entities, see the API documentation.
+        </p>
+        
+        <h3>Bulk Extract - Delta (top-level) LEA Extract</h3>
+        
+        <p>
+            The following entities are now supported in the delta (top-level) 
+            LEA Extract: GradingPeriod, Session, Course, CourseOffering, 
+            GraduationPlan, DisciplineIncident, DisciplineAction, 
+            StudentDisciplineIncidentAssociation, StudentCompetency, and 
+            CourseTranscript. For a full list of supported entities, see 
+            the API documentation.
+        </p>
+        
+        <h3>Bulk Extract - List API</h3>
+        
+        <p>
+            The List (bulk/extract/list) API includes the link to the full 
+            SEA Extract.
+        </p>
+        
+        <h2>Data Model Updates</h2>
+        
+        <p>
+            This release includes the following updates to the data model:
+        </p>
+        <ul>
+            <li>
+                Discrete language and identificationSystem fields have been 
+                added under the following entities/elements. The definitions 
+                for these new fields mirror those added to the ingestion 
+                schema:
+                <ul>
+                    <li>
+                        For Student: languages and homeLanguages
+                    </li>
+                    <li>
+                        For StudentAssessment: administrationLanguage
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h2>Ingestion Schema Updates</h2>
+        
+        <p>
+            This release includes the following updates to the ingestion 
+            schema, listed by entity type:
+        </p>
+        
+        <ul>
+            <li>
+                <strong>SLC-LanguageItemComplexType</strong> - replaces 
+                <em>LanguageItemType</em> in Ed-Fi Core as follows:
+                <ul>
+                    <li>
+                        Changes enumeration to a string with minimum length 
+                        of 1 and maximum length of 75
+                    </li>
+                    <li>
+                        Adds an optional attribute, IdentificationSystem, 
+                        that is a string with a minimum length of 1 and a 
+                        maximum length of 60
+                    </li>
+                    <li>
+                        Applies these changes to the following entities:
+                        <ul>
+                            <li>
+                                For Student: Languages and HomeLanguages
+                            </li>
+                            <li>
+                                For Student Assessment: AdministrationLanguage
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h2>API Updates</h2>
+        
+        <p>
+            This release includes the following changes to the API:
+        </p>
+        <h3>Added</h3>
+        <p>
+            No end points have been added.
+        </p>
+        <h3>Deprecated</h3>
+        <p>
+            No end points have been deprecated
+        </p>
+        <h3>New and Updated Fields</h3>
+        <ul>
+            <li>
+                program.programId max length has increased to 60 characters
+            </li>
+            <li>
+                student.languages.language (formerly student.languages)
+            </li>
+            <li>
+                student.languages.identificationSystem (added)
+            </li>
+            <li>
+                student.homeLanguages.language (formerly student.homeLanguages)
+            </li>
+            <li>
+                student.homeLanguages.identificationSystem (added)
+            </li>
+            <li>
+                studentAssessment.administrationLanguage.language 
+                (formerly studentAssessment.administrationLanguage)
+            </li>
+            <li>
+                studentAssessment.administrationLanguage.identificationSystem 
+                (added)
+            </li>
+        </ul>
+        
+        <h2>Resolved Issues</h2>
+        
+        <p>
+            The following is a list of previously reported issues which have
+            been resolved this release.
+        </p>
+        
+        <h3>DE2826: Forced Deletion, Update or Insert of Ed Orgs may cause inappropriate access through the API</h3>
+        <p>
+            Forced Deletion, Update or Insert of Ed Orgs may cause 
+            inappropriate access through the API.
+        </p>
+        <h3>DE2835: When checking for expired status, today is considered expired</h3>
+        <p>
+            When determining access to data through an association (e.g. 
+            StaffEducationOrgAssignmentAssociation), in cases when the 
+            association's end date is 'today', the association is considered 
+            expired and the user loses access. It should be considered as 
+            current.
+        </p>
+        <h3>DE2867: Bulk Extract: Full Extract missing staffEdOrg references when staff in multiple LEAs</h3>
+        <p>
+            When Staff is in multiple EducationOrganizations (has multiple 
+            StaffEducationOrgAssignmentAssociations), the full (top-level) 
+            LEA extract includes just one 
+            StaffEducationOrgAssignmentAssociation.
+        </p>
+        
+        <h2>Known Issues</h2>
+        <p>
+            The following are the open defects currently used to track known 
+            issues in this release.
+        </p>
+        <h3>DE198: EducationOrganization references to Program are not properly ingested.</h3>
+        <p>
+            This reference is not implemented yet. As a result, the API does 
+            not provide a link from the EdOrg to the Program.
+        </p>
+        <h3>DE273: A DisciplineDescriptor is not currently supported in Interchange-StudentDiscipline.</h3>
+        <p>
+            This descriptor is not currently supported. However, a reference 
+            to this descriptor is required for the DisciplineAction entity.
+        </p>
+        <h3>DE325: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs.</h3>
+        <p>
+            The ingestion process assumes that the Program ID is unique 
+            within a tenant, but this should be unique within the specified 
+            EdOrg instead. As a result, the reference could resolve 
+            incorrectly.
+        </p>
+        <h3>DE408: Aggregate Viewers cannot see themselves.</h3>
+        <p>
+            Users with the Aggregate Viewer role cannot see their own Teacher 
+            or Staff entity.
+        </p>
+        <h3>DE710: Section, school and session references in AttendanceEvent are ignored.</h3>
+        <p>
+            The way AttendanceEvent entities are handled ignores explicit 
+            characterization of the attendance event - by school, section, 
+            session. As a result, AttendanceEvents for students attending 
+            multiple schools do not properly persist.
+        </p>
+        <h3>DE840: inBloom data model does not account for Ed-Fi Core v. 1.0.03 version of Address with Country and AddressLine</h3>
+        <p>
+            The Address entity changed in EdFi 1.0.03 to have separate 
+            structures to represent addresses that specify "Country" with 
+            generic "AddressLine"s. Ingestion does not currently account for 
+            this change and drops country code and the international address 
+            lines.
+        </p>
+        <h3>DE921: Duplicates are not reported.</h3>
+        <p>
+            Error reports are not always clear regarding the records persisted.
+            When there are duplicates within the XML file, or a record already 
+            exists, the ingestion engine still updates the record. However, 
+            this record count is not included in the ingested records count.
+        </p>
+        <h3>DE1434: Internet Explorer 8 users may experience issues when using the dashboard builder.</h3>
+        <p>
+            If you are using Internet Explorer 8 and the dashboard builder, 
+            then intermittently the release after a drag and drop does not 
+            return the page to the correct state.
+        </p>
+        <h3>DE1457: Making a teacher call for a section with two "teachers of record" returns a 403 error.</h3>
+        <p>
+            Making a teacher call for a section with two "teachers of record" 
+            returns a 403 error. This error can cause the sectionInfo panel 
+            to not display.
+        </p>
+        <h3>DE1458: The ingestion service is able to handle more than one teacher of record.</h3>
+        <p>
+            The ingestion service can accept more than one teacher for a 
+            single section. The dashboard does not currently support this 
+            behavior.
+        </p>
+        <h3>DE1573: Attendance Rate should be removed.</h3>
+        <p>
+            The current attendance record includes an attendance rate column 
+            that may not be accurate for some use cases. The column could be 
+            removed by default in a future release.
+        </p>
+        <h3>DE1647: Dashboard may not display all data.</h3>
+        <p>
+            When a large dataset is available, the initial dashboard view may 
+            only display a subset of the data. The dashboard currently does 
+            not display a message explaining this scenario.
+        </p>
+        <h3>DE1728: An error occurs if an OAuth Callback URL does not begin with "HTTPS".</h3>
+        <p>
+            If an application includes a callback URL that does not begin 
+            with "https://", then an error message is returned.
+        </p>
+        <h3>DE2079: HATEOS links don't always work as expected.</h3>
+        <p>
+            The HATEOS links that the API returns may not work as expected 
+            in all cases. The contextual URI rewrites convert some API 
+            requests. Some of these converted requests may not return what 
+            is expected.
+        </p>
+        <h3>DE2160: Selecting a filter after listing a section removes all student data.</h3>
+        <p>
+            When viewing a list of students using the inBloom Dashboard, 
+            choosing a filter related to that student's "special needs" 
+            status results in a "no students found" error.
+        </p>
+        <h3>DE2300: There is a 250 result limit on global entities contained in elasticsearch.</h3>
+        <p>
+            When querying the following entities, results are limited to a 
+            maximum of 250 returns:
+        </p>
+        <ul>
+            <li>/assessments</li>
+            <li>/competencyLevelDescriptor</li>
+            <li>/learningObjectives</li>
+            <li>/learningStandards</li>
+            <li>/studentCompetencyObjectives</li>
+        </ul>
+        <h3>DE2725: Updating an entity does not correctly update the search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity 
+            is not updated in elasticsearch and becomes unsearchable.
+        </p>
+        <h3>DE2833: Deletes from Interchanges aside from InterchangeAssessmentMetadata does not work for ObjectiveAssessement and possibly others.</h3>
+        <p>
+            The Action entity type can be present in any interchange and 
+            should support deletion of any entity type. Currently, the Action 
+            entity with the type attribute set to DELETE will only support 
+            deletion of entities within the interchange in which the Action 
+            entity is present.&nbsp;
+        </p>
+        <h3>DE2851: Newly created student entity is unsearchable.</h3>
+        <p>
+            After creating a student entity, it cannot be retrieved the from 
+            API endpoint.
+        </p>
+        <h3>DE2852: Updating a learningObjective entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2853: Updating a learningStandard entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2857: Updating a courseOffering entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        
+        <h2>Web Browser Compatibility</h2>
+        <p>
+            inBloom technology Dashboard is best viewed in 
+            Internet Explorer 8+, Firefox 6+, Safari 4+ 
+            with 1024x768 as the minimum recommended screen 
+            resolution.
+        </p>
+        
+        <div class="footer">
+            <p>
+                Copyright © 2013 inBloom, Inc. and its affiliates.
+            </p>
+            <p>
+                This document and the information contained herein is provided 
+                on an "AS IS" basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, 
+                EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY 
+                THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY 
+                RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS 
+                FOR A PARTICULAR PURPOSE.
+            </p>
+        </div>
+        
+    </div> <!-- END of div class "article" -->
+
+</body>
+
+</html>

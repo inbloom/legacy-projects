@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+<chapter xml:id="doc-14ebb50a-f3f1-4c7b-8d94-d872310d0219" xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <title>&COMPANYABBR; Data Classification</title>
+    <para> This chapter covers the different categories of data that &PRODUCTABBR; uses to classify
+        data. Access to data is determined by a user's rights and their context with the entity.
+        The data itself is categorized into three distict categories that influences if and how it
+        can be accessed by a user.</para>
+    <section xml:id="doc-1a553c59-9ecc-45bd-89e7-e094e3938fb8">
+        <title>Global Entities</title>
+        <para>Global entities are entities that are truly global within the context of a tenant.
+            Assessments is an example of a global entity. An assessment, such as the SAT, is not
+            tied to a specific education organization or section (an optional association is
+            possible). Assessments are considered to be global. because they cannot be associated
+            with a context. The following entities are considered to be global:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>/assessments</para>
+                </listitem>
+                <listitem>
+                    <para>/competencyLevelDescriptors</para>
+                </listitem>
+                <listitem>
+                    <para>/learningObjectives</para>
+                </listitem>
+                <listitem>
+                    <para>/learningStandards</para>
+                </listitem>
+            </itemizedlist>
+        <para>Global data is managed using the READ_PUBLIC and WRITE_PUBLIC rights.</para>
+    </section>
+    <section xml:id="doc-bc2265de-8669-4406-af79-65b92d26e688">
+        <title>Public Entities</title>
+        <para>Public entities are entities that are associated to a smaller scope within a tenant.
+            For example, a course is considered a public entity. Courses can be defined at the State
+            Education Agency, Local Education Agency, or School-level. Though the scope is variable,
+            anyone with an association to any education organization within the hierarchy should be
+            able to see the course, making it public information. The following entities are
+            considered to be public:</para>
+        <itemizedlist>
+            <listitem>
+                <para>/courses</para>
+            </listitem>
+            <listitem>
+                <para>/courseOfferings</para>
+            </listitem>
+            <listitem>
+                <para>/educationOrganizations</para>
+            </listitem>
+            <listitem>
+                <para>/graduationPlans</para>
+            </listitem>
+            <listitem>
+                <para>/gradingPeriods</para>
+            </listitem>
+            <listitem>
+                <para>/programs</para>
+            </listitem>
+            <listitem>
+                <para>/schools</para>
+            </listitem>
+            <listitem>
+                <para>/sections</para>
+            </listitem>
+            <listitem>
+                <para>/sessions</para>
+            </listitem>
+            <listitem>
+                <para>/studentCompetencyObjectives</para>
+            </listitem>
+        </itemizedlist>
+        <para>Public data is managed using the READ_PUBLIC and WRITE_PUBLIC rights.</para>
+    </section>
+    <section xml:id="doc-603b8e11-5c94-42d9-975f-a530fc02f68e">
+        <title>Protected Entities</title>
+        <para>Any data that is restricted using access control is considered protected.Protected
+            data is managed using rights other than READ_PUBLIC and WRITE_PUBLIC. Depending on the
+            particular data, a user either requires READ_GENERAL or READ_RESTRICTED to read
+            protected data. WRITE_GENERAL or WRITE_RESTRICTED is required to write protected
+            data.</para>
+    </section>
+</chapter>

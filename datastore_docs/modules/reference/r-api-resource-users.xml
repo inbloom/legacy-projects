@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-users" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>users</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/users</filename>
+    </para>
+    <para>
+        Access a list of the administrative user accounts that the current 
+        user has permission to access. For developers in the sandbox 
+        environment, this involves other developer accounts that share the 
+        sandbox. For a production &PRODUCTABBR;, SEA Administrators recieve 
+        a list of all users in their tenant, and LEA Administrators receive 
+        a list of all users in their education organization.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Creates a new resource using the given resource 
+                            data.
+                        </para>
+                        <para>
+                            Request:
+                            To form the POST request body, package all 
+                            required and other desired fields into a 
+                            conventional JSON document. It should be similar 
+                            to JSON response bodies displayed when making 
+                            a GET request.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>201 Created</varname> - 
+                            The <varname>Location</varname> header contains 
+                            the URI of the new resource.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-users-get_example">
+        <title>Example GET Response: users</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[[
+   { 
+      "uid":"test.user.1@example.com",
+      "groups":["Ingestion User","Application Developer"],
+      "password":"**********",
+      "email":"test.user.1@example.com",
+      "tenant":"test@example.com",
+      "edorg":"null",
+      "homeDir":"/dev/null",
+      "sn":"Test",
+      "givenName":"User",
+      "cn":"test.user.1@example.com",
+      "status":null,
+      "createTime":"2012-07-27 19:39:31-0400",
+      "modifyTime":"2012-07-27 19:39:31-0400",
+      "fullName":"Test User"
+   },{
+      "uid":"test.user.2@example.com",
+      "groups":["Ingestion User","Application Developer","Sandbox Administrator"],
+      "password":"**********",
+      "email":"test.user.2@example.com",
+      "tenant":"test.user.1@example.com",
+      "edorg":"STANDARD-SEA",
+      "homeDir":"/ingestion/lz/inbound/test.user.2@example.com/f03919c387b77d50ef7b4ffed6ab3f0431a9f15460149cabb5fa690d97c2e9ee",
+      "sn":"Test",
+      "givenName":"User",
+      "cn":"test.user.2@example.com",
+      "status":"APPROVED",
+      "createTime":"2012-11-12 14:46:12-0500",
+      "modifyTime":"2012-11-12 14:46:49-0500",
+      "fullName":"Test User"
+   }
+]
+   ]]></programlisting>
+    </section>
+    
+</section>

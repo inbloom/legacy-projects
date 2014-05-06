@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="rest_api_resources-all"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>What's the REST API documentation?</title>
+    
+    <para>
+        <emphasis role="bold"><link linkend="r-api-system_resources">System Resources</link></emphasis> - 
+        Resources used to handle system operations such as signing
+        in and retreiving information about the current user and
+        session.
+    </para>
+    <para>
+        <emphasis role="bold"><link linkend="rest_api_resources-data-v1.0">Data Resources, version 1.0</link></emphasis> -
+        Resources used to retreive education data or to create,
+        update, or delete that data.
+    </para>
+    <para>
+        <emphasis role="bold"><link linkend="rest_api_resources-data-v1.1">Data Resources, version 1.1</link></emphasis> -
+        Resources used to retreive education data or to create,
+        update, or delete that data.
+    </para>
+    <para>
+        <emphasis role="bold"><link linkend="rest_api_resources-data-v1.2">Data Resources, version 1.1</link></emphasis> -
+        Resources used to retreive education data or to create,
+        update, or delete that data.
+    </para>
+
+</chapter>

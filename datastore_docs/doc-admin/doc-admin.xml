@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<book xml:id="administrator_guide"
+    xmlns="http://docbook.org/ns/docbook"
+    xml:base="."
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>Administrator Documentation</title>
+        <orgname>&COMPANY;</orgname>
+        <releaseinfo>&CURRENTRELEASEREVISION;</releaseinfo>
+        <!-- Legal notice added to title page during transformation to PDF. -->
+        <xi:include href="../doc-admin/doc-admin-revhistory.xml"/>
+    </info>
+    
+    <!-- Introduction to SLI Administration -->
+    <xi:include href="../modules/ch-admin-doc_intro.xml"/>
+    
+    <chapter xml:id="doc-2b03fc2a-19c2-4ebd-a0a0-b660a34b7384">
+        <title>&PRODUCTABBR; Overview</title>
+        <para>
+            As an administrator, use this chapter as an overview of &PRODUCTABBR;,
+            including its key components and how it works.
+        </para>
+        <xi:include href="../modules/concepts/c-product_architecture.xml"/>
+    </chapter>
+
+    <!-- On-boarding --> 
+    <xi:include href="../modules/ch-admin-on_boarding.xml"/>
+   
+    <!-- SLI Administrators -->
+    <xi:include href="../modules/ch-admin-superadmin_account_management_tool.xml"/>
+    
+    <!-- Signing in to the Portal -->
+    <xi:include href="../modules/ch-admin-portal.xml"/>
+    
+    <!-- Portal Customization -->
+    <!-- <xi:include href="../modules/ch-dev-portal_customization.xml"/> -->
+    
+    <!-- Data Ingestion -->
+    <xi:include href="../modules/ch-admin-data_ingestion.xml"/>
+    
+    <!-- Ingestion File Conversion Tool 
+         Product owners stated that this tool was no longer maintained and,
+         with that being the case, we shouldn't encourage using it. -->
+    <!-- <xi:include href="../modules/ch-admin-data_ingestion-conversion_tool.xml"/> -->
+    
+    <!-- Offline Validation Tool -->
+    <xi:include href="../modules/ch-admin-data_ingestion-validation_tool.xml"/>
+    
+    <!-- Bulk Data Extraction -->
+    <xi:include href="../modules/ch-admin-bulk_extract.xml"/>
+    
+    <!-- Designations (tenant/realm, federated/hosted) -->
+    <xi:include href="../modules/ch-general-security_designations.xml"/>
+    
+    <!-- Integrated authentication (between federated agency and the SLC) -->
+    <xi:include href="../modules/ch-general-integrated_authentication.xml"/>
+    
+    <!-- Creating and Managing Realms -->
+    <xi:include href="../modules/ch-general-realm_management.xml"/>
+    
+    <!-- Roles and permissions (users and application admins) -->
+    <xi:include href="../modules/ch-general-roles_and_permissions.xml"/>
+    
+    <!-- Mapping SLI Roles to Education Agency Roles -->
+    <xi:include href="../modules/ch-general-role_mapping.xml"/>
+    
+    <!-- Managing Applications -->
+    <xi:include href="../modules/ch-admin-managing_applications.xml"/>
+    
+    <!-- Browsing the SLI Data Store -->
+    <xi:include href="../modules/ch-admin-data_browser.xml"/>
+    
+    <!-- Security Event Logs -->
+    <xi:include href="../modules/reference/r-security-event_db.xml"/>
+    
+    <!-- Security Event Notifications -->
+    <xi:include href="../modules/reference/r-security-notifications.xml"/>
+    
+    <!-- Delegating Permissions to the State Education Agency -->
+    <xi:include href="../modules/ch-admin-permission_delegation.xml"/>
+    
+    <!-- Configuring the Dashboard -->
+    <xi:include href="../modules/ch-admin-dashboard.xml"/>
+    
+    <!-- Dashboard Configuration/Builder -->
+    <xi:include href="../modules/ch-admin-dashboard_builder.xml"/>
+    
+    <!-- Contextual Authorization Rules -->
+    <xi:include href="../modules/ch-general-contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-staff_contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-teacher_contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-parent_contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-student_contextual_authorization.xml"/>
+    
+    <!-- Creating SLI User Accounts -->
+    <!--<xi:include href="../modules/ch-admin-create_accounts.xml"/>-->
+    
+    <!-- Adding and Updating Data in the SLI Data Store -->
+    <!--<xi:include href="../modules/ch-admin-adding_and_updating_data.xml"/>-->
+
+    <!-- Glossary -->
+    <xi:include href="../modules/glossary.xml"/>
+    
+</book>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-9e33db6a-9515-4dce-829e-4ab009bb29ea"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Contextual Authorization: Teachers</title>
+    
+    <para>
+        The rules in this section apply specifically to users that are 
+        associated with the Teacher context configured for user roles. 
+    </para>
+    
+    <section xml:id="c-contextual_authorization-teacher-required_assoc">
+        <title>Teacher Entity Must Have Certain Associations</title>
+        <para>
+            Part of determining access to data includes confirming that a 
+            Teacher has a current TeacherSchoolAssociation. To confirm
+            that a TeacherSchoolAssociation is current, every Teacher 
+            must have a StaffEducationOrgAssignmentAssociation. 
+            A Teacher without a StaffEducationOrgAssignmentAssociation is 
+            considered invalid data.
+        </para>
+    </section>
+    
+    <section xml:id="c-contextual_authorization-teacher-assoc_to_student">
+        <title>Teacher Context Relies on Section, Cohort, or Program</title>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>
+            <emphasis>A Teacher has a context to present Student data based on
+            a current Section, Program, or Cohort to which 
+            the Teacher is currently associated (meaning that the 
+            <varname>endDate</varname> of the association is not in the past). 
+            </emphasis>
+        </para>
+        <para>
+            Teacher can access data based on current 
+            Section, Program, or Cohort associations. 
+            The following diagram shows the entities involved.
+        </para>
+        <figure xml:id="figure-security-teacher-context-resolution">
+            <title>Teacher Security Context Resolution</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" 
+                        fileref="images/security-teacher-context-resolution.png" 
+                        width="750px" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" 
+                        fileref="../common/images/security-teacher-context-resolution.png" width="7in"
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>
+            <emphasis role="bold">RULE:</emphasis> 
+            <emphasis>Teacher has context to historical student data as it 
+            does to present data. Student historical data means current 
+            data about the student's past, such as past grades. This rule
+            applies even if the data lives ourside the Teacher's 
+            educationOrganization hierarchy. The Teacher rights to that data 
+            is based on their rights to the student entity.
+            </emphasis>
+        </para>
+        <para>
+            While Teacher has context to this historical data,
+            the Teacher user's rights specify access to the following 
+            historical data entities:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Attendance
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    CourseTranscript
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    DisciplineAction
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    DisciplineIncident
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Grade
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Parent
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    ReportCard
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentAcademicRecord
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentAssessment
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentCohortAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentCompetency
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentDisciplineIncidentAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentGradebook
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentParentAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentProgramAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentSchoolAssociation
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    StudentSectionAssociation
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The historical data access rule is an exception to the 
+            general rule which states that the Teacher's context is within 
+            their own educationOrganization hierarchy.
+        </para>
+    </section>
+    
+    <section xml:id="c-contextual_authorization-teacher-expired_assoc">
+        <title>Teacher Context Expires When Associations End</title>
+        <para>
+            <emphasis role="bold">RULE:</emphasis> 
+            <emphasis>Teacher A does not have access to Staff B or Teacher B
+            if Staff B or Teacher B is no longer associated with Teacher A's 
+            educationOrganization.</emphasis>
+        </para>
+        <para>
+            Teacher cannot access data for teachers or staff that are no 
+            longer associated with their educationOrganization.
+        </para>
+        <para>
+            <emphasis role="bold">RULE:</emphasis>  
+            <emphasis>A Teacher does not have access to a Student
+            that is enrolled in the teacher's past Section, Cohort, or
+            Program unless the (system-level configurable) grace period is 
+            greater than the time the section have ended.
+            </emphasis>
+        </para>
+        <para>
+            The Teacher cannot access a student who was a past, but not current,
+            part of a Section, Cohort, or Program that Teacher is currently
+            associated with. Instead, Teachers lose access to former students 
+            after a grace period expires. For example, if Linda Kim's sections 
+            ended 2 days ago  (this means she does not currently teach that 
+            section) and the grace period is 10 days, then Linda Kim should 
+            still have access to her former student Jimmy for another 8 days.
+        </para>
+    </section>
+
+</chapter>
+
+
+        

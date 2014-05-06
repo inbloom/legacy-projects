@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+ 
+<chapter xml:id="ch-op-deploy_services-bulk_extract"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Services: Bulk Extract</title>
+    
+    <para>
+        This service supports the &PRODUCTABBR; feature for bulk extract of
+        data from the data store.
+    </para>
+
+    <section xml:id="op-deploy_services-bulk_extract-prereq">
+        <title>Bulk Extract: Requirements</title>
+        <para>
+            Requirements for the bulk extract service:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The &PRODUCTABBR; REST API deployed as described in
+                    <xref linkend="doc-d2a8bab5-8d60-4734-86fa-f592fd56cb91"/>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A new server (cloud instance) to host the service 
+                    and store the results of bulk extract operations
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    GlusterFS (http://www.gluster.org)
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="op-deploy_services-bulk_extract-install">
+        <title>Bulk Extract: Install and Configure</title>
+        <para>
+            Install and configure GlusterFS on the new bulk extract server,
+            install the bulk extract files, and update the MongoDB data store.
+        </para>
+        
+        <section xml:id="op-deploy_services-bulk_extract-install-glusterfs-setup">
+            <title>Set Up GlusterFS for Bulk Extract</title>
+            <para>
+                GlusterFS is a distributed filesystem which allows a user to 
+                take various storage "bricks" and assemble them into one larger
+                storage pool of storage. GlusterFS should be deployed across 
+                at least two storage bricks. 
+            </para>
+            <para>
+                The instructions below assume that on each server, a volume 
+                named <filename>/gluster</filename> has been mounted, and 
+                represents the local disk storage. It also assumes that this
+                GlusterFS installation will be used specifically for the
+                bulk extract service:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Install the GlusterFS packages:
+                    </para>
+                    <programlisting><![CDATA[rpm -ihv http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-core-3.2.6-1.x86_64.rpm http://download.gluster.org/pub/gluster/\
+glusterfs/LATEST/RHEL/glusterfs-fuse-3.2.6-1.x86_64.rpm \
+http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-geo-replication-3.2.6-1.x86_64.rpm
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Set up the services to start on boot:
+                    </para>
+                    <programlisting><![CDATA[chkconfig glusterfsd on
+chkconfig glusterd on  
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Join the servers together using the Gluster peer probe.  
+                        This needs to be done for every server after the first 
+                        one. If you were deploying Gluster across four nodes, 
+                        for example, you would execute the command three 
+                        times for the three additional servers. This example
+                        shows joining an "03" with an "04":
+                    </para>
+                    <programlisting><![CDATA[[root@gluster03 ~]# gluster peer probe gluster04
+Probe successful
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Confirm that a peer exists using: 
+                        <code>gluster peer status</code>
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Create your GlusterFS volume:
+                    </para>
+                    <programlisting><![CDATA[gluster volume create bulkextract replica 2 transport tcp \
+gluster03:/gluster gluster04:/gluster
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Set IP-level permissions for Gluster volume access.
+                        This example shows four IP addresses; adjust to fit
+                        your GlusterFS scenario:
+                    </para>
+                    <programlisting><![CDATA[gluster volume set bulkextract auth.allow 10.10.10.11,\
+10.10.10.12,10.10.11.11,10.10.11.12 
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Start the GlusterFS volume.
+                    </para>
+                    <programlisting><![CDATA[[root@gluster03 ~]# gluster volume start bulkextract
+Starting volume bulkextract has been successful
+
+]]></programlisting>
+                </step>
+            </procedure>
+            <para>
+                To view volume settings at any time, use the volume info
+                command:
+            </para>
+            <programlisting><![CDATA[[root@gluster03 ~]# gluster volume info
+
+]]></programlisting>
+        </section>
+        
+        <section xml:id="op-deploy_services-bulk_extract-install-glusterfs-attach">
+            <title>Attach GlusterFS Volume to Bulk Extract and API Servers</title>
+            <para>
+                Attach the GlusterFS volume to the REST API and the 
+                bulk extract services, which share the volume:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Install the packages needed for attaching the volume:
+                    </para>
+                    <programlisting><![CDATA[yum -y install opensm fuse fuse-libs libibverbs
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Install GlusterFS Packages:
+                    </para>
+                    <programlisting><![CDATA[rpm -ihv http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-core-3.2.6-1.x86_64.rpm http://download.gluster.org/pub/gluster/\
+glusterfs/LATEST/RHEL/glusterfs-fuse-3.2.6-1.x86_64.rpm \
+http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-geo-replication-3.2.6-1.x86_64.rpm
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Make a directory to mount the folder to. Default
+                        settings for bulk extract use a new root-level
+                        directory
+                        <filename>/bulkextract</filename>:
+                    </para>
+                    <programlisting><![CDATA[mkdir /bulkextract
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Add an entry in <filename>/etc/fstab</filename> 
+                        to configure how to mount the new volume:
+                    </para>
+                    <programlisting><![CDATA[echo "gluster01:/bulkextract /bulkextract glusterfs defaults,_netdev,transport=tcp,\
+log-level=WARNING,log-file=/var/log/gluster.log 0 0" >> /etc/fstab
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Use the mount command to mount your new volume:
+                    </para>
+                    <programlisting><![CDATA[mount -a
+
+]]></programlisting>
+                </step>
+            </procedure>
+        </section>
+        
+        <section xml:id="op-deploy_services-bulk_extract-install-files">
+            <title>Set Up Bulk Extract Files</title>
+            <para>
+                Use the following steps to install and configure the 
+                bulk extract service:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Create the directory to serve as the destination for 
+                        extracted data. Default configuration sets this to be
+                        <filename>/bulkextract/extracts</filename>, which is
+                        in the GlusterFS volume created at 
+                        <filename>/bulkextract</filename>:
+                    </para>
+                    <programlisting><![CDATA[mkdir /bulkextract/extracts
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para> 
+                        Based on your &PRODUCTABBR; setup, be sure that the
+                        the bulk extract service (installed in these steps) 
+                        has permission to both read and write to this new
+                        destination directory, and that the REST API service 
+                        has permission to read the directory.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Create the install target for the bulk extract files
+                        <filename>/opt/bulkextract</filename>:
+                    </para>
+                    <programlisting><![CDATA[mkdir /opt/bulkextract
+
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Retrieve <filename>bulk-extract-scripts.tgz</filename>
+                        from the files provided by &COMPANYABBR; and 
+                        copy them to the new bulk extract server.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        On the bulk extract server, extract 
+                        <filename>bulk_extract.tar.gz</filename> 
+                        to the newly-created
+                        <filename>/opt/bulkextract</filename> directory.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Confirm that the following contents now reside in
+                        <filename>/opt/bulkextract/</filename>:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                Three directories: 
+                                <filename>config</filename>, 
+                                <filename>scripts</filename>,
+                                and <filename>target</filename>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                Inside the <filename>target</filename> 
+                                directory, a file named
+                                <filename>bulk_extract.tgz</filename> that 
+                                contains the compiled binary objects used 
+                                to run the bulk extract
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                Inside the <filename>scripts</filename> 
+                                directory, two files named
+                                <filename>local_bulk_extract.sh</filename>
+                                and 
+                                <filename>schedule_bulk_extracts.sh</filename>; 
+                                <filename>local_bulk_extract.sh</filename>
+                                is used by scheduled extraction jobs 
+                                created with 
+                                <filename>schedule_bulk_extracts.sh</filename>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </step>
+                <step>
+                    <para>
+                        Update <filename>sli.properties</filename>
+                        to include the entries shown in
+                        <xref linkend="op-deploy_services-bulk_extract-properties"/>.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Using your preferred text editor, edit
+                        <filename>schedule_bulk_extracts.sh</filename>
+                        so that it has the appropriate tenant names to include
+                        for bulk extraction. 
+                    </para>
+                    <para>
+                        These must line up with one or more of the tenant 
+                        names that &PRODUCTABBR; administrators add to the 
+                        system, each representing a level of the education 
+                        organization hierarchy served by this &PRODUCTABBR; 
+                        deployment. These are created during tenant 
+                        on-boarding activities, usually following the initial 
+                        &PRODUCTABBR; deployment.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Review the default bulk extract properties in
+                        <filename>local_bulk_extract.sh</filename>, also
+                        shown below. If necessary, override these properties
+                        by creating a separate configuration file in
+                        <filename>/etc/sysconfig/</filename> named
+                        <filename>bulk-extract</filename>:
+                    </para>
+                    <programlisting><![CDATA[
+DEFAULT_CHECK_SLI_CONF="$ROOT/../config/properties/sli.properties"
+DEFAULT_CHECK_KEYSTORE="$ROOT/../data-access/dal/keyStore/dal-keystore.jks"
+DEFAULT_BULK_EXTRACTOR_JAR="$ROOT/target/bulk-extract-1.0-SNAPSHOT.jar"
+DEFAULT_TENANT="Midgar"
+
+DEFAULT_MAX_MEMORY="1024m"
+DEFAULT_MIN_MEMORY="1024m"
+
+JAVA_OPT="-Dfile.encoding=UTF-8"
+
+CHECK_SLI_CONF=0
+CHECK_KEYSTORE=0
+CHECK_SEARCH_INDEXER_TAR=0
+
+RUN_EXTRACT=1
+RUN_HELP=0
+
+SLI_CONF="sli.conf"
+SLI_ENCRYPTION_KEYSTORE="sli.encryption.keyStore"
+
+BULK_EXTRACTER_LOG="bulk-extracter.log"
+
+]]></programlisting>
+                </step>
+            </procedure>
+        </section>
+        
+        <section xml:id="op-deploy_services-bulk_extract-properties">
+            <title><filename>sli.properties</filename> Entries for Bulk Extract </title>
+            <para>
+                The following are the <filename>sli.properties</filename>
+                entries associated with the bulk extract service. Add or
+                update these values as necessary for your &PRODUCTABBR; 
+                deployment:
+            </para>
+            <informaltable>
+                <tgroup cols="2">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <colspec colname="firstCol" colwidth="2*"/>
+                    <thead>
+                        <row>
+                            <entry>
+                                <para>
+                                    Property and default value
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Description and alternate values
+                                </para>
+                            </entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.bulk.extract.output.directory=/bulkextract/extracts
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The output directory for bulk 
+                                    extract operations. Both the
+                                    bulk extract service and the
+                                    REST API service must have
+                                    permission to read from this
+                                    directory. This directory must
+                                    be expressed as an absolute path.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.bulk.extract.log.path = /var/log/tomcat
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The directory for log files for
+                                    the bulk extract service. This
+                                    The directory must be expressed 
+                                    as an absolute path.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.bulk.extract.log.level = INFO
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The log level for the bulk extract
+                                    service. See Apache Tomcat
+                                    documentation for a list of log
+                                    level values that could be used 
+                                    here.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.be.mongo.failOnPrimary=true
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The value is Boolean.
+                                </para>
+                                <para>
+                                    By default, bulk extract operations
+                                    read from secondary MongoDB servers.
+                                    Use this property to customize that 
+                                    behavior. When the property is set 
+                                    to true (default), any attempt by 
+                                    the bulk extract operation to read 
+                                    from a primary MongoDB server will 
+                                    fail.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    sli.be.mongo.tagSet=
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    The value is a list of MongoDB 
+                                    replica set tag sets.
+                                </para>
+                                <para>
+                                    By default, this value is not set.
+                                </para>
+                                <para>
+                                    If this value is not set, the bulk 
+                                    extract operation reads from any 
+                                    available secondary MongoDB server. 
+                                    If it is set, bulk extract reads 
+                                    from a secondary server 
+                                    respective of the tags provided, 
+                                    or it fails otherwise. See
+                                    <xref linkend="op-deploy_services-bulk_extract-mongodb"/>
+                                    for more information about how to use
+                                    this property.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                                    <entry>
+                                        <para> sli.security.truststore.path =
+                                            /tmp/trustey.jks</para>
+                                    </entry>
+                                    <entry>
+                                        <para> The path to the truststore used for 2 way TLS
+                                            communicatation. </para>
+                                    </entry>
+                        </row>
+                        <row>
+                                    <entry>
+                                        <para> sli.security.truststore.password = password </para>
+                                    </entry>
+                                    <entry>
+                                        <para> The password for the truststore. </para>
+                                    </entry>
+                         </row>
+                    </tbody>
+                </tgroup>
+            </informaltable>
+        </section>
+        
+        <section xml:id="op-deploy_services-bulk_extract-mongodb">
+            <title>Configure MongoDB for Bulk Extract</title>
+            <para>
+                By default, bulk extract operations read only from secondary 
+                MongoDB servers (<varname>sli.be.mongo.failOnPrimary=true</varname>)
+                and from any of the available secondary servers
+                (<varname>sli.be.mongo.tagSet</varname> is unset).
+            </para>
+            <para>
+                To control which secondary MongoDB servers should serve bulk 
+                extract operations, additional configuration is needed in MongoDB.
+                Specifically, MongoDB replica sets must use tag sets as described
+                in MongoDB documentation
+                (<link xlink:show="new" xlink:href="http://docs.mongodb.org/v2.2/applications/replication/">http://docs.mongodb.org/v2.2/applications/replication/</link>).
+            </para>
+            <para>
+                With tag sets configured in MongoDB, you can set the
+                <varname>sli.be.mongo.tagSet</varname> property to target 
+                specific secondary MongoDB servers to fulfill bulk extract 
+                operations. The following is an example configuration showing 
+                two tag sets:
+            </para>
+            <programlisting><![CDATA[
+sli.be.mongo.tagSet = [{ "env": "prod", "geo": "east", "use" : "InUse" }, 
+{ "env": "test", "geo": "west", "use": "InUse" }]
+]]></programlisting>
+        </section>
+        
+    </section>
+    
+    <section xml:id="op-deploy_services-bulk_extract-schedule">
+        <title>Schedule Bulk Extractions</title>
+        <para>
+            To schedule bulk extractions, run the
+            <filename>schedule_bulk_extracts.sh</filename> script
+            using the following syntax:
+        </para>
+        <programlisting><![CDATA[./schedule_bulk_extracts.sh /opt/bulkextract/scripts /opt/bulkextract/config
+
+]]></programlisting>
+        <para>
+            This script places entries in the crontab for the user who
+            runs the script. When a scheduled extract is complete, look
+            for the results in the target directory for extraction,
+            configured in <filename>sli.properties</filename> using
+            <varname>sli.bulk.extract.output.directory</varname>.
+        </para>
+    </section>
+    
+    <section xml:id="op-deploy_services-bulk_extract-manual_extraction">
+        <title>Extract Tenant Data Without the API</title>
+        <para>
+            Though the bulk extract feature is primarily exposed using the
+            REST API, you can extract the data for a tenant without the API
+            (manually) using the <filename>local_bulk_extract.sh</filename> 
+            script.
+        </para>
+        <para>
+            The following example shows calling the script as a command line
+            with the tenant name, the location of the 
+            <filename>sli.properties</filename> configuration file, 
+            the DAL encryption keystone, and the 
+            <filename>bulk_extract.tar.gz</filename> file package. Replace
+            "&lt;TenantName&gt;" with the name of the target tenant.
+        </para>
+        <programlisting><![CDATA[
+./local_bulk_extract.sh -t<TenantName> -Dsli.conf=/opt/tomcat/conf/sli.properties -Dsli.encryption.keyStore=/opt/tomcat/encryption/DALKeyStore.jks -f/opt/bulkextract/bulk_extract.tar.gz
+]]></programlisting>
+    </section>
+
+    <section xml:id="op-deploy_services-bulk_extract-tomcat_update">
+        <title>Update the Tomcat Configuration for Bulk Extract
+            Encryption</title>
+        <para>When applications call a bulk extract endpoint, a client certificate is requested
+            during the TLS (Transport Layer Security) handshake. The provided certificate is
+            compared against the stored certificate for that application. This serves as a surrogate
+            shared secret. </para>
+        <para><emphasis>WARNING:</emphasis> The TLS connection for bulk extract endpoints must propagate all the way to the API/bulk extract node and must not terminate at the load balancer/nginx.</para>
+        <para> Changes need to be made to the Tomcat configuration to request, but not require, the
+            client certificate during the handshake. The below configuration is a sample for the
+            change that needs to be made. The important parameter in this example is
+                <code>clientAuth="want".</code></para>
+        <programlisting><![CDATA[
+<Connector port="8443" clientAuth="want" sslProtocol="TLS"
+    keystoreFile="/etc/mykeystore.jks" keystorePass="password"
+    truststoreFile="/etc/mytruststore.jks" truststorePass="password"/>
+]]></programlisting>
+    </section>
+
+    <section xml:id="op-deploy_services-bulk_extract-import_certificates">
+        <title>Adding Certificates to the inBloom Truststore</title>
+        <para> Applications performing bulk extract operations need an X.509 certificate using a
+            RSA:2048 key. Application developers generate an X.509 certificate and private key pair.
+            The certificate must be added to the inBloom Truststore to allow bulk extract operations.
+            The following example can be used to import the certificate into the truststore:</para>
+        <programlisting><![CDATA[
+keytool -import -file certificate.crt -keystore truststore.jks -alias <clientID>
+]]></programlisting>
+        <para> The provided certificate for this example is 'certificate.crt'. The server's
+            truststore is 'truststore.jks'. The alias for the certificate must be the clientID of
+            the Bulk Extract application for which the certificate was created. The server must be
+            restarted after the certificate is added to the truststore.</para>
+    </section>
+    
+    <section xml:id="op-deploy_services-bulk_extract-file_transfer_troubleshooting">
+        <title>Troubleshoot Bulk Extract File Transfers</title>
+        <para>
+            Large bulk file transfers over the Internet present a challenge:
+            packet loss could potentially cause downloads to stall and 
+            possibly time out. Load balancer use and supporting 
+            configuration settings could aggravate such conditions, 
+            particularly if a load balancer interprets connection issues 
+            to the server (serving the download) as down or unresponsive 
+            during the transfer. This interpretation could cause the 
+            download to terminate prematurely.
+        </para>
+        <para>
+            When troubleshooting transfer issues, check the load balancer logs 
+            and event history to see if the load balancer may have 
+            inadvertently terminated the download. 
+        </para>
+        <para>
+            Also, monitor TCP retransmission counters, which you can view 
+            at the command line on a Linux server using 
+            the `netstat -s | grep retransmit` command.  A high or climbing 
+            number of retransmissions is typically a symptom of network 
+            congestion or connectivity issues, which may require investigation
+            and intervention by support personnel.
+        </para>
+    </section>
+
+    <section xml:id="op-deploy_services-bulk_extract-remove_certificates">
+        <title>Removing Certificates from the inBloom Truststore</title>
+        <para>
+            When an application developer no longer needs to apply bulk extract for their tenant,
+            the developer's bulk extract application certificate must be removed from the inBloom
+            Truststore to disable bulk extract operations for that app. 
+            The following example can be used to remove the certificate from the truststore:
+        </para>
+        <programlisting><![CDATA[
+keytool -delete -keystore truststore.jks -alias <clientID>
+]]></programlisting>
+        <para> The server's truststore for this example is 'truststore.jks'. The alias for the
+               certificate to be removed must be the clientID of the Bulk Extract application
+               for which bulk extract is to be disabled. The server must be
+               restarted after the certificate is removed from the truststore.</para>
+    </section>
+    
+    <section xml:id="op-deploy_services-bulk_extract-cleanup_script">
+        <title>Clean Up Bulk Extract Files</title>
+        <para>
+            To clean up bulk extract files and their associated database 
+            metadata over time, &COMPANYABBR; provides a bulk extract cleanup 
+            script.
+        </para>
+        <section xml:id="op-deploy_services-bulk_extract-cleanup_script-requirements">
+            <title>Requirements for the Bulk Extract Cleanup Script</title>
+            <para>
+                The system running the bulk extract cleanup script must
+                be running Ruby version 2.0.0.
+            </para>
+        </section>
+        <section xml:id="op-deploy_services-bulk_extract-cleanup_script-setup">
+            <title>Set Up the Bulk Extract Cleanup Script</title>
+            <para>
+                Set up the script using the following steps:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Select or create a directory on the bulk extract server
+                        from which you want to run the bulk extract cleanup
+                        script. This is the install directory for the script.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Find <guibutton>bulk_extract_cleanup.tar</guibutton> 
+                        in the files provided from &COMPANYABBR;, and copy the 
+                        archive to the install directory.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        At a command prompt to the bulk extract server, change 
+                        to the directory where you copied the archive and 
+                        extract it using the tar command:
+                    </para>
+                    <programlisting><![CDATA[tar xf bulk_extract_cleanup.tar]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        For operator users that need to use this script, 
+                        confirm that all extracted contents are readable and 
+                        that the main script, 
+                        <filename>cleanup_bulk_extract.rb</filename>, 
+                        is executable.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Change to the <filename>scripts</filename> directory,
+                        and run <command>bundle install</command> to install 
+                        the required ruby gems:
+                    </para>
+                    <programlisting><![CDATA[> cd scripts
+> bundle install]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Using your preferred text editor, edit the 
+                        configuration file, 
+                        <firstterm>bulk_extract_cleanup.yml</firstterm>, 
+                        with local environment information for the script. 
+                        The default contents are shown in the following text
+                        box. Most default values are sufficient on various
+                        platforms. One possible exception is 
+                        <varname>log_file_pathname</varname> for which the 
+                        operator can choose another location.
+                    </para>
+                    <programlisting><![CDATA[# Bulk extract cleanup logging parameters.
+log_file_pathname: logs/cleanup_bulk_extract.log
+log_file_rotation: daily
+log_level: INFO
+# Bulk extract cleanup variables.
+sli_database_name: sli
+bulk_extract_host: localhost
+bulk_extract_port: 27017
+remove_db_record_retries: 3
+remove_db_record_retry_interval_secs: 10]]></programlisting>
+                </step>
+            </procedure>
+        </section>
+        <section xml:id="op-deploy_services-bulk_extract-cleanup_script-run">
+            <title>Run the bulk extract cleanup script</title>
+            <para>
+                Run the script, <filename>cleanup_bulk_extract.rb</filename>, 
+                from a command prompt on the bulk extract server. The table 
+                below lists the script options and how to use them for 
+                specific cleanup actions. The parameters you can use are as 
+                follows:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <guilabel>tenant</guilabel> - 
+                        The unique name for a specific tenant
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <guilabel>date</guilabel> - 
+                        A timestamp expressed in UTC or ISO8601 format
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <guilabel>edOrg</guilabel> - 
+                        The state unique ID value in the tenant database 
+                        for a specific educational organization 
+                        (its stateOrganizationId value)
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <guilabel>file</guilabel> - 
+                        The absolute path to a specific bulk extract file 
+                        on the local filesystem
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <informaltable>
+                <tgroup cols="2">
+                    <colspec colname="firstCol" colwidth="2*"/>
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <thead>
+                        <row>
+                            <entry>
+                                <para>
+                                    Command
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Description
+                                </para>
+                            </entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    <command>cleanup_bulk_extract.rb -h | -help</command>
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Print the help page for this script.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    <command>cleanup_bulk_extract.rb -t[tenant]</command>
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Remove all bulk extract files and their 
+                                    database metadata for this tenant (tenant).
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    <command>cleanup_bulk_extract.rb -t[tenant] -d[date]</command>
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Remove all bulk extract files and their 
+                                    database metadata extracted up to this 
+                                    date (date) for this tenant (tenant).
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    <command>cleanup_bulk_extract.rb -t[tenant] -e[edOrg]</command>
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Remove all bulk extract files and their 
+                                    database metadata for this educational 
+                                    organization (edOrg) belonging to this 
+                                    tenant (tenant).
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    <command>cleanup_bulk_extract.rb -t[tenant] -e[edOrg] -d[date]</command>
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Remove all bulk extract files and their 
+                                    database metadata extracted up to this 
+                                    date (date) for this educational 
+                                    organization (edOrg) 
+                                    belonging to this tenant (tenant).
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    <command>cleanup_bulk_extract.rb -t[tenant] -f[file]</command>
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Remove this specific bulk extract file 
+                                    (file) and its database metadata for this 
+                                    tenant (tenant).
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </informaltable>
+            <note>
+                <para>
+                    Use double quotes around any parameter containing 
+                    whitespace, as in: 
+                    <command>-e "Sunset Central High School"</command>
+                </para>
+            </note>
+        </section>
+        <section xml:id="op-deploy_services-bulk_extract-cleanup_script-how_it_works">
+            <title>How the bulk extract cleanup script works</title>
+            <para>
+                For script calls to clean up bulk extract files, 
+                the following happens:
+            </para>
+            <orderedlist>
+                <listitem>
+                    <para>
+                        On-screen output indicates that the script is 
+                        logging results to the configured log file. The 
+                        log file reflects separate entries for each script 
+                        execution, and it includes the exact command executed.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If the command syntax is correct, the script validates
+                        the provided parameter values (tenant, edOrg, date, 
+                        filename). If any parameter value is invalid, the 
+                        script exits with an error message.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If the parameters are valid, the script prompts the 
+                        user to confirm the cleanup action, displaying the 
+                        parameter values provided. If the user answers 'y' 
+                        or 'yes', the script will perform the cleanup action.
+                        If the user provides any other response, the script 
+                        exits with no action taken. 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        During the cleanup action, the script does the 
+                        following for each bulk extract file targeted for 
+                        removal:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                The corresponding record in the bulk extract 
+                                database collection is removed.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                The bulk extract file is deleted.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                The actions taken are logged to the cleanup 
+                                script log file.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <para>
+                        When the script finishes processing, it displays a 
+                        summary on screen indicated the number of files 
+                        processed and removed, along with any failed processes.
+                    </para>
+                </listitem>
+            </orderedlist>
+        </section>
+        <section xml:id="op-deploy_services-bulk_extract-cleanup_script-troubleshooting">
+            <title>Reasons for errors in the bulk extract cleanup script</title>
+            <para>
+                The following is a summary of the errors that could occur 
+                when using the bulk extract cleanup script and how the 
+                script behaves when it encounters the error:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Errors in command syntax - script exits with error
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Invalid parameters when calling the script - 
+                        script exits with error
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The target file to be deleted does not exist - 
+                        script reports a warning and continues
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Database connection lost while processing - 
+                        script attempts to reconnect and displays retry 
+                        attempts; if unsuccessful, outputs a summary of 
+                        cleanup to the point of failure and exits
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+    </section>
+    
+    <section xml:id="op-deploy_services-bulk_extract-maintenance">
+        <title>Required Maintenance Tasks</title>
+        <para>
+            The tasks described in the following section are required as part
+            of maintaining both the bulk extract service and the
+            &PRODUCTABBR; infrastructure that uses it.
+        </para>
+        
+        <section xml:id="op-deploy_services-bulk_extract-api_updates">
+            <title>Required Actions During REST API Updates</title>
+            <para>
+                When deploying updates that include a new version of the
+                &RESTAPI;, deployment tasks must include the following steps.
+                These steps ensure that the bulk extract file contents reflect 
+                the new version of the API:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        As part of stopping services prior to the REST API 
+                        update, stop the cron process for scheduled bulk 
+                        extract operations, and be sure that no extracts are 
+                        currently running.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Remove all previously extracted files from the bulk 
+                        extract target directory. This is the directory 
+                        identified in
+                        <filename>sli.properties</filename> for
+                        <varname>sli.bulk.extract.output.directory</varname>.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Remove all records in the
+                        <varname>bulkExtractFiles</varname> collection in the
+                        <filename>sli</filename> database.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        If necessary, run an extract operation immediately 
+                        following the API update to replace the files that were 
+                        removed.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Resume the scheduled bulk extract operations (in cron).
+                    </para>
+                </step>
+            </procedure>
+        </section>
+        
+        <section xml:id="op-deploy_services-bulk_extract-file_deletions">
+            <title>Required Database Update After Deleting Files</title>
+            <para>
+                Besides deleting files on a regular basis with the cleanup
+                script (<xref linkend="op-deploy_services-bulk_extract-cleanup_script"/>), 
+                there may be other reasons that bulk extract files are
+                deleted from the filesystem. When files have been deleted
+                without the cleanup script, additional action is required to 
+                update a database record so that the API no longer references 
+                the deleted files. Use the following steps when deleting 
+                bulk extract files directly without the script.:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Before deleting a bulk extract file, record its 
+                        absolute path as it exists in the server's filesystem, 
+                        such as:
+                    </para>
+                    <programlisting><![CDATA[/bulk/extract/extract/02f7abaa9764db2fa3c1ad852247cd4ff06b2c0a/19cca28d-7357-4044-8df9-caad4b1c8ee4-Midgar-2013-05-06T12-41-59.tar]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Access the command line of the MongoDB server that is
+                        responsible for the 
+                        <filename>bulkExtractFiles</filename> collection in the
+                        "sli" database, and run <command>mongo</command> to 
+                        launch the MongoDB Shell console.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Remove the corresponding record for the target file 
+                        from the <filename>bulkExtractFiles</filename> 
+                        collection using the absolute path you just
+                        recorded. Example:
+                    </para>
+                    <programlisting><![CDATA[db.bulkExtractFiles.remove({"body.path" : \
+"/bulk/extract/extract/02f7abaa9764db2fa3c1ad852247cd4ff06b2c0a/19cca28d-7357-4044-8df9-caad4b1c8ee4-Midgar-2013-05-06T12-41-59.tar"})]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Remove the file from the bulk extract server.
+                    </para>
+                </step>
+            </procedure>
+        </section>
+        
+    </section>
+    
+</chapter>
+    
+
+        

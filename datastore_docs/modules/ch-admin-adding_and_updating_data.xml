@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-2013b324-0d9a-4b34-ab52-5b0059008872"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Adding and Updating Data in the &PRODUCTABBR; Data Store</title>
+
+    <para>
+        There are two ways to add and update data in the &PRODUCTABBR;
+        Data Store:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para> Perform small-scale updates, to one or a few records at one time, using the
+                &PRODUCTABBR; Dashboard or a similar application if there's one available. This
+                documentation covers the administrative task of configuring the Dashboard in <xref
+                    linkend="doc-b41f34d8-6366-487c-8f1e-aa699af52b77"/>. </para>
+        </listitem>
+        <listitem>
+            <para> Import many records in a single operation using the &PRODUCTABBR; data ingestion
+                process. This is designed to handle several thousand data records from several files
+                in a single operation. Setting up and peforming an ingestion is handled by an
+                &OPERATORROLE;, and the instructions and reference for this task are included in the
+                &PRODUCTABBR; Runbook available from the &COMPANYABBR;. </para>
+        </listitem>
+    </itemizedlist>
+    
+</chapter>

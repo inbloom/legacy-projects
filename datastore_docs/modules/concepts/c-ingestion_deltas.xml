@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_deltas"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Deltas</title>
+    
+    <para>
+        Deltas are records that are not processed by an ingestion job
+        because the data already exists in the database (the ingestion of the
+        data would not change the values stored in the database). 
+    </para>
+    <para>
+        When deltas occur, &PRODUCTABBR; records them in the main log file 
+        associated with the ingestion job. The deltas appear in the following 
+        format:
+    </para>
+    <programlisting><![CDATA[INFO <number of deltas detected per resource>]]></programlisting>
+    
+</section>

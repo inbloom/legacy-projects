@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-7bf54873-f73f-4f16-af93-60d7c1b047bd"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Sample Code: Data Browser</title>
+
+    <para> The Data Browser in &PRODUCTABBR; is a tool that allows users to explore the data that
+        they have access to in the &PRODUCTABBR; Secure Data Service. It includes search and
+        navigation functions, and it presents the data in sortable tables. The Data Browser is
+        particularly helpful for validating that data has been properly ingested. The data broswer
+        is one of the open source applications from &COMPANYABBR;. Developers can use this source as
+        a reference when building their own applications for &PRODUCTABBR;. You can download the
+        source from the &COMPANYABBR; Github repository: <link xlink:show="new"
+            xlink:href="&GITHUBURL;/">&GITHUBURL;/</link>. </para>
+    <para>
+        The Data Browser was written in Ruby on Rails. It uses a few extra 
+        features, such as data tables, to enhance the experience. You can 
+        read more documentation by navigating to the application's 
+        <filename>doc/app</filename> directory.
+    </para>
+    <note>
+        <title>Data Ingestion Prerequisite</title>
+        <para>
+            To successfully run this application, you must already have data available in the data store. Whether you're working in a developer Sandbox or
+            Production, use the instructions provided in your environment's
+            setup to configure a landing zone and ingest sample data for use
+            by this application.
+        </para>
+    </note>
+    
+    <section xml:id="doc-989bbf56-8918-46fd-8129-4dddb6466ad0">
+        <title>Sample Data Browser: Installing</title>
+        <para>
+            Before you start, make sure that you are currently running 
+            Ruby 2.0.0 or higher. Also, make sure that you have Bundler,
+            which ships with Rails 3 and may not work for Rails 2.3 and lower.
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Navigate to the directory where you installed the 
+                    application and run <command>bundle</command> to install
+                    the software.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Start the Data Browser application by using the command 
+                    <command>rails server</command>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Open the Data Browser application in a web browser to
+                    confirm that the URL for the application is working.
+                    You will need this URL when registering the application,
+                    covered in the next section.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-615a025a-de9b-4fe0-ad35-256267e2feca">
+        <title>Sample Data Browser: Registering and Configuring</title>
+        <para>
+            Register the sample application for use in &PRODUCTABBR; as
+            described in 
+            <xref linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/>. 
+            To do this, you will need to provide the following two URLs:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The application URL which is where you're hosting
+                    the Data Browser. <!-- For the Data Browser
+                    application, the URL follows this syntax
+                    where <varname>HOST_ADDRESS</varname> and
+                    <varname>PORT</varname> are determined by your
+                    Web server's local settings: -->
+                </para>
+                <!-- <programlisting><![CDATA[http://HOST_ADDRESS:PORT/FIXME]]></programlisting> -->
+            </listitem>
+            <listitem>
+                <para>
+                    The redirect URL, which is where the browser 
+                    redirects after user authentication. For the data
+                    browser application, the redirect URL should be the same 
+                    as the application URL, but ending with 
+                    <filename>/callback</filename>:
+                </para>
+                <!-- <programlisting><![CDATA[http://HOST_ADDRESS:PORT/FIXME/callback]]></programlisting> -->
+            </listitem>
+        </itemizedlist>
+        <para>
+            After registration, you'll receive an email that contains the client
+            ID and shared secret generated for your application. Add these two values to the Data Browser's configuration file
+            (<filename>config/config.yml</filename> in the data
+            browser's application files).
+        </para>
+    </section>
+    
+</chapter>

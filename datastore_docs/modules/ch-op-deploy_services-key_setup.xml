@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+
+<chapter xml:id="doc-385181f1-ba5d-43ce-83a1-ba4ea937d618"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <title>Generate Cryptographic Keys, Keystores, and Truststores</title>
+    
+    <para>
+        This section describes how to generate the cryptographic keys and keystores needed by the SimpleIDP, 
+        API, and ingestion services.
+    </para>
+    <para><emphasis>Urgent:</emphasis> The JCE Unlimited strength policy must be installed on the JVM or you may get the following exception when encypting or decrypting password:       
+    </para>
+    <para><code>java.security.InvalidKeyException: Illegal key size or default parameters</code></para>
+    <para><link xlink:show="new" xlink:href="http://stackoverflow.com/questions/6481627/java-security-illegal-key-size-or-default-parameters">Instruction on setting up JCE unlimited strength</link></para>
+    <section xml:id="doc-94c243b7-4f80-49c6-a6d0-b554799b0618">
+        <title>Overview</title>
+        <para>
+            The encryption keys covered in this section perform two separate functions.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A 256bit AES secret key is used by the API, ingestion, 
+                    search indexter, bulk ingestion, and SimpleIDP to encrypt 
+                    data in MongoDB. This key must be the same across all 
+                    services and servers.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A private key is used by the SimpleIDP to sign SAML 
+                    assertions. An x509 certificate generated using this 
+                    private key is used by the API to verify the integrity 
+                    of the SAML assertions coming from the SimpleIDP.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            There are two types of Java keystores that contain this information.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The sli.encryption.keyStore property points to a keystore used to store the 
+                    AES secret key and the SimpleIDP's private key.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The sli.trust.certificates property points to a truststore used to store 
+                    trusted x509 Certificates and certificate chains.  These certificates are 
+                    used by the API to verify the integrity of SAML messages sent from an IDP 
+                    (such as the SimpleIDP).
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-0d932757-6075-4397-a5bb-3c3f395edd85">
+        <title>Prerequisites</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    To generate and use the 256bit AES keys used by these services, the Java Runtime Environment 
+                    must have US-grade unlimited strength encryption profiles.  Some Java distributions come with 
+                    export grade encryption that is limited to 128bit AES and will result in errors occurring 
+                    within the system at runtime. The unlimited strength encryption profiles can be obtained
+                    from http://www.oracle.com/technetwork/java/javase/downloads/index.html.  The files must 
+                    replace the Java Runtime Environment's existing encryption profiles located in 
+                    /path/to/JavaRuntimeEnvironment/lib/security.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A x509 Certificate must be created to establish trust between the SimpleIDP and 
+                    API.  This certificate may be self signed or obtained from a certificate authority 
+                    such as Verisign. 
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-f7e2ecba-359a-44e5-9f6d-31154626032c">
+        <title>Preparing the Keystores for &PRODUCTABBR; Services</title>
+        <para>
+            Each service in the &PRODUCTABBR; infrastructure can use the same
+            keystore. This includes the REST API, ingestion service, search 
+            indexer, and bulk extract service. Each service obtains the AES 
+            secret key from the keystore. Any other entries in the keystore 
+            are be ignored. 
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Use Java keytool to generate new 256-bit AES secret keys 
+                    for DAL and LDAP in the JCEKS keystore.
+                </para>
+                <programlisting>
+                    <![CDATA[
+>keytool -genseckey -alias dalkey -keypass dalpass -keystore sli-keystore.jks -storepass storepass -storetype JCEKS -keysize 256 -keyalg AES
+	
+>keytool -genseckey -alias <sli.encryption.ldapKeyAlias> -keypass <sli.encryption.ldapKeyPass> -keystore <keystore-file> -storepass <keystore-password> -storetype JCEKS -keysize 256 -keyalg AES
+						]]></programlisting>
+                <para>
+                    <code>dalkey</code>, <code>dalpass</code>, <code>ldapkey></code>, <code>ldappass</code>, <code>sli-keystore.jks</code>, and 
+                    <code>storepass</code> correspond to the <code>sli.encryption.dalKeyAlias</code>, 
+                    <code>sli.encryption.dalKeyPass</code>, <code>sli.encrption.ldapKeyAlias</code>, <code>sli.encrption.ldapKeyPass</code>, <code>sli.encryption.keyStore</code>, and 
+                    <code>sli.encryption.keyStorePass</code> properties in sli.properties. The AES key must be the same across all services and hosts.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Generate a new initialization vector.
+                </para>
+                <programlisting><![CDATA[
+>openssl rand -hex 16	
+						]]></programlisting>
+                <para>
+                    The generated value must be set to the 
+                    <code>sli.encryption.dalInitializationVector</code> 
+                    property in the API, ingestion, and SimpleIDP 
+                    configurations. Like the AES key, this value must 
+                    be the same across all servers and hosts.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The LDAP secret key is used to encrypt the LDAP 
+                    password. The encrypted password string must be 
+                    assigned to the <code>sli.api.ldap.pass</code> 
+                    in the <filename>sli.properties</filename>
+                    file. The operator can use the encryption-tool 
+                    to encrypt the LDAP password. To generate the encrypted 
+                    password using the encryption-tool, run the
+                    following command: 
+                </para>
+                <programlisting><![CDATA[
+java -jar encryption-tool-1.0-SNAPSHOT.jar <keystore-file> <keystore-password> <sli.encryption.ldapKeyAlias> <sli.encryption.ldapKeyPass> "<plain-password>"
+]]></programlisting>
+                <para>
+                    This example assumes that the encryption-tool jar is 
+                    in current working directory.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-256530e7-f675-417e-b44c-433a46be57cf">
+        <title>Preparing the SimpleIDP Keystore</title>
+        <para>
+            The SimpleIDP's keystore contains an additional private key that is used to sign SAML messages.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Create or obtain a x509 certificate and associated public/private key pair 
+                    that will be used to sign and verify SAML messages create by the SimpleIDP.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Ensure the x509 certificate or its signing authority is included in the API's 
+                    trust store, pointed to by the <code>sli.trust.certificates</code> property.  This can be 
+                    accomplished using the <code>keytool -importcert</code> command.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Create a copy the API's keystore containing the 256bit AES secret key and import 
+                    the private key used to generate the x509 certificate.  The key alias used for 
+                    the private key should be configured using the <code>sli.wildcard.x509certificate.alias</code> 
+                    property in the SimpleIDP configuration. The <code>keytool -importkeystore</code> 
+                    command can be used to accomplish this import.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+
+
+    <section xml:id="doc-326530e7-f675-417e-b44c-433a46be57cf">
+        <title>Preparing the API Keystore</title>
+        <para>
+            The API's keystore should contain x509 certificate/private key pairs that will each be used to sign Artifact Resolution Requests,
+            provide client certificate for SSL connection, and decrypt SAML assertions.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Set up a JCEKS keystore as the API's keystore. It should be configured by setting the <code>sli.api.keyStore</code> and 
+                    <code>sli.api.keystore.password</code> properties in the API configuration.    
+                </para>    
+            </listitem>
+            <listitem>
+                <para>Setting up the keystore entry for signing Artifact Resolution Request</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Create or obtain a x509 certificate and associated x509 certificate/private key pair 
+                            that will be used to sign Artifact Resolution Requests created by the API.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Import the x509 certificate/private key pair into the API keystore. The keystore entry should be configured by setting the 
+                            <code>sli.api.digital.signature.keyAlias</code> and <code>sli.api.digital.signature.keyPass</code> properties 
+                            in the API configuration.
+                        </para>
+                    </listitem>                  
+                </itemizedlist>
+            </listitem>
+                      
+             <listitem>
+                <para>Setting up the keystore entry for decrypting SAML assertions</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Create or obtain a x509 certificate and associated x509 certificate/private key pair 
+                            that will be used to provide the encryption key to the IDP via the metadata endpoint
+                            and decrypt SAML assertions received by API.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Import the x509 encryption certificate/private key pair into the API keystore. The keystore entry should be configured by setting the 
+                            <code>sli.api.encryption.certificate.keyAlias</code> and <code>sli.api.encryption.certificate.keyPass</code> properties 
+                            in the API configuration.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            
+            <listitem>
+                <para>Setting up the keystore entry for client certificate</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Create or obtain a x509 certificate and associated x509 certificate/private key pair 
+                            that will be used to send the client certificate for SSL connection.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Import the x509 certificate/private key pair into the API keystore. The keystore entry should be configured by setting the 
+                            <code>sli.api.client.certificate.keyAlias</code> and <code>sli.api.client.certificate.keyPass</code> properties 
+                            in the API configuration.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            The x509 certificate for this entry needs to be shared with IDPs using Artifact Binding protocol with client authentication
+                            so that they can add it to their truststore.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>    
+        </itemizedlist>
+    </section>
+</chapter>
+    
+
+        

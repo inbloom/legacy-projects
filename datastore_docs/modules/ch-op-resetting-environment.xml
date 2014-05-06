@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-ff75469a-3d3a-4f7a-9143-36c6babd5ded"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Resetting the Environment</title>
+    
+    <para>The following steps can be utilized to perform a complete reset
+            of the &PRODUCTLOWER;, ingestion_batch_job, and its databases. This process is generic,
+            and no assumption should be drawn from these steps regarding the layout of
+            servers.</para>
+    
+    <caution><para>Some of these steps are destructive to pre-existing data in a system.</para></caution>
+    
+    <procedure>
+        <step>
+            <para>
+                Stop an API Tomcat Service.
+            </para>
+        </step>
+        <step>
+            <para>
+                Stop all Ingestion Tomcat Services.
+            </para>
+        </step>
+        <step>
+            <para>
+                On an API server, execute <command>mongo</command> to access the Mongo command line which should connect to the mongos service in a sharded environment.
+            </para>
+            <substeps>
+                <step>
+                    <para>You can identify the hostname, database, and port
+                            to connect to via the <filename>sli.properties</filename> file,
+                            configuration settings <filename>sli.mongodb.host</filename>, and
+                                <filename>sli.mongodb.database</filename>.</para>
+                </step>
+                <step>
+                    <para>Assuming that the database is called sli, server hostname is localhost, and the standard Mongo port 27017 is being used for connectivity, the mongo command would look like <command>mongo sli –h localhost –port 27017</command></para>
+                </step>
+            </substeps>
+        </step>
+        <step>
+            <para>
+                In the mongo command line, execute the following commands:
+            </para>
+            <substeps>
+                <step>
+                    <para><command>use sli;</command></para>
+                </step>
+                <step>
+                    <para><command>db.tenant.find().forEach(function(d){ var tenant = d.body.dbName; db.getSiblingDB(tenant).dropDatabase(); }) </command></para>
+                    <para>The command above drops all tenant specific databases and the sli database which holds the non tenant specific data. </para>
+                </step>
+                <step>
+                    <para>
+                        You can verify the deletion of the mongo database
+                            via the <command>show dbs</command> command.  It is okay for the output
+                            to still list the databases, however if the size indicator shows any
+                            data in the database, that may be an indication that a shard did not
+                            receive the deletion command. This means that each shard should be
+                            checked for a copy of the database.  In that case, you will need to
+                            connect to the primary server on that shard, and execute the
+                            <command>dropDatabase</command> command.
+                    </para>
+                </step>
+            </substeps>
+        </step>
+        <step>
+            <para>
+                Exit the mongo command line.
+            </para>
+        </step>
+        <step>
+            <para>
+                Apply indexes to the SLI database via the command: <command>mongo sli &lt;sli_indexes.js</command>
+            </para>
+            <para>
+                Similar to lines 3a and 3b, settings on this command line will need represent the environment. Example: <command>mongo sli –host localhost –port 27017 &lt; sli_indexes.js</command>
+            </para>
+            <para>A tenant database will be created when the tenant runs their first ingestion job . Sharding and indexes will automatically
+                ￼be applied to these databases during this process.
+                ￼</para>
+        </step>
+        <step>
+            <para>
+                <emphasis>Note:</emphasis> If mongo sharding is applied, all mongos process instances need to be restarted to ensure proper operation.
+            </para>
+            <para>
+                The mongos services can typically be found on all API and Ingestion servers.
+            </para>
+        </step>
+        <step>
+            <para>
+                You can now restart the API server tomcat instance(s).
+            </para>
+        </step>
+        <step>
+            <para>
+                Log into the MongoDB server that is paired with the 
+                ingestion server(s). This may be multiple servers or a 
+                dedicated sharded environment and can be identified via the 
+                <filename>sli.tenant.ingestionServers</filename>. A detailed 
+                understanding of the environment is required to do this. 
+                The paired server can be identified via viewing each 
+                ingestion server’s <filename>sli.properties</filename> file, 
+                paying attention to the 
+                <property>sli.ingestion.batchjob.mongodb.host</property> 
+                setting.
+            </para>
+            <para>
+                Depending on the environment, MongoDB may be setup as 
+                multiple processes on different ports for the different 
+                databases. The configuration setting
+                <property>sli.ingestion.batchjob.mondgob.port</property> 
+                can be used to identify which port supports which database. 
+                This setting supports the "ingestion_batch_job" database.
+            </para>
+        </step>
+        <step>
+            <para>
+                For each Mongo instance, database, and port matching that data, you will need to:
+            </para>
+            <substeps>
+                <step>
+                    <para>
+                        Execute <command>mongo –port identified_port</command>
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Execute command <command>use identified_database;</command> on the mongo command line.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Execute <command>db.dropDatabase();</command>.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Exit the mongo command line.
+                    </para>
+                </step>
+                <step>
+                    <para> Load the appropriate index file. For the
+                            <filename>ingestion_batch_job</filename> database, use the file
+                            <filename>ingestion_batch_job_indexes.js</filename>. </para>
+                </step>
+                <step>
+                    <para>
+                        Execute the appropriate commands to load the indexes, example <command>mongo identified_database –port identified_port &lt; identified_file</command> 
+                    </para>
+                    <para>Common multiport example:</para>
+                    <substeps>
+                        <step>
+                            <para>mongo ingestion_batch_job –port 27117 &lt; ingestion_batch_job_indexes.js</para>
+                        </step>
+                    </substeps>
+                </step>
+            </substeps>
+        </step>
+        <step>
+            <para>
+                Remove the .done folders from the landing zones.
+            </para>
+            <para>From an Ingestion or Landing Zone server, execute the following command: <command>cd /ingestion/lz/ ; find . -name ".done" -exec echo {} +</command>.</para>
+        </step>
+        <step>
+            <para>
+                Enumerate through all Ingestion ActiveMQ servers, connecting to the admin console via a web browser, on port 8161, and purge the queues.
+            </para>
+            <para>If network access is restricted, this may need to be performed over an SSH tunnel. <command>ssh –L 8161:remote.server.name:8161 user@hostname</command>, and then connect to localhost:8161 to perform the purge operation.</para>
+        </step>
+        <step>
+            <para>
+                Restart Tomcat on the ingestion Tomcat Service.
+            </para>
+        </step>
+        <step>
+            <para>
+                In the admin applications <filename>config.yml</filename>, reset the recaptcha_disable property to false. For example, <property>recaptcha_disable: false</property>. Then restart the admin ruby on rails application.
+            </para>
+        </step>
+        <step>
+            <para>Reset openLDAP to be completely clean and then load the <filename>Production.ldif</filename> provided in S3. This contains only the &COMPANYABBR; Operator needed for the system to function.</para>
+        </step>
+    </procedure>
+</chapter>

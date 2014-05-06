@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-473e10de-0172-45af-9351-70924ad804f5"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Contextual Authorization: Parents</title>
+    
+    <para>
+        The rules in this section apply specifically to users that are 
+        associated with the Parent entity in the data store.
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to all global entities.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent does not have write context to any entities 
+        except:</emphasis>
+        <itemizedlist>
+            <listitem><para>parent (self)</para></listitem>
+            <listitem><para>student (Their own student(s))</para></listitem>
+        </itemizedlist>
+    </para> 
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to the student entity for their 
+        own students.</emphasis>
+    </para>    
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to attendances that is directly 
+        associated to a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to each calendarDate in their 
+        school.</emphasis>
+    </para>    
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every cohort that is directly 
+        associated to a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every courseTranscript that is 
+        viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every gradebookEntry that is viewable
+        by a student to which the parent is directly associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every grade that is viewable by a 
+        student to which the parent is directly associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every reportCard that is viewable by
+        a student to which the parent is directly associated.</emphasis>
+    </para>    
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context with parent entity that represent 
+        themselves plus any other parent that is directly associated to a 
+        student to which the parent is directly associated.</emphasis>
+     </para> 
+     <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every staff member that is viewable 
+        by a student to which the parent is directly associated.</emphasis>
+     </para>
+     <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every staffCohortAssociation that 
+        is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+     </para>
+     <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every 
+        staffEducationOrgAssignmentAssociation that is viewable by a student to
+        which the parent is directly associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every staffProgramAssociation that 
+        is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentAcademicRecord that 
+        is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentCohortAssociation that 
+        is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentCompetency that is 
+        viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentGradebookEntry that 
+        is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentParentAssociation that 
+        directly references a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentProgramAssociation that 
+        is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to the Name field of students that are 
+        viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentSchoolAssociation that 
+        directly references each student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every studentSectionAssociation 
+        that is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every teacherSchoolAssociation that 
+        is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent has context to every teacherSectionAssociation 
+        that is viewable by a student to which the parent is directly 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Parent do not have context to view any discipline 
+        data.</emphasis>
+    </para> 
+
+</chapter>
+
+
+        

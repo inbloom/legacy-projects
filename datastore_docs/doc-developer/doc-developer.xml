@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<book xml:id="developer_guide"
+    xmlns="http://docbook.org/ns/docbook"
+    xml:base="."
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>&PRODUCTCAPS; Application Developer Documentation</title>
+        <releaseinfo>
+            &CURRENTRELEASEREVISION;
+        </releaseinfo>
+    </info>
+    
+    <preface xml:id="doc-440e554f-d7af-4a15-8899-b985b9ca958c" >
+        <title>Introduction to Development for &COMPANYABBR;</title>
+        <para> This portion of the &COMPANY; documentation instructs application developers on the
+            core concepts of &PRODUCTABBR;, how to get started developing applications for
+            &PRODUCTABBR;, and how to use the &RESTAPI;. </para>
+        <section xml:id="doc-6af36515-de6f-4479-b3d6-9ef379178b6c">
+            <title>What You Should Already Know</title>
+            <para>
+                The &COMPANYABBR; developer documentation assumes that you 
+                understand some basics about programming client-server
+                applications, particularly those that use Web services.
+                Specifically, you should be familiar with the following:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Representational state transfer (REST) architecture
+                        for applications
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Performing CRUD (create/remove/update/delete) 
+                        operations through a REST API
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Hypermedia as the Engine of Application State (HATEOAS)
+                        constraints
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Common data formats used in REST request and response 
+                        bodies (XML and JSON)
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        User authentication in Web applications
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-71fd1267-1c2a-4e9a-95df-eb1f73e44636">
+            <title>Using This Documentation</title>
+            <para> This developer documentation starts with procedures for setting up your
+                development environment and using sandbox resources throughout your development
+                work. Then, it introduces you to the &RESTAPI; and to the client libraries and SDKs
+                available to ease the use of the REST API. The documentation ends with reference
+                sections to the inBloom Secure Data Services Logical Model and the resources that
+                make up the &RESTAPI;. </para>
+        </section>
+        <section xml:id="doc-de053bf0-0026-4bb0-8fbb-e716f80b79dd">
+            <title>Conventions</title>
+            <para>This guide uses the following typographic conventions: </para>
+            <table xml:id="table-8a8bf050-5c8d-40d4-8fae-9bcfd525cbd9">
+                <title/>
+                <tgroup cols="2">
+                    <thead>
+                        <row>
+                            <entry>
+                                Format
+                            </entry>
+                            <entry>
+                                Used for
+                            </entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <emphasis role="bold">Bold</emphasis>
+                            </entry>
+                            <entry>
+                                <para>Resource names, parameter names.</para>
+                                <para><emphasis role="bold">Example:</emphasis>
+                                    This student is represented by a <emphasis role="bold">students</emphasis> resource.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <emphasis>Italics</emphasis>
+                            </entry>
+                            <entry>
+                                <para>Document titles, first term usage, emphasis, variable text.</para>
+                                <para>
+                                    <emphasis role="bold">Example:</emphasis> See the
+                                        <citetitle>Secure Data Service REST API
+                                        Reference</citetitle>.</para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <code>Monospace</code>
+                            </entry>
+                            <entry>
+                                <para>Code examples, response codes, field names. </para>
+                                <para>
+                                    <emphasis role="bold">Example:</emphasis>
+                                    <filename>https://&PRODUCTABBR;.example.com/api/rest/v1/students</filename>
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    Line break notation with backslash ('\')
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Code listings where there are long strings without spaces that
+                                    do not automatically wrap to the next line. This is common when
+                                    providing example URIs.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    The use of <emphasis>$BASE_URL</emphasis>
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Unless otherwise noted, the constant value
+                                    of $BASE_URL stands for the first part of
+                                    the URL when making calls to the
+                                    &RESTAPI;, including "https://" followed
+                                    by the hostname of the server running the
+                                    API (as in "https://api.sandbox.example.com"). 
+                                    This may be a production deployment or
+                                    a sandbox development environment. 
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+        <section xml:id="doc-bcd1ee22-a475-4877-8565-51723be16b9a">
+            <title>Documentation Release Notes</title>
+            <para>Updates to this guide are listed, by release, in the following table. </para>
+            <table xml:id="table-e170a0c8-5967-457d-8a41-1bf76c7a6772">
+                <title>Documentation Release Notes</title>
+                <tgroup cols="3">
+                    <thead>
+                        <row>
+                            <entry> Release </entry>
+                            <entry> Date </entry>
+                            <entry>Revisions</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>1.2.72</entry>
+                            <entry>3/19/2013</entry>
+                            <entry>
+                                <para>Added Aggregate Viewer user role to the list of default user
+                                    roles. </para>
+                                <para>The Contextual Authorization Rules section was
+                                    reorganized for clarity.</para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.2.73</entry>
+                            <entry>3/28/2013</entry>
+                            <entry>
+                                <para>
+                                    Added section on how to perform a
+                                    bulk data extraction using the 
+                                    REST API.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.2.74</entry>
+                            <entry>4/17/2013</entry>
+                            <entry>
+                                <para>
+                                    Revised bulk extract content for
+                                    better organization.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.3.75</entry>
+                            <entry>05/01/2013</entry>
+                            <entry>
+                                <para>
+                                    Added new API resource (bulk/extract/tenant).
+                                </para>
+                                <para>
+                                    Revised organization and supporting 
+                                    information for the system resources
+                                    for the REST API, making them easier to
+                                    find and use within the documentation.
+                                </para>
+                                <para>
+                                    Added new section on the encrpytion of bulk extract data.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.3.76</entry>
+                            <entry>05/15/2013</entry>
+                            <entry>
+                                <para>
+                                    Fixed missing "views" parameter in the 
+                                    list of resources for API version 1.2.
+                                </para>
+                                <para>
+                                    Updated the data model documentation to
+                                    reflect database changes, particularly
+                                    removing the "staffId" entity.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.4.77</entry>
+                            <entry>05/29/2013</entry>
+                            <entry>
+                                <para>
+                                    Added documentation about newly added API 
+                                    resources supporting bulk extract 
+                                    operations: bulk/extract/list,
+                                    bulk/extract/{EducationAgencyId}, and
+                                    bulk/extract/{EducationAgencyId}/deltas
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.5.78</entry>
+                            <entry>06/12/2013</entry>
+                            <entry>
+                                <para>
+                                    Listed the public entities for SEAs that
+                                    are included in bulk extract data
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.6.79</entry>
+                            <entry>06/26/2013</entry>
+                            <entry>
+                                <para>
+                                    Data model reflects change of
+                                    staffClassification type, an attribute of
+                                    the StaffEducationOrganizationAssociation
+                                    entity, from an enumerated type to a string.
+                                </para>
+                                <para>
+                                    Bulk extract API includes some new
+                                    entities.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.7.80</entry>
+                            <entry>7/8/2013</entry>
+                            <entry>
+                                <para>
+                                    Removed the bulk/extract/tenant API
+                                    resource and updated related documentation
+                                    around its removal.
+                                </para>
+                                <para>
+                                    Revised the section covering the default 
+                                    user roles to include the role group 
+                                    concept, the permissions assigned by role 
+                                    group, and the newly added roles for each 
+                                    role group.
+                                </para>
+                                <para>
+                                    Added new information to section covering 
+                                    how &PRODUCTABBR;
+                                    determines a user's permissions.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.8.81</entry>
+                            <entry>7/19/2013</entry>
+                            <entry>
+                                <para>
+                                    Updated description of how user rights
+                                    and roles are handled for custom
+                                    endpoints. See
+                                    <xref linkend="doc-e7ad9a9f-174c-4391-b826-70a4842a1059"/>.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.9.82</entry>
+                            <entry>8/2/2013</entry>
+                            <entry>
+                                <para>
+                                    No changes to this document for this release.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.11.86</entry>
+                            <entry>9/27/2013</entry>
+                            <entry>
+                                <para>
+                                    The new Staff and Teacher contexts, and 
+                                    their affect on determining user 
+                                    permissions, were added in the chapters 
+                                    covering user rights and roles.
+                                </para>
+                                <para>
+                                    Contextual authorization chapters were 
+                                    updated to reflect the Staff and Teacher 
+                                    contexts, and to remove program and
+                                    cohort rules that were not applicable.
+                                </para>
+                                <para>
+                                    Developers can choose a State Education Agency
+                                    and the system knows which education organizations
+                                    to enable (based on application type).
+                                </para>
+                                <para>
+                                     SEA Admins can authorize all needed education organizations
+                                     for an app with one action.  LEA Admins cannot authorize
+                                     applications.
+                                </para>
+                                <para>
+                                    Bulk Extract applications can now be authorized for any
+                                    Education Organization Organizational Category Type.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.12.88</entry>
+                            <entry>10/25/2013</entry>
+                            <entry>
+                                <para>
+                                    Ability for LEA Admins to authorize applications has been restored.
+                                </para>
+                                <para>
+                                    Developers now have the ability to enable an application for any 
+                                    education organization in any state education organization hierarchy 
+                                    via a tree control that has been added to the Edit Application page.
+                                </para>
+								<para>
+                                    Updated SecurityEvents API call documentation with details about the endpoint, parameters, and response fields.  Updated the descriptions of Logged Events.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.12.89</entry>
+                            <entry>11/8/2013</entry>
+                            <entry>
+                                <para>
+                                    Bulk extract documentation update.
+                                </para>
+                                <para>
+                                    Removed references to obsolete Application Authorization delegation.  Updated 
+                                    Application Authorization resource.
+                                </para>
+                                <para>
+                                    Removed mentions of targetEdOrg because that property is no longer being used.
+                                    Removed mention of log files as they are inaccessible.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.12.90</entry>
+                            <entry>11/22/2013</entry>
+                            <entry>
+                                <para>
+                                    Added documentation about API endpoint for security events with user specified {id}.
+                                </para>
+                                <para>
+                                    Federated users may now be given the right to view security events through the API (through the SECURITY_EVENT_VIEW
+                                    right). This gives them the ability to use the /api/rest/securityEvent and /api/rest/securityEvent/{id} resources
+                                    for education organizations within their purview.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.13.91</entry>
+                            <entry>12/6/2013</entry>
+                            <entry>
+                                <para>
+                                    Edited the documentation for API endpoint for security events without ID to reflect the addition of HATEOAS
+                                    links being provided.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.14.92</entry>
+                            <entry>12/20/2013</entry>
+                            <entry>
+                                <para>
+                                    Edited the documentation to include the new API endpoints for public data extracts.
+                                </para>
+                                <para>
+                                    Added documentation about top level education organization extract.
+                                </para>
+                                <para>
+                                    Edited the documentation to include current default rights for default user roles.
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>1.15.93</entry>
+                            <entry>1/7/2014</entry>
+                            <entry>
+                                <para>
+                                    Updated documentation to reflect addition of bellSchedule and classPeriod to public data extracts.
+                                </para>
+                            </entry>
+                        </row>
+			<row>
+                            <entry>1.15.95</entry>
+                            <entry>2/7/2014</entry>
+                            <entry>
+                                <para>
+                              		Updated references to Ruby version 2.0.0-p353 from 1.9.3-p448.
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+    </preface>
+    
+    <part xml:id="doc-1eae8ac6-f85e-447e-98ae-52039ad2852e">
+        <info>
+            <title>Overview and First Steps for &PRODUCTABBR; Application Development</title>
+        </info>
+        <xi:include href="../modules/ch-dev-overview-data_model.xml"/>
+        <xi:include href="../modules/ch-dev-overview-development.xml"/>
+        <xi:include href="../modules/ch-dev-getting_started.xml"/>
+        <xi:include href="../modules/ch-dev-sandbox-add_data.xml"/>
+        <xi:include href="../modules/ch-dev-sandbox-app_registration.xml"/>
+        <xi:include href="../modules/ch-dev-sandbox-default_apps.xml"/>
+    </part>
+    
+    <part xml:id="doc-3185a04a-40eb-43db-b35e-903c7a3d99cd">
+        <info>
+            <title>Managing the Sandbox and Testing Applications</title>
+        </info>
+        <xi:include href="../modules/ch-general-role_mapping.xml"/>
+        <xi:include href="../modules/ch-dev-superadmin_account_management_tool.xml"/>
+        <xi:include href="../modules/ch-dev-sandbox-testing_the_app.xml"/>
+    </part>
+    
+    <part xml:id="doc-193b3c84-0860-4f18-941b-0195189219a5">
+        <info>
+            <title>Using the &RESTAPI;</title>
+        </info>
+        <xi:include href="../modules/ch-dev-rest_api-overview.xml"/>
+        <xi:include href="../modules/ch-dev-rest_api-setup.xml"/>
+        <xi:include href="../modules/ch-dev-rest_api-conventions.xml" />
+        <xi:include href="../modules/ch-dev-rest_api-operations.xml"/>
+        <xi:include href="../modules/ch-dev-rest_api-example_walkthrough.xml" />
+    </part>
+    
+    <part xml:id="doc-c85c7881-e332-4e17-9fd3-a0ab4ffff6fb">
+        <info>
+            <title>Using the &PRODUCTABBR; SDKs</title>
+        </info>
+        <xi:include href="../modules/ch-dev-sdk-java-overview.xml"/>
+        <xi:include href="../modules/ch-dev-sdk-java-setup.xml"/>
+        <xi:include href="../modules/ch-dev-sdk-java-usage.xml"/>
+        <xi:include href="../modules/ch-dev-sdk-java-sample_app-hello_world.xml"/>
+        <xi:include href="../modules/ch-dev-sdk-javascript.xml"/>
+    </part>
+    
+    <part xml:id="doc-558e7426-7ed2-46f1-b4a2-5223a3917770">
+        <info>
+            <title>Common Application Features</title>
+        </info>
+        <xi:include href="../modules/ch-dev-adding_user_auth_to_apps.xml"/>
+        <xi:include href="../modules/ch-dev-providing_auth_credentials.xml"/>
+        <xi:include href="../modules/ch-dev-bypassing_realm_selection.xml"/>
+        <xi:include href="../modules/ch-general-how_app_reg_works.xml"/>
+        <xi:include href="../modules/ch-dev-registering_your_app.xml"/>
+    </part>
+    
+    <part xml:id="doc-7d0c43eb-49e7-494f-9db9-a2c05c0e4590">
+        <info>
+            <title>&PRODUCTABBR; Application Development: Sample Applications and Code</title>
+        </info>
+        <xi:include href="../modules/ch-dev-sample_code-data_browser.xml"/>
+        <xi:include href="../modules/ch-dev-sample_code-dashboard.xml"/>
+        <xi:include href="../modules/ch-op-data_ingestion-batch_processing.xml"/>
+        <xi:include href="../modules/ch-op-data_ingestion-validation.xml"/>
+    </part>
+    
+    <!-- &PRODUCTABBR; Secure Data ServiceLogical Model (part) -->
+    <xi:include href="../modules/auto-data_model.xml"/>
+    
+    <part xml:id="rest_api_resources">
+        <info>
+            <title>&RESTAPI; Resources</title>
+        </info>
+        <xi:include href="../modules/concepts/c-api-how_to_use_doc.xml"/>
+        <xi:include href="../modules/concepts/c-api-whats_in_this_doc.xml"/>
+        <xi:include href="../modules/reference/r-api-system_resources.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-auth_users.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-user_sessions.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-user_info.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-manage_users.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-custom_roles.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-manage_tenants.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-manage_realms.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-auth_apps.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-reg_apps.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-delegate_admin.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-security_admin.xml"/>
+        <xi:include href="../modules/concepts/c-api-app_functions-bulk_extract.xml"/>
+        <xi:include href="../modules/auto-rest_api_resources-v1.3.xml"/>
+        <xi:include href="../modules/autogenerated/auto-examples-v1.3.xml"/>
+        <xi:include href="../modules/auto-rest_api_resources-v1.2.xml"/>
+        <xi:include href="../modules/autogenerated/auto-examples-v1.2.xml"/>
+        <xi:include href="../modules/auto-rest_api_resources-v1.1.xml"/>
+        <xi:include href="../modules/autogenerated/auto-examples-v1.1.xml"/>
+        <xi:include href="../modules/auto-rest_api_resources-v1.0.xml"/>
+        <xi:include href="../modules/autogenerated/auto-examples-v1.0.xml"/>
+    </part>
+    
+    <!-- &PRODUCTABBR; REST API Removals -->
+    <xi:include href="../modules/ch-dev-api-removed.xml"/>
+    
+    <!-- &PRODUCTABBR; Architecture -->
+    <chapter xml:id="doc-2b03fc2a-19c2-4ebd-a0a0-b660a34b7384">
+        <title>inBloom Overview</title>
+        <para>
+            As an application developer, use this chapter as an overview of 
+            inBloom, including its key components and how it works.
+        </para>
+        <xi:include href="../modules/concepts/c-product_architecture.xml"/>
+    </chapter>
+    
+    <part xml:id="doc-2ff0ead9-4e4e-4316-b36e-fcd9fc7300d9">
+        <info>
+            <title>&PRODUCTABBR; Security</title>
+        </info>
+        <xi:include href="../modules/ch-general-user_auth_overview.xml"/>
+        <xi:include href="../modules/ch-general-security_designations.xml"/>
+        <xi:include href="../modules/ch-general-roles_and_permissions.xml"/>
+        <xi:include href="../modules/ch-general-integrated_authentication.xml"/> 
+	<xi:include href="../modules/ch-general-security_events.xml"/>
+    </part>
+    
+    <!-- Contextual Authorization Rules -->
+    <xi:include href="../modules/ch-general-contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-staff_contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-teacher_contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-parent_contextual_authorization.xml"/>
+    <xi:include href="../modules/ch-general-student_contextual_authorization.xml"/>
+    
+    <!-- Glossary -->
+    <xi:include href="../modules/glossary.xml"/>
+    
+</book>

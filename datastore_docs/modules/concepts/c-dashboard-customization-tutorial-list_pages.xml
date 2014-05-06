@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-dashboard-customization-tutorial-list_pages"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>List Pages</title>
+    
+    <para>
+        After you upload the sample customization and return to the
+        dashboard as described in
+        <xref linkend="t-how_to_upload_dashboard_customizations"/>,
+        make selections for the district, school, course, and section 
+        corresponding to 
+        <xref linkend="figure-dashboard-tutorial-select_section"/>, 
+        and then click <guibutton>Go</guibutton>.
+    </para>
+    <figure xml:id="figure-dashboard-tutorial-select_section">
+        <title>Dashboard Tour: Select Sample Section</title>
+        <mediaobject>
+            <imageobject role="html">
+                <imagedata align="center" format="JPG" 
+                    fileref="&IMAGEDIRHTML;/dashboard-tutorial-select_section.jpg" scalefit="1"/>
+            </imageobject>
+            <imageobject role="fo">
+                <imagedata align="center" format="JPG" 
+                    fileref="&IMAGEDIRPDF;/dashboard-tutorial-select_section.jpg" scalefit="1" width="7in"/>
+            </imageobject>
+        </mediaobject>
+    </figure>
+    <para>
+        The "List of Students" tab shows the students that are in the 
+        selected section along with several details about each student, 
+        summarized in a table. You can customize both the view and the 
+        data shown in a list page. The following sections show the 
+        customization points for this sample and how they line up 
+        with the sample JSON you added for the tutorial.
+    </para>
+    
+    <section xml:id="c-dashboard-customization-tutorial-list_pages-view">
+        <title>The View</title>
+        <para>
+            The view provides a specific view of the data list. From the 
+            dashboard, a user can select a view using the 
+            <guilabel>View</guilabel> drop-down list, shown in 
+            <xref linkend="figure-dashboard-tutorial-select_view"/>.
+        </para>
+        <figure xml:id="figure-dashboard-tutorial-select_view">
+            <title>Dashboard Tour: Select Sample View</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" format="JPG" 
+                        fileref="&IMAGEDIRHTML;/dashboard-tutorial-select_view.jpg" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" format="JPG" 
+                        fileref="&IMAGEDIRPDF;/dashboard-tutorial-select_view.jpg" scalefit="1" width="2in"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>
+            For the list of students, the view is tied to one or more 
+            grade levels. In the JSON used for customization, 
+            <varname>condition</varname> determines which grade levels 
+            have this view in the drop-down list. The following JSON 
+            illustrates this use of <varname>condition</varname>:
+        </para>
+        <programlisting><![CDATA[{
+    name:"Middle School ELA View",
+    condition:{
+        field:"gradeLevel",
+        value:[
+            "Third grade",
+            "Fourth grade",
+            "Fifth grade",
+            "Sixth grade",
+            "Seventh grade",
+            "Eighth grade"
+        ] 
+    }
+    ...
+}]]></programlisting>
+    </section>
+    
+    <section xml:id="c-dashboard-customization-tutorial-list_pages-data">
+        <title>The Data</title>
+        <para>
+            The data in the list is based on choices made by the user. 
+            In this tutorial, the user chose a section. The available 
+            data includes both the field data of the returned records, 
+            and many of the records that those returned records refer 
+            to in the data store. The tutorial sample covers the JSON needed 
+            to display this data, but see
+            <xref linkend="c-dashboard-customization-reference"/> for
+            additional details, including using the default JSON files 
+            from the application as a reference.
+        </para>
+        <para>
+            Data is described by column, displayed either by itself or 
+            together under a single column group. In its simplest form, a 
+            column can describe the entities in the data store as shown in 
+            this JSON:
+        </para>
+        <programlisting><![CDATA[{
+    name:"Student",
+    width:150,
+    field:"name.fullName",
+    style:"ui-ellipsis",
+    formatter:'restLink',
+    params:{
+        link:'student',
+        target:"_self"
+    }
+},]]></programlisting>
+        <para>
+            Here, the "name.FullName" field, part of the student entity, 
+            is presented as the data in the first column of the student 
+            list. Field names are expressed in this JSON dot notation, and
+            that they can include spaces as shown in
+            "assessments.StateTest Reading.perfLevel". See
+            <xref linkend="r-dashboard-json-dot_notation"/> for rules
+            to use when translating data model entities and attributes into 
+            the JSON dot notation used in the fields
+        </para>
+    </section>
+    
+    <section xml:id="c-dashboard-customization-tutorial-list_pages-column_groups">
+        <title>Column Groups</title>
+        <para>
+            As shown in the tutorial example, two or more columns can be 
+            grouped together under a single header, creating a two-level 
+            label on the list page. 
+            <xref linkend="figure-dashboard-tutorial-column_group"/>
+            shows one of those column groups, 
+            and the JSON used to create it follows.
+        </para>
+        <figure xml:id="figure-dashboard-tutorial-column_group">
+            <title>Dashboard Tour: Column Group</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" format="JPG" 
+                        fileref="&IMAGEDIRHTML;/dashboard-tutorial-column_group.jpg" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" format="JPG" 
+                        fileref="&IMAGEDIRPDF;/dashboard-tutorial-column_group.jpg" scalefit="1" width="2.5in"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <programlisting><![CDATA[{
+    name:"StateTest Reading (highest ever)",
+    items:[ 
+        {
+            name:"Performance Level",
+            field:"assessments.StateTest Reading.perfLevel",
+            width:150,
+            sorter:'ProxyInt',
+                (truncated for brevity)                              }
+            }
+        },
+        {
+            name:"SS",
+            field:"assessments.StateTest Reading.Scale score",
+            width:45,
+            sorter:'int'
+        },
+        {
+            name:"Lexile",
+            field:"assessments.StateTest Reading.Other",
+            width:45,
+            sorter:'int'
+        }
+    ]]]></programlisting>
+    </section>
+    
+    <section xml:id="c-dashboard-customization-tutorial-list_pages-format">
+        <title>Format and Style for the List View</title>
+        <para>
+            See the <xref linkend="c-dashboard-customization-reference"/> 
+            for the JSON you can use for format and style customizations. 
+            Included are special graphic formatters that can help the user 
+            visualize data. Note what formatters apply to what entities 
+            and types of data. 
+        </para>
+        <para>
+            An example of a formatter is the "fuel gauge" which conveys 
+            where a student's performance falls within a range. In this 
+            tutorial sample, the "FuelGaugeWithScore" is shown in a 
+            "Performance" column. 
+            <xref linkend="figure-dashboard-tutorial-fuelgauge"/>
+            shows that formatter, 
+            and the JSON used to create it follows.
+        </para>
+        <figure xml:id="figure-dashboard-tutorial-fuelgauge">
+            <title>Dashboard Tour: Formatter FuelGaugeWithScore</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" format="JPG" 
+                        fileref="&IMAGEDIRHTML;/dashboard-tutorial-fuelgauge.jpg" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" format="JPG" 
+                        fileref="&IMAGEDIRPDF;/dashboard-tutorial-fuelgauge.jpg" scalefit="1" width="1.5in"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <programlisting><![CDATA[formatter:'FuelGaugeWithScore',
+    params:{
+        sortField:'assessments.StateTest Reading.Scale score',
+        name:'StateTest Reading',
+        valueField:'Scale score',
+        fieldName:"StateTestReading",
+        cutPoints:{
+                5:{
+                    style:'color-widget-darkgreen'
+                },
+                4:{
+                    style:'color-widget-green'
+                },
+                3:{
+                    style:'color-widget-yellow'
+                },
+                2:{
+                    style:'color-widget-orange'
+                },
+                1:{
+                  style:'color-widget-red'
+                }
+        }}]]></programlisting>
+    </section>
+    
+</section>

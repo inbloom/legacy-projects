@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-1eacd54e-d9a9-4d3c-88b5-c6408b7b30a8"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Administrative Options</title>
+
+  <!--   <para> The &PRODUCTABBR; Portal is the web interface you initially sign in to when accessing
+        other &PRODUCTABBR; applications and features. </para>
+    <para>
+        Review the Welcome information for vital information to ensure you protect private data.
+    </para>
+    <para>Any applications that you have access to are listed under My Applications on the right of
+        the Portal. This includes the &COMPANYABBR; Dashboard application and any environment
+        specific applications to which your administrator has given you access. </para>
+    <para>
+        <figure>
+            <title>Example Section Profile</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata fileref="images/portal-admin_welcome.png" scalefit="1"
+                    />
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata fileref="../common/images/portal-admin_welcome.png"
+                        width="7in" scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </para>
+    <para> Clicking on your name displays a menu. To log out of the &PRODUCTABBR; Portal, select the
+            <emphasis>Logout</emphasis> link to end your session. All users also have a
+            <emphasis>Report a problem</emphasis> link available. This link provides a way for users
+        to report difficulties they are experiencing related to &PRODUCTABBR;. Using the
+            <filename>portal-setup-wizard.properties</filename> file, you can configure who receives
+        the information that users submit using that form. </para>
+    <para> In the upper-right corner of the Portal, the <emphasis>Admin</emphasis> link provides
+        additional options for administrators. After clicking <emphasis>Admin</emphasis>, the
+        options displayed on your Portal screen are determined by the roles you have been assigned. </para>
+    <para> Your available options are displayed in two columns: </para>--> 
+      <para>&COMPANYABBR; provides tools that you can use to administer your &PRODUCTABBR;
+        technology system and applications. </para>
+    <section>
+    <title>System Tools</title>
+                <para>System tools are provided for you to be able to configure system settings.
+            Access to system tools is determined by your role in &PRODUCTABBR;, so you might not see
+            all of these tools.</para>
+                <!--      <para>
+                    <figure>
+                        <title>Example System Tools column</title>
+                        <mediaobject>
+                            <imageobject role="html">
+                                <imagedata fileref="images/portal-admin_tools.png" scalefit="1"
+                                />
+                            </imageobject>
+                            <imageobject role="fo">
+                                <imagedata fileref="../common/images/portal-admin_tools.png"
+                                    scalefit="1"/>
+                            </imageobject>
+                        </mediaobject>
+                    </figure>
+                </para> -->
+                <itemizedlist>
+                    <listitem>
+                        <para>Delegate Administration: For additional information, see <xref
+                                linkend="doc-20134ec0-8fb6-4e3d-ab6a-50106fabb54b"/>.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Authorize Applications: For additional information, see <xref
+                                linkend="doc-52300d92-835c-474f-899d-fe5e5bd7367b"/>.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Create Custom Roles: For additional information, see <xref
+                                linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Manage Realm: For additional information, see <xref
+                                linkend="doc-c5b7a5c9-68b2-47a8-9b05-7de98af76288"/>.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Create Landing Zone: For additional information, see <xref
+                                linkend="doc-10f4c2b3-93b4-4dce-adae-1a93feecc49c"/>.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Change Password: This option provides the ability to change the
+                            password for your account.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Manage Administrator Accounts: For additional information, see <xref
+                                linkend="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"/>.</para>
+                    </listitem>
+                </itemizedlist>
+            </section>
+          
+            <section>
+                <title>Application Configuration </title>
+                <para>Application configuration options are provided for you depending on your role.
+            You may be able to access configuration options for some approved applications. Be aware
+            that not all applications allow configuration access. </para>
+        <para>By default, administrators have access to the &COMPANYABBR; Dashboard. For additional
+            information, see <xref linkend="doc-b41f34d8-6366-487c-8f1e-aa699af52b77"/>.</para>
+           <!--    <para>
+                    <figure>
+                        <title>Example Application Configuration column</title>
+                        <mediaobject>
+                            <imageobject role="html">
+                                <imagedata fileref="images/portal-admin_config.png" scalefit="1"/>
+                            </imageobject>
+                            <imageobject role="fo">
+                                <imagedata fileref="../common/images/portal-admin_config.png"
+                                    width="2in" scalefit="1"/>
+                            </imageobject>
+                        </mediaobject>
+                    </figure>
+                </para>  -->  
+               
+            </section>
+</chapter>

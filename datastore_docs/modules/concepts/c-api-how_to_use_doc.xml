@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-e8ee1edf-8ef9-463d-8ce9-32908f93030e"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:docbk="http://docbook.org/ns/docbook"
+    xmlns="http://docbook.org/ns/docbook" version="1.0">
+    
+    <title>How to Use This Reference</title>
+    <para> The &RESTAPI; is the interface that enables you to interact with the &PRODUCTABBR; Secure
+        Data Service. This reference lists the API resources that developers need when forming the
+        URIs in their REST API calls. </para>
+    <para>
+        Each resource listing includes the following information:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                A description of the resource and its context
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The URI path
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Request body and response code information for each
+                method
+            </para>
+        </listitem>
+        <listitem>
+            <para> Links to relevant schema documentation (for the Secure Data Service URIs) </para>
+        </listitem>
+        <listitem>
+            <para>
+                Resource-specific fields and parameters
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Links to examples
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para> See the &PRODUCTABBR; developer documentation at <link
+            xlink:href="https://www.inbloom.org/developer-documentation"
+            >inbloom.org/developer-documentaion</link> for more details about the REST API itself
+        and how to develop applications that use API calls, including: </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Example usage scenarios
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                URI patterns with examples
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Media types
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Global parameters
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Query operators
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Authentication and authorization
+            </para>
+        </listitem>
+    </itemizedlist>
+</chapter>

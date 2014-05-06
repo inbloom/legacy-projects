@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+<chapter xml:id="doc-6b4daa6d-065f-4286-9a4b-de12fbc4ee55" xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <title>Viewing Data using the Dashboard</title>
+    <para>The &PRODUCTABBR; Dashboard application provides access to data for schools, courses,
+        sections, teachers, and students in a navigable and easy-to-read format. The Dashboard is
+        set up and maintained by an LEA administrator.</para>
+    <note>
+        <para>The data you have access to is based on your access rights, as well as the data
+            available in your tenancy. </para>
+    </note>
+    <section xml:id="doc-ad1ddd29-3293-4cdc-a164-b376d692f19a">
+        <title>Terms</title>
+        <para>Important Dashboard terms:</para>
+        <itemizedlist>
+            <listitem>
+                <para><emphasis>Profile</emphasis> - A profile is a collection of logically related
+                    data that is organized by scope. </para>
+            </listitem>
+            <listitem>
+                <para><emphasis>Page</emphasis> - Profiles are made up of one or more pages. Pages
+                    help organize the data panels and appear as tabs on a profile.</para>
+            </listitem>
+            <listitem>
+                <para><emphasis>Panel</emphasis> - Contained within each page are one or more panels
+                    that display data for the profile. Panels can be moved, added, or deleted by an
+                    LEA administrator.</para>
+            </listitem>
+        </itemizedlist>
+        <para>For example, a school profile could include pages for teachers and students. Within
+            the students page, you may have panels for grades, attendance, or just general
+            information.</para>
+    </section>
+    <section xml:id="doc-c0ed5c91-c951-4604-a3a7-21f3b9879d7e">
+        <title>Profiles</title>
+        <para>The Dashboard comes with a set of default profiles. Each default profile allows you to
+            access a set of information related to the profile. Administrators have the ability to
+            modify profile data, so the exact information you see on a profile can vary. </para>
+        <para>An example profile:</para>
+        <figure xml:id="figure-dashboard_overview">
+            <title>Example School Profile</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center" format="PNG"
+                        fileref="images/exampledashboardprofile.png" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center" format="PNG"
+                        fileref="../common/images/exampledashboardprofile.png" width="7in"
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>The sections of this example profile are:</para>
+        <itemizedlist>
+            <listitem>
+                <para>A - The population selector includes several drop downs that allow you to
+                    navigate to a specific profile. For information on using the population
+                    selector, see <xref linkend="doc-887e98df-f350-49b8-a9ce-2343c1515048"/>.</para>
+            </listitem>
+            <listitem>
+                <para>B - Information about the currently displayed profile appears above the tabs.
+                    The profile type determines the information that is shown. The Example School
+                    Profile displays information about East Daybreak Junior High. </para>
+            </listitem>
+            <listitem>
+                <para>C - Displays the available pages/tabs with the current page outlined. You can
+                    click on the tab heading to switch tabs. The Example School Profile displays
+                    information on the Subjects and Courses tab.</para>
+            </listitem>
+            <listitem>
+                <para>D - This section displays the data panels for the profile page. The example
+                    displays a listing of the courses for a school.</para>
+            </listitem>
+        </itemizedlist>
+        <section xml:id="doc-927f0ba3-ae41-40ff-8f3f-0c78e655cb54">
+            <title>Dashboard Profile</title>
+            <para>The Dashboard Profile is the starting point for navigation to other profiles. By
+                default, only the population selector is shown on this profile.</para>
+            <figure xml:id="figure-dashboard_dbprofile">
+                <title>Dashboard Profile</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG"
+                            fileref="images/dashboard_dashboardprofile.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/dashboard_dashboardprofile.png" width="7in"
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </section>
+        <section xml:id="doc-2d1126ea-8625-433a-b43e-df8da9ab6161">
+            <title>Education Organization Profile</title>
+            <para>The Education Organization Profile lists the schools in an Ed Org.</para>
+            <figure xml:id="figure-dashboard_dashboardprofile">
+                <title> Education Organization Profile</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG"
+                            fileref="images/dashboard_edorgprofile.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/dashboard_edorgprofile.png" width="7in"
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>You can click on a school to go to the profile for that school.</para>
+        </section>
+        <section xml:id="doc-81326703-85ff-4710-919f-7e1d7ca1333a">
+            <title>School Profile</title>
+            <para>The School Profile lists the subjects, courses, and teachers at a school.</para>
+            <figure xml:id="figure-dashboard_schoolprofile">
+                <title>School Profile</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG"
+                            fileref="images/dashboard_schoolprofile.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/dashboard_schoolprofile.png" width="7in"
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>The School Profile has two tabs. <itemizedlist>
+                <listitem><para>Subject and Courses tab displays a list of subjects taught at the school. When you click on a
+                            subject, it expands to show the courses offered and clicking on a course
+                            will reveal the sections of the course.</para></listitem>
+                <listitem><para>Teachers tab lists the instructors at a school. Clicking on an instructor's name takes you to
+                            a new page that show the section the instructor teaches.</para></listitem>
+            </itemizedlist></para>
+        </section>
+        <section xml:id="doc-4ce286c3-3106-49f7-892b-f7ac58ec799f">
+            <title>Section Profile</title>
+            <para>Shows the students in a section and provides some information for each student,
+                such as attendance and grades.</para>
+            <figure xml:id="figure-listofstudents">
+                <title>Section Profile</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" fileref="images/listofstudents.png"
+                            scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/listofstudents.png" width="7in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>You can click on a student to go to the profile for that student.</para>
+        </section>
+        <section xml:id="doc-0009b1d8-302e-4132-93b1-e7de3ea2ee65">
+            <title>Student Profile</title>
+            <para>The Student Profile provides data for students, such as attendance, grades, and
+                assessments.</para>
+            <figure xml:id="figure-studentprofile">
+                <title>Student Profile</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" fileref="images/studentprofile.png"
+                            scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/studentprofile.png" width="7in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>The Student Profile has 4 tabs by default: 
+                <itemizedlist>
+                    <listitem><para>School Overview provides the contact information and enrollment history for a student</para></listitem>
+                    <listitem><para>Attendance and Discipline displays the absences and tardies for a student in a calendar
+                            view</para></listitem>
+                    <listitem><para>Assessments displays the test history for the student</para></listitem>
+                    <listitem><para>Grades and Credits displays the student's transcript information, including courses and
+                            grades, and current enrollment information</para></listitem>
+                </itemizedlist></para>
+        </section>
+        <!-- <section xml:id="doc-9d00a482-8c45-4187-a88f-703faf85c819">
+            <title>State Education Organization Profile</title>
+            <para>The State Education Organization Profile lists the Districts in a State Ed
+                Org.</para>
+        </section>  -->
+        <section xml:id="doc-64043ac8-38ee-4b00-a132-3bd9eab921c9">
+            <title>Teacher Profile</title>
+            <para>Displays the sections a student teaches. </para>
+            <figure xml:id="figure-teacherprofile">
+                <title>Teacher Profile</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" fileref="images/dashboard_teacherprofile.png"
+                            scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/dashboard_teacherprofile.png" width="7in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>You can click on a section to go to the profile for that section.</para>
+        </section>
+    </section>
+    <section xml:id="doc-52564305-a781-4eb6-8eed-703b4e25d435">
+        <title>Viewing Profiles and Data</title>
+        <para>There are three ways that you can navigate through the Dashboard:<orderedlist>
+                <listitem>
+                    <para>Using the population selector</para>
+                </listitem>
+                <listitem>
+                    <para>Clicking within panels</para>
+                </listitem>
+                <listitem>
+                    <para>Searching for a specific student</para>
+                </listitem>
+            </orderedlist></para>
+        <section xml:id="doc-887e98df-f350-49b8-a9ce-2343c1515048">
+            <title>Using the Population Selector</title>
+            <para>Use the drop downs in the population selector to navigate to a specific profile.
+                The drop downs are ordered from the highest level to the lowest level in the
+                education organization hierarchy. The Dashboard will return the most specific
+                profile based on your selection. For example, if you request a district and a
+                school, but not a course, it will return the school profile.
+                    <emphasis>Note:</emphasis> If you want to view information on a course, you must
+                select both a course and a section.</para>
+            <figure xml:id="figure-populationselector">
+                <title>Population Selector</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG"
+                            fileref="images/populationselector.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/populationselector.png" width="7in"
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>The population selector can also be useful when you want to view students based on
+                data that applies to them. For example, you can use the population selector to
+                navigate to a profile page, where you can see data for all of the students in a
+                class. From here, you can use the filter to see only the students that a certain
+                category applies to, such as English Language Learner. Or you can click on a heading
+                to sort data based on a category, such as displaying students based on Absence
+                Count. </para>
+        </section>
+        <section xml:id="doc-4512abb1-d3d9-461a-a257-e9eb3bb195ea">
+            <title>Clicking within Panels</title>
+            <para>On a profile page you can click on data points to navigate to new data. </para>
+            <para>For example, a list of students are displayed on the section profile:</para>
+            <figure xml:id="figure-liststudents">
+                <title>List of Students</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" fileref="images/listofstudents.png"
+                            scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/listofstudents.png" width="7in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Clicking a student's name in the list of students brings you to the student's
+                profile:</para>
+            <figure xml:id="figure-studentsprofile">
+                <title>Student Profile</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" fileref="images/studentprofile.png"
+                            scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/studentprofile.png" width="7in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Clicking on a tab in the student's profile displays a new page:</para>
+            <figure xml:id="figure-newtabpage">
+                <title>Student Profile Grades and Credits Tab</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG"
+                            fileref="images/dashboard_new_tab.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/dashboard_new_tab.png" width="7in"
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>Clicking on a plus or an arrow icon expands the selection to show more
+                data:</para>
+            <figure xml:id="figure-newtabonpage">
+                <title>Student Profile Grades and Credits Tab Expanded</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG"
+                            fileref="images/dashboard_plus_expand.png" scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG"
+                            fileref="../common/images/dashboard_plus_expand.png" width="7in"
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+            <para>After you have expanded a section, the icon turns blue. You can collapse the
+                information by clicking on the icon again. You can also sort information in tables
+                by clicking a table heading. </para>
+        </section>
+        <section xml:id="doc-6e9600ba-88ff-4a6f-8e41-681693a2ebf5">
+            <title>Searching for a Specific Student</title>
+            <para>You can use the search field in the upper right of the screen to navigate directly
+                to a student's profile page. When you search for a student you must match their name
+                in the database or the search will not return the student in the results. The search
+                will also not return results if you do not have the appropriate permissions to view
+                the student's information. </para>
+        </section>
+    </section>
+</chapter>

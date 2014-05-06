@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_logs-parser"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Special Case: Parser Errors and Warnings</title>
+    
+    <para>
+        &PRODUCTABBR; embeds the Xerces XML parser to validate incoming 
+        files against the &INGESTIONSCHEMANAME; schema. These Xerces 
+        errors and warnings, along with hints on how to resolve them, 
+        can be found in the Xerces parser documentation 
+        (<link xlink:href="http://xerces.apache.org/" xlink:show="new">http://xerces.apache.org/</link>).
+    </para>
+    <para>
+        A Xerces parser error results in an error for ingestion, too.
+        This means that the associated data is not ingested, and follow-up
+        action is necessary to resolve the issue.
+    </para>
+    <para>
+        The following are some common example scenarios where a parser error 
+        results in an ingestion failure, including a look at both the
+        incorrect XML causing the error and the correct XML that should
+        resolve the error.
+    </para>
+    <section xml:id="c-ingestion_logs-parser-example_errors-element_order">
+        <title>XML elements are out of order</title>
+        <para>
+            The &INGESTIONSCHEMANAME; schema defines a certain sequence 
+            those elements should follow.
+        </para>
+        <informaltable>
+            <?dbfo keep-together="always"?>
+            <tgroup cols="2" align="left">
+                <?dbfo cellspacing="0" ?>
+                <?dbfo cellpadding="0" ?>
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*" />
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Incorrect XML
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Correct XML
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <programlisting><![CDATA[
+<Student>
+   <Name>
+      <FirstName>Rhonda</FirstName>
+      <MiddleName>Shannon</MiddleName>
+   </Name>
+   <StudentUniqueStateId>
+      530425896
+   </StudentUniqueStateId>
+   ...
+</Student>
+]]></programlisting>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[
+<Student>
+   <StudentUniqueStateId>
+      530425896
+   </StudentUniqueStateId>
+   <Name>
+      <FirstName>Rhonda</FirstName>
+      <MiddleName>Shannon</MiddleName>
+   </Name>
+   ...
+</Student>
+]]></programlisting>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    <section xml:id="c-ingestion_logs-parser-example_errors-undefined_element">
+        <title>XML element not defined in the XSD</title>
+        <para>
+            An element not defined in the &INGESTIONSCHEMANAME; schema or
+            that is not part of a record cannot be ingested.
+        </para>
+        <informaltable>
+            <?dbfo keep-together="always"?>
+            <tgroup cols="2" align="left">
+                <?dbfo cellspacing="0" ?>
+                <?dbfo cellpadding="0" ?>
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*" />
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Incorrect XML
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Correct XML
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <programlisting><![CDATA[
+<Student>
+   <StudentUniqueStateId>
+      530425896
+   </StudentUniqueStateId>
+      <Name>
+         <FirstName>Rhonda</FirstName>
+         <MiddleName>Shannon</MiddleName>
+      </Name>
+      <FavoriteFlower>Rose</FavoriteFlower>
+      ...
+</Student>
+]]></programlisting>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[
+<Student>
+   <StudentUniqueStateId>
+      530425896
+   </StudentUniqueStateId>
+      <Name>
+         <FirstName>Rhonda</FirstName>
+         <MiddleName>Shannon</MiddleName>
+      </Name>
+      ...
+</Student>
+]]></programlisting>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    <section xml:id="c-ingestion_logs-parser-example_errors-min_size">
+        <title>XML element of minimum size "1" cannot be empty</title>
+        <para>
+            An element defined in the &INGESTIONSCHEMANAME; schema to have a
+            minimum size of "1" cannot be left empty when creating or
+            updating the record.
+        </para>
+        <informaltable>
+            <?dbfo keep-together="always"?>
+            <tgroup cols="2" align="left">
+                <?dbfo cellspacing="0" ?>
+                <?dbfo cellpadding="0" ?>
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*" />
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Incorrect XML
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Correct XML
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <programlisting><![CDATA[
+<Student>
+   <StudentUniqueStateId>
+   </StudentUniqueStateId>
+      <Name>
+         <FirstName>Rhonda</FirstName>
+         <MiddleName>Shannon</MiddleName>
+      </Name>
+   ...
+</Student>
+]]></programlisting>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[
+<Student>
+   <StudentUniqueStateId>
+      530425896
+   </StudentUniqueStateId>
+      <Name>
+         <FirstName>Rhonda</FirstName>
+         <MiddleName>Shannon</MiddleName>
+      </Name>
+      ...
+</Student>
+]]></programlisting>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+</section>

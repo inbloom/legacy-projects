@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+   
+<chapter xml:id="doc-b6abf6df-aa93-4534-8b87-e759d8e30554"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Services: Landing Zones</title>
+    
+    <para> A landing zone is a location that a user with "ingestion_user" privileges can log into,
+        place files for the ingestion service to process, and begin populating the database for an
+        educational organization and tenant. </para>
+    
+    <section xml:id="doc-7c7dbc1a-ff78-4e0d-bc98-c318319a18cc">
+        <title>Landing Zones: What You Need to Know Before Deployment</title>
+        <para>
+            Landing zones use SFTP, authenticated by the same LDAP that authenticates 
+            users of the administrator/operator realm. This allows credentials to be 
+            unified and authorization to be centralized. The landing zone uses GlusterFS 
+            which is a distributed file system that serves as the file storage medium 
+            between the landing zone servers and ingestion servers.  
+            This allows for simple scaling in terms of concurrent operations 
+            per second, as well as storage should it ever become an issue 
+            for the landing zone or ingestion workspaces.
+        </para>
+    </section>
+    
+    <section xml:id="doc-cd43f442-ddb7-4e76-a338-183e45baf09f">
+        <title>Landing Zones: Installation</title>
+        <para>
+            Installing the landing zones service requires the following:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    GlusterFS (http://www.gluster.org)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    ProFTPD (http://www.proftpd.org)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Access to the SimpleIDP's LDAP server.
+                </para>
+            </listitem>
+        </itemizedlist>
+        
+        <section xml:id="op-deploy_services-landing_zones-glusterfs-setup">
+            <title>Set Up GlusterFS for Landing Zones</title>
+            <para>
+                GlusterFS is a distributed filesystem which allows a user to 
+                take various storage "bricks" and assemble them into one larger
+                storage pool of storage. GlusterFS should be deployed across 
+                at least two storage bricks. 
+            </para>
+            <para>
+                The instructions below assume that on each server, a volume 
+                named <filename>/gluster</filename> has been mounted, and 
+                represents the local disk storage. It also assumes use
+                specifically for the landing zones service:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Install the GlusterFS packages:
+                    </para>
+                    <programlisting><![CDATA[
+rpm -ihv http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-core-3.2.6-1.x86_64.rpm http://download.gluster.org/pub/gluster/\
+glusterfs/LATEST/RHEL/glusterfs-fuse-3.2.6-1.x86_64.rpm \
+http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-geo-replication-3.2.6-1.x86_64.rpm
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Setup the services to start on boot:
+                    </para>
+                    <programlisting><![CDATA[
+chkconfig glusterfsd on
+chkconfig glusterd on   
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Join the servers together using the Gluster peer probe.  
+                        This needs to be done for every server after the first one.  
+                        If you were deploying Gluster across four nodes, you would 
+                        execute the command three times for the three additional servers.
+                    </para>
+                    <programlisting><![CDATA[
+[root@gluster01 ~]# gluster peer probe gluster02
+Probe successful
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Confirm that a peer exists using: 
+                        <code>gluster peer status</code>
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Create your GlusterFS volume:
+                    </para>
+                    <programlisting><![CDATA[
+gluster volume create ingestion replica 2 transport tcp \
+gluster01:/gluster gluster02:/gluster
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Set IP level permissions for Gluster volume access:
+                    </para>
+                    <programlisting><![CDATA[
+gluster volume set ingestion auth.allow 10.10.10.11,\
+10.10.10.12,10.10.11.11,10.10.11.12 
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        View the volume settings via the <code>`gluster volume info`</code> command.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Start the GlusterFS volume.
+                    </para>
+                    <programlisting><![CDATA[
+[root@gluster01 ~]# gluster volume start ingestion
+Starting volume ingestion has been successful
+]]></programlisting>
+                </step>
+            </procedure>
+        </section>
+        
+        <section xml:id="op-deploy_services-landing_zones-glusterfs-attach">
+            <title>Attaching the GlusterFS volume to the Ingestion and Landing Zone Servers</title>
+            <para>
+                Use the following procedure to attach the GlusterFS volume 
+                created in 
+                <xref linkend="op-deploy_services-landing_zones-glusterfs-setup"/>
+                to the ingestion and landing zone servers:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Install the packages needed for attaching the volume:
+                    </para>
+                    <programlisting><![CDATA[
+yum -y install opensm fuse fuse-libs libibverbs
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Install GlusterFS Packages:
+                    </para>
+                    <programlisting><![CDATA[
+rpm -ihv http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-core-3.2.6-1.x86_64.rpm http://download.gluster.org/pub/gluster/\
+glusterfs/LATEST/RHEL/glusterfs-fuse-3.2.6-1.x86_64.rpm \
+http://download.gluster.org/pub/gluster/glusterfs/LATEST/RHEL/\
+glusterfs-geo-replication-3.2.6-1.x86_64.rpm
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Make a directory to mount the folder to, such as 
+                        <filename>/ingestion</filename>:
+                    </para>
+                    <programlisting><![CDATA[
+mkdir /ingestion
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Add an entry in <filename>/etc/fstab</filename> 
+                        as follows:
+                    </para>
+                    <programlisting><![CDATA[
+echo "gluster01:/ingestion /ingestion glusterfs defaults,_netdev,transport=tcp,\
+log-level=WARNING,log-file=/var/log/gluster.log 0 0" >> /etc/fstab
+]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        Use the mount command to mount your new volume:
+                    </para>
+                    <programlisting><![CDATA[
+mount -a
+]]></programlisting>
+                </step>
+            </procedure>
+        </section>
+        
+        <section xml:id="doc-39d9acf8-5152-4b75-bf26-022d13e46d91">
+            <title>Setting up the Landing Zone Server(s)</title>
+            <para>
+                Use the following procedure to complete setting up the landing 
+                zone service following the successful completion of the
+                GlusterFS setup and attachment:
+            </para>
+            <procedure>
+                <step>
+                    <para>The provided scripts below should be deployed to the landing zone servers.</para>
+                    <para><filename>opstools/ingestion_trigger/publish_file_uploaded.rb</filename></para> 
+                    <para><filename>opstools/ingestion_trigger/ftpwrapper.sh</filename></para>
+                    <para>To deploy, copy the scripts to <filename>/opt/sli/bin/</filename></para>
+                    <para>The ActiveMQ Stomp rubygem must be installed for this script to function:
+                        <filename>https://rubygems.org/gems/stomp</filename>
+                        <filename>gem install stomp</filename>
+                    </para>
+                </step>
+                <step>
+                    <para>Install the ldap packages required to complqete this process:
+                        <filename>yum install -y pam_ldap nss-pam-ldapd</filename>
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Create or modify the <filename>/etc/ldap.conf</filename> (depending on Linux OS version, this may be <filename>/etc/pam_ldap.conf</filename>) to match your environment, specifically the same environment and organizational unit structure that the admin application and the SimpleIDP are configured to point to. Specifically, users and group memberships will need to be accessed by the landing zone server.
+                    </para>
+                </step>
+                <step>
+                    <para>Edit the <filename>/etc/proftpd.conf</filename> file to match your environment and security requirements. At a minimum, enable SFTP, ensure that the DefaultRoot for users is set to "~", and add the mod_exec configuration for the ingestion trigger. Depending on the authentication configuration, you will likely have ProFTPD point to its own PAM configuration via the AuthPAMConfig option.</para>
+                    <para>The following configuration will trigger ingestion upon file upload completion and should be added to the <filename>/etc/proftpd.conf</filename> file:</para>
+                    <note><para>** You must replace the #ACTIVEMQSERVENAME#
+                        placeholder with the top level domain of the ActiveMQ server **
+                    </para></note>
+<programlisting><![CDATA[                
+LoadModule mod_exec.c
+<IfModule mod_exec.c>
+  ExecEngine on
+  ExecLog /var/log/proftpd/mod_exec.log
+  ExecOnCommand STOR /opt/sli/bin/ftpwrapper.sh %U %m %f #ACTIVEMQSERVENAME#
+</IfModule>
+]]></programlisting>  
+                    <para><emphasis>Note:</emphasis> &PRODUCTABBR; requires mod_exec and mod_rewrite. We have validated that these modules already included in the proftpd packages provided by Red Hat and Ubuntu.</para>
+                    <para>The following configuration adds a timestamp component to uploaded .zip
+                        files and should be added to the <filename>/etc/proftpd.conf</filename>
+                        file.</para>
+<programlisting><![CDATA[                        
+LoadModule mod_rewrite.c
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCondition %m STOR
+    RewriteRule ^(.*?)\.(zip)$ $1.%t.$2 
+</IfModule>
+]]>                        
+</programlisting>
+<para>The following configuration controls the file types that can be uploaded and should be added to the <filename>/etc/proftpd.conf</filename> file.</para>
+<programlisting><![CDATA[                        
+PathAllowFilter \.(zip) 
+]]>                        
+</programlisting>
+                    <para><emphasis>Note:</emphasis> Do not use multiple PathAllowFilter directives; proftpd only reads the first one.</para>
+                </step>
+                <step>
+                    <para>
+                        In the PAM configuration stack used by ProFTPD, perform group membership validation to ensure that the user is a member of the "ingestion_user" group. This can be performed via the pam_lsitfile.so module. 
+                    </para>
+                    <programlisting>
+<![CDATA[auth required pam_listfile.so onerr=fail item=group sense=allow \ file=/etc/proftpd_allowed_group                        
+                        ]]>
+                    </programlisting>
+                    <para>The <filename>/etc/proftpd_allowed_group</filename> file should contain "ingestion_user", which matches the group name in LDAP.</para>
+                </step>
+                <step>
+                    <para>Depending on your ProFTPD configuration, you will need to add <property>/sbin/nologin</property> to your <filename>/etc/shells</filename> file. Users created in the LDAP Directory get a default loginShell of <filename>/sbin/nologin</filename>. This is especially important when operating in Sandbox mode, where developer accounts have the intended ability to log in directly for test data ingestion.</para>
+                </step>
+                <step>
+                    <para>
+                        At this point, if all is working correctly, a user should be able to log in to the SFTP server via the LDAP server. <emphasis>Note:</emphasis> ProFTPD will not allow a user to log in that has a nonexistent home directory. You may wish to create a temporary testing user that is rooted at an upper level folder such as <filename>/ingestion</filename> for initial testing purposes only.
+                    </para>
+                </step>
+            </procedure>
+        </section>
+        
+    </section>
+        
+    <section xml:id="doc-4898713c-8d20-4eec-9622-ae0269a84ac4">
+        <title>Landing Zones: Configuration</title>
+        <para> An &OPERATORROLE; or administrator can configure one or more landing zones using the
+                <guilabel>Create Landing Zone</guilabel> system tool on the
+                <guilabel>Admin</guilabel> page. </para>
+        <para> When configuring a landing zone, &PRODUCTABBR; performs two changes to LDAP which
+            control a user's ability to access the landing zone, provided that the user exists in
+            the administrator's or operator's realm. The application defines a home directory for
+            the user in &PRODUCTABBR;, which serves as the target directory when a user accesses the
+            SFTP servers. In addition to this home directory, the user is added to the
+                <filename>ingestion_user</filename> group, which is the group used when configuring
+            access control to the landing zone SFTP server. </para>
+        <note>
+            <title>Sandbox Tip</title>
+            <para>
+                In Production mode, only an education organization's administrator would ingest data
+                    files. In Sandbox mode, though, application developers are granted the ability to ingest
+                    data for their own education organization. Developers can create their own landing
+                    zones for the Sandbox using the same <guilabel>Create Landing Zone</guilabel>
+                    application.
+            </para>
+        </note>
+        <para>
+            When ingestion's complete, the ingestion processor leaves original files (unzipped) in the 
+                <filename>.done</filename> directory of each landing zone. This is useful for troubleshooting
+                ingestion issues and for retrying the ingestion process without uploading the files again.
+                Maintenance is important for this directory: it should be cleaned up on a regular schedule
+                to prevent consuming all available filesystem storage. We recommend that the operator create a 
+                periodically running process, like a <command>cron</command> job, to remove the contents of the 
+                <filename>.done</filename> directory according to a policy such as "files over six months old." 
+                This process should also take care not to remove any files that are associated with a currently 
+                running ingestion.
+        </para>
+    </section>
+    
+    <section xml:id="doc-e699806d-6ced-4423-af29-ae4cac464b49">
+        <title>Landing Zones: Troubleshooting During Deployment</title>
+        <para>
+            Troubleshooting the landing zone will primarily be an exercise in ensuring that the 
+            following statements are true.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A shared filesystem (GlusterFS) is mounted and is allowing the same folder path to 
+                    be visible between the servers.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A landing zone user can be authenticated via the admin application's LDAP server, 
+                    can log in via the ProFTPD daemon operating in SFTP mode, and can access a home 
+                    directory that resides on the shared filesystem.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Application and User operating umasks, as well as group memberships are such that 
+                    a file written to the landing zone server, can be read, and written to by the user 
+                    running the ingestion serice.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+
+</chapter>
+    
+
+        

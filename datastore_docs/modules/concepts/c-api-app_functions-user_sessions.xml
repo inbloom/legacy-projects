@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<chapter xml:id="c-api-app_functions-user_sessions"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Manage User Sessions</title>
+    
+    <para> An application can use the following API resources set up and manage user sessions with a
+        given &PRODUCTABBR; deployment. This is for applications targeted at day-to-day use by end
+        users that interact with education data, including Secure Data Service administrators,
+        educators, students, or others who have user accounts in the tenant's IDP. </para>
+    
+    <xi:include href="../reference/r-api-resource-system-session-check.xml"/>
+    
+    <xi:include href="../reference/r-api-resource-system-session-logout.xml"/>
+    
+    <xi:include href="../reference/r-api-resource-system-session-debug.xml"/>
+    
+</chapter>

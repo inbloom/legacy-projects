@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-fdcf320a-c2cd-4f38-9496-9589f393be19"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title><phrase role="1.3-added">Handling Developer Account Creation Requests in Production Mode</phrase></title>
+    
+    <para><phrase role="1.3-added">When developers try to move their applications into a Production environment, they need to request a new account for the Production environment. These requests can only be approved by &PRODUCTABBR; operators.</phrase></para>
+    <para><phrase role="1.5-added">When a developer requests a new account, an email notification will be sent to the <property>sli.support.email</property> located in the <filename>sli.properties</filename> file. See <xref linkend="doc-6c50b64d-141c-422d-8135-06cb6fee8043"/> for more information.</phrase>
+    </para>
+    <para>This email will be sent from the <property>email_sender_address</property> and <property>email_sender_name</property> located in the administration tool's <filename>config.yml</filename> file. Please see <xref linkend="doc-e6a7fddf-3b76-4a55-9bd3-3f93de6384c2"/> for more information.</para>
+    <para><phrase role="1.5-info">[Added information on how developer account creation requests are sent. This is part of <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289701840d/detail/defect/7677812452">DE1617</link>.]</phrase></para>
+    <para>To approve/reject a developer account request:</para>
+    <procedure>
+        <step>
+            <para>
+                Log in to &PRODUCTABBR;. 
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guilabel>Admin</guilabel>.
+            </para>
+        </step>
+        <step>
+            <para> Click <guilabel>Approve Account</guilabel>. The Authorize Developer Account page
+                displays: </para>
+            <figure xml:id="figure-authorize_developer_account">
+                <title><phrase role="1.3-added">Authorize Developer Account Page</phrase></title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="left"
+                            fileref="images/admin_tools-authorize_developer_account.png" 
+                            width="9in" scalefit="1"/>
+                    </imageobject>
+                    <imageobject  role="fo">
+                        <imagedata align="center" 
+                            fileref="../common/images/admin_tools-authorize_developer_account.png" 
+                            width="7in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </step>
+        <step>
+            <para> The Authorize Developer Account page displays a listing of developer accounts and
+                their associated statuses. For an account with a status of pending, click
+                    <guibutton>Approve</guibutton> or <guibutton>Reject</guibutton>. </para>
+        </step>
+    </procedure>
+    <para>If you approve the account, the developer will receive an email notifying him or her of the approval. The developer can then begin using the account.</para>
+    <para>
+        The Authorize Developer Account page also includes the ability to disable an account once it has been approved.
+    </para>
+</chapter>

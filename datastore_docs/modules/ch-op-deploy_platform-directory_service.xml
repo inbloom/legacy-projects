@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+   
+<chapter xml:id="doc-f4f8305d-43e2-4641-956e-ab66be20557b"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Platform: Directory Service</title>
+    
+    <para>
+        The user authentication data store for the SimpleIDP uses OpenLDAP. This is described in the
+        user authentication and landing zone authentication sections of this document.
+    </para>
+    <para>
+        OpenLDAP can be installed via various package management systems. We  
+        recommend installing the current release version of OpenLDAP from source.  
+        This is due to known issues with replication in the currently available packages 
+        for RedHat Enterprise Linux.
+    </para>
+    <para>
+        An installation of at least two OpenLDAP servers is recommended with N-Way 
+        Multi-Master Replication.
+    </para>
+    <para>
+        OpenLDAP installation documentation can be found at: 
+        <link xlink:show="embed" xlink:href="http://www.openldap.org/doc/admin24/install.html">http://www.openldap.org/doc/admin24/install.html</link>
+    </para>
+    <para>
+        OpenLDAP documentation on replication can be found at: 
+        <link xlink:show="embed" xlink:href="http://www.openldap.org/doc/admin24/replication.html">http://www.openldap.org/doc/admin24/replication.html</link>
+    </para>
+    <para>
+        OpenLDAP documentation on password policy controls can be found in Section 12.10 of 
+        the OpenLDAP Administration Guide.  The specific section can be found here: 
+        <link xlink:show="embed" xlink:href="http://www.openldap.org/doc/admin24/overlays.html#Password%20Policies">http://www.openldap.org/doc/admin24/overlays.html#Password Policies</link>
+    </para>
+    <para>
+        OpenLDAP documentation on SSL setup can be found at: 
+        <link xlink:show="embed" xlink:href="http://www.openldap.org/doc/admin24/tls.html">http://www.openldap.org/doc/admin24/tls.html</link>
+    </para>
+    <para>
+        As password controls are placed in the OpenLDAP server, the ppolicy overlay, along 
+        with the ppolicy_hash_cleartext (olcPPolicyHashCleartext) and password-hash 
+        (olcPasswordHash) configuration options must be used for secure password storage, 
+        in addition to ACLs in the directory that control and protect access to passwords, 
+        and overall directory write access.
+    </para>
+    <para>
+        <note>
+            <para>A non-manager account MUST be utilized for all interaction between the software
+                and the LDAP directory because the OpenLDAP Manager account does not have the
+                "ppolicy" overlay applied to its interactions.  Therefore. a generic account object
+                must be created and granted elevated privileges through the Access/olcAccess method.
+                This allows that non-manager account to Read/Write across the Organizational Unit
+                that the software is configured to utilize. </para>
+        </note>
+    </para>
+    <para>
+        OpenLDAP configuration changes:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                olcSizeLimit - The default OpenLDAP query size limit of 500
+                must be relaxed. Suggested value for this option is 
+                "unlimited". Two functions of the system may be impacted if 
+                the number of &PRODUCTABBR; Hosted Users (including
+                Operators, SEA Administrators, LEA Administrators, 
+                Ingestion Users, and Application Developers) exceeds this 
+                value: &OPERATORROLE;'s account management tool, and 
+                developer account registration.
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</chapter> 
+

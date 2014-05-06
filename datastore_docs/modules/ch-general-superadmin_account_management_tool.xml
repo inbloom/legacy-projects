@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-009571d0-c7a8-464c-a5bd-af3c408d880a"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Manage Administrator Accounts system tool</title>
+    
+    <para>The Manage Administrator Accounts system tool allows you to create new administrative users in
+        &PRODUCTABBR; that have access to an &PRODUCTABBR; deployment. These administrative users
+        perform the day-to-day functions of maintaining an &PRODUCTABBR; instance, including adding
+        users, managing roles and permissions, enabling and configuring applications, and
+        troubleshooting deployment issues.</para>
+    
+    <note>
+        <para>Each &PRODUCTABBR; deployment will have an initial super-administrator account created. This is created by the &COMPANYABBR; operator as part of the creation process.</para>
+    </note>
+    
+    <section xml:id="doc-34cc5a15-768c-4f50-b2bf-dab05e154c6f">
+        <title>Administrative User Roles</title>
+        <para>There are several types of administrative users in &PRODUCTABBR;. The administrator roles are:</para>
+        <table frame="all" xml:id="table-197e726d-94f7-44fb-9227-23ac5ccc4d98">
+            <title>Administrative Users</title>
+            <tgroup cols="4">
+                <colspec colname="c1" colnum="1" colwidth="3.16*"/>
+                <colspec colname="c2" colnum="2" colwidth="1.61*"/>
+                <colspec colname="c3" colnum="3" colwidth="4.69*"/>
+                <colspec colname="newCol5" colnum="4" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry>Role</entry>
+                        <entry>Responsibilities</entry>
+                        <entry>Can Create</entry>
+                        <entry>Created By</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>&COMPANYABBR; Operator</entry>
+                        <entry>Setting up and maintaining an &PRODUCTABBR; deployment.
+                                <emphasis>Note:</emphasis> These users are not added to a Tenant or
+                            EdOrg. </entry>
+                        <entry>Any type of administrative user. </entry>
+                        <entry>&OPERATORROLE;.</entry>
+                    </row>
+                    <row>
+                        <entry>SEA Super-administrator</entry>
+                        <entry>Administering state-level instances of the &PRODUCTABBR; platform. This
+                            includes creating new admininistrative users and viewing security events for
+                            delegated child educational organizations. </entry>
+                        <entry>For their SEA: SEA Super-administrators, LEA Super-administrators,
+                            Realm Administrators, and Ingestion Users.</entry>
+                        <entry>&OPERATORROLE; or other SEA Super-administrators within the same
+                            SEA.</entry>
+                    </row>
+                    <row>
+                        <entry>LEA Super-administrator</entry>
+                        <entry>Administering district-level &PRODUCTABBR; instances. Typically, this includes
+                            creating new LEA Admins, and enabling and configuring applications for a
+                            district.</entry>
+                        <entry>For their LEA: LEA Super-administrators, Realm Administrators, and
+                            Ingestion Users.</entry>
+                        <entry>&OPERATORROLE;, SEA Super-administrators or other LEA
+                            Super-administrators within the same LEA.</entry>
+                    </row>
+                    <row>
+                        <entry>Realm Administrator</entry>
+                        <entry>Administering realms within &PRODUCTABBR;. Realm Administrators will also map
+                            roles between &PRODUCTABBR; and an EdOrg's identity
+                            provider.</entry>
+                        <entry>Cannot create other administrative users.</entry>
+                        <entry>&OPERATORROLE;, SEA Super-administrators or LEA
+                            Super-administrators.</entry>
+                    </row>
+                    <row>
+                        <entry>Ingestion User</entry>
+                        <entry>Uploads data to a specified tenant. </entry>
+                        <entry>Cannot create other administrative users.</entry>
+                        <entry>&OPERATORROLE;, SEA Super-administrators or LEA
+                            Super-administrators.</entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    
+    <section xml:id="doc-fbb9c714-f772-4f9c-a44d-7f4279263c1e">
+        <title>Creating a New Admininistrative User</title>
+        <para>To create a new administrative user:</para>
+        <procedure>
+            <step>
+                <para> Log in to &PRODUCTABBR; using your administrator account. </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Admin</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para> Click <guibutton>Manage Administrator Accounts</guibutton> under System
+                    Configuration. You are taken to the Manage Administrator Accounts page.</para>
+            </step>
+            <step>
+                <para> Scroll to the bottom of the page and click the <guibutton>Add
+                        User</guibutton> button. You are taken to the Add a User page: </para>
+                <figure xml:id="figure-Adding-New-Admin-User">
+                    <title>The Add a User Page</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="center" 
+                                fileref="images/add_administrator_user.jpg" 
+                                width="750px" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/add_administrator_user.jpg" 
+                                scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+            <step>
+                <para>Fill out the form.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Full Name</emphasis> - Enter the user's first name and last name. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Email</emphasis> - Enter the user's email address. All users
+                            that you create will receive emails that allow them to activate their
+                            accounts. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Role</emphasis> - Select a role for the user.
+                                <emphasis>Note:</emphasis> You can add ingestion and realm
+                            administration rights for users regardless of their roles.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Ingestion User</emphasis> - Select whether or not to give this user the ability to ingest data to &PRODUCTABBR;.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Realm Administrator</emphasis> - Select whether or not to give
+                            this user the ability to administer a realm. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Tenant</emphasis> - Add a Tenant for the user, if applicable.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>EdOrg</emphasis> - Add an Educational Organization for the user, if applicable.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>Click <guibutton>Save</guibutton>. You are returned to the Manage Administrator Accounts page.</para>
+            </step>
+        </procedure>
+        <para>The user will appear in the table on the Manage Administrator Accounts page. The user will
+            also receive an email requesting a password update.</para>
+        <para>If you need to change a user's contact information, role, permissions, or tenant, click <guibutton>Edit</guibutton>. If you need to delete a user, click <guibutton>Delete</guibutton>.</para>
+    </section>
+    
+    <section xml:id="doc-4f029564-0680-4bd2-9045-adbc8252a531">
+       <title>User Account Activation</title>
+       <para>Once you have created a new administrative user, that user must activate the account. The process for
+            a user activating an account is:</para>
+        <procedure>
+            <step>
+                <para>The user receives an email containing a reset password link. When the user
+                    clicks the link, that user goes to the first page in the password reset
+                    process. </para>
+            </step>
+            <step>
+                <para> The user enters his or her email address as the user ID. Once the user
+                    submits the form, an email is sent to the user that contains a link to the Reset
+                    Password page. The user clicks the link in the email to go to the Reset Password page.</para>
+            </step>
+            <step>
+                <para>
+                    The user enters a password. Once the page is saved, the user's administrative account is activated.
+                </para>
+            </step>
+        </procedure>
+            <para>Once the account is activated, the user will receive a welcome email that includes
+            information on contacting support and on logging into &PRODUCTABBR;.</para>
+   </section>
+</chapter>

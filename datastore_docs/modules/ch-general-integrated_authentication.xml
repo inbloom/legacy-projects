@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-04b5bed0-dae0-4331-b0cc-15e2cbcfdf03"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Integrated Authentication: &PRODUCTCAPS; and Local Directory Services</title>
+    
+    <para>
+        &COMPANYABBR; recognizes that an
+        <glossterm linkend="def-education_organization">education organization</glossterm>
+        will have its own directory services used for user authentication 
+        within that organization. The &PRODUCTABBR; model aims to integrate
+        authentication to &PRODUCTABBR; applications and services with that 
+        of other education organization resources. By taking this approach, 
+        end users can use the same credentials for &PRODUCTABBR; resources
+        as for other applications and data in the same education organization. 
+        This also facilitates integration with any single sign-on (SSO) 
+        solution already in use by the education organization. 
+    </para>
+    <para>
+        The diagram below shows an example of how end users authenticate 
+        to &PRODUCTABBR; applications and services through this integrated 
+        authentication model.
+    </para>
+    <figure xml:id="figure-security-integrated_authentication_example">
+        <title>Integrated Authentication Model Overview</title>
+        <mediaobject>
+            <imageobject role="html">
+                <imagedata align="center"
+                    fileref="images/security-integrated_authentication_example.png"
+                    width="800px" scalefit="1" />
+            </imageobject>
+            <imageobject role="fo">
+                <imagedata align="center"
+                    fileref="../common/images/security-integrated_authentication_example.png"
+                    width="7in" scalefit="1" />
+            </imageobject>
+        </mediaobject>
+    </figure>
+    
+    <para> 
+        &COMPANYABBR; uses the following as its guiding principles in 
+        developing and maintaining an integrated authentication solution: 
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Only authorized individuals gain access to the 
+                information they are authorized to view or change.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                All traffic between &PRODUCTABBR; applications and 
+                services and the education organization's directory 
+                services is encrypted.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                All sign-in activities, both successes and failures, 
+                are logged by the education organization.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                All failed attempts to access data is logged in the 
+                &PRODUCTABBR; security logs for audit purposes.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                All application and user access to the &RESTAPI; 
+                requires authentication. No anonymous access is allowed.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Controls exist to ensure that session identification 
+                mechanisms are protected and to ensure that a session 
+                cannot be compromised.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para> 
+        Technology used in &PRODUCTABBR; for integrated authentication 
+        includes the following:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <glossterm linkend="def-saml">Security Assertion Markup Language (SAML) 2.0</glossterm> -
+                &PRODUCTABBR; applications and services prompt for user 
+                credentials using the SAML protocol, and the 
+                identity provider (from the education organization) 
+                sends a SAML assertion in response. Role and UID 
+                information for the user are provided as an attribute 
+                of the SAML assertion.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <glossterm linkend="def-oauth">OAuth 2.0</glossterm> - &PRODUCTABBR; uses the OAuth
+                protocol to authenticate users accessing the &PRODUCTABBR; Secure Data Service
+                through the &RESTAPI;. In the integrated solution, the API handles authentication
+                directly from the identity provider (of the education organization), bypassing SAML. </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The sections that follow describe how this integrated 
+        authentication works in the &PRODUCTABBR;.
+    </para>
+    
+    <section xml:id="doc-c5442e0f-9e71-4de0-b761-f82af8bf4792">
+        <title>The &PRODUCTABBR; Authentication Strategy</title>
+        <para> 
+            &PRODUCTABBR; includes its own 
+            <glossterm linkend="def-identity_provider">identity provider</glossterm>
+            (IDP) for the purpose of authenticating users from its Data
+            Store. However, &PRODUCTABBR; also requires that an 
+            education organization use its own identity provider, 
+            typically directory services like LDAP, for managing
+            credentials.
+        </para>
+        <para>
+            With 
+            <glossterm linkend="def-federated_authentication">federated authentication</glossterm>,
+            users authenticate against the directory service for the
+            education organization. Then, the identity of the user is 
+            shared with other &PRODUCTABBR; applications through use of 
+            the <glossterm linkend="def-saml">SAML</glossterm> protocol. 
+            Users can sign in to one &PRODUCTABBR; web application, and 
+            they are automatically signed in to other web-based 
+            &PRODUCTABBR; applications operating in the same browser.
+        </para>
+        <para> The education organization IDP identifies a <glossterm linkend="def-realm"
+                >realm</glossterm> for authentication. &PRODUCTABBR; associates each realm with an
+            educationOrganization entity in the &PRODUCTABBR; Secure Data Service. Users associated
+            to that entity, or to a child educationOrganization under it, can authenticate using
+            that realm. (The staffEdOrgAssignmentAssociation entity establishes that hierarchy in
+            the data store.) </para>
+        <para>
+            Some possible options for configuration are as follows:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    An state-level education organization has an IDP, and 
+                    thus a single realm associated with that organization. 
+                    This allows all users in the state to authenticate with
+                    this one realm.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Each local education organization (two or more schools
+                    groups together under the state, such a county or
+                    district school system) has an IDP, and each 
+                    administrator at that level sets up a realm in
+                    &PRODUCTABBR; to authenticate with that IDP. This would
+                    cover authentication for that organization and its 
+                    schools.
+                </para>
+            </listitem>
+            <listitem>
+                <para> Two or more local education organizations want to share an IDP and need a
+                    shared educationOrganization entity above their individual educationOrganization
+                    entities in the &PRODUCTABBR; Secure Data Service. A realm administrator tied to
+                    that parent organization would then set up the realm that both child
+                    organizations could authenticate against. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Two or more local education organizations want to share
+                    an IDP, but need separate realms. A realm administrator
+                    for each organization sets up a realm pointing to that
+                    shared IDP.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-8034439e-117b-4c03-af18-04edcf627d9e">
+        <title>Federated Authentication Strategy</title>
+        <para> 
+            A <glossterm linkend="def-federation">federation</glossterm> 
+            in &PRODUCTABBR; is a group of identity providers that the 
+            &PRODUCTABBR; identity provider trusts. All communication between 
+            these trusted providers is done using SAML 2.0. The SAML protocol 
+            abstracts any unique characteristics of the providers or of the
+            applications using the authentication services. The trust 
+            relationship is one-way, meaning that education organizations' 
+            directories do not allow &PRODUCTABBR; users to sign in to 
+            non-&PRODUCTABBR; applications and services. 
+        </para>
+        <para>
+            In the federated authentication approach, the education 
+            organization is responsible for authenticating the end user and 
+            managing the authentication credentials. 
+            &PRODUCTABBR; serves as both of the following:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    A native service provider, with applications that 
+                    require authentication
+                </para>
+            </listitem>
+            <listitem>
+                <para> 
+                    A conduit for other service providers (applications) 
+                    that use &PRODUCTABBR; 
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The following is a summary of the user authentication procedure
+            using this federated approach:
+        </para>
+        <orderedlist>
+            <listitem>
+                <para> 
+                    When signing in to an application or service in 
+                    &PRODUCTABBR;, a user is redirected to the 
+                    education organization's directory or SSO service
+                    which collects authentication credentials. 
+                    &PRODUCTABBR; makes this request using SAML 2.0.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The identity provider for that education organization 
+                    authenticates the user and returns a SAML 2.0 assertion 
+                    to the &PRODUCTABBR; service provider indicating that 
+                    the user provided correct credentials. This SAML assertion
+                    includes an attribute with role and unique identifier 
+                    values from the identity provider.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &PRODUCTABBR; authorizes the authenticated user to 
+                    access applications based two values:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">The user's staffClassification value</emphasis> -
+                            In the &PRODUCTABBR; Secure Data Service, a user is associated with an
+                            education organization through its staffEdOrgAssignmentAssociation. Part
+                            of the staffEdOrgAssignmentAssociation is the user's
+                            staffClassification, which stores the user's role in the education
+                            organization. &PRODUCTABBR; authentication checks whether a user's
+                            staffClassification value matches a role that can authenticate using
+                            that realm, either for that education organization, or for one of its
+                            child education organizations. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">How the user's
+                                roles in the education organization are
+                                mapped to roles in &PRODUCTABBR;</emphasis> - 
+                            &PRODUCTABBR; administrators map user roles
+                            as described in
+                            <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>.
+                            This role mapping is required for users to 
+                            access any applications or data in 
+                            &PRODUCTABBR;. &PRODUCTABBR; authorizes
+                            access to applications and data based on
+                            this mapping using contextual authorization
+                            rules described in
+                            <xref linkend="doc-54ba0efa-dd34-4b0f-b911-caf7a8c94065"/>.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </orderedlist>
+        <para>
+            The following diagram shows how this federated authentication 
+            looks in a sample education organization hierarchy. In the example,
+            the state education agency (SEA) and local education agency (LEA) 
+            each have different directory services and SSO solutions, and 
+            &PRODUCTABBR; is configured to trust these identity providers.
+        </para>
+        <figure xml:id="figure-security-federated_authentication_example">
+            <title>An Example of Federated Authentication</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata align="center"
+                        fileref="images/security-federated_authentication_example.png" 
+                        width="800px" scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata align="center"
+                        fileref="../common/images/security-federated_authentication_example.png" width="7in"
+                        scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <para>
+            Applications also follow certain authentication procedures. 
+            Those are described in 
+            <xref linkend="doc-4611d6b5-246f-42db-8d40-393a866b6cc3"/> 
+            along with what to except in the request and response data.
+        </para>
+        <para> 
+            See 
+            <xref linkend="doc-ff1aeb03-01c7-4b80-9bd4-fd89996aa492"/> 
+            for the steps required to prepare an education organization's 
+            directory for federated authentication integration with 
+            &PRODUCTABBR;.
+        </para>
+    </section>
+    
+    <section xml:id="doc-ff1aeb03-01c7-4b80-9bd4-fd89996aa492">
+        <title>&PRODUCTABBR; Authentication Integration Procedure</title>
+        <para> 
+            Part of preparing an education organization to use &PRODUCTABBR; 
+            is ensuring that the organization's directory services can 
+            support authentication integration with &PRODUCTABBR;. The 
+            following preparation steps are required before proceeding with
+            integration. 
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Confirm that there are unique identifiers and user 
+                    roles set for each user listed in the directory, 
+                    and that they are compatible with &PRODUCTABBR;
+                    as follows:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">Unique identifier</emphasis> - &PRODUCTABBR;
+                            authorization requires that each user is uniquely identified within the
+                            system. This ensures that &PRODUCTABBR; can identify all the entities in
+                            the &PRODUCTABBR; Secure Data Service that are associated with the user,
+                            such as the current students associated with a teacher. The unique
+                            identifier should match the staffUniqueStateId in the data that you will
+                            ingest. This will allow us to identify the appropriate users in the
+                            &PRODUCTABBR; Secure Data Service. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">User role</emphasis> - &PRODUCTABBR; relies on
+                            mappings between the user roles in the organization's directory and the
+                            roles in inBloom. On the inBloom side, this includes both the roles in
+                            staffEdOrgAssignmentAssociation (assigned to users in the data store)
+                            and the default or custom roles configured by Roles ensure that
+                            &PRODUCTABBR; can apply the appropriate permissions for access to
+                            records in the &PRODUCTABBR; Secure Data Service. The following
+                            information will help when preparing user roles for this mapping
+                            procedure: </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <xref linkend="doc-0eacbdb2-c7b5-48b1-a97a-5c67f1fdf7d2"/>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>
+                    Prepare the identity provider for the education organization as follows:
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            Verify that the organization's directory service supports
+                            SAML 2.0 for passive authentication services. Microsoft's 
+                            Active Directory (AD), for example, began supporting
+                            SAML 2.0 in Active Directory Federation Services (AD FS 2.0).
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            Install and configure a SAML 2.0 
+                            <glossterm linkend="def-federation">federation</glossterm>.
+                            The steps for doing this vary based on the directory service
+                            product being used. For example, in an Active
+                            Directory environment, this may be done with AD FS 2.0.
+                            Other SSO solutions that support SAML 2.0,
+                            such as SiteMinder (from CA) and OpenAM (from ForgeRock,
+                            formerly OpenSSO from Sun), can be used.
+                        </para>
+                    </step>
+                    <step>
+                        <para>An IDP responds with a SAML assertion asserting who the authenticated user is. The response must be signed using an trusted X.509 certificate. 
+                            The store of trusted certificates that the API has is based on the java 'cacerts' truststore. If the X.509 certificate used by an IDP is not contained within that truststore, 
+                            then the X.509 certificate must be provided to &COMPANYABBR;. If this is not done, then all SAML responses provided by the IDP will not be trusted, and no user will be able to authenticate. 
+                            If a certificate must be provided to &COMPANYABBR;, it might also be necessary to provide intermediate certificates, so that trust can be established between the &COMPANYABBR; API and the X.509 certificate signing the SAML assertion.</para>
+                    </step>
+                    <step>
+                        <para>The Issuer element of the IDP's SAML assertions must be a URL that uniquely identifies the IDP. It should match the IDP URL of the Realm configuration.</para>
+                    </step>
+                    <step>
+                        <para>The X.509 signing certificate may be a wildcard. The wildcard pattern must match the hostname of the SAML Issuer.</para>
+                    </step>
+                    <step>
+                        <para>Artifact Binding: The IDP can be configured to respond to &COMPANYABBR; API's authentication request using SAML Artifact Binding protocol.</para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    The &COMPANYABBR; API supports sending client certificate with its Artifact Resolution requests to the IDP. If the IDP server wants to verify the &COMPANYABBR; API's certificate, it should be obtained from the &COMPANYABBR; Operator and added to the IDP server's truststore.
+                                </para>
+                            </listitem>
+                        </itemizedlist>    
+                    </step>
+                    <step>
+                        The IDP can be set up to send encrypted SAML Assertions to the &COMPANYABBR; API. The &COMPANYABBR; API accepts both encrypted and unencrypted SAML Assertions for both Artifact Binding and POST protocols. The public key that can be used to encrypt assertions is available via the &COMPANYABBR; API's metadata endpoint.
+                    </step>
+                </substeps>
+            </step>
+            <step>
+                <para>
+                    Configure the federation using the following steps:
+                </para>
+                <substeps>
+                    <step>
+                        <para> Configure the organization's SAML 2.0 identity provider to enable
+                            trust from &PRODUCTABBR;. You can use the SAML metadata endpoint to
+                            quickly configure the &PRODUCTABBR; API as a service provider. The 
+                            certificate used by &PRODUCTABBR; API to digitally sign the artifact 
+                            resolution request can be obtained from this endpoint. The
+                            endpoint can be found at $BASE_URL/api/rest/saml/metadata.  </para>
+                    </step>
+                    <step>
+                        <para>
+                            Configure the organization's SAML 2.0 identity provider to include the following required user attributes in each SAML assertion response:
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    userName - the user's full name
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    userId - the unique identifier for that user within the organization
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    roles - The roles or group memberships that user has within the organization
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    userType (optional) - Enum = Staff, Teacher, Student.
+                                </para>
+                                <para><emphasis>Note:</emphasis> If userType is not passed in
+                                    the SAML, then the userId is treated as a staffUniqueStateId.
+                                    This means the user is mapped to Staff through the
+                                    staffUniqueStateId or to Teacher through the Teacher's
+                                    staffUniqueStateId.</para>
+                            </listitem>
+                        </itemizedlist>
+                    </step>
+                    <step>
+                        <para>
+                            Using the Manage Realm system tool in &PRODUCTABBR;, covered
+                            in the &PRODUCTABBR; Administrator Guide,
+                            configure a realm that requires the organization's SAML 2.0
+                            identity provider and endpoint URL.
+                        </para>
+                    </step>
+                </substeps>
+            </step>
+            <step>
+                <para>
+                    Map the user roles from the education organization to corresponding
+                    roles in &PRODUCTABBR;. For information and instructions on
+                    how to create and maintain these mappings, see the <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/> page.
+                </para>
+            </step>
+            <step>
+                <para> Prepare for data ingestion by mapping the entities in the &PRODUCTABBR;
+                    Secure Data Service map to attributes within the organization's directory
+                    record. This step may take some time to ensure no data is overlooked. The
+                    information needed to perform this task can be found in <xref
+                        linkend="doc-839bc975-b6ab-46cc-a358-3be48baa31ce"/>. </para>
+            </step>
+        </procedure>
+        <para> Note that by following this procedure, any users whose records are ingested by the
+            data ingestion process, <emphasis>and</emphasis> whose user roles in the organization
+            are mapped to roles in &PRODUCTABBR;, can authenticate successfully with &PRODUCTABBR;
+            applications and services and access data from the &PRODUCTABBR; Secure Data Service to
+            which they have permission. </para>
+    </section>
+    
+        <section xml:id="doc-c15c7528-7e8e-4c30-bd31-cbec46da1395">
+            <title>Configure &PRODUCTCAPS; to work with your IDP</title>
+            <para>
+                Before you can continue, you must set up your realm in 
+                &PRODUCTABBR; using the Manage Realm and Create Custom Roles 
+                system tools, as described in administrator documentation 
+                and <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>.
+            </para>
+            <para>
+                You will need to provide at a minimum the SAML identifier (&PRODUCTABBR; IDP)
+                and authentication starting URL (redirect URL) when configuring the realm.
+                In addition, the artifact resolution endpoint and IDP source ID may be
+                optionally provided (as a set) if artifact resolution is required.
+            </para>
+        </section>
+    
+        <section xml:id="doc-4611d6b5-246f-42db-8d40-393a866b6cc3">
+            <title>Integrated &PRODUCTABBR; Application Authentication</title>
+            <para> &PRODUCTABBR; applications that use the &RESTAPI; have an additional
+            authentication layer associated with accessing the &PRODUCTABBR; Secure Data Service
+            using the REST API. Information in this section covers what both administrators and
+            software developers might need to know when integrating authentication for &PRODUCTABBR;
+            applications. </para>
+            <para> Applications that use the &RESTAPI; must use OAuth 2.0. &PRODUCTABBR; uses OAuth
+            2.0 to authenticate the application itself, and the &RESTAPI;, specifically, uses OAuth
+            2.0 to authenticate a user for the application. For more details about how &PRODUCTABBR;
+            applications use OAuth 2.0, visit the developer site at <link xlink:show="new"
+                xlink:href="&DEVWEBSITE;/">&DEVWEBSITE;/</link>. </para>
+            <para>
+                Here's how applications using the &RESTAPI; authenticate users and
+                authorize each request:
+            </para>
+            <orderedlist>
+                <listitem>
+                    <para>
+                        When a user signs in to an application using the &RESTAPI;, authentication 
+                        first occurs as described in 
+                        <xref linkend="doc-8034439e-117b-4c03-af18-04edcf627d9e"/>. Included
+                        in the SAML request to the education organization, the &PRODUCTABBR;
+                        identity service includes the <varname>ForceAuth</varname> attribute.
+                        This attribute determines whether the user must authenticate even if
+                        there's an existing session with the organization's identity provider.
+                        &PRODUCTABBR; sets this value to <userinput>true</userinput> if
+                        the user doesn't have an existing &PRODUCTABBR; session.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        After successful authentication, the education organization's
+                        identity provider returns the required attributes in its SAML assertion:
+                        user name, UID, and roles.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The &PRODUCTABBR; application receives the SAML assertion and sets up
+                        a session for the user. This session is for one user to one application 
+                        only. The education organization's identity provider controls the session 
+                        timeout value and whether the user has to authenticate to create additional
+                        sessions before the first times out.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The application calls upon the &PRODUCTABBR; OAuth provider to generate an
+                        OAuth 2.0 authorization token. The application provides the user's 
+                        authorization token in HTTP headers when forming calls with the &RESTAPI;.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Each time a user opens another &PRODUCTABBR; application while still
+                        signed in to the first, &PRODUCTABBR; forms a new SAML request to the
+                        education organization. These additional SAML requests, though, have
+                        the <varname>ForceAuth</varname> attribute set to 
+                        <userinput>false</userinput>. The education organizaton's identity
+                        provider asserts its session control to determine whether that user 
+                        needs to authenticate again.
+                    </para>
+                </listitem>
+            </orderedlist>
+            <section xml:id="doc-7aadd9cc-9738-4a1f-9098-16504d22acf8">
+                <title>Federated Application Authentication: Sample SAML Exchange</title>
+                <para>
+                    The metadata URL can be used to retrieve the SAML metadata for the 
+                    &PRODUCTABBR; service provider. Some organizations' identity providers can
+                    be configured using this URL, calling the URL at some interval to
+                    check whether metadata about the &PRODUCTABBR; service provider has
+                    changed. The URL syntax is <code>$BASE_URL$/api/rest/saml/metadata</code>.
+                    The following is an example of a response from this URL:
+                </para>
+                <programlisting><![CDATA[
+EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="$ISSUER_NAME$">
+   <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+       <KeyDescriptor use="signing">
+           <ds:KeyInfo>
+               <ds:X509Data>
+                   <ds:X509Certificate>$CERTIFICATE_TEXT$</ds:X509Certificate>
+               </ds:X509Data>
+           </ds:KeyInfo>
+       </KeyDescriptor>
+       <KeyDescriptor use="encryption">
+        <ds:KeyInfo>
+          <ds:X509Data>
+            <ds:X509Certificate>
+              $ENCRYPTION_CERTIFICATE_TEXT$
+            </ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </KeyDescriptor>
+      <AssertionConsumerService index="0" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="$BASE_URL$/api/rest/saml/sso/artifact" />
+      <AssertionConsumerService isDefault="true" index="1" Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="$BASE_URL$/api/rest/saml/sso/post" />
+   </SPSSODescriptor>
+</EntityDescriptor>
+                ]]></programlisting>
+                <para>
+                    The following is an example AuthN request sent by the &PRODUCTABBR; service
+                    provider to initiate and authentication with an organization's identity
+                    provider:
+                </para>
+                <programlisting><![CDATA[
+<samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+  Destination="
+  ForceAuthn="false" ID="sli-b931632c-9706-4c8e-bd27-0a0a1f8dc408"
+  IsPassive="false" IssueInstant="2012-03-27T17:56:55.486Z"
+  ProtocolBinding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+  Version="2.0">
+  <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">https://nxbuild.example.com
+  </saml:Issuer>
+  <samlp:NameIDPolicy AllowCreate="true"
+    Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
+    SPNameQualifier=" />
+  <samlp:RequestedAuthnContext Comparison="exact">
+    <saml:AuthnContextClassRef xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+    urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+    </saml:AuthnContextClassRef>
+  </samlp:RequestedAuthnContext>
+</samlp:AuthnRequest>
+                    ]]></programlisting>
+                    
+                <para>
+                    The request for artifact binding is different. The following is an example artifact binding request sent by the &PRODUCTABBR; service
+                    provider to initiate and authentication with an organization's identity
+                    provider:
+                </para>
+                
+                <programlisting><![CDATA[
+<soap11:Envelope xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap11:Body>
+        <saml2p:ArtifactResolve
+            Destination="<base url>/idp/profile/SAML2/SOAP/ArtifactResolution"
+            ID="<unique id>"
+            IssueInstant="2013-11-22T15:28:05.061Z" Version="2.0" xmlns:saml2p="urn:oasis:names:tc:SAML:2.0:protocol">
+            <saml2:Issuer xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion"><base url>:8080</saml2:Issuer>
+            <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:SignedInfo>
+                    <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                    <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+                    <ds:Reference URI="<reference URI>">
+                        <ds:Transforms>
+                            <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                            <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                        </ds:Transforms>
+                        <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                        <ds:DigestValue>Digest Value/ds:DigestValue>
+                    </ds:Reference>
+                </ds:SignedInfo>
+                <ds:SignatureValue>Signature Value</ds:SignatureValue>
+                <ds:KeyInfo>
+                    <ds:X509Data>
+                        <ds:X509Certificate>$CERTIFICATE_TEXT$</ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+            </ds:Signature>
+            <saml2p:Artifact>Artifact ID</saml2p:Artifact>
+        </saml2p:ArtifactResolve>
+    </soap11:Body>
+</soap11:Envelope>
+                    ]]></programlisting>
+                    
+                <para> The following is an example SAML assertion (response) sent to the
+                &PRODUCTABBR; service provider. This example shows the attributes that &PRODUCTABBR;
+                requires and how those attributes appear as name-value pairs in SAML. Note that the
+                roles attribute, (<varname>&lt;Attribute Name="roles"&gt;</varname>) can have
+                multiple values as shown in the example: </para>
+                <!-- FIXME... Mark wants to know, "Where is statewide unique ID in this example?" -->
+                <programlisting><![CDATA[
+samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Destination="<base url>/api/rest/saml/sso/post" ID="<unique id>" InResponseTo="<id of initial saml assertion>" IssueInstant="2013-03-20T19:19:36Z" Version="2.0">
+	<saml:Issuer>Issuer URL</saml:Issuer>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+			<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+			<Reference URI="">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+				<DigestValue>Digest Value</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>Signature Value</SignatureValue>
+		<KeyInfo>
+			<X509Data>
+				<X509Certificate>X509 Certificate</X509Certificate>
+			</X509Data>
+		</KeyInfo>
+	</Signature>
+	<samlp:Status>
+		<samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+	</samlp:Status>
+	<saml:Assertion ID="<unique id>" IssueInstant="2013-03-20T19:19:36Z" Version="2.0">
+		<saml:Issuer>Issuer URL</saml:Issuer>
+		<saml:Subject>
+			<saml:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent">Saml Name ID</saml:NameID>
+			<saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+				<saml:SubjectConfirmationData InResponseTo="<id of initial saml assertion>" NotOnOrAfter="2013-03-20T19:29:36Z" Recipient="<base url>/api/rest/saml/sso/post"/>
+			</saml:SubjectConfirmation>
+		</saml:Subject>
+		<saml:AttributeStatement>
+			<saml:Attribute Name="userId">
+				<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">user id</saml:AttributeValue>
+			</saml:Attribute>
+			<saml:Attribute Name="sn">
+				<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">user last name</saml:AttributeValue>
+			</saml:Attribute>
+			<saml:Attribute Name="userName">
+				<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">user full name</saml:AttributeValue>
+			</saml:Attribute>
+			<saml:Attribute Name="givenName">
+				<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">user first name</saml:AttributeValue>
+			</saml:Attribute>
+			<saml:Attribute Name="userType">
+				<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">one of: {staff, student, parent}</saml:AttributeValue>
+			</saml:Attribute>
+			<saml:Attribute Name="roles">
+				<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">role(s) for user</saml:AttributeValue>
+			</saml:Attribute>
+		</saml:AttributeStatement>
+	</saml:Assertion>
+</samlp:Response>
+                    ]]></programlisting>
+            </section>
+            <section xml:id="doc-1e057def-5b2e-4e4d-98d7-2f3f6104251b">
+                <title>Federated Application Authentication: Installed (Non-Web) Applications</title>
+                <para> The information provided assumes that the applications that use the
+                &PRODUCTABBR; are primarily web applications which can run simultaneously within the
+                same web browser. &PRODUCTABBR; is not limited to web applications, though. Software
+                developers can also create mobile and embedded applications that use &PRODUCTABBR;.
+                Since these applications require installing some amount of software outside of
+                &PRODUCTABBR;, &COMPANYABBR; refers to these as <glossterm
+                    linkend="def-installed_application">installed applications</glossterm>. </para>
+                <note><para>At this time, mobile and embedded applications must use the same authentication strategy as
+                    web applications.</para></note>
+                <para>
+                    The OAuth specification supports long-lived tokens. These tokens
+                    can make authentication more efficient for installed applications that
+                    use the &RESTAPI;. Software developers who want to explore this option for
+                    their &PRODUCTABBR; applications should visit the &PRODUCTABBR; developer site at <link xlink:show="new" xlink:href="&DEVWEBSITE;/">&DEVWEBSITE;/</link>
+                    for more information.
+                </para>
+            </section>
+            <section xml:id="doc-ea7d67a1-4f7a-406d-bbfe-4d71db1f9b58">
+                <title>Federated Application Authentication: Adding New Applications</title>
+                <para> Administrators can add (register) new applications with &PRODUCTABBR;. This
+                is necessary when a third party (not &COMPANYABBR;) has developed an application
+                that interacts with the &PRODUCTABBR; Secure Data Service using the REST API or Java
+                Client Library. </para>
+                <para> As part of registration, &PRODUCTABBR; administrators for an education
+                organization must authorize the application to access its data in the &PRODUCTABBR;
+                Secure Data Service. See administrator documentation for more information.</para>
+                <para>
+                    Successfully registered applications should be able to use the same 
+                    integrated authentication model described in this documentation. 
+                    <!-- FIXME... statement needs verification -->
+                </para>
+            </section>
+        </section>
+        <section xml:id="doc-a5c10d7e-e5a3-4fb6-a0e1-6dde25dd3499">
+            <title>Effective Secure Data Service Permissions for Federated Authentication</title>
+            <para> Authorization to protected data, represented by resources in the &RESTAPI;, is a
+            multi-step process using &PRODUCTABBR;. It starts with determining if any of the roles
+            provided in the SAML assertion correspond to &PRODUCTABBR; roles as a result of
+                <glossterm linkend="def-role_mapping">role mapping</glossterm>. If there's no match,
+            then no authorization is granted; if there is a match, the &PRODUCTABBR; roles determine
+            the basic user permissions and data access. </para>
+            <para> Authorization doesn't stop at the role level, though. &PRODUCTABBR; uses the UID
+            attribute (passed in the SAML assertion) to find the entity within the &PRODUCTABBR;
+            Secure Data Service corresponding to that user. From there, associations in the data
+            model aid in exactly which data the user has permission to read or write. For more
+            information about this see <xref linkend="doc-54ba0efa-dd34-4b0f-b911-caf7a8c94065"
+            />.</para>
+            <para> The following decision tree represents how &PRODUCTABBR; calculates these
+            effective permissions to Secure Data Servicecontents: </para>
+            <figure xml:id="figure-security-permissions_decision_tree">
+                <title>Effective Permissions</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="center" format="PNG" 
+                            fileref="images/security-slc_permissions_decision_tree.png" 
+                            scalefit="1"/>
+                    </imageobject>
+                    <imageobject role="fo">
+                        <imagedata align="center" format="PNG" 
+                            fileref="../common/images/security-slc_permissions_decision_tree.png" width="7in"
+                            scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </section>
+        <section xml:id="doc-839bc975-b6ab-46cc-a358-3be48baa31ce">
+            <title>Mapping Directory Entities to the &PRODUCTABBR; Secure Data Service</title>
+            <para> The &PRODUCTABBR; Secure Data Service is built from data provided by an education
+            organization. The preparations and procedures for the original ingestion of data to
+            populate the Secure Data Service are covered in data ingestion documentation. </para>
+            <para> Before &PRODUCTABBR; can ingest the data, though, the entities within that data
+            must be mapped to entities in the &PRODUCTABBR; Secure Data Service. You can use the
+            Ingestion Validation Tool to verify the validity of your data before ingestion. For
+            complete documentation on Secure Data Serviceentities, attributes, and data types,
+            including a link to the XSD describing the data store's logical model, see <link
+                xlink:show="new"
+                xlink:href="https://inbloom.org/sites/default/files/docs-developer/data_model.html"
+                >https://inbloom.org/sites/default/files/docs-developer/data_model.html</link>. </para>
+        </section>
+    
+</chapter>
+
+        

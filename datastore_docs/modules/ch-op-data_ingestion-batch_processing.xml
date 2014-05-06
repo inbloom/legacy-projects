@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-79f4b087-61de-4b32-b868-751055e0d642"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Client Batch Tool for Windows</title>
+    <para>
+        &COMPANYABBR; provides a standalone, Java-based Windows application
+        to assist performing data ingestion operations in &PRODUCTABBR;.
+        The executable for this tool is
+        <filename>ingestion-upload-tool.exe</filename>. You can download
+        this tool from 
+        <link xlink:show="new" xlink:href="&GITHUBURL;/">&GITHUBURL;/</link>.
+    </para> 
+    <para>    
+        No installation is required. Copy the executable to a local
+        directory and call it from a Windows command line
+        (using the command prompt application, <filename>cmd.exe</filename>).
+    </para>
+    <para>
+        The following requirements exist for this tool:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Microsoft Windows 7 operating system.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Java Runtime Environment (JRE) 1.6.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                50 MB available disk space.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                512 MB available memory.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Internet access with the ability to connect to the SFTP (SSH File Transfer Protocol) server of the landing zone you are using for data ingestion.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Ingestion files in the correct format. This includes
+                both the XML files containing the data and the control file
+                for job instructions. For more information on the ingestion process, please read the &PRODUCTABBR; administrator documentation. 
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The Ingestion Client Batch Tool packages the data provided into a
+        compressed archive file, connects to the SFTP server of the landing zone,
+        and uploads the .zip file for ingestion.
+    </para>
+    <caution>
+        <para>
+            The Ingestion Client Batch Tool does not validate the files or data. For validation, use the
+            <xref linkend="doc-44314e32-f5c7-46da-891d-3965d2c71e05"/>.
+        </para>
+    </caution>
+    <para>
+        To ensure that the Ingestion Client Batch Tool runs on a regular schedule, 
+        schedule it to run using the
+        <guilabel>Task Scheduler</guilabel> in Windows 7. Use the following procedure to set up the task in the Task Scheduler:
+    </para>
+    <procedure>
+        <step>
+            <para>
+                Open Windows 7 Control Panel, and click <guibutton>System and Security</guibutton>.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-01of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-01of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Schedule tasks</guibutton> under the 
+                <guilabel>Administrative Tools</guilabel> group.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-02of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-02of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Create Basic Task...</guibutton> under the 
+                <guilabel>Task Scheduler Library</guilabel> on the 
+                <guilabel>Actions</guilabel> panel at the right.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-03of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-03of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Type a name (such as <userinput>IngestionBatchSchedule</userinput>) for the task in the <guilabel>Name</guilabel> field. Then click <guibutton>Next</guibutton>.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-04of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-04of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Select a frequency trigger for the task schedule. 
+                Then click <guibutton>Next</guibutton>.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-05of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-05of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Specify the starting date and time for the task schedule. 
+                Then click <guibutton>Next</guibutton>.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-06of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-06of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Select <guibutton>Start a program</guibutton> as the <guilabel>Action</guilabel> 
+                for the task schedule. Then click <guibutton>Next</guibutton>.
+            </para>
+            <!-- <figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-07of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-07of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Browse...</guibutton>. 
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-08of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-08of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Browse to the directory where you saved 
+                <filename>ingestion-upload-tool.exe</filename> and select the file.
+                Then click <guibutton>Open</guibutton>.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-09of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-09of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                In the <guilabel>Add arguments</guilabel> field, type in the arguments to launch the <filename>ingestion-upload-tool.exe</filename> application. Click <guibutton>Next</guibutton>.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-10of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-10of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Finish</guibutton>.
+            </para>
+            <!--<figure xml:id="figure-admin_tools-ingestion_client_batch_config-win7_procedure-11of11">
+                <title/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" format="PNG" fileref="images/admin_tools-ingestion_client_batch_config-win7_procedure-11of11.png" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>-->
+        </step>
+    </procedure>
+    <para>
+        Use the following syntax when adding program arguments to the 
+        <filename>ingestion-upload-tool.exe</filename> application call:
+    </para>
+    <programlisting><![CDATA[
+-u <username> -pass <password> -d <localDirectory> -s <sftpServer> -port <port>
+            ]]></programlisting>
+    <para>The INGEST_DATA right is required to run the tool.</para>
+</chapter>

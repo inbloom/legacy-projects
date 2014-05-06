@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-dashboard-customization-tutorial-intro"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Introduction to the Tutorial</title>
+    
+    <para>
+        The tour shows off the types of pages in the &PRODUCTABBR; dashboard
+        along with their customization points. The tutorial portions step
+        through uploading a sample configuration and making adjustments to
+        it to see how changes appear in the dashboard.
+    </para>
+    <para>
+        For the tour and tutorial, you will need a developer 
+        account and a hosted &PRODUCTABBR; Sandbox environment. To 
+        set this up for the first time, follow the instructions in 
+        <link xlink:href="https://inbloom.org/sites/default/files/docs-developer/doc-1eae8ac6-f85e-447e-98ae-52039ad2852e.html">Overview and First Steps for inBloom Application Development</link> 
+        in the &PRODUCTABBR; developer documentation. 
+        This includes:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                Creating a developer account
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Signing in to the sandbox
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Accessing the "Admin" page for the sandbox
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Loading sample data to view in the dashboard application
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</section>

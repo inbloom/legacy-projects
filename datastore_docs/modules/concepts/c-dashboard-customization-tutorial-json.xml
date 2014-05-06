@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-dashboard-customization-tutorial-json"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Dashboard Customization Uses JSON</title>
+    
+    <para>
+        Dashboard customization is done by expressing a customized UI 
+        experience in JavaScript Object Notation (JSON) and uploading 
+        the JSON text from the inBloom administration page for the 
+        dashboard. The 
+        <xref linkend="c-dashboard-customization-reference"/>
+        describes how to find and use all available dashboard 
+        customization points you can use. For a general reference on 
+        JSON, see 
+        <link xlink:href="http://wwww.json.org">json.org</link>. 
+        Even though a text editor is sufficient to compose JSON, consider 
+        using an editor that has built-in formatting tools and validation 
+        for the JSON syntax.
+    </para>
+    
+</section>

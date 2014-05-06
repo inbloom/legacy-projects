@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-bulk-extract" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>bulk/extract</title>
+    
+    <para>
+        URI syntax without version:
+        <filename>https://example.com/api/rest/bulk/extract</filename>
+    </para>
+    <para> 
+        URI syntax with version:
+        <filename>https://example.com/api/rest/vX.Y/bulk/extract</filename> 
+        where X.Y identifies a specific REST API version.
+        This resource returns data based on the latest REST API version, 
+        even if another valid API version is specified. If an invalid 
+        version is specified, the request returns a "404 Not Found" code.
+    </para>
+    <para>
+        This resource returns a sample bulk extract payload. The data 
+        represents a fictional educational organization corresponding 
+        with the Small Sample Data Set provided by &COMPANY; for use by 
+        application developers.
+    </para>
+    <para> 
+        For a description of the file format of the return, see 
+        <xref linkend="r-bulk_extract-files"/>. 
+    </para>
+    <para>
+        Regardless of a user's name and assigned role(s), the 
+        <varname>BULK_EXTRACT</varname> right is required to access this 
+        resource. In addition to the right, the 
+        <guibutton>Bulk Extract</guibutton> checkbox must be selected for 
+        the calling application during application registration. See 
+        <xref linkend="doc-d4e4f6c6-490d-4a5a-928b-c87b4c1352bb"/> 
+        and <xref linkend="c-bulk_extract-authentication"/>.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested sample bulk-extracted data.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                        <para>
+                            The response includes the payload described in
+                            <xref linkend="r-bulk_extract-files"/>.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+</section>

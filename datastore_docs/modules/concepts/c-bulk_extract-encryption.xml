@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-bulk_extract-encryption"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Encryption for Bulk Extract Operations</title>
+    
+    <para>
+        When applications call a bulk extract endpoint, a client 
+        certificate is requested during the TLS (Transport Layer Security) 
+        handshake. The certificate provided by the client is compared 
+        against the certificate stored in the inBloom API service for 
+        that application. Applications performing bulk extract operations 
+        require an X.509 certificate using a 2048-bit RSA key. This 
+        example command, using the open source OpenSSL utility, creates 
+        an X.509 certificate and associated private key. 
+    </para> 
+    <para>
+        <emphasis>WARNING:</emphasis> The TLS connection for bulk extract 
+        endpoints must propagate all the way to the API/bulk extract node 
+        and must not terminate at the load balancer/nginx.
+    </para>
+    <para>
+        Applications performing bulk extract operations need an X.509 
+        certificate using a RSA:2048 key. This example command creates 
+        the X.509 certificate and the private key pair. 
+    </para>
+    <programlisting><![CDATA[openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout privateKey.key -out certificate.crt]]></programlisting>
+    <para>
+        The following information is true for the above example. 
+        The variables can be modified as needed for different results.
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The certificate is valid for 3650 days (10 years).
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <filename>certificate.crt</filename> - 
+                The self-signed X.509 certificate is output to this 
+                filename.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                <filename>privateKey.key</filename> - 
+                The generated private key is output to this filename.
+            </para></listitem>
+        <listitem>
+            <para>
+                With the "-nodes" flag, the private key is not encrypted, 
+                so precautions should be taken in its handling (installation 
+                in, and use by, the application).
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        The certificate must be provided to inBloom for installation 
+        into the API service prior to generation of bulk extracts 
+        for a given client application, and thus prior to attempted 
+        retrieval of any extracts using these API endpoints.
+    </para>
+    
+</section>

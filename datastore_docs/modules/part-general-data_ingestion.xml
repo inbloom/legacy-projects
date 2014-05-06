@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE part [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<part 
+    xml:id="doc-10f4c2b3-93b4-4dce-adae-1a93feecc49c" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title><phrase role="1.3-added">Data Ingestion in &PRODUCTABBR;</phrase></title>
+    </info>
+    
+    <chapter xml:id="doc-9aafba37-be2e-4cdc-b3f3-3d86c4cdcba0">
+        <title><phrase role="1.3-added">Data Ingestion Overview</phrase></title>
+        <para>
+            <phrase role="1.3-added"><glossterm linkend="def-data_ingestion">Data ingestion</glossterm>,
+            sometimes simply called <firstterm>ingestion</firstterm>, is one of
+            two ways to add data to the &PRODUCTABBR; Data Store. Ingestion
+            is designed to handle several dozen to several thousand data records
+            at one time. This is different from &PRODUCTABBR; web applications 
+            designed to add, view, and edit one record at a time.</phrase>
+        </para>
+        <para>
+            <phrase role="1.3-added">Data ingestion consumes data from one or more source files.
+                The process works like this:</phrase>
+        </para>
+        <orderedlist>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added">&PRODUCTABBR; checks whether there are files in a
+                    configured <glossterm linkend="def-landing_zone">landing zone</glossterm>.
+                    The landing zone is an FTP server location where you can upload
+                    files to be ingested to the &PRODUCTABBR; Data Store.</phrase>
+                </para>
+                <para>
+                    <phrase role="1.3-added">&PRODUCTABBR; administrators can set up one or more of these landing 
+                    zones to serve a single data store. For instructions on how to 
+                    set up and manage landing zones, see
+                        <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added">&PRODUCTABBR; kicks off the data ingestion process, working
+                    through the files in the landing zone. For details about how
+                    to ingest data, see
+                        <xref linkend="doc-53e3a1af-a134-428e-a0e0-428bbd70dd20"/>.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added"> When ingestion's complete, &PRODUCTABBR; administrators can confirm
+                    that the newly ingested data is available in the &PRODUCTABBR;
+                    Data Store. The Data Browser is an administration tool designed
+                    for this purpose.</phrase>
+                </para>
+            </listitem>
+        </orderedlist>
+        <para>
+            <phrase role="1.3-added">Use the links in the bulleted list above to access additional
+            ingestion-related documentation.</phrase>
+        </para>
+        <para><phrase role="1.3-info">[1.3 revisions shown; see <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289704709d/detail/defect/7474098267">DE1512</link>]</phrase></para>
+    </chapter> <!-- END of Data Ingestion Overview -->
+   
+    <chapter xml:id="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74">
+        <title><phrase role="1.3-added">Managing Landing Zones</phrase></title>
+        <para>
+            <phrase role="1.3-added">The landing zone is an FTP server location where you can upload
+            files to be ingested to the &PRODUCTABBR; Data Store.
+            To create and manage landing zones, you'll need an &PRODUCTABBR;
+            administrator account with the
+            <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>
+                role.</phrase>
+        </para>
+        <para>
+            <phrase role="1.3-added">To create landing zones, use the <citetitle>Create Landing
+                    Zone</citetitle> application. To access this application, log in to
+                &COMPANYABBR;, click <guibutton>Admin</guibutton> to access the administration page,
+                and click <guibutton>Create Landing Zone</guibutton>. </phrase>
+        </para>
+        <para>
+            <phrase role="1.3-added">When you sign in, be sure to select the realm for the education 
+            organization you're targeting for data ingestion. The 
+            <glossterm linkend="def-state_education_agency">state education agency (SEA)</glossterm>
+            associated with that realm must match the SEA for the data you 
+            intend to ingest. &COMPANYABBR; recognizes the SEA as the
+            top-level education organization for the &PRODUCTABBR; Data Store.</phrase>
+        </para>
+        <para>
+            <phrase role="1.3-added">From there, use the user interface to create each
+            new landing zone. Since the data ingestion process uses SFTP,
+            you will need secure shell (SSH) keys to authenticate to your
+            landing zone. If you're not familiar with generating and using
+            SSH keys, look for any of several resources available online.
+            Click <guibutton>Add Public Key to SFTP</guibutton>
+                to upload your SSH public key.</phrase>
+        </para>
+        <para>
+            <phrase role="1.3-added">After you click <guibutton>Create</guibutton>, you'll receive
+            an email with further instructions for ingesting data using
+            your new landing zone. For a detailed look at these instructions,
+            see <xref linkend="doc-53e3a1af-a134-428e-a0e0-428bbd70dd20"/>.</phrase>
+        </para>
+        <note>
+            <title><phrase role="1.3-added">Landing Zones for Sandbox Developers</phrase></title>
+            <para>
+                <phrase role="1.3-added">Application developers who are using a sandbox development
+                environment have a different experience when creating and
+                using landing zones. For documentation about landing zones
+                and data ingestion in a Sandbox, please visit the developer site at <link xlink:show="new" xlink:href="&DEVWEBSITE;">&DEVWEBSITE;</link>.</phrase>
+            </para>
+        </note>
+        <!-- Questions to answer in future revisions:
+             What configuration options do I have for landing zones?
+             What are the approximate minimum and maximum processing times for data ingestion in a theoretical scenario?
+             What conditions will affect the speed of data ingestion and the validity of the content once saved to the data store?
+        -->
+        <para><phrase role="1.3-info">[1.3 revisions shown; see <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289704709d/detail/defect/7474098267">DE1512</link>]</phrase></para>
+    </chapter> <!-- END of Managing Landing Zones -->
+    
+    <chapter xml:id="doc-53e3a1af-a134-428e-a0e0-428bbd70dd20">
+        <title><phrase role="1.3-added">Ingesting Data for the &PRODUCTABBR; Data Store</phrase></title>
+        <para>
+            <phrase role="1.3-added"> Data ingestion starts by making a secure file transfer 
+            to a landing zone. To do this, you'll upload files using
+            an SFTP client to the a landing zone configured for the
+            realm you're ingesting data for. Thus, requirements for
+            ingestion are as follows:</phrase>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added"> The FTP hostname associated with the landing zone
+                    you're targeting. You or another &PRODUCTABBR;
+                    administrator set this up using the instructions in
+                    <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>,
+                    and the email received after creating the
+                    landing zone should include the FTP hostname.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added">An FTP client to use for file transfers using SFTP.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added">Your user credentials as an &PRODUCTABBR; administrator.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added">The role of 
+                    <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>
+                        for your &PRODUCTABBR; administrator account.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added">The files you want to ingest, compliant with the Ed-Fi v1.0.03 
+                    specification. There are a couple of options available to you
+                    for creating these files. See
+                    <xref linkend="doc-6b9d21e0-0d62-4ab7-996d-9b40bccdd422"/>
+                        for complete details.</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added">The top-level state education organization (SEA) must match
+                    the education organization defined when the landing zone
+                    was created.</phrase>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <phrase role="1.3-added">After you meet these requirements, you're ready to ingest data.
+            To do this, use your FTP client to upload the data files using the
+            SFTP protocol to the landing zone's FTP hostname. Provide normal 
+            authentication for the transfer using your &PRODUCTABBR; 
+            administrator credentials.</phrase>
+        </para>
+        <caution>
+            <para>When ingesting or purging data, take care that you ingest to your education organization only. Currently, ingestion users have the ability to ingest data to any education organizations within their specific tenants. This can lead to ingestion collisions between education organizations.</para>
+        </caution>
+        <!-- Questions to answer in future revisions:
+             How do I know what landing zones are available to me?
+             How do I track progress for ingestion?
+             How do I confirm data has been ingested?
+             What errors could occur, and how do I interpret and handle those errors?
+        -->
+        <para><phrase role="1.3-info">[1.3 revisions shown; see <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289704709d/detail/defect/7474098267">DE1512</link>]</phrase></para>
+    </chapter> <!-- END of Ingesting Data for the inBloom Data Store -->
+    
+    <chapter xml:id="doc-6b9d21e0-0d62-4ab7-996d-9b40bccdd422">
+        <title><phrase role="1.3-added">Prepare Data for Ingestion</phrase></title>
+        <para>
+            <phrase role="1.3-added">Data ingestion operations for &PRODUCTABBR; require that the
+            data files are compliant with the Ed-Fi v1.0.03 specification.
+            &COMPANYABBR; provides two tools you can use to prepare your
+            data for ingestion:</phrase>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added"> <emphasis>&COMPANYABBR; Ingestion File Conversion Tool</emphasis> - 
+                    Convert CSV files to Ed-Fi compliant files for &PRODUCTABBR;.
+                    This includes files that align with the Common Core State Stanards (CCSS).
+                    Future editions of this documentation will include a link to
+                    instructions on how to use this tool.</phrase>
+                    <!-- FIXME: revise previous paragraph to include that link when ready -->
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase role="1.3-added"> <emphasis>&COMPANYABBR; Ingestion Validation Tool</emphasis> - 
+                    Determine whether the files you're about the ingest meet the
+                    &PRODUCTABBR; requirements. 
+                    Future editions of this documentation will include a link to
+                    instructions on how to use this tool.</phrase>
+                    <!-- FIXME: revise previous paragraph to include that link when ready -->
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <!-- FIXME: revise this paragraph after more details are incorporated into the docs -->
+            <phrase role="1.3-added">While this documentation doesn't yet provide the full details about
+            preparing files for data ingestion, &COMPANYABBR; previously published
+            this detailed specification for &PRODUCTABBR; data ingestion:
+                <link xlink:show="new" xlink:href="http://www.inbloom.org/resources/documentation/data-ingestion-specification.pdf">&PRODUCTABBR; Data Ingestion Specification</link>.</phrase>
+        </para>
+        <!-- Questions to answer in future revisions:
+             How do I create files that can be ingested?
+             What errors could occur, and how do I interpret and handle those errors?
+        -->
+        <para><phrase role="1.3-info">[1.3 revisions shown; see <link xlink:show="new" xlink:href="https://rally1.rallydev.com/#/5289704709d/detail/defect/7474098267">DE1512</link>]</phrase></para>
+    </chapter> <!-- END of Prepare Data for Ingestion -->
+    
+    <!-- Ingestion File Conversion Tool -->
+    <!-- <xi:include href="ingestion-file_conversion.xml" xpointer="doc-523538ed-1b29-4160-aefb-0d949637993c"/> -->
+    
+    <!-- Ingestion Validation Tool -->
+    <!-- <xi:include href="ingestion-validation.xml" xpointer="doc-44314e32-f5c7-46da-891d-3965d2c71e05"/> -->
+    
+    <!-- Ingestion Client Batch Tool for Windows -->
+    <!-- <xi:include href="ingestion-batch_processing.xml" xpointer="doc-79f4b087-61de-4b32-b868-751055e0d642"/> -->
+    
+</part>
+
+        

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-provision" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>provision</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/provision</filename>
+    </para>
+    <para>
+        Provision a tenant and landing zone. Additional actions must be 
+        taken beyond this request to enable the user's ability to access 
+        that landing zone. Those actions require access to the &PRODUCTABBR; 
+        LDAP and are not available to external applications.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Creates a new resource using the given resource 
+                            data. See the resource description for 
+                            important limitations.
+                        </para>
+                        <para>
+                            Request:
+                            To form the POST request body, package all 
+                            required and other desired fields into a 
+                            conventional JSON document. It should be similar 
+                            to JSON response bodies displayed when making a 
+                            GET request.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>201 Created</varname> - 
+                            The <varname>Location</varname> header contains 
+                            the URI of the new resource.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-provision-post_example">
+        <title>Example POST Request and Response: provision</title>
+        <para>
+            Request:
+        </para>
+        <programlisting><![CDATA[POST /api/rest/provision HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer t-4a59fede-42f7-43de-9d23-0b9eef915e8c
+Accept: */*
+User-Agent: Ruby
+Connection: close
+Host: local.example.com:8180
+Content-Length: 38]]></programlisting>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[{
+"stateOrganizationId" : "STANDARD-SEA"
+}]]></programlisting>
+    </section>
+    
+</section>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-446e4850-fba0-45bc-917c-92cbbbe6d827"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Install a REST Client and Establish a Session</title>
+
+    <para>
+        After you register your applicaion, you can install a REST client in 
+        your browser of choice. See documentation for your selected REST 
+        client for details about installing and using it.
+    </para>
+    <para> No matter which client you use, one of the first things you'll need to do is obtain and
+        OAuth token of a user with permission to access content in the &COMPANYABBR; Secure Data
+        Services. Chances are that as you develop your application, you'll use multiple sample user
+        accounts to test how your application handles different users with different permissions.
+        Note that only one of those accounts can have an active session with the &RESTAPI; from a
+        given browser at a given time. </para>
+    <para>
+        Select which sample user account you want to start with, then create an 
+        OAuth token using that user account's credentials.
+        <!-- FIXME... how? Need brief instructions! -->
+    </para>
+    <para> Once you have an authentication token, be prepared to provide it as part of the HTTP
+        headers for each REST API call. In the REST client, focus on the
+        <guilabel>Accept</guilabel>, <guilabel>Content-Type</guilabel>, and
+            <guilabel>Authorization</guilabel> headers. For each request, use the header combination
+        shown below that corresponds to the language/notation you've selected for that request (JSON
+        or XML): </para>
+    <para>
+        Headers for a JSON request:
+    </para>
+    <programlisting><![CDATA[
+Accept: application/vnd.slc+json
+Content-Type: application/vnd.slc+json
+Authorization: bearer oauth_token*
+                ]]></programlisting>
+    <para>
+        Header for an XML request:
+    </para>
+    <programlisting><![CDATA[
+Accept: application/vnd.slc+xml
+Content-Type: application/vnd.slc+xml
+Authorization: bearer oauth_token*
+                ]]></programlisting>
+    <para>
+        * <guilabel>oauth_token</guilabel> = the OAuth token generated upon
+        authentication that represents the crendentials of a text user
+    </para>
+    <para>
+        In the REST client, confirm your session by sending a request to the
+        <classname>home</classname> resource. Form the GET request below
+        in your REST client, and don't forget to add the headers as indicated
+        above.
+    </para>
+    <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/home
+            ]]></programlisting>
+    <para>
+        If the API responds with <code>200 OK</code>, it means that you have 
+        established an authorized session on behalf of your sample user. 
+        The response body for this request to <classname>home</classname>
+        includes the HATEOAS links of all "reachable" URIs for the current
+        user. The following is an example of such a response body (in JSON):
+    </para>
+    <programlisting><![CDATA[links:
+[
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teachers/ab9561f3-471b-44cf-b447-864644048aa1",
+            "rel": "self"
+        },
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teachers/ab9561f3-471b-44cf-b447-864644048aa1/custom",
+            "rel": "custom"
+        },
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teachers/ab9561f3-471b-44cf-b447-864644048aa1/\
+teacherSchoolAssociations",
+            "rel": "getTeacherSchoolAssociations"
+        },
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teachers/ab9561f3-471b-44cf-b447-864644048aa1/\
+teacherSchoolAssociations/schools",
+            "rel": "getSchools"
+        },
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teacherSchoolAssociations?\
+teacherId=ab9561f3-471b-44cf-b447-864644048aa1",
+            "rel": "getTeacherSchoolAssociations"
+        },
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teachers/ab9561f3-471b-44cf-b447-864644048aa1/\
+teacherSectionAssociations",
+            "rel": "getTeacherSectionAssociations"
+        },
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teachers/ab9561f3-471b-44cf-b447-864644048aa1/\
+teacherSectionAssociations/sections",
+            "rel": "getSections"
+        },
+        {
+            "href": "$BASE_URL/api/rest/v1.1/teacherSectionAssociations?\
+teacherId=ab9561f3-471b-44cf-b447-864644048aa1",
+            "rel": "getTeacherSectionAssociations"
+}]]></programlisting>
+    <para> After you have a functioning test environment and a working knowledge of the business
+        domain and the API, you can form URIs and test them in your REST client. The sections that
+        follow cover the basics on how to select a resource and form HTTP requests (URI patterns).
+        Use these basics along with the list of resources in <xref linkend="rest_api_resources"
+        />, as you form each new request and as you program your application to make those same
+        requests. </para>
+    
+</chapter>

@@ -1,0 +1,1721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-0be599ab-0a18-439f-87b2-3313a5e77793"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&RESTAPI; Resources and URI Patterns</title>
+    
+        <para>
+            URI paths provide access to &RESTAPI; resources. An application uses standard HTTP
+            methods (GET, PUT, POST, and DELETE) to make a request and parses the response, which
+            includes a standard HTTP response code. 
+        </para>
+        <para>
+            The number of URIs is finite, and the API specification this developer
+            documentation in combination with the &RESTAPI; resource reference 
+            (<xref linkend="rest_api_resources"/>) covers all possible URI patterns.
+        </para>
+        <para>
+                It is possible that the algorithm used to generate unique identifiers could change. 
+                It is good practice to always <methodname>GET</methodname> the current unique identifier rather than trusting the accuracy of a unique identifier you acquired in the past.
+        </para>
+        
+        <section xml:id="doc-26b68beb-18d7-48b9-ad07-4b61d5453a63">
+            <title>Resource Naming Conventions</title>
+            <para>
+                URIs for API resource collections follow this basic structure: 
+            </para>
+            <programlisting><![CDATA[
+$BASE_URL/api/rest/vN/$RESOURCE_COLLECTION$
+            ]]></programlisting>
+            <para>
+                REST API resources follow these naming conventions: 
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">lowerCamelCase</emphasis> – Examples:
+                        <classname>students</classname>,
+                        <classname>studentSectionAssociations</classname>, and
+                        <classname>gradebookEntries</classname>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Resource names are plural</emphasis> – Whether a URI
+                        refers to a collection or to a specific resource by its unique identifier, the name of
+                        the resource is plural. 
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-4d77d60c-dd53-4c8e-b692-e6884a1ed4b6">
+            <title>Direct References and Associations</title>
+            <para>
+                Resources in the REST API can refer to each other in these two ways:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Direct reference</emphasis> - A direct reference is an
+                        attribute of one resource that refers to another resource. For example, a
+                        <classname>course</classname> resource includes a <classname>school</classname>
+                        identifying the school to which it applies attribute.
+                    </para>
+                    <para> 
+                        When browsing the data model, direct references are listed in the table
+                        of attributes for each resource. Look for "Reference to" in the "Type"
+                        column to identify each direct reference. 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Association</emphasis> - An association is a
+                        standalone resource that stores the relationship between two other
+                        resources. Associations have at least two direct references, one for each
+                        resource in the relationship. For example, the
+                        <classname>students</classname> and <classname>schools</classname>
+                        resources do not have direct references to each other, but a specific
+                        student-school pairing can be stored in the
+                        <classname>studentShoolAssociations</classname> resource, with a direct
+                        reference to both <classname>students</classname> and
+                        <classname>schools</classname>. In addition, associations may include
+                        attributes specific to that pairing. That
+                        <classname>studentShoolAssociations</classname> resource, for example,
+                        includes a student's entry and withdrawal dates for the school.</para>
+                    <para>
+                        When browsing the API or data model, associations are listed alongside
+                        other resources. Look for "Association" in the title of each association
+                        resource.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Both direct references and associations provide helpful navigation between
+                resources. In the following example, a GET request makes use of the 
+                <classname>sectionAssessmentAssociations</classname> resource to find all 
+                instances of the <classname>assessments</classname> resource associated with
+                the specified <classname>sections</classname> resource:
+            </para>
+            <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/{sectionId}/sectionAssessmentAssociations/assessments
+                ]]></programlisting>
+        </section>
+    <section xml:id="doc-d6ab4691-f4f3-45d2-ab51-f9a23e0ff3aa">
+        <title>API Versioning</title>
+        <para> API versioning is denoted by a version parameter(major and minor) in the URI. You are
+            able to request a specific version of a resource by constructing the URI accordingly.
+            For example; <itemizedlist>
+                <listitem>
+                    <para>rest/api/v1.1/students – request is made for version 1.1 of the student
+                        resource</para>
+                </listitem>
+                <listitem>
+                    <para>rest/api/v1.0/students – request is made for version 1.0 of the student
+                        resource</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para> If the you only define the major version, you are internally routed to the latest
+            minor version of the major revision. For example; If v1.1 is the latest API version
+            rest/api/v1/students is internally routed to rest/api/v1.1/students. </para>
+        <para>
+            All the HATEOAS links in the response reflect the version requested.
+        </para>
+    </section>
+        <section xml:id="doc-bfecbd48-edea-4553-823d-960d231d6fac">
+            <title>Pre-filtering Context Resolution</title>
+            <!-- RBM FIXME: For 1.0, open-ended URIs should universally be handled in this fashion, words like sometimes and "in these instances" are appropriate now but should be removed for the release. -->
+            <para>An implied context is sometimes added to open-ended URIs that pre-filters the results.  In these instances, open-ended URIs return only the current and directly associated entities.  The context used for these URIs can be seen in the API reference information as well as in the HTTP header of the request. To return results that deviate from the implied context, such as past data, you must explicitly provide additional context in the URI.</para>
+            <para> <emphasis>Example: </emphasis><programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections
+                        ]]></programlisting>
+                <itemizedlist> 
+                    <listitem><para>For teachers, the implied context is:
+                            <code>/teachers/{ID}/teacherSectionAssociations/sections</code>. {ID}
+                        represents the teacher's unique ID. </para></listitem>
+                    <listitem><para>For staff, the implied context is:  <code>/schools/{IDs}/sections</code>. {IDs} represents a
+                        list of the school IDs to which the staff is currently associated.</para></listitem>
+                    <listitem><para>For students, the implied context is: <code>/students/{ID}/studentSectionAssociations/sections</code>. {ID} represents
+                        the student's unique ID. </para></listitem>
+                    <listitem><para>For parents, the implied context is:
+                            <code>/students/{ID}/studentSectionAssociations/sections</code>. {ID}
+                        represents their student's unique ID. </para></listitem>
+            </itemizedlist>
+            </para>
+        </section>
+        <section xml:id="doc-804f7a98-a348-438a-a1a8-5c9eb39c9c12">
+            <title>Basic URI Patterns</title>
+            <para>
+                Each resource has two base URI paths: one that refers to the resource as a
+                collection, and one that refers to a specific resource by the unique identifier of the 
+                resource. These are described below: 
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">One-part URI.</emphasis> Refers to the specified
+                        resource as a <firstterm>collection</firstterm>. 
+                    </para>
+                    <para>
+                        The following example returns the <classname>sections</classname>
+                        resources that the user has access to. 
+                    </para>
+                    <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections
+                        ]]></programlisting>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Two-part URI.</emphasis> Refers to a specific
+                        instance of a resource by its unique identifier. A two-part URI provides 
+                        a context for finding related resources. See 
+                        <xref linkend="doc-65589c4b-128a-4ffc-9365-8b5cd7674bf9"/>. 
+                    </para>
+                    <para>
+                        The following example returns the specified
+                        <classname>sections</classname> resource. 
+                    </para>
+                    <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/{sectionId}
+                        ]]></programlisting>
+                    <note>
+                        <para>
+                            A GET request can specify multiple unique identifiers in a comma-separated list.
+                        </para>
+                    </note>
+                    <para>
+                        The following example returns the specified
+                        <classname>sections</classname> resource. 
+                    </para>
+                    <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/{sectionId1,sectionId2,sectionId3}
+                        ]]></programlisting>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-65589c4b-128a-4ffc-9365-8b5cd7674bf9">
+        <title>URI Patterns for Resources in Context</title>
+        <para> A resource in context is expressed by a URI pattern that refers to a resource from
+            the context of another resource, specifically, from the context of a two-part URI. </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Three-part URI.</emphasis> Refers to the specified
+                    resource as a collection from the context of the first two parts of the URI. </para>
+                <para> The following example returns the collection of
+                        <classname>studentSectionAssociations</classname> resources that represents
+                    students who are enrolled in the specified section. </para>
+                <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/{sectionId}/studentSectionAssociations
+                        ]]></programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Four-part URI.</emphasis> Refers to the specified resource
+                    as a collection from the context of the first three parts of the URI. This
+                    pattern is typically used to request resources through their associations. </para>
+                <para> The following example returns the collection of
+                        <classname>students</classname> resources who are enrolled in the specified
+                    section. </para>
+                <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/{sectionId}/studentSectionAssociations/students
+                        ]]></programlisting>
+                <para>
+                    <emphasis role="bold">Five-part URI.</emphasis> Refers to the specified resource
+                    as a collection from the context of the first four parts of the URI. This
+                    pattern is typically used to request resources through their associations. </para>
+                <para> The following example returns the collection of
+                        <classname>attendances</classname> resources for the students who are
+                    enrolled in the specified section. </para>
+                <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/{sectionId}/studentSectionAssociations/students/attendances
+                        ]]></programlisting>
+                <para>
+                    <emphasis role="bold">Six-part URI.</emphasis> Refers to the specified resource
+                    as a collection from the context of the first five parts of the URI. This
+                    pattern is typically used to request resources through their associations. </para>
+                <para> The following example returns the collection of
+                        <classname>parents</classname> resources for the students who are enrolled
+                    in the specified section. </para>
+                <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/{sectionId}/studentSectionAssociations/students/studentParentAssociations/parents                        ]]></programlisting>
+            </listitem>
+        </itemizedlist>
+    </section>
+        <section xml:id="doc-32342ea5-f227-48e2-ae04-e36f15111fa8">
+            <title>Resource Representations</title>
+            <para>  
+                Your application can choose to accept and provide content in one of these
+                data-interchange formats: 
+            </para>
+            <table xml:id="table-d9c0455f-87f1-4605-b06d-ffee1739f85c">
+                <title/>
+                <tgroup cols="3">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <colspec colname="secondCol" colwidth="1*"/>
+                    <colspec colname="thirdCol" colwidth="2*"/>
+                    <thead>
+                        <row>
+                            <entry>Format</entry>
+                            <entry>Request Header</entry>
+                            <entry>Value</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para>
+                                    JSON
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Accept, Content-Type
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    <code>application/vnd.slc+json</code>
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para>
+                                    XML
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Accept, Content-Type
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    <code>application/vnd.slc+xml</code>
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+            <para>
+                The W3C XML Schemas that are provided with this documentation are intended to
+                provide a machine-readable specification of the data attributes of the
+                representation of a resource that is transferred as either a request or a response
+                in the REST API. The schemas are applicable for both JSON and XML data formats with
+                the understanding that JSON attribute names become XML elements and that JSON values
+                become the content of those elements. However, these schemas are not suitable for
+                direct validation of the XML using standard validation tools. In particular, the
+                transferred resources will differ from the schema description in the following
+                ways:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        The JSON attributes/XML elements will have no particular ordering for responses
+                        and are not expected to be ordered for requests.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The schemas do not describe the <code>id</code>, <code>entityType</code>, <code>links</code>,
+                        and <code>metaData</code> JSON attributes/XML elements.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="doc-6a83d795-23b3-4327-8e27-9cb9e36da974">
+            <title>Examples of XML Resource Representations</title>
+            <para>
+                The following example shows the XML response for a single
+                <classname>students</classname> resource. Notice how the response is wrapped
+                in a document element named <code>EntityResponse</code>. 
+            </para>
+            <programlisting><![CDATA[
+<EntityResponse>
+    <student>
+        <sex>Male</sex>
+        <economicDisadvantaged>false</economicDisadvantaged>
+        <hispanicLatinoEthnicity>false</hispanicLatinoEthnicity>
+        <entityType>student</entityType>
+        <id>5738d251-dd0b-4734-9ea6-417ac9320a15</id>
+        <studentUniqueStateId>800000025</studentUniqueStateId>
+        <name>
+            <middleName>Joseph</middleName>
+            <generationCodeSuffix>Jr</generationCodeSuffix>
+            <lastSurname>Sollars</lastSurname>
+            <firstName>Matt</firstName>
+        </name>
+        <birthData>
+            <birthDate>2000-04-23</birthDate>
+        </birthData>
+        <metaData>
+            <tenantId>IL</tenantId>
+            <updated>2012-04-13T15:33:47.356+0000</updated>
+            <created>2012-04-13T15:33:47.356+0000</created>
+            <externalId>800000025</externalId>
+        </metaData>
+        <learningStyles/>
+        <links>
+            <rel>self</rel>
+            <href>
+                $BASE_URL/api/rest/v1.1/students/5738d251-dd0b-4734-9ea6-417ac9320a15
+            </href>
+        </links>
+        <links>
+            <rel>custom</rel>
+            <href>
+                $BASE_URL/api/rest/v1.1/students/5738d251-dd0b-4734-9ea6-417ac9320a15/custom
+            </href>
+        </links>
+        <links>
+            <rel>getStudentTranscriptAssociations</rel>
+            <href>
+                $BASE_URL/api/rest/v1.1/students/5738d251-dd0b-4734-9ea6-417ac9320a15/\
+studentTranscriptAssociations
+            </href>
+        </links>
+        
+        [Links removed to save space]
+        
+        <links>
+            <rel>getStudentProgramAssociations</rel>
+            <href>
+                $BASE_URL/api/rest/v1.1/studentProgramAssociations?\
+studentId=5738d251-dd0b-4734-9ea6-417ac9320a15
+            </href>
+        </links>
+        <limitedEnglishProficiency>Limited</limitedEnglishProficiency>
+        <electronicMail>
+            <emailAddressType>Other</emailAddressType>
+            <emailAddress>m.sollars@gmail.com</emailAddress>
+        </electronicMail>
+        <schoolFoodServicesEligibility>Free</schoolFoodServicesEligibility>
+        <telephone>
+            <telephoneNumberType>Home</telephoneNumberType>
+            <primaryTelephoneNumberIndicator>true</primaryTelephoneNumberIndicator>
+            <telephoneNumber>309-555-2449</telephoneNumber>
+        </telephone>
+    </student>
+</EntityResponse>
+                ]]></programlisting>
+            <para>
+                The XML response for multiple <classname>students</classname> resources would
+                contain multiple <code>student</code> elements, as the following example shows.
+            </para>
+            <programlisting><![CDATA[
+<EntityResponse>
+    <student>
+        [ Fields for first student omitted for clarity ]
+    </student>
+    <student>
+        [ Fields for second student omitted for clarity ]
+    </student>
+    <student>
+        [ Fields for last student omitted for clarity ]
+    </student>
+</EntityResponse>
+                 ]]></programlisting>
+        </section>
+        <section xml:id="doc-05da4072-dacc-4fc2-953d-e6a87cd7c0e9">
+            <title>Using HATEOAS Links to Navigate the Data Model</title>
+            <para>
+                One way to find out which resources can be reached from a given context is to look
+                at the HATEOAS links in the response body of a GET request. Each link provides a URI
+                that can be used in a subsequent GET request. 
+            </para>
+            <para>
+                The following example shows one method for navigating from
+                <classname>sections</classname> to <classname>students</classname>. 
+            </para>
+            <orderedlist>
+                <listitem>
+                    <para>
+                        Request all <classname>sections</classname> resources that the user has
+                        access to. 
+                    </para>
+                    <para>
+                        HTTP Request
+                    </para>
+                    <programlisting><![CDATA[
+GET $BASE_URL/api/rest/v1.1/sections/
+                    ]]></programlisting>
+                    <para>
+                        HATEOAS Links (for one section)
+                    </para>
+                    <programlisting><![CDATA[
+links:
+[
+{
+    rel: self,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b30-d0f34d2dbb9a
+},
+{
+    rel: custom,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/custom
+},
+{
+    rel: getSchool,
+    href: $BASE_URL/api/rest/v1.1/schools/919bc3fa-1ece-4652-8827-ef2daa371064},
+{
+    rel: getSession,
+    href: $BASE_URL/api/rest/v1.1/sessions/37e7b600-d1d9-430c-b96c-c073fae04822
+},
+{
+    rel: getCourse,
+    href: $BASE_URL/api/rest/v1.1/courses/24cc991a-228f-4c83-a6d4-76121d108801
+},
+{
+    rel: getGradebookEntries,
+    href: $BASE_URL/api/rest/v1.1/gradebookEntries?\
+sectionId=6751750b-bff5-48f4-b230-d0f34d2dbb9a
+},
+{
+    rel: getSectionAssessmentAssociations,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/\
+sectionAssessmentAssociations
+},
+{
+    rel: getAssessments,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/\
+sectionAssessmentAssociations/assessments
+},
+{
+    rel: getSectionAssessmentAssociations,
+    href: $BASE_URL/api/rest/v1.1/sectionAssessmentAssociations?\
+sectionId=6751750b-bff5-48f4-b230-d0f34d2dbb9a
+},
+{
+    rel: getStudentSectionGradebookEntries,
+    href: $BASE_URL/api/rest/v1.1/studentSectionGradebookEntries?\
+sectionId=6751750b-bff5-48f4-b230-d0f34d2dbb9a
+},
+{
+    rel: getStudentSectionAssociations,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/\
+studentSectionAssociations
+},
+{
+    rel: getStudents,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/\
+studentSectionAssociations/students
+},
+{
+    rel: getStudentSectionAssociations,
+    href: $BASE_URL/api/rest/v1.1/studentSectionAssociations?\
+sectionId=6751750b-bff5-48f4-b230-d0f34d2dbb9a
+},
+{
+    rel: getTeacherSectionAssociations,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/\
+teacherSectionAssociations
+},
+{
+    rel: getTeachers,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/\
+teacherSectionAssociations/teachers
+},
+{
+    rel: getTeacherSectionAssociations,
+    href: $BASE_URL/api/rest/v1.1/teacherSectionAssociations?\
+sectionId=6751750b-bff5-48f4-b230-d0f34d2dbb9a
+}
+                    ]]></programlisting>
+                    <para>
+                        The array of HATEOAS links in the response body shows all possible
+                        relationships and provides a complete list of URIs that can be used in
+                        subsequent HTTP requests. 
+                    </para>
+                    <para>
+                        The "self" HATEOAS link is the two-part URI that represents the context
+                        identifier for the resource. That is, the "self" URI can be used as the
+                        context for building three- and four-part URIs.
+                    </para>
+                    <para>
+                        HATEOAS Link for "self"
+                    </para>
+                    <programlisting><![CDATA[
+{
+    rel: self,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b30-d0f34d2dbb9a
+}
+                    ]]></programlisting>
+                </listitem>  
+                <listitem>
+                    <para>
+                        Choose a HATEOAS link that refers to the resource that you want to view,
+                        in this case, the collection of <classname>students</classname> resources
+                        who have an association with the specified <classname>sections</classname>
+                        resource. Accessing <classname>students</classname> from the context of the
+                        specified <classname>sections</classname> resource requires a four-part URI,
+                        as the following example shows. 
+                    </para>
+                    <para>
+                        HATEOAS Link 
+                    </para>
+                    <programlisting><![CDATA[
+{
+    rel: getStudents,
+    href: $BASE_URL/api/rest/v1.1/sections/6751750b-bff5-48f4-b230-d0f34d2dbb9a/\
+studentSchoolAssociations/students
+}
+                    ]]></programlisting>
+                </listitem>
+            </orderedlist>
+        </section>
+        <section xml:id="doc-e867cc94-918e-4868-a06c-8163b0098739">
+            <title>Summary of URI Patterns</title>
+            <para>
+                The following table summarizes the relationships between URI patterns and HTTP methods. 
+            </para>
+            <table xml:id="table-b1bcecb6-bb48-46c3-8d22-cd18ca6f1d2f">
+                <title/>
+                <tgroup cols="5">
+                    <colspec colname="firstCol" colwidth="1*"/>
+                    <colspec colname="secondCol" colwidth="1*"/>
+                    <colspec colname="thirdCol" colwidth="1*"/>
+                    <colspec colname="fourthCol" colwidth="1*"/>
+                    <colspec colname="fifthCol" colwidth="1*"/>
+                    <colspec colname="sixthCol" colwidth="1*"/>
+                    <colspec colname="seventhCol" colwidth="1*"/>
+                    <thead>
+                        <row>
+                            <entry>Pattern with Examples</entry>
+                            <entry>POST</entry>
+                            <entry>GET</entry>
+                            <entry>PUT</entry>
+                            <entry>DELETE</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry namest="firstCol" nameend="fifthCol">
+                                <para>
+                                    One-part URI
+                                </para>
+                                <para>
+                                    <code>/sections</code>
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    Create a new resource using the data contained in the request body
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Return the collection of resources that the user has access to
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry namest="firstCol" nameend="fifthCol">
+                                <para>
+                                    Two-part URI 
+                                </para>
+                                <para>
+                                    <code>/sections/{sectionId}</code>
+                                </para>
+                                <para>
+                                    <code>/sections/{sectionId1,sectionId2}</code> (multiple unique identifiers are only valid for GET requests)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Return the specified resource or resources
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    If the specified resource exists, replace it with the
+                                    representation in the request body, else error
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Delete the specified resource
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry namest="firstCol" nameend="fifthCol">
+                                <para>
+                                    Three-part URI 
+                                </para>
+                                <para>
+                                    <code>/sections/{sectionId}/studentSectionAssociations</code>
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Return the collection of associations for the specified context
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry namest="firstCol" nameend="fifthCol">
+                                <para>
+                                    Four-part URI 
+                                </para>
+                                <para>
+                                    <code>/sections/{sectionId}/studentSectionAssociations/students</code>
+                                </para> 
+                            </entry>
+                        </row>
+                        <row>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Return the collection of resources for the specified context
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry namest="firstCol" nameend="sixthCol">
+                                <para>
+                                    Five-part URI 
+                                </para>
+                                <para>
+                                <code>/sections/{sectionId}/studentSectionAssociations/students/attendances</code>
+                            </para> 
+                            </entry>
+                        </row>
+                        <row>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Return the collection of resources for the specified context
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry namest="firstCol" nameend="seventhCol">
+                                <para>
+                                    Six-part URI 
+                                </para>
+                                <para>
+                                <code>/sections/{sectionId}/studentSectionAssociations/students/studentParentAssociations/parents</code>
+                            </para> 
+                            </entry>
+                        </row>
+                        <row>
+                            <entry/>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Return the collection of resources for the specified context
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    (not applicable)
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+        <section xml:id="doc-9811191b-e960-441c-99d8-bc563a977ee9">
+            <title>URI Query Segments</title>
+            <para>
+                Optional query segments can be appended to a URI path, to the right of a question
+                mark ('?') character, to specify query constraints. Query segments can only be used
+                in GET request URIs and are organized as one or more name-value pairs. Multiple
+                query segments are separated by an ampersand ('&amp;') character and denote a
+                logical <emphasis>and</emphasis> operation over the constraints. 
+            </para>
+            <para>
+                The &PRODUCTABBR; REST API supports the following methods for forming query 
+                segments:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Global parameters – for filtering, sorting, and pagination.
+                        See <xref linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e"/>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para> 
+                        Query operators – for pattern matching. 
+                        See <xref linkend="doc-96624aa3-2264-44e2-95ea-fa68079d0626"/>. 
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Example of a URI that contains a query segment:
+            </para>
+            <programlisting><![CDATA[
+$BASE_URL/api/rest/v1.1/assessments?assessmentPerformanceLevel.minimumScore<=25&\
+includeFields=assessmentPerformanceLevel.minimumScore,assessmentPerformanceLevel.maximumScore
+            ]]></programlisting>
+            <note>
+                <para>
+                    Although query segments can reduce or control the amount of data that an API
+                    call returns, complex queries can affect performance.
+                </para>
+            </note>
+        </section>
+    <section xml:id="doc-798db0be-82ab-4436-bcc5-bc4fe2954f32">
+        <title>Search</title>
+        <para>Search functionality is available for select entities through the &RESTAPI; using
+            specific search URIs. Search results are limited to only results for which the user has
+            security context and are also constrained to no more than 250 results.</para>
+        <para>The search is a case-insensitive keyword search that finds "Starts with" matches on
+            search terms.</para> 
+        <para>For example, the search term "mat" finds the student "Matt Sollars" as a match.</para>
+        <para>For multiple word strings,trailing wildcards are assummed on each word.</para>
+        <para>For example, the search term "Hills" finds "East Hills High School" and "Hillsborough Middle School".</para>
+        <para>Full substring search is not currently supported. </para>
+        <para>For example, the search term "ollars" does not return "Matt Sollars" as a match.</para>
+        <para><table xml:id="table-5f940406-31fa-4a99-8b7c-f1a2749d207d">
+            <title/>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="3*"/>
+                <colspec colname="secondCol" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>URL</entry>
+                        <entry>Example</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para> https://api.example.com/rest/v1.1/search  </para>
+                        </entry>
+                        <entry>
+                            <para>  https://api.example.com/rest/v1.1/search?q=mat%20so </para>
+                        </entry>  
+                    </row>
+                    <row>
+                        <entry>
+                            <para>  https://api.example.com/rest/v1.1/search/students  </para>
+                        </entry>
+                        <entry>
+                            <para>  https://api.example.com/rest/v1.1/search/students?q=ma%20so </para>
+                        </entry>
+                            </row>
+                        <row>
+                            <entry> https://api.example.com/rest/v1.1/search/assessments</entry>
+                            <entry> https://api.example.com/rest/v1.1/search/assessments?q=</entry>
+                        </row>
+                        <row>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/competencyLevelDescriptor</entry>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/competencyLevelDescriptor?q=</entry>
+                        </row>
+                        <row>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/learningObjectives</entry>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/learningObjectives?q=</entry>
+                        </row>
+                        <row>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/learningStandards</entry>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/learningStandards?q=</entry>
+                        </row>
+                        <row>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/studentCompetencyObjectives</entry>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/studentCompentcyObjectives?q=</entry>
+                        </row>
+			<row>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/staff</entry>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/staff?q=</entry>
+                        </row>
+			<row>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/teachers</entry>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/teachers?q=</entry>
+                        </row>
+			<row>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/educationOrganizations</entry>
+                            <entry>
+                                https://api.example.com/rest/v1.1/search/educationOrganizations?q=</entry>
+                        </row>
+
+
+                </tbody>
+            </tgroup>
+        </table></para>
+        <para>The search fields are:</para>
+        <para><table xml:id="table-60fd7f56-03da-439f-b5fa-15cbc5f842b3">
+            <title/>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="3*"/>
+                <colspec colname="secondCol" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>Entity</entry>
+                        <entry>Searchable Fields</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para> student</para>
+                        </entry>
+                        <entry>
+                            <para> name.firstName, name.middleName, name.lastName,
+                                    otherName.firstName, name.lastSurname</para>
+                        </entry>  
+                    </row>
+                        <row>
+                            <entry> assessments</entry>
+                            <entry> All fields are searchable</entry>
+                        </row>
+                        <row>
+                            <entry> competencyLeveLDescriptor</entry>
+                            <entry> All fields are searchable</entry>
+                        </row>
+                        <row>
+                            <entry> learningObjectives</entry>
+                            <entry> All fields are searchable</entry>
+                        </row>
+                        <row>
+                            <entry> learningStandards</entry>
+                            <entry> All fields are searchable</entry>
+                        </row>
+                        <row>
+                            <entry> studentCompetencyObjectives</entry>
+                            <entry> All fields are searchable</entry>
+                        </row>
+		        <row>
+                            <entry> 
+				<para> staff</para>
+			    </entry>
+                            <entry>
+			        <para> name.firstName, name.middleName, name.lastName,
+                                    otherName.firstName, name.lastSurname</para>
+			    </entry>
+                        </row>
+			<row>
+                            <entry> 
+                                <para> teachers</para>
+                            </entry>
+                            <entry>  
+                                <para> name.firstName, name.middleName, name.lastName,
+                                    otherName.firstName, name.lastSurname</para>
+                            </entry>
+                        </row>
+
+			 <row>
+                            <entry> educationOrganizations </entry>
+                            <entry> body.nameOfInstitution </entry>
+                        </row>
+
+                </tbody>
+            </tgroup>
+        </table></para>
+    </section>
+    <section xml:id="doc-e7ad9a9f-174c-4391-b826-70a4842a1059">
+        <title>Custom Endpoints</title>
+        <para>
+            Many entities have custom endpoints that make custom data 
+            accessible to applications. How these endpoints are used is 
+            up to the application developer. The syntax for the custom
+            endpoints is <code>entity name/{id}/custom</code>. 
+            To verify that a specific entity has an accessible custom 
+            endpoint, see 
+            <link linkend="rest_api_resources">inBloom REST API Resources</link>
+        </para>
+        <para>
+            A user must have context to the endpoint and must be able to 
+            access at least a single field of that entity to be able to 
+            read custom data. For writing custom data the user needs no 
+            rights. The application is responsible for managing write 
+            access to the custom endpoint since the application is adding 
+            the custom data.
+        </para>
+        <para>
+            Example: <filename>/courses/{id}/custom</filename>
+        </para>
+        <para>
+            If the user has context to <code>/courses/{id}</code>, then the 
+            user needs READ_*** rights such that it can access at least
+            one field of the course entity to be able to read access to
+            the <filename>/courses/{id}/custom</filename> endpoint.
+        </para>
+    </section>
+ <!--   <section xml:id="doc-66fa9d66-f997-4660-a9f2-a7c507efc995">
+        <title>Granular Data Access Using Data Filtering</title>
+        <para>A subset of entities can be queried to base the return on a specific date range. The
+            following syntax is used to return these subsets using the schoolYears query
+            parameter:</para>
+        <programlisting><![CDATA[https://api.example.com/api/rest/v1.1/sections/f048354d-dbcb-0214-791d-b769f521210d_id/studentSectionAssociations/students?schoolYears=2010-2011]]>
+        </programlisting>
+        <para>For all included entities, the query format is the same. Always use:
+                <code>?schoolYears=xxxx-yyyy</code>. Valid requests must have both a beginDate and
+            an endDate. The endDate must be after the beginDate.  An entity is included if it exists
+            (even partially) in between the earliest beginDate and latest endDate of the sessions
+            defined by the range used in the query. What date is used for this comparison varies
+            from entity to entity.</para>
+        <para>Some of the entities have a beginDate and endDate. In other cases, an entity has a
+            single date field. These are annotated in ComplexTypes. For these entities, these dates
+            are used for the comparison. </para>
+        <para>For entities that do not have date fields, the date must be looked up via an
+            associated entity. In most cases, this involves comparing the dates against those of an
+            entity which is encountered earlier in the context path. </para>
+        <para>Example: /sections/(id)/studentSectionAssociations/students </para>
+        <para>Students have no date field, but studentSectionAssociations do have a date field. When
+            the studentSectionAssociations are queried, the date filtering is applied to that query. </para>
+        <para>Other entities have a sessionId, and that can be used to compare against the target
+            session dates. </para><note><para>Sessions are not a public entity. The case may be encountered where a user has context to an
+                entity, but not to its related session. The result is that the entity would
+                unexpectedly be filtered out. This situation occurs for studentAcademicRecords,
+                reportCards, eacherSectionAssociations.</para></note>
+        <table xml:id="table-8a323e6d-a8eb-4914-ac28-3c4ab25d2099">
+            <title>Entites Available for Granular Access</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="3*"/>
+                <colspec colname="secondCol" colwidth="3*"/>
+                <thead>
+                    <row>
+                        <entry>Resource Path</entry>
+                        <entry>Subresource Path</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/gradebookEntries</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/grades</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/studentCompetencies</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/students</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/students/attendances</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/students/studentAssessments</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/students/studentParentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/students/studentParentAssociations/parents</entry>
+                    </row>
+                    <row>
+                        <entry>/sections</entry>
+                        <entry>/(id)/studentSectionAssociations/students/studentSchoolAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/studentProgramAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentProgramAssociations</entry>
+                        <entry>/(id)/students</entry>
+                    </row>
+                    <row>
+                        <entry>/studentProgramAssociations</entry>
+                        <entry>/(id)/programs</entry>
+                    </row>
+                    <row>
+                        <entry>/gradingPeriods</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/gradingPeriods</entry>
+                        <entry>/(id)/grades</entry>
+                    </row>
+                    <row>
+                        <entry>/cohorts</entry>
+                        <entry>/(id)/staffCohortAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/cohorts</entry>
+                        <entry>/(id)/staffCohortAssociations/staff</entry>
+                    </row>
+                    <row>
+                        <entry>/cohorts</entry>
+                        <entry>/(id)/studentCohortAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/cohorts</entry>
+                        <entry>/(id)/studentCohortAssociations/students</entry>
+                    </row>
+                    <row>
+                        <entry>/sessions</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/gradebookEntries</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/gradebookEntries</entry>
+                        <entry>/(id)/studentGradebookEntires</entry>
+                    </row>
+                    <row>
+                        <entry>/staffEducationOrgAssignmentAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/staffEducationOrgAssignmentAssociations</entry>
+                        <entry>/(id)/staff</entry>
+                    </row>
+                    <row>
+                        <entry>/staffEducationOrgAssignmentAssociations</entry>
+                        <entry>/(id)/educationOrganizations</entry>
+                    </row>
+                    <row>
+                        <entry>/disciplineIncidents</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/disciplineIncidents</entry>
+                        <entry>/(id)/studentGradebookEntires</entry>
+                    </row>
+                    <row>
+                        <entry>/disciplineIncidents</entry>
+                        <entry>/(id)/studentGradebookEntires</entry>
+                    </row>
+                    <row>
+                        <entry>/assessments</entry>
+                        <entry>/(id)/studentAssessments</entry>
+                    </row>
+                    <row>
+                        <entry>/studentCohortAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentCohortAssociations</entry>
+                        <entry>/(id)/students</entry>
+                    </row>
+                    <row>
+                        <entry>/studentCohortAssociations</entry>
+                        <entry>/(id)/cohorts</entry>
+                    </row>
+                    <row>
+                        <entry>/educationOrganizations</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/educationOrganizations</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations/staff</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/studentSchoolAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/studentSchoolAssociations/students</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/studentSchoolAssociations/students/attendances</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/studentSchoolAssociations/students/studentAssessments</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/studentSchoolAssociations/students/studentParentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/studentSchoolAssociations/students/studentParentAssociations/parents</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/sessions/gradingPeriods</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/sections</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/sections/gradebookEntries</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/sections/studentSectionAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/sections/studentSectionAssociations/grades</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/sections/studentSectionAssociations/studentCompetencies</entry>
+                    </row>
+                    <row>
+                        <entry>/programs</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/programs</entry>
+                        <entry>/(id)/staffProgramAssociations/staff</entry>
+                    </row>
+                    <row>
+                        <entry>/programs</entry>
+                        <entry>/(id)/studentProgramAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/programs</entry>
+                        <entry>/(id)/studentProgramAssociations/students</entry>
+                    </row>
+                    <row>
+                        <entry>/programs</entry>
+                        <entry>/(id)/staffProgramAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/teacherSchoolAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/disciplineActions</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/disciplineIncidents</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/disciplineIncidents/studentDisciplineIncidentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/staffCohortAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/staffCohortAssociations/cohorts</entry>
+                    </row>
+                    <row>
+                        <entry>/attendances</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentSchoolAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentSchoolAssociations</entry>
+                        <entry>/(id)/students</entry>
+                    </row>
+                    <row>
+                        <entry>/studentSchoolAssociations</entry>
+                        <entry>/(id)/schools</entry>
+                    </row>
+                    <row>
+                        <entry>/teacherSchoolAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/teacherSchoolAssociations</entry>
+                        <entry>/(id)/teachers</entry>
+                    </row>
+                    <row>
+                        <entry>/teacherSchoolAssociations</entry>
+                        <entry>/(id)/schools</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/disciplineActions</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/disciplineIncidents</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/disciplineIncidents/studentDisciplineIncidentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffCohortAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffCohortAssociations/cohorts</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffCohortAssociations/cohorts/studentCohortAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations/educationOrganizations</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations/schools</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffProgramAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffProgramAssociations/programs</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/staffProgramAssociations/programs/StudenProgramAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/grades</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentCompetencies</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentSectionAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentSectionAssociations</entry>
+                        <entry>/(id)/students</entry>
+                    </row>
+                    <row>
+                        <entry>/studentSectionAssociations</entry>
+                        <entry>/(id)/sections</entry>
+                    </row>
+                    <row>
+                        <entry>/studentSectionAssociations</entry>
+                        <entry>/(id)/studentCompetencies</entry>
+                    </row>
+                    <row>
+                        <entry>/studentSectionAssociations</entry>
+                        <entry>/(id)/grades</entry>
+                    </row>
+                    <row>
+                        <entry>/staffCohortAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/staffCohortAssociations</entry>
+                        <entry>/(id)/staff</entry>
+                    </row>
+                    <row>
+                        <entry>/staffCohortAssociations</entry>
+                        <entry>/(id)/cohorts</entry>
+                    </row>
+                    <row>
+                        <entry>/studentAssessments</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentAssessments</entry>
+                        <entry>/(id)/students</entry>
+                    </row>
+                    <row>
+                        <entry>/studentAssessments</entry>
+                        <entry>/(id)/assessments</entry>
+                    </row>
+                    <row>
+                        <entry>/staffProgramAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/staffProgramAssociations</entry>
+                        <entry>/(id)/staff</entry>
+                    </row>
+                    <row>
+                        <entry>/staffProgramAssociations</entry>
+                        <entry>/(id)/programs</entry>
+                    </row>
+                    <row>
+                        <entry>/studentDisciplineIncidentAssociations</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/studentDisciplineIncidentAssociations</entry>
+                        <entry>/(id)/disciplineIncidents</entry>
+                    </row>
+                    <row>
+                        <entry>/courseOfferings</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/disciplineActions</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentProgramAssociations/programs</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentAssessments</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentCohortAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentProgramAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentSchoolAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentSectionAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentStudentAssociations/schools</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentAssessments/assessments</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/courseTranscripts/courses</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentDisciplineIncidentAssociations/disciplineIncidents</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentCohortAssociations/cohorts</entry>
+                    </row>
+                    <row>
+                        <entry>/students</entry>
+                        <entry>/(id)/studentGradebookEntries</entry>
+                    </row>
+                    <row>
+                        <entry>/educationOrganizations</entry>
+                        <entry>/(id)/studentSchoolAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/educationOrganizations</entry>
+                        <entry>/(id)/studentSchoolAssociations/students</entry>
+                    </row>
+                    <row>
+                        <entry>/educationOrganizations</entry>
+                        <entry>/(id)/teacherSchoolAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/educationOrganizations</entry>
+                        <entry>/(id)/teacherSchoolAssociations/teachers</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/schools</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations/staff</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/teacherSchoolAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/staff</entry>
+                        <entry>/(id)/teacherSchoolAssociations/schools</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry></entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/staffEducationOrgAssignmentAssociations/educationOrganziations</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/staffProgramAssociations</entry>
+                    </row>
+                    <row>
+                        <entry>/teachers</entry>
+                        <entry>/(id)/staffProgramAssociations/programs</entry>
+                    </row>
+                </tbody>
+            </tgroup>   
+        </table>
+    </section> -->
+<!--    <section xml:id="doc-c0d72211-4317-4051-adee-01f82b1dbfdc">
+            <title>Payload Selectors</title>
+        <para>Optional selectors can be used to override the default response payload. The selectors
+            are a tree of feature names or wildcards.  By limiting the returned payload to only what
+            is needed, use of network resources are better optimized. The selector, := (features),
+            is appended to a URI path to the right of a question mark ('?') character.</para>
+        <para><emphasis>Syntax:</emphasis>
+        <programlisting><![CDATA[ selector := ':' obj
+            
+            obj := '(' feature (',' feature)* ')'
+            
+            feature := name (':' value)? | '*' | '.'
+            
+            value := false | true | obj
+            
+            name := identifier | string literal]]>
+             </programlisting>
+        </para>
+            <para>
+            <phrase><emphasis>Example:</emphasis> The name and sectionStudentAssociations for each
+                student is returned.</phrase>
+            <programlisting><![CDATA[URI:$BASE_URL/api/rest/v1.1/students?selector=:(name, studentSectionAssociations)
+]]></programlisting>
+            <phrase>By using a selector, instead of returning all of the features only the specific
+                features are returned.</phrase>
+            <programlisting><![CDATA[Output:
+{
+    "id": "0636ffd6-ad7d-4401-8de9-40538cf696c8",
+    "studentSectionAssociations": [
+        {
+            "id": "056ac301-b4bb-425e-83d3-b28bf9cdbdb1",
+            "sectionId": "af4e2a0b-6c53-42cb-aa44-6e7687ac2160",
+            "studentId": "0636ffd6-ad7d-4401-8de9-40538cf696c8",
+            "entityType": "studentSectionAssociation"
+        },
+        {
+            "id": "5aa283ab-f956-429c-b107-b675d80b530b",
+            "sectionId": "ceffbb26-1327-4313-9cfc-1c3afd38122e",
+            "studentId": "0636ffd6-ad7d-4401-8de9-40538cf696c8",
+            "entityType": "studentSectionAssociation"
+        },
+        {
+            "id": "b518442b-6ce5-4955-a4ab-5d6db9768a2a",
+            "sectionId": "e626922f-0393-4dc3-bfac-eeebcf47577e",
+            "studentId": "0636ffd6-ad7d-4401-8de9-40538cf696c8",
+            "entityType": "studentSectionAssociation"
+        }
+    ],
+    "name": {
+        "middleName": "W",
+        "generationCodeSuffix": "Jr",
+        "lastSurname": "Muchow",
+        "firstName": "Preston"
+    },
+     "entityType": "student"
+}
+ ]]></programlisting>
+        </para>
+        <para>In addition to being able to define the payload by explicitly listing features, a
+            wildcard can be used to return all the features. An asterix (*) is used as the wilcard
+            parameter for the selector. The payload returned using the wildcard can also be limited
+            by using an exclusion. To exclude features from being returned, append :false after the
+            feature name in the list. </para>
+        <para>
+            <phrase><emphasis>Example:</emphasis> Wildcard returning all features</phrase>
+            <programlisting><![CDATA[URI:$BASE_URL/api/rest/v1.1/sections?selector=:(*)
+ ]]></programlisting>
+            <phrase>By using the wildcard (*) as the parameter for the selector, all of the features
+                for each section and the direct associations are returned.
+            </phrase>
+            <programlisting><![CDATA[Output:
+{
+    educationalEnvironment: "value1",
+    populationServed: "value2",
+    sequenceOfCourse: "value3",
+    uniqueSectionCode: "value4",
+    mediumOfInstruction: "value5",
+    schoolId: "1234",
+    sessionId: "5678",
+    courseOfferingId: "6756",
+    programReference: ["3456"],
+        session : { session entity },
+    entityType: section
+}]]></programlisting>
+        </para>
+        <para>
+            <phrase><emphasis>Example:</emphasis> Excluding features from a wildcard
+                selection</phrase>
+            <programlisting><![CDATA[URI:$BASE_URL/api/rest/v1.1/sections?selector=: ( * , sequenceOfCourse:false )
+ ]]></programlisting>
+            <phrase>The wildcard is used to return all of the features for each section, but adding
+                    <code>sequenceOfCourse:false</code> specifies that this feature should not be
+                returned.</phrase>
+            <programlisting><![CDATA[Output:
+{   educationalEnvironment: "value1",
+    populationServed: "value2",
+    uniqueSectionCode: "value4",
+    mediumOfInstruction: "value5",
+    schoolId: "1234",
+    sessionId: "5678",
+    courseOfferingId: "6756",
+    programReference: ["3457"],
+    entityType: section
+}]]></programlisting>
+        </para>
+        <para>Selectors can also be nested, a selector used within another selectors, to provide
+            additional granularity to the payload.  If any of the features listed in a selector also
+            have sub-features, a selector can be used on those features as well. </para>
+        <para>
+            <phrase><emphasis>Example:</emphasis> Nested feature selection</phrase>
+            <programlisting><![CDATA[URI:$BASE_URL/api/rest/v1.1/students?selector=:( name, studentSectionAssociations : (section : ( * ) ) )
+ ]]></programlisting> In this example, the name and studentSectionAssociations are returned for each
+            student.  In addtion from within the studentSectionAssociation, all of the sub-features
+            for section are returned.<programlisting><![CDATA[Output: 
+{
+    name: "some name",
+    studentSectionAssociations: {
+        studentId: "5678",
+        section: {
+            educationalEnvironment: "value1",
+            populationServed: "value2",
+            sequenceOfCourse: "value3",
+            uniqueSectionCode: "value4",
+            mediumOfInstruction: "value5",
+            schoolId: "1234",
+            sessionId: "5678",
+            courseOfferingId: "6756",
+            programReference: ["3456"]
+        }
+    },
+    entityType: student
+}]]></programlisting>
+        </para>
+        <para>
+            <phrase><emphasis>Example:</emphasis> Default selector</phrase>
+            <programlisting>
+                <![CDATA[]]>
+            </programlisting> By using default (.) as the parameter for the selector, all of the features
+            for each FIXME are returned. The behavior of the default selector is defined by the API and could be changed in the future. Currently the default
+            selector returns all of the features physically associated with each resource being returned. 
+            <programlisting>
+                <![CDATA[]]>
+            </programlisting>
+        </para>
+        </section> -->
+</chapter>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-260f5048-1ba3-4761-8baa-3b2ff9fbf66b"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Ingestion: Post-ingestion Results</title>
+    
+    <para>Once you've uploaded the data files to the landing zone, the system will process the files. When the system has completed the ingestion process:</para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The data will show up in &PRODUCTABBR;'s Data Browser.
+            </para>
+        </listitem>
+        <listitem><para>Several log files will be generated and added to your landing zone. The log files include the job status, as well as any warnings and errors.</para></listitem>
+    </itemizedlist>
+    <para>The following log files are created after an ingestion job:</para>
+    <para>
+        <table frame="all" xml:id="table-4f72ca18-2458-4e12-826d-22ff872d59fe">
+            <title/>
+            <tgroup cols="3">
+                <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+                <colspec colname="c2" colnum="2" colwidth="1.0*"/>
+                <colspec colname="c3" colnum="3" colwidth="1.0*"/>
+                <thead>
+                    <row>
+                        <entry>File Name</entry>
+                        <entry>Conditions</entry>
+                        <entry>Format</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>job-&lt;jobId&gt;.log</entry>
+                        <entry>Created once for every ingestion job.</entry>
+                        <entry>
+                            <para>INFO &lt;jobId information&gt;</para>
+                            <para>INFO &lt;per resource persisted record count&gt;</para>
+                            <para>INFO &lt;configuration parameters&gt;</para>
+                            <para>INFO &lt;overall success or failure&gt;</para>
+                            <para>INFO &lt;total records processed&gt;</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>job_warn-&lt;jobId&gt;.log</entry>
+                        <entry>Created if there are any job-level warnings.</entry>
+                        <entry> WARN &lt;warning detail&gt; </entry>
+                    </row>
+                    <row>
+                        <entry>job_error-&lt;jobId&gt;.log</entry>
+                        <entry>Created if there are any job-level errors present.</entry>
+                        <entry>ERROR &lt;error detail&gt;</entry>
+                    </row>
+                    <row>
+                        <entry>warn.&lt;resourceId&gt;-&lt;jobId&gt;.log</entry>
+                        <entry>Created if there are resource-level warnings present.</entry>
+                        <entry>WARN &lt;warning detail\&gt;</entry>
+                    </row>
+                    <row>
+                        <entry>error.&lt;resourceId&gt;-&lt;jobId&gt;.log </entry>
+                        <entry>Created if there are resource-level errors present.</entry>
+                        <entry>ERROR &lt;error detail&gt;</entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </para>
+    <section>
+        <title>Job-level Errors</title>
+        <para>If &PRODUCTABBR; detects any errors during ingestion, the ingestion job will be aborted. The following errors can appear in the job-level error log file:</para>
+        <table frame="all" xml:id="table-6ffc4e68-378c-4b0a-b2ac-11b2c904c216">
+            <title>Job Level Errors</title>
+            <tgroup cols="2">
+                <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+                <colspec colname="c3" colnum="2" colwidth="1.0*"/>
+                <thead>
+                    <row>
+                        <entry>Error</entry>
+                        <entry>Error Message Template</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>An unkown file format or type  was specified</entry>
+                        <entry>File ${file}: Unknown file ${format|type}: ${value} specified.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>The checksum comparison failed</entry>
+                        <entry>File ${file}: Checksum validation failed.  Possible file
+                            corruption. </entry>
+                    </row>
+                    <row>
+                        <entry>A referenced file could not be found</entry>
+                        <entry>
+                            <para>File ${file}: Specified file is missing.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>The zip file could not be read</entry>
+                        <entry>Could not read .zip archive ${file}. Possible file damage or
+                            corruption. Please resubmit. </entry>
+                    </row>
+                    <row>
+                        <entry>The zip file did not contain a manifest file</entry>
+                        <entry> No manifest file found in .zip archive ${file}. Please
+                            resubmit.</entry>
+                    </row>
+                    <row>
+                        <entry>The user does not have permission to ingest files.</entry>
+                        <entry>
+                            <para>Authorization failed.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>The control file did not contain any valid files</entry>
+                        <entry>No valid files specified in control file. </entry>
+                    </row>
+                    <row>
+                        <entry>A referenced file did not contain a checksum</entry>
+                        <entry>File ${file}: No checksum is specified. </entry>
+                    </row>                     
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    <section>
+        <title>Resource-level Errors</title>
+        <para>If &PRODUCTABBR; detects any errors during ingestion, the ingestion job will be aborted. The following errors can appear in the resource error log file:</para>
+        <para>
+            <table frame="all" xml:id="table-595eb26e-52fe-4c77-be72-10f216354fc9">
+                <title>Resource-Level Errors</title>
+                <tgroup cols="2">
+                    <colspec colname="c1" colnum="1" colwidth="1.02*"/>
+                    <colspec colname="c3" colnum="2" colwidth="1*"/>
+                    <thead>
+                        <row>
+                            <entry>Error</entry>
+                            <entry>Error Message Template</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>A file could not be read</entry>
+                            <entry> XML file cannot be read </entry>
+                        </row>
+                        <row>
+                            <entry>An XML file did not contain any data</entry>
+                            <entry> XML file is empty </entry>
+                        </row>
+                        <row>
+                            <entry>An entity was missing a required parameter</entry>
+                            <entry>Data validation error when saving an entity        Error     
+                                REQUIRED_FIELD_MISSING       Entity     ${recordType}      
+                                 Instance   ${recordNumber}        Missing or empty field   
+                                ${fieldname} </entry>
+                        </row>
+                        <row>
+                            <entry>A parameter used an invalid date format</entry>
+                            <entry> Data validation error when saving an entity        Error  
+                                   INVALID_DATE_FORMAT        Entity     ${recordType}      
+                                 Instance   ${recordNumber}        Invalid date format for
+                                field    ${fieldname}        Value      [${fieldValue}]       
+                                Expected    ${fieldValue} </entry>
+                        </row>
+                        <row>
+                            <entry>A parameter had mismatched enumeration</entry>
+                            <entry> Data validation error when saving an entity        Error  
+                                   ENUMERATION_MISMATCH        Entity     ${recordType}      
+                                 Instance   ${recordNumber}        Enumeration mismatch for
+                                field      ${fieldname}        Value      [${fieldValue}]       
+                                Expected  [${fieldValue}] </entry>
+                        </row>
+                        <row>
+                            <entry>A parameter was missing referential information</entry>
+                            <entry> Data validation error when saving an entity     Error     
+                                REFERENTIAL_INFO_MISSING     Entity     ${recordType}  
+                                  Instance   ${recordNumber}     Referential information missing
+                                for field      ${fieldname} </entry>
+                        </row>
+                        <row>
+                            <entry>A parameter included a bad value or a parameter value was
+                                included where no parameter value was expected</entry>
+                            <entry> Data validation error when saving an entity        Error    
+                                 INVALID_VALUE        Entity     ${recordType}        Instance  
+                                ${recordNumber}        Field      ${fieldname}        Value    
+                                 ${fieldValue}        Expected  ${expectedFieldValue} </entry>
+                        </row>
+                        <row>
+                            <entry>A selected choice type not a valid option for a field </entry>
+                            <entry> Data validation error when saving an entity        Error  
+                                   INVALID_CHOICE_TYPE        Entity     ${recordType}      
+                                 Instance   ${recordNumber}        Field      ${fieldname}      
+                                 Value      ${fieldValue}        Expected  ${expectedFieldType} </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </para>
+        
+    </section>
+    
+</chapter>

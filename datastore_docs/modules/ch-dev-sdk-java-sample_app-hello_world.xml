@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-87a625f9-66f1-402d-98f1-c2d548812eec"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Sample Application: Java SDK "Hello World"</title>
+    <para>
+        The sample application is a simple "hello world" type application 
+        designed to demonstrate OAuth authentication and SDK usage.
+    </para>
+    <section xml:id="doc-b1a16096-bdf8-4f96-bb2c-1e974275a208">
+        <title>Source</title>
+        <para>
+            Source for the sample application is included in the distribution 
+            under the <filename>sample</filename> directory. The sample 
+            application is provided as an Apache Maven project. To build the
+            application from this source, run 
+            <command>mvn clean package</command> in the root of the 
+            distribution. This command will build the 
+            <filename>client-api</filename> and sample application.
+        </para>
+    </section>
+    <section xml:id="doc-3910b0ba-5d88-4fce-9371-8982fa2d70fe">
+        <title>Prerequisites</title>
+        <para> Before running the sample application, your application must have access to data in
+            an &PRODUCTABBR; Secure Data Service. Use other sections of &PRODUCTABBR; developer
+            documentation to determine how to set up your development environment, including adding
+            data to the data store. </para>
+    </section>
+    <section xml:id="doc-7fcc65f2-5f8c-40b8-9610-a5d683c9db69">
+        <title>Configuration</title>
+        <para>
+            The sample application requires some configuration running it. 
+            Edit the <filename>sample.properties</filename> file included in 
+            the <filename>sample</filename> directory, and fill in the 
+            following properties:
+        </para>
+        <table xml:id="table-2dceca76-77e6-4b96-a371-f60fdf1742e5">
+            <title/>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="3*"/>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                sli.sample.apiUrl
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                URL of the &PRODUCTABBR; REST API the 
+                                application's using. Please ensure the 
+                                URL matches the desired environment 
+                                (Sandbox or Production). 
+                                (Example:  
+                                <filename>https://api.sandbox.example.org/</filename>)
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                sli.sample.callbackUrl
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                OAuth callback URL for the sample application. 
+                                &PRODUCTABBR; redirects to this 
+                                URL after a user authenticates with its 
+                                identity provider. This must match the 
+                                <varname>redirect_url</varname> configured 
+                                when requesting a new application.
+                                (Example: 
+                                <filename>https://myapp.example.com/callback</filename>)
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                sli.sample.clientId
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Unique string identifying this application,
+                                created during the application registration
+                                process with the target &PRODUCTABBR;
+                                environment.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                sli.sample.clientSecret
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Secret used to authenticate this application,
+                                created during the application registration
+                                process with the target &PRODUCTABBR;
+                                environment.
+                                Care should be taken to ensure this 
+                                value is secure.*
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para>
+            * Production apps should ensure this value is encrypted or 
+            otherwise locked down.
+        </para>
+        <para>
+            The sample application searches for the 
+            <filename>sample.properties</filename> file by looking up the 
+            value of a Java system property called <varname>sli.conf</varname>.
+        </para>
+    </section>
+    <section xml:id="doc-50c723a8-223b-4d76-b696-a6f4761f0eac">
+        <title>Running using Jetty</title>
+        <para>
+            You can run the sample application with Maven and Jetty. 
+            The provided <filename>pom.xml</filename> is configured to look 
+            for the <filename>sample.properties</filename> file inside the 
+            sample directory.
+        </para>
+        <para>
+            To run the sample application using Jetty, ensure the 
+            <filename>sample.properties</filename> is properly configured
+            (as previously described), then run the following command:
+        </para>
+        <programlisting><![CDATA[
+mvn jetty:run
+                ]]></programlisting>
+        <para>
+            Maven will download Jetty and start the sample app on port 8081.
+        </para>
+    </section>
+    <section xml:id="doc-03c63712-8936-40b6-b944-691bee75d325">
+        <title>Running using Tomcat</title>
+        <procedure>
+            <step>
+                <para>
+                    Ensure the <filename>sample.properties</filename> file is 
+                    set up and accessible to applications running under Tomcat.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Configure the Java system property 
+                    <varname>sli.conf</varname> to point to the 
+                    location of the <filename>sample.properties</filename> 
+                    file. This can be done by editing the 
+                    <filename>catalina.sh</filename> or 
+                    <filename>catalina.bat</filename>
+                    file so that <varname>JAVA_OPTS</varname> contains 
+                    "-Dsli.conf=/path/to/sample.properties".
+                </para>
+            </step>
+            <step>
+                <para>
+                    Build the sample project using the following command in 
+                    the distribution's <filename>sample</filename> directory:
+                </para>
+                <programlisting><![CDATA[
+mvn clean package
+                        ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Copy the <filename>sample.war</filename> file from the 
+                    <filename>target</filename> directory into Tomcat's 
+                    <filename>webapps</filename> directory.
+                </para>
+                <note><para>All &PRODUCTABBR;java web applications should be deployed to the context specified by the .war file. They should not be deploy to the root context in Tomcat.</para></note>
+            </step>
+            <step>
+                <para>
+                    Start Tomcat.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    <section xml:id="doc-3aacf6d2-cf48-4440-aaf5-f7397d23e18f">
+        <title>Using the Sample Application</title>
+        <para>
+            Once the sample application is running, access it using the 
+            following steps:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Visit the sample application's URL in your browser.
+                    (Example: 
+                    <filename>http://example.com/sample/students</filename>)
+                </para>
+            </step>
+            <step>
+                <para>
+                    The sample application will redirect you to the 
+                    &PRODUCTABBR; for authentication. Choose the appropriate 
+                    realm and authenticate with the identity provider.
+                </para>
+            </step>
+            <step>
+                <para>
+                    After authentication, &PRODUCTABBR; redirects you 
+                    back to the sample application following authentication.
+                </para>
+            </step>
+            <step>
+                <para>
+                    The sample application will display your name, a list of 
+                    roles your logged in user currently has, and any students 
+                    the logged in user can see. If you do not see any students,
+                    students may not exist within the educational organizations
+                    the application is approved to see. The current user may 
+                    not have the appropriate context to see any students 
+                    (for example, a teacher may not have any students 
+                    associated with his or her sections).
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+</chapter>

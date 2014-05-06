@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-tenants-id-preload" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>tenants-id-preload</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/tenants/{id}/preload</filename>
+    </para>
+    <para>
+        Preload one of the available sample datasets into the specified tenant.
+        This POST-only resource is only available in the sandbox environment.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Creates a new resource using the given resource 
+                            data. This request takes a single string as a 
+                            parameter. The parameter is either "small" or 
+                            "medium", and it indicates which sample dataset 
+                            to load.
+                        </para>
+                        <para>
+                            Request:
+                            To form the POST request body, package all 
+                            required and other desired fields into a 
+                            conventional JSON document. It should be similar 
+                            to JSON response bodies displayed when making 
+                            a GET request.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>201 Created</varname> - 
+                            The <varname>Location</varname> header contains 
+                            the URI of the new resource.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-tenants-id-preload-post_example">
+        <title>Example POST Request: tenants/{id}/preload</title>
+        <para>
+            Request header:
+        </para>
+        <programlisting><![CDATA[POST /api/rest/tenants/2012td-554c2d7b-2cd8-11e2-9a8c-68a86d2267de/preload HTTP/1.1
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Content-Type: application/json
+Content_type: json
+Authorization: bearer t-1398b29f-237c-4e1a-bf6d-98d59bf7990f
+Content-Length: 6
+User-Agent: Ruby
+Host: local.example.com:8180]]></programlisting>
+        <para>
+            Request body:
+        </para>
+        <programlisting><![CDATA[medium]]></programlisting>
+    </section>
+    
+</section>

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-1255e2ab-beae-4dae-b864-fce847a09563"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&RESTAPI; Example Walk Through: Recording Grades for a Quiz</title>
+
+    <para> This example walks through how your application might handle REST API requests and
+        responses to perform a series of tasks in a given scenario. The scenario we've chosen is a
+        teacher using the application to add a new quiz to the grade book for a given section,
+        record a student's grade for that quiz, and update and delete that student's quiz grade. </para>
+    <para>
+        The example that follows makes the following assumptions:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The example makes use of one of the &COMPANYABBR; sample data
+                sets in an &COMPANYABBR;-hosted Sandbox environment. You can
+                replicate these steps in your own &COMPANYABBR;-hosted Sandbox,
+                or you can use these steps as a guide for interacting with
+                other data and tools.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The application user has <code>WRITE_GENERAL</code> rights 
+                in the &PRODUCTABBR; system.
+            </para>
+            <para>
+                <emphasis role="bold">This sample requires selecting the IT Administrator role
+                for your sample user.</emphasis> That role ensures that you
+                can read and write the data using these example calls without
+                requiring the fine-grained access roles to be implemented
+                in a future &PRODUCTABBR; release.
+            </para>
+        </listitem>
+        <listitem>
+            <para> The application user has a context with the student which allows that user to
+                both read and write grades for that student. This example targets an associated
+                teacher and student from the sample data set. The student is in one of the current
+                sections for that teacher and, thus, appears in the teacher's grade book. The
+                teacher can edit grade book entries for that student. </para>
+        </listitem>
+        <listitem>
+            <para>
+                Each step of the procedure shows how the call can be made using 
+                the cURL command-line utility. Be sure to distinguish the
+                <command>curl</command> command and options from the HTTPS
+                request itself, and use your preferred REST client in a similar
+                fashion.
+            </para>
+            <!-- <para>
+                If you're new to cURL, the first thing you'll need to do is
+                establish your authenticated session with your sandbox 
+                &PRODUCTABBR; environment. The following command combines the
+                <command>curl</command> command with the URI structure for an
+                OAuth authentication request:
+            </para>
+            <programlisting><![CDATA[
+curl https://api.sandbox.inbloom.org/api/oauth/authorize?response_type=code
+            ]]></programlisting> -->
+        </listitem>
+        <listitem>
+            <para>
+                Each request/response pair shows how the request URI is formed
+                and the JSON response you should expect to receive.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Based on the tools you select, your example requests and
+                responses may vary in appearance.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <procedure>
+        <step>
+            <para> Create a Sandbox session for an educator in your data set who has an
+                    <guibutton>IT Administrator</guibutton> user role. </para>
+        </step>
+        <step>
+            <para> Access the target section which requires the new grade book entry. Again, we're
+                assuming that the user has to create space for the quiz grades for all students
+                first before recording the grade for a specific student. These are some of the
+                requests your application might make as part of the user's path when selecting the
+                section (actual requests/responses not shown): </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Request (GET) the list of 
+                        <classname>sections</classname> (classes) that the 
+                        user teaches.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Request (GET) the list of 
+                        <classname>students</classname> resources who are 
+                        enrolled in the section. 
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Request (GET) the ID value of the 
+                        <classname>sections</classname> resource to record quiz
+                        grades for.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </step>
+        <step>
+            <para>
+                Create (POST) a <classname>gradebookEntries</classname> 
+                resource that describes the quiz and associates it with the 
+                section.
+            </para>
+            <para>
+                HTTP POST request (cURL command):
+            </para>
+            <programlisting><![CDATA[
+curl --trace-ascii - -X POST -H "Content-type: application/vnd.slc+json" \
+-H "accept: application/vnd.slc+json" \
+-H "Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b" \
+"localhost:8080/api/rest/v1.1/gradebookEntries" -d '{ \
+        "gradebookEntryType":"Quiz",\
+        "dateAssigned":"2012-02-07",\
+        "description":"Chapter 4, Section 1 Quiz",\
+        "sectionId":"ceffbb26-1327-4313-9cfc-1c3afd38122e"\
+}'
+                    ]]></programlisting>
+            <para>
+                Request body:
+            </para>
+            <programlisting><![CDATA[
+POST /api/rest/v1.1/gradebookEntries HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 \
+OpenSSL/0.9.8r zlib/1.2.5
+Host: localhost:8080
+Content-type: application/vnd.slc+json
+accept: application/vnd.slc+json
+Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b
+Content-Length: 187
+
+{
+        "gradebookEntryType":"Quiz",
+        "dateAssigned":"2012-02-07",
+        "description":"Chapter 4, Section 1 Quiz",
+        "sectionId":"ceffbb26-1327-4313-9cfc-1c3afd38122e"
+}
+                    ]]></programlisting>
+            <para>
+                HTTP POST response, including the Location header with the
+                ID value of the new resource:
+            </para>
+            <programlisting><![CDATA[
+HTTP/1.1 201 Created
+Location: http://localhost:8080/api/rest/v1.1/gradebookEntries/c481ad53-953a-11e1-8418-3c0754503e8b
+Content-Type: application/vnd.slc+json
+Content-Length: 0
+Server: Apache-Coyote/1.1
+                    ]]></programlisting>
+        </step>
+        <step>
+            <para>
+                Create (POST) a <classname>studentGradebookEntries</classname>
+                resource, which records the student's grade and associates the 
+                student and the section with the 
+                <classname>gradebookEntries</classname> resource that was
+                created in the previous step. Repeat this step to record each 
+                student's quiz grade.
+            </para>
+            <para>
+                HTTP POST request (cURL command):
+            </para>
+            <programlisting><![CDATA[
+curl --trace-ascii - -X POST -H "Content-type: application/vnd.slc+json" \
+-H "accept: application/vnd.slc+json" \
+-H "Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b" \
+"localhost:8080/api/rest/v1.1/studentGradebookEntries" -d '{ \
+         "studentSectionAssociationId":"5738d251-dd0b-4734-9ea6-417ac9320a15",\
+         "gradebookEntryId":"c481ad53-953a-11e1-8418-3c0754503e8b",\
+         "dateFulfilled":"2012-02-07",\
+         "letterGradeEarned":"C"\
+}'
+                    ]]></programlisting>
+            <para>
+                Request body:
+            </para>
+            <programlisting><![CDATA[
+POST /api/rest/v1.1/studentGradebookEntries HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 \
+OpenSSL/0.9.8r zlib/1.2.5
+Host: localhost:8080
+Content-type: application/vnd.slc+json
+accept: application/vnd.slc+json
+Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b
+Content-Length: 265
+
+{
+         "studentSectionAssociationId":"5738d251-dd0b-4734-9ea6-417ac9320a15",
+         "gradebookEntryId":"c481ad53-953a-11e1-8418-3c0754503e8b",
+         "dateFulfilled":"2012-02-07",
+         "letterGradeEarned":"C"
+}
+                    ]]></programlisting>
+            <para>
+                HTTP POST response, including the Location header with the
+                ID value of the new resource:
+            </para>
+            <programlisting><![CDATA[
+HTTP/1.1 201 Created
+Location: http://localhost:8080/api/rest/v1.1/studentGradebookEntries/\
+d75757d4-953b-11e1-8418-3c0754503e8b
+Content-Type: application/vnd.slc+json
+Content-Length: 0
+Server: Apache-Coyote/1.1
+                    ]]></programlisting>
+        </step>
+        <step>
+            <para>
+                Update (PUT) the grade that was previously created.
+            </para>
+            <para>
+                HTTP PUT request (cURL command):
+            </para>
+            <programlisting><![CDATA[
+curl --trace-ascii - -X PUT -H "Content-type: application/vnd.slc+json" \
+-H "accept: application/vnd.slc+json" \
+-H "Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b" \
+"localhost:8080/api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-8418-3c0754503e8b" -d '{ \
+         "studentSectionAssociationId":"5738d251-dd0b-4734-9ea6-417ac9320a15",\
+         "gradebookEntryId":"c481ad53-953a-11e1-8418-3c0754503e8b",\
+         "dateFulfilled":"2012-02-07",\
+         "letterGradeEarned":"A"\
+}'
+                    ]]></programlisting>
+            <para>
+                Request body:
+            </para>
+            <programlisting><![CDATA[
+PUT /api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-8418-3c0754503e8b HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: localhost:8080
+Content-type: application/vnd.slc+json
+accept: application/vnd.slc+json
+Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b
+Content-Length: 265
+
+{
+         "studentSectionAssociationId":"5738d251-dd0b-4734-9ea6-417ac9320a15",
+         "gradebookEntryId":"c481ad53-953a-11e1-8418-3c0754503e8b",
+         "dateFulfilled":"2012-02-07",
+         "letterGradeEarned":"A"
+}
+                    ]]></programlisting>
+            <para>
+                HTTP PUT response:
+            </para>
+            <programlisting><![CDATA[
+HTTP/1.1 204 No Content
+Content-Type: application/vnd.slc+json
+Server: Apache-Coyote/1.1
+                    ]]></programlisting>
+        </step>
+        <step>
+            <para> 
+                (Optional) Request (GET) the
+                <classname>studentSectionGradebookEntries</classname> resource 
+                that was previously created. Note the updated value of 
+                <code>letterGradeEarned</code> in the response body. 
+            </para>
+            <para>
+                HTTP GET request (cURL command):
+            </para>
+            <programlisting><![CDATA[
+curl --trace-ascii - -X GET -H "Content-type: application/vnd.slc+json" \
+-H "accept: application/vnd.slc+json" \
+-H "Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b" \
+"localhost:8080/api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-8418-3c0754503e8b"
+                    ]]></programlisting>
+            <para>
+                Request body:
+            </para>
+            <programlisting><![CDATA[
+GET /api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-8418-3c0754503e8b HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: localhost:8080
+Content-type: application/vnd.slc+json
+accept: application/vnd.slc+json
+Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b
+                    ]]></programlisting>
+            <para>
+                HTTP GET response:
+            </para>
+            <programlisting><![CDATA[
+HTTP/1.1 200 OK
+TotalCount: 1
+Content-Type: application/vnd.slc+json
+Content-Length: 1052
+Server: Apache-Coyote/1.1
+
+{
+    "dateFulfilled": "2012-02-07",
+    "entityType": "studentSectionGradebookEntry",
+    "gradebookEntryId": "c481ad53-953a-11e1-8418-3c0754503e8b",
+    "studentSectionAssociationId":"5738d251-dd0b-4734-9ea6-417ac9320a15",
+    "id": "d75757d4-953b-11e1-8418-3c0754503e8b",
+    "letterGradeEarned": "A",
+    "links": [
+        {
+            "href": "http://localhost:8080/api/rest/v1.1/studentGradebookEntries/\
+d75757d4-953b-11e1-8418-3c0754503e8b",
+            "rel": "self"
+        },
+        {
+            "href": "http://localhost:8080/api/rest/v1.1/studentGradebookEntries/\
+d75757d4-953b-11e1-8418-3c0754503e8b/custom",
+            "rel": "custom"
+        },
+        {
+            "href": "http://localhost:8080/api/rest/v1.1/gradebookEntries/\
+c481ad53-953a-11e1-8418-3c0754503e8b",
+            "rel": "getGradebookEntry"
+        },
+        {
+            "href": "http://localhost:8080/api/rest/v1.1/students/\
+5738d251-dd0b-4734-9ea6-417ac9320a15",
+            "rel": "getStudent"
+        },
+        {
+            "href": "http://localhost:8080/api/rest/v1.1/sections/\
+ceffbb26-1327-4313-9cfc-1c3afd38122e",
+            "rel": "getSection"
+        }
+    ],
+    "metaData": {
+        "created": 1336062004626,
+        "createdBy": "85585b27-5368-4f10-a331-3abcaf3a3f4c",
+        "isOrphaned": "true",
+        "tenantId": "IL",
+        "updated": 1336064566964
+    },
+}
+                    ]]></programlisting>
+        </step>
+        <step>
+            <para>
+                Delete (DELETE) the 
+                <classname>studentGradebookEntries</classname> resource that 
+                was previously created.
+            </para>
+            <para>
+                HTTP DELETE request (cURL command):
+            </para>
+            <programlisting><![CDATA[
+curl --trace-ascii - -X DELETE -H "Content-type: application/vnd.slc+json" \
+-H "accept: application/vnd.slc+json" \
+-H "Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b" \
+"localhost:8080/api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-8418-3c0754503e8b"
+                    ]]></programlisting>
+            <para>
+                Request body:
+            </para>
+            <programlisting><![CDATA[
+DELETE /api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-8418-3c0754503e8b HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+Host: localhost:8080
+Content-type: application/vnd.slc+json
+accept: application/vnd.slc+json
+Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b
+                    ]]></programlisting>
+            <para>
+                HTTP DELETE response:
+            </para>
+            <programlisting><![CDATA[
+HTTP/1.1 204 No Content
+Content-Type: application/vnd.slc+json
+Server: Apache-Coyote/1.1
+                    ]]></programlisting>
+        </step>
+        <step>
+            <para>
+                (Optional) Request (GET) the 
+                <classname>studentGradebookEntries</classname>
+                resource that was previously deleted.
+            </para>
+            <para>
+                HTTP GET request (cURL command):
+            </para>
+            <programlisting><![CDATA[
+curl --trace-ascii - -X GET -H "Content-type: application/vnd.slc+json" \
+-H "accept: application/vnd.slc+json" \
+-H "Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b" \
+"localhost:8080/api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-8418-3c0754503e8b"
+                    ]]></programlisting>
+            <para>
+                Request body:
+            </para>
+            <programlisting><![CDATA[
+GET /api/rest/v1.1/studentGradebookEntries/d75757d4-953b-11e1-84180040: -3c0754503e8b HTTP/1.1
+User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.20098: 1.4 \
+OpenSSL/0.9.8r zlib/1.2.5
+Host: localhost:8080
+Content-type: application/vnd.slc+json
+accept: application/vnd.slc+json
+Authorization: bearer cacd9227-5b14-4685-babe-31230476cf3b
+                    ]]></programlisting>
+            <para>
+                The HTTP GET response body includes error notification. This 
+                is the convention for that as a JSON response body:
+            </para>
+            <programlisting><![CDATA[
+{
+  "code":<a standard HTTP error code integer, as defined by the W3C>,
+  "message":"<string>",
+  "type":"<a standard HTTP error type string, as defined by the W3C>",
+  "statusCode":<reserved for future use>
+}
+                    ]]></programlisting>
+            <para>
+                Here's an example JSON response showing both the header and 
+                body:
+            </para>
+            <programlisting><![CDATA[
+HTTP/1.1 404 Not Found
+Content-Type: application/vnd.slc+json
+Content-Length: 115
+Server: Apache-Coyote/1.1
+
+{
+  "code":404,
+  "message":"Entity not found: d75757d4-953b-11e1-8418-3c0754503e8b",
+  "type":"Not Found",
+  "statusCode":404
+}
+                    ]]></programlisting>
+            <para>
+                This is the convention for the XML response body:
+            </para>
+            <programlisting><![CDATA[
+<ErrorResponse xmlns="">
+  <code>[a standard HTTP error code, as defined by the W3C]</code>
+  <message>[string]</message>
+  <type>[a standard HTTP error type string, as defined by the W3C]</type>
+  <statusCode>[reserved for future use]</statusCode>
+</ErrorResponse>
+                    ]]></programlisting>
+            <para>
+                Here's an example XML response showing both the header and 
+                body:
+            </para>
+            <programlisting><![CDATA[
+Status Code: 404
+Transfer-Encoding: chunked
+Server: Jetty(6.1.10)
+Content-Type: application/xml
+
+<ErrorResponse xmlns="">
+  <code>404</code>
+  <message>Entity not found: 1234</message>
+  <type>Not Found</type>
+  <statusCode>404</statusCode>
+</ErrorResponse>
+                    ]]></programlisting>
+        </step>
+    </procedure>
+    
+</chapter>

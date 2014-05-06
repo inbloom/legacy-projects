@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-84cff820-10a6-4968-96b7-eb0bde31ca95"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title> &PRODUCTABBR; Administrative Users</title>
+    
+    <para> 
+        An <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm> is
+        a user created in the <glossterm linkend="def-hosted_directory">&PRODUCTABBR; hosted
+            directory</glossterm>. Unlike other &PRODUCTABBR; users, &COMPANYABBR; administrators
+        are responsible for setting up and maintaining an &PRODUCTABBR; deployment. These
+        administrative users perform the day-to-day functions of maintaining an education
+        organization. This includes adding users, managing roles and permissions, and enabling and
+        configuring applications.</para>
+    
+    <note>
+        <para>Each &PRODUCTABBR; deployment will have an initial administrative user account
+            created. The &OPERATORROLE; creates this when setting up a deployment.</para>
+    </note>
+    
+    <section xml:id="doc-34cc5a15-768c-4f50-b2bf-dab05e154c6f">
+        <title>Administrative User Roles</title>
+        <para>The types of &PRODUCTABBR; administrator roles for a Production environment
+            are:</para>
+        <table frame="all" xml:id="table-197e726d-94f7-44fb-9227-23ac5ccc4d98">
+            <title>Administrators</title>
+            <tgroup cols="5">
+                <colspec colname="c1" colnum="1" colwidth="1.5*"/>
+                <colspec colname="c2" colnum="2" colwidth="2.5*"/>
+                <colspec colname="c3" colnum="3" colwidth="1.5*"/>
+                <colspec colname="newCol5" colnum="4" colwidth="1.5*"/>
+                <colspec colname="newCol6" colnum="5" colwidth="2.5*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Role
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Responsibilities
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Can Create
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Created By
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Accessible System Tools
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                &OPERATORROLE;
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Setting up and maintaining an &PRODUCT; 
+                                deployment.
+                                <emphasis>Note:</emphasis> These users are 
+                                not added to a 
+                                <glossterm linkend="def-tenant">tenant</glossterm>
+                                or 
+                                <glossterm linkend="def-education_organization">education organization</glossterm>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Any type of administrative user.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                &OPERATORROLE;
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Register Application, Account Approval, 
+                                Manage Administrative Accounts
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>SEA Administrator</entry>
+                        <entry>
+                            <para>
+                                (SEA = State Education Agency)
+                            </para>
+                            <para>
+                                Administering state-level instances of
+                                &PRODUCTABBR;. This includes creating new 
+                                administrative users for delegated child
+                                education organizations.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                For their SEA: SEA Administrators, 
+                                LEA Administrators, Realm Administrators, 
+                                and Ingestion Users.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                &OPERATORROLE; or other SEA Administrators 
+                                within the same SEA
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Authorize Application, 
+                                Manage Administrator Accounts
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                LEA Administrator
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                (LEA = Local Education Agency)
+                            </para>
+                            <para>
+                                Administering local-level &COMPANYABBR; 
+                                &PRODUCTABBR; deployments, such as districts,
+                                counties, and cities. Typically, this 
+                                includes creating new administrative users, 
+                                and enabling and configuring applications 
+                                for a district.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                For their LEA: LEA Administrators, 
+                                Realm Administrators, and Ingestion Users.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                &OPERATORROLE;, SEA Administrators or other 
+                                LEA Administrators within the same LEA
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Delegate Administration, Authorize Application,
+                                Manage Administrator Accounts
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Realm Administrator
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Administering realms within &PRODUCTABBR;. 
+                                Realm Administrators will
+                                also map roles between &PRODUCTABBR; and an 
+                                education organization's
+                                identity provider.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Cannot create other administrative users.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                &OPERATORROLE;, SEA Administrators, or 
+                                LEA Administrators
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Create Custom Roles, Manage Realm
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Ingestion User
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Uploads data to a specified tenant.
+                            </para>
+                            <para>
+                                For detailed information about
+                                Ingestion Users, see 
+                                <xref linkend="doc-fe6b4f03-127c-45f2-b975-0c66ad9e43d9"/>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Cannot create other administrative users.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                &OPERATORROLE;, SEA Administrators, or 
+                                LEA Administrators
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Create Landing Zone
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <note><para>The &OPERATORROLE; can only create Realm Administrators and Ingestion Users if the education
+                organization is defined in the database for the tenant.</para></note>
+    </section>
+    <section>
+        <title>Administrative Rights</title>
+        <para>Each user has different rights based on their role. The following tables documents the
+            rights for &PRODUCTABBR; administrators and show what rights each role has. </para>
+        <table xml:id="table-8084f796-12b7-4d6e-957c-7273b2b8ff13">
+            <title>Administrative Rights</title>
+            <tgroup cols="3">
+                <colspec colname="newCol2" colwidth="5.02*"/>
+                <colspec colname="fifthCol" colwidth="5.1*"/>
+                <colspec colname="sixthCol" colwidth="6.94*"/>
+                <thead>
+                    <row>
+                        <entry>Right</entry>
+                        <entry>Abilities </entry>
+                        <entry>Resource</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>CRUD_REALM </entry>
+                        <entry>
+                            <para>Create, delete, and update realms </para>
+                        </entry>
+                        <entry>RealmResource </entry>
+                    </row>
+                    <row>
+                        <entry>CRUD_ROLE </entry>
+                        <entry>Create, delete, and update custom roles </entry>
+                        <entry>CustomRoleResource </entry>
+                    </row>
+                    <row>
+                        <entry>SLC_APP_APPROVE </entry>
+                        <entry>
+                            <para>Approve, reject, and unregister applications </para>
+                        </entry>
+                        <entry>ApplicationResource </entry>
+                    </row>
+                    <row>
+                        <entry>EDORG_APP_AUTHZ </entry>
+                        <entry>
+                            <para>Update admin delegation for an LEA, authorize applications for an
+                                LEA </para>
+                        </entry>
+                        <entry>ApplicationAuthorizationResource,   AdminDelegationResource </entry>
+                    </row>
+                    <row>
+                        <entry>EDORG_DELEGATE  </entry>
+                        <entry>
+                            <para>View security events if
+                                delegated </para>
+                        </entry>
+                        <entry>ApplicationAuthorizationResource, SecurityEventResource </entry>
+                    </row>
+                    <row>
+                        <entry>DEV_APP_CRUD </entry>
+                        <entry>
+                            <para>Create, delete, and update applications </para>
+                        </entry>
+                        <entry>
+                            <para>ApplicationResource </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>CRUD_SLC_OPERATOR </entry>
+                        <entry>
+                            <para>Create &OPERATORROLE; users </para>
+                        </entry>
+                        <entry>
+                            <para>UserResource </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>CRUD_SANDBOX_ADMIN </entry>
+                        <entry>
+                            <para>Create Sandbox admin users </para>
+                        </entry>
+                        <entry>UserResource </entry>
+                    </row>
+                    <row>
+                        <entry>CRUD_SEA_ADMIN </entry>
+                        <entry>Create SEA Admin users </entry>
+                        <entry>UserResource </entry>
+                    </row>
+                    <row>
+                        <entry>CRUD_LEA_ADMIN </entry>
+                        <entry>Create LEA Admin users </entry>
+                        <entry>UserResource </entry>
+                    </row>
+                    <row>
+                        <entry>INGEST_DATA </entry>
+                        <entry>
+                            <para>Create landing zones </para>
+                        </entry>
+                        <entry>UserResource</entry>
+                    </row>
+                    <row>
+                        <entry>-</entry>
+                        <entry>View security events </entry>
+                        <entry>SecurityEventResource </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para/>
+        <table xml:id="table-375626a8-8a54-480e-8baa-fb23501ce930">
+            <title>Administrator Roles and Associated Rights</title>
+            <tgroup cols="5">
+                <colspec colname="firstCol" colwidth="2*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="thirdCol" colwidth="1*"/>
+                <colspec colname="fourthCol" colwidth="1.02*"/>
+                <colspec colname="fifthCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>Role</entry>
+                        <entry>Name</entry>
+                        <entry>IDP</entry>
+                        <entry>Association</entry>
+                        <entry>Rights (ID values, see table above) </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>&OPERATORROLE; </para>
+                        </entry>
+                        <entry>
+                            <para> &OPERATORROLE; </para>
+                        </entry>
+                        <entry>
+                            <para> &PRODUCTABBR; </para>
+                        </entry>
+                        <entry>
+                            <para>Global </para>
+                        </entry>
+                        <entry>
+                            <para>SLC_APP_APPROVE, CRUD_SLC_OPERATOR, CRUD_SEA_ADMIN,
+                                CRUD_LEA_ADMIN, View Security Events </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>SEA Super-administrator</entry>
+                        <entry>SEA Administrator</entry>
+                        <entry>&PRODUCTABBR;</entry>
+                        <entry>Edorg (State), Tenant </entry>
+                        <entry>EDORG_DELEGATE, CRUD_SEA_ADMIN, CRUD_LEA_ADMIN, View Security Events*  </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>LEA Super-administrator </para>
+                        </entry>
+                        <entry>
+                            <para> LEA Administrator </para>
+                        </entry>
+                        <entry>
+                            <para> &PRODUCTABBR; </para>
+                        </entry>
+                        <entry>
+                            <para>Edorg (District), Tenant </para>
+                        </entry>
+                        <entry>
+                            <para>EDORG_APP_AUTHZ, CRUD_LEA_ADMIN, View Security Events </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>Sandbox Administrator </entry>
+                        <entry>Sandbox Administrator </entry>
+                        <entry>&PRODUCTABBR; </entry>
+                        <entry>Edorg, Tenant </entry>
+                        <entry>CRUD_SANDBOX_ADMIN </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Realm Administrator </para>
+                        </entry>
+                        <entry>
+                            <para>Realm Admin </para>
+                        </entry>
+                        <entry>
+                            <para> &PRODUCTABBR; </para>
+                        </entry>
+                        <entry>
+                            <para> Realm, Tenant </para>
+                        </entry>
+                        <entry>
+                            <para>CRUD_REALM, CRUD_ROLE </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>Application Developer </entry>
+                        <entry>
+                            <para>application_</para>
+                            <para>developer</para>
+                        </entry>
+                        <entry>&PRODUCTABBR;</entry>
+                        <entry>Application, Tenant (for Sandbox) </entry>
+                        <entry>DEV_APP_CRUD CRUD_ROLE (Sandbox only)</entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Ingestion User </para>
+                        </entry>
+                        <entry>
+                            <para>ingestion_user  </para>
+                        </entry>
+                        <entry>
+                            <para> &PRODUCTABBR; </para>
+                        </entry>
+                        <entry>
+                            <para> Tenant, Edorg </para>
+                        </entry>
+                        <entry>
+                            <para>INGEST_DATA </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para>
+            * <emphasis>Only for the districts that have delegated this right to the State. </emphasis>
+        </para>
+    </section>
+    <section xml:id="doc-fbb9c714-f772-4f9c-a44d-7f4279263c1e">
+        <title>Creating a New Administrative User</title>
+        <para>The Manage Administrator Accounts system tool allows you to create new administrative
+            users in &PRODUCTABBR; that have access to an &PRODUCTABBR; deployment. To create a new
+            administrative user:</para>
+        <procedure>
+            <step>
+                <para> Log in to &PRODUCTABBR; using your administrator account. </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Admin</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para> Click <guibutton>Manage Administrator Accounts</guibutton> under System
+                    Tools. The Manage Administrator Accounts page opens.</para>
+            </step>
+            <step>
+                <para> Scroll to the bottom of the page and click the <guibutton>Add
+                        User</guibutton> button. The Add a User page opens.</para>
+                <figure xml:id="figure-Adding-New-Admin-User">
+                    <title>Creating a New Administrative User</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="center" 
+                                fileref="images/sea_creates_lea.png" 
+                                width="750px" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/sea_creates_lea.png" 
+                                scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+            <step>
+                <para>Fill out the form.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>Full Name</emphasis> - Enter the user's first name and last name. 
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Email</emphasis> - Enter the user's email address. All users
+                            that you create will receive emails that allow them to activate their
+                            accounts. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Role</emphasis> - Select a role for the user.
+                                <emphasis>Note:</emphasis> You can add ingestion and realm
+                            administration rights for users regardless of the user's primary role. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Ingestion User</emphasis> - Select whether or not to give this user the ability to ingest data to &PRODUCTABBR;.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Realm Administrator</emphasis> - Select whether or not to give
+                            this user the ability to administer a realm. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Tenant</emphasis> - Add a tenant for the user, if applicable.
+                                <emphasis>Note:</emphasis> This field only appears for operators
+                            that are using this tool and is not displayed in the image above. </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>Education Organization</emphasis> - Add an education
+                            organization for the user, if applicable. <emphasis>Note:</emphasis> When LEA administrators use this tool, the Education Organization field will be restricted to their own education organization.</para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para>Click <guibutton>Save</guibutton>. You are returned to the Manage Administrator Accounts page.</para>
+            </step>
+        </procedure>
+        <para>The user will appear in the table on the Manage Administrator Accounts page. The
+            user will also receive an email that starts the account activation process.</para>
+        <para>If you need to change a user's contact information, role, or tenant, click <guibutton>Edit</guibutton>. If you need to delete a user, click <guibutton>Delete</guibutton>.</para>
+    </section>
+    
+    <section xml:id="doc-4f029564-0680-4bd2-9045-adbc8252a531">
+        <title>User Account Activation</title>
+        <para>Once you have created a new administrative user, that user must activate the account. The process for
+            a user activating an account is:</para>
+        <procedure>
+            <step>
+                <para>The user receives an email containing a link to the first page in the account activation process. The user clicks the link to go to the first page.</para>
+            </step>
+            <step>
+                <para>The user enters his or her email address as the user ID. Once the user
+                    submits the form, an email is sent to the user that contains a link to the Reset
+                    Password page. The user clicks the link in the email to go to the Reset Password page.</para>
+            </step>
+            <step>
+                <para> The user enters a password. Once the page is saved, the user's administrative
+                    account is activated. </para>
+            </step>
+        </procedure>
+        <para>The user will receive a welcome email once the process is complete and the account is active.</para>
+   </section>
+</chapter>

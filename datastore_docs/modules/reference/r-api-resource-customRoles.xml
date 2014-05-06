@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-customRoles" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>customRoles</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/customRoles</filename>
+    </para>
+    <para>
+        Access a list of custom roles available for the current user's realm. 
+        This resources is only available to realm administrators to view 
+        custom roles for that realm.
+    </para>
+    <para>
+        The additional <varname>defaultsOnly</varname> query parameter can
+        be used to limit a GET response to the default &PRODUCTABBR; roles.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody><row>
+                <entry>
+                    <para>
+                        GET
+                    </para>
+                </entry>
+                <entry>
+                    <para>
+                        Returns the requested collection of resource 
+                        representations.
+                    </para>
+                    <para>
+                        Request:
+                        There is no request body for GET. When forming 
+                        your GET request URI, use the &RESTAPI;
+                        <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                        and 
+                        <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                    </para>
+                    <para>
+                        The following additional query parameter is available
+                        for this resource:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <varname>defaultsOnly</varname> - 
+                                Limit the response to the default 
+                                &PRODUCTABBR; roles.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        Response: 
+                        <varname>200 OK</varname> - The 
+                        <varname>TotalCount</varname> header contains the 
+                        number of items that were returned. The response 
+                        body contains the requested resource 
+                        representations, including HATEOAS links to 
+                        reachable URIs.
+                    </para>
+                </entry>
+            </row>
+                <row>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Creates a new resource using the given resource 
+                            data.
+                        </para>
+                        <para>
+                            Request:
+                            To form the POST request body, package all 
+                            required and other desired fields into a 
+                            conventional JSON document. It should be similar 
+                            to JSON response bodies displayed when making a 
+                            GET request.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>201 Created</varname> - 
+                            The <varname>Location</varname> header contains 
+                            the URI of the new resource.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-customRoles-get_example">
+        <title>Example GET Response: customRoles</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[[{
+   "id": "4f6718f4-18bc-4a35-83d5-1817e6d72961",
+   "roles": [{
+       "groupTitle": "Educator",
+       "isAdminRole": false,
+       "names": ["Educator"],
+       "rights": ["READ_GENERAL", "WRITE_GENERAL", "AGGREGATE_READ", "READ_PUBLIC", "TEACHER_CONTEXT"]
+   }, {
+       "groupTitle": "IT Administrator",
+       "isAdminRole": true,
+       "names": ["IT Administrator"],
+       "rights": ["WRITE_RESTRICTED", "READ_GENERAL", "AGGREGATE_READ", "READ_PUBLIC", "READ_RESTRICTED", "WRITE_GENERAL", "WRITE_PUBLIC", "SECURITY_EVENT_VIEW", "APP_AUTHORIZE", "STAFF_CONTEXT"]
+   }, {
+       "groupTitle": "Leader",
+       "isAdminRole": false,
+       "names": ["Leader"],
+       "rights": ["READ_GENERAL", "AGGREGATE_READ", "READ_PUBLIC", "READ_RESTRICTED", "WRITE_GENERAL", "STAFF_CONTEXT"]
+   }, {
+       "groupTitle": "Aggregate Viewer",
+       "isAdminRole": false,
+       "names": ["Aggregate Viewer"],
+       "rights": ["AGGREGATE_READ", "READ_PUBLIC", "STAFF_CONTEXT"]
+   }],
+   "customRights": [],
+   "entityType": "customRole",
+   "metaData": {
+       "tenantId": "Midgar"
+   },
+   "realmId": "e5c12cb0-1bad-4606-a936-097b30bd47fe"
+}]]]></programlisting>
+    </section>
+    
+</section>

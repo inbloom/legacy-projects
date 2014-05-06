@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-56447ca4-71fd-4595-8a1a-e6018fc70d27"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Services: SARJE</title>
+    <section xml:id="doc-6029a763-6464-4db2-a07c-7b292621b54f">
+        <title>What You Need to Know Before Deployment</title>
+        <para> The SARJE oplog agent is an application that reads Mongo oplog data and puts it on an
+            ActiveMQ queue. The oplog agent is required in order for the Search Indexer and the
+            search URIs of the API to function properly. </para>
+        <para> There must be one oplog agent running per Mongo replica set. If an additional replica
+            set is added, an additional oplog agent will also need to be set up. </para>
+    </section>
+    
+    <section xml:id="doc-facf1146-1b15-43d8-9f4d-8e2a3e4b050c">
+        <title>Installation</title>
+        <para>The root folder for SARJE can be found in the <filename>sli/sli/sarje/eventbus</filename> directory. This directory contains all of the files for SARJE. This will be referred to as $SARJE_HOME.</para>
+        <para>The <filename>oplogagent_daemon.rb</filename> is the driving script for the oplog
+            agent. By default it runs in the foreground, but is designed to be run as background
+            processes by RC-scripts.</para>
+       <procedure>
+           <step>
+               <para>Traverse to $SARJE_HOME.</para>
+           </step>
+           <step>
+               <para>Run <command>bundle install</command> to install all of the dependencies.</para>
+           </step>
+           <step>
+               <para>Copy the <filename>oplogagent-config.yml</filename> files in
+                        <filename>$SARJE_HOME/config</filename>.</para>
+           </step>
+         <!--    <step>
+               <para>Modify <filename>jscheduler-config.yml</filename> to use the following configuration:</para>
+               <programlisting><![CDATA[
+
+# Configure where logging will go.
+logger_output: STDOUT
+ 
+# Log level. Levels are DEBUG, INFO, WARN, ERROR, FATAL.
+logger_level: INFO
+ 
+# ActiveMQ host that runs the STOMP protocol to use as the message broker.
+messaging_host: 127.0.0.1
+ 
+# Port of the ActiveMQ server
+messaging_port: 61613
+ 
+# Host of the MongoDB instance where jobs are retrieved from.
+mongo_host: 127.0.0.1
+ 
+# Port of the MongoDB instance defined above.
+mongo_port: 27017
+ 
+# Name of the Mongodb database to store jobs information.
+mongo_db: eventbus
+ 
+# Collection in the above MongoDB database that stores the jobs to be triggered by oplog events.
+mongo_job_collection: jobs
+ 
+# Interval in seconds in which to poll the mongodb for job definitions.
+mongo_poll_interval: 20
+ 
+# Directory with jars containing Hadoop jobs (presently not used in production)
+hadoop_jars: "./jars"
+ 
+# Path to the root of the hadoop installation. (Currently used to verify SARJE setup in production.)
+hadoop_home: $SARJE_HOME/mock-hadoop                   
+               ]]></programlisting>
+           </step> -->
+           <step>
+               <para>Modify <filename>oplogagent-config.yml</filename>.</para>
+               <programlisting><![CDATA[
+
+#Configure where logging will go.
+logger_output: STDOUT
+
+# Log level. Levels are DEBUG, INFO, WARN, ERROR, FATAL.
+logger_level: WARN
+
+# Node-id that is prefixed to the hostname. The value must be different for each node for monitoring
+# purposes
+node_id: oplogagent-1-01
+
+# url of ActiveMQ running STOMP protocol used as message broker
+# ex. stomp://host:port
+# ex. failover:(stomp://remotehost1:61613,stomp://remotehost2:61613)?initialReconnectDelay=5000&randomize=false&useExponentialBackOff=false
+broker_url: failover:(stomp://remotehost1:61613,stomp://remotehost2:61613)?initialReconnectDelay=5000&randomize=false&useExponentialBackOff=false
+
+# Interval in seconds in which to send a heartbeat on the message bus.
+heartbeat_period: 10
+
+# Combined host and port of the MongoDB installation that the oplog agent
+# should connect to. For a replica set multiple host/port pairs should be provided as
+# a comma separated list.
+mongo_host: localhost:10001, localhost:10002, localhost:10003
+
+# Database that the oplog agent should follow. 'local' is the default name, so this
+# will likely not have to be change.
+mongo_db: local
+
+# Collection that the oplog agent should follow. This is the default value and will
+# likely not have to be changed.
+mongo_oplog_collection: oplog.rs
+
+# Number of seconds to wait between retrying to reconnect to MongoDb (in case connecting fails).
+mongo_connection_retry: 5
+
+# Ignore existing entries in the oplog upon startup (only follow new entries as they come in).
+mongo_ignore_initial_read: true
+
+# Collection that the oplog agent uses for timestamp marker
+mongo_timestamp_marker: oplog.marker
+
+# Time frame in seconds in which to coalesce oplog messages.
+# All messages within this timeframe will be processed together and generate
+# a single event.
+collect_events_interval: 1
+
+# Queue name used to publish a message to for getting the subscriptions at startup
+subscription_request_queue: /queue/subscription/poll                   
+               ]]></programlisting>
+           </step> 
+           <step>
+               <para>Modify the RC-scripts contained in $SARJE_HOME/scripts to reflect the path to
+                    the programs (oplogagent_daemon.rb) and config files.</para>
+           </step>
+           <step>
+               <para>Enable startup of the oplog agent instance at boot time by enabling the RC
+                    scripts.</para>
+           </step>
+       </procedure> 
+    </section>
+    
+    <section xml:id="doc-9d4ceef8-c2b0-4666-a48c-eeca75a53698">
+        <title>Running SARJE</title>
+        <para>To run: </para>
+        <procedure>
+            <step><para>Edit the sarje_oplogagent file.</para></step>
+            <step><para>Update the SARJE_HOME path.</para></step>
+            <step><para>Run the script.</para></step>
+        </procedure>
+    </section>
+    <section xml:id="doc-7e691f54-9030-440c-a2d5-ca4b44eb3201">
+        <title>Maintenance and Troubleshooting</title>
+        <section xml:id="doc-78c3f8db-3458-4418-a175-99d097dec582">
+            <title>Mongo Reconnect</title>
+           <para>The oplog agent will automatically reconnect if Mongo goes down and restarts, or if connectivity is intermittently lost due to network issues. The connection retry interval is configurable.</para>
+       </section>
+        <section xml:id="doc-ab83bacf-1bb8-4356-a87a-7cef31195b49">
+            <title>ActiveMQ Failover and Reconnect</title>
+            <para>The oplog agent supports ActiveMQ failover and reconnect scenarios. See the broker_url configuration parameter.</para>
+        </section>
+        <section xml:id="doc-aad8ec25-5b79-4458-950e-1e1b956d0d8e">
+            <title>If the Oplog Agent is Stopped</title>
+            <para>The oplog agent contains logic that remembers the timestamp of the last oplog message processed. On restart, it will pick up reading the oplog where it left off, so no messages are missed. However, if the oplog agent has been down for more than a short period of time, it is possible that older oplog entries will not get read. This is because the oplog is a fixed-size collection.</para>
+            <para>In this scenario, the operator should run the "reconcile" functionality of the Search Indexer. This will sync the Elasticsearch database with the Mongo database. It is recommended to run "reconcile" if the oplog agent has been down for more than 10 minutes. See section 14.5 Search Indexer Maintenance and Troubleshooting - Available Commands.</para>
+        </section>
+        <section xml:id="doc-63b4527e-c667-48f3-9223-c02004105004">
+            <title>Check Oplog Agent Status / Heartbeat</title>
+            <para>At every heartbeat_period (by default, it is10s) interval, specified in
+                configuration, each oplog agent sends a heartbeat to the topic named heartbeat. User
+                can write a simple script to subscribe to this topic and dequeue heartbeat messages
+                to determine the status of oplog agents.</para>
+            <para>This is a sample heartbeat message: <programlisting><![CDATA[
+{ "node_id":"oplogagent-1-myhost.domain.com",
+
+  "hostname":"myhost.domain.com",
+
+   "timestamp":"1355512475",
+
+   "events":
+[{"_id":"oplog:search","_class":"org.slc.sli.search.util.SarjeSubscriptionAdmin$Subscription","eventId":"oplog:search","queue":"search","publishOplog":true,"triggers":
+[{"ns":"^(?!is\\.)^[^.]+[.]student$"},{"ns":"^(?!is\\.)^[^.]+[.]learningStandard$"},{"ns":"^(?!is\\.)^[^.]+[.]learningObjective$"},{"ns":"^(?!is\\.)^[^.]+
+[.]competencyLevelDescriptor$"},{"ns":"^(?!is\\.)^[^.]+[.]competencyLevelDescriptorType$"},{"ns":"^(?!is\\.)^[^.]+[.]studentCompetencyObjective$"},
+{"ns":"^(?!is\\.)^[^.]+[.]assessment$"}]}]}                  
+               ]]></programlisting></para>
+            <note><para>Node_id is generated by 'node_id' specified in configuration plus the hostname of the server that the agent is running on.</para></note>
+            <para>If a heartbeat is not received from a particular agent after heartbeat_period + E,
+                then user should check the oplog agent logs in log/oplogagent.log and possibly
+                restart the agent.</para>
+            <para>If events is empty, make sure that search_indexer is running and/or check that messages in queue (/queue/subscription/poll) are processed.  One can send an empty message to this queue, and search_indexer will publish subscription to the /topic/oplog_subscribe.</para>
+        </section>
+        
+    </section>
+    
+</chapter>

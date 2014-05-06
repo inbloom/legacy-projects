@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-bulk-extract-list" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>bulk/extract/list</title>
+    
+    <para>
+        URI syntax without version: 
+        <filename>https://example.com/api/rest/bulk/extract/list</filename>
+    </para>
+    <para>
+        URI syntax with version:
+        <filename>https://example.com/api/rest/vX.Y/bulk/extract</filename>
+        where X.Y identifies a specific REST API version. This resource 
+        returns data based on the latest REST API version, even if another
+        valid API version is specified. If an invalid version is specified,
+        the request returns a "404 Not Found" code.
+    </para>
+    <para>
+        This resource returns a list of URLs presented as a JSON document. 
+        This list includes resources for all full and delta bulk extract 
+        data for all education organizations to which the current user and application have 
+        bulk extract access, and which authorize the application for that
+        organization. The list will also include the public data resources available for that tenant.
+        Note that delta extract links for each organization are
+        sorted in reverse timestamp order, so that the link with the most 
+        recent timestamp is always first in the list.
+    </para>
+    <para>
+        Each URI returned in the list can then be used in a separate request 
+        to retrieve the actual bulk extract file contents for the particular 
+        URI.
+    </para>
+            
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET or HEAD
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns a list of URLs as a JSON document. This 
+                            list includes resources for all full and delta 
+                            bulk extract data for all education 
+                            organizations to which the current user and application
+                            have bulk extract access, and which authorize the 
+                            application for that education organization.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET or HEAD. 
+                            When forming your GET request URI, use the 
+                            &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The response body 
+                            contains the requested HATEOAS links to URIs 
+                            reachable by the requesting user/application.
+                        </para>
+                        <para>
+                            This request results in <code>404 Not Found</code>
+                            if any of the following are true:
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    The API version specified is invalid.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    No authorized education 
+                                    organizations were found for 
+                                    the requesting user/application.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-bulk-extract-list-example">
+        <title>Example GET Request and Response</title>
+        <para>
+            Request URI:
+        </para>
+        <programlisting><![CDATA[http://example.com/api/rest/v1.2/bulk/extract/list]]></programlisting>
+        <para>
+            Response body
+            (where sts1 >= sts2 >= stsm, ets1 >= ets2 >= etsn,
+            ets11 >= ets12 >= ets1m, ets21 >= ets22 >= ets2m, and etsn1 >= etsn2 >= etsnm):
+        </para>
+        <programlisting><![CDATA[{
+    fullPublic:
+    {
+        {"<tenant>":{uri:"https://example.com/api/rest/v1.2/bulk/extract/public", timestamp:"<sts>"},
+    },
+    deltaPublic:
+    {
+        {"<tenant>":
+            [
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/public/delta/<ts1>", timestamp:"<sts1>"},
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/public/delta/<ts2>", timestamp:"<sts2>"},
+                . . .
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/public/delta/<tsm>", timestamp:"<stsm>"}
+            ],
+    },
+    fullEdOrgs:
+    {
+        {"<edorgid1>":{uri:"https://example.com/api/rest/v1.2/bulk/extract/<edorgid1>", timestamp:"<ets1>"},
+        {"<edorgid2>":{uri:"https://example.com/api/rest/v1.2/bulk/extract/<edorgid2>", timestamp:"<ets2>"},
+        . . .
+        {"<edorgidn>":{uri:"https://example.com/api/rest/v1.2/bulk/extract/<edorgid3>", timestamp:"<etsn>"}
+    },
+    deltaEdOrgs:
+    {
+        {"<edorgid1>":
+            [
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid1>/delta/<ets11>", timestamp:"<ets11>"},
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid1>/delta/<ets12>", timestamp:"<ets12>"},
+                . . .
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid1>/delta/<ets1m>", timestamp:"<ets1m>"}
+            ],
+        {"<edorgid2>":
+            [
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid2>/delta/<ets21>", timestamp:"<ets21>"},
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid2>/delta/<ets22>", timestamp:"<ets22>"},
+                . . .
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid2>/delta/<ets2m>", timestamp:"<ets2m>"}
+            ],
+       . . .
+        {"<edorgidn>":
+            [
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid3>/delta/<etsn1>", timestamp:"<etsn1>"},
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaid3>/delta/<etsn2>", timestamp:"<etsn2>"},
+                . . .
+                {uri:"https://example.com/api/rest/v1.2/bulk/extract/<leaidn>/delta/<etsnm>", timestamp:"<etsnm>"}
+            ]
+        }
+    }
+}]]></programlisting>
+    </section>
+    
+</section>

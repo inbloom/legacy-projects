@@ -1,0 +1,2164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion-natural_keys"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Natural Keys</title>
+    
+    <informaltable>
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="4*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>
+                            &PRODUCTABBR; Entity
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            &INGESTIONSCHEMANAME; Natural Keys
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Detailed Key Fields
+                        </para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            Assessment 
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AssessmentTitle
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AssessmentTitle
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            GradeLevelAssessed
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GradeLevelAssessed
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            Version
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Version
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            AssessmentFamily
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AssessmentFamilyTitle
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AssessmentFamilyTitle
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            AssessmentItem
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            IdentificationCode
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            IdentificationCode
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="4">
+                        <para>
+                            AttendanceEvent
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SchoolReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EventDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            EventDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SchoolYear
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            SchoolYear
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            AttendanceEventCategory
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AttendanceEventCategory
+                        </para>
+                    </entry>
+                </row>                
+                <row>
+                    <entry>
+                        AssessmentPeriodDescriptor
+                    </entry>
+                    <entry>
+                        CodeValue
+                    </entry>
+                    <entry>
+                        CodeValue
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="5">
+                        <para>
+                            BellSchedule
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BellScheduleName
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BellScheduleName
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EducationOrganizationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            MeetingTime.ClassPeriodReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ClassPeriodName
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            CalendarDateReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Date
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            CalendarDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Date
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Date
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EducationOrgReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            ClassPeriod
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ClassPeriodName
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ClassPeriodName
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EducationOrganizationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            Cohort
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            EducationOrgReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            CohortIdentifier
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            CohortIdentifier
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CompetencyLevelDescriptor
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            CodeValue
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            CodeValue
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="1">
+                        <para>Course</para>
+                    </entry>
+                    <entry>
+                        <para>
+                            EducationOrganizationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            UniqueCourseId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            UniqueCourseId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="4">
+                        <para>
+                            CourseOffering
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            SchoolReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SessionReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            SessionName
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            CourseReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueCourseId
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to allow for different
+             column widths, to overcome overflow text issue -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="3*"/>
+            <colspec colname="secondCol" colwidth="4*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry morerows="5">
+                        <para>
+                            CourseTranscript
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            CourseAttemptResult
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            CourseAttemptResult
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            CourseReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueCourseId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            StudentAcademicRecordReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            SessionName
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to return to top-level column widths -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="4*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            DisciplineAction
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            DisciplineActionIdentifier
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            DisciplineActionIdentifier
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            ResponsibilitySchoolReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            DisciplineIncident
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            SchoolReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            IncidentIdentifier
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            IncidentIdentifier
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            EducationOrganization
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to allow for different
+             column widths, to overcome overflow text issue -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="2*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry morerows="6">
+                        <para>
+                            Grade
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentSectionAssociationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            GradingPeriodReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            GradingPeriod
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to return to top-level column widths -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="4*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            GradebookEntry
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GradebookEntryType
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GradebookEntryType
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            DateAssigned
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            DateAssigned
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SectionReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            GradingPeriod
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GradingPeriod
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GradingPeriod
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EducationOrganizationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            GraduationPlan
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GraduationPlanType
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GraduationPlanType
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EducationOrganizationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            LearningObjective
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Objective
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Objective
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            ObjectiveGradeLevel
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ObjectiveGradeLevel
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            LearningStandard
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            LearningStandardId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            LearningStandardId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            ObjectiveAssessment
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            IdentificationCode
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            IdentificationCode
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            Parent
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ParentUniqueStateId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ParentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            Program
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ProgramId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ProgramId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            ReportCard
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>GradingPeriodReference</para>
+                    </entry>
+                    <entry>
+                        <para>StateOrganizationId</para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            GradingPeriod
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            Section
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SchoolReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            Session
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            SessionName
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            SessionName
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>EducationOrganizationReference</para>
+                    </entry>
+                    <entry>
+                        <para>StateOrganizationId</para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            Staff
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            Student
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            StaffCohortAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            CohortReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            CohortIdentifier
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            StudentAcademicRecord
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SessionReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            SessionName
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to allow for different
+             column widths, to overcome overflow text issue -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="2*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry morerows="8">
+                        <para>
+                            StudentCompetency
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            LearningObjectiveReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Objective
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            ObjectiveGradeLevel
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            StudentCompetencyObjectiveReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentCompetencyObjectiveId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            CompetencyLevel
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            CodeValue
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            StudentSectionAssociationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to return to top-level column widths -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="4*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            StudentCompetencyObjective
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentCompetencyObjectiveId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentCompetencyObjectiveId
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to allow for different
+             column widths, to overcome overflow text issue -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="3*"/>
+            <colspec colname="secondCol" colwidth="4*"/>
+            <colspec colname="thirdCol" colwidth="4*"/>
+            <tbody>
+                <row>
+                    <entry morerows="7">
+                        <para>
+                            StudentGradebookEntry
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentSectionAssociationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            GradeBookEntryReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            GradebookEntryType
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            DateAssigned
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to return to top-level column widths -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="4*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            Teacher
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            StaffEducationOrgAssignmentAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EducationOrganizationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            StaffClassification
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffClassification
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            StaffProgramAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            ProgramReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ProgramId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="5">
+                        <para>
+                            StudentAssessment
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AdministrationDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AdministrationDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            AssessmentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AssessmentTitle
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            GradeLevelAssessed
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            Version
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to allow for different
+             column widths, to overcome overflow text issue -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="3*"/>
+            <colspec colname="secondCol" colwidth="4*"/>
+            <colspec colname="thirdCol" colwidth="4*"/>
+            <tbody>
+                <row>
+                    <entry morerows="6">
+                        <para>
+                            StudentAssessmentItem
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentAssessmentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AdministrationDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            AssessmentTitle
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            GradeLevelAssessed
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            Version
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            AssessmentItemReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AssessmentItemIdentificationCode
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to return to top-level column widths -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="4*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            StudentCohortAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            CohortReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            CohortIdentifier
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            StudentDisciplineIncidentAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            DisciplineIncidentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            IncidentIdentifier
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to allow for different
+             column widths, to overcome overflow text issue -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="3*"/>
+            <colspec colname="secondCol" colwidth="4*"/>
+            <colspec colname="thirdCol" colwidth="4*"/>
+            <tbody>
+                <row>
+                    <entry morerows="6">
+                        <para>
+                            StudentObjectiveAssessment
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentAssessmentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            AdministrationDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            AssessmentTitle
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            AcademicSubject
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            GradeLevelAssessed
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            Version
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            ObjectiveAssessmentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ObjectiveAssessmentIdentificationCode
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <!-- tgroup break added to return to top-level column widths -->
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="4*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <tbody>
+                <row>
+                    <entry morerows="1">
+                        <para>
+                            StudentParentAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            ParentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ParentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            StudentProgramAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            ProgramReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ProgramId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EducationOrganizationReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            StudentSchoolAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SchoolReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            EntryDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            EntryDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            StudentSectionAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StudentUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SectionReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            BeginDate
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            TeacherSchoolAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            TeacherReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SchoolReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            ProgramAssignment
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            ProgramAssignment
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="2">
+                        <para>
+                            TeacherSectionAssociation
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            TeacherReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StaffUniqueStateId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry>
+                        <para>
+                            SectionReference
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            StateOrganizationId
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- first column extended from previous row -->
+                    <entry/>
+                    <entry>
+                        <para>
+                            UniqueSectionCode
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+</section>

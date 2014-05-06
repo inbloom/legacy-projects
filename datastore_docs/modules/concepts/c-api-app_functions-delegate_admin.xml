@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<chapter xml:id="c-api-app_functions-delegate_admin"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Delegate Administration of an Education Organization</title>
+    
+    <para>
+        An application can use the following API resources to allow
+        &PRODUCTABBR; administrators to manage delegated administrative
+        functions. This is for applications targeted at administrating 
+        &PRODUCTABBR; itself.
+    </para>
+    
+    <xi:include href="../reference/r-api-resource-adminDelegation.xml"/>
+    
+    <xi:include href="../reference/r-api-resource-adminDelegation-myEdOrg.xml"/>
+    
+</chapter>

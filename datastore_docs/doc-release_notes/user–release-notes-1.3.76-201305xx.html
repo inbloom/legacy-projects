@@ -1,0 +1,216 @@
+<html>
+    
+<head>
+    <cmeta http-equiv="Content-Type" content="text/html; characterset=ISO-8859-1">
+    <title>inBloom technology 1.3.76 Release Notes</title>
+    <link rel="stylesheet" type="text/css" href="css/slc-techpubs.css">
+    <meta name="generator" content="DocBook XSL Stylesheets V1.77.1">
+</head>
+    
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="header"><a href="http://www.inbloom.org/for-developers" target="_blank"><img src="images/slcheader_960.png"></a></div><div class="article"><div class="titlepage"><div><div><h1 class="title"><a name="release_notes"></a>inBloom technology 1.3.76 Release Notes</h1></div></div><hr></div>
+  <div class="toc"><p><b>Table of Contents</b></p><dl>
+  <dt><span class="section"><a href="#sect-ingestion_changes">Updates to the Ingestion Schema</a></span></dt>
+  <dt><span class="section"><a href="#sec-api_changes">Update to the API Schema</a></span></dt>
+  <dt><span class="section"><a href="#sect-release_notes-resolved_issues">Resolved Issues</a></span></dt>
+  <dt><span class="section"><a href="#sect-release_notes-known_issues">Known Issues</a></span></dt>
+  <dt><span class="section"><a href="#sect-release_notes-web_browser_compatibility">Web Browser Compatibility</a></span></dt></dl></div>  
+  
+<!-------------- WHAT'S NEW --> 
+<div class="section">
+    
+    <h2 class="title" style="clear: both"><a name="sect-release_notes-whats_new"></a>What's New?</h2>
+    
+    <p>
+        The following new features were added in 1.3.76:
+    </p>
+    <ul>
+        <li>
+            <p>
+                <strong>Special case for education organizations in forced deletes through ingestion</strong> -
+                When force deleting an education organization through ingestion, student data that has an association to it remains unchanged. That association is removed if the studentSchoolAssociation that includes the deleted education organization in its parent hierarchy is also deleted with a forced delete action.
+            </p>
+        </li>
+    <!--    <li>
+            <p>
+                <strong>Bulk Extract API lists available extract files</strong> -
+                The new bulk/extract/list API resource can be used to access a list of URLs for the bulk extract files available to the current user through the current application. See the API resources in the inBloom developer documentation for complete details about this new resource and how to use it.
+            </p>
+        </li> -->
+        <li>
+            <p>
+                <strong>Bulk extracts are now encrypted using X.509 certificates.</strong> - The bulk extracts are now encrypted using a X.509 certificate unique for each application that is authorized to access the bulk extract API. The certificate is inspected upon every API call, then compared to the stored certificate for the calling application.  If a mismatch is detected, the request is denied. Each application developer provides its application's certificate to the inBloom operator through a non-automated (manual) process.
+            </p>
+        </li>
+   <!--     <li>
+            <p>
+                <strong</strong> - The Bulk Extract API now supports full extracts at a top level LEA. The full extracts are created once per week. A valid top level LEA (or SEA) user can retrieve them by providing the ID of the top level LEA. Only select entities (StudentSchoolAssociation, StudentAssessment, Parent, StudentParentAssociation,  Teacher, TeacherSchoolAssociation, Staff, StaffEducationOrgAssignmentAssociation, StudentAssessment, Grade, ReportCard, StudentAcademicRecord) are available with this release
+            </p>
+        </li> -->
+    </ul>
+
+</div>
+
+<!-------------- INGESTION SCHEMA CHANGES -->
+<div class="section">
+    
+    <h2 class="title" style="clear: both"><a name="sect-ingestion_changes"></a>Ingestion Schema Updates</h2>
+    
+    <p>
+        This release includes the following updates to the ingestion schema,
+        listed by entity type:
+    </p>
+    <ul style="line-height: 1.5em;">
+        <li>
+            <p>
+                <strong>SLI-StaffIdentitySystem</strong> - Removed "SSN" and "Canadian SIN" enumerations.
+        </li> 
+        <li>
+            <p>
+                <strong>SLI-StudentIdentitySystem</strong> - 
+                Removed "SSN" and "Canadian SIN" enumerations.
+            </p>
+        </li> 
+    </ul>
+    
+</div>
+    
+<!-------------- API UPDATES -->
+<div class="section">
+       
+   <h2 class="title" style="clear: both"><a name="sec-api_changes"></a>API Updates</h2>
+
+    <p>
+        This release includes the following changes to the API.
+    </p>
+    
+    <h3>Added</h3>
+    <p>
+        No API resources were added in this release.
+    </p>
+    <!-- <p>
+        The following resources have been added to the API:
+    </p>
+    <ul>
+        <li>
+            <p>
+                /bulk/extract/list
+            </p>
+        </li>
+    </ul> -->
+    
+    <h3>Deprecated</h3>
+    <p>
+        No API resources were deprecated in this release.
+    </p>
+    
+    <h3>New &amp; Updated Fields</h3>
+    <p>
+        No API resources were deprecated in this release.
+    </p>
+    
+   <!-- samples from other release notes...
+       
+       <p>Several resources have been deprecated. You can still use these resources, however they will eventually be removed. The deprecated resources are:</p>
+    <ul>
+      <li>/students/{id}/courseTranscripts</li>
+      <li>/students/{id}/courseTranscripts/courses</li>
+    </ul>
+    
+    <h2>Non-queryable Resources</h2><!-- Change this
+    <p>Some resources previously allowed for arbitrary queries, such as /assessments?assessmentName="SAT" or /assessments?assessmentName=~"^S[\w]+T". This capability has been blocked for the following resources:</p>
+    <ul></ul>
+    
+    <h2>Cardinality Changes</h2>
+    <p>The number of maximum or minimum occurences for several elements have changed. In some cases, this will make a formerly optional element now required. The following elements have changed:</p>
+    <ul></ul>
+    
+   <p>The following fields have been added:</p>
+    <ul>
+      <li>gradebookEntry.learningStandands</li>
+      <li>gradebookEntry.learningObjectives</li>
+      <li>grade.schoolYear</li>
+      <li>reportCard.schoolYear</li>
+      <li>studentAcademicRecord.schoolYear</li>
+    </ul>
+    
+    <h2>Element Name Changes</h2>
+    <p>The following elements have changed their names:</p>
+    <ul></ul> -->
+    
+</div>
+
+
+<!-------------- RESOLVED ISSUES -->
+<div class="section">
+
+   <h2 class="title" style="clear: both"><a name="sect-release_notes-resolved_issues"></a>Resolved Issues</h2>
+    
+   <p>
+      The following is a list of previously reported issues which have been resolved in 1.3.76 release. 
+   </p> 
+    
+   
+ <!--   <p>
+       No release note worthy defects were resolved in the 1.3.76 release. 
+    </p> -->
+     
+   <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2759"></a>DE2759: A newline character in the description field of the Application Registration Tool prevents changes from being saved.</h3></div></div></div><p>When saving an application using the Application Registration Tool, a newline character in the description field prevents the changes from being saved. This issue is resolved. An application developer can now add newline characters in the application description.</p></div>  
+    
+   <div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="itemizedlist">
+       
+   </div>
+    
+    <!--  <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE"></a>text</h3></div></div></div><p>text</p></div>   TEMPLATE -->
+    
+</div>
+
+
+<!-------------- KNOWN ISSUES -->
+ <div class="section">
+     
+   <h2 class="title" style="clear: both"><a name="sect-release_notes-known_issues"></a>Known Issues</h2>
+    
+   <p>
+      The following are the open defects currently used to track known 
+      issues in the 1.3.76 release.
+   </p>
+    
+   <div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="itemizedlist">
+              
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE198"></a>DE198: EducationOrganization references to Program are not properly ingested.</h3></div></div></div><p>This reference is not implemented yet. As a result, the API does not provide a link from the EdOrg to the Program.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE273"></a>DE273: A DisciplineDescriptor is not currently supported in Interchange-StudentDiscipline.</h3></div></div></div><p>This descriptor is not currently supported. However, a reference to this descriptor is required for the DisciplineAction entity.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE325"></a>DE325: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs.</h3></div></div></div><p>The ingestion process assumes that the Program ID is unique within a tenant, but this should be unique within the specified EdOrg instead. As a result, the reference could resolve incorrectly.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE408"></a>DE408: Aggregate Viewers cannot see themselves.</h3></div></div></div><p>Users with the Aggregate Viewer role cannot see their own Teacher or Staff entity.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE710"></a>DE710: Section, school and session references in AttendanceEvent are ignored.</h3></div></div></div><p>The way AttendanceEvent entities are handled ignores explicit characterization of the attendance event - by school, section, session. As a result, AttendanceEvents for students attending multiple schools do not properly persist.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE921"></a>DE921: Duplicates are not reported.</h3></div></div></div><p>Error reports are not always clear regarding the records persisted. When there are duplicates within the XML file, or a record already exists, the ingestion engine still updates the record. However, this record count is not included in the ingested records count. </p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1434"></a>DE1434: Internet Explorer 8 users may experience issues when using the dashboard builder.</h3></div></div></div><p>If you are using Internet Explorer 8 and the dashboard builder, then intermittently the release after a drag and drop does not return the page to the correct state.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1457"></a>DE1457: Making a teacher call for a section with two "teachers of record" returns a 403 error.</h3></div></div></div><p>Making a teacher call for a section with two "teachers of record" returns a 403 error. This error can cause the sectionInfo panel to not display.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1458"></a>DE1458: The ingestion service is able to handle more than one teacher of record.</h3></div></div></div><p>The ingestion service can accept more than one teacher for a single section. The dashboard does not currently support this behavior.</p></div>        
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1573"></a>DE1573: Attendance Rate should be removed.</h3></div></div></div><p>The current attendance record includes an attendance rate column that may not be accurate for some use cases. The column could be removed by default in a future release.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1647"></a>DE1647: Dashboard may not display all data.</h3></div></div></div><p>When a large dataset is available, the initial dashboard view may only display a subset of the data. The dashboard currently does not display a message explaining this scenario.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE1728"></a>DE1728: An error occurs if an OAuth Callback URL does not begin with "HTTPS".</h3></div></div></div><p>If an application includes a callback URL that does not begin with "https://", then an error message is returned.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2079"></a>DE2079: HATEOS links don't always work as expected.</h3></div></div></div><p>The HATEOS links that the API returns may not work as expected in all cases. The contextual URI rewrites convert some API requests. Some of these converted requests may not return what is expected.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2160"></a>DE2160: Selecting a filter after listing a section removes all student data.</h3></div></div></div><p>When viewing a list of students using the inBloom Dashboard, choosing a filter related to that student's "special needs" status results in a "no students found" error.</p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2300"></a>DE2300: There is a 250 result limit on global entities contained in elasticsearch.</h3></div></div></div><p>When querying the following entities, results are limited to a maximum of 250 returns: <ul><li>/assessments</li><li>/competencyLevelDescriptor</li><li>/learningObjectives</li><li>/learningStandards</li><li>/studentCompetencyObjectives</li></ul></p></div>
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2725"></a>DE2725: Updating an entity does not correctly update the search index.</h3></div></div></div><p>When an existing entity in the system is updated, that entity is not updated in elasticsearch and becomes unsearchable.</p></div> 
+      <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE2765"></a>DE2765: Ruby on Rails version before 3.2.13 have multiple known security vulnerabilities.</h3></div></div></div><p>The Gemfile needs to be updated to Rails 3.2.13.</p></div> 
+      
+      <!--  <div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="DE"></a>text</h3></div></div></div><p>text</p></div>   TEMPLATE -->             
+
+
+<!-------------- WEB COMPATIBILITY DISCLAIMER -->             
+    <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="sect-release_notes-web_browser_compatibility"></a>Web Browser Compatibility</h2></div></div></div><p>
+            inBloom technology Dashboard is best viewed in Internet Explorer 8+, 
+            Firefox 6+, Safari 4+ with 1024x768 as the minimum recommended screen 
+            resolution. 
+        </p></div></div><div xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks" class="footer"><p>
+          Copyright © 2013 inBloom, Inc. and its affiliates.
+            </p><p>
+              This document and the information contained herein is provided on an "AS IS" basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+            </p>
+        
+   </div>
+
+</body>
+
+</html>

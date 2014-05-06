@@ -1,0 +1,2521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion_errors_and_warnings"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Errors and Warnings</title>
+    
+    <para>
+        The tables that follow cover the errors and warnings that may
+        appear in the ingestion log files, described in
+        <xref linkend="r-ingestion_log_files"/>. Included are descriptions of
+        what occured for each error and hints on what corrective actions to
+        take.
+    </para>
+    
+    <informaltable frame="all">
+        <tgroup cols="4">
+            <colspec colname="firstCol" colwidth="2*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="4*"/>
+            <colspec colname="fourthCol" colwidth="1*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>
+                            Message Code
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Message text
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Issue and Corrective Action Required
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Level
+                        </para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0001
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {0}: Specified in control file, but not 
+                            found in zip file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The named file is listed in the control file, but 
+                            is not present in the uploaded .zip archive. 
+                            Recreate the .zip archive to include the file, 
+                            then try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0002
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            No valid files specified in control file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            All the files specified in the control file are 
+                            invalid. Be sure the XML files validate in 
+                            accordance with ingestion documentation. Then, 
+                            recreate the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0003
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            No files specified in control file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The control file does not have any file 
+                            entries. Edit the control file to correctly 
+                            describe each file in the .zip archive, then 
+                            recreate the archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0004
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: File name contains a path.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The indicated file has an invalid file name, 
+                            possibly being a file path rather than just a 
+                            file name. Be sure the .zip archive has a flat 
+                            file structure (files only, no directories), and 
+                            update the control file to remove any paths in 
+                            the file names. Then, recreate the archive and 
+                            try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0005
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: Unknown or no file format 
+                            specified in the control file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The control file entry for the indicated file 
+                            either has no file format or specifies an 
+                            unrecognized file format. Update the XML and 
+                            control files as needed to ensure the formats 
+                            follow the specification in accordance with 
+                            ingestion documentation. Then, recreate the 
+                            .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0006
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0007
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0008
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0009
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            No control file found in .zip archive {filename}.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The .zip archive indicated did not contain a 
+                            control file. Create a control file in accordance 
+                            with ingestion documentation. Then, recreate the 
+                            .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0010
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The .zip archive {filename} contains one or more 
+                            directories.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The .zip archive has one or more directories 
+                            under the top-level directory used to form the 
+                            archive. Be sure the .zip archive has a flat 
+                            file structure (files only, no directories),
+                            and update the control file to remove any paths 
+                            in the file names. Then, recreate the archive 
+                            and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0011
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0012
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0013
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: Not found in the .zip archive.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The indicated file was listed in the control 
+                            file, but it was not found in the landing zone 
+                            during ingestion processing. Either remove the 
+                            entry from the control file, or add the file to 
+                            those included in the archive. Then, recreate 
+                            the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0014
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: Error occurred while reading 
+                            file from the .zip archive.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The indicated file was listed in the control file, 
+                            but there was an error while processing the file 
+                            from the landing zone. If there are other errors, 
+                            address those first. Otherwise, try ingesting 
+                            again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0015
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: Empty file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The indicated file was specified in the control 
+                            file, but the file itself is empty. Update the 
+                            file to have valid, non-empty contents, or remove 
+                            the file information from the control file. 
+                            Then, recreate the .zip archive and try ingesting 
+                            again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0016
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Invalid control file entry.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The control file contains an entry that does not 
+                            validate, possibly due to spaces or an incorrect 
+                            number of arguments on a line. Edit the control 
+                            file to correct any syntax errors and to format 
+                            it in accordance with ingestion documentation. 
+                            Then, recreate the .zip archive and try ingesting 
+                            again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0017
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0018
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: Unknown or empty file type 
+                            specified in control file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The control file entry for the indicated file 
+                            either has no file type or specifies an 
+                            unrecognized file type. Update the XML and 
+                            control files as needed to ensure the types 
+                            follow specifications in accordance with 
+                            ingestion documentation. Then, recreate the 
+                            .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0019
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0020
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not read .zip archive {filename}. 
+                            File not found when trying to validate. 
+                            Possible file damage or corruption.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The specified .zip archive was not found when 
+                            trying to validate the file. Be sure the file 
+                            remains unchanged in the landing zone after 
+                            upload for as long as necessary to complete the 
+                            ingestion process.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0021
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not read .zip archive {filename}. Error 
+                            reading the file during validation. Possible 
+                            file damage or corruption.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            An error occurred in the ingestion system while 
+                            attempting to validate the specified .zip archive. 
+                            Recreate the .zip archive and try ingesting again, 
+                            and be sure the uploaded file remains unchanged 
+                            in the landing zone as long as necessary to 
+                            complete the ingestion process. 
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0022
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not read .zip archive {filename}. Unsupported 
+                            compression method. Use the Deflate compression 
+                            method to create archive.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The specified .zip archive was created using a 
+                            compression method other than "Deflate," the most 
+                            common method for creating .zip files. The 
+                            ingestion job parses data directly from the 
+                            archive, and it requires that the "Deflate" 
+                            method was used to create the file. Recreate the 
+                            archive using the “Deflate” method and try 
+                            ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0023
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: Not found for XSD validation.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            During the XSD validation process, the specified 
+                            XML file was not found in the .zip archive. 
+                            Be sure the file exists and should validate in 
+                            accordance with ingestion documentation. Then, 
+                            recreate the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0024
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            File {filename}: Problem reading file for XSD 
+                            validation.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            During the XSD validation process, the specified 
+                            XML file could not be read from the .zip archive. 
+                            Be sure the file exists and should validate in 
+                            accordance with ingestion documentation. Then, 
+                            recreate the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0025
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not read .zip archive {filename}. Error 
+                            occurred while reading contents. Possible file 
+                            damage or corruption.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            While reading the contents of the .zip archive 
+                            indicated, the ingestion job encountered an error. 
+                            Resolve any accompanying errors, if applicable, 
+                            and recreate the .zip archive. Then, try ingesting 
+                            again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0026
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            XSD warning: {warning message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            This is an XSD warning for the identified XML 
+                            file, including the specific line number and 
+                            column number. XSD validation provides 
+                            user-facing warnings defined by the SAX parser 
+                            vendor, Xerces. See Apache Xerces documentation 
+                            for a list of possible warning messages that 
+                            could appear here.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Warning
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            BASE_0027
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            XSD error: {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            This is an XSD error for the identified XML file, 
+                            including the specific line number and column 
+                            number. XSD validation provides user-facing 
+                            errors defined by the SAX parser vendor, Xerces. 
+                            See Apache Xerces documentation for a list of 
+                            possible error messages that could appear here.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <tgroup cols="4">
+            <colspec colname="firstCol" colwidth="2*"/>
+            <colspec colname="secondCol" colwidth="3*"/>
+            <colspec colname="thirdCol" colwidth="4*"/>
+            <colspec colname="fourthCol" colwidth="1*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>
+                            Message Code
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Message text
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Issue and Corrective Action Required
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Level
+                        </para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>                
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0001
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The target tenant is still on-boarding. Times 
+                            to complete this process can vary. Please try 
+                            ingestion again later.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The landing zone used for uploading the .zip 
+                            archive is for a tenant in the &PRODUCTABBR; data store 
+                            who is still on-boarding that tenancy. This 
+                            means that &PRODUCTABBR; administrators are probably 
+                            still handling necessary on-boarding tasks that 
+                            must be complete before ingesting data for that 
+                            tenancy. Check the on-boarding status with the 
+                            tenant and &PRODUCTABBR; administrators, and try 
+                            ingesting again when on-boarding is complete.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0002
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0003
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Failed to parse control file: {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered the indicated 
+                            error when parsing the control file. This is a
+                            n internal error. Try ingesting again. If the 
+                            error continues, contact your &PRODUCTABBR; 
+                            administrator to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0004
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Failed to process [{record type}] due to 
+                            preceding errors
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The record type indicated was not processed 
+                            because of errors that occurred previously in 
+                            the ingestion job. See other log file entries to 
+                            determine what errors occurred and how to 
+                            resolve them.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0005
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Fatal problem saving records to database: 
+                            Entity {entity type}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The entity type indicated was a point of failure 
+                            when saving ingested records to the &PRODUCTABBR; 
+                            data store. This is an internal error. Try 
+                            ingesting again. If the error continues, contact 
+                            your &PRODUCTABBR; administrator to escalate the 
+                            problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0006
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            There has been a data validation error when 
+                            saving an entity: Error: {type of error}; 
+                            Entity: {entity type}; Field: {field name}; 
+                            Value: {field value}; Expected: {expected type}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The indicated element has invalid data or does 
+                            not validate with the XML schema for ingestion. 
+                            The reason for failure is specified in the message.
+                            Look for additional errors in the job error log 
+                            to determine which records failed.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0007
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Entity ({entity type}) reports warning: 
+                            {warning message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The warning shown in the message occurred when 
+                            processing the entity type indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Warning
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0008
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Issue finding key field {key field type} for 
+                            entity of type {entity type}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error finding 
+                            the key field indicated. Update the XML files so 
+                            that the fields that serve as key fields for 
+                            that entity type have unique identifying data 
+                            for each instance of that entity. Then, recreate 
+                            the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0009
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Failed to resolve an ID for entity {entity type}; 
+                            reference to {reference type} is incomplete 
+                            because the following reference field is not 
+                            resolved: {path to the referenced field}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job was unable to find a 
+                            deterministic ID value for the entity indicated 
+                            because the indicated reference was not found. 
+                            Update the XML files so that the indicated 
+                            entity instance follows schema requirements 
+                            for the entity in accordance with ingestion 
+                            documentation. Then, recreate the .zip 
+                            archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0010
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            An entity is missing one or more required natural
+                            key fields: Entity: {entity type}; 
+                            {natural key field name(s)}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The entity instance with the indicated record 
+                            number is invalid due to the missing key field(s) 
+                            specified. Update the XML files so that the key 
+                            fields for all entity instances have a unique, 
+                            valid combination of values, distinguishing them 
+                            from other instances of the same entity. Then, 
+                            recreate the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0011
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Internal error occurred. Please contact the 
+                            operator for assistance resolving this problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error finding 
+                            a key field value specified for an entity 
+                            instance. This is an internal error, not 
+                            something that requires a change in the 
+                            ingested files. Try ingesting again. If the 
+                            error continues, contact your &PRODUCTABBR; 
+                            administrator to escalate the problem. 
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0012
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Invalid key fields for an entity instance: 
+                            {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The key fields for an entity instance are invalid, 
+                            resulting in the error message indicated. Update 
+                            the XML files so that the key fields for all 
+                            entity instances have a unique, valid combination 
+                            of values, distinguishing them from other 
+                            instances of the same entity. Then, recreate 
+                            the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0013
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0014
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Failed to process .zip archive: {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job was unable to process the 
+                            .zip archive due to the indicated error. If 
+                            necessary, take action to resolve the indicated 
+                            error and try ingestion again. If the error 
+                            continues, contact your &PRODUCTABBR; 
+                            administrator to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0015
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0016
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0017
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0018
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Index verified: {collection name} {index keys}, 
+                            unique {unique index; Boolean value}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job has verified the indicated index.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0019
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0020
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0021
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0022
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0023
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0024
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0025
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0026
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0027
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error processing ingestion job, data 
+                            transformation failed: {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job failed as described in the 
+                            message shown. Take corrective action if 
+                            necessary and try ingestion again. If the 
+                            error continues, contact your &PRODUCTABBR; 
+                            administrator to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0028
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0029
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0030
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            LearningObjective cannot have multiple parent 
+                            objectives: {parent learning objective(s)}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Each LearningObjective entity instance can have 
+                            at most one other LearningObjectiveReference. 
+                            Update the XML files to enforce this requirement. 
+                            Then, recreate the .zip archive and try ingesting 
+                            again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0031
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not resolve child LearningStandardReferences 
+                            for LearningObjective {parent learning objective}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The LearningObjective entity instance indicated 
+                            is missing a reference to a LearningStandard 
+                            instance. Update the XML files so that each 
+                            LearningObjective instance references a 
+                            LearningStandard instance. Then, recreate the 
+                            .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0032
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0033
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0034
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not resolve LearningObjectiveReference 
+                            with Objective: {objective value}, 
+                            AcademicSubject{value}, ObjectiveGradeLevel{value}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The data is missing a LearningObjective instance 
+                            that matches a combination of objective, 
+                            academicSubject, and objectiveGradeLevel 
+                            attributes indicated. These three attributes 
+                            are key fields for the LearningObjective entity. 
+                            Update the XML files so that each LearningObjective
+                            instance has a unique combination of values for 
+                            these three attributes. Then, recreate the 
+                            .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0035
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>No tenant ID provided. Please contact an &PRODUCTABBR; administrator
+                            or operator for assistance resolving this problem. </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error during 
+                            a purge operation due to missing tenant ID 
+                            information. This is an internal error that is 
+                            not likely resolved just by trying again. 
+                            Contact your &PRODUCTABBR; administrator to handle 
+                            the issue or to escalate it to an &PRODUCTABBR; operator.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0036
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error processing purge job: {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered the indicated 
+                            error during a purge operation. Take corrective 
+                            action if necessary and try ingesting again. If 
+                            the error continues, contact your &PRODUCTABBR; 
+                            administrator to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0037
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Two or more LearningObjectives have duplicate 
+                            combination of Objective: {value}, 
+                            AcademicSubject: {value}, 
+                            ObjectiveGradeLevel: {value}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Multiple LearningObjective entity instances 
+                            are identified by the combination of key 
+                            field values indicated. Update the XML files 
+                            so that there is only one unique 
+                            LearningObjective instance with this key field 
+                            value combination. Then, recreate the .zip 
+                            archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0038
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Index missing: {collection name} {index keys}, 
+                            unique: {unique index; Boolean value}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered a missing index 
+                            in the &PRODUCTABBR; datastore. This is an 
+                            internal error that is not likely resolved 
+                            just by trying again. Contact your &PRODUCTABBR; 
+                            administrator to handle the issue or to 
+                            escalate it to an &PRODUCTABBR; operator.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0039
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0040
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0041
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0042
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0043
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not find ObjectiveAssessment reference 
+                            with the ObjectiveAssessmentIdentificationCode 
+                            {value}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ObjectiveAssessment entity instance 
+                            indicated by the 
+                            ObjectiveAssessmentIdentificationCode was 
+                            provided as a reference in the data set, but the 
+                            ingestion job could not find that 
+                            ObjectiveAssessment instance.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Warning
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0044
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Ignoring child ObjectiveAssessment with 
+                            ObjectiveAssessmentIdentificationCode {value} 
+                            since it already exists in the hierarchy.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job found the indicated 
+                            ObjectiveAssessment entity instance as part 
+                            of the ObjectiveAssessmentReference attribute 
+                            for another ObjectiveAssessment instance, but 
+                            determined that it already existed in the 
+                            ObjectiveAssessment hierarchy.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Warning
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0045
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0046
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Internal error occurred. Please contact the 
+                            operator for assistance resolving this problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job failed to find a matching 
+                            entity instance in the data store. This is an 
+                            internal error. Try ingesting again. If the 
+                            error continues, contact your &PRODUCTABBR; 
+                            administrator to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0047
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Internal error occurred. Please contact the 
+                            operator for assistance resolving this problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job was unable to transform any 
+                            entity instance. This is an internal error. 
+                            Try ingesting again. If the error continues, 
+                            contact your &PRODUCTABBR; administrator to 
+                            escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0048
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0049
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0050
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0051
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Control file is invalid. Remove all associated 
+                            files from the landing zone.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job has an invalid control file. 
+                            Using an FTP client, clear files from the landing 
+                            zone before uploading any more files. Repair the 
+                            control file in accordance with ingestion 
+                            documentation. Then, recreate the .zip archive 
+                            and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Warning
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0052
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Could not find key field {key field value} for 
+                            entity of type {entity type}.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job could not find the key field 
+                            indicated for the specified entity type. Update 
+                            the XML files so that all key fields exist 
+                            and are valid for each entity. Then, recreate 
+                            the .zip archive and try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0053
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0054
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0055
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0056
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0057
+                        </para>
+                    </entry>
+                    <entry namest="secondCol" nameend="fourthCol">
+                        <para>
+                            Deprecated message code.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0058
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Landing zone file {filename} is not a zip file
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job found a file in the landing 
+                            zone that is not a .zip archive. Remove all
+                            files from the landing zone other than valid .zip
+                            archives.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0059
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Failed to onboard tenant. Please contact the 
+                            operator for assistance resolving this problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion system failed to create the 
+                            tenant databases needed for successful ingestion. 
+                            Contact your &PRODUCTABBR; administrator 
+                            to escalate the problem to an 
+                            &PRODUCTABBR; operator.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0060
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error processing batch job {job ID} due to: 
+                            {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered the error shown 
+                            while processing the indicated job. Take 
+                            corrective action if necessary and try 
+                            ingesting again. If the error continues, 
+                            contact your &PRODUCTABBR; administrator 
+                            to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0061
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Internal error occurred. Please contact the 
+                            operator for assistance resolving this problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error reading 
+                            the XML file. This is an internal error. Try 
+                            ingesting again. If the error continues, 
+                            contact your &PRODUCTABBR; administrator 
+                            to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0062
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Internal error occurred. Please contact the 
+                            operator for assistance resolving this problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error parsing 
+                            the schema file. This is an internal error. Try 
+                            ingesting again. If the error continues, 
+                            contact your &PRODUCTABBR; administrator 
+                            to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0063
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            XML file parsing error occurred. Please make 
+                            sure it is a valid XML file or contact the 
+                            operator for assistance.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error parsing 
+                            the XML files. This is an internal error. 
+                            Try ingesting again. If the error continues, 
+                            contact your &PRODUCTABBR; administrator 
+                            to escalate the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0065
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Access denied to entity type {0}, ID {1}, 
+                            at depth {2} while safe deleting entity 
+                            type {3} with ID {4}.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error during 
+                            a delete operation. The user does not have the 
+                            access rights necessary to delete this data. 
+                            An inBloom operator must grant the user roles 
+                            with appropriate access rights for this data.
+                        </para>
+                        <para>
+                            (Access checking is not currently applicable 
+                            to deletes via ingestion.)
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0071
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Failed to delete entity type {0}, ID {1}.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered an error during a 
+                            delete operation. This is an internal error. 
+                            The deletion of the entity instance failed.
+                        </para>
+                        <para>
+                            Try ingesting again. If the error continues, 
+                            contact your inBloom administrator to escalate 
+                            the problem.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0072
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Cascade deletes are not currently supported
+                            by ingestion.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job found a delete request with
+                            Cascade option set to "true". Cascade deletes
+                            are not currently supported. Please update the
+                            XML file to set Cascade to "false".
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            CORE_0073
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Delete operations for {0} are not currently
+                            supported by ingestion.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job found a delete request for an
+                            entity or reference that is not currently
+                            supported for deletes through the ingestion
+                            system. Please update the XML file to remove
+                            unsupported requests.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+        <tgroup cols="4">
+            <colspec colname="firstCol" colwidth="2*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <colspec colname="thirdCol" colwidth="2*"/>
+            <colspec colname="fourthCol" colwidth="1*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>
+                            Message Code
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Message text
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Issue and Corrective Action Required
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Level
+                        </para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0001
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Invalid input: No control or .zip file found
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The uploaded file is neither a control file 
+                            or a .zip archive. Be sure to create a valid 
+                            .zip archive with the XML files and control 
+                            file as described in ingestion documentation. 
+                            Then, try ingesting again.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0002
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Validating file: {filename} ...
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job has started the validation 
+                            process for the XML file indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0003
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Validating file {filename} resulted in errors.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job encountered errors while 
+                            validating the XML file indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0004
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Validation complete for data file {filename}.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job finished validating the XML 
+                            file indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0005
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Processing .zip archive [{filename with path}] ...
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job has started processing the 
+                            .zip archive indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0006
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Processing complete for .zip archive 
+                            [{filname and path}].
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job has finished processing the 
+                            .zip archive indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0007
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Processing control file [{filename and path}] ...
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job has started processing the 
+                            control file indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0008
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Cannot parse control file
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job failed to parse its control file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0009
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Processing complete for control file 
+                            [{filename and path}].
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job has finished processing the 
+                            control file indicated.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Info
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0010
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Validation for control file resulted in error: 
+                            {error message}
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The ingestion job was unable to validate, 
+                            and thus parse, its control file.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0011
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            {validation tool name}: Illegal arguments
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            An unexpected number of arguments were specified.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0012
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Usage: {validation tool name} [Zip/Control File]
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Explains the usage of the tool.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0013
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Illegal option - directory path. Expecting a 
+                            Zip or a Control file
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The input file specified is a directory. 
+                            A .zip/.ctl file was expected.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0014
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            {filename} does not exist
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The indicated file is not present at the 
+                            specified physical location.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0015
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Invalid input: No control/zip file found
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The file specified is not a file at all.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            VALIDATION_0016
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Usage: {validation tool name} [Zip/Control File]
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            The input file specified is a directory. 
+                            Explains the usage of the tool.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Error
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+        
+    
+</section>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-44314e32-f5c7-46da-891d-3965d2c71e05"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <title>Ingestion Validation Tool</title>
+    <para>
+        The &PRODUCTABBR; Ingestion process involves the importing and 
+        validation of Ed-Fi data. To save time and complexity, it is recommended that you validate your data before attempting to ingest. Use the &COMPANYABBR; Ingestion Validation Tool to detect and resolve errors before the data is sent for ingestion. 
+    </para>
+    <para>
+        This is one of the open source applications from &COMPANYABBR;. 
+        You can download the source from the &COMPANYABBR; Github repository: 
+        <link xlink:show="new" xlink:href="&GITHUBURL;/">&GITHUBURL;/</link>.
+    </para>
+    
+    <section xml:id="doc-d403a647-c47d-46e5-8366-a74f936f0421">
+        <title>System Requirements</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    JRE 1.6
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    512 MB available memory
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    50 MB available space for the tool
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Extra space for validating the XML file. 
+                    This space must be a minimum of double the file size of the XML file.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Write permissions for the home directory of the tool.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-d0878faa-9cd7-47e7-a5ac-2aeefad1f069">
+        <title>Components and Build Instructions</title>
+        <para>The tool has two components:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <filename>ingestion-base</filename> - The base ingestion 
+                    functionality for which the offline validation tool depends.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <filename>ingestion-validation</filename> - The source of
+                    the ingestion validation.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <emphasis>To build the tool:</emphasis>
+        </para>
+        <para>
+            From the home directory, compile the project using 
+            <command>mvn clean package install</command>.
+        </para>
+        <para>
+            The jar file and a self-contained zip file are located under 
+            <filename>ingestion-validation/target</filename>.
+        </para>
+    </section>
+    
+    <section xml:id="doc-d189dbc4-61ee-4dbc-8664-f50822562a7b">
+        <title>Usage</title>
+        <para>The tool is deployed from a .zip file that contains the application jar file,
+            installation scripts, and documentation. The application directory structure resembles
+            the following example: </para> 
+        <programlisting><![CDATA[
+ * OfflineValidationTool/
+           lib/
+           ingestion-validation-{version}.jar
+           OfflineValidationTool.sh
+           OfflineValidationTool.bat   
+                ]]></programlisting>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The <filename>lib</filename> directory contains the 
+                    dependent libraries.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The <filename>ingestion-validation-{version}.jar</filename> 
+                    file is the executable file for the ingestion validation 
+                    tool.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The <filename>OfflineValidationTool.sh</filename> 
+                    file is a script for running the tool on Unix and Linux platforms.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The <filename>OfflineValidationTool.bat</filename> file 
+                    is a script for running the tool on a Windows platform.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The tool can be called using the command 
+            <command>java -jar ingestion-validation-1.0-SNAPSHOT.jar &lt;InputFilePath&gt;</command>. 
+            The output log file is in the same folder as the input file.
+        </para>
+    </section>
+    
+    <section xml:id="doc-32432882-3a2f-48a8-bfcf-17c7c85b60db">
+        <title>&COMPANYABBR; Validation Tool Implementation</title>
+        <para>To install, unzip the <filename>OfflineValidationTool.zip</filename> file to a folder.
+            The tool can be called from the command line (from the folder to which the zip was
+            extracted) as follows: </para>
+        <para>
+            In a Windows environment: 
+            <command>OfflineValidationTool.bat &lt;InputDirectory&gt;</command>
+        </para>
+        <para>
+            In a Linux or Unix environment: 
+            <command>OfflineValidationTool.sh &lt;InputDirectory&gt;</command>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The &COMPANYABBR; Ingestion Validation tool is built using the 
+                    Spring Framework.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The Ingestion Validation tool uses the existing validation modules in ingestion-core. 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The <classname>OfflineTool</classname> class validates the 
+                    input provided and reports any errors to the console.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The <classname>LoggerUtil</classname> creates the 
+                    logger for the validation tool and provides console and 
+                    file appenders. It also provides the ability to switch 
+                    the logger's appenders to either console or a file.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Besides the existing zip file validation, 
+                    control file and xml file validation, the validation tool also
+                    supports the new Xsd Validation.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    All information and errors generated by the validators are 
+                    reported in the log file that is generated in the 
+                    specified input folder.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Any messages from the ingestion-core are filtered 
+                    out. The log file generated on the client machine  
+                    only has relevant messages from the &COMPANYABBR; 
+                    Ingestion Validation Tool.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    The tool currently validates against ED-FI 1.0.03.
+                </para>
+            </listitem>                    
+        </itemizedlist>
+    </section>
+</chapter>

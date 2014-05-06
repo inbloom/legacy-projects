@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion-action_element_type"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Action Element Type</title>
+    
+    <para>
+        By default, ingestion operations can be described as an "upsert,"
+        meaning an insert or update depending on whether data with the
+        specified key values exists in the data store.
+    </para>
+    <para>
+        Additional actions on data can be performed by wrapping the XML
+        describing that data with an <varname>Action</varname> wrapper element.
+        Attributes provided for an instance of the <varname>Action</varname> 
+        element describe the action to take on the data specified, starting
+        with <varname>ActionType</varname>.
+    </para>
+    <para>
+        The following is an example of the <varname>Action</varname> element
+        type used to delete specified data:
+    </para>
+    <programlisting><![CDATA[<Action ActionType="DELETE">
+   <Student>
+      <StudentUniqueStateId>123456</StudentUniqueStateId>
+      <StudentIdentificationCode IdentificationSystem="Local" AssigningOrganizationCode="School">
+         <IdentificationCode>abcde</IdentificationCode>
+      </StudentIdentificationCode>
+      <Name>
+         <FirstName>Test</FirstName>
+         <LastSurname>User</LastSurname>
+      </Name>
+      <!-- ... sample data omitted for brevity ... -->
+      <LoginId>test.user@example.com</LoginId>
+   </Student>
+</Action>]]></programlisting>
+    <para>
+        The following are some additional characteristics of the
+        <varname>Action</varname> wrapper element:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                This wrapper can be used alongside default ingestion operations
+                without disrupting those insert or update actions. For
+                example, you can use the <varname>Action</varname> wrapper
+                around entity instances representing records you want to delete 
+                while the ingestion job includes data for new and existing
+                records.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Actions of difference <varname>ActionType</varname> values have 
+                different characteristics based on that 
+                <varname>ActionType</varname>. See documentation specific to
+                that <varname>ActionType</varname> for details.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Multiple entity instances can be specified within the same 
+                <varname>Action</varname> wrapper, but the actions performed
+                on those instances might not occur as a single operation. 
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</section>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE part [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter 
+    xml:id="doc-1c2f048b-623e-4348-a472-ea9dd9b28e24" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <info>
+        <title>Ingestion Interchange Schema Download</title>
+    </info>
+    
+    <para>
+        &PRODUCTABBR; uses a data interchange schema that corresponds to the 
+        Ed-Fi v1.0.03 schema. However, &COMPANYABBR; has modified this schema 
+        using schema extensions and restrictions. To make sure that your data 
+        can be ingested, please make sure it conforms to the Ed-Fi v1.0.03 
+        schema as well as the &PRODUCTABBR; extension schema. 
+    </para>
+    
+    <para>
+        You can download the &PRODUCTABBR; extension schema at: 
+        <link xlink:show="new" xlink:href="xsd/SLI-Ed-Fi-Core.xsd">SLI Extension Schema</link>.</para>
+    
+    <caution>
+        <para>
+            The term "schema" is used to describe both the interchange schema
+            for ingestion and the database schema for the &COMPANYABBR; 
+            Data Store. The REST API interacts with data based on the schema 
+            in the data store, not the interchange schema. Version numbers 
+            of these schemas may not be synchronized. See developer
+            documentation for more information about the API and data store.
+        </para>
+    </caution>
+    
+</chapter>

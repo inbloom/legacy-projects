@@ -1,0 +1,725 @@
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; characterset=ISO-8859-1"/>
+    <title>inBloom technology 1.4.77 Release Notes</title>
+</head>
+    
+<body>
+    <div class="header">
+        <!-- <a href="http://www.inbloom.org/for-developers" target="_blank">
+            <img src="images/slcheader_960.png"></a> -->
+    </div>
+    <div class="article">
+        <h1 class="title">inBloom technology 1.4.77 Release Notes</h1>
+        <hr />
+        <div class="toc">
+            <p><b>Table of Contents</b></p>
+            <dl>
+                <dt><span class="section"><a href="#sect-release_notes-whats_new">What's new?</a></span></dt>
+                <dt><span class="section"><a href="#sect-data_model_changes">Data Model Updates</a></span></dt>
+                <dt><span class="section"><a href="#sect-ingestion_changes">Ingestion Schema Updates</a></span></dt>
+                <dt><span class="section"><a href="#sec-api_changes">API Updates</a></span></dt>
+                <dt><span class="section"><a href="#sect-release_notes-resolved_issues">Resolved Issues</a></span></dt>
+                <dt><span class="section"><a href="#sect-release_notes-known_issues">Known Issues</a></span></dt>
+                <dt><span class="section"><a href="#sect-release_notes-web_browser_compatibility">Web Browser Compatibility</a></span></dt>
+            </dl>
+        </div>
+        
+        <!-- WHAT'S NEW --> 
+        <div class="section">
+            <h2 class="title" style="clear: both"><a name="sect-release_notes-whats_new"></a>What's New?</h2>
+            <p>
+                The following new features were added in this release:
+            </p>
+            <ul>
+                <li>
+                    <p>
+                            <strong>Bulk Extract</strong> - Bulk data extraction through the REST
+                            API includes the following new features: </p>
+                    <ul>
+                        <li>
+                            <p>
+                                Using the new bulk/extract/tenant resource, a 
+                                REST API client can now access data for the tenant
+                                associated with the current authenticated user. 
+                                For this to work, the current user must have an 
+                                inBloom user role that includes the bulk extract 
+                                right. REST API documentation covers the new
+                                <i>bulk/extract/tenant</i> resource along with 
+                                important security and header information 
+                                you need to know when using it.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                The bulk extract resources now support byte range 
+                                requests, which allow REST API clients to resume
+                                interrupted downloads. To take advantage of this
+                                feature, the client must pass specific HTTP header
+                                fields to the call as described in REST API
+                                documentation for <i>bulk/extract/tenant</i>.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                The new bulk/extract/list API resource can be 
+                                used to access a list of URLs for the bulk 
+                                extract files available to the current user 
+                                through the current application. See the API 
+                                resources in the inBloom developer 
+                                documentation for complete details about 
+                                this new resource and how to use it.
+                            </p>
+                        </li> 
+                        <li>
+                            <p>
+                                The bulk extract resources now support adding 
+                                a version number in the URI. While having a 
+                                version in the URI is supported, the behavior 
+                                of the URI is to always use the latest API 
+                                version. Operator documentation includes 
+                                information on how to refresh bulk extract
+                                files when deploying a new version of the 
+                                REST API.
+                            </p>
+                        </li>
+                        <li>
+                                <p> The Bulk Extract API now supports full extracts for each
+                                    top-level education agency. For a local education agency (LEA),
+                                    this includes all data associated with a set select entities
+                                    listed in the API documentation. For a state education agency
+                                    (SEA), this includes public data. The full extracts are created
+                                    once per week. A valid user from an education agency can
+                                    retrieve the extract for that agency by providing its ID when
+                                    calling the API resource
+                                        (<i>bulk/extract/{EducationAgencyId}</i>).  All the
+                                    available top-level education agency files are listed in the
+                                        <i>bulk/extract/list</i> resource.</p>
+                            </li>
+                        <li>
+                            <p> The Bulk Extract API now supports delta extracts at a top level LEA
+                                        (<i>bulk/extract/{EducationAgencyId}/delta/{timestamp}</i>).
+                                    These extracts are created daily and include information about
+                                    data that has been modified or deleted in the period since the
+                                    last incremental extract on the previous day. All the available
+                                    incremental files are listed in the <i>bulk/extract/list</i>
+                                    resource. See the API documentation for additional information
+                                    including the current list of supported entities.</p>
+                        </li>
+                        <li>
+                            <p>
+                                The bulk extracts are now encrypted using a 
+                                X.509 certificate unique for each application 
+                                that is authorized to access the bulk extract 
+                                API. The certificate is inspected upon every 
+                                API call, then compared to the stored 
+                                certificate for the calling application.  
+                                If a mismatch is detected, the request is 
+                                denied. Each application developer provides 
+                                its application's certificate to the inBloom 
+                                operator through a non-automated (manual) 
+                                process.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                The bulk extract behavior differs between 
+                                sandbox and production environments. In the 
+                                inBloom Sandbox, making bulk extract API calls 
+                                returns only the sample data set. In a 
+                                production inBloom deployment, 
+                                <i>bulk/extract/tenant</i> resource returns 
+                                real data for the tenant.
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>
+                        <strong>New Ingestion Schema Features</strong> - 
+                        Ingestion Schema The inBloom-Ed-Fi XML Schema used in 
+                        data ingestion has been updated to support deletes 
+                        through ingestion. This includes the following updates 
+                        to the interchange XSDs published by inBloom. 
+                        See the "Ingestion Schema Updates" section for more 
+                        details:
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                Added Force and LogViolations attributes to the 
+                                SLC-ActionType definition.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Added reference types for all entities that 
+                                did not previously have a reference type, 
+                                which provides for the deletion of all entities
+                                by reference in addition to full entity body.
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>
+                        <strong>Performance Improvements for Ingestion</strong> - 
+                        The ingestion system includes updates targeted at improved 
+                        performance.
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- DATA MODEL UPDATES -->
+        <div class="section">
+            <h2 class="title" style="clear: both"><a name="sect-data_model_changes"></a>Data Model Updates</h2>
+            <p>
+                This release includes the following updates to the data model
+                implemented in the inBloom data store:
+            </p>
+            <ul>
+                <li>
+                    <p>
+                        The following elements are now optional (their 
+                        cardinality is now zero to one):
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                <em>Sex</em> for Staff and Student
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <em>HighestLevelOfEducationCompleted</em> 
+                                for Staff
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <em>Race</em> for Staff and Student; 
+                                if present, <em>RacialCategory</em> is also 
+                                required
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </div>
+        
+        
+        <!-- INGESTION SCHEMA UPDATES -->
+        <div class="section">
+            <h2 class="title" style="clear: both"><a name="sect-ingestion_changes"></a>Ingestion Schema Updates</h2> 
+            <p>
+                This release includes the following updates to the ingestion 
+                schema, listed by entity type:
+            </p>
+            <ul>
+                <li>
+                    <p>
+                        <strong>SLI-ActionType</strong> - The Action verb wrapper, 
+                        added in 1.2.74, now includes the following attribute changes. 
+                        Details on how these work and how to use them are covered in 
+                        the ingestion documentation:
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                Force (Optional): This new Boolean attribute can be 
+                                used to force deletion of data even if it leaves 
+                                orphaned references in the data store.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                LogViolations (Optional): This new Boolean attribute 
+                                can be used when Force="True" to instruct the 
+                                ingestion system to log information about orphaned 
+                                objects in the system resulting from the forced 
+                                delete.
+                            </p>
+                        </li>
+                    </ul>
+                </li> 
+                <li>
+                    <p>
+                        <strong>SLC-AssessmentItemIdentityType</strong> - 
+                        AssessmentReference (Optional) has been added.  When using 
+                        AssessmentItemReference with DELETE operations, 
+                        AssessmentReference is REQUIRED.
+                    </p>
+                </li> 
+                <li>
+                    <p>
+                        <strong>SLC-AssessmentFamily</strong> - 
+                        Added natural key data.
+                    </p>
+                </li> 
+                <li>
+                    <p>
+                        <strong>SLC-AssessmentPeriodDescriptor</strong> - 
+                        Added new entity type to inBloom-Ed-Fi core.
+                    </p>
+                </li> 
+                <li>
+                    <p>
+                        <strong>SLC-AttendanceEvent</strong> - SchoolYear is now 
+                        part of the natural key for AttendanceEvent.
+                    </p>
+                </li> 
+                <li>
+                    <p>
+                        <strong>SLC-GraduationPlan</strong> - 
+                        EducationOrganizationReference has been changed from 
+                        unbounded to maxOccurs="1".
+                    </p>
+                </li> 
+                <li>
+                    <p>
+                        <strong>SLC-ObjectiveAssessmentIdentityType</strong> - 
+                        AssessmentReference (Optional) has been added.  When using 
+                        ObjectAssessmentReference with DELETE operations, 
+                        AssessmentReference is REQUIRED.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <strong>SLI-StaffIdentitySystem</strong> - 
+                        Removed "SSN" and "Canadian SIN" enumerations.
+                    </p>
+                </li> 
+                <li>
+                    <p>
+                        <strong>SLI-StudentIdentitySystem</strong> - 
+                        Removed "SSN" and "Canadian SIN" enumerations.
+                    </p>
+                </li>  
+                <li>
+                    <p>
+                        Each of the following entities now has a new corresponding 
+                        reference type:
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                AttendanceEvents
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                CompetencyLevelDescriptor
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                CourseTranscript
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                DisciplineAction
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                LocalEducationAgency
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StaffCohortAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StaffEducationOrgAssignmentAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StaffProgramAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StateEducationAgency
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StudentAssessmentItem
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StudentCohortAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StudentDisciplineIncidentAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StudentGradebookEntry
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StudentParentAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StudentProgramAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                StudentSchoolAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                TeacherSchoolAssociation
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                TeacherSectionAssociation
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>
+                        Added the following enumerated types to inBloom-Ed-Fi core 
+                        to extend their elements:
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                <strong>SLC-AcademicSubjectType</strong> - 
+                                Extended to include "Career Education".
+                            </p>
+                        </li> 
+                        <li>
+                            <p>
+                                <strong>SLC-AttendanceEventCategoryType</strong> - 
+                                Extended to include "In-School Suspension" and 
+                                "Out-of-School Suspension".
+                            </p>
+                        </li> 
+                        <li>
+                            <p>
+                                <strong>SLC-ContentStandardType</strong> - 
+                                Extended to include "Other".
+                            </p>
+                        </li> 
+                        <li>
+                            <p>
+                                <strong>SLC-CountryCodeType</strong> - 
+                                Extended to include ISO 3166-1 country codes, which 
+                                required adding "PALESTINE, STATE OF".
+                            </p>
+                        </li> 
+                        <li>
+                            <p>
+                                <strong>SLC-ExitWithdrawType</strong> - 
+                                Extended to include the following elements:
+                            </p>
+                            <ul>
+                                <li>
+                                    <p>
+                                        "Ended enrollment for instructional reporting only"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Transferred to an approved GED program outside this district"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Special education eligibility status determined or determination process stopped for any reason"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Transferred to homebound instruction provided by this district"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Transferred to high school equivalency program"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Transferred to GED preparation program"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Transferred outside district by court order"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Left school: first-time dropout"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Left school: previously counted as a dropout"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Long-term absence"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Leaving a school as a victim of a serious violent incident"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Leaving a district as a victim of a serious violent incident"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Entry into a different grade in the same school"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "End of walk-in enrollment"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "End of special education program responsibility only"
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        "Re-enrolled in same school"
+                                    </p>
+                                </li>
+                            </ul>
+                        </li> 
+                        <li>
+                            <p>
+                                <strong>SLC-RelationType</strong> - 
+                                Extended to include "Grandfather" and "Grandmother".
+                            </p>
+                        </li> 
+                        <li>
+                            <p>
+                                <strong>SLC-StateAbbreviationType</strong> - 
+                                Extended to include postal abbreviations 
+                                FM, MH, MP, and PW.
+                            </p>
+                        </li> 
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- API UPDATES -->
+        <div class="section">
+            <h2 class="title" style="clear: both"><a name="sec-api_changes"></a>API Updates</h2>
+            <p>
+                This release includes the following changes to the API.
+            </p>
+            <h3>Added</h3>
+            <p>
+                No API resources were added in this release.
+            </p>
+            <ul>
+                <li>
+                    <p>
+                        /bulk/extract/list
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        /bulk/extract/tenant
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        /bulk/extract/{EducationAgencyId}
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        /bulk/extract/{EducationAgencyId}/delta
+                    </p>
+                </li>
+            </ul> 
+            <h3>Deprecated</h3>
+            <p>
+                No API resources were deprecated in this release.
+            </p>
+            
+            <h3>New &amp; Updated Fields</h3>
+            <p>
+                No fields were modified to existing API resources in this
+                release.
+            </p>
+        </div>
+        
+        <!-- RESOLVED ISSUES -->
+        <div class="section">
+            <h2 class="title" style="clear: both"><a name="sect-release_notes-resolved_issues"></a>Resolved Issues</h2>
+            <p>
+                The following is a list of previously reported issues which 
+                have been resolved in this release:
+            </p>
+            <div class="section">
+                <h3 class="title"><a name="DE2759"></a>DE2759: A newline character in the description field of the Application Registration Tool prevents changes from being saved.</h3>
+                <p>
+                    When saving an application using the Application 
+                    Registration Tool, a newline character in the description 
+                    field prevents the changes from being saved. This issue is 
+                    resolved. An application developer can now add newline 
+                    characters in the application description.
+                </p>
+            </div>
+            <!--  <div class="section"><h3 class="title"><a name="DE"></a>text</h3><p>text</p></div>   TEMPLATE -->
+        </div>
+
+        <!-- KNOWN ISSUES -->
+        <div class="section">
+            <h2 class="title" style="clear: both"><a name="sect-release_notes-known_issues"></a>Known Issues</h2>
+            <p>
+                The following are the open defects currently used to track 
+                known issues in this release:
+            </p>  
+            <div class="section">
+                <h3 class="title"><a name="DE2826"></a>DE2826: Security issue when making education organization changes.</h3>
+                <p>
+                    There is a known security issue in how inBloom currently 
+                    handles adding, updating, and deleting education 
+                    organization entity instances. A future inBloom release 
+                    will resolve this issue. Until the inBloom deployment you 
+                    are working with is updated to that release, you must 
+                    perform the workaround described below under the following 
+                    conditions:
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            When you run a forced delete action on an 
+                            education organization through bulk ingestion
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            When you add a new education organization, 
+                            either through bulk ingestion or the API 
+                            (not including the first bulk ingestion job 
+                            for the tenant)
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            When you update an education organization, 
+                            either through bulk ingestion or the API, 
+                            in a way that changes its place in the 
+                            organizational hierarchy
+                        </p>
+                    </li>
+                </ul>
+                <p>
+                    <strong>Workaround:</strong> Follow that change with a 
+                    separate ingestion job that includes all the 
+                    <em>studentSchoolAssociation</em> entity instances that 
+                    fall under that education organization in the hierarchy. 
+                    In the control file for that ingestion job, use 
+                    <em>@duplicate-detection</em> to override the default 
+                    behavior of skipping duplicates: use 
+                    <em>@duplicate-detection=reset</em> if there is any new 
+                    data in the same job, or use 
+                    <em>@duplicate-detection=disable</em> if the data 
+                    contains only the duplicates. See the ingestion guide 
+                    for details on preparing ingestion jobs and their 
+                    associated control files. 
+                </p>
+            </div>
+            <div class="section">
+                <h3 class="title"><a name="DE2864"></a>DE2864: FIXME</h3>
+                <p>
+                    Any data that includes an ampersand (&amp;), 
+                    greater-than (&gt;), or less-than (&lt;) character may 
+                    have been improperly transformed during XML encoding when 
+                    ingested by inBloom. This issue has been resolved. When 
+                    updating to this release, if a tenant has any records 
+                    containing these characters, inBloom recommends that 
+                    tenant purge and re-ingest its data.
+                </p>
+            </div>
+            <div class="section"><h3 class="title"><a name="DE198"></a>DE198: EducationOrganization references to Program are not properly ingested.</h3><p>This reference is not implemented yet. As a result, the API does not provide a link from the EdOrg to the Program.</p></div>
+            <div class="section"><h3 class="title"><a name="DE273"></a>DE273: A DisciplineDescriptor is not currently supported in Interchange-StudentDiscipline.</h3><p>This descriptor is not currently supported. However, a reference to this descriptor is required for the DisciplineAction entity.</p></div>
+            <div class="section"><h3 class="title"><a name="DE325"></a>DE325: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs.</h3><p>The ingestion process assumes that the Program ID is unique within a tenant, but this should be unique within the specified EdOrg instead. As a result, the reference could resolve incorrectly.</p></div>
+            <div class="section"><h3 class="title"><a name="DE408"></a>DE408: Aggregate Viewers cannot see themselves.</h3><p>Users with the Aggregate Viewer role cannot see their own Teacher or Staff entity.</p></div>
+            <div class="section"><h3 class="title"><a name="DE710"></a>DE710: Section, school and session references in AttendanceEvent are ignored.</h3><p>The way AttendanceEvent entities are handled ignores explicit characterization of the attendance event - by school, section, session. As a result, AttendanceEvents for students attending multiple schools do not properly persist.</p></div>
+            <div class="section"><h3 class="title"><a name="DE921"></a>DE921: Duplicates are not reported.</h3><p>Error reports are not always clear regarding the records persisted. When there are duplicates within the XML file, or a record already exists, the ingestion engine still updates the record. However, this record count is not included in the ingested records count. </p></div>
+            <div class="section"><h3 class="title"><a name="DE1434"></a>DE1434: Internet Explorer 8 users may experience issues when using the dashboard builder.</h3><p>If you are using Internet Explorer 8 and the dashboard builder, then intermittently the release after a drag and drop does not return the page to the correct state.</p></div>
+            <div class="section"><h3 class="title"><a name="DE1457"></a>DE1457: Making a teacher call for a section with two "teachers of record" returns a 403 error.</h3><p>Making a teacher call for a section with two "teachers of record" returns a 403 error. This error can cause the sectionInfo panel to not display.</p></div>
+            <div class="section"><h3 class="title"><a name="DE1458"></a>DE1458: The ingestion service is able to handle more than one teacher of record.</h3><p>The ingestion service can accept more than one teacher for a single section. The dashboard does not currently support this behavior.</p></div>        
+            <div class="section"><h3 class="title"><a name="DE1573"></a>DE1573: Attendance Rate should be removed.</h3><p>The current attendance record includes an attendance rate column that may not be accurate for some use cases. The column could be removed by default in a future release.</p></div>
+            <div class="section"><h3 class="title"><a name="DE1647"></a>DE1647: Dashboard may not display all data.</h3><p>When a large dataset is available, the initial dashboard view may only display a subset of the data. The dashboard currently does not display a message explaining this scenario.</p></div>
+            <div class="section"><h3 class="title"><a name="DE1728"></a>DE1728: An error occurs if an OAuth Callback URL does not begin with "HTTPS".</h3><p>If an application includes a callback URL that does not begin with "https://", then an error message is returned.</p></div>
+            <div class="section"><h3 class="title"><a name="DE2079"></a>DE2079: HATEOS links don't always work as expected.</h3><p>The HATEOS links that the API returns may not work as expected in all cases. The contextual URI rewrites convert some API requests. Some of these converted requests may not return what is expected.</p></div>
+            <div class="section"><h3 class="title"><a name="DE2160"></a>DE2160: Selecting a filter after listing a section removes all student data.</h3><p>When viewing a list of students using the inBloom Dashboard, choosing a filter related to that student's "special needs" status results in a "no students found" error.</p></div>
+            <div class="section"><h3 class="title"><a name="DE2300"></a>DE2300: There is a 250 result limit on global entities contained in elasticsearch.</h3><p>When querying the following entities, results are limited to a maximum of 250 returns: </p><ul><li>/assessments</li><li>/competencyLevelDescriptor</li><li>/learningObjectives</li><li>/learningStandards</li><li>/studentCompetencyObjectives</li></ul></div>
+            <div class="section"><h3 class="title"><a name="DE2725"></a>DE2725: Updating an entity does not correctly update the search index.</h3><p>When an existing entity in the system is updated, that entity is not updated in elasticsearch and becomes unsearchable.</p></div> 
+            <div class="section"><h3 class="title"><a name="DE2765"></a>DE2765: Ruby on Rails version before 3.2.13 have multiple known security vulnerabilities.</h3><p>The Gemfile needs to be updated to Rails 3.2.13.</p></div> 
+            <div class="section"><h3 class="title"><a name="DE2851"></a>DE2851: Newly created student entity is unsearchable.</h3><p>After creating a student entity, it cannot be retrieved the from API endpoint.</p></div> 
+            <div class="section"><h3 class="title"><a name="DE2852"></a>DE2852: Updating a learningObjective entity does not correctly update search index.</h3><p>When an existing entity in the system is updated, that entity is not updated in elastic search and becomes unsearchable.</p></div> 
+            <div class="section"><h3 class="title"><a name="DE2853"></a>DE2853: Updating a learningStandard entity does not correctly update search index.</h3><p>When an existing entity in the system is updated, that entity is not updated in elastic search and becomes unsearchable.</p></div> 
+            <div class="section"><h3 class="title"><a name="DE2857"></a>DE2857: Updating a courseOffering entity does not correctly update search index.</h3><p>When an existing entity in the system is updated, that entity is not updated in elastic search and becomes unsearchable.</p></div>     
+            <!--  <div class="section"><h3 class="title"><a name="DE"></a>text</h3><p>text</p></div>   TEMPLATE -->             
+        </div>
+
+        <!-- WEB COMPATIBILITY DISCLAIMER -->             
+        <div class="section">
+            <h2 class="title" style="clear: both"><a name="sect-release_notes-web_browser_compatibility"></a>Web Browser Compatibility</h2>
+            <p>
+                inBloom technology Dashboard is best viewed in 
+                Internet Explorer 8+, Firefox 6+, Safari 4+ with 1024x768 as 
+                the minimum recommended screen resolution.
+            </p>
+        </div>
+        
+        <hr />
+        
+        <div class="footer">
+            <p>
+                Copyright © 2013 inBloom, Inc. and its affiliates.
+            </p>
+            <p>
+                This document and the information contained herein is provided 
+                on an "AS IS" basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, 
+                EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY 
+                THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY 
+                RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS 
+                FOR A PARTICULAR PURPOSE.
+            </p>
+        </div>
+            
+    </div> <!-- END of div class "article" -->
+
+</body>
+
+</html>

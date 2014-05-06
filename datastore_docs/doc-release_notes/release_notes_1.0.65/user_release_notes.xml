@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE article [
+<!ENTITY % slc_entities SYSTEM "../../common/docbook_entities-slc.ent">
+%slc_entities;
+<!ENTITY RELEASE "1.0.65">
+]>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xml:id="release_notes" version="5.0">
+    
+    <info>
+        <title>&COMPANY; &RELEASE; Release Notes</title>
+    </info>
+
+    <section xml:id="sect-overview">
+        <title>Overview</title>
+        <para></para>
+    </section>
+
+    <section xml:id="sect-release_notes-whats_new">
+        <title>What's New?</title>
+        <para></para>
+    </section>
+    
+    <section xml:id="sect-ingestion_changes">
+        <title>Updates to the Ingestion Schema</title>
+        <para>Input in HTML final output.</para>
+    </section>
+    <section xml:id="sec-api_changes">
+        <title>Update to the API Schema</title>
+        <para>Input in HTML final output.</para>
+    </section>
+    
+    <!--<section xml:id="sect-migrating-to-this-release">
+        <title>Migrating to this Release</title>
+    </section>-->
+
+    <xi:include href="rally_resolved_defects.xml" />
+    
+    <xi:include href="rally_defects.xml"/>
+    
+    <xi:include href="rally_stories.xml"/>
+    
+    <section xml:id="sect-release_notes-web_browser_compatibility">
+        <title>Web Browser Compatibility</title>
+        <para>
+            &COMPANYABBR; educator dashboard is best viewed in Internet Explore 8+, 
+            Firefox 6+, Safari 4+ with 1024x768 as the minimum recommended screen 
+            resolution. 
+        </para>
+    </section>
+    
+</article>

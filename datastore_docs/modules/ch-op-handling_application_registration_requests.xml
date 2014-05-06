@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-400262d9-4661-4b98-9b24-f907e6693c21"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>Handling Application Registration Requests</title>
+    <note>
+        <para>
+            These steps are only required if application registration requests are set to be handled manually. This can be configured in 
+            the <filename>sli.properties</filename> file by setting the <code>autoRegisterAppproperty</code> property to true.
+        </para>
+        <para>If <code>sli.autoRegisterApps</code> is set to true, then
+                applications are approved without any interaction from the &OPERATORROLE;. Changing
+                this property to a value of true approves all applications currently pending
+                approval.
+        </para>
+    </note>
+    <para> If you are an &PRODUCTABBR; administrator with the &OPERATORROLE; role, you will receive
+        requests from developers and vendors who are stepping through the application registration
+        process using a tool described in their documentation. When an
+            application registration request is registered, an email notification will be sent to
+            the <property>sli.support.email</property> located in the
+                <filename>sli.properties</filename> file. See <xref
+                linkend="doc-6c50b64d-141c-422d-8135-06cb6fee8043"/> for more information.
+    </para>
+    <para>This email will be sent from the <property>email_sender_address</property> and <property>email_sender_name</property> located in the administration tool's <filename>config.yml</filename> file. Please see <xref linkend="doc-e6a7fddf-3b76-4a55-9bd3-3f93de6384c2"/> for more information.</para>
+    <para>
+        To handle an application registration request:
+    </para>
+    <procedure>
+        <step>
+            <para>Sign in to the Portal.</para>
+        </step>
+        <step>
+            <para>Click <guibutton>Admin</guibutton>.</para>
+        </step>
+        <step>
+            <para>
+                Click <guilabel>Approve Application Registration</guilabel>.
+            </para>
+            <figure xml:id="figure-approveapplications">
+                <title>Authorize Applications</title>
+                <mediaobject>
+                    <imageobject role="html">
+                        <imagedata align="left"
+                            fileref="images/admin_tools-application_authorization-approve_apps.png" 
+                            width="9in" scalefit="1"/>
+                    </imageobject>
+                    <imageobject  role="fo">
+                        <imagedata align="center" 
+                            fileref="../common/images/admin_tools-application_authorization-approve_apps.png" 
+                            width="7in" scalefit="1"/>
+                    </imageobject>
+                </mediaobject>
+            </figure>
+        </step>
+        <step>
+            <para>For the pending application, click <guibutton>Approve</guibutton> or <guibutton>Deny</guibutton>.</para>
+        </step>
+    </procedure>
+    <para>
+            If you approve the application, the application will appear as
+            registered in the developer's or vendor's Portal. The developer or vendor can then begin
+            the process of distributing the application to the appropriate educational
+            organizations.
+    </para>
+</chapter>

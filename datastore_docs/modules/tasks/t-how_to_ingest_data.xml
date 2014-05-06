@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="t-how_to_ingest_data"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>How to Ingest Data</title>
+    
+    <para>
+        To ingest data, you upload files using an FTP client to the a 
+        landing zone configured for the realm you are ingesting data for. 
+        The requirements for ingestion are: 
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para> 
+                The FTP hostname associated with the target landing zone,
+                configured and communicated by an &PRODUCTABBR; administrator
+                for the corresponding tenancy.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                An FTP client installed on your local system to use for 
+                file transfers using SFTP.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                User credentials as an &PRODUCTABBR; 
+                <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>,
+                also created by an &PRODUCTABBR; administrator for the 
+                corresponding tenancy.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The files to ingest, prepared as described in
+                <xref linkend="t-how_to_prepare_data_for_ingestion"/>.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        With all this information and data at hand, use the following steps
+        to ingest data:
+    </para>
+    <procedure>
+        <step>
+            <para>
+                Configure the FTP client to connect to the landing zone
+                (FTP host and SFTP/SSH port) using the ingestion user
+                credentials (normal authentication).
+            </para>
+        </step>
+        <step>
+            <para>
+                Connect to the landing zone using that configured connection.
+            </para>
+        </step>
+        <step>
+            <para>
+                Upload one or more .zip archive files that have been prepared
+                for ingestion.
+            </para>
+        </step>
+        <step>
+            <para>
+                Monitor the landing zone file list from within the FTP client.
+                When an ingestion job is complete, download and view the log 
+                files to determine the status of that job. For more about
+                the log files and how to understand their contents, see
+                <xref linkend="c-ingestion_logs"/>.
+            </para>
+        </step>
+    </procedure>
+    <caution>
+        <para>
+            When ingesting data, take care that you ingest to your 
+            education organization only. As of this writing, ingestion 
+            users have the ability to ingest data to any education 
+            organizations within their specific tenants. This can lead to 
+            ingestion collisions between education organizations.
+        </para>
+    </caution>
+    
+</section>

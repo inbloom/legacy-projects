@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="sect-release_notes-known_issues">
+  <title>Known Issues</title>
+  <para>
+                The following are the defects currently used to track known
+                issues in the Alpha.1 release. Click a link below for more information:
+            </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+        <link linkend="DE626">DE626: Better exception handling for a few cases</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE921">DE921: INGESTION: Duplicates should be reported</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1458">DE1458: Handle more than one teacher of record</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE157">DE157: INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE325">DE325: INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE273">DE273: INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE198">DE198: INGESTION: EducationOrganization references to Program not properly ingested</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1434">DE1434: UI - IE8 - Dashboard Builder - drag And drop on release doesn't always return the Page to the right state</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1647">DE1647: dashboard may not display all data</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1573">DE1573: Remove Attendance Rate</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1457">DE1457: Section Profile - Handle 403 error when making teacher call</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1832">DE1832: SAMT: AP: Dev without "Ingestion User" role can still ingest data</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1823">DE1823: Change uniqueSectionCode length in EdFi extension</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1876">DE1876: Posting an entity twice results in API 500</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1722">DE1722: API call - /api/rest/tenant returns all tenant information</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1760">DE1760: Including the word Script in data results in blacklist filter error.</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1071">DE1071: SFTP allows all file types</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE861">DE861: INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE162">DE162: INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE710">DE710: INGESTION: Section, school and session references in AttendanceEvent are ignored</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2156">DE2156: Response data for API calls to api/rest/adminDelegation/myEdOrg contain full entity data, not just the body</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2155">DE2155: SEA's can't see delegation info when only security event viewing is delegated</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2007">DE2007: Sandbox developer onboarding email does not reflect recent login changes</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1908">DE1908: Bad error msg given illegal chars in Custom Roles</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2160">DE2160: Dashboard: Select filter after listing section removes all student data</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1728">DE1728: Portal error if OAuth Callback URL doesn't begin with https</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2162">DE2162: Sandbox Administer cannot see admin tab in portal - Not for 6.5</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE1871">DE1871: Data migration scripts not completely migrating application data to new Sandbox</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2173">DE2173: Truncation limit for ingestion errors and warnings misconfigured in SLI Properties</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2004">DE2004: DOC: Custom Roles Migration</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2135">DE2135: DOC: Additional 6.5 Operator Release Note - Tomcat HTTP Header Response Buffer Size</link>
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <link linkend="DE2166">DE2166: DOC: Runbook update: fix for DE856.</link>
+      </para>
+    </listitem>
+  </itemizedlist>
+  <section xml:id="DE626">
+    <title>DE626: Better exception handling for a few cases</title>
+    <para>Some logged errors may not properly reflect the severity of issues.</para>
+  </section>
+  <section xml:id="DE921">
+    <title>DE921: INGESTION: Duplicates should be reported</title>
+    <para>Error reports are not always clear regarding the records persisted. When there are duplicates within the XML file, or a record already exists, the ingestion engine will still update the record. However, this record count is not included in the Ingested records count.</para>
+  </section>
+  <section xml:id="DE1458">
+    <title>DE1458: Handle more than one teacher of record</title>
+    <para>The ingestion service can currently accept more than one teacher for a single section. The dashboard does not currently support this behavior.</para>
+  </section>
+  <section xml:id="DE157">
+    <title>DE157: INGESTION: School and EdOrg only supports a single representation of parentEducationAgencyReference</title>
+    <para>Reference resolution is only supported as the default scenario that features no exceptional or error conditions. As a result, a user may ingest valid EdFi format with improper references that would fail to resolve.</para>
+  </section>
+  <section xml:id="DE325">
+    <title>DE325: INGESTION: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs</title>
+    <para>Ingestion process assumes that the Program ID is unique within a tenant, but this should be unique within the specified EdOrg instead. As a result, the reference could resolve incorrectly.</para>
+  </section>
+  <section xml:id="DE273">
+    <title>DE273: INGESTION: DisciplineDescriptor not currently supported in Interchange-StudentDiscipline</title>
+    <para>This descriptor is not currently supported. However, a reference to this descriptor is required for the DisciplineAction entity.</para>
+  </section>
+  <section xml:id="DE198">
+    <title>DE198: INGESTION: EducationOrganization references to Program not properly ingested</title>
+    <para>This reference hasn't been implemented yet. As a result, the API won't provide a link from the EdOrg to the Program.</para>
+  </section>
+  <section xml:id="DE1434">
+    <title>DE1434: UI - IE8 - Dashboard Builder - drag And drop on release doesn't always return the Page to the right state</title>
+    <para/>
+  </section>
+  <section xml:id="DE1647">
+    <title>DE1647: dashboard may not display all data</title>
+    <para>When a large dataset is available, the initial dashboard view may only display a subset of the data. The dashboard currently does not display a message explaining that only a subset of data is displayed.</para>
+  </section>
+  <section xml:id="DE1573">
+    <title>DE1573: Remove Attendance Rate</title>
+    <para>The current attendence record includes an attendance rate column that may not be accurate for some use cases. The column will be removed by default in a future release.</para>
+  </section>
+  <section xml:id="DE1457">
+    <title>DE1457: Section Profile - Handle 403 error when making teacher call</title>
+    <para>Currently, making a teacher call for a section with two "teachers of record" returns a 403 error. This error can cause the sectionInfo panel to not display.</para>
+  </section>
+  <section xml:id="DE1832">
+    <title>DE1832: SAMT: AP: Dev without "Ingestion User" role can still ingest data</title>
+    <para>An application developer has access to the Landing Zone provisioning tool, and can provision a landing zone but can not access it via SFTP. Therefore can not ingest data manually but can do so through auto provisioning.</para>
+  </section>
+  <section xml:id="DE1823">
+    <title>DE1823: Change uniqueSectionCode length in EdFi extension</title>
+    <para/>
+  </section>
+  <section xml:id="DE1876">
+    <title>DE1876: Posting an entity twice results in API 500</title>
+    <para>Posting an entity twice would result in an API 500 error. We've changed features of the natural keys calculations which caused this error. We have fixed this defect.</para>
+  </section>
+  <section xml:id="DE1722">
+    <title>DE1722: API call - /api/rest/tenant returns all tenant information</title>
+    <para/>
+  </section>
+  <section xml:id="DE1760">
+    <title>DE1760: Including the word Script in data results in blacklist filter error.</title>
+    <para/>
+  </section>
+  <section xml:id="DE1071">
+    <title>DE1071: SFTP allows all file types</title>
+    <para>This has been fixed in our testing environments. Passing to Storm for documentation.</para>
+  </section>
+  <section xml:id="DE861">
+    <title>DE861: INGESTION: Super Admins should not be capable of ingesting EdOrgs above their own EdOrg</title>
+    <para>During ingestion process the landing zone is tolerant of any EdOrg within a tenant being ingested.For example, two LEAs belong to the same SEA. LEA #1 can ingest data for LEA #2 since they are both part of SEA. LEA #1 can also ingest data for SEA. This is not ideal since data specific to each LEA are not restricted, but it is functional and ingestion works properly.</para>
+  </section>
+  <section xml:id="DE162">
+    <title>DE162: INGESTION: Course name (not course code) is used to uniquely identify and refer to Course entities</title>
+    <para>Course entities are uniquely identified by course name within an education organization, rather than by course code.</para>
+  </section>
+  <section xml:id="DE710">
+    <title>DE710: INGESTION: Section, school and session references in AttendanceEvent are ignored</title>
+    <para>The way AttendanceEvent entities are handled ignores explicit characterization of the attendance event - by school, section, session. As a result, AttendanceEvents for students attending multiple schools will not properly persist.</para>
+  </section>
+  <section xml:id="DE2156">
+    <title>DE2156: Response data for API calls to api/rest/adminDelegation/myEdOrg contain full entity data, not just the body</title>
+    <para>The API call that gives an info about what has been delegated by an LEA (api/rest/adminDelegation/myEdOrg) reveals unnecessary additional information.</para>
+  </section>
+  <section xml:id="DE2155">
+    <title>DE2155: SEA's can't see delegation info when only security event viewing is delegated</title>
+    <para>The API call that returns what have been delegated (from the LEA) to SEA, gives no info (empty list) in case when only the viewing of security events has been delegated to the SEA.</para>
+  </section>
+  <section xml:id="DE2007">
+    <title>DE2007: Sandbox developer onboarding email does not reflect recent login changes</title>
+    <para>The email that the developer gets when on-boarding on Sandbox in one of the steps instructs the developer to select a realm from the drop down realm chooser instead of referencing the new realm page.</para>
+  </section>
+  <section xml:id="DE1908">
+    <title>DE1908: Bad error msg given illegal chars in Custom Roles</title>
+    <para>Both in Sandbox and Production, when illegal characters are added for a Role group, instead of returning appropriate message, an error is returned revealing code.</para>
+  </section>
+  <section xml:id="DE2160">
+    <title>DE2160: Dashboard: Select filter after listing section removes all student data</title>
+    <para>When using SLC Dashboard and viewing a list of students, in some cases choosing a filter related to that student's "special needs" status will result in a "no students found" error.</para>
+  </section>
+  <section xml:id="DE1728">
+    <title>DE1728: Portal error if OAuth Callback URL doesn't begin with https</title>
+    <para>If an application includes a callback URL that does not begin with, "https://" then an error message will be returned.</para>
+  </section>
+  <section xml:id="DE2162">
+    <title>DE2162: Sandbox Administer cannot see admin tab in portal - Not for 6.5</title>
+    <para>As a work around make sure that the sandbox admin also explicitly has application developer role.</para>
+  </section>
+  <section xml:id="DE1871">
+    <title>DE1871: Data migration scripts not completely migrating application data to new Sandbox</title>
+    <para>PROBLEM:A developer logs into the new Sandbox (build version 289) in "sandbox environment" realm and does not see their application.SOLUTION: A Developer will be able to see their application in app registration tool in "SLC" realm. The developer then will click on edit button and re-save the application. The developer will be able to see the app when logging back into sandbox environment realm.</para>
+  </section>
+  <section xml:id="DE2173">
+    <title>DE2173: Truncation limit for ingestion errors and warnings misconfigured in SLI Properties</title>
+    <para>Each error file will be truncated after the maximum number of warnings and the maximum number of errors have been reached. The maximum number of errors is 10000 per input file. The maximum number of warnings is 10000 per input file.</para>
+  </section>
+  <section xml:id="DE2004">
+    <title>DE2004: DOC: Custom Roles Migration</title>
+    <para>Custom roles has changed to support a new "isAdminRole" right. As a result, you must migrate to the new custom roles framework by running a script on the command line. The script can be called using the following command:SLI/tools/customRolesMigration.rb</para>
+  </section>
+  <section xml:id="DE2135">
+    <title>DE2135: DOC: Additional 6.5 Operator Release Note - Tomcat HTTP Header Response Buffer Size</title>
+    <para/>
+  </section>
+  <section xml:id="DE2166">
+    <title>DE2166: DOC: Runbook update: fix for DE856.</title>
+    <para/>
+  </section>
+</section>

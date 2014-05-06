@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter 
+    xml:id="doc-a8bea75f-679c-432d-818f-118890f6a36c" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deleted URIs</title> 
+    <para>The following URIs were previously available during the alpha but been removed from the API:</para>
+    <section xmlns:docbk="http://docbook.org/ns/docbook" xml:id="sect-courses-id-courseTranscripts-students">
+        <title>courses/{id}/courseTranscripts/students</title>  
+        <glosslist>
+            <glossentry>
+                <glossterm>REMOVED</glossterm>
+                <glossdef>
+                    <para>This URI, <emphasis>/courses/{id}/courseTranscripts/students</emphasis>,
+                        has been removed because it does not fit with the enhanced security
+                        constraints. The documentation of this endpoint will be maintained for 3
+                        months after the release of API version 1.0.</para>
+                    <para>As an alternative to this URI: </para>
+                    <para>Obtain courseTranscripts using a specific courseId: <code>/courseTranscripts?courseId={id}</code>. Extract the studentIds. 
+                        Then obtain the student data <code>/students/{id}</code> using the extracted IDs.
+                    </para>
+                </glossdef>
+            </glossentry>
+          <glossentry>
+                <glossterm>URL STRUCTURE</glossterm>
+                <glossdef>
+                    <para>
+                        <emphasis>https://example.com/api/rest/v1/courses/{id}/courseTranscripts/students</emphasis>
+                    </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>PARAMETERS</glossterm>
+                <glossdef>
+                    <informaltable xml:id="table-courses-id-courseTranscripts-students-resource-params">
+                        <tgroup cols="2">
+                            <colspec colname="firstCol" colwidth="1*"/>
+                            <colspec colname="secondCol" colwidth="3*"/>
+                            <tbody>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <code>id</code>
+                                        </para>
+                                    </entry>
+                                    <entry>A comma-separated list of resource IDs.</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </informaltable>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+        <glosslist xml:id="courses-id-courseTranscripts-students-GET">
+            <glossentry>
+                <glossterm>METHOD</glossterm>
+                <glossdef>
+                    <para>GET</para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>REQUEST</glossterm>
+                <glossdef>
+                    <para>There is no request body for GET. When forming your GET request URI, use
+                        REST API's <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global
+                            parameters</link> and <link
+                            linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>. </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>RESPONSE</glossterm>
+                <glossdef>
+                    <para>
+                        <code>404 Not Found</code>
+                    </para>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+    </section>
+    <section xmlns:docbk="http://docbook.org/ns/docbook" xml:id="sect-assessments-id-studentAssessments-students">
+        <title>assessments/{id}/studentAssessments/students</title>
+        <glosslist>
+            <glossentry>
+                <glossterm>REMOVED</glossterm>
+                <glossdef>
+                    <para>This URI,
+                            <emphasis>assessments/{id}/studentAssessments/students</emphasis>, has
+                        been removed because it does not fit with the enhanced security constraints.
+                        The documentation of this endpoint will be maintained for 3 months after the
+                        release of API version 1.0.</para>
+                    <para>As an alternative to this URI: </para>
+                    <para>Obtain studentAssessments using a specific assessmentID: <code>/studentAssessments?assessmentId={assessmentId}</code>. Extract the studentIds. 
+                        Then obtain the student data <code>/students/{id}</code> using the extracted IDs.
+                    </para>
+                </glossdef>
+            </glossentry> 
+            <glossentry>
+                <glossterm>URL STRUCTURE</glossterm>
+                <glossdef>
+                    <para>
+                        <emphasis>https://example.com/api/rest/v1/assessments/{id}/studentAssessments/students</emphasis>
+                    </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>PARAMETERS</glossterm>
+                <glossdef>
+                    <informaltable xml:id="table-assessments-id-studentAssessments-students-resource-params">
+                        <tgroup cols="2">
+                            <colspec colname="firstCol" colwidth="1*"/>
+                            <colspec colname="secondCol" colwidth="3*"/>
+                            <tbody>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <code>id</code>
+                                        </para>
+                                    </entry>
+                                    <entry>A comma-separated list of resource IDs.</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </informaltable>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+        <glosslist xml:id="assessments-id-studentAssessments-students-GET">
+            <glossentry>
+                <glossterm>METHOD</glossterm>
+                <glossdef>
+                    <para>GET</para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>REQUEST</glossterm>
+                <glossdef>
+                    <para>There is no request body for GET. When forming your GET request URI, use
+                        REST API's <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global
+                            parameters</link> and <link
+                            linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>. </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>RESPONSE</glossterm>
+                <glossdef>
+                    <para>
+                        <code>404 Not Found</code>
+                    </para>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+    </section>
+    <section xml:id="sect-competencyLevelDescriptorTypes">
+         <title>competencyLevelDescriptorTypes</title>
+         <glosslist>
+             <glossentry>
+                 <glossterm>REMOVED</glossterm>
+                 <glossdef>
+                     <para>This URI, <emphasis>competencyLevelDescriptorTypes</emphasis>, has been
+                        removed because the functionality is not supported. The documentation of
+                        this endpoint will be maintained for 3 months after the release of API
+                        version 1.0.</para>
+                     <para>As an alternative to this URI: </para>
+                     <para>There is no alternative to this URI because the
+                         <code>/competencyLevelDescriptorTypes</code> entity does not exist.</para>
+                 </glossdef>
+             </glossentry>
+      <!--      <glossentry>
+               <glossterm>DESCRIPTION</glossterm>
+               <glossdef>
+                  <para>Provides references for competency level descriptors during interchange. Use XML IDREF to reference a course record that is included in the interchange. To lookup where already loaded specify either CodeValue OR Description. For more information, see the schema <link xlink:show="embed" xlink:href="data_model-entities.html#type-CompetencyLevelDescriptorType">CompetencyLevelDescriptorType</link> resources.</para>
+               </glossdef>
+            </glossentry> -->
+            <glossentry>
+               <glossterm>URL STRUCTURE</glossterm>
+               <glossdef>
+                  <para>
+                     <emphasis>https://example.com/api/rest/v1/competencyLevelDescriptorTypes</emphasis>
+                  </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-GET">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>GET</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>There is no request body for GET. When forming your GET request URI, use
+                        REST API's <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global
+                            parameters</link> and <link
+                            linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-POST">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>POST</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>The request body for POST must include the required fields defined in the
+                            <link linkend="data_model">data model</link>. To form the POST
+                        request body, package all required and other desired fields into a
+                        conventional JSON document. It should be similar to JSON response bodies
+                        displayed when making a GET request. For information on forming the POST
+                        request URI, <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+      </section>
+      <section xml:id="sect-competencyLevelDescriptorTypes-id">
+         <title>competencyLevelDescriptorTypes/{id}</title>
+         <glosslist>
+             <glossentry>
+                 <glossterm>REMOVED</glossterm>
+                 <glossdef>
+                     <para>This URI, <emphasis>competencyLevelDescriptorTypes/{id}</emphasis>, has
+                        been removed because the functionality is not supported. The documentation
+                        of this endpoint will be maintained for 3 months after the release of API
+                        version 1.0.</para>
+                     <para>As an alternative to this URI: </para>
+                     <para>There is no alternative to this URI because the
+                         <code>/competencyLevelDescriptorTypes</code> entity does not exist.</para>
+                 </glossdef>
+             </glossentry> 
+            <glossentry>
+               <glossterm>URL STRUCTURE</glossterm>
+               <glossdef>
+                  <para>
+                     <emphasis>https://example.com/api/rest/v1/competencyLevelDescriptorTypes/{id}</emphasis>
+                  </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>PARAMETERS</glossterm>
+               <glossdef>
+                  <informaltable xml:id="table-competencyLevelDescriptorTypes-id-resource-params">
+                     <tgroup cols="2">
+                        <colspec colname="firstCol" colwidth="1*"/>
+                        <colspec colname="secondCol" colwidth="3*"/>
+                        <tbody>
+                           <row>
+                              <entry>
+                                 <para>
+                                    <code>id</code>
+                                 </para>
+                              </entry>
+                              <entry>A comma-separated list of resource IDs.</entry>
+                           </row>
+                        </tbody>
+                     </tgroup>
+                  </informaltable>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-PUT">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>PUT</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>The request body for PUT must include the data for the standard fields of
+                        the entire resource, not just the fields you're updating. To form the PUT
+                        request body, we recommend that you start with a GET response body for the
+                        resource you're updating, remove the metadata and links, and edit the values
+                        for each field you want to update. View a sample GET response body using
+                        the example link in each description here. For
+                        information on forming the PUT request URI, see <xref
+                            linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. Note that trying
+                        to update a resource that does not exist results in the <code>404 Not
+                            Found</code> response code. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-DELETE">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>DELETE</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>There is no request body for DELETE. For information on forming the DELETE
+                        request URI, see <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>.
+                        Note that trying to delete a resource that does not exist results in the
+                            <code>404 Not Found</code> response code. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-PATCH">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>PATCH</para>
+                  <para>While the PUT method completely replaces a document,
+      PATCH allows you to make partial changes to that document.
+      You can do this by providing only the document fields that
+      you want to replace. For each field in the request, PATCH fully
+      overwrites that field on the document, including arrays and
+      maps. PATCH has no effect on fields other than those
+      specified in the request.</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>The request body for PATCH must includes only the fields you want to update
+                        for that resource. To form the PATCH request body, we recommend that you
+                        start with a GET response body for the resource you're updating, remove the
+                        metadata and any fields you're not updating, and edit the values for each
+                        field you want to update. View a sample GET response body for each resources
+                        using the example link in the GET description here. For
+                        information on forming the PATCH request URI, see <xref
+                            linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. Note that trying
+                        to update a resource that does not exist results in the <code>404 Not
+                            Found</code> response code. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-GET">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>GET</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>There is no request body for GET. When forming your GET request URI, use
+                        REST API's <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global
+                            parameters</link> and <link
+                            linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+      </section>
+      <section xml:id="sect-competencyLevelDescriptorTypes-id-custom">
+         <title>competencyLevelDescriptorTypes/{id}/custom</title>
+         <glosslist>
+             <glossentry>
+                 <glossterm>REMOVED</glossterm>
+                 <glossdef>
+                     <para>This URI,
+                        <emphasis>competencyLevelDescriptorTypes/{id}/custom</emphasis>, has been
+                        removed because the functionality is not supported. The documentation of
+                        this endpoint will be maintained for 3 months after the release of API
+                        version 1.0.</para>
+                     <para>As an alternative to this URI: </para>
+                     <para>There is no alternative to this URI because the
+                         <code>/competencyLevelDescriptorTypes</code> entity does not exist.</para>
+                 </glossdef>
+             </glossentry> 
+            <glossentry>
+               <glossterm>URL STRUCTURE</glossterm>
+               <glossdef>
+                  <para>
+                     <emphasis>https://example.com/api/rest/v1/competencyLevelDescriptorTypes/{id}/custom</emphasis>
+                  </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>PARAMETERS</glossterm>
+               <glossdef>
+                  <informaltable xml:id="table-competencyLevelDescriptorTypes-id-custom-resource-params">
+                     <tgroup cols="2">
+                        <colspec colname="firstCol" colwidth="1*"/>
+                        <colspec colname="secondCol" colwidth="3*"/>
+                        <tbody>
+                           <row>
+                              <entry>
+                                 <para>
+                                    <code>id</code>
+                                 </para>
+                              </entry>
+                              <entry>A comma-separated list of resource IDs.</entry>
+                           </row>
+                        </tbody>
+                     </tgroup>
+                  </informaltable>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-custom-DELETE">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>DELETE</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>There is no request body for DELETE. For information on forming the DELETE
+                        request URI, see <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>.
+                        Note that trying to delete a resource that does not exist results in the
+                            <code>404 Not Found</code> response code. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-custom-GET">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>GET</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>
+                    There is no request body for GET. When forming your GET request
+                    URI, use REST API's
+                    <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                    and
+                    <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-custom-PUT">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>PUT</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>The request body for PUT must include the data for the standard fields of
+                        the entire resource, not just the fields you're updating. To form the PUT
+                        request body, we recommend that you start with a GET response body for the
+                        resource you're updating, remove the metadata and links, and edit the values
+                        for each field you want to update. View a sample GET response body for each
+                        resource using the example link in the GET description here. For
+                        information on forming the PUT request URI, see <xref
+                            linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. Note that trying
+                        to update a resource that does not exist results in the <code>404 Not
+                            Found</code> response code. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+         <glosslist xml:id="competencyLevelDescriptorTypes-id-custom-POST">
+            <glossentry>
+               <glossterm>METHOD</glossterm>
+               <glossdef>
+                  <para>POST</para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>REQUEST</glossterm>
+               <glossdef>
+                  <para>The request body for POST must include the required fields defined in the
+                            <link linkend="data_model">data model</link>. To form the POST
+                        request body, package all required and other desired fields into a
+                        conventional JSON document. It should be similar to JSON response bodies
+                        displayed when making a GET request. For information on forming the POST
+                        request URI, <xref linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793"/>. </para>
+               </glossdef>
+            </glossentry>
+            <glossentry>
+               <glossterm>RESPONSE</glossterm>
+               <glossdef>
+                  <para>
+                      <code>404 Not Found</code>
+                </para>
+               </glossdef>
+            </glossentry>
+         </glosslist>
+      </section>
+    <section xmlns:docbk="http://docbook.org/ns/docbook" xml:id="sect-courses-id-studentparentassociations">
+        <title>courses/{id}/studentParentAssociations</title>
+        <glosslist>
+            <glossentry>
+                <glossterm>REMOVED</glossterm>
+                <glossdef>
+                    <para>This URI, <emphasis>courses/{id}/studentParentAssociations</emphasis>, has
+                        been removed because the suggested context does not exist. The documentation
+                        of this endpoint will be maintained for 3 months after the release of API
+                        version 1.0.</para>
+                    <para>As an alternative to this URI: </para>
+                    <para><code>/students/{studentId}/studentParentAssociations</code> or
+                            <code>/parents/{studentId}/studentParentAssociations</code>
+                    </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>URL STRUCTURE</glossterm>
+                <glossdef>
+                    <para>
+                        <emphasis>https://example.com/api/rest/v1/courses/{id}/studentParentAssociations</emphasis>
+                    </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>PARAMETERS</glossterm>
+                <glossdef>
+                    <informaltable xml:id="table-courses-id-studentparentassociations-resource-params">
+                        <tgroup cols="2">
+                            <colspec colname="firstCol" colwidth="1*"/>
+                            <colspec colname="secondCol" colwidth="3*"/>
+                            <tbody>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <code>id</code>
+                                        </para>
+                                    </entry>
+                                    <entry>A comma-separated list of resource IDs.</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </informaltable>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+        <glosslist xml:id="courses-id-studentparentassociations-GET">
+            <glossentry>
+                <glossterm>METHOD</glossterm>
+                <glossdef>
+                    <para>GET</para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>REQUEST</glossterm>
+                <glossdef>
+                    <para>There is no request body for GET. When forming your GET request URI, use
+                        REST API's <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global
+                            parameters</link> and <link
+                                linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>. </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>RESPONSE</glossterm>
+                <glossdef>
+                    <para>
+                        <code>404 Not Found</code>
+                    </para>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+    </section>    <section xmlns:docbk="http://docbook.org/ns/docbook" xml:id="sect-courses-id-studentparentassociations-students">
+        <title>courses/{id}/studentParentAssociations/students</title>
+        <glosslist>
+            <glossentry>
+                <glossterm>REMOVED</glossterm>
+                <glossdef>
+                    <para>This URI,
+                            <emphasis>courses/{id}/studentParentAssociations/students</emphasis>,
+                        has been removed because the suggested context does not exist. The
+                        documentation of this endpoint will be maintained for 3 months after the
+                        release of API version 1.0.</para>
+                    <para>As an alternative to this URI: </para>
+                    <para>/parents/{parentId}/studentParentAssociations/students</para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>URL STRUCTURE</glossterm>
+                <glossdef>
+                    <para>
+                        <emphasis>https://example.com/api/rest/v1/courses/{id}/studentParentAssociations/students</emphasis>
+                    </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>PARAMETERS</glossterm>
+                <glossdef>
+                    <informaltable xml:id="table-courses-id-studentparentassociations-students-resource-params">
+                        <tgroup cols="2">
+                            <colspec colname="firstCol" colwidth="1*"/>
+                            <colspec colname="secondCol" colwidth="3*"/>
+                            <tbody>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <code>id</code>
+                                        </para>
+                                    </entry>
+                                    <entry>A comma-separated list of resource IDs.</entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                    </informaltable>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+        <glosslist xml:id="courses-id-studentparentassociations-students-GET">
+            <glossentry>
+                <glossterm>METHOD</glossterm>
+                <glossdef>
+                    <para>GET</para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>REQUEST</glossterm>
+                <glossdef>
+                    <para>There is no request body for GET. When forming your GET request URI, use
+                        REST API's <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global
+                            parameters</link> and <link
+                                linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>. </para>
+                </glossdef>
+            </glossentry>
+            <glossentry>
+                <glossterm>RESPONSE</glossterm>
+                <glossdef>
+                    <para>
+                        <code>404 Not Found</code>
+                    </para>
+                </glossdef>
+            </glossentry>
+        </glosslist>
+    </section>
+</chapter>  
+
+
+        

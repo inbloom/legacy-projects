@@ -1,0 +1,24 @@
+<!ENTITY CURRENTSPRINT "95">
+<!ENTITY CURRENTRELEASEREVISION "1.15.95">
+<!ENTITY CURRENTRELEASEDATE "2/7/2014">
+<!ENTITY PUBYEAR "2014">
+<!ENTITY COMPANY "inBloom, Inc.">
+<!ENTITY COMPANYABBR "inBloom">
+<!ENTITY PRODUCT "inBloom technology">
+<!ENTITY PRODUCTCAPS "inBloom Technology">
+<!ENTITY PRODUCTABBR "inBloom">
+<!ENTITY PRODUCTLOWER "sli">
+<!ENTITY DATAMODEL "inBloom Data Store Logical Model">
+<!ENTITY RESTAPI "inBloom REST API">
+<!ENTITY JCL "inBloom Java Client Library">
+<!ENTITY SDK "inBloom Java SDK">
+<!ENTITY OPERATORROLE "inBloom Operator">
+<!ENTITY DEVWEBSITE "http://www.inbloom.org/for-developers">
+<!ENTITY DEVWEBSITEROOT "http://www.inbloom.org">
+<!ENTITY HOSTEDSANDBOX "sandbox.inbloom.org">
+<!ENTITY GITHUBURL "https://github.com/inBloom">
+<!ENTITY EDFIVERSION "1.0.03">
+<!ENTITY EDFISCHEMALINK "http://www.ed-fi.org/wp-content/uploads/2011/06/Ed-Fi-Core-1.0.03.xsd_.zip">
+<!ENTITY INGESTIONPUBTITLE "inBloom Ingestion Guide">
+<!ENTITY INGESTIONSCHEMANAME "inBloom-Ed-Fi">
+<!ENTITY PRODFTPSERVER "lz.inbloom.org">

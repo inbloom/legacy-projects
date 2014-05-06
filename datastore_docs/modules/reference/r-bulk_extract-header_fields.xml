@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-bulk_extract-header_fields"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Bulk Extract Header Fields</title>
+    
+    <para>
+        When making a GET request to retrieve bulk extract data for a tenant,
+        the client can use header fields specifically implemented for the
+        bulk extract resource. The client can add header fields to a request
+        to customize the bulk extract results. It can also parse headers from
+        the response as needed.
+    </para>
+    <para>
+        The header fields available for bulk extract in &PRODUCTABBR;
+        are defined in the sections below. They are HTTP standard fields, and 
+        they are implemented as documented in the HTTP standard:
+        <link xlink:href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html</link>.
+    </para>
+    
+    <section xml:id="r-bulk_extract-header_fields-request">
+        <title>Request Header Fields</title>
+        <informaltable>
+            <?dbfo keep-together="always"?>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>HTTP Header Field</para>
+                        </entry>
+                        <entry>
+                            <para>Example</para>
+                        </entry>
+                        <entry>
+                            <para>Description</para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                Range
+                            </para>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[Range ":" "bytes=500-700,601-999"]]>
+                            </programlisting>
+                        </entry>
+                        <entry>
+                            <para>
+                                Follows byte range request specification in 
+                                HTTP. The values are expressed as byte offsets 
+                                starting from zero, and the first and last 
+                                values are inclusive. See the HTTP 
+                                specification for more details about 
+                                specifying a range.
+                            </para>
+                            <para>
+                                If the system cannot satisfy the requested 
+                                range, the server returns a response with a 
+                                status of 
+                                <varname>416 Requested range not satisfiable</varname>. 
+                                Otherwise, it returns a response with a 
+                                status of 
+                                <varname>206 Partial Content</varname>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                If-Match
+                            </para>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[If-Match: "xyzzy"]]></programlisting>
+                        </entry>
+                        <entry>
+                            <para>
+                                Follows the If-Match specification in HTTP. 
+                                It is used to add conditionals to the request. 
+                                See the HTTP specification for more details 
+                                about using the If-Match field to create 
+                                conditional.
+                            </para>
+                            <para>
+                                If there is no match, or if "*" is given and 
+                                no entities exist, the system does not perform 
+                                the requested method, and it returns a status of
+                                <varname>412 Precondition Failed</varname>.
+                            </para>
+                            <para>
+                                If the request would, without the If-Match 
+                                tag, result in anything other than a 2xx or 
+                                412 status, then the If-Match header is ignored. 
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                If-Unmodified-Since
+                            </para>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[If-Unmodified-Since: Sat, 29 Oct 1994 19:43:31 GMT]]></programlisting>
+                        </entry>
+                        <entry>
+                            <para>
+                                Follows the If-Unmodified-Since specification 
+                                in HTTP. It is used to add a conditional to 
+                                the request that limits the return data to 
+                                data that has not been modified since the 
+                                specified date and time. See the HTTP 
+                                specification for more details about using 
+                                the If-Unmodified-Since field to specify 
+                                this conditional.
+                            </para>
+                            <para>
+                                If the requested variant has been modified 
+                                since the specified time, the system does not 
+                                perform the requested operation, and it 
+                                returns a status of 
+                                <varname>412 Precondition Failed</varname>.
+                                If the request would, without the 
+                                If-Unmodified-Since tag, result in anything 
+                                other than a 2xx or 412 status, the 
+                                If-Unmodified-Since header is ignored.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                If-Range
+                            </para>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[If-Range: ( entity-tag | HTTP-date )]]></programlisting>
+                        </entry>
+                        <entry>
+                            <para>
+                                Follows the If-Range specifications in HTTP, 
+                                which add a conditional to a call requesting 
+                                a range of data. This replaces the use of 
+                                If-Unmodified-Since or If-Match in requests 
+                                that are using the Range field. The If-Range 
+                                field is ignored if Range is omitted from 
+                                the header. See the HTTP specification for 
+                                more details about using the If-Range field.
+                            </para>
+                            <para>
+                                If the entity tag given in the If-Range header 
+                                matches the current entity tag for the entity, 
+                                the system returns the specified sub-range of 
+                                the entity with return code 
+                                <varname>206 Partial content</varname>.
+                                If the entity tag does not match, the system 
+                                returns the entire entity with return code 
+                                <varname>200 OK</varname>. 
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+    
+    <section xml:id="r-bulk_extract-header_fields-response">
+        <title>Response Header Fields</title>
+        <informaltable>
+            <?dbfo keep-together="always"?>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>HTTP Header Field</para>
+                        </entry>
+                        <entry>
+                            <para>Example</para>
+                        </entry>
+                        <entry>
+                            <para>Description</para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                ETag
+                            </para>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[ETag: "xyzzy"]]></programlisting>
+                        </entry>
+                        <entry>
+                            <para>
+                                Provides the current value of the entity 
+                                tag for the requested data. See the HTTP 
+                                specification for more details.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Accept-Ranges
+                            </para>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[Accept-Ranges: bytes]]></programlisting>
+                        </entry>
+                        <entry>
+                            <para>
+                                Indicates the server's acceptance of range 
+                                requests for a resource. See the HTTP 
+                                specification for more details.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Last-Modified
+                            </para>
+                        </entry>
+                        <entry>
+                            <programlisting><![CDATA[Last-Modified: Tue, 15 Nov 1994 12:45:26 GMT]]></programlisting>
+                        </entry>
+                        <entry>
+                            <para>
+                                Indicates the date and time that the system 
+                                calculates was the last time the requested 
+                                data was last modified. See the HTTP 
+                                specification for more details.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+    </section>
+
+</section>

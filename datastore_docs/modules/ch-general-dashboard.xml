@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter 
+    xml:id="doc-19d8165c-392c-43cc-be31-7fe021de77d5" 
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Using the &COMPANYABBR; Dashboard</title>
+    
+    <para>
+        The Dashboard is an &COMPANYABBR; web application used to 
+        find and view data from the &COMPANYABBR; Data Store,
+        featuring a user-friendly display that makes each data
+        record easy to read.
+    </para>
+    <para>
+        Future revisions of this document will include helpful
+        instructions for locating the Dashboard, signing in to
+        use it, and searching for data.
+    </para>
+    
+</chapter>
+
+        

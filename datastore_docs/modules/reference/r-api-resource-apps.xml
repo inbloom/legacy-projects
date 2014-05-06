@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+]>
+
+<section xml:id="r-api-resource-apps" version="5.0"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>apps</title>
+    
+    <para>
+        URI syntax: 
+        <filename>https://example.com/api/rest/apps</filename>
+    </para>
+    <para>
+        Access a list of all applications registered in this 
+        &COMPANYABBR; deployment. This resource supports POST operations 
+        for application developers.
+    </para>
+    
+    <informaltable>
+        <?dbfo keep-together="always"?>
+        <tgroup cols="2">
+            <colspec colname="firstCol" colwidth="1*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>HTTP METHOD</para>
+                    </entry>
+                    <entry>
+                        <para>Description</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry>
+                        <para>
+                            GET
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Returns the requested collection of resource 
+                            representations.
+                        </para>
+                        <para>
+                            Request:
+                            There is no request body for GET. When forming 
+                            your GET request URI, use the &RESTAPI;
+                            <link linkend="doc-5ee14672-28bd-487e-b6a5-51570151a92e">global parameters</link>
+                            and 
+                            <link linkend="doc-0be599ab-0a18-439f-87b2-3313a5e77793">URI patterns</link>.
+                        </para>
+                        <para>
+                            Response: 
+                            <varname>200 OK</varname> - The 
+                            <varname>TotalCount</varname> header contains the 
+                            number of items that were returned. The response 
+                            body contains the requested resource 
+                            representations, including HATEOAS links to 
+                            reachable URIs.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry>
+                        <para>
+                            POST
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Creates a new resource using the given resource 
+                            data.
+                        </para>
+                        <para>
+                            Request:
+                            To form the POST request body, package all 
+                            required and other desired fields into a 
+                            conventional JSON document. It should be similar 
+                            to JSON response bodies displayed when making a 
+                            GET request.
+                        </para>
+                        <para>
+                            Response:
+                            <varname>201 Created</varname> - 
+                            The <varname>Location</varname> header contains 
+                            the URI of the new resource.
+                        </para>
+                    </entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+    <section xml:id="r-api-resource-apps-get_example">
+        <title>Example GET Response: apps</title>
+        <para>
+            Response:
+        </para>
+        <programlisting><![CDATA[[{
+   "created_by": "slcdeveloper",
+   "authorized_ed_orgs": ["b2c6e292-37b0-4148-bf75-c98a2fcc905f"],
+   "redirect_uri": "https://localhost:8080/sample/callback",
+   "vendor": "SLC",
+   "behavior": "Full Window App",
+   "installed": false,
+   "links": [{
+       "rel": "self",
+       "href": "http://local.example.com:8080/api/rest/v1/19cca28d-7357-4044-8df9-caad4b1c8ee4"
+   }, {
+       "rel": "custom",
+       "href": "http://local.example.com:8080/api/rest/v1/19cca28d-7357-4044-8df9-caad4b1c8ee4/custom"
+   }],
+   "entityType": "application",
+   "registration": {
+       "status": "APPROVED",
+       "request_date": 1330521193111,
+       "approval_date": 1330521193111
+   },
+   "version": "0.0",
+   "id": "19cca28d-7357-4044-8df9-caad4b1c8ee4",
+   "is_admin": false,
+   "image_url": "http://example.com/images/150x150",
+   "description": "SDK Sample Application",
+   "name": "SDK Sample",
+   "application_url": "https://localhost:8080/sample/",
+   "administration_url": "https://localhost:8080/sample/",
+   "metaData": {
+       "updated": 1330521193111,
+       "created": 1330521193111
+   }
+},...]]]></programlisting>
+    </section>
+    
+</section>

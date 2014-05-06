@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-ingestion_logs-example"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Example Ingestion Log</title>
+    
+    <para>
+        Consider an ingestion job submitted as a single zip file named 
+        <filename>grade12Math.zip</filename> with two data files, 
+        <filename>Grade_12_Math_CCS_G_C.xml</filename> and 
+        <filename>Grade_12_Math_CCS_G_SRT.xml</filename>. 
+    </para>
+    <para>
+        The job-level log file for this example is named 
+        <filename>job-grade12Math.zip-1335552611336-f2ff0a92-c5ba-4aa1-8f28-e52618d35bae.log</filename> 
+        and contains the following "INFO" lines: 
+    </para>
+    <programlisting><![CDATA[
+ INFO  jobId: grade12Math.zip-1335552611336-f2ff0a92-c5ba-4aa1-8f28-e52618d35bae
+ INFO  [file] Grade_12_Math_CCS_G_C.xml (neutralrecord/AssessmentMetadata) 
+INFO  [file] Grade_12_Math_CCS_G_C.xml records considered for processing: 19 
+INFO  [file] Grade_12_Math_CCS_G_C.xml records ingested successfully: 19 
+INFO  [file] Grade_12_Math_CCS_G_C.xml records failed processing: 0
+INFO  [file] Grade_12_Math_CCS_G_C.xml records not considered for processing: 0 
+INFO  [file] Grade_12_Math_CCS_G_SRT.xml (neutralrecord/AssessmentMetadata) 
+INFO  [file] Grade_12_Math_CCS_G_SRT.xml records considered for processing: 0
+ INFO  [file] Grade_12_Math_CCS_G_SRT.xml records ingested successfully: 0 
+INFO  [file] Grade_12_Math_CCS_G_SRT.xml records failed processing: 0
+INFO  [file] Grade_12_Math_CCS_G_C.xml records not considered for processing: 0 
+INFO  [configProperty] dry-run INFO  All records processed successfully. 
+INFO  Processed 19 records.
+]]></programlisting>
+    <para>
+        Records that fail XSD validation are not considered for processing 
+        and produce corresponding error files. Only records that pass XSD 
+        validation are considered for processing. If those records fail later 
+        on during processing they are reported as "records failed processing"
+        and produce corresponding error files.
+    </para>
+    <para>
+        If the job produces any warnings or errors, they will be placed in 
+        the job-level files 
+       <filename> job_warn-grade12Math.zip-1335552611336-f2ff0a92-c5ba-4aa1-8f28-e52618d35bae.log</filename>
+        and 
+        <filename>job_error-grade12Math.zip-1335552611336-f2ff0a92-c5ba-4aa1-8f28-e52618d35bae.log</filename>,
+        respectively.
+    </para>
+    
+</section>

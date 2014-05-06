@@ -1,0 +1,1689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-3e1677bd-a02f-44a0-9c73-4eaaa1e1b064"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&COMPANYABBR; Roles and Permissions</title>
+    
+    <para>
+        This chapter covers the <glossterm linkend="def-role">roles</glossterm> 
+        and
+        <glossterm linkend="def-permissions">permissions</glossterm> that 
+        &PRODUCTABBR; uses to identify users and applications in order to 
+        control their access to data. &PRODUCTABBR; administrative user roles, 
+        such as SEA Administrator, are not discussed in this section. For more
+        information about &PRODUCTABBR; administrative users see administrator 
+        documentation. 
+    </para>
+    
+    <section xml:id="doc-6aff9391-fd11-45d6-9d59-6939012f2629">
+        <title>Assumptions about an Educational Organization</title>
+        <para> Assumptions about an Educational Organization</para>
+        <para>inBloom recognizes that many organizational hierarchies consist of schools, districts,
+            and states. inBloom assumes that an education organization (e.g. school) can be a member
+            of one or more parent education organizations such as a district, a regional information
+            center or charter management organizations.</para>
+        <para>To support variations in hierarchies inBloom's data model contains one entity type for
+            ingestion (EducationOrganization) which can be used to model any educational
+            organization hierarchy. This flexibility also allows for educational organizations
+            to:</para>
+        <itemizedlist>
+            <listitem>
+                <para>parent to any other educational organization within the hierarchy</para>
+            </listitem>
+            <listitem>
+                <para>have multiple parents</para>
+            </listitem>
+            <listitem>
+                <para>have one or more categorizations (e.g. SEA, LEA, School or other user-supplied
+                    values)</para>
+            </listitem>
+        </itemizedlist>
+        <para>Data storage and access control for a given student are directly associated with that
+            student's school and, in turn, with that school's parent education organization. Default
+            permissions and roles follow this assumption.</para>
+    </section>
+    
+    <section xml:id="doc-0eacbdb2-c7b5-48b1-a97a-5c67f1fdf7d2">
+        <title>Default User Roles and Role Groups</title>
+        <para>
+            &PRODUCTABBR; includes a default set of user roles and role groups,
+            and permissions associated with them. The roles must map directly
+            to the roles in the education organization identity provider (IDP). 
+            If they do not map directly to the IDP roles and permissions, 
+            use the Custom Role Mapping Tool as described in
+            <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>. This
+            tool is designed to edit the permissions for the default
+            user roles as well as to create custom roles.
+        </para>
+        <para> 
+            The following table lists the default user roles and role groups 
+            along with the default permissions assigned to each. Please note 
+            that this information may not apply if your &PRODUCTABBR; 
+            deployment has modified the default permissions or created custom
+            roles:
+        </para>
+        <table xml:id="table-fcbbd5e9-96f8-42f2-b6a0-c8e1faf32559">
+            <title>Default Role Groups, Roles, and Rights</title>
+            <tgroup cols="9">
+                <colspec colname="firstCol" colwidth="2*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <colspec colname="fifthCol" colwidth="1*"/>
+                <colspec colname="sixthCol" colwidth="1*"/>
+                <colspec colname="seventhCol" colwidth="1*"/>
+                <colspec colname="eighthCol" colwidth="1*"/>
+                <colspec colname="ninthCol" colwidth="1*"/>
+                <colspec colname="tenthCol" colwidth="1*"/>
+                <thead>
+                    <row>
+                        <entry morerows="1">
+                            <para>Role Group</para>
+                        </entry>
+                        <entry morerows="1">
+                            <para>Roles</para>
+                        </entry>
+                        <entry morerows="1">
+                            <para>Context<!--*--></para>
+                        </entry>
+                        <entry namest="thirdCol" nameend="ninthCol">
+                            <para>Permissions</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <?dbfo row-height="100" ?>
+                        <!-- firstCol extended from previous row -->
+                        <!-- secondCol extended from previous row -->
+                        <!-- thirdCol extended from previous row -->
+                        <entry>
+                            <?dbfo orientation="90"?>
+                            <?dbfo rotated-width="1.6in"?>
+                            <para>Public Data</para>
+                        </entry>
+                        <entry>
+                            <?dbfo orientation="90"?>
+                            <?dbfo rotated-width="1.6in"?>
+                            <para>General Data</para>
+                        </entry>
+                        <entry>
+                            <?dbfo orientation="90"?>
+                            <?dbfo rotated-width="1.6in"?>
+                            <para>Restricted Data</para>
+                        </entry>
+                        <entry>
+                            <?dbfo orientation="90"?>
+                            <?dbfo rotated-width="1.6in"?>
+                            <para>Student Owned Data</para>
+                        </entry>
+                        <entry>
+                            <?dbfo orientation="90"?>
+                            <?dbfo rotated-width="1.6in"?>
+                            <para>Student General Data</para>
+                        </entry>
+                        <entry>
+                            <?dbfo orientation="90"?>
+                            <?dbfo rotated-width="1.6in"?>
+                            <para>Student Restricted Data</para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry morerows="1">
+                            <para><emphasis role="bold">Leader</emphasis></para>
+                        </entry>
+                        <entry>
+                            <para>Leader</para>
+                            <para>Principal</para>
+                            <para>Superintendent</para>
+                        </entry>
+                        <entry>
+                            <para>Staff</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>Read, Write</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="secondCol" nameend="tenthCol">
+                            <para> 
+                                Users in the default 
+                                <glossterm linkend="def-leader">Leader</glossterm>
+                                role group can view data related only to
+                                those educational organizations to which they 
+                                are associated.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para><emphasis role="bold">Educator</emphasis></para>
+                        </entry>
+                        <entry>
+                            <para>Educator</para>
+                            <para>Teacher</para>
+                        </entry>
+                        <entry>
+                            <para>Teacher</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>Read, Write</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="secondCol" nameend="tenthCol">
+                            <para> 
+                                Users in the default 
+                                <glossterm linkend="def-educator">Educator</glossterm>
+                                role group can view data only associated
+                                with students actively enrolled in current 
+                                class sections.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para><emphasis role="bold">IT Administrator</emphasis></para>
+                        </entry>
+                        <entry>
+                            <para>IT Administrator</para>
+                            <para>LEA Administrator</para>
+                            <para>School Administrative Support Staff</para>
+                            <para>LEA System Administrator</para>
+                        </entry>
+                        <entry>
+                            <para>Staff</para>
+                        </entry>
+                        <entry>
+                            <para>Read, Write</para>
+                        </entry>
+                        <entry>
+                            <para>Read, Write</para>
+                        </entry>
+                        <entry>
+                            <para>Read, Write</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="secondCol" nameend="tenthCol">
+                            <para> 
+                                Users in the default 
+                                <glossterm linkend="def-it_administrator">IT Administrator</glossterm>
+                                role group have all the permissions of
+                                users with a <guilabel>Leader</guilabel>, 
+                                plus the abilities to
+                                create new users, define custom permissions, 
+                                and view administrative applications. 
+                                Additionally, they possess the right to view security events,
+                                and to authorize user applications.
+                            </para>
+                            <para>
+                                The Admin role is on for this group.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para><emphasis role="bold">Student</emphasis></para>
+                        </entry>
+                        <entry>
+                            <para>Student</para>
+                        </entry>
+                        <entry>
+                            <para>not applicable</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="secondCol" nameend="tenthCol">
+                            <para>
+                                Users in the default 
+                                <glossterm linkend="def-student">Student</glossterm>
+                                role group can only view public data,
+                                Student_Owned data, and Student_General data.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para><emphasis role="bold">Parent</emphasis></para>
+                        </entry>
+                        <entry>
+                            <para>Parent</para>
+                        </entry>
+                        <entry>
+                            <para>not applicable</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="secondCol" nameend="tenthCol">
+                            <para>
+                                Users in the default 
+                                <glossterm linkend="def-parent">Parent</glossterm>
+                                role group can only view public data,
+                                Student_Owned data, and Student_General data.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry morerows="1">
+                            <para><emphasis role="bold">Aggregate Viewer</emphasis></para>
+                        </entry>
+                        <entry>
+                            <para>Aggregate Viewer</para>
+                            <para>Specialist/Consultant</para>
+                        </entry>
+                        <entry>
+                            <para>Staff</para>
+                        </entry>
+                        <entry>
+                            <para>Read</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                        <entry>
+                            <para>none</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="secondCol" nameend="tenthCol">
+                            <para> 
+                                (Reserved for future implementation) Users in 
+                                the default
+                                <glossterm linkend="def-aggregated_viewer">Aggregated Viewer</glossterm>
+                                role group can only view public and aggregate data. 
+                            </para>
+                            <para>
+                                The Admin role is on for this group.
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <!--
+        <para>
+            * The context divides the staff roles into 
+            <varname>Staff</varname> and <varname>Teacher</varname> categories
+            to refine how permissions can be assigned. For example, a user 
+            with an <varname>Educator</varname> role is treated as having the 
+            <varname>Teacher</varname> context in the &PRODUCTABBR; system. 
+            A user that has multiple roles that include both 
+            <varname>Staff</varname> and <varname>Teacher</varname> context,
+            that user has both contexts in the &PRODUCTABBR; system.
+        </para>
+        -->
+        <para>
+            This <emphasis>isAdminRole</emphasis> flag can be 
+            used by application developers to determine if a user has Admin 
+            rights, such as access to administrative applications. By default, 
+            the IT Administrator role is the only role with the
+            <emphasis>isAdminRole</emphasis> flag marked as true. A user with 
+            multiple roles assigned is only considered an administrative user 
+            if <emphasis>all</emphasis> of those roles have the 
+            <emphasis>isAdminRole</emphasis> marked as true.
+        </para>
+        <para>
+            &PRODUCTABBR; defines some additional roles for administrators. 
+            Collectively, these are referred to as the 
+            <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrator</glossterm>
+            roles, and they include users who are responsible for the
+            back-end operation of an &PRODUCTABBR; deployment. For detailed 
+            information about &PRODUCTABBR; hosted administrator roles, 
+            including how they are defined and what purposes they serve, see 
+            administrator documentation. 
+        </para>
+    </section>
+    
+    <section xml:id="doc-016d8db7-11ec-4bf0-9028-1f5a6e81782b">
+        <title>How &PRODUCTABBR; Determines Permissions</title>
+        <para>
+            &PRODUCTABBR; controls access to an organization's data by 
+            calculating 
+            <glossterm linkend="def-effective_permissions">effective permissions</glossterm>.
+            Effective permissions define what the user or application is 
+            allowed to do with data. &PRODUCTABBR; determines 
+            <glossterm linkend="def-effective_permissions">effective permissions</glossterm>
+            based on a combination of the following: 
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Permissions by role.</emphasis> 
+                    Role refers to a single set of associated permissions for 
+                    a user within the system. These permissions determine if 
+                    the user has access to read and/or write specific 
+                    categories of data in the data store. However, access to 
+                    data may be further restricted based on a user's context 
+                    when attempting to work with &PRODUCTABBR;. 
+                </para>
+                <para>
+                    <emphasis>Example:</emphasis> 
+                    A school principal given a <guilabel>Leader</guilabel> 
+                    role may have access to all data for all students in that 
+                    principal's school.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Permissions by education organization.</emphasis>
+                    &PRODUCTABBR; uses the role defined in a user's
+                        <varname>staffEdOrgAssignmentAssociation</varname> value in the Secure Data
+                    Service to determine the roles to apply based on the education organization.
+                    This allows a user to have different roles at different education organizations. </para>
+                <para>
+                    <emphasis>Example:</emphasis>
+                    A principal for School A also teaches on the side at
+                    School B. When accessing the data for School A, the user
+                    is acting as a Principal. When accesing data for School B,
+                    the user is acting as a Teacher.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Permissions by context.</emphasis>
+                    The <glossterm linkend="def-context">context</glossterm>
+                    in which a user can access data is a combination of the 
+                    following:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis>User roles.</emphasis>
+                            This part of context is determined starting 
+                            from the entity associated with that user in the 
+                            data store. Every successfully authenticated 
+                            education organization user (through federation) 
+                            is associated with one of the following entities 
+                            in the data store:
+                            <varname>Student</varname>,
+                            <varname>Staff</varname>,
+                            <varname>Parent</varname>,
+                            <varname>Teacher</varname>.
+                            For those with <varname>Student</varname> and
+                            <varname>Parent</varname>, the entity
+                            itself serves as the context for the user. 
+                            For those with <varname>Staff</varname> and
+                            <varname>Teacher</varname>, the user's context
+                            is defined by the user role. Each staff role
+                            in the &PRODUCTABBR; system should be assigned a
+                            context right of <varname>Staff</varname>, 
+                            <varname>Teacher</varname>, or both.
+                            Administrator documentation covers how to customize
+                            the user role structure and map roles to those
+                            defined by the education organization identity 
+                            provider.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis>User relationship to data.</emphasis>
+                            This part of context is determined by the user's
+                            relationship to the data through education
+                            organization boundaries. For example, a teacher
+                            can edit a student's data for her class, but the
+                            teacher can only view that student's data for other
+                            classes outside that teachers education 
+                            organization.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>
+                    Contextual authorization rules, covered in
+                    <xref linkend="doc-54ba0efa-dd34-4b0f-b911-caf7a8c94065"/>,
+                    control a user's permissions to data. Here's an example of
+                    how this is applied:
+                    A school counselor has access to a student record 
+                    because he has a role with a 
+                    <varname>Staff</varname> context in the same
+                    education organization as the student. His role 
+                    and associated permissions determine whether he 
+                    can read or write all, none, or some 
+                    of that student's data. It is possible for a user to have 
+                    context with an entity but have no permissions to see 
+                    any of the data on that entity.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            &PRODUCTABBR; enforces access control at the application level as
+            well. This means a user's access to data could be limited by the 
+            permissions for the application used to access data.
+        </para>
+    </section>
+    
+    <section xml:id="doc-7eda3ec2-ce9b-472f-9255-7e8206fdcd7a">
+        <title>Default Permissions</title>
+        <para>
+            The basic permissions to data in &PRODUCTABBR; are:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    No access: the user does not have the ability to access 
+                    the data
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Read access: the user can view the data, but cannot 
+                    edit it
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Read-write access: the user can view and edit the data
+                </para>
+            </listitem>
+        </itemizedlist> 
+        <para>
+            As described in 
+            <xref linkend="doc-3e1677bd-a02f-44a0-9c73-4eaaa1e1b064"/>,
+            &PRODUCTABBR; controls access to an organization's data by 
+            calculating 
+            <glossterm linkend="def-effective_permissions">effective permissions</glossterm>.
+            &PRODUCTABBR; has created categories for data to make it easier to
+            assign permissions:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Public</emphasis> - 
+                    <glossterm linkend="def-public_data">Public data</glossterm>
+                    can be viewed by any user with the proper role-based 
+                    permissions. For example, a school's main phone number is 
+                    Public data.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Restricted</emphasis> - 
+                    <glossterm linkend="def-restricted_data">Restricted data</glossterm>
+                    can only be viewed by users who have the exact role and 
+                    permissions that the data requires for access. This is 
+                    information typically kept at a high level of 
+                    confidentiality. For example, a student's eligibility for 
+                    free or reduced price lunch is considered Restricted data.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">General</emphasis> - 
+                    By default, all data not defined as 
+                    <guilabel>Public</guilabel> or 
+                    <guilabel>Restricted</guilabel> data is considered to be 
+                    <glossterm linkend="def-general_data">General data</glossterm>.
+                </para>
+            </listitem>
+            <!-- <listitem>
+                    <para>
+                        <emphasis role="bold">Aggregate</emphasis> - 
+                        <glossterm linkend="def-aggregate_data">Aggregate data</glossterm> is
+                        additional data calculated dynamically from individual data points. 
+                        For example, in &PRODUCTABBR;, the attendance history of a single student is 
+                        recorded on a day-by-day basis with no aggregation of multiple dates
+                        or multiple students. Therefore, to calculate the attendance rate for a 
+                        school, the data of many individual students must be combined to calculate
+                        the (aggregate) value.
+                    </para>
+                </listitem> -->
+        </itemizedlist>
+        <para> The tables below specify the data in the <guilabel>Public</guilabel> and
+                <guilabel>Restricted</guilabel> categories. All data not specified as either
+                <guilabel>Public</guilabel> or <guilabel>Restricted</guilabel> falls into the
+                <guilabel>General</guilabel> category. </para>
+        <table xml:id="table-e472227d5-35a8-4053-a594-d36ac83bf138">
+            <title>Public Data Categories</title>
+                <tgroup cols="2">
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>Entity</entry>
+                        <entry>Attribute</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>educationOrganization</para>
+                        </entry>
+                        <entry>
+                            <para>all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>School</para>
+                        </entry>
+                        <entry>
+                            <para>all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>assessment</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> learingStandard </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> learningObjective </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> sessions </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> courseOffering </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> gradingPeriod </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> course </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Section </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Program  </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> GraduationPlan  </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> StudentCompetencyObjective  </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table>
+        <table xml:id="table-e45647d5-35a8-4053-a594-d36ac83bf138">
+            <title>Restricted Data Categories</title>
+                <tgroup cols="2">
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>Entity</entry>
+                        <entry>Attribute</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para> student </para>
+                        </entry>
+                        <entry>
+                            <para> economicDisadvantaged </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> student </para>
+                        </entry>
+                        <entry>
+                            <para> schoolFoodServicesEligibility </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> teacher </para>
+                        </entry>
+                        <entry>
+                            <para> teacherUniqueStateId </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> teacher </para>
+                        </entry>
+                        <entry>
+                            <para> highlyQualifiedTeacher </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> staffUniqueStateId </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> staffIdentificationCode </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> sex </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> birthDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> address </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> hispanicLatinoEthnicity </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> oldEthnicity </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> race </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> highestLevelOfEducationCompleted </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> yearsOfPriorProfessionalExperience </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> yearsOfPriorTeachingExperience </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> loginIdloginId </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> telephone records (exception: "Work" contact) </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> electronicMail records (exception: "Work" contact) </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff </para>
+                        </entry>
+                        <entry>
+                            <para> Credentials </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> StaffEducationOrganizationAssociation </para>
+                        </entry>
+                        <entry>
+                            <para> BeginDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> StaffEducationOrganizationAssociation </para>
+                        </entry>
+                        <entry>
+                            <para> EndDate </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> employmentPeriod </para>
+                        </entry>
+                        <entry>
+                            <para> separation </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> employmentPeriod </para>
+                        </entry>
+                        <entry>
+                            <para> separationReason </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> leaveEvent </para>
+                        </entry>
+                        <entry>
+                            <para> all </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table>
+        <para>
+            Each role that &PRODUCTABBR; recognizes identifies permissions 
+            using the categories described above. See
+            <xref linkend="doc-0eacbdb2-c7b5-48b1-a97a-5c67f1fdf7d2"/>
+            for more about the default roles in &PRODUCTABBR;, and see
+            <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>
+            to find out how &PRODUCTABBR; provides for creating custom roles.
+        </para>
+        <para>
+            Both application and user permissions are assigned during their 
+            respective 
+            <glossterm linkend="def-user_registration">user registration processes</glossterm>. 
+            User registration is handled by an IT administrator for the given 
+            &PRODUCTABBR; deployment (one of the roles covered in 
+            <xref linkend="doc-0eacbdb2-c7b5-48b1-a97a-5c67f1fdf7d2"/>).
+        </para>
+    </section>
+    <section xml:id="doc-a5511b7b-422b-4f09-91cc-c5d7126c7dba">
+        <title>Student Data Permissions</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Student_General</emphasis> - Student_General data is data
+                    that can be viewed by a student with any context. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Student_Owned</emphasis> - Student_Owned data is data that
+                    can be viewed by a student through self context. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Student_Restricted</emphasis> - Student Restricted data
+                    should not be viewed by a student regardless of context. The associated right is
+                    not assigned to the student role by default. </para>
+            </listitem>
+        </itemizedlist>
+        <note>
+            <para>
+                These roles are only assigned to the Student and Parent roles by default. 
+                They can be assigned to other roles using the Custom Roles tool.
+            </para>
+        </note>
+        <para> The tables below specify the data in the <guilabel>Generic</guilabel>,
+                <guilabel>Student</guilabel> and <guilabel>Protected</guilabel> categories.</para>
+      <table xml:id="table-77259215-2b0e-4d14-a14e-92565e6deaa2">
+            <title>Student General Data Categories</title>
+                <tgroup cols="2">
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>Entity</entry>
+                        <entry>Attribute</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para> studentParentAssociations </para>
+                        </entry>
+                        <entry>
+                            <para> all </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> parent </para>
+                        </entry>
+                        <entry>
+                            <para> all </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentAssessmentAssociation</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentAssessment</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentObjectiveAssessment</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentAssessmentItem</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> reportCard </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentAcademicRecord</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> courseTranscript</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentTranscriptAssociation</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> gradebookEntry</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> grades </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> attendance</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentGradebookEntry</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentSchoolAssociation</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> cohort</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> teacher</para>
+                        </entry>
+                        <entry>
+                            <para> name, work phone number, work email</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staff</para>
+                        </entry>
+                        <entry>
+                            <para> name, work phone number, work email</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> schoolSessionAssociation</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> student</para>
+                        </entry>
+                        <entry>
+                            <para> name</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staffCohortAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> staffId, cohortId</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staffEducationOrgAssignmentAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> staffReference, educationOrganizationReference</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> staffProgramAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> staffId, programId</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> teacherSchoolAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> teacherId, schoolId</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> teacherSectionAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> teacherId, sectionId</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentCohortAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> studentId, cohortId</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentProgramAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> studentId, programId</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentSectionAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> studentId, sectionId</para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table>
+      <table xml:id="table-bc6e3197-5c8a-4cc0-aa4d-b05d3f71d03e">
+            <title>Student Owned Data Categories</title>
+                <tgroup cols="2">
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>Entity</entry>
+                        <entry>Attribute</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para> student </para>
+                        </entry>
+                        <entry>
+                            <para> all except economicDisadvantaged, schoolFoodServicesEligilibity </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentCohortAssociations </para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentProgramAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> studentSectionAssociations</para>
+                        </entry>
+                        <entry>
+                            <para> all</para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+            </table>
+      <table xml:id="table-092b293f-a0e0-405a-9fcd-721d94766447">
+          <title>Student Restricted Data Categories</title>
+          <tgroup cols="2">
+              <colspec colname="secondCol" colwidth="2*"/>
+              <colspec colname="thirdCol" colwidth="2*"/>
+              <thead>
+                  <row>
+                      <entry>Entity</entry>
+                      <entry>Attribute</entry>
+                  </row>
+              </thead>
+              <tbody>
+                  <row>
+                      <entry>
+                          <para> student </para>
+                      </entry>
+                      <entry>
+                          <para>economicDisadvantaged, schoolFoodServicesEligibility </para>
+                      </entry>
+                  </row>
+              </tbody>
+          </tgroup>
+      </table>    
+    </section>  
+  <section xml:id="doc-5c953170-b6a8-41a1-8e8e-c4f8dbd13344">
+        <title>Permissions for Self</title>
+        <para>
+            Access to data is determined by whether the user has context with 
+            the data and what role the user has. This concept of roles being 
+            transparent to the context generally works, but there are certain 
+            exceptions that diverge from this concept.
+        </para> 
+        <para>
+            An example of that is the following: An English teacher has 
+            context with Self, a Teacher entity in the system, but also has 
+            context with other teachers in the school. If the teacher has a 
+            role that allows them to view a full Teacher entity, the teacher is
+            able to see all of the data for all the Teacher entities they have
+            context with. A Teacher seeing all data for them self is fine, but 
+            that is obviously not the case for the personal data of other 
+            teachers.
+        </para>
+        <para>
+            This problem would exist because the role is not aware of the 
+            context, so as long as the teacher has context to the entity 
+            (Teacher) the system checks only the role. This example shows 
+            why a teacher clearly should not have access to view a full Teacher
+            entity, but their own Teacher entity should not have to be private 
+            to them as well. The addition of "self" allows for additional 
+            rights to be added to a role for context with self. In the example,
+            the inclusion of Self allows the teacher (by default) to view
+            private information about themselves, but correctly limits their 
+            full access to other Teacher entities they have context with.
+        </para>
+        <table xml:id="table-b6e791ce-15e2-4c1a-80e6-7d9111837f3a">
+            <title>The Definition of Self</title>
+            <tgroup cols="2">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="4*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Role
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Context
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                Staff
+                            </para>
+                        </entry>
+                        <entry>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        Own Staff entity
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own StaffEducationOrgEmploymentAssociation(s)
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own StaffEducationOrgAssignmentAssociation(s)
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own LeaveEvent(s)
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Student </para>
+                        </entry>
+                        <entry>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>Own Student entity</para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentParentAssociation(s) </para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own Parents(s) </para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentSectionAssociations</para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentProgramAssociations </para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentCohortAssociations</para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Parent</para>
+                        </entry>
+                        <entry>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>Own Student(s)</para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentParentAssociation(s) </para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own Parents entity</para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentSectionAssociations</para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentProgramAssociations </para>
+                                </listitem>
+                                <listitem>
+                                    <para> Own StudentCohortAssociations</para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Teacher
+                            </para>
+                        </entry>
+                        <entry>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        Own Staff entity
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own StaffEducationOrgEmploymentAssociation(s)
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own StaffEducationOrgAssignmentAssociation(s)
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own LeaveEvent(s)
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own Teacher entity
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        Own TeacherSchoolAssociation
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+        <para> Additional rights are automatically assigned for Self for some of the default roles.
+            You can customize the rights a role has for Self by using the Custom Roles tool. </para>
+        <table xml:id="table-265f808e-0138-4e30-b7ff-d9affa7b5719">
+            <title>Default Permissions for Self</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="2*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            <para>
+                                Role
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Additional Right
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Reason
+                            </para>
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                IT Administrator
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                None
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                IT Administrator role by default has all the 
+                                rights for the general context that exist in 
+                                the system, hence no additional or elevated 
+                                rights are required.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Leader
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                None
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Leader is by default a Read-Only role and 
+                                already has all of the existing Read right for
+                                the general context, hence no additional or
+                                elevated rights are required.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Educator
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                READ_RESTRICTED
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Educators do not have the READ_RESTRICTED right
+                                for the general context and it is added for 
+                                the Self context. This allowed the user to
+                                see all of their own personal data without 
+                                limitation. 
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                Aggregate Viewer
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                READ_GENERAL, READ_RESTRICTED
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Aggregate viewer do not have these two rights
+                                for the general context and they are added 
+                                for the Self context. The user can see all of 
+                                their own personal data without limitation.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para> Student</para>
+                        </entry>
+                        <entry>
+                            <para> READ_STUDENT_OWNED</para>
+                        </entry>
+                        <entry>
+                            <para> Students do not have the READ_STUDENT_OWNED right for the general
+                                context and it is added for the Self context. This allowed the user
+                                to see all of their own personal data without limitation. </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Parent</para>
+                        </entry>
+                        <entry>
+                            <para> READ_STUDENT_OWNED</para>
+                            <para> READ_STUDENT_RESTRICTED</para>
+                        </entry>
+                        <entry>
+                            <para> Students do not have the READ_STUDENT_OWNED right for the general
+                                context and it is added for the Self context. This allowed the user
+                                to see all of their own personal data without limitation. </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section> 
+    <section xml:id="doc-d4e4f6c6-490d-4a5a-928b-c87b4c1352bb">
+        <title>
+            BULK_EXTRACT right
+        </title>
+        <para>The BULK_EXTRACT right supports the <emphasis>bulk/extract</emphasis> URI. This right is not included in any of the
+            default user roles. To perform bulk extraction, use the Custom Roles tool to assign this
+            right to any user role. It is recommended that a new role be created specifically for bulk extraction. BULK_EXTRACT is available for general rights only; it cannot
+            be used with Rights for Self. For additional information on custom role management, see
+                <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>.
+        </para>
+    </section>
+    <section xml:id="doc-ch-general-roles_and_permissions-sec-app_authorize_right">
+        <title>
+            APP_AUTHORIZE right
+        </title>
+        <para>The APP_AUTHORIZE right provides <glossterm linkend="def-federated">federated</glossterm> users the ability to authorize applications
+            in a manner similar to that of Hosted Administrators.
+        </para>
+        <para>
+            staffEducationOrganizationAssociations with a role assigned the APP_AUTHORIZE right determine what education organizations can
+            be authorized for an application by a federated user.  Applications can be authorized for those education organizations that are
+            directly associated via staffEducationOrganizationAssociations or those that are descendants of those directly associated.
+        </para>
+        <para>
+            The following steps must be taken in order to give a federated user the ability to authorize applications:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    As a Hosted Administrator, identify an existing group role that includes the APP_AUTHORIZE right or create one
+                    by modifying an existing role or creating a new custom role.  Ensure that Admin Role checkbox is checked for the
+                    group role being used. By default, the IT Administrator role group will include the APP_AUTHORIZE right for newly
+                    provision tenants.
+                </para>
+                <para>
+                    For additional information on managing user roles and rights, see <xref linkend="doc-d6c53933-f760-494d-a52e-e1c68513eda2"/>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ensure that group role being used for the APP_AUTHORIZE right appears in the LDAP for the federated user's realm
+                    and that the user has been assigned to that group.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Ensure that each group role to which the federated user belongs has the Admin Role checked - all groups assigned
+                    to a user must be of the Admin type in order for Administrator applications to be accessible.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Create staffEducationOrganizationAssociations with the role that includes the APP_AUTHORIZE right for the top level
+                    education organizations in the hierarchies that the user will be able to authorize.
+                </para>
+            </step>
+        </procedure>
+        <para>
+            For additional information on authorizing applications, see <xref linkend="doc-ada57f77-d911-4f0b-ac42-3e50ee48cf2d"/>.
+        </para>
+    </section>
+</chapter>
+
+        

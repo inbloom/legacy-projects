@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+<chapter xml:id="doc-b41f34d8-6366-487c-8f1e-aa699af52b77" xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <title>&PRODUCTABBR; Dashboard Administration</title>
+    <para> &PRODUCTABBR; Dashboards display student data for authorized users, such as educators and
+        school, district, and state leaders. Once data is ingested into &PRODUCTABBR;, it appears in
+        one of two places: </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <emphasis>Section Profiles</emphasis> display a listing of each student in a section
+                as well as relevant information about that student. The section profiles also allow
+                users to easily sort and filter students based on list criteria. </para>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis>Student Profiles</emphasis> display more in-depth information about an
+                individual student. Information includes enrollment history, academic transcript
+                history, and parent contact information. </para>
+        </listitem>
+    </itemizedlist>
+    <para> This page describes how you, as an administrator, can configure the Dashboard for the
+        users within your tenancy. </para>
+    <section xml:id="doc-0129ba34-7c73-4b19-ad5e-f79634ca8cd5">
+        <title>Configuring the Dashboard</title>
+        <para> Configuring the Dashboard takes just a few steps: </para>
+        <procedure>
+            <step>
+                <para> Determine your highest priority goals for using &COMPANYABBR; data. This
+                    helps determine your data ingestion plan. </para>
+            </step>
+            <step>
+                <para> Plan how you want the data to be displayed for your users. This can be
+                    accomplished by reviewing the options for profiles and lists later in this
+                    section. </para>
+            </step>
+            <step>
+                <para> Complete the configuration template document for the Dashboards. If you're
+                    unsure about any of the fields, please write questions directly in the template.
+                </para>
+            </step>
+            <step>
+                <para> &COMPANYABBR; partners create the configuration code in JSON. This may take
+                    up to several weeks, depending on the complexity of the request. </para>
+            </step>
+            <step>
+                <para> When you receive the configuration code from your &COMPANYABBR; partner, an
+                    authorized contact in your district can upload the code to the Dashboard
+                    application. </para>
+            </step>
+        </procedure>
+    </section>
+    <section xml:id="doc-c8af565f-05dd-4b4a-b3e5-d2c6464f491e">
+        <title>Configuring Section Profile Lists</title>
+        <para> The Section Profile provides a table of information about students in a class or
+            section, resembling a teacher's gradebook. The first column is always the student's
+            name, which a user can click to view that student's profile. The second column includes
+            indicators for the student, such as whether the student is an English Language Learner
+            (ELL) or has an Individual Development Plan (IDP). The remainder of the table can
+            include any combination of columns. </para>
+        <figure>
+            <title>Example Section Profile</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata fileref="images/admin_tools-dashboard_section_list.png" scalefit="1"
+                    />
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata fileref="../common/images/admin_tools-dashboard_section_list.png"
+                        width="7in" scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <section xml:id="doc-df8dd30d-71ff-46c3-a7b8-80c448b6e0f3">
+            <title>Documenting your List Configurations</title>
+            <para> Use the following steps to set up your list configurations: </para>
+            <procedure>
+                <step>
+                    <para> Open the List of Students Configuration Template spreadsheet. </para>
+                    <para> Each tab in the file allows you to enter a different view, and each view
+                        has its own Microsoft Excel worksheet in the workbook document. The template
+                        has several blank worksheets, and you can duplicate additional tabs if
+                        needed. </para>
+                </step>
+                <step>
+                    <para> Fill in the blue fields at the top of the worksheet. The fields are: </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para> The <guilabel>View Name</guilabel> field is the title of the
+                                view. It appears as the title in the view dropdown on the Dashboard. </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>Max Grade Range (inclusive)</guilabel> and
+                                    <guilabel>Min Grade Range (inclusive)</guilabel> fields allow
+                                you to enter grade ranges for this view. Leave this blank to show
+                                all grade ranges. </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>District</guilabel> field allows you to enter your
+                                school district name (for your reference). </para>
+                        </listitem>
+                    </itemizedlist>
+                </step>
+                <step>
+                    <para> Fill in the next block of blue text in the tab. The
+                            <guilabel>Name</guilabel> and <guilabel>Indicator</guilabel> columns are
+                        there by default and should not change. </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para> A <guilabel>Column Category</guilabel> row precedes each group of
+                                similar-type columns. </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>Column Type</guilabel> row is the specific column
+                                of information (for example, Most Recent Assessment Result). </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <guilabel>Configuration Options, Line 1</guilabel> and
+                                    <guilabel>Configuration Options, Line 2</guilabel> are options
+                                for the view. For specific information, please see the table below.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>Header Line</guilabel> options allow you to change
+                                the heading on that row of the table within the UI. </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>Sample Text</guilabel> row allows you to enter
+                                example text for your users. </para>
+                        </listitem>
+                    </itemizedlist>
+                </step>
+            </procedure>
+            <table frame="all" xml:id="table-c2c78af5-6a7b-4872-90a2-d8b0484ec6c2">
+                <title>List View Options</title>
+                <tgroup cols="3">
+                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                    <colspec colname="c2" colnum="2" colwidth="2*"/>
+                    <colspec colname="c3" colnum="3" colwidth="2*"/>
+                    <thead>
+                        <row>
+                            <entry>Column Type</entry>
+                            <entry>Description</entry>
+                            <entry>Configuration Options</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry namest="c1" nameend="c3">
+                                <para> Attendance </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Attendance Rates </para>
+                            </entry>
+                            <entry>
+                                <para> Displays the student's attendance rates. This can be a
+                                    percentage of days in attendance compared to the total days, or
+                                    it can be the percentage of days tardy compared to the total
+                                    days. </para>
+                            </entry>
+                            <entry>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para> Select the rate type to display: attendance
+                                            percentage or tardy percentage. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> Select the time frame: this school year or only this
+                                            semester. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> (Optional) Indicate the color-coding cut points.
+                                        </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Attendance Event Counts </para>
+                            </entry>
+                            <entry>
+                                <para> Shows a count of the total number of days a student is absent
+                                    or tardy. </para>
+                            </entry>
+                            <entry>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para> Select the attendance count type to display: excused
+                                            absences, unexcused absences, or all absences. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> Select the time frame: this school year, or only this
+                                            semester (or session). </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> (Optional) Indicate the color-coding cut points.
+                                        </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry namest="c1" nameend="c3">
+                                <para> Assessment </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Most Recent Assessment in a Family </para>
+                            </entry>
+                            <entry>
+                                <para> Displays the results of the most recent assessment within an
+                                    assessment family for a student. </para>
+                            </entry>
+                            <entry>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para> Select an assessment family. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> Choose an outcome to display: numeric score or
+                                            performance level. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> (Optional) Provide a scale score and cut points.
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> Choose to display the depth of assements within time:
+                                            most recent, 2nd most recent, etc. </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Highest Ever </para>
+                            </entry>
+                            <entry>
+                                <para> Displays the highest results for a assessment within a given
+                                    assessment family for a student. </para>
+                            </entry>
+                            <entry>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para> Select an assessment family. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> Choose an outcome to display: numeric score or
+                                            performance level. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> (Optional) Provide a scale score and cut points.
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> Choose to display the depth of assessments within
+                                            time: most recent, 2nd most recent, etc. </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry namest="c1" nameend="c3">
+                                <para> Grades </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Most Recent Transcript Grade for a Subject Area </para>
+                            </entry>
+                            <entry>
+                                <para> Shows the most recent transcript scores for a completed
+                                    course in the subject area you are viewing. </para>
+                            </entry>
+                            <entry>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para> Choose to display the most recent, 2nd most recent,
+                                            etc. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> The grade book entries are determined by the selected
+                                            course. This is not configurable. </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Most Recent Grade Book Entry </para>
+                            </entry>
+                            <entry>
+                                <para> Shows the most recent grade book entry for the course you are
+                                    viewing. </para>
+                            </entry>
+                            <entry>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para> Choose to display the most recent, 2nd most recent,
+                                            etc. </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para> Grade book entries are determined by the selected
+                                            course. This is not configurable. </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+    </section>
+    <section xml:id="doc-b597e555-d551-4824-ac16-954a21ce6e22">
+        <title>Configuring Student Profiles</title>
+        <para> Student profiles display in-depth information on an individual student. Profiles
+            consist of a page with one or more tabs. The first panel of each tab (page) is always
+            the core student information and is not configurable. The remainder of the page can
+            contain any combination of panels. </para>
+        <figure>
+            <title>Example Student Profile</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata fileref="images/admin_tools-dashboard_student_profile.png"
+                        scalefit="1"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata fileref="../common/images/admin_tools-dashboard_student_profile.png"
+                        width="7in" scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <section xml:id="doc-373cac4d-867f-4691-bfe9-e667e802aa4c">
+            <title>Documenting your Student Profile Configuration</title>
+            <para> Before your &COMPANYABBR; partner contact can create the JSON for your Dashboard
+                configuration, you must complete the spreadsheet using the following steps: </para>
+            <procedure>
+                <step>
+                    <para> Open the Student Profile Template spreadsheet. </para>
+                    <para> Each tab in the bottom portion of the worksheet's window represents a
+                        different page on the student profile. If you need additional tabs to create
+                        additional pages, simply duplicate an existing tab. </para>
+                </step>
+                <step>
+                    <para> Fill in the blue fields at the top of the worksheet: </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para> The <guilabel>Page Name</guilabel> field displays the name of the
+                                page. </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>Grade Levels</guilabel> field allows you to enter
+                                the grade levels that you want to display. </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>District</guilabel> field allows you to enter your
+                                school district name for reference. </para>
+                        </listitem>
+                    </itemizedlist>
+                </step>
+                <step>
+                    <para> Fill in the fields for the panels that should be included on the page: </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para> The <guilabel>Panel Title</guilabel> appears above the
+                                appropriate panel. </para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>Panel Type</guilabel> field describes the type of
+                                panel that must be included. Select one of the panel types
+                                below.</para>
+                        </listitem>
+                        <listitem>
+                            <para> The <guilabel>Panel Configuration</guilabel> field allows you to
+                                modify the panel's properties. <emphasis role="bold"
+                                    >Note:</emphasis> Several panels are not configurable. </para>
+                        </listitem>
+                    </itemizedlist>
+                </step>
+            </procedure>
+            <table frame="all" xml:id="table-69eabfc3-fbcb-4e9b-9dbe-57e2aa54d5f7">
+                <title>Student Profile Panel Options</title>
+                <tgroup cols="3">
+                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                    <colspec colname="c2" colnum="2" colwidth="3*"/>
+                    <colspec colname="c3" colnum="3" colwidth="4*"/>
+                    <thead>
+                        <row>
+                            <entry>Panel</entry>
+                            <entry>Description</entry>
+                            <entry>Configuration Options</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <para> Core Student Information </para>
+                            </entry>
+                            <entry>
+                                <para> Displays the student's name, nickname, State ID, Grade Level,
+                                    and (in some schools) the student's homeroom and homeroom
+                                    teacher. </para>
+                            </entry>
+                            <entry>
+                                <para> This always appears on student profiles and is not
+                                    configurable. </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Current Contact Information </para>
+                            </entry>
+                            <entry>
+                                <para> Displays the names, addresses, phone numbers, and email
+                                    addresses for a student. </para>
+                            </entry>
+                            <entry>
+                                <para> This is not configurable. </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Enrollment History </para>
+                            </entry>
+                            <entry>
+                                <para> Displays all the schools in which a student has been
+                                    enrolled. This includes entrance and exit reasons, dates, and
+                                    grades. </para>
+                            </entry>
+                            <entry>
+                                <para> This is not configurable. </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Assessment History </para>
+                            </entry>
+                            <entry>
+                                <para> Displays all of the information for a student's assessments
+                                    within a given assessment family. </para>
+                            </entry>
+                            <entry>
+                                <para> This can be configured to display any node on the assessment
+                                    family tree. You can also configure this to display all the
+                                    results for child nodes. </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Transcript History </para>
+                            </entry>
+                            <entry>
+                                <para> Displays the complete student's transcript. This includes all
+                                    available grade data for each year and semester. The GPA for
+                                    each semester is available in the summary. </para>
+                            </entry>
+                            <entry>
+                                <para> This is not configurable. </para>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <para> Attendance History </para>
+                            </entry>
+                            <entry>
+                                <para> Displays a calendar that shows the days a student was absent
+                                    (excused or unexcused) or tardy for the whole school day.
+                                </para>
+                            </entry>
+                            <entry>
+                                <para> The default number of years included is three (3) years.
+                                </para>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+    </section>
+    <section xml:id="doc-81dc4af8-1455-4c68-833b-78b6a3a7b8c8">
+        <title>Uploading Configurations for Your District</title>
+        <para> Once you've completed the spreadsheet, please send it to the &COMPANYABBR; partner
+            organization contact for your district. Your partner generates a piece of configuration
+            code in JSON format. When this is complete, you receive the code in an email. You can
+            then upload this code to your district's Dashboard using the steps that follow. </para>
+        <caution>
+            <para> You must upload the JSON code as you receive it from the &COMPANYABBR; partner.
+                Do not modify the code before uploading it. Any changes, even seemingly minor ones,
+                present a risk to your and other district's Dashboards when you upload the code. If
+                you notice a mistake in the JSON you receive, work with the &COMPANYABBR; partner to
+                make corrections rather than attempting them yourself. </para>
+        </caution>
+        <para> To upload the JSON configuration code: </para>
+        <procedure>
+            <step>
+                <para> Log in to &PRODUCTABBR;. </para>
+            </step>
+            <step>
+                <para> Click <guilabel>Admin</guilabel>. </para>
+            </step>
+            <step>
+                <para> Click <guilabel>&COMPANYABBR; Dashboards</guilabel> under the Application
+                    Configuration heading. </para>
+            </step>
+            <step>
+                <para> Paste the JSON configuration code that was emailed to you. Click
+                        <guibutton>Save Config</guibutton>. </para>
+            </step>
+        </procedure>
+        <figure>
+            <title>Example JSON Configuration Code</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata fileref="images/admin_tools-dashboard_json_config.png" scalefit="1"
+                        width="500px"/>
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata fileref="../common/images/admin_tools-dashboard_json_config.png"
+                        width="7in" scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+        <section xml:id="doc-92bc421d-8d56-4cd2-a331-c222d7c18320">
+            <title>Important Considerations for &PRODUCTABBR; Dashboard Configuration</title>
+            <itemizedlist>
+                <listitem>
+                    <para> Uploading a new configuration overwrites all previous configurations. </para>
+                </listitem>
+                <listitem>
+                    <para> The configuration changes take effect the next time that a user logs in
+                        to the application. </para>
+                </listitem>
+                <listitem>
+                    <para> Users who are using the &PRODUCTABBR; Dashboard while you upload any
+                        configuration changes may encounter errors. These errors should clear once
+                        they login again. </para>
+                </listitem>
+                <listitem>
+                    <para> Make sure that configurations are secure, including securing documents
+                        and emails, so that only authorized people in your district can see them.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+    </section>
+</chapter>

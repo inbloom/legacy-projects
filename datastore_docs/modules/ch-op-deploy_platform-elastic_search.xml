@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+   
+<chapter xml:id="doc-a21b7e4a-ef65-423e-bdea-959346d9fe9f"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy Platform: Elasticsearch</title>
+    <para>Elasticsearch is an open source distributed search indexing system that is utilized to
+        provide searching capabilities to the platform.   Elasticsearch automatically distributes
+        the index across multiple nodes, and the use of multiple nodes is highly recommended.
+        Naturally, Scaling this component will be dependent upon RAM and Data utilization on disk,
+        where the largest possible RAM footprint should be ensured so queries return as quickly as
+        possible, and disk access is minimized. </para>
+    
+    <section xml:id="doc-5d614896-34b4-4fc2-9710-dc4597809933">
+        <title>Installation</title>
+        <para> Use elasticsearch 0.19.9.  </para>
+        <procedure>
+            <step>
+                <para>Download elasticsearch.</para>
+                <programlisting><![CDATA[
+ wget https: //github.com/downloads/elasticsearch/elasticsearch/elasticsearch-0.19.9.tar.gz 
+                    ]]></programlisting>
+            </step>
+            <step>
+            <para>Extract the downloaded file. </para>
+            <programlisting><![CDATA[
+  tar -xvf -c /opt elastic search-0.19.9.tar.gz  
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>Create a symlink to alias elasticsearch to elasticsearch-0.19.9. </para>
+                <programlisting><![CDATA[
+ ln -s elasticsearch-0.19.9 elasticsearch 
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>Install the Service Manager.</para>
+                <programlisting><![CDATA[
+curl -L http://github.com/elasticsearch/elasticsearch-servicewrapper/tarball/master|tar -xz
+mv *servicewrapper*/service /usr/local/elasticsearch/bin/
+rm -rf *servicewrapper*
+ 
+ 
+/opt/elasticsearch/bin/service/elasticsearch install 
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>Install the elasticsearch Jetty Module.</para>
+                <programlisting><![CDATA[ cd /opt/elasticsearch
+  bin/plugin -install sonian/elasticsearch-jetty/0.19.9
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para> Create the elasticsearch configuration at
+                    /opt/elasticsearch/config/elasticsearch.yml.  </para>
+                
+                <note><para>The Node.name must be unique PER host in the cluster, as well as the list
+                        of hosts must be maintained in the discover.zen.ping.unicast.hosts array.
+                         If an environment supports multicast, that may be an option to minimize
+                        configuration maintenance, however that has not been tested. </para></note>
+                
+                <programlisting><![CDATA[
+cluster.name: slc_search
+node.name: "SLI1"   #MODIFY:  CHANGE THIS LINE FOR EACH SERVER
+node.max_local_storage_nodes: 1
+transport.tcp.port: 9300
+http.port: 9200
+http.enabled: true
+ 
+index.store.type: mmapfs
+index.store.fs.mmapfs.enabled: true
+bootstrap.mlockall: true
+index.store.compress.stored: true
+index.store.compress.tv: true
+################################# Gateway ####################################
+gateway.type: local
+gateway.recover_after_time: 5m
+ 
+################################## Discovery ##################################
+discovery.type: zen
+discovery.zen.ping.timeout: 3s
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["searchserver1.slidev.org:9300", "searchserver2.slidev.org:9300"]
+################################## Slow Log ##################################
+index.search.slowlog.level: WARN
+index.search.slowlog.threshold.query.warn: 10s
+index.search.slowlog.threshold.query.info: 5s
+index.search.slowlog.threshold.query.debug: 2s
+index.search.slowlog.threshold.query.trace: 500ms
+ 
+index.search.slowlog.threshold.fetch.warn: 1s
+index.search.slowlog.threshold.fetch.info: 800ms
+index.search.slowlog.threshold.fetch.debug: 500ms
+index.search.slowlog.threshold.fetch.trace: 200ms
+ 
+################################## GC Logging ################################
+ 
+#monitor.jvm.gc.ParNew.warn: 1000ms
+#monitor.jvm.gc.ParNew.info: 700ms
+#monitor.jvm.gc.ParNew.debug: 400ms
+ 
+#monitor.jvm.gc.ConcurrentMarkSweep.warn: 10s
+#monitor.jvm.gc.ConcurrentMarkSweep.info: 5s
+#monitor.jvm.gc.ConcurrentMarkSweep.debug: 2s
+#
+################################# Jetty ####################################
+http.type: com.sonian.elasticsearch.http.jetty.JettyHttpServerTransportModule
+sonian.elasticsearch.http.jetty:
+    config: jetty.xml,jetty-hash-auth.xml,jetty-restrict-all.xml
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>Create an /opt/elasticsearch/config/realm.properties with the following
+                    contents. </para>
+                <programlisting><![CDATA[
+superuser: searchme,admin,readwrite
+user: searchme,readwrite
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>Create <filename>/opt/elasticsearch/config/default-mapping.json</filename>.</para>
+                <programlisting><![CDATA[
+# copy and paste the following to default-mapping.json
+{
+  "_default_": {
+    "_timestamp": {
+      "enabled": true
+    },
+    "properties": {
+      "context": {
+        "include_in_all": false,
+        "properties": {
+          "schoolId": {
+            "type": "string",
+            "index": "not_analyzed"
+          }
+        }
+      }
+    }
+  }
+}                   ]]></programlisting>   
+            </step>
+            <step>
+                <para>Modify /etc/security/limits.conf and add the following lines, replacing
+                        <code><![CDATA[<elasticsearch user>]]></code> with the user the process will
+                    be running as.</para>
+                <programlisting><![CDATA[
+<elasticsearch user> soft nofile 64000
+<elasticsearch user> hard nofile 64000
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>Modify the first two lines of
+                    <filename>/opt/elasticsearch/bin/service/elasticsearch.conf</filename> 
+                    to be similar to the example below. 
+                    <note>
+                        <para>You will need to set the heap size to a maximum amount of available
+                            memory for the process to utilize.</para>
+                    </note></para><programlisting><![CDATA[
+set.default.ES_HOME=/opt/elasticsearch
+set.default.ES_HEAP_SIZE=10240
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>Add in /opt/elasticsearch/bin/service/elasticsearch.conf, in the section, #
+                    Java Additional Parameters.</para><programlisting><![CDATA[
+wrapper.java.additional.10=-Des.max-open-files=true
+                    ]]></programlisting>
+            </step>
+        </procedure>
+    </section>
+    
+</chapter>

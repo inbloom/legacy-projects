@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" 
+            schematypens="http://relaxng.org/ns/structure/1.0"?>
+
+<chapter xml:id="FIXME"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>FIXME</title>
+    <para>
+        FIXME
+    </para>
+    
+    <section xml:id="sect-FIXME1">
+        <title>FIXME</title>
+        <para>
+            FIXME
+        </para>
+        <programlisting>
+This is a block with literal translation of all spacing, good for code blocks and terminal window text.
+        </programlisting>
+        <para>
+            FIXME
+        </para>
+    </section>
+    
+    <section xml:id="sect-FIXME2">
+        <title>FIXME</title>
+        <para>
+            Once a chapter has sections, it cannot have any elements after its sections.
+        </para>
+        <table xml:id="table-FIXME">
+            <title>FIXME</title>
+            <tgroup cols="3">
+                <colspec colname="firstCol" colwidth="1*"/>
+                <colspec colname="secondCol" colwidth="1*"/>
+                <colspec colname="thirdCol" colwidth="2*"/>
+                <thead>
+                    <row>
+                        <entry>
+                            Heading 1
+                        </entry>
+                        <entry>
+                            Heading 2
+                        </entry>
+                        <entry>
+                            Heading 3
+                        </entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                row 1, col 1
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                row 1, col 2
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                row 1, col 3
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry namest="firstCol" nameend="secondCol">
+                            <para>
+                                this spans two columns
+                            </para>
+                        </entry>
+                        <entry morerows="2">
+                            <para>
+                                this spans two rows
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                row three, col 1
+                            </para>
+                        </entry>
+                        
+                        <entry>
+                            <para>
+                                row three, col 2
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
+    
+</chapter>
+
+        

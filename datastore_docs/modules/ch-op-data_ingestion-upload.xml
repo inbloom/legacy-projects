@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-53e3a1af-a134-428e-a0e0-428bbd70dd20"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Ingestion: Uploading Data for Ingestion</title>
+
+    <para>
+        Data ingestion starts by making a secure file transfer 
+        to a landing zone. To do this, you'll upload files using
+        an SFTP client to the a landing zone configured for the
+        realm you're ingesting data for. Thus, requirements for
+        ingestion are as follows:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                The FTP hostname associated with the 
+                landing zone you're targeting. You or another &PRODUCTABBR;
+                administrator set this up using the instructions in
+                <xref linkend="doc-ae2a0aaf-7960-4272-a5ea-abffb0973e74"/>,
+                and the email received after creating the
+                landing zone should include the FTP hostname.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                An FTP client to use for file 
+                transfers using SFTP.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Your user credentials as 
+                an &PRODUCTABBR; administrator.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The role of 
+                <glossterm linkend="def-ingestion_user">Ingestion User</glossterm>
+                for your &PRODUCTABBR; administrator account.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The files you want to ingest, compliant 
+                with the Ed-Fi v1.0.03 specification. There are a couple of 
+                options available to you for creating these files. For details,
+                see <xref linkend="doc-6b9d21e0-0d62-4ab7-996d-9b40bccdd422"/>.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                The top-level state education 
+                organization (SEA) must match the education organization 
+                defined when the landing zone was created.
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        After you meet these requirements, 
+        you're ready to ingest data. To do this, use your FTP client to upload
+        the data files using the SFTP protocol to the landing zone's FTP 
+        hostname. Provide normal authentication for the transfer using your 
+        &PRODUCTABBR; administrator credentials.
+    </para>
+    <!-- Questions to answer in future revisions:
+             How do I know what landing zones are available to me?
+             How do I track progress for ingestion?
+             How do I confirm data has been ingested?
+             What errors could occur, and how do I interpret and handle those errors?
+        -->
+    
+</chapter>

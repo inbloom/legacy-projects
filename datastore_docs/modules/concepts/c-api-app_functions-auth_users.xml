@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<chapter xml:id="c-api-app_functions-auth_users"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Authenticate Users Against a Tenant's IDP</title>
+    
+    <para> An application can use the following API resources to authenticate users against a
+        tenant's identity provider (IDP) in a given &PRODUCTABBR; deployment. This is for
+        applications targeted at day-to-day use by end users that interact with education data,
+        including Secure Data Service administrators, educators, students, or others who have user
+        accounts in the tenant's IDP. </para>
+    
+    <xi:include href="../reference/r-api-resource-saml-sso-post.xml"/>
+    
+    <xi:include href="../reference/r-api-resource-saml-metadata.xml"/>
+    
+</chapter>

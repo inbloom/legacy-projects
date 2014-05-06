@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<chapter xml:id="c-api-app_functions-bulk_extract"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Extract Tenant Data in a Bulk Operation</title>
+    
+    <para>
+        An application can use the REST API to retrieve bulk data 
+        extracts for a given tenant, by education organization.</para> 
+    <note>
+        <para>Bulk Extract feature is available in both Production and 
+            Sandbox environments. To use Bulk Extract in the Sandbox environment, 
+            please contact &COMPANYABBR;'s Support Team (support@inBloom.org).</para>
+    </note>    
+    <para>If a bulk extract application is authorized for a given education organization, then data
+        for that education organization and all of its descendants, and previous year student and
+        staff data from their respective previous education organizations will be available in the
+        extract. A top level education organization extract file will only include data related to
+        itself, see <xref linkend="c-bulk_extract-top-edOrg"/> for additional details. The public
+        data extract is a special case where a bulk extract provides all public data and Cohort for
+        the tenant without consideration of the education organization. <emphasis role="bold">Cohort
+            is being handled as public data only for bulk extract.</emphasis> These extracts are
+        used by applications which require a local copy of certain data from the &PRODUCTABBR;
+        Secure Data Service.</para>
+    <note>
+        <para>For more information on previous year data see the chapter <emphasis>inBloom Bulk Data Extraction</emphasis> in the
+            <emphasis role="bold">&PRODUCTABBR; Administrator Documentation</emphasis> published by &COMPANYABBR; </para>
+    </note>
+    <!-- Bulk extract files (what they are, what they contain) -->
+    <xi:include href="../reference/r-bulk_extract-files.xml" />
+    
+    <!-- Bulk extract header tags -->
+    <xi:include href="../reference/r-bulk_extract-header_fields.xml" />
+    
+    <!-- Authentication for bulk extract operations -->
+    <xi:include href="../concepts/c-bulk_extract-authentication.xml" />
+    
+    <!-- Encrpytion for bulk extract operations -->
+    <xi:include href="../concepts/c-bulk_extract-encryption.xml" />
+    
+    <!-- Error Handling for bulk extract operations -->
+    <xi:include href="../concepts/c-bulk_extract-error.xml" />
+
+    <!-- Top Level EdOrg Extract  -->
+    <xi:include href="../concepts/c-bulk_extract-top-edOrg.xml" />
+    
+    <!-- References for API resources -->
+    <xi:include href="../reference/r-api-resource-bulk-extract.xml"/>
+    <!-- Removing bulk/extract/tenant for version 1.6.80. See US5658
+        <xi:include href="../reference/r-api-resource-bulk-extract-tenant.xml"/> -->
+    <xi:include href="../reference/r-api-resource-bulk-extract-list.xml"/>
+    <xi:include href="../reference/r-api-resource-bulk-extract-lea.xml"/>
+    <xi:include href="../reference/r-api-resource-bulk-extract-public.xml"/>
+    <xi:include href="../reference/r-api-resource-bulk-delta.xml"/>
+    <xi:include href="../reference/r-api-resource-bulk-delta-public.xml"/>
+
+</chapter>

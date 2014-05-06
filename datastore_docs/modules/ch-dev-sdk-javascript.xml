@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="../common/css/docbook/docbook.css"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-12dc0ae8-c998-45a3-b88b-8e6a59c113fd"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&PRODUCTABBR; JavaScript SDK</title> 
+    
+    <para>
+        &COMPANYABBR; provides a JavaScript SDK for application developers
+        who prefer interacting with &PRODUCTABBR; using JavaScript.
+        The JavaScript SDK uses the server-side JavaScript environment 
+        <emphasis>Node.js</emphasis> 
+        (<link xlink:show="new" xlink:href="http://nodejs.org/">nodejs.org</link>).
+    </para>
+    <section xml:id="doc-6a557a79-440e-434c-9cf0-bc35672180d4">
+        <title>Setting up the JavaScript SDK</title>
+        <para>
+            Use the following steps to set up the JavaScript SDK:
+        </para>
+        <procedure>
+            <step>
+                <para> 
+                    Sign up for a developer account with the &COMPANYABBR;, 
+                    as described in 
+                    <!-- ch-dev-getting_started.xml -->
+                    <xref linkend="doc-e6a4907e-ba37-4a47-ae37-d74d64aec528"/>.
+                </para>
+            </step>
+            <step>
+                <para> 
+                    Register your application so that you can use it in your 
+                    development environment. 
+                    See <!-- ch-dev-sandbox-app_registration.xml -->
+                    <xref linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"/> 
+                    for application registration in a Sandbox development 
+                    environment, and 
+                    see <!-- ch-dev-registering_your_app.xml -->
+                    <xref linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/> 
+                    for Production application registration. 
+                </para>
+            </step>
+            <step>
+                <para>
+                    Download Node.js from 
+                    <link xlink:show="new" xlink:href="http://nodejs.org/">nodejs.org</link>
+                    and install it on your local system.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Download the &PRODUCTABBR; JavaScript SDK from the 
+                    &COMPANYABBR; Git repository at Github. It is one of the
+                    downloads listed at
+                    <link xlink:show="new" xlink:href="&GITHUBURL;/">&GITHUBURL;/</link>.
+                </para>
+            </step>
+            <step>
+                <para> 
+                    Unpack the SDK archive to your preferred parent directory 
+                    on your local file system. The top-level directory for the 
+                    archive is named <filename>javascript</filename>. 
+                </para>
+            </step>
+        </procedure>
+    </section>
+    <section xml:id="doc-17941285-1870-4289-bf8c-aee66c0b88fa">
+        <title>Using the JavaScript SDK Library</title>
+        <para>
+            The JavaScript SDK library is contained in the file
+            <filename>client/SLC.js</filename> within the SDK directory.
+            Comments throughout the file include descriptions for each object 
+            and method available in the SDK.
+        </para>
+        <para>
+            Your application starts interacting with the SDK by initializing
+            an SLC object (covered in
+            <xref linkend="doc-84f56fb2-18c0-40c7-9800-0fe8ae42f409"/>
+            below). From there, it can use the SDK through the following
+            four methods for that SLC object:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">getLoginURL()</emphasis> - Format
+                    and send the login URL. Users must be redirected to this
+                    URL to log in to &PRODUCTABBR;. 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">logout()</emphasis> - End the 
+                    current user's session with &PRODUCTABBR;.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">oauth()</emphasis> - Verify the
+                    OAuth authorization code and get the authorization token
+                    required for making REST API calls.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">api()</emphasis> - Make a call to the &PRODUCTABBR; REST
+                    API to interact with the &PRODUCTABBR; Secure Data Service . </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The sample application sections that follow describe each of these
+            methods in more detail.
+        </para>
+    </section>
+    <section xml:id="doc-4fa55e6f-7c7e-4952-860b-2766e94f0bdc">
+        <title>Using the JavaScript SDK Sample Application</title>
+        <para> 
+            Before diving in to your own JavaScript code, you might want to 
+            try using the sample application. You can find the sample 
+            application code in the <filename>sample</filename> subdirectory 
+            of the SDK archive. The following sections will help you set up 
+            and try out that sample. 
+        </para>
+        <section xml:id="doc-867d12c4-d0dc-4084-88a8-54d4b703b626">
+            <title>Registering and Configuring</title>
+            <procedure>
+                <step>
+                    <para> 
+                        Place the sample application on your local system or 
+                        a web server so that you can redirect to it from the 
+                        &PRODUCTABBR; login web page. 
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        Register the sample application as an application in 
+                        your development environment. See
+                        <!-- ch-dev-sandbox-app_registration.xml -->
+                        <xref linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"/>
+                        for application registration in a Sandbox development
+                        environment, and see
+                        <!-- ch-dev-registering_your_app.xml -->
+                        <xref linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/>
+                        for Production application registration.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        When registration's complete, edit the configuration 
+                        file <filename>config.js</filename>, replacing the 
+                        values for the following lines:
+                    </para>
+                    <programlisting><![CDATA[
+config.api.base_url = 'https://api.sandbox.inbloom.org';
+config.api.client_id = '$YOUR_CLIENT_ID_HERE'
+config.api.client_secret = '$YOUR_ENCRYPTED_CLIENT_SECRET_HERE';
+config.api.oauth_uri = 'http://$YOUR_IP_ADDRESS:$YOUR_PORT/callback';
+config.api.api_version = "$API_VERSION_HERE";
+                ]]></programlisting>
+                    <para>
+                        The information you use should be based on the hosted 
+                        location you're using for the sample application and 
+                        the application registration in &PRODUCTABBR;. The 
+                        base URL value shown above is the default for the 
+                        &COMPANYABBR;-hosted Sandbox environment. You can find
+                        the client ID and secret values for your application in
+                        the registration tool you used. The callback URL should
+                        use the host name and port where you placed the sample 
+                        application. The API version should match that of the 
+                        &PRODUCTABBR; REST API you're using; at the time of 
+                        that writing, it was "v1".
+                    </para></step>
+            </procedure>
+        </section>
+        <section xml:id="doc-84f56fb2-18c0-40c7-9800-0fe8ae42f409">
+            <title>Initializing</title>
+            <para>
+                To run the sample application, run the following Node.js 
+                command in the sample application directory from your 
+                command prompt:
+            </para>
+            <programlisting><![CDATA[
+node index.js
+            ]]></programlisting>
+            <para>
+                This index.js include the following code for initializing the
+                JavaScript SDK:
+            </para>
+            <programlisting><![CDATA[
+SLC_app = new SLC(
+    baseURL,
+    clientID,
+    clientSecret,
+    oauthURI,
+    apiVersion
+);
+            ]]></programlisting>
+            <para>
+                The parameters passed when initializing the new SLC object
+                come from the configuration file described in the previous 
+                section. They are all of type String.
+            </para>
+        </section>
+        <section xml:id="doc-0b3e3cb5-4501-484d-ab1a-2cc7afd38e0e">
+            <title>Authenticating and Managing a Session</title>
+            <para>
+                The SDK provides
+                <methodname>getLoginURL()</methodname> to return the
+                URL that the application should direct the user to when logging
+                in to &PRODUCTABBR;. The method forms a request URL 
+                created using the base URL, client ID, and client secret values
+                you provided in the configuration file. After the user is
+                authorized (after logging in), this method redirects to the
+                configured OAuth URI with the "code" parameter to be used by 
+                oauth() method. This method does not require arguments:
+            </para>
+            <programlisting><![CDATA[
+SLC_app.getLoginURL();
+            ]]></programlisting>
+            <para>
+                For more about how to work with OAuth in &PRODUCTABBR;, see
+                <!-- ch-dev-adding_user_auth_to_apps.xml -->
+                <xref linkend="doc-2d6bc8f1-0290-46a3-8823-3e83f1f2d60a"/>.
+            </para>
+            <para>
+                While a user has an active session with &PRODUCTABBR;, your
+                application will need to use the OAuth token for that session
+                when making calls to the REST API, including calls made using
+                the JavaScript SDK. The SDK provides
+                <methodname>oauth()</methodname> to request the session
+                token to use. The arguments required are the OAuth code created
+                when the user signed in and the function you want to handle the
+                response from &PRODUCTABBR;:
+            </para>
+            <programlisting><![CDATA[
+SLC_app.oauth({code: code}, function (token) {
+    req.session.token = token;
+});
+            ]]></programlisting>
+            <para>
+                To close an existing &PRODUCTABBR; session, SDK provides
+                <methodname>logout()</methodname>. Unlike the method used
+                when logging in, you'll need to pass the callback function 
+                you want to call when the user logs out:
+            </para>
+            <programlisting><![CDATA[
+SLC_app.logout(function (response) {
+    Console.log("logout "+response.msg);
+});
+            ]]></programlisting>
+        </section>
+        <section xml:id="doc-21284e1b-36cd-4bf5-89c9-1e8b4bb89319">
+            <title>Making API Calls</title>
+            <para>
+                The SDK provides
+                <methodname>api()</methodname> for making calls to the
+                &PRODUCTABBR; REST API. The method itself returns the 
+                response body, status code, and error data. The following are 
+                the parameters you should pass when calling this method:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">path</emphasis> - String
+                        representing the partial path to the resource you want
+                        to access, starting with the slash that would come
+                        after the version number in the full URL for that
+                        resource (see
+                        <link xlink:href="rest_api_resources.html">
+                        the complete list of resources</link> and links to view
+                        their URLs)
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">method</emphasis> - String
+                        for the CRUD method you want to call 
+                        (such as GET or POST)
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">access_token</emphasis> - String
+                        for the OAuth token for the current &PRODUCTABBR; 
+                        session (see previous description of
+                        <methodname>SLC.oauth</methodname>)
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">params</emphasis> - Object
+                        for the parameters you need to pass
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">data</emphasis> - Object 
+                        for the request body for PUT, POST, and PATCH requests
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">callback</emphasis> - Function
+                         that you want to handle the response you receive from
+                         &PRODUCTABBR;
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Example: Get the list of all students the current user has
+                permission to view:
+            </para>
+            <programlisting><![CDATA[
+SLC_app.api("/students", "GET", "oauth_token_value", {}, {}, function (data) {  console.log(data);
+});
+            ]]></programlisting>
+            <para>
+                Example: Get the list of all schools the current user has
+                permission to view:
+            </para>
+            <programlisting><![CDATA[
+SLC_app.api("/schools", "GET", "oauth_token_value", {}, {}, function (data) {   console.log(data); 
+});
+            ]]></programlisting>
+            <para>
+                Example: Post an attendance event for a student:
+            </para>
+            <programlisting><![CDATA[
+SLC_app.api("/attendances", "POST, "oauth_token_value", {},
+  {
+    "studentId": student_id,
+    "schoolId": school_id,
+    "schoolYearAttendance":[{
+        "schoolYear": school_year,
+        "attendanceEvent":[{
+          "date": event_date,
+          "event":"In Attendance"
+        }]
+    }]
+  }, function (data) {
+    console.log(data)
+});
+            ]]></programlisting>
+            <para>
+                Example: Delete a student:
+            </para>
+            <programlisting><![CDATA[
+SLC_app.api("/students/:id", "DELETE", "oauth_token_value", {}, {}, function (data) {
+    console.log(data)
+})
+            ]]></programlisting>
+        </section>
+    </section>
+    
+</chapter>

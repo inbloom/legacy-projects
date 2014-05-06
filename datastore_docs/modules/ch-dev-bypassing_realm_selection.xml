@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-7c717711-7158-4262-bf80-2b5f1e601b44"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Bypassing Realm Selection on Sign-in</title>
+
+    <para> 
+        When your application makes OAuth calls to the &RESTAPI;, as 
+        described in 
+        <xref linkend="doc-2d6bc8f1-0290-46a3-8823-3e83f1f2d60a"/>, 
+        the default behavior of &PRODUCTABBR; is to present the user 
+        with a realm selector before the sign-in page. However, most 
+        users only need to access to one realm, making this selection 
+        inconvenient and potentially confusing for those users.
+    </para>
+    <para>
+        You can program your application to bypass this selection by 
+        passing a parameter in your OAuth call. This is the parameter's 
+        syntax: 
+    </para>
+    <programlisting><![CDATA[
+Realm=$REALM_ID
+    ]]></programlisting>
+    <para> 
+        The following is an example of how this looks using variable 
+        values (starting with "$") in place of actual values, and 
+        backslashes indicating the break of the URL over multiple
+        lines: 
+    </para>
+    <programlisting><![CDATA[
+https://api.inBloom.example.com/api/oauth/authorize?response_type=code&\
+client_id=$CLIENT_ID&\
+redirect_uri=https%3A%2F%2Fsampleapp.example.com%2Fcallback&\
+Realm=$REALM_ID&\
+state=$STATE_ID
+    ]]></programlisting>
+    <para> 
+        The realm value ($REALM_ID shown above) should match the 
+        <guilabel>Realm Identifier</guilabel> value for the target 
+        realm. The <guilabel>Realm Identifier</guilabel> setting 
+        is part of the realm settings managed by &PRODUCTABBR;
+        administrators using a Manage Realm system tool. This tool 
+        is available to those who have
+        <glossterm linkend="def-sea_administrator">SEA Administrator</glossterm>
+        or
+        <glossterm linkend="def-lea_administrator">LEA Administrator</glossterm>
+        roles. Realm management is documented in the &PRODUCTABBR; 
+        administrator documentation, available from &COMPANYABBR;.
+    </para>
+    <para> 
+        You will want your application to work for any realm. You can 
+        accomplish this and still bypass the realm selector. To do this, 
+        create a configuration parameter for your application and
+        pass the value of that parameter dynamically for the 
+        <parameter>Realm</parameter> value in the OAuth authorization call 
+        (shown in the example above). You can make this globally
+        configurable by administrators for your application, or you can 
+        serve users from multiple realms by making it part of user-level 
+        application settings.
+    </para>
+    <para>
+        Be sure to provide documentation to those deploying your application
+        that covers how your application sets and uses this realm value 
+        and what to expect if it's not set correctly. 
+    </para>
+    
+</chapter>

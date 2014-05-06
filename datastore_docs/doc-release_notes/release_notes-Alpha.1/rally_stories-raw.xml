@@ -1,0 +1,1165 @@
+<Objects>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6839210710" objectVersion="13" refObjectName="App Permissions - Authorizing Application Rights" CreatedAt="Jun 22">
+      <CreationDate>2012-06-22T17:28:30.795Z</CreationDate>
+      <ObjectID>6839210710</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-06c07ffe8{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-family: arial, helvetica, sans-serif; vertical-align: baseline; box-sizing: border-box; text-align: left; background-color: rgb(255, 255, 255); }.rally-rte-class-0b695e0fc{font-family: arial, helvetica, sans-serif; text-align: left; background-color: rgb(255, 255, 255); }.rally-rte-class-0ea0cf39d{box-sizing: border-box; }.rally-rte-class-00a63321a{margin: 0px; padding: 10px 0px 10px 40px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; box-sizing: border-box; list-style: inherit; }.rally-rte-class-05e65b616{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; list-style: disc; box-sizing: border-box; }.rally-rte-class-030f28f63{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; text-decoration: none; box-sizing: border-box; color: rgb(7, 102, 146); }.rally-rte-class-06acd0a6c{margin: 0px; padding: 0px; border: 0px; outline: 0px; font-style: inherit; font-family: inherit; vertical-align: baseline; box-sizing: border-box; }&lt;/style&gt;  &lt;span id="x4-gen1367" class="rally-rte-class-06c07ffe8"&gt;As a LEA Super Administrator (or SEA Super Administrator on behalf of LEA), I would like to be able to decide what permissions will I give to the applications that I am authorizing for my district.&lt;/span&gt;&lt;span class="rally-rte-class-0b695e0fc"&gt;&lt;/span&gt;              &lt;div id="x4-gen1246" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1245" class="rally-rte-class-06c07ffe8"&gt;Acceptance Criteria:&lt;/div&gt;  &lt;div id="x4-gen1244" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div class="rally-rte-class-06c07ffe8"&gt;  &lt;ul id="x4-gen1243" class="rally-rte-class-00a63321a"&gt;  &lt;li id="x4-gen1242" class="rally-rte-class-05e65b616"&gt;A functionality that will allow authorizing application with the default existing rights ( &lt;a href="https://thesli.onconfluence.com/pages/viewpage.action?pageId=2000832"&gt;https://thesli.onconfluence.com/pages/viewpage.action?pageId=2000832&lt;/a&gt;&amp;nbsp;)&lt;/li&gt;  &lt;li id="x4-gen1239" class="rally-rte-class-05e65b616"&gt;What the user will be able to access is an intersection of the user and app rights.&amp;nbsp;&lt;/li&gt;  &lt;li id="x4-gen1247" class="rally-rte-class-05e65b616"&gt;An UI in the Application Authorization Tool that will allow the LEA Super Admin (or its delegate) to choose which rights will be given to the application when the application is authorized for the District. This rights should be editable.&lt;/li&gt;  &lt;li id="x4-gen1247" class="rally-rte-class-05e65b616"&gt;At all times there must be at least one choice selected&lt;/li&gt;  &lt;li id="x4-gen1247" class="rally-rte-class-05e65b616"&gt;A message will be displayed to the admin for every application in the list, that will tell the LEA (or SEA) Super Administrator what kind of rights the app developer have asked for.&lt;/li&gt;  &lt;li id="x4-gen1247" class="rally-rte-class-05e65b616"&gt;The&amp;nbsp;LEA (or SEA) Super Administrator&amp;nbsp;has a choice if he/she wants to give the rights that were asked for or not&lt;/li&gt;  &lt;li id="x4-gen1247" class="rally-rte-class-05e65b616"&gt;An email notification will be sent explaining what kind of rights have been granted to the app. If the app is denied, email will be sent again&lt;/li&gt;  &lt;/ul&gt;  &lt;/div&gt;  &lt;div id="x4-gen1248" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div class="rally-rte-class-06c07ffe8"&gt;Wireframes:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Application+Authorization+Tool+Wireframes" id="x4-gen1249" class="rally-rte-class-030f28f63"&gt;https://thesli.onconfluence.com/display/sli/SLI+Application+Authorization+Tool+Wireframes&lt;/a&gt;&lt;/div&gt;  &lt;div id="x4-gen1250" class="rally-rte-class-06c07ffe8"&gt;Note: Please look at the image that is referenced with this story number.&lt;/div&gt;  &lt;div id="x4-gen1251" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1252" class="rally-rte-class-06c07ffe8"&gt;FOR REVIEW BELOW&lt;/div&gt;  &lt;div id="x4-gen1252" class="rally-rte-class-06c07ffe8"&gt;Demo Script:&lt;/div&gt;  &lt;div id="x4-gen1252" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1252" class="rally-rte-class-06c07ffe8"&gt;A Daybreak LEA Super Administrator will authorize the Data Browser but will not select read restricted. Then the principal of south daybreak elementary will log in and traverse to a student that he/she knows has free and reduced lunch. He/she will not be able to access this info. Then the LEA Super Administrator will give the read restricted right to the Data Browser. The Leader will try to access the student again and will be able to see free and reduced lunch.&lt;/div&gt;  &lt;div id="x4-gen1253" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;Gherkin:&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;Scenario: A LEA Super Administrator tries to authorize an application without choosing any right&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;Given I am a LEA Super Administrator&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;And I have navigated to the Application Authorization Tool&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;And I see a &amp;lt;pending app&amp;gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;When I click on the Approve button&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;Then I get a message that I should choose at least any right&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;Scenario: A LEA Super Administrator authorized an application&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06c07ffe8"&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;Given I am a LEA Super Administrator&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And I have navigated to the Application Authorization Tool&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And I see a &amp;lt;pending app&amp;gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And it is in Edit mode by default (This is only because it is pending. Otherwise, the user would have to click on Edit)&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And I click on &amp;lt;some rights&amp;gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;When I click on Approve&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;Then the application has &amp;lt;some rights&amp;gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;&lt;br class="rally-rte-class-0ea0cf39d" /&gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;Scenario: Leader role having less rights because LEA Super Administrator have given less rights to the Data Browser&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;Given I am a Leader (role)&amp;nbsp;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And I am associated with &amp;lt;School&amp;gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And &amp;lt;School&amp;gt; is in &amp;lt;District&amp;gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And &amp;lt;District&amp;gt; LEA Super Administrator have approved the Data Browser&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And has not give read restricted right&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And &amp;lt;Student&amp;gt; is enrolled in &amp;lt;School&amp;gt;&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And &amp;lt;Student&amp;gt; has free and reduced lunch&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;When I navigate to &amp;lt;Student&amp;gt; in Data Browser&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;Then I see &amp;lt;Student&amp;gt; info&lt;/div&gt;  &lt;div id="x4-gen1254" class="rally-rte-class-06acd0a6c"&gt;And I don't see free and reduced lunch&lt;/div&gt;  &lt;/div&gt;  &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US2959</FormattedID>
+      <LastUpdateDate>2012-07-18T18:49:48.859Z</LastUpdateDate>
+      <Name>App Permissions - Authorizing Application Rights</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6839210711" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+      </Tags>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501377" refObjectName="5.2" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6542857715" refObjectName="Application Permissions" type="HierarchicalRequirement" />
+      <PlanEstimate>8.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999510528.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Security</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>&lt;span style="font-family: arial, helvetica, sans-serif; text-align: left; background-color: rgb(255, 255, 255); "&gt;An application that is authorized by an LEA, can access the LEA's data based on the user's permissions (on which behalf the application is accessing LEA's data) and the application features/capabilities. The LEA can give complete, blanket access to an application, but cannot restrict permissions to a more specific level.&amp;nbsp;&lt;/span&gt;&lt;span style="background-color: rgb(255, 255, 255); font-family: arial, helvetica, sans-serif; text-align: left; "&gt;Additional functionality will be built to allow the LEA to choose what rights over the existing data categories&amp;nbsp;to give to certain application. The intersection of the user's and application's permissions and the application's capabilities&amp;nbsp;will define in which way the user will be able to access the LEA's data. For example, if an application allows editing of general student data, and a user with IT Administrator role (which gives permission for editing student data) is using the application, he/she will not be able to edit any student data if this right has not been given to the application by the LEA.&lt;/span&gt;</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>11-AuthPerm</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5401899757" objectVersion="29" refObjectName="Current Courses and Grades Panel" CreatedAt="Feb 8">
+      <CreationDate>2012-02-08T19:41:18.791Z</CreationDate>
+      <ObjectID>5401899757</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>As an educator, I want to see a display of a student's currently enrolled courses and associated grades in their student profile.&lt;br /&gt;&lt;br&gt;(Mock up:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/display/sli/Dashboard--Current+Enrollment+and+Grades"&gt;https://thesli.onconfluence.com/display/sli/Dashboard--Current+Enrollment+and+Grades&lt;/a&gt;)&lt;br&gt;&lt;br&gt;A/C:&lt;br&gt;  &lt;ul&gt;  &lt;li&gt;Student current courses and grades are displayed.&lt;/li&gt;  &lt;li&gt;Pixel perfect.&lt;/li&gt;  &lt;li&gt;Missing data degrades gracefully.&lt;/li&gt;  &lt;/ul&gt;</Description>
+      <Discussion />
+      <FormattedID>US1030</FormattedID>
+      <LastUpdateDate>2012-07-20T16:19:22.466Z</LastUpdateDate>
+      <Name>Current Courses and Grades Panel</Name>
+      <Notes>Action item for Greg: Can a teacher see the grades for another class? Other enrollment info?</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5401899758" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475502464" refObjectName="5.3" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514295422" refObjectName="Student Profile" type="HierarchicalRequirement" />
+      <PlanEstimate>5.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999548160.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780843" refObjectName="PI5" type="Release" />
+      <ScheduleState>Defined</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>Student Profiles do not yet have a tab displaying a student's current courses and associated grades even if the data has already been ingested into SLI.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>true</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>18-Views</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/5823519958" objectVersion="44" refObjectName="Stable URLs for Student Profile Pages" CreatedAt="Mar 23">
+      <CreationDate>2012-03-23T15:17:34.339Z</CreationDate>
+      <ObjectID>5823519958</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;As a teacher, I want to be able to bookmark or share a profile URL with an authorized colleague.&lt;br /&gt;As an IT Admin, I need to ensure that the data remains secure and that the student's GUID is not in that URL to prevent the story below.&lt;br /&gt;Avoid this story: As a hacker, I want to use GUIDs in URLs to undermine data security.&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;ul&gt;  &lt;li&gt;Discussions with security have determined that the GUID should be encrypted to prevent data compromise.&lt;br /&gt;&lt;/li&gt;  &lt;/ul&gt;  &lt;br /&gt;AC:&lt;br /&gt;&lt;br /&gt;  &lt;/div&gt;  &lt;div&gt;URLs to student profiles are stable and canonical/bookmarkable, and also meet security protocols by removing GUIDs from URLs.&lt;br /&gt;&lt;br /&gt;Note: when doing this story, if we choose to POST the GUIDs at each request, maybe add the security token in the same way (Robert's idea)&lt;br /&gt;&lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US1727</FormattedID>
+      <LastUpdateDate>2012-07-17T22:55:25.110Z</LastUpdateDate>
+      <Name>Stable URLs for Student Profile Pages</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711752434" refObjectName="Juggernaut(Eng-NY)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/5823519959" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <PlanEstimate>3.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999549696.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780843" refObjectName="PI5" type="Release" />
+      <ScheduleState>Defined</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>18.0</TaskEstimateTotal>
+      <TaskRemainingTotal>18.0</TaskRemainingTotal>
+      <TaskStatus>DEFINED</TaskStatus>
+      <Tasks>
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6010409861" refObjectName="Code Revoew" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6010409493" refObjectName="A/T" type="Task" />
+         <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6010410023" refObjectName="Bucket" type="Task" />
+      </Tasks>
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>In the Dashboard, student profile and list URLs are unique and can be bookmarked. However, these will change at a later time with the ingestion of new data. As a result, they are not currently permanently canonical.</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>18-Views</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6543233813" objectVersion="23" refObjectName="App Permissions - Authorizing Existing Data Category Rights" CreatedAt="May 29">
+      <CreationDate>2012-05-29T19:00:35.786Z</CreationDate>
+      <ObjectID>6543233813</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;span class="rally-rte-class-0146e74ce"&gt; &lt;div&gt;&lt;span class="rally-rte-class-0146e74ce"&gt;[Obsolete?]&amp;nbsp;&lt;/span&gt;&lt;/div&gt; &lt;div&gt;&lt;span class="rally-rte-class-0146e74ce"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/div&gt; As a LEA Super Administrator, I would like to be able to decide what permissions will I give to the applications that I am authorizing for my district. &lt;/span&gt; &lt;div id="x4-gen1246" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt; &lt;div id="x4-gen1245" class="rally-rte-class-05e19ea52"&gt;Acceptance Criteria:&lt;/div&gt; &lt;div id="x4-gen1244" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt; &lt;div class="rally-rte-class-05e19ea52"&gt; &lt;ul id="x4-gen1243" class="rally-rte-class-0bd797cf7"&gt; &lt;li id="x4-gen1242" class="rally-rte-class-0322ebfa5"&gt;A functionality that will allow giving collection of (already existing rights) to the applications&lt;/li&gt; &lt;li id="x4-gen1241" class="rally-rte-class-0322ebfa5"&gt;The rights are the same ones as the rights or the default user roles (rights listed here:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/pages/viewpage.action?pageId=2000832" id="x4-gen1240" class="rally-rte-class-047d2f95f"&gt;https://thesli.onconfluence.com/pages/viewpage.action?pageId=2000832&lt;/a&gt;)&lt;/li&gt; &lt;li id="x4-gen1239" class="rally-rte-class-0322ebfa5"&gt;What the user will be able to access is an intersection of the user and app rights. For example: A user of Daybreak with a role of Leader is using the Data Browser to traverse the data of his/her district, but the Data Browser is authorized with R Public and R General only. He/She will not be able to access the student's restricted data, even though his role has that right&lt;/li&gt; &lt;li id="x4-gen1247" class="rally-rte-class-0322ebfa5"&gt;An UI in the Application Authorization Tool that will allow the LEA Super Admin (or its delegate) to choose which rights will be given to the application when the application is authorized for the District. This rights should be editable.&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;div id="x4-gen1248" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt; &lt;div class="rally-rte-class-05e19ea52"&gt;Wireframes:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Application+Authorization+Tool+Wireframes" id="x4-gen1249" class="rally-rte-class-047d2f95f"&gt;https://thesli.onconfluence.com/display/sli/SLI+Application+Authorization+Tool+Wireframes&lt;/a&gt;&lt;/div&gt; &lt;div id="x4-gen1250" class="rally-rte-class-05e19ea52"&gt;Note: Please look at the new - post alpha wireframe.&lt;/div&gt; &lt;div id="x4-gen1251" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt; &lt;div id="x4-gen1252" class="rally-rte-class-05e19ea52"&gt;Demo Script:&lt;/div&gt; &lt;div id="x4-gen1252" class="rally-rte-class-05e19ea52"&gt;&lt;br /&gt;&lt;/div&gt; &lt;div id="x4-gen1252" class="rally-rte-class-05e19ea52"&gt;A Daybreak LEA Super Administrator will authorize the Data Browser but will not select read restricted. Then the principal of south daybreak elementary will log in and traverse to a student that he/she knows has free and reduced lunch. He/she will not be able to access this info. Then the LEA Super Administrator will give the read restricted right to the Data Browser. The Leader will try to access the student again and will be able to see free and reduced lunch.&lt;/div&gt; &lt;div id="x4-gen1253" class="rally-rte-class-05e19ea52"&gt;&lt;br class="rally-rte-class-026a2996b" /&gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Gherkin:&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;&lt;br /&gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Scenario: A LEA Super Administrator tries to authorize an application without choosing any right&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Given I am a LEA Super Administrator&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And I have navigated to the Application Authorization Tool&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And I see a &amp;lt;pending app&amp;gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;When I click on the Approve button&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Then I get a message that I should choose at least any right&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;&lt;br /&gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Scenario: A LEA Super Administrator authorized an application&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Given I am a LEA Super Administrator&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And I have navigated to the Application Authorization Tool&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And I see a &amp;lt;pending app&amp;gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And it is in Edit mode by default (This is only because it is pending. Otherwise, the user would have to click on Edit)&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And I click on &amp;lt;some rights&amp;gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;When I click on Approve&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Then the application has &amp;lt;some rights&amp;gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;&lt;br /&gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Scenario: Leader role having less rights because LEA Super Administrator have given less rights to the Data Browser&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Given I am a Leader (role)&amp;nbsp;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And I am associated with &amp;lt;School&amp;gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And &amp;lt;School&amp;gt; is in &amp;lt;District&amp;gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And &amp;lt;District&amp;gt; LEA Super Administrator have approved the Data Browser&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And has not give read restricted right&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And &amp;lt;Student&amp;gt; is enrolled in &amp;lt;School&amp;gt;&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And &amp;lt;Student&amp;gt; has free and reduced lunch&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;When I navigate to &amp;lt;Student&amp;gt; in Data Browser&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;Then I see &amp;lt;Student&amp;gt; info&lt;/div&gt; &lt;div id="x4-gen1254" class="rally-rte-class-05e19ea52"&gt;And I don't see free and reduced lunch&lt;/div&gt; &lt;/div&gt; &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US2660</FormattedID>
+      <LastUpdateDate>2012-07-18T18:45:56.018Z</LastUpdateDate>
+      <Name>App Permissions - Authorizing Existing Data Category Rights</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6543233814" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475503394" refObjectName="5.4" type="Iteration" />
+      <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6542857715" refObjectName="Application Permissions" type="HierarchicalRequirement" />
+      <PlanEstimate>0.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999568384.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780833" refObjectName="PI5" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Security</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>An application that is authorized by an LEA can access the LEA's data based on the user's permissions and the application features/capabilities. However, the LEA can only give an application complete, unrestricted access. Additional functionality will be built to allow the LEA to restrict rights to the existing data categories for an application.&amp;nbsp;</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>11-AuthPerm</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6619209524" objectVersion="6" refObjectName="Epic: Ingestion Progress" CreatedAt="Jun 5">
+      <CreationDate>2012-06-05T13:17:41.132Z</CreationDate>
+      <ObjectID>6619209524</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>During Ingestion, I would like to view validation and ingestion progress for each data file per LEA/SEA</Description>
+      <Discussion />
+      <FormattedID>US2792</FormattedID>
+      <LastUpdateDate>2012-07-18T18:47:29.846Z</LastUpdateDate>
+      <Name>Epic: Ingestion Progress</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5681078097" refObjectName="Olga Violett" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4527823441" refObjectName="Galactus(Eng-NJ)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6619209525" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4623989292" refObjectName="Persona:All_Users" type="Tag" />
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624168285" refObjectName="Persona:IT_Admin" type="Tag" />
+      </Tags>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>NONE</DefectStatus>
+      <Defects />
+      <Predecessors />
+      <Rank>499999680768.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/6475427222" refObjectName="PI6" type="Release" />
+      <ScheduleState>Backlog</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Ingestion</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>&lt;div&gt;During bulk data ingestion, there is no progress indication for an ingestion job until the job is complete.&amp;nbsp;The uploaded .zip file is immediately removed from the user's landing zone and the job log file(s) do not appear in its place until the job is complete.&lt;/div&gt;</ReleaseNoteDescription>
+      <SCLegacyID>124</SCLegacyID>
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>12-DataLoad</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6559328210" objectVersion="12" refObjectName="Add Pagination to List of Students" CreatedAt="May 30">
+      <CreationDate>2012-05-30T21:08:10.947Z</CreationDate>
+      <ObjectID>6559328210</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>List of Students currently does not support pagination. Add the pagination component similar to the one used in student search.&lt;br /&gt;&lt;br&gt;&lt;br&gt;A/C:</Description>
+      <Discussion />
+      <FormattedID>US2714</FormattedID>
+      <LastUpdateDate>2012-07-17T23:02:03.916Z</LastUpdateDate>
+      <Name>Add Pagination to List of Students</Name>
+      <Notes />
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5919896825" refObjectName="Greg Palmer" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/6429790214" refObjectName="Avengers (Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6559328211" type="RevisionHistory" />
+      <Tags />
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children />
+      <DefectStatus>ALL_CLOSED</DefectStatus>
+      <Defects>
+         <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/5693943312" refObjectName="Dashboard doesn't handle paging" type="Defect" />
+      </Defects>
+      <PlanEstimate>3.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999722752.000</Rank>
+      <Recycled>false</Recycled>
+      <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/6429790224" refObjectName="PI5" type="Release" />
+      <ScheduleState>Defined</ScheduleState>
+      <Successors />
+      <TaskActualTotal>0.0</TaskActualTotal>
+      <TaskEstimateTotal>0.0</TaskEstimateTotal>
+      <TaskRemainingTotal>0.0</TaskRemainingTotal>
+      <TaskStatus>NONE</TaskStatus>
+      <Tasks />
+      <TestCaseStatus>NONE</TestCaseStatus>
+      <TestCases />
+      <Component>Dashboard</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>&lt;div&gt;The Dashboard currently displays a maximum of 50 students in a section. Also, the Dashboard does not support pagination.&lt;/div&gt;</ReleaseNoteDescription>
+      <SCLegacyID />
+      <SCLegacyPersonas />
+      <SCLegacyProdIncrement />
+      <SCMustHave>false</SCMustHave>
+      <StrandDetails />
+      <StrandNumber>18-Views</StrandNumber>
+   </HierarchicalRequirement>
+   <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514294110" objectVersion="92" refObjectName="Super Admin Management Tool" CreatedAt="Oct 12, 2011">
+      <CreationDate>2011-10-12T21:46:52.242Z</CreationDate>
+      <ObjectID>4514294110</ObjectID>
+      <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+      <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+      <Changesets />
+      <Description>&lt;div&gt;old name: Create Super Admin Account&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Persona: IT Admin - SEA Story: As a state admin, I want to be able to onboard my district(s) by creating the appropriate super administrator accounts.&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;Acceptance Criteria:&lt;/div&gt;  &lt;div&gt;&amp;nbsp;&lt;/div&gt;  &lt;div&gt;  &lt;p style="MARGIN: 0in 0in 0pt" class="MsoNormal"&gt;&lt;span style="FONT-FAMILY: 'Arial','sans-serif'; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'"&gt;A web interface (as part of SLIs admin tools) that will allow to&amp;nbsp;a valid State (designated) super admin only,&amp;nbsp;to view/add/remove/manage all the necessary super admins for the State.&lt;/span&gt;&lt;/p&gt;  &lt;p style="MARGIN: 0in 0in 0pt" class="MsoNormal"&gt;&lt;span style="FONT-FAMILY: 'Arial','sans-serif'; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'"&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;  &lt;p style="MARGIN: 0in 0in 0pt" class="MsoNormal"&gt;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Hosted+Administrators+Rights"&gt;https://thesli.onconfluence.com/display/sli/SLI+Hosted+Administrators+Rights&lt;/a&gt; &lt;/p&gt;  &lt;p style="MARGIN: 0in 0in 0pt" class="MsoNormal"&gt;&lt;span style="FONT-FAMILY: 'Arial','sans-serif'; FONT-SIZE: 9pt; mso-fareast-font-family: 'Times New Roman'"&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;  &lt;p style="MARGIN: 0in 0in 0pt" class="MsoNormal"&gt;&lt;font face="Arial, sans-serif"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/p&gt;  &lt;/div&gt;</Description>
+      <Discussion />
+      <FormattedID>US136</FormattedID>
+      <LastUpdateDate>2012-07-23T15:11:29.098Z</LastUpdateDate>
+      <Name>Super Admin Management Tool</Name>
+      <Notes>Does not include creating directories. Does not include creating ingestion landing zones.</Notes>
+      <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4444669761" refObjectName="Janko Bazdavela" type="User" />
+      <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4711755666" refObjectName="Lucky Strike(Eng-NC)" type="Project" />
+      <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/4514294111" type="RevisionHistory" />
+      <Tags>
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+         <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624168285" refObjectName="Persona:IT_Admin" type="Tag" />
+      </Tags>
+      <Attachments />
+      <Blocked>false</Blocked>
+      <Children>
+         <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6081700392" objectVersion="59" refObjectName="Password Reset for SLI Hosted Users" CreatedAt="Apr 17" type="HierarchicalRequirement">
+            <CreationDate>2012-04-17T18:44:40.045Z</CreationDate>
+            <ObjectID>6081700392</ObjectID>
+            <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+            <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+            <Changesets />
+            <Description>&lt;div&gt;I would like to be able to reset passwords of the (SLI IDP) hosted users, so they are able to log in in case they have forgotten their password.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Acceptance Criteria:&lt;/div&gt;  &lt;div&gt;  &lt;ul&gt;  &lt;li&gt;On the simple-idp login page add a "reset my password" link.&lt;/li&gt;  &lt;li&gt;It should invalidate the account and send the welcome/validate email.&lt;/li&gt;  &lt;li&gt;User can click link and is prompted to reset their password.&lt;/li&gt;  &lt;li&gt;(in PI5) Link could also be added to the edit user account page in SAMT&lt;/li&gt;  &lt;/ul&gt;  &lt;/div&gt;  &lt;div&gt;Demo Script:&lt;/div&gt;  &lt;div&gt;SLI hosted user (once as super admin once as app developer) will go to the login page. He/she will then click on the Reset password URL and type in the email with which he/she is registered on SLI. Then he/she will open own mailbox, click on the temp URL (within the expiration date) and be redirected to a reset password page. He/she will then reset own password and log in afterwards with the new one.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Gherkin:&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Scenario: SLI hosted user asks for password reset&lt;/div&gt;  &lt;div&gt;Given I am &amp;lt;any&amp;gt; SLI hosted user&lt;/div&gt;  &lt;div&gt;And I have navigated to the SLI IDP page&lt;/div&gt;  &lt;div&gt;And I see Reset my password link&lt;/div&gt;  &lt;div&gt;And I click on it&lt;/div&gt;  &lt;div&gt;And I am presented a text field&lt;/div&gt;  &lt;div&gt;And I type the email I am registered with&lt;/div&gt;  &lt;div&gt;When I click on Submit button&lt;/div&gt;  &lt;div&gt;Then I get message that an email has been sent to me&lt;/div&gt;  &lt;div&gt;And an email with temporary (1day expiration) password reset url has been sent to me&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Scenario: SLI hosted user clicks on temp password reset URL and resets the password&lt;/div&gt;  &lt;div&gt;Given I am &amp;lt;any&amp;gt; SLI hosted user &lt;/div&gt;  &lt;div&gt;And I have received temp reset password email&lt;/div&gt;  &lt;div&gt;And I have clicked on the URL within the &amp;lt;expiration period&amp;gt;&lt;/div&gt;  &lt;div&gt;And I was redirected to a reset password IDP page&lt;/div&gt;  &lt;div&gt;And I have typed my new password into the new password text field&lt;/div&gt;  &lt;div&gt;And I have re-typed my new password into the confirm new password field&lt;/div&gt;  &lt;div&gt;When I click on the Submit button&lt;/div&gt;  &lt;div&gt;I get a message that my password has been reset&lt;/div&gt;  &lt;div&gt;And my password has been reset&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;Scenario: SLI hosted user clicks on temp password after the expiration period&lt;/div&gt;  &lt;div&gt;Given I am &amp;lt;any&amp;gt; SLI hosted user&lt;/div&gt;  &lt;div&gt;And I have received temp reset password email&lt;/div&gt;  &lt;div&gt;And the expiration period have passed&lt;/div&gt;  &lt;div&gt;When I click on the URL&lt;/div&gt;  &lt;/div&gt;  &lt;div&gt;Then I get a message (on a page) that the URL invalid/expired&lt;/div&gt;</Description>
+            <Discussion />
+            <FormattedID>US2121</FormattedID>
+            <LastUpdateDate>2012-07-18T14:25:15.636Z</LastUpdateDate>
+            <Name>Password Reset for SLI Hosted Users</Name>
+            <Notes />
+            <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/5539504316" refObjectName="Vijay Ummalaneni" type="User" />
+            <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/6429790214" refObjectName="Avengers (Eng-NC)" type="Project" />
+            <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6081700393" type="RevisionHistory" />
+            <Tags>
+               <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+               <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/6722737280" refObjectName="MH Alpha.1" type="Tag" />
+            </Tags>
+            <Attachments />
+            <AcceptedDate>2012-07-18T14:25:15.609Z</AcceptedDate>
+            <Blocked>false</Blocked>
+            <Children />
+            <DefectStatus>ALL_CLOSED</DefectStatus>
+            <Defects>
+               <Defect rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/defect/6512253257" refObjectName="Developers cannot change password" type="Defect" />
+            </Defects>
+            <InProgressDate>2012-07-03T18:20:32.726Z</InProgressDate>
+            <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429981" refObjectName="5.1" type="Iteration" />
+            <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514294110" refObjectName="Super Admin Management Tool" type="HierarchicalRequirement" />
+            <PlanEstimate>5.0</PlanEstimate>
+            <Predecessors />
+            <Rank>499999519744.000</Rank>
+            <Recycled>false</Recycled>
+            <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/6429790226" refObjectName="PI4" type="Release" />
+            <ScheduleState>Accepted</ScheduleState>
+            <Successors />
+            <TaskActualTotal>8.0</TaskActualTotal>
+            <TaskEstimateTotal>43.0</TaskEstimateTotal>
+            <TaskRemainingTotal>0.0</TaskRemainingTotal>
+            <TaskStatus>COMPLETED</TaskStatus>
+            <Tasks>
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972042450" refObjectName="CR" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972043336" refObjectName="AT" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972105824" refObjectName="Provide the forgot password link on the login page" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972040965" refObjectName="Add the password reset module" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972098741" refObjectName="Unit Tests" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972103426" refObjectName="Generate the secure url/email for changing password" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972039990" refObjectName="Verify the email existence during the password reset" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/6972104900" refObjectName="Allow adding new password on legitimate URL" type="Task" />
+               <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7102788026" refObjectName="unit test failed for change_password module" type="Task" />
+            </Tasks>
+            <TestCaseStatus>NONE</TestCaseStatus>
+            <TestCases />
+            <Component>Admin</Component>
+            <DeliveryPlanned>Alpha.0</DeliveryPlanned>
+            <NewScope>false</NewScope>
+            <ReleaseNote>true</ReleaseNote>
+            <ReleaseNoteDescription>When SLI hosted directory users forget their passwords, they must ask the SLC Operator (in an offline process) to reset their passwords. A feature will be added to the SLI Identity Provider&amp;nbsp;that allow the SLI hosted directory users to reset their passwords.</ReleaseNoteDescription>
+            <SCLegacyID />
+            <SCLegacyPersonas />
+            <SCLegacyProdIncrement />
+            <SCMustHave>false</SCMustHave>
+            <StrandDetails />
+         </HierarchicalRequirement>
+         <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6514069713" objectVersion="49" refObjectName="SAMT - Create, Edit, Delete Admin + UI" CreatedAt="May 25" type="HierarchicalRequirement">
+            <CreationDate>2012-05-25T23:16:50.978Z</CreationDate>
+            <ObjectID>6514069713</ObjectID>
+            <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+            <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+            <Changesets />
+            <Description>&lt;div&gt;I would like to have a tool that will allow management of 'super-admins'&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; Acceptance Criteria:    &lt;div&gt;An interface that will allow users with default SLI hosted admin roles (SLC Operator, SEA Super Administrator,&amp;nbsp;LEA Super Administrator) to CRUD super-admins&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;General business rules:&lt;/div&gt; &lt;div&gt; &lt;ul&gt; &lt;li&gt;There must be at least one SLC Operator at all times&lt;/li&gt; &lt;li&gt;If there is only one SEA Super Administrator for particular tenant, then it cannot be deleted&lt;/li&gt; &lt;li&gt;If there is only one LEA Super Administrator for particular LEA, then it cannot be deleted&lt;/li&gt; &lt;li&gt;If there is only one Realm Administrator for particular tenant, then it cannot be deleted&lt;/li&gt; &lt;li&gt;If there is only one Realm Administrator for particular LEA (multiple LEAs to do), then it cannot be deleted&lt;/li&gt; &lt;li&gt;If there is only one Ingestion User for particular tenant, then it cannot be deleted&lt;/li&gt; &lt;li&gt;If there is only one Ingestion User for particular LEA, then it cannot be deleted&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;div&gt;&lt;br class="Apple-interchange-newline" /&gt;&lt;/div&gt; &lt;div&gt; Wireframes and more business rules here (TO DO: Review wireframes with Mistique):&amp;nbsp; &lt;a href="https://thesli.onconfluence.com/display/sli/Super+Administrator+Management+Tool+Wireframes"&gt;https://thesli.onconfluence.com/display/sli/Super+Administrator+Management+Tool+Wireframes&lt;/a&gt;&amp;nbsp;&lt;br /&gt;    &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Demo Script:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Gherkin:&lt;/div&gt; &lt;/div&gt;</Description>
+            <Discussion />
+            <FormattedID>US2623</FormattedID>
+            <LastUpdateDate>2012-07-23T15:11:29.099Z</LastUpdateDate>
+            <Name>SAMT - Create, Edit, Delete Admin + UI</Name>
+            <Notes />
+            <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+            <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+            <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6514069714" type="RevisionHistory" />
+            <Tags />
+            <Attachments />
+            <Blocked>false</Blocked>
+            <Children>
+               <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6881626372" objectVersion="38" refObjectName="SAMT: API for Read for Admin accounts" CreatedAt="Jun 26" type="HierarchicalRequirement">
+                  <CreationDate>2012-06-26T16:25:04.163Z</CreationDate>
+                  <ObjectID>6881626372</ObjectID>
+                  <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                  <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                  <Changesets />
+                  <Description>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-03285638f{margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}&lt;/style&gt; AC:&lt;br /&gt;Implement the business logic for reading admin accounts using CUD API&lt;br /&gt;&lt;br /&gt;General business rules:&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; There must be at least one SLC Operator at all times&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one SEA Super Administrator for particular tenant, then it cannot be deleted&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one LEA Super Administrator for particular LEA, then it cannot be deleted&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular tenant, then it cannot be deleted&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular LEA (multiple LEAs to do), then it cannot be deleted&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular tenant, then it cannot be deleted&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular LEA, then it cannot be deleted&lt;br /&gt;&lt;br /&gt;For Sandbox:&lt;br /&gt;&lt;br /&gt;The need is for the tenant owner/ sandbox owner to create both admin accounts and app developer accounts.&lt;br /&gt;             &lt;ul&gt; &lt;li&gt;Today the developer only gets "App Developer" and "Ingestion User"   rights, we can update it the App Developer role can have an optional  permission to manage accounts. That will collapse the SEA/LEA permissions to create an account.&lt;/li&gt; &lt;/ul&gt; &lt;br /&gt;Additional information at: &lt;br /&gt;https://thesli.onconfluence.com/display/sli/Super+Administrator+Management+Tool+Wireframes&amp;nbsp;           &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Discussion Notes:&lt;/div&gt; &lt;div&gt;Decided to have granular permissions:&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;p class="rally-rte-class-03285638f"&gt;* right to add a new SLC Operator user&lt;/p&gt; &lt;p class="rally-rte-class-03285638f"&gt;* right to add a new SEA user&lt;/p&gt; &lt;p class="rally-rte-class-03285638f"&gt;* right to add a new LEA user&lt;/p&gt; &lt;p class="rally-rte-class-03285638f"&gt;* right to add a new Sandbox_Admin&lt;/p&gt; &lt;p class="rally-rte-class-03285638f"&gt;* right to add a new App_Developer&lt;/p&gt; &lt;p class="rally-rte-class-03285638f"&gt;* right to add a new Ingestion_Admin&lt;/p&gt; &lt;br /&gt;AT: Attached.           &lt;/div&gt;</Description>
+                  <Discussion />
+                  <FormattedID>US3076</FormattedID>
+                  <LastUpdateDate>2012-07-17T21:58:46.525Z</LastUpdateDate>
+                  <Name>SAMT: API for Read for Admin accounts</Name>
+                  <Notes>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-082a30d99{margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}.rally-rte-class-0af506b5{margin: 0px; }&lt;/style&gt; &lt;p class="rally-rte-class-082a30d99"&gt;Add new rights&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;* right to add a new SLC Operator user&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;* right to add a new SEA user&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;* right to add a new LEA user&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;*right to add a new Realm Admin&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;* right to add a new Sandbox_Admin&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;* right to add a new App_Developer&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;* right to add a new Ingestion_Admin&lt;/p&gt; &lt;p class="rally-rte-class-082a30d99"&gt;&lt;br /&gt;&lt;/p&gt; &lt;br /&gt;        &lt;p class="rally-rte-class-0af506b5"&gt;need to map these rights to roles (also need to consider roles have no aware of sandbox and production env):&lt;/p&gt; &lt;p class="rally-rte-class-0af506b5"&gt;*SLC Operator&lt;/p&gt; &lt;p class="rally-rte-class-0af506b5"&gt;*SEA Admin&lt;/p&gt; &lt;p class="rally-rte-class-0af506b5"&gt;*LEA Admin&lt;/p&gt; &lt;p class="rally-rte-class-0af506b5"&gt;*Sandbox_Admin(new one?)&lt;/p&gt; &lt;p class="rally-rte-class-0af506b5"&gt;&lt;br /&gt;&lt;/p&gt;</Notes>
+                  <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                  <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                  <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6881626373" type="RevisionHistory" />
+                  <Tags>
+                     <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+                  </Tags>
+                  <Attachments>
+                     <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6996538984" refObjectName="SAMT_Admin_CRUD.feature" type="Attachment" />
+                     <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7006459566" refObjectName="superAdminMgmt copy.pdf" type="Attachment" />
+                     <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7115779085" refObjectName="User_Role_Right.xlsx" type="Attachment" />
+                  </Attachments>
+                  <AcceptedDate>2012-07-17T21:58:46.449Z</AcceptedDate>
+                  <Blocked>false</Blocked>
+                  <Children />
+                  <DefectStatus>NONE</DefectStatus>
+                  <Defects />
+                  <InProgressDate>2012-07-09T13:41:29.432Z</InProgressDate>
+                  <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429987" refObjectName="5.1" type="Iteration" />
+                  <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6514069713" refObjectName="SAMT - Create, Edit, Delete Admin + UI" type="HierarchicalRequirement" />
+                  <PlanEstimate>8.0</PlanEstimate>
+                  <Predecessors />
+                  <Rank>499999499264.000</Rank>
+                  <Recycled>false</Recycled>
+                  <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                  <ScheduleState>Accepted</ScheduleState>
+                  <Successors />
+                  <TaskActualTotal>0.0</TaskActualTotal>
+                  <TaskEstimateTotal>24.0</TaskEstimateTotal>
+                  <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                  <TaskStatus>COMPLETED</TaskStatus>
+                  <Tasks>
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7053212903" refObjectName="add right verification and right to group mapping for user resource in api" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7019850293" refObjectName="create ldap service layer in api for access ldap server" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7076689944" refObjectName="create new rights and roles for SAMT" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7076688420" refObjectName="create userresource in api for reading admin accounts" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7152527908" refObjectName="merge branch US3076 back into master" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7156931455" refObjectName="code review" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7110084499" refObjectName="acceptance test for prod and sandbox" type="Task" />
+                  </Tasks>
+                  <TestCaseStatus>NONE</TestCaseStatus>
+                  <TestCases />
+                  <Component>Admin</Component>
+                  <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+                  <NewScope>false</NewScope>
+                  <ReleaseNote>false</ReleaseNote>
+                  <ReleaseNoteDescription />
+                  <SCLegacyID />
+                  <SCLegacyPersonas />
+                  <SCLegacyProdIncrement />
+                  <SCMustHave>true</SCMustHave>
+                  <StrandDetails />
+                  <StrandNumber>16-Admin</StrandNumber>
+               </HierarchicalRequirement>
+               <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6880856402" objectVersion="26" refObjectName="SAMT: UI for creating Admin Accounts - Production" CreatedAt="Jun 26" type="HierarchicalRequirement">
+                  <CreationDate>2012-06-26T15:28:57.917Z</CreationDate>
+                  <ObjectID>6880856402</ObjectID>
+                  <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                  <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                  <Changesets />
+                  <Description>&lt;style rallydeleteme="false" type="text/css"&gt;.rally-rte-class-0e59512b{border-collapse: collapse; font-family: arial, helvetica, sans-serif; font-size: 11px; }.rally-rte-class-0a821478e{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: baseline; border-collapse: collapse; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(255, 255, 255); border-style: initial; border-color: initial; width: 1205px; box-sizing: border-box; background-position: initial initial; background-repeat: initial initial; }.rally-rte-class-0852051a8{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: baseline; box-sizing: border-box; }.rally-rte-class-0145a804f{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 11px; font-family: inherit; vertical-align: top; box-sizing: border-box; }.rally-rte-class-0575b8fd8{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 4px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: top; text-align: left; box-sizing: border-box; }.rally-rte-class-0be4062b1{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: baseline; box-sizing: border-box; }.rally-rte-class-04f5a2c47{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 10px; padding-right: 0px; padding-bottom: 10px; padding-left: 40px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: baseline; box-sizing: border-box; list-style: inherit; }.rally-rte-class-06849e9a8{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: inherit; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: baseline; list-style-type: disc; list-style-position: initial; list-style-image: initial; box-sizing: border-box; }.rally-rte-class-08df4ec3f{margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: baseline; list-style-type: disc; list-style-position: initial; list-style-image: initial; box-sizing: border-box; }&lt;/style&gt; AC:&lt;br /&gt;&lt;br /&gt;         &lt;div&gt; &lt;span class="Apple-style-span rally-rte-class-0e59512b"&gt; &lt;table class="dt-tbl rally-rte-class-0a821478e"&gt; &lt;tbody class="rally-rte-class-0852051a8"&gt; &lt;tr class="rally-rte-class-0145a804f"&gt; &lt;td class="rally-rte-class-0575b8fd8"&gt; &lt;div class="noscript rally-rte-class-0be4062b1"&gt; &lt;ul id="x4-gen1960" class="rally-rte-class-04f5a2c47"&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;Includes interface for Account Creation Page and&amp;nbsp;Account Listing Page&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;When the user logs in (s)he is taken to the Account Listing Page with all accounts at the users level and below are listed.&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;When the user hovers over a row, then an Edit and Delete option are shown.&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;"Add User" and Edit takes the user to Account creation Page&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;For Edit the account creation is pre filled with existing information&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;Once account is created/edited the user is taken back to the listing page, and a success message is shown on top.&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;Search box will be add, made functional in a later story - not in scope for this story&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;Ed-Org column is filled only if the user has an Ed-Org associated&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;User should not be able to delete himself&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;User should not be able to change his role.&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-06849e9a8"&gt;User is not able to log in unless he has created a password for the account&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-08df4ec3f"&gt;&lt;b&gt;&lt;u&gt;Until later stories are played, the Tenant and EdOrg are Text boxes not drop-down&lt;/u&gt;&lt;/b&gt;&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-08df4ec3f"&gt;Tenant &amp;nbsp;textbox is only visible to SLC operators and applicable if the new user role is not a SLC operator&lt;/li&gt; &lt;li id="x4-gen1970" class="rally-rte-class-08df4ec3f"&gt;Interfaces with the SAMT API&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;/td&gt; &lt;/tr&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;/span&gt; &lt;br /&gt;* Must be accessible to users with admin rights from portal.&lt;br /&gt;* Must be called Admin Account Management Tool on Production&lt;br /&gt;* Interacts with the API created in US3070&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Wireframes: attached&lt;br /&gt;&lt;br /&gt;AT: attached      &lt;/div&gt;</Description>
+                  <Discussion />
+                  <FormattedID>US3071</FormattedID>
+                  <LastUpdateDate>2012-07-19T18:11:04.681Z</LastUpdateDate>
+                  <Name>SAMT: UI for creating Admin Accounts - Production</Name>
+                  <Notes />
+                  <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                  <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                  <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6880856403" type="RevisionHistory" />
+                  <Tags>
+                     <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+                  </Tags>
+                  <Attachments>
+                     <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176160355" refObjectName="superAdminMgmt_latest_2012_07_17.pdf" type="Attachment" />
+                     <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176679780" refObjectName="SAMT_Account_Management_Interface.feature" type="Attachment" />
+                  </Attachments>
+                  <Blocked>false</Blocked>
+                  <Children />
+                  <DefectStatus>NONE</DefectStatus>
+                  <Defects />
+                  <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501385" refObjectName="5.2" type="Iteration" />
+                  <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6514069713" refObjectName="SAMT - Create, Edit, Delete Admin + UI" type="HierarchicalRequirement" />
+                  <PlanEstimate>5.0</PlanEstimate>
+                  <Predecessors />
+                  <Rank>499999507968.000</Rank>
+                  <Recycled>false</Recycled>
+                  <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                  <ScheduleState>Defined</ScheduleState>
+                  <Successors />
+                  <TaskActualTotal>0.0</TaskActualTotal>
+                  <TaskEstimateTotal>0.0</TaskEstimateTotal>
+                  <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                  <TaskStatus>DEFINED</TaskStatus>
+                  <Tasks>
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205864198" refObjectName="refactor user active resource in rail for production env" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205865598" refObjectName="refactor controller for production env" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205907178" refObjectName="refactor create/edit view page for production env" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205909502" refObjectName="create gherkin for SAMT CRUD test (production)" type="Task" />
+                  </Tasks>
+                  <TestCaseStatus>NONE</TestCaseStatus>
+                  <TestCases />
+                  <Component>Admin</Component>
+                  <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+                  <NewScope>false</NewScope>
+                  <ReleaseNote>false</ReleaseNote>
+                  <ReleaseNoteDescription />
+                  <SCLegacyID />
+                  <SCLegacyPersonas />
+                  <SCLegacyProdIncrement />
+                  <SCMustHave>true</SCMustHave>
+                  <StrandDetails />
+                  <StrandNumber>16-Admin</StrandNumber>
+               </HierarchicalRequirement>
+               <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7191926346" objectVersion="10" refObjectName="SAMT: UI for creating Admin Accounts - Sandbox" CreatedAt="Jul 18" type="HierarchicalRequirement">
+                  <CreationDate>2012-07-18T20:18:31.488Z</CreationDate>
+                  <ObjectID>7191926346</ObjectID>
+                  <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                  <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                  <Changesets />
+                  <Description>AC:&lt;br /&gt;&lt;br&gt;       &lt;ul id="x4-gen1960"&gt; &lt;li id="x4-gen1970"&gt;Includes interface for Account Creation Page and&amp;nbsp;Account Listing Page&lt;/li&gt; &lt;li id="x4-gen1970"&gt;When the user logs in (s)he is taken to the Account Listing Page with all accounts at the users level and below are listed.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;When the user hovers over a row, then an Edit and Delete option are shown.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;"Add User" and Edit takes the user to Account creation Page&lt;/li&gt; &lt;li id="x4-gen1970"&gt;For Edit the account creation is pre filled with existing information&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Once account is created/edited the user is taken back to the listing page, and a success message is shown on top.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Search box will be add, made functional in a later story - not in scope for this story&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Ed-Org column is filled only if the user has an Ed-Org associated&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to delete himself&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to change his role.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to log into the account unless the he has created a user has created a password and accepted the EULA.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Only unique accounts are created. Otherwise the same error as User Registration is shown&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Interfaces with the API created for SAMT resource&lt;/li&gt; &lt;/ul&gt; &lt;br /&gt;* Must be accessible to users with admin rights from portal.&lt;br /&gt;* Must be called "Sandbox Account Management" on Sandbox      &lt;div&gt;* Interacts with the API created in US3070&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Wireframes: &amp;nbsp;Page 2-3 in attachement&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;AT: &amp;nbsp;attached&lt;/div&gt;</Description>
+                  <Discussion />
+                  <FormattedID>US3349</FormattedID>
+                  <LastUpdateDate>2012-07-23T15:11:29.097Z</LastUpdateDate>
+                  <Name>SAMT: UI for creating Admin Accounts - Sandbox</Name>
+                  <Notes />
+                  <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                  <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                  <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7191926347" type="RevisionHistory" />
+                  <Tags />
+                  <Attachments />
+                  <Blocked>false</Blocked>
+                  <Children>
+                     <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7191926532" objectVersion="21" refObjectName="SAMT: List and Delete UI for creating Admin Accounts - Sandbox" CreatedAt="Jul 18" type="HierarchicalRequirement">
+                        <CreationDate>2012-07-18T20:18:32.714Z</CreationDate>
+                        <ObjectID>7191926532</ObjectID>
+                        <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                        <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                        <Changesets />
+                        <Description>AC:&lt;br /&gt;&lt;br&gt;       &lt;ul id="x4-gen1960"&gt; &lt;li id="x4-gen1970"&gt;Includes interface for Account Creation Page and&amp;nbsp;Account Listing Page&lt;/li&gt; &lt;li id="x4-gen1970"&gt;When the user logs in (s)he is taken to the Account Listing Page with all accounts at the users level and below are listed.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;When the user hovers over a row, then an Edit and Delete option are shown.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;"Add User" and Edit takes the user to Account creation Page&lt;/li&gt; &lt;li id="x4-gen1970"&gt;For Edit the account creation is pre filled with existing information&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Once account is created/edited the user is taken back to the listing page, and a success message is shown on top.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Search box will be add, made functional in a later story - not in scope for this story&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Ed-Org column is filled only if the user has an Ed-Org associated&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to delete himself&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to change his role.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to log into the account unless the he has created a user has created a password and accepted the EULA.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Only unique accounts are created. Otherwise the same error as User Registration is shown&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Interfaces with the API created for SAMT resource&lt;/li&gt; &lt;/ul&gt; &lt;br /&gt;* Must be accessible to users with admin rights from portal.&lt;br /&gt;* Must be called "Sandbox Account Management" on Sandbox      &lt;div&gt;* Interacts with the API created in US3070&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Wireframes: &amp;nbsp;Page 2-3 in attachement&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;AT: &amp;nbsp;attached&lt;/div&gt;</Description>
+                        <Discussion />
+                        <FormattedID>US3350</FormattedID>
+                        <LastUpdateDate>2012-07-23T15:11:29.100Z</LastUpdateDate>
+                        <Name>SAMT: List and Delete UI for creating Admin Accounts - Sandbox</Name>
+                        <Notes />
+                        <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                        <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                        <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7191926533" type="RevisionHistory" />
+                        <Tags />
+                        <Attachments />
+                        <Blocked>false</Blocked>
+                        <Children />
+                        <DefectStatus>NONE</DefectStatus>
+                        <Defects />
+                        <InProgressDate>2012-07-19T19:10:55.671Z</InProgressDate>
+                        <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501385" refObjectName="5.2" type="Iteration" />
+                        <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7191926346" refObjectName="SAMT: UI for creating Admin Accounts - Sandbox" type="HierarchicalRequirement" />
+                        <PlanEstimate>5.0</PlanEstimate>
+                        <Predecessors />
+                        <Rank>499999507456.000</Rank>
+                        <Recycled>false</Recycled>
+                        <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                        <ScheduleState>In-Progress</ScheduleState>
+                        <Successors />
+                        <TaskActualTotal>0.0</TaskActualTotal>
+                        <TaskEstimateTotal>4.5</TaskEstimateTotal>
+                        <TaskRemainingTotal>2.0</TaskRemainingTotal>
+                        <TaskStatus>IN_PROGRESS</TaskStatus>
+                        <Tasks>
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205150695" refObjectName="add rounting url to controller" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205221283" refObjectName="get list of existing edorgs in tenant and add to user model" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205225743" refObjectName="implement stepdef for list and delete gherkin file" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205219884" refObjectName="create user active resource in rails (model)" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205224625" refObjectName="create gherkin file for list and delete acceptance test" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205223056" refObjectName="create view page (erb) for list table and pop up for delete" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205227655" refObjectName="refactor registration code to add sandbox admin role to registered new user (sandbox)" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205218704" refObjectName="create controller with read and delete and access security restriction" type="Task" />
+                        </Tasks>
+                        <TestCaseStatus>NONE</TestCaseStatus>
+                        <TestCases />
+                        <Component>Admin</Component>
+                        <NewScope>false</NewScope>
+                        <ReleaseNote>false</ReleaseNote>
+                        <ReleaseNoteDescription />
+                        <SCLegacyID />
+                        <SCLegacyPersonas />
+                        <SCLegacyProdIncrement />
+                        <SCMustHave>false</SCMustHave>
+                        <StrandDetails />
+                        <StrandNumber>16-Admin</StrandNumber>
+                     </HierarchicalRequirement>
+                     <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7071810321" objectVersion="23" refObjectName="SAMT: Edit/Create UI for creating Admin Accounts - Sandbox" CreatedAt="Jul 10" type="HierarchicalRequirement">
+                        <CreationDate>2012-07-10T19:27:10.319Z</CreationDate>
+                        <ObjectID>7071810321</ObjectID>
+                        <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                        <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                        <Changesets />
+                        <Description>AC:&lt;br /&gt;&lt;br&gt;       &lt;ul id="x4-gen1960"&gt; &lt;li id="x4-gen1970"&gt;Includes interface for Account Creation Page and&amp;nbsp;Account Listing Page&lt;/li&gt; &lt;li id="x4-gen1970"&gt;When the user logs in (s)he is taken to the Account Listing Page with all accounts at the users level and below are listed.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;When the user hovers over a row, then an Edit and Delete option are shown.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;"Add User" and Edit takes the user to Account creation Page&lt;/li&gt; &lt;li id="x4-gen1970"&gt;For Edit the account creation is pre filled with existing information&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Once account is created/edited the user is taken back to the listing page, and a success message is shown on top.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Search box will be add, made functional in a later story - not in scope for this story&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Ed-Org column is filled only if the user has an Ed-Org associated&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to delete himself&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to change his role.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;User should not be able to log into the account unless the he has created a user has created a password and accepted the EULA.&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Only unique accounts are created. Otherwise the same error as User Registration is shown&lt;/li&gt; &lt;li id="x4-gen1970"&gt;Interfaces with the API created for SAMT resource&lt;/li&gt; &lt;/ul&gt; &lt;br /&gt;* Must be accessible to users with admin rights from portal.&lt;br /&gt;* Must be called "Sandbox Account Management" on Sandbox      &lt;div&gt;* Interacts with the API created in US3070&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Wireframes: &amp;nbsp;Page 2-3 in attachement&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;AT: &amp;nbsp;attached&lt;/div&gt;</Description>
+                        <Discussion />
+                        <FormattedID>US3274</FormattedID>
+                        <LastUpdateDate>2012-07-19T18:06:28.558Z</LastUpdateDate>
+                        <Name>SAMT: Edit/Create UI for creating Admin Accounts - Sandbox</Name>
+                        <Notes />
+                        <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                        <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                        <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7071810322" type="RevisionHistory" />
+                        <Tags />
+                        <Attachments>
+                           <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176159416" refObjectName="superAdminMgmt_latest_2012_07_17.pdf" type="Attachment" />
+                           <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176969773" refObjectName="Sandbox_Account_Management_Interface.feature" type="Attachment" />
+                        </Attachments>
+                        <Blocked>false</Blocked>
+                        <Children />
+                        <DefectStatus>NONE</DefectStatus>
+                        <Defects />
+                        <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501385" refObjectName="5.2" type="Iteration" />
+                        <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7191926346" refObjectName="SAMT: UI for creating Admin Accounts - Sandbox" type="HierarchicalRequirement" />
+                        <PlanEstimate>8.0</PlanEstimate>
+                        <Predecessors />
+                        <Rank>499999507712.000</Rank>
+                        <Recycled>false</Recycled>
+                        <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                        <ScheduleState>Defined</ScheduleState>
+                        <Successors />
+                        <TaskActualTotal>0.0</TaskActualTotal>
+                        <TaskEstimateTotal>0.0</TaskEstimateTotal>
+                        <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                        <TaskStatus>DEFINED</TaskStatus>
+                        <Tasks>
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205789211" refObjectName="create view page(erb) for add and edit user" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205858816" refObjectName="create gherkin file for  create and edit(sandbox)" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205790466" refObjectName="update controller to do create and edit user" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205793292" refObjectName="add error handling and validations to create and edit user" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7205859487" refObjectName="implement stepdef for create and edit accepantance test" type="Task" />
+                        </Tasks>
+                        <TestCaseStatus>NONE</TestCaseStatus>
+                        <TestCases />
+                        <Component>Admin</Component>
+                        <NewScope>false</NewScope>
+                        <ReleaseNote>false</ReleaseNote>
+                        <ReleaseNoteDescription />
+                        <SCLegacyID />
+                        <SCLegacyPersonas />
+                        <SCLegacyProdIncrement />
+                        <SCMustHave>false</SCMustHave>
+                        <StrandDetails />
+                        <StrandNumber>16-Admin</StrandNumber>
+                     </HierarchicalRequirement>
+                  </Children>
+                  <Defects />
+                  <InProgressDate>2012-07-19T19:10:55.671Z</InProgressDate>
+                  <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6514069713" refObjectName="SAMT - Create, Edit, Delete Admin + UI" type="HierarchicalRequirement" />
+                  <PlanEstimate>13.0</PlanEstimate>
+                  <Predecessors />
+                  <Rank>499999507840.000</Rank>
+                  <Recycled>false</Recycled>
+                  <ScheduleState>In-Progress</ScheduleState>
+                  <Successors />
+                  <TaskActualTotal>0.0</TaskActualTotal>
+                  <TaskEstimateTotal>4.5</TaskEstimateTotal>
+                  <TaskRemainingTotal>2.0</TaskRemainingTotal>
+                  <Tasks />
+                  <TestCases />
+                  <Component>Admin</Component>
+                  <NewScope>false</NewScope>
+                  <ReleaseNote>false</ReleaseNote>
+                  <ReleaseNoteDescription />
+                  <SCLegacyID />
+                  <SCLegacyPersonas />
+                  <SCLegacyProdIncrement />
+                  <SCMustHave>false</SCMustHave>
+                  <StrandDetails />
+                  <StrandNumber>16-Admin</StrandNumber>
+               </HierarchicalRequirement>
+               <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7202310631" objectVersion="5" refObjectName="SAMT: API for Create, Update, Delete for Admin accounts" CreatedAt="Jul 19" type="HierarchicalRequirement">
+                  <CreationDate>2012-07-19T14:08:20.550Z</CreationDate>
+                  <ObjectID>7202310631</ObjectID>
+                  <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                  <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                  <Changesets />
+                  <Description>AC:&lt;br /&gt;Implement the business logic for creating/update/delete of admin accounts using CRUD API&lt;br&gt;&lt;br&gt;General business rules:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; There must be at least one SLC Operator at all times&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one SEA Super Administrator for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one LEA Super Administrator for particular LEA, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular LEA (multiple LEAs to do), then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular LEA, then it cannot be deleted&lt;br&gt;&lt;br&gt;For Sandbox:&lt;br&gt;&lt;br&gt;The need is for the tenant owner/ sandbox owner to create both admin accounts and app developer accounts.&lt;br&gt;  &lt;ul&gt;  &lt;li&gt;Today the developer only gets "App Developer" and "Ingestion User"  rights, we can update it the App Developer role can have an optional permission to manage accounts. That will collapse the SEA/LEA permissions to create an account.&lt;br /&gt;&lt;/li&gt;  &lt;/ul&gt;  &lt;br /&gt;Additional information at: &lt;br /&gt;https://thesli.onconfluence.com/display/sli/Super+Administrator+Management+Tool+Wireframes &lt;br /&gt;&lt;br /&gt;AT:</Description>
+                  <Discussion />
+                  <FormattedID>US3354</FormattedID>
+                  <LastUpdateDate>2012-07-19T14:08:52.658Z</LastUpdateDate>
+                  <Name>SAMT: API for Create, Update, Delete for Admin accounts</Name>
+                  <Notes />
+                  <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                  <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                  <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7202310632" type="RevisionHistory" />
+                  <Tags>
+                     <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+                  </Tags>
+                  <Attachments />
+                  <Blocked>false</Blocked>
+                  <Children>
+                     <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6880817064" objectVersion="38" refObjectName="[Continued] SAMT: API for Create, Update, Delete for Admin accounts" CreatedAt="Jun 26" type="HierarchicalRequirement">
+                        <CreationDate>2012-06-26T15:25:23.028Z</CreationDate>
+                        <ObjectID>6880817064</ObjectID>
+                        <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                        <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                        <Changesets />
+                        <Description>AC:&lt;br /&gt;Implement the business logic for creating/update/delete of admin accounts using CRUD API&lt;br&gt;&lt;br&gt;General business rules:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; There must be at least one SLC Operator at all times&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one SEA Super Administrator for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one LEA Super Administrator for particular LEA, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular LEA (multiple LEAs to do), then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular LEA, then it cannot be deleted&lt;br&gt;&lt;br&gt;For Sandbox:&lt;br&gt;&lt;br&gt;The need is for the tenant owner/ sandbox owner to create both admin accounts and app developer accounts.&lt;br&gt;  &lt;ul&gt;  &lt;li&gt;Today the developer only gets "App Developer" and "Ingestion User"  rights, we can update it the App Developer role can have an optional permission to manage accounts. That will collapse the SEA/LEA permissions to create an account.&lt;br /&gt;&lt;/li&gt;  &lt;/ul&gt;  &lt;br /&gt;Additional information at: &lt;br /&gt;https://thesli.onconfluence.com/display/sli/Super+Administrator+Management+Tool+Wireframes &lt;br /&gt;&lt;br /&gt;AT:</Description>
+                        <Discussion />
+                        <FormattedID>US3070</FormattedID>
+                        <LastUpdateDate>2012-07-19T14:08:52.657Z</LastUpdateDate>
+                        <Name>[Continued] SAMT: API for Create, Update, Delete for Admin accounts</Name>
+                        <Notes />
+                        <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                        <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                        <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6880817065" type="RevisionHistory" />
+                        <Tags>
+                           <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+                        </Tags>
+                        <Attachments>
+                           <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/6996539759" refObjectName="SAMT_Admin_CRUD.feature" type="Attachment" />
+                           <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7006460480" refObjectName="superAdminMgmt copy.pdf" type="Attachment" />
+                        </Attachments>
+                        <Blocked>false</Blocked>
+                        <Children />
+                        <DefectStatus>NONE</DefectStatus>
+                        <Defects />
+                        <InProgressDate>2012-07-19T14:08:25.230Z</InProgressDate>
+                        <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501385" refObjectName="5.2" type="Iteration" />
+                        <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7202310631" refObjectName="SAMT: API for Create, Update, Delete for Admin accounts" type="HierarchicalRequirement" />
+                        <PlanEstimate>1.0</PlanEstimate>
+                        <Predecessors />
+                        <Rank>499999499520.000</Rank>
+                        <Recycled>false</Recycled>
+                        <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                        <ScheduleState>In-Progress</ScheduleState>
+                        <Successors />
+                        <TaskActualTotal>0.0</TaskActualTotal>
+                        <TaskEstimateTotal>0.0</TaskEstimateTotal>
+                        <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                        <TaskStatus>DEFINED</TaskStatus>
+                        <Tasks>
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7202308501" refObjectName="Works in RC" type="Task" />
+                        </Tasks>
+                        <TestCaseStatus>NONE</TestCaseStatus>
+                        <TestCases />
+                        <Component>Admin</Component>
+                        <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+                        <NewScope>false</NewScope>
+                        <ReleaseNote>false</ReleaseNote>
+                        <ReleaseNoteDescription />
+                        <SCLegacyID />
+                        <SCLegacyPersonas />
+                        <SCLegacyProdIncrement />
+                        <SCMustHave>true</SCMustHave>
+                        <StrandDetails />
+                     </HierarchicalRequirement>
+                     <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7202311027" objectVersion="6" refObjectName="SAMT: API for Create, Update, Delete for Admin accounts" CreatedAt="Jul 19" type="HierarchicalRequirement">
+                        <CreationDate>2012-07-19T14:08:22.573Z</CreationDate>
+                        <ObjectID>7202311027</ObjectID>
+                        <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                        <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                        <Changesets />
+                        <Description>AC:&lt;br /&gt;Implement the business logic for creating/update/delete of admin accounts using CRUD API&lt;br&gt;&lt;br&gt;General business rules:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; There must be at least one SLC Operator at all times&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one SEA Super Administrator for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one LEA Super Administrator for particular LEA, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Realm Administrator for particular LEA (multiple LEAs to do), then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular tenant, then it cannot be deleted&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; •&amp;nbsp;&amp;nbsp;&amp;nbsp; If there is only one Ingestion User for particular LEA, then it cannot be deleted&lt;br&gt;&lt;br&gt;For Sandbox:&lt;br&gt;&lt;br&gt;The need is for the tenant owner/ sandbox owner to create both admin accounts and app developer accounts.&lt;br&gt;  &lt;ul&gt;  &lt;li&gt;Today the developer only gets "App Developer" and "Ingestion User"  rights, we can update it the App Developer role can have an optional permission to manage accounts. That will collapse the SEA/LEA permissions to create an account.&lt;br /&gt;&lt;/li&gt;  &lt;/ul&gt;  &lt;br /&gt;Additional information at: &lt;br /&gt;https://thesli.onconfluence.com/display/sli/Super+Administrator+Management+Tool+Wireframes &lt;br /&gt;&lt;br /&gt;AT:</Description>
+                        <Discussion />
+                        <FormattedID>US3355</FormattedID>
+                        <LastUpdateDate>2012-07-19T14:08:24.433Z</LastUpdateDate>
+                        <Name>SAMT: API for Create, Update, Delete for Admin accounts</Name>
+                        <Notes />
+                        <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                        <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                        <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7202311028" type="RevisionHistory" />
+                        <Tags>
+                           <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+                        </Tags>
+                        <Attachments />
+                        <Blocked>false</Blocked>
+                        <Children />
+                        <DefectStatus>NONE</DefectStatus>
+                        <Defects />
+                        <InProgressDate>2012-07-19T14:08:22.647Z</InProgressDate>
+                        <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429987" refObjectName="5.1" type="Iteration" />
+                        <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7202310631" refObjectName="SAMT: API for Create, Update, Delete for Admin accounts" type="HierarchicalRequirement" />
+                        <PlanEstimate>5.0</PlanEstimate>
+                        <Predecessors />
+                        <Rank>499999499584.000</Rank>
+                        <Recycled>false</Recycled>
+                        <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                        <ScheduleState>Completed</ScheduleState>
+                        <Successors />
+                        <TaskActualTotal>0.0</TaskActualTotal>
+                        <TaskEstimateTotal>10.0</TaskEstimateTotal>
+                        <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                        <TaskStatus>COMPLETED</TaskStatus>
+                        <Tasks>
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7175788167" refObjectName="code review" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7110085800" refObjectName="add CUD to user resource in api" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7157988269" refObjectName="Delete acceptance test for prod and sandbox" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7110086063" refObjectName="CREATE AND UPDATE acceptance test for prod and sandbox" type="Task" />
+                           <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7110085146" refObjectName="add CUD to ldap service in api" type="Task" />
+                        </Tasks>
+                        <TestCaseStatus>NONE</TestCaseStatus>
+                        <TestCases />
+                        <Component>Admin</Component>
+                        <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+                        <NewScope>false</NewScope>
+                        <ReleaseNote>false</ReleaseNote>
+                        <ReleaseNoteDescription />
+                        <SCLegacyID />
+                        <SCLegacyPersonas />
+                        <SCLegacyProdIncrement />
+                        <SCMustHave>true</SCMustHave>
+                        <StrandDetails />
+                     </HierarchicalRequirement>
+                  </Children>
+                  <Defects />
+                  <InProgressDate>2012-07-19T14:08:22.647Z</InProgressDate>
+                  <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6514069713" refObjectName="SAMT - Create, Edit, Delete Admin + UI" type="HierarchicalRequirement" />
+                  <PlanEstimate>6.0</PlanEstimate>
+                  <Predecessors />
+                  <Rank>499999499648.000</Rank>
+                  <Recycled>false</Recycled>
+                  <ScheduleState>In-Progress</ScheduleState>
+                  <Successors />
+                  <TaskActualTotal>0.0</TaskActualTotal>
+                  <TaskEstimateTotal>10.0</TaskEstimateTotal>
+                  <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                  <Tasks />
+                  <TestCases />
+                  <Component>Admin</Component>
+                  <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+                  <NewScope>false</NewScope>
+                  <ReleaseNote>false</ReleaseNote>
+                  <ReleaseNoteDescription />
+                  <SCLegacyID />
+                  <SCLegacyPersonas />
+                  <SCLegacyProdIncrement />
+                  <SCMustHave>true</SCMustHave>
+                  <StrandDetails />
+               </HierarchicalRequirement>
+               <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7052543326" objectVersion="12" refObjectName="SAMT: As a developer I am asked to accept terms-of-use when I set my password for the first time, if I haven't accepted them before" CreatedAt="Jul 9" type="HierarchicalRequirement">
+                  <CreationDate>2012-07-09T16:38:29.496Z</CreationDate>
+                  <ObjectID>7052543326</ObjectID>
+                  <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                  <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                  <Changesets />
+                  <Description>Developers whose accounts are created via the SAMT interface need to accept terms-of-use for sandbox.    &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;AC:&lt;/div&gt; &lt;div&gt;Sandbox:&lt;/div&gt; &lt;div&gt;* Sandbox user accounts created through the SAMT tools are not in "active" until TOU have been accepted and a password set&lt;/div&gt; &lt;div&gt;* If an account is not in "active" state then a check box stating TOU acceptance is displayed when the user is forced to change password.&lt;/div&gt; &lt;div&gt;* The user is not accepted to submit a password until they accept the TOU&amp;nbsp;&lt;/div&gt; &lt;div&gt;* Once the user changes password, their new password and their acceptance is recorded&lt;/div&gt; &lt;div&gt;* The checkbox is not displayed on later screens to change password&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Production:&lt;/div&gt; &lt;div&gt; &lt;div&gt;* Admin&amp;nbsp;accounts created through the SAMT tools are not in "active" until a password is set&lt;/div&gt; &lt;div&gt;* If an account is not in "active" user is forced to change password&lt;/div&gt; &lt;div&gt;* Once the user changes password, their new password and their acceptance is recorded&lt;/div&gt; &lt;div&gt;* The checkbox is not displayed on later screens to change password&lt;/div&gt; &lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Wireframes: Page 6, 11&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;AT:&lt;/div&gt;</Description>
+                  <Discussion />
+                  <FormattedID>US3259</FormattedID>
+                  <LastUpdateDate>2012-07-18T20:52:25.231Z</LastUpdateDate>
+                  <Name>SAMT: As a developer I am asked to accept terms-of-use when I set my password for the first time, if I haven't accepted them before</Name>
+                  <Notes />
+                  <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                  <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                  <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7052543327" type="RevisionHistory" />
+                  <Tags />
+                  <Attachments>
+                     <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7161203904" refObjectName="Sandbox_Production_Password_Change.feature" type="Attachment" />
+                     <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176970931" refObjectName="superAdminMgmt_latest_2012_07_17.pdf" type="Attachment" />
+                  </Attachments>
+                  <Blocked>false</Blocked>
+                  <Children />
+                  <DefectStatus>NONE</DefectStatus>
+                  <Defects />
+                  <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475502460" refObjectName="5.3" type="Iteration" />
+                  <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6514069713" refObjectName="SAMT - Create, Edit, Delete Admin + UI" type="HierarchicalRequirement" />
+                  <PlanEstimate>5.0</PlanEstimate>
+                  <Predecessors />
+                  <Rank>499999525600.000</Rank>
+                  <Recycled>false</Recycled>
+                  <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                  <ScheduleState>Backlog</ScheduleState>
+                  <Successors />
+                  <TaskActualTotal>0.0</TaskActualTotal>
+                  <TaskEstimateTotal>0.0</TaskEstimateTotal>
+                  <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                  <TaskStatus>NONE</TaskStatus>
+                  <Tasks />
+                  <TestCaseStatus>NONE</TestCaseStatus>
+                  <TestCases />
+                  <Component>Admin</Component>
+                  <NewScope>false</NewScope>
+                  <ReleaseNote>false</ReleaseNote>
+                  <ReleaseNoteDescription />
+                  <SCLegacyID />
+                  <SCLegacyPersonas />
+                  <SCLegacyProdIncrement />
+                  <SCMustHave>false</SCMustHave>
+                  <StrandDetails />
+                  <StrandNumber>16-Admin</StrandNumber>
+               </HierarchicalRequirement>
+            </Children>
+            <Defects />
+            <InProgressDate>2012-07-09T13:41:29.432Z</InProgressDate>
+            <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514294110" refObjectName="Super Admin Management Tool" type="HierarchicalRequirement" />
+            <PlanEstimate>37.0</PlanEstimate>
+            <Predecessors />
+            <Rank>499999587072.000</Rank>
+            <Recycled>false</Recycled>
+            <ScheduleState>In-Progress</ScheduleState>
+            <Successors />
+            <TaskActualTotal>0.0</TaskActualTotal>
+            <TaskEstimateTotal>38.5</TaskEstimateTotal>
+            <TaskRemainingTotal>2.0</TaskRemainingTotal>
+            <Tasks />
+            <TestCases />
+            <Component>Admin</Component>
+            <DeliveryPlanned>Alpha.1</DeliveryPlanned>
+            <NewScope>false</NewScope>
+            <ReleaseNote>false</ReleaseNote>
+            <ReleaseNoteDescription />
+            <SCLegacyID />
+            <SCLegacyPersonas />
+            <SCLegacyProdIncrement />
+            <SCMustHave>false</SCMustHave>
+            <StrandDetails />
+            <StrandNumber>16-Admin</StrandNumber>
+         </HierarchicalRequirement>
+         <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6499348430" objectVersion="17" refObjectName="SAMT - Notifying Created Hosted Admins and developers on sandbox" CreatedAt="May 24" type="HierarchicalRequirement">
+            <CreationDate>2012-05-24T19:59:05.629Z</CreationDate>
+            <ObjectID>6499348430</ObjectID>
+            <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+            <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+            <Changesets />
+            <Description>I would like to notify the SEA/LEA super admins when their accounts are being created. (on production)&lt;br /&gt;I would like to notify the developers added to sandbox tenancy that their account has been created (on sandbox)&lt;br&gt;    &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Acceptance Criteria:&lt;/div&gt;  &lt;div&gt;Link to portal&lt;/div&gt;  &lt;div&gt;What role has been assigned to them&lt;/div&gt;  The account initially is in the disabled state. The email contains a link that points to the password reset module.&lt;br /&gt;       &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Please find the notification messages here:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Notifications"&gt;https://thesli.onconfluence.com/display/sli/SLI+Notifications&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;Workflow: Look at attachment to see when notifications &amp;nbsp;are triggered&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Email Contents: See attached&lt;/div&gt;</Description>
+            <Discussion />
+            <FormattedID>US2605</FormattedID>
+            <LastUpdateDate>2012-07-18T20:52:34.814Z</LastUpdateDate>
+            <Name>SAMT - Notifying Created Hosted Admins and developers on sandbox</Name>
+            <Notes />
+            <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+            <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+            <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6499348431" type="RevisionHistory" />
+            <Tags />
+            <Attachments>
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176162369" refObjectName="superAdminMgmt_latest_2012_07_17.pdf" type="Attachment" />
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176231230" refObjectName="SAMT_Sandbox_Welcome.rtf" type="Attachment" />
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176231358" refObjectName="SAMT_Production_Welcome.rtf" type="Attachment" />
+               <Attachment rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/attachment/7176231746" refObjectName="SAMT_Prod_Sandbox_Verify.rtf" type="Attachment" />
+            </Attachments>
+            <Blocked>false</Blocked>
+            <Children />
+            <DefectStatus>NONE</DefectStatus>
+            <Defects />
+            <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475502460" refObjectName="5.3" type="Iteration" />
+            <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514294110" refObjectName="Super Admin Management Tool" type="HierarchicalRequirement" />
+            <Predecessors />
+            <Rank>499999525630.000</Rank>
+            <Recycled>false</Recycled>
+            <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+            <ScheduleState>Backlog</ScheduleState>
+            <Successors />
+            <TaskActualTotal>0.0</TaskActualTotal>
+            <TaskEstimateTotal>0.0</TaskEstimateTotal>
+            <TaskRemainingTotal>0.0</TaskRemainingTotal>
+            <TaskStatus>NONE</TaskStatus>
+            <Tasks />
+            <TestCaseStatus>NONE</TestCaseStatus>
+            <TestCases />
+            <Component>Admin</Component>
+            <DeliveryPlanned>Alpha.2</DeliveryPlanned>
+            <NewScope>false</NewScope>
+            <ReleaseNote>false</ReleaseNote>
+            <ReleaseNoteDescription />
+            <SCLegacyID />
+            <SCLegacyPersonas />
+            <SCLegacyProdIncrement />
+            <SCMustHave>false</SCMustHave>
+            <StrandDetails />
+            <StrandNumber>11-AuthPerm</StrandNumber>
+         </HierarchicalRequirement>
+         <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7151976694" objectVersion="6" refObjectName="SAMT - Page Authorization Enforcement" CreatedAt="Jul 16" type="HierarchicalRequirement">
+            <CreationDate>2012-07-16T13:40:46.264Z</CreationDate>
+            <ObjectID>7151976694</ObjectID>
+            <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+            <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+            <Changesets />
+            <Description>As a SLC Operator or a tenant 'super-admin' I would like to be able to access the Super Account Management Tool.  &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Acceptance Criteria:&lt;/b&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;ul&gt; &lt;li&gt;A right that will be assigned to the SLC Operator, SEA Super Administrator and LEA Super Administrator that will allow them to access the Super Administrator Management Tool. This right should be assigned &lt;b&gt;only &lt;/b&gt;to those roles.&lt;/li&gt; &lt;li&gt;Appropriate update of the api/rest/userapps&amp;nbsp;&lt;/li&gt; &lt;li&gt;Update in both of the tables of&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Hosted+Administrators+Rights"&gt;https://thesli.onconfluence.com/display/sli/SLI+Hosted+Administrators+Rights&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;div&gt;&lt;b&gt;Demo Script:&lt;/b&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Sample users with the roles&amp;nbsp;SLC Operator, SEA Super Administrator, LEA Super Administrator, Realm Administrator and Ingestion User will authenticate on the SLI hosted IDP, go to the Portal Admin page, see the SAMT tool in their available admin apps, will click on it and will be sent to its page.&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Gherkin:&lt;/b&gt;&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;Scenario:&amp;nbsp;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User authenticate on the&amp;nbsp;Super Administrator Management Tool&lt;/div&gt; &lt;div&gt;Given I am a valid authenticated SLI hosted user&lt;/div&gt; &lt;div&gt;And my role is &amp;lt;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User&amp;gt;&lt;/div&gt; &lt;div&gt;When I hit the SAMT page&lt;/div&gt; &lt;div&gt;Then I am redirected to it&lt;/div&gt; &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt; &lt;div&gt;Scenario:&amp;nbsp;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User make&amp;nbsp;api/rest/userapps call&lt;/div&gt; &lt;div&gt;Given I am a valid authenticated SLI hosted user&lt;/div&gt; &lt;div&gt;And my role is &amp;lt;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User&amp;gt;&lt;/div&gt; &lt;div&gt;When I make the userapps call&lt;/div&gt; &lt;div&gt;Then I get the list of my available apps&lt;/div&gt; &lt;/div&gt; &lt;div&gt;And one of them is SAMT&lt;/div&gt;</Description>
+            <Discussion />
+            <FormattedID>US3301</FormattedID>
+            <LastUpdateDate>2012-07-18T20:28:54.044Z</LastUpdateDate>
+            <Name>SAMT - Page Authorization Enforcement</Name>
+            <Notes />
+            <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+            <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+            <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7151976695" type="RevisionHistory" />
+            <Tags>
+               <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+               <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+            </Tags>
+            <Attachments />
+            <Blocked>false</Blocked>
+            <Children>
+               <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6512809217" objectVersion="26" refObjectName="SAMT - Page Authorization Enforcement (Access to SAMT tool for Operators and Administrators)" CreatedAt="May 25" type="HierarchicalRequirement">
+                  <CreationDate>2012-05-25T20:31:16.414Z</CreationDate>
+                  <ObjectID>6512809217</ObjectID>
+                  <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                  <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                  <Changesets />
+                  <Description>As a SLC Operator or a tenant 'super-admin' I would like to be able to access the Super Account Management Tool.     &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;b&gt;Acceptance Criteria:&lt;/b&gt;&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;&lt;font class="Apple-style-span" face="arial"&gt;&lt;br /&gt;&lt;/font&gt;&lt;/div&gt;  &lt;div style="font-family: Calibri; font-size: medium; "&gt;&lt;font class="Apple-style-span" face="arial"&gt;&lt;span class="Apple-style-span" style="font-size: 12px; "&gt;&amp;nbsp; * Operators and Administrators have access to samt in the portal Admin page.&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;  &lt;div style="font-family: Calibri; font-size: medium; "&gt;&lt;font class="Apple-style-span" face="arial"&gt;&lt;span class="Apple-style-span" style="font-size: 12px; "&gt;&amp;nbsp; * Passes Gherkin below&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;  &lt;div&gt;&lt;font class="Apple-style-span" face="arial"&gt;&amp;nbsp; *Sandbox SLC Operator does not have access to the Sandbox version of SAMT&lt;/font&gt;&lt;/div&gt;  &lt;/div&gt;  &lt;div&gt;  &lt;ul&gt; &lt;/ul&gt;  &lt;/div&gt;  &lt;div&gt;&lt;b&gt;Demo Script:&lt;/b&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Sample users with the roles&amp;nbsp;SLC Operator, SEA Super Administrator, LEA Super Administrator, Realm Administrator and Ingestion User will authenticate on the SLI hosted IDP, go to the Portal Admin page, see the SAMT tool in their available admin apps, will click on it and will be sent to its page.&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;&lt;b&gt;Gherkin:&lt;/b&gt;&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;Scenario:&amp;nbsp;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User authenticate on the&amp;nbsp;Super Administrator Management Tool&lt;/div&gt;  &lt;div&gt;Given I am a valid authenticated SLI hosted user&lt;/div&gt;  &lt;div&gt;And my role is &amp;lt;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User&amp;gt;&lt;/div&gt;  &lt;div&gt;When I hit the SAMT page&lt;/div&gt;  &lt;div&gt;Then I am redirected to it&lt;/div&gt;  &lt;div&gt;&lt;br /&gt;&lt;/div&gt;  &lt;div&gt;  &lt;div&gt;Scenario:&amp;nbsp;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User make&amp;nbsp;api/rest/userapps call&lt;/div&gt;  &lt;div&gt;Given I am a valid authenticated SLI hosted user&lt;/div&gt;  &lt;div&gt;And my role is &amp;lt;SLC Operator/SEA Super Administrator/LEA Super Administrator/Realm Administrator/Ingestion User&amp;gt;&lt;/div&gt;  &lt;div&gt;When I make the userapps call&lt;/div&gt;  &lt;div&gt;Then I get the list of my available apps&lt;/div&gt;  &lt;/div&gt;  &lt;div&gt;And one of them is SAMT&lt;/div&gt;</Description>
+                  <Discussion />
+                  <FormattedID>US2622</FormattedID>
+                  <LastUpdateDate>2012-07-19T18:23:40.128Z</LastUpdateDate>
+                  <Name>SAMT - Page Authorization Enforcement (Access to SAMT tool for Operators and Administrators)</Name>
+                  <Notes />
+                  <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                  <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                  <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/6512809218" type="RevisionHistory" />
+                  <Tags>
+                     <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+                     <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+                  </Tags>
+                  <Attachments />
+                  <Blocked>false</Blocked>
+                  <Children />
+                  <DefectStatus>NONE</DefectStatus>
+                  <Defects />
+                  <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475501385" refObjectName="5.2" type="Iteration" />
+                  <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7151976694" refObjectName="SAMT - Page Authorization Enforcement" type="HierarchicalRequirement" />
+                  <PlanEstimate>1.0</PlanEstimate>
+                  <Predecessors />
+                  <Rank>499999508352.000</Rank>
+                  <Recycled>false</Recycled>
+                  <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                  <ScheduleState>Defined</ScheduleState>
+                  <Successors />
+                  <TaskActualTotal>0.0</TaskActualTotal>
+                  <TaskEstimateTotal>0.0</TaskEstimateTotal>
+                  <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                  <TaskStatus>DEFINED</TaskStatus>
+                  <Tasks>
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7206116006" refObjectName="implement acceptance test" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7117924401" refObjectName="Update admin rights confluence page" type="Task" />
+                  </Tasks>
+                  <TestCaseStatus>NONE</TestCaseStatus>
+                  <TestCases />
+                  <Component>Admin</Component>
+                  <DeliveryPlanned>Alpha.0</DeliveryPlanned>
+                  <NewScope>false</NewScope>
+                  <ReleaseNote>false</ReleaseNote>
+                  <ReleaseNoteDescription />
+                  <SCLegacyID />
+                  <SCLegacyPersonas />
+                  <SCLegacyProdIncrement />
+                  <SCMustHave>false</SCMustHave>
+                  <StrandDetails />
+                  <StrandNumber>11-AuthPerm</StrandNumber>
+               </HierarchicalRequirement>
+               <HierarchicalRequirement rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7151976848" objectVersion="8" refObjectName="SAMT - Page Authorization Enforcement (Define roles and rights to access SAMT)" CreatedAt="Jul 16" type="HierarchicalRequirement">
+                  <CreationDate>2012-07-16T13:40:47.934Z</CreationDate>
+                  <ObjectID>7151976848</ObjectID>
+                  <Subscription rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/subscription/4211763183" refObjectName="Bill &amp; Melinda Gates Foundation - DC" type="Subscription" />
+                  <Workspace rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/workspace/4211763192" refObjectName="SLI Workspace" type="Workspace" />
+                  <Changesets />
+                  <Description>As a SLC Operator or a tenant 'super-admin' I would like to be able to access the Super Account Management Tool.   &lt;div&gt;&lt;br /&gt;&lt;/div&gt; &lt;div&gt;&lt;b&gt;Acceptance Criteria:&lt;/b&gt;&lt;/div&gt; &lt;div&gt; &lt;div style="font-family: Calibri, sans-serif; font-size: 14px; "&gt;&amp;nbsp;* Define the rights that will be assigned to the SLC Operator, SEA Super Admin, LEA Super Admin.&lt;/div&gt; &lt;div style="font-family: Calibri, sans-serif; font-size: 14px; "&gt;&amp;nbsp;* Define the roles and rights for the sandbox equivalent of the above.&lt;/div&gt; &lt;div style="font-family: Calibri, sans-serif; font-size: 14px; "&gt;&amp;nbsp;* Update in both of the tables:&amp;nbsp;&lt;a href="https://thesli.onconfluence.com/display/sli/SLI+Hosted+Administrators+Rights" id="x4-gen1104" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; outline-width: 0px; outline-style: initial; outline-color: initial; font-weight: normal; font-style: normal; font-size: 12px; font-family: arial, helvetica, sans-serif; vertical-align: baseline; text-decoration: none; box-sizing: border-box; color: rgb(7, 102, 146); font-variant: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); "&gt;https://thesli.onconfluence.com/display/sli/SLI+Hosted+Administrators+Rights&lt;/a&gt;&lt;/div&gt; &lt;/div&gt; &lt;div&gt; &lt;ul&gt; &lt;/ul&gt; &lt;/div&gt; &lt;div&gt;&lt;b&gt;&lt;br /&gt;&lt;/b&gt;&lt;/div&gt;</Description>
+                  <Discussion />
+                  <FormattedID>US3302</FormattedID>
+                  <LastUpdateDate>2012-07-17T20:45:14.366Z</LastUpdateDate>
+                  <Name>SAMT - Page Authorization Enforcement (Define roles and rights to access SAMT)</Name>
+                  <Notes />
+                  <Owner rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/user/4967716739" refObjectName="Bushra Schendel" type="User" />
+                  <Project rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/project/4520753180" refObjectName="Parallax(Eng-NC)" type="Project" />
+                  <RevisionHistory rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/revisionhistory/7151976849" type="RevisionHistory" />
+                  <Tags>
+                     <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/4624169841" refObjectName="Persona:Operator" type="Tag" />
+                     <Tag rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/tag/7067392378" refObjectName="InfoSec" type="Tag" />
+                  </Tags>
+                  <Attachments />
+                  <AcceptedDate>2012-07-17T20:45:14.345Z</AcceptedDate>
+                  <Blocked>false</Blocked>
+                  <Children />
+                  <DefectStatus>NONE</DefectStatus>
+                  <Defects />
+                  <InProgressDate>2012-07-16T13:40:48.027Z</InProgressDate>
+                  <Iteration rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/iteration/6475429987" refObjectName="5.1" type="Iteration" />
+                  <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/7151976694" refObjectName="SAMT - Page Authorization Enforcement" type="HierarchicalRequirement" />
+                  <PlanEstimate>3.0</PlanEstimate>
+                  <Predecessors />
+                  <Rank>499999508224.000</Rank>
+                  <Recycled>false</Recycled>
+                  <Release rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/release/5694780839" refObjectName="PI5" type="Release" />
+                  <ScheduleState>Accepted</ScheduleState>
+                  <Successors />
+                  <TaskActualTotal>0.0</TaskActualTotal>
+                  <TaskEstimateTotal>0.0</TaskEstimateTotal>
+                  <TaskRemainingTotal>0.0</TaskRemainingTotal>
+                  <TaskStatus>IN_PROGRESS</TaskStatus>
+                  <Tasks>
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7157540738" refObjectName="Add right and roles info to wiki page" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7157745462" refObjectName="Review wiki page" type="Task" />
+                     <Task rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/task/7117922935" refObjectName="Define roles and rights for SAMT tool" type="Task" />
+                  </Tasks>
+                  <TestCaseStatus>NONE</TestCaseStatus>
+                  <TestCases />
+                  <Component>Admin</Component>
+                  <DeliveryPlanned>Alpha.0</DeliveryPlanned>
+                  <NewScope>false</NewScope>
+                  <ReleaseNote>false</ReleaseNote>
+                  <ReleaseNoteDescription />
+                  <SCLegacyID />
+                  <SCLegacyPersonas />
+                  <SCLegacyProdIncrement />
+                  <SCMustHave>false</SCMustHave>
+                  <StrandDetails />
+                  <StrandNumber>11-AuthPerm</StrandNumber>
+               </HierarchicalRequirement>
+            </Children>
+            <Defects />
+            <InProgressDate>2012-07-16T13:40:48.027Z</InProgressDate>
+            <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/4514294110" refObjectName="Super Admin Management Tool" type="HierarchicalRequirement" />
+            <PlanEstimate>4.0</PlanEstimate>
+            <Predecessors />
+            <Rank>499999509248.000</Rank>
+            <Recycled>false</Recycled>
+            <ScheduleState>In-Progress</ScheduleState>
+            <Successors />
+            <TaskActualTotal>0.0</TaskActualTotal>
+            <TaskEstimateTotal>0.0</TaskEstimateTotal>
+            <TaskRemainingTotal>0.0</TaskRemainingTotal>
+            <Tasks />
+            <TestCases />
+            <Component>Admin</Component>
+            <DeliveryPlanned>Alpha.0</DeliveryPlanned>
+            <NewScope>false</NewScope>
+            <ReleaseNote>false</ReleaseNote>
+            <ReleaseNoteDescription />
+            <SCLegacyID />
+            <SCLegacyPersonas />
+            <SCLegacyProdIncrement />
+            <SCMustHave>false</SCMustHave>
+            <StrandDetails />
+            <StrandNumber>11-AuthPerm</StrandNumber>
+         </HierarchicalRequirement>
+      </Children>
+      <Defects />
+      <InProgressDate>2012-07-03T18:20:32.726Z</InProgressDate>
+      <Parent rallyAPIMajor="1" rallyAPIMinor="36" ref="https://rally1.rallydev.com/slm/webservice/x/hierarchicalrequirement/6839413773" refObjectName="On-boarding enhancements" type="HierarchicalRequirement" />
+      <PlanEstimate>46.0</PlanEstimate>
+      <Predecessors />
+      <Rank>499999816960.000</Rank>
+      <Recycled>false</Recycled>
+      <ScheduleState>In-Progress</ScheduleState>
+      <Successors />
+      <TaskActualTotal>8.0</TaskActualTotal>
+      <TaskEstimateTotal>81.5</TaskEstimateTotal>
+      <TaskRemainingTotal>2.0</TaskRemainingTotal>
+      <Tasks />
+      <TestCases />
+      <Component>Security</Component>
+      <NewScope>false</NewScope>
+      <ReleaseNote>true</ReleaseNote>
+      <ReleaseNoteDescription>&lt;div&gt;Currently, the SLC Operator creates and manages every SLI hosted administrative user for a tenant by using an LDAP browser. A tool will be built that allows individual tenants to create and manage their own users.&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;The SLC will still have to create the first user for the tenant.&lt;/div&gt;</ReleaseNoteDescription>
+      <SCLegacyID>161</SCLegacyID>
+      <SCLegacyPersonas>IT Admin - SEA</SCLegacyPersonas>
+      <SCLegacyProdIncrement>3</SCLegacyProdIncrement>
+      <SCMustHave>true</SCMustHave>
+      <SCPlanTShirtSize>1-S</SCPlanTShirtSize>
+      <StrandDetails>16</StrandDetails>
+      <StrandNumber>16-Admin</StrandNumber>
+   </HierarchicalRequirement>
+</Objects>

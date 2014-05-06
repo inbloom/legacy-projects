@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-909557d4-cf76-4144-8201-3f643664fb25"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Registering and Enabling Applications in the Sandbox</title>
+
+    <para> Each application that wants to use &PRODUCTABBR; resources, whether in a Sandbox or in
+        Production, must have credentials to authenticate with &PRODUCTABBR;. These credentials
+        include a client ID and shared secret, and are passed when making authorization calls from
+        your application to &PRODUCTABBR;. This applies to all applications that call the &RESTAPI;,
+        including both web applications and standalone applications (such as mobile apps). </para>
+    <para> &PRODUCTABBR; creates these credentials (client ID and shared secret) for your
+        application as part of the application registration process. As an application developer,
+        you initial the application registration process. In the Sandbox, your registration is
+        automatically approved, and your credentials are available immediately. In Production,
+        you'll have to wait for approval from an&PRODUCTABBR; tenant administrator. The application
+        registration process for Production is covered in <xref
+            linkend="doc-cb680e76-2e05-4447-a091-ba97bcd5c775"/>. </para>
+    <para>After registration, you must enable the application to access data for each EdOrg. The
+        available EdOrgs come from the datasets you have added to the Sandbox. Any time you add data
+        with a new EdOrg, you will need to enable your application for that EdOrg before you can
+        test with users who belong to it. </para>
+    <section xml:id="doc-dbdc4d82-63e7-4357-90aa-c5fef2470db2">
+        <title>Register Your Application in the Sandbox</title>
+    <para> Use the following steps to register a new application in the Sandbox: </para>
+    <procedure>
+        <step>
+            <para> Using your preferred Web browser, navigate to your Sandbox URL. </para>
+            <para>If you're using the &COMPANYABBR; hosted Sandbox, the URL is <link
+                    xlink:href="https://portal.sandbox.inbloom.org"
+                    >https://portal.sandbox.inbloom.org</link>. </para>
+        </step>
+        <step>
+            <para> Sign in to your Sandbox using the credentials for your application
+                developer account. </para>
+        </step>
+        <step>
+            <para>Click <guibutton>Administer My Sandbox</guibutton>.</para>
+            <para>
+                If this is your first access to the Sandbox, or if
+                you are accessing it after a recent upgrade to the software
+                license, click <guibutton>Agree</guibutton> to accept the 
+                <guilabel>License Agreement</guilabel>.
+            </para>
+        </step>
+        <step>
+            <para> Click <guibutton>Admin</guibutton> to access the administration page for your
+                Sandbox. </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Register Application</guibutton>, and
+                click <guibutton>New Application</guibutton> in the application
+                registration interface.
+            </para>
+        </step>
+        <step>
+            <para>
+                Complete the application registration form
+                and click <guibutton>Register</guibutton>. If you have a web
+                application, you might choose to use the URL where you intend
+                to do your testing as the callback URL.
+            </para>
+            <para>If you are developing a mobile application:</para>
+            <substeps>
+                <step><para>Check the <guibutton>Installed </guibutton> check box. This lets &PRODUCTABBR; know not to
+                            treat your application like a web app.</para></step>
+                <step><para>Do not provide values for any of these fields:</para><itemizedlist>
+                    <listitem>
+                        <para><guilabel>Url</guilabel></para>
+                    </listitem>
+                    <listitem>
+                        <para><guilabel>Redirect Url</guilabel></para>
+                    </listitem>
+                    <listitem><para><guilabel>Admin Url</guilabel></para></listitem>
+                    <listitem><para><guilabel>Image Url</guilabel></para></listitem>
+                </itemizedlist>
+                </step>
+                <step><para>Check the <guibutton>Bulk Extract</guibutton> check box. This checkbox must be selected for an
+                    application to perform bulk extract. <!-- After selecting this checkbox a new
+                    field appears where the public key used to encrypt the bulk extract
+                    data can be entered. --></para></step>
+            </substeps>
+        </step>
+        <step>
+            <para>
+                Confirm that the application immediately appears in the
+                list of registered applications. After a few seconds, an 
+                <guilabel>Edit</guilabel> button should appear, giving you
+                access to update some of the information you provided
+                in the registration form.
+            </para>
+        </step>
+        <step>
+            <para>
+                Click <guibutton>Edit</guibutton>, and look for the client ID
+                and shared secret values at the top of the page. Copy these
+                values for use throughout your development work, particularly
+                when making OAuth authorization calls (see later chapters).
+            </para>     
+        </step>
+        <step>
+            <para> If you've ingested sample data for your Sandbox (covered in <xref
+                        linkend="doc-f6fa6643-0616-4a70-8172-86a000fc4da3"/>), enable the new
+                    application for the EdOrgs in your dataset. Those organizations should be shown
+                    in the interface, and you can check the boxes to select them. This allows users
+                    in those organizations using to use your application for their interactions with
+                    the &PRODUCTABBR; Secure Data Service. </para>
+        </step>
+    </procedure>
+    <para> After ingesting sample data and registering your application, you're ready to begin
+        development in your Sandbox environment. Upcoming chapters the cover things you need to know
+        for general application development for &PRODUCTABBR;, including references to where
+        &PRODUCTABBR; resources exist in the &COMPANYABBR; hosted Sandbox environment. </para>
+    </section>
+    <section xml:id="doc-40f76ef1-7536-49db-96f0-3686d5c97818">
+        <title>Enable Your Application in the Sandbox</title>
+        <para>You must enable your application to access data in an EdOrg in order to test as users
+            belonging to that EdOrg.</para>
+        <procedure>
+            <step>
+                <para> Using your preferred Web browser, navigate to your Sandbox URL. </para>
+                <para>If you're using the &COMPANYABBR; hosted Sandbox, the URL is <link
+                    xlink:href="https://portal.sandbox.inbloom.org"
+                    >https://portal.sandbox.inbloom.org</link>. </para>
+            </step>
+            <step>
+                <para> Sign in to the Sandbox using the your application developer account
+                    credentials. </para>
+            </step>
+            <step>
+                <para>Click <guibutton>Administer My Sandbox</guibutton>.</para>
+            </step>
+            <step>
+                <para> Click <guibutton>Admin</guibutton> to access the administration page for your
+                    Sandbox. </para>
+            </step>
+            <step>
+                <para> Click <guibutton>Register Application</guibutton>, and click
+                        <guibutton>Edit</guibutton>  for the application. </para>
+            </step>
+            <step>
+                <para>Navigate to the bottom of the form.  Every State Education Agency hierarchy will appear in the tree control.</para>
+                <figure xml:id="figure-sandbox-enabling_applications">
+                    <title/>
+                    <mediaobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/sandbox-enabling_applications.png" 
+                                scalefit="1" width="7in"/>
+                        </imageobject>
+                        <imageobject role="html">
+                            <imagedata align="center"
+                                fileref="images/sandbox-enabling_applications.png" scalefit="1"
+                                width="750px"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>    
+            </step>
+            <step>
+                <para>Expand nodes in the hierarchy and select the education organizations to be enabled.</para>
+            </step>
+            <step>
+                <para>Click <guibutton>Save &amp; Update</guibutton> to save your changes.
+                </para>
+            </step>
+        </procedure>
+    </section>
+</chapter>

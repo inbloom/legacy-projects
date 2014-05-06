@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-dashboard-customization-json_guidelines"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>JSON Guidelines for Dashboard Customization</title>
+    
+    <para>
+        Dashboard customization is done by expressing a customized UI 
+        experience in JavaScript Object Notation (JSON) and uploading 
+        the JSON text from the inBloom administration page for the 
+        dashboard. 
+        <xref linkend="c-dashboard-customization-tour"/> shows sample 
+        JSON and how the user interface looks using that JSON. 
+        <xref linkend="c-dashboard-customization-reference"/> describes 
+        how to find and use all available dashboard customization points.
+    </para>
+    <para>
+        Customization points for the dashboard include the following:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                View: order of tabs, tab names, contents of tabs
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Tab: sequence of tables in a single tab
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Table: order, names, format, data fields for the columns
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Cells within a table: data-specific colors 
+                (such as for a range of student test scores)
+            </para>
+        </listitem>
+    </itemizedlist>
+    <para>
+        As you develop the JSON for your dashboard customizations, use 
+        the following guidelines:
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                A single "config" object at the top of the JSON contains 
+                all the customizations.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                Identify an existing component to customize using its ID, 
+                display name, and type (such as "PANEL").
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                You can combine data that shares common entities in the 
+                data store. For example, the "Attendance and Discipline" 
+                tab in the sample combines data from two attendance reports.
+            </para>
+        </listitem>
+        <listitem>
+            <para>
+                As you edit the JSON, upload the new text to the sandbox 
+                dashboard to test it, as described in 
+                <xref linkend="t-how_to_upload_dashboard_customizations"/>.
+            </para>
+        </listitem>
+    </itemizedlist>
+    
+</section>

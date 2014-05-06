@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE part [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+
+<chapter xml:id="doc-52300d92-835c-474f-899d-fe5e5bd7367b" 
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Manage Applications</title>
+    
+    <para> 
+        There are several web applications installed during &PRODUCTABBR; 
+        deployment, and additional web and mobile applications can be added 
+        at any time. These applications are developed to use &PRODUCTABBR; 
+        Services and Data Store. However, an application must be registered
+        with your &PRODUCTABBR; deployment before it can use the services 
+        in that deployment.
+    </para>
+    <para> 
+        Applications in &PRODUCTABBR; are managed by &OPERATORROLE; as 
+        instructed in the &PRODUCTABBR; Runbook. However, SEA or LEA
+        Administrators must still enable approved applications
+        for an educational organization.
+    </para>
+    
+    <section xml:id="doc-ada57f77-d911-4f0b-ac42-3e50ee48cf2d">
+        <title>Enabling or Disabling Applications for Education Organizations</title>
+        <para> 
+            The Authorize Application system tool allows an &PRODUCTABBR; <glossterm linkend="def-sea_administrator">SEA Administrator</glossterm>,
+            <glossterm linkend="def-lea_administrator">LEA Administrator</glossterm> or <glossterm linkend="def-federated">federated</glossterm> user
+            with the APP_AUTHORIZE right to authorize &PRODUCTABBR; an application for any education organization in its education organization
+            hierarchy.  Authorization allows users at that Education Organization to use the application to access data at from that Education
+            Organization and all of its descendants.
+        </para>
+        <note>
+            <title>Users Permissions Take Precedence in Applications</title>
+            <para>
+                Application users are only be able to access Education Organization data in 
+                accordance with their user permissions. Because of this, 
+                each application must be compliant with the &COMPANYABBR; 
+                <link xlink:show="new" xlink:href="&DEVWEBSITEROOT;/terms-of-use">Terms of Use</link>
+                and
+                <link xlink:show="new" xlink:href="&DEVWEBSITEROOT;/privacy-policy">Privacy and Information Security Policy</link>.
+            </para>
+        </note>
+        <para>
+            Use the following steps to enable or disable applications:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Log in to &PRODUCTABBR; using an account with application authorization rights
+                    (SEA or LEA Administrator account or a federated user account with the APP_AUTHORIZE right).
+                </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Admin</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Click <guibutton>Authorize Application</guibutton> 
+                    under System Tools. The Approve Applications page
+                    should open.
+                </para>
+                <!-- IMPORTANT: be sure to update this image as the UI changes -->
+                <figure xml:id="figure-admin_tools-application_authorization-approve_apps">
+                    <title>The Approve Applications Page</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="center" format="PNG" 
+                                fileref="images/admin_tools-application_authorization-approve_apps.png" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" format="PNG" 
+                                fileref="../common/images/admin_tools-application_authorization-approve_apps.png" scalefit="1" width="7in"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+            <!--step>  This behavior does not appear to have been implemented
+                <para>
+                    To sort the list of applications, click any
+                    column header.
+                </para>
+            </step-->
+            <step>
+                <para>
+                    If you do not see an application that you want to 
+                    enable in the list of applications, contact your 
+                    &PRODUCTABBR; operator to have the application 
+                    registered and approved.
+                </para>
+            </step>
+            <step>
+                <para>
+                    To edit authorizations for an application that is listed,
+                    click <guibutton>Edit Authorizations</guibutton>.  The Application
+                    Authorization Dashboard page should open.
+                </para>
+                <!-- IMPORTANT: be sure to update this image as the UI changes -->
+                <figure xml:id="figure-admin_tools-application_authorization-authorize_apps">
+                    <title>The Application Authorization Dashboard Page</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="center" format="PNG"
+                                       fileref="images/admin_tools-application_authorization-authorize_apps.png" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" format="PNG"
+                                       fileref="../common/images/admin_tools-application_authorization-authorize_apps.png" scalefit="1" width="7in"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+
+            <step>
+                <para>
+                    Use the tree control to select and deselect individual education organizations
+                    (edOrgs) and then click <guibutton>Save &amp; Update</guibutton>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    The Approval Status will be updated to reflect the number of education organizations authorized.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    
+</chapter>
+
+
+        

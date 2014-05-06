@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-85c61ed5-7f9f-427e-8b93-2202e0d8e945"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Portal Administration</title>
+
+    <para> The &PRODUCTABBR; Portal is the web interface you initially sign in to when accessing
+        other &PRODUCTABBR; applications and features. </para>
+    <para>
+       Review the Welcome information for vital information to ensure you protect private data.
+    </para>
+    <para>Any applications that you have access to are listed under My Applications on the right of
+        the Portal. This includes the &COMPANYABBR; Dashboards application and any environment
+        specific applications to which your administrator has given you access. </para>
+   <para>
+        <figure>
+            <title>Example Portal</title>
+            <mediaobject>
+                <imageobject role="html">
+                    <imagedata fileref="images/portal-admin_welcome.png" scalefit="1"
+                    />
+                </imageobject>
+                <imageobject role="fo">
+                    <imagedata fileref="../common/images/portal-admin_welcome.png"
+                        width="7in" scalefit="1"/>
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </para>
+    <para> Clicking on your name displays a menu. To log out of the &PRODUCTABBR; Portal, select the
+            <emphasis>Logout</emphasis> link to end your session. If you experience a problem report
+        the problem to your administrator by clicking on the <emphasis>Report a problem
+            link</emphasis>. </para>
+    <para>
+        These instructions describe the default &PRODUCTABBR; Portal. It is possible that the Portal for your organization 
+        has been customized and differs from what has been displayed and described here. If your Portal has been customized and you have questions relating to using 
+        your Portal, your administrator is likely the best source of information.
+    </para>
+    
+</chapter>

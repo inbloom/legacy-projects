@@ -1,0 +1,56 @@
+<p>
+    When data ingestion transforms certain Ed-Fi entities into the
+    SLC data model, references could break if the referenced
+    entities are not part of the same ingestion job. The following 
+    entities are affected:
+</p>
+<ul>
+    <li>
+        The Ed-Fi <b>Assessment</b> entity references <i>Assessment</i>, 
+        <i>AssessmentPeriodDescriptor</i>, 
+        <i>AssessmentFamily</i>, and <i>Assessment Item</i>.
+        <i>AssessmentFamilyName</i> in <i>AssessmentFamily</i> is used 
+        to generate the dot-delimited <i>assessmentFamilyHierarchyName</i>
+        in the <i>Assessment</i> entity in the SLC data model. No other 
+        data in <i>AssessmentFamily</i> persists.
+    </li>
+    <li>
+        The Ed-Fi <b>Attendance</b> entity references <i>AttendanceEvent</i>, 
+        <i>StudentSchoolAssociation</i>,
+        <i>School</i>, and <i>Session</i>. The transformation for 
+        <i>Attendance</i> ignores explicit references to 
+        <i>Section</i>, <i>School</i>, and <i>Session</i>
+        in the inbound Ed-Fi <i>Interchange-StudentAttendance</i>, and 
+        queries the <i>StudentSchoolAssociation</i> and <i>Session</i> 
+        entities instead to determine how to populate the attendance 
+        entities in SLC. Students associated with more than one school 
+        are treated as an error. 
+        This is documented as a defect in <b>DE710</b>.
+    </li>
+    <li>
+        For the Ed-Fi <b>LearningObjective</b> entity, the zero-to-many 
+        <i>LearningObjectiveReference</i> has 
+        been replaced by a zero-to-one <i>parentLearningObjective</i> 
+        reference in SLC. SLC does not currently support multi-parented 
+        <i>LearningObjective</i> objects.
+    </li>
+    <li>
+        The Ed-Fi <b>StudentAssessment</b> entity references 
+        <i>StudentAssessment</i>, <i>StudentObjectiveAssessment</i>, 
+        <i>StudentAssessmentItem</i>, and <i>AssessmentItem</i>.
+    </li>
+    <li>
+        The Ed-Fi <b>StudentDisciplineIncidentAssociation</b>
+        entity references 
+        <i>StudentDisciplineIncidentAssociation</i> and 
+        <i>DisciplineIncident</i>.
+    </li>
+    <li>
+        The Ed-Fi <b>CourseTranscript</b> entity is represented by 
+        the <i>StudentTranscriptAssociation</i> entity.
+    </li>
+</ul>
+<p>
+    Workaround: Referenced entities should be (re)submitted as part 
+    of the same data ingestion job.
+</p>

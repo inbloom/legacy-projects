@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-7b6ae96e-37b2-446c-bf0d-15685ba1089a"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Contextual Authorization: Students</title>
+    
+    <para>
+        The rules in this section apply specifically to users that are 
+        associated with the Student entity in the data store.
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to all global entities.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student does not have write context to any entities 
+        except:</emphasis>
+        <itemizedlist>
+            <listitem><para>studentAssessments</para></listitem>
+            <listitem><para>grades</para></listitem>
+            <listitem><para>studentGradebookEntries</para></listitem>
+            <listitem><para>student (self)</para></listitem>
+        </itemizedlist>
+    </para> 
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to their own student entity.</emphasis>
+    </para>    
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to attendance that are directly 
+        associated to the student, regardless of the date and 
+        educationOrganization. Student does not need to be currently 
+        associated with an educationOrganization in order to see their own 
+        attendances from that educationOrganization.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to each calendarDate in their 
+        school.</emphasis>
+    </para>      
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every cohort to which they were 
+        ever associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every courseTranscript associated to a
+        StudentAcademicRecord that is directly associated to the 
+        student.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every gradebookEntry that is 
+        directly associated to a section to which the student is 
+        associated.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every grade that references a 
+        studentSectionAssociation for the student.</emphasis> 
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every parent directly associated 
+        with them.</emphasis>
+    </para> 
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every reportCard directly 
+        associated with them.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every staff member associated with 
+        their current: educationOrganization, Program, Cohort.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every staffCohortAssociation of 
+        their current cohorts.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every 
+        staffEducationOrgAssignmentAssociation of their current 
+        educationOrganizations.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every staffProgramAssociations of 
+        their current programs.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every studentAcademicRecord that 
+        is directly associated to the student.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every studentCohortAssociation that
+        is directly associated to the student plus every 
+        studentCohortAssociations of their current cohorts.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every studentCompetency that is 
+        directly associated with a studentSectionAssociation that directly 
+        associates to the student.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every studentGradebookEntry that 
+        is directly associated to the student.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every studentParentAssociation 
+        that directly references the student.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every studentProgramAssociation 
+        that directly references the student plus every 
+        studentProgramAssociations of their current programs.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to the name field of other students 
+        who share a current section, program or cohort association.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every student school association 
+        that directly references the student.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every student section association 
+        that directly references the student plus every 
+        studentSectionAssociation of their current sections.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every teacherSchoolAssociation of 
+        their current schools.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student has context to every teacherSectionAssociation of 
+        their current sections.</emphasis>
+    </para>
+    <para>
+        <emphasis role="bold">RULE:</emphasis>
+        <emphasis>Student do not have context to view any discipline 
+        data.</emphasis>
+    </para> 
+
+</chapter>
+
+
+        

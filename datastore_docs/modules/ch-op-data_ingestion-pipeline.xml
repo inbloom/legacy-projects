@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-ceab01b3-0865-461c-bc48-d93afed8ce75"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Data Ingestion: Pipeline</title>
+    
+    <note><para>This section is primarily meant for those who are curious about the inner workings of the ingestion system.</para></note><!-- FIXME: I may want to get rid of this. -->
+    <para>Once you’ve uploaded the ingestion files to the landing zone, the system will begin to process them. The system takes the data and translates it from Ed-Fi XML into a format that Mongo DB can read.</para>
+    <para>The process is:</para>
+    <procedure>
+        <step>
+            <para>
+                <emphasis>&PRODUCTABBR; processes the control file.</emphasis>
+            </para>
+        </step>
+        <step>
+            <para>
+                <emphasis>&PRODUCTABBR; parses the XML files. </emphasis>
+            </para>
+        </step>
+        <step>
+            <para>
+                <emphasis>&PRODUCTABBR; Stages the Data in Mongo DB. </emphasis>
+            </para>
+            <para>
+                At this point, the XML files are uploaded to a temporary, staging Mongo database.
+            </para>
+            <para>
+                Once the data is inserted into the staging database, a job coordinator will begin selecting and queueing entities for ingestion. The job coordinator decides the order in which the files will be ingested based on any data dependencies between the files. For example, the job coordinator will queue the EducationOrganization interchange to be ingested before the MasterSchedule interchange because the MasterSchedule interchange contains data that is dependent upon data in the EducationOrganization interchange.<!-- FIXME: Can you simplify this a bit? --> 
+            </para>
+        </step>
+        <step>
+            <para>
+                <emphasis>(Optional) &PRODUCTABBR; Transforms Data into the Proper Format.</emphasis>
+            </para>
+            <para>
+                If you provided any entities that require additional transformation, the job coordinator will send these to be transformed.
+            </para>
+            <para>
+                While generally based on the Ed-Fi schema, the &PRODUCTABBR; XML schema does contain some differences. As a result, some entities must be transformed into Ed-Fi XML before they can be ingested.
+            </para>
+            <para>The entities that must be transformed are: <property>Assessment</property>, <property>StudentAssessment</property>, <property>Attendance</property>, <property>StudentTranscriptAssociation</property>, and <property>LearningObjective</property>.</para>
+            <para>Once the data is transformed, it will be re-staged and step 3 will be
+                repeated.</para>
+        </step>
+        <step>
+            <para>
+                <emphasis>The Data is Added to the Persistent Mongo Database.</emphasis>
+            </para>
+            <para>
+                Finally, the data is processed and added to the Mongo Database. Several log files for the job are generated and stored in the landing zone.
+            </para>
+        </step>
+    </procedure>
+    <para>
+        Once the data is in the persistent Mongo database, the data can be accessed 
+        by the API and will appear in &PRODUCTABBR;'s Data Browser.
+    </para>
+    
+</chapter>

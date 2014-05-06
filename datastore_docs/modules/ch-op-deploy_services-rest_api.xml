@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIR "../common/images">
+]>
+
+<chapter xml:id="doc-d2a8bab5-8d60-4734-86fa-f592fd56cb91"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+
+    <title>Deploy Services: REST API</title>
+    
+    <para>
+        The sections that follow cover preparing for, installing, and
+        configuring the REST API as part of the services 
+        in the &PRODUCTABBR;.
+    </para>
+    
+    <section xml:id="doc-e50352cc-7ef8-434a-8121-bdbef8493cb7">
+        <title>REST API: What You Need to Know Before Deployment</title>
+        <para> The &PRODUCTABBR; REST API provides the interactive interface between the
+            &PRODUCTABBR; Data Stores and the users that need to read or write data. Applications
+            within &PRODUCTABBR;, like the Dashboard, provide an intuitive interface for
+            non-technical users who need to interact with data stores through the REST API. </para>
+        <para>The &PRODUCTABBR; REST API is a stateless service which means that scaling this service is a achieved by adding additional 
+            functional API nodes behind a load balancer.</para>
+        <para> &COMPANY; has provided complete details about the &PRODUCTABBR; REST API in its
+            developer documentation at <link xlink:show="new" xlink:href="&DEVWEBSITE;"
+                >&DEVWEBSITE;</link>. To supplement this Runbook, particularly when verifying a
+            successful setup, you might reference information within that documentation on how to
+            authenticate users and form URIs for REST API operations. </para>
+        <para>The &PRODUCTABBR; REST API allows writing and updating of API resources up to
+            approximately 16MB in size.  This limit may be excessive for normal use, resulting in
+            use of the REST API's custom or other entities by third party applications for
+            unintended purposes.  It is recommended that an &PRODUCTABBR; REST API upload request
+            size limit be determined by the operating organization and enforced by a web application
+            firewall.  The web application firewall should return a HTTP status code of 413,
+            indicating the request exceeds the limit.  The suggested upload limit is 128kb.   </para>
+    </section>
+    
+    <section xml:id="doc-37ab9330-e07c-4e16-80ce-422d4864f2cf">
+        <title>REST API: Installation</title>
+        <para>
+            Deploying the REST API requires the following considerations:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Bootstrap properties – This a Java properties file 
+                    containing all the configurable parameters for bootstrap 
+                    applications. It defines values such as the client id and
+                    secret, and application URL.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Application templates – The application templates are JSON 
+                    files containing application values that either should not 
+                    need to be modified, or cannot easily be represented in a 
+                    properties file.
+                </para>
+            </listitem>
+            <listitem>
+                <para> &COMPANYABBR; developer account - An account with the name
+                        <code>slcdeveloper</code> and application developer role. See SimpleIDP and
+                    LDAP for &PRODUCTABBR; admin IDP for more information on creating users. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Configuring the bootstrap properties location - The bootstrap 
+                    properties is referenced through the <code>bootstrap.app.conf</code> property. 
+                    This property should be added to the canonical config (<filename>sli.properties</filename>). 
+                    If the value is blank, or if the file it points to does not exist 
+                    on the file system, bootstrapping of applications will be skipped 
+                    when the API is loaded.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Defining the bootstrap properties - The bootstrap properties can 
+                    contain the following keys:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <code>bootstrap.app.keys</code> - comma-separated list of app keys that 
+                            will be used elsewhere in the properties file to reference 
+                            specific applications. For example, the key for the admin 
+                            tools application could be "admin".
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <code>bootstrap.app.&lt;key&gt;.template</code> - location within the 
+                            API of the JSON template file for the application with the 
+                            given key. The templates are resolved relative to the 
+                            directory containing the bootstrap properties file.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <code>bootstrap.app.&lt;key&gt;.guid</code> - (optional) use this property 
+                            to set a predefined value for the application's Mongo ID. This 
+                            should not be needed in Production.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
+                    Any arbitrary property can exist, and templates can reference it using the 
+                    ${...} notation, as seen in the following sample template.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Sample admin.json:
+        </para>
+        <programlisting><![CDATA[
+{
+   "name": "${bootstrap.app.admin.name}",
+   "description":"${bootstrap.app.admin.description}",
+   ...
+}
+        ]]></programlisting>
+        <para>
+            Use the following procedure to install the REST API service for &PRODUCTABBR;:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    Create a <filename>bootstrap.properties</filename> file on the machine 
+                    that will run the API.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Place the template files in the same directory as the <filename>bootstrap.properties</filename>.  
+                    Reference versions of the template files for each application are located 
+                    in the <filename>sli/config/applications/</filename> directory.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Add the following properties to the file:
+                </para>
+                <programlisting><![CDATA[
+bootstrap.app.keys=admin,portal,dashboard,databrowser
+bootstrap.app.vendor = inBloom
+# Admin-specific properties
+bootstrap.app.admin.template = ./admin.json
+bootstrap.app.admin.name=Admin Apps
+bootstrap.app.admin.description = The inBloom Administration Application allows you to change a variety of system settings.
+bootstrap.app.admin.url = <app url, e.g. https://admin.localhost>
+bootstrap.app.admin.client_id = <random 10-character string>
+bootstrap.app.admin.client_secret = <random 48-character string>
+bootstrap.app.admin.version = 0.0
+# Portal-specific properties
+bootstrap.app.portal.template = ./portal.json
+bootstrap.app.portal.name=Portal
+bootstrap.app.portal.description = The inBloom Portal application is the primary access portal. 
+bootstrap.app.portal.url = <portal url, e.g. https://portal.localhost/portal/login/c>
+bootstrap.app.portal.client_id = <random 10-character string>
+bootstrap.app.portal.client_secret = <random 48-character string>
+bootstrap.app.portal.version = 0.0
+bootstrap.app.databrowser.template: applications/databrowser.json
+bootstrap.app.databrowser.name: inBloom Data Browser
+bootstrap.app.databrowser.description: The inBloom Data Browser allows developers and administrators to access all available information in the inBloom Data Store.
+bootstrap.app.databrowser.version: 0.0
+bootstrap.app.dashboard.name: inBloom Dashboards
+bootstrap.app.dashboard.description: The inBloom Dashboards allow you to see information about students in lists and profiles.
+bootstrap.app.dashboard.template: applications/dashboard.json
+bootstrap.app.dashboard.version: A.0                            
+                    ]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    A sample <code>client_id</code> can be generated using <code>mkpasswd -s 0 -l 10</code>, 
+                    and a sample <code>client_secret</code> can be generated using 
+                    <code>mkpasswd -s 0 -l 48</code>.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Add the <code>bootstrap.app.conf</code> property to the <filename>sli.properties</filename> to 
+                    point to the <filename>bootstrap.properties</filename>, 
+                    e.g. <code>bootstrap.app.conf = /home/user/bootstrap.properties</code>
+                </para>
+            </step>
+            <step>
+                <para>
+                    Start the API server
+                </para>
+            </step>
+            <step>
+                <para>
+                    Verify bootstrapping was successful. One way would be to 
+                    query the application collection in Mongo, e.g. 
+                    <programlisting><![CDATA[
+> db.application.find().pretty()
+							]]></programlisting>
+                </para>
+            </step>
+            <step>
+                <para> (Optional) Add other applications to the API bootstrapping. </para>
+                <procedure>
+                    <step>
+                        <para>Add your application name to the bootstrap.app.keys property.</para>
+                    </step>
+                    <step>
+                        <para>Copy the <code>bootstrap.app.dashboard.*</code> properties, paste the
+                            properties and replace "dashboard" using the unique name for your
+                            application. Putting the properties in the
+                                <filename>bootstrap.properties</filename> file for specific
+                            environments allows using the same template then adjusting the
+                                <code>client_id</code>, <code>client_secret</code> and
+                                <code>callback url</code> for each different environment.</para>
+                    </step>
+                    <step>
+                        <para>Adjust the value of the properties in the <filename>bootstrap.properties</filename> file to reflect your application.</para>
+                    </step>
+                    <step>
+                        <para>Copy the <filename>dashboard.json</filename> application template file, rename and adjust the attributes as required.</para>
+                    </step>
+                </procedure>
+            </step>
+            <step>
+                <para>
+                    (Optional) Delete the <filename>bootstrap.properties</filename> file to avoid 
+                    having plain-text copies of the client id and secret on 
+                    the filesystem.
+                </para>
+            </step>
+        </procedure>
+    </section>
+    <section xml:id="doc-6c50b64d-141c-422d-8135-06cb6fee8043">
+        <title>REST API: Configuration</title>
+        <para>
+            The API application will look for its configuration in 
+            <filename>$TOMCAT_HOME/conf/sli.properties</filename> and will look for the
+            following properties to be set (example values shown):
+        </para>
+        <programlisting><![CDATA[
+# used to specify the location of performance log (only used in API)
+api.perf.log.path = target/apilogs/logs
+ 
+# Security  (only used in API)
+sli.security.noSession.landing.url = http://local.example.com:8080/api/oauth/authorize?response_type=code
+ 
+# Security SAML (only used in API)
+sli.security.sp.issuerName = http://local.example.com:8080
+sli.security.idp.url: https://shibboleth.slidev.org/idp/profile/SAML2/SOAP/ArtifactResolution
+ 
+# Security grace period for viewing sections and enrollments (only use in API)
+# This property must be set to 0 in a live Production environment
+sli.security.gracePeriod = 2000
+
+# Maximum number of returns for a response (only used in API)
+sli.security.in_clause_size = 100000 
+
+# Trusted Certificate Authority Store (used in common)
+sli.trust.certificates = ../common/common-util/trust/trustedCertificates
+ 
+# Support Email (only used in API)
+sli.support.email = sli@example.com
+ 
+# Session lengths in milliseconds (5 minutes - only in API)
+sli.session.length = 300000
+ 
+# Session hard logout (8 hours - only in API)
+sli.session.hardLogout = 28800000
+
+# Mongo settings
+sli.mongodb.database = sli
+sli.mongodb.host = localhost:27017
+sli.mongodb.keyencoding: \%:\%25,\\.:\%2E
+
+# Encryption settings.  Should be the same across all API and Ingestion nodes
+sli.encryption.keyStore = /path/to/api-keystore.jks
+sli.encryption.keyStorePass = storepass
+sli.encryption.dalKeyAlias = dalkey
+sli.encryption.dalKeyPass = dalpass
+sli.encryption.dalInitializationVector = 32RandomHexCharacters
+
+# Landing Zone SFTP server
+sli.landingZone.server = rclz.example.com
+ 
+# Used to bootstrap the admin realm
+bootstrap.admin.realm.name = inBloom
+bootstrap.admin.realm.tenantId = SLI
+bootstrap.admin.realm.idpId = https://idp.example.com:443/sp
+bootstrap.admin.realm.redirectEndpoint = https://idp.example.com:443/sp/SSORedirect/metaAlias/idp
+
+#Used to bootstrap the application developer realm
+bootstrap.developer.realm.name = inBloom App Developers
+bootstrap.developer.realm.uniqueId = DeveloperIDP
+bootstrap.developer.realm.idpId = <sandbox bootstrap.admin.realm.idpId>&developer=true
+bootstrap.developer.realm.redirectEndpoint = <sandbox bootstrap.admin.realm.redirectEndpoint>&developer=true
+
+# API kesytore settings
+sli.api.keyStore: /path/to/api-keystore.jks
+sli.api.keystore.password: encryptedStorepass
+sli.api.digital.signature.keyAlias: entryAlias
+sli.api.digital.signature.keyPass: encryptedEntrypass
+sli.api.client.certificate.keyAlias: entryAlias 
+sli.api.client.certificate.keyPass: encryptedEntrypass
+sli.api.encryption.certificate.keyAlias: encryptionAlias 
+sli.api.encryption.certificate.keyPass: encryptionPass
+
+# Sandbox settings
+sli.autoRegisterApps = false
+sli.simple-idp.sandboxImpersonationEnabled = false
+
+#Search engine cluster URL
+sli.search.url = http://<Internal ElasticSearch Load Balancer>:9200
+
+#Search engine cluster username (user)
+sli.search.username = 17BF72EAF6893034F8FB4AE35BF3A567
+
+#Search engine cluster password (searchme)
+sli.search.password = 4284B82ACF30963CA2315839AC939C62
+ 
+#Search engine query limits (only used in API)
+sli.search.maxUnfilteredResults = 15000
+sli.search.maxFilteredResults = 250
+sli.search.maxFilteredResultsOverride = 5000
+
+#This setting should always be set to false in a production environment.  It is intended to only be used in conjunction with localized development testing.
+sli.search.embedded = false
+
+#set to true when username and password are encrypted
+sli.search.encryption = true
+
+# These settings are required, however they should remain the defaults listed below.
+sli.mongodb.connections = 30
+sli.perf.mongodb.database = apiPerf
+sli.perf.mongodb.host = localhost
+sli.perf.mongodb.port =27017
+sli.api.performance.tracking = false
+        ]]></programlisting>
+       
+        <para>
+            The operator can use the encryption-tool to generate encrypted values. 
+            To generate the encrypted values using the encryption-tool, run the following command.
+
+        </para>
+        <programlisting><![CDATA[
+java -jar encryption-tool-1.0-SNAPSHOT.jar <keystore_location> <keystore_password> <key_alias> <key_password> <value to encrypt>
+        ]]></programlisting>
+        <para>
+            API uses the following properties from sli.properties for the parameters above:
+        </para>
+            <itemizedlist>
+                <listitem>
+                    <para>keystore_location : sli.encryption.keyStore</para>
+                </listitem>
+                <listitem>
+                    <para>keystore_password : sli.encryption.keyStorePass</para>
+                </listitem>
+                <listitem>
+                    <para>key_alias : sli.encryption.ldapKeyAlias</para>
+                </listitem>
+                <listitem>
+                    <para>key_password : sli.encryption.ldapKeyPass</para>
+                </listitem>    
+            </itemizedlist>    
+        <para>    
+            This example assumes that the encryption-tool jar is in current working directory. 
+        </para>
+        <warning>
+            <title>WARNING</title>
+            <para>The Grace Period prevents data from becoming unavailable by extending its
+                contextual date range by the number of days specified. This ensures that fictional
+                test data in the Sandbox remains accessible and supports testing of the Production
+                environment before real world data is ingested. sli.security.gracePeriod should be
+                set to a large number in these situations.</para>
+            <para>However, it is important to set sli.security.gracePeriod to 0 (zero) before
+                allowing public access to a Production environment. To leave the Grace Period set to
+                a value greater than 0 in a live Production environment could expose data to users
+                who would not normally have permission to view it. </para>
+        </warning>
+    </section>
+    <section xml:id="doc-a2873bf4-6e7d-4dbc-9420-bb1a7254c1e1">
+        <title>REST API: Configuring and Running &PRODUCTCAPS; Sandbox Mode</title>
+        <para>
+            In <xref linkend="doc-9d26ba20-412d-4c1b-b1ca-980e1ea7b46f"/>, you
+                read about the difference between Production and Sandbox modes for
+                &PRODUCTABBR;. To switch to Sandbox mode, use the following steps:
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    If you're converting an existing deployment to Sandbox mode, 
+                        start by purging your MongoDB collections.
+                </para>
+            </step>
+            <step>
+                <para>
+                    Change Sandbox-related properties in the 
+                        <filename>sli.properties</filename> file. The following is an
+                        example configuration from and <filename>sli.properties</filename>
+                        file:
+                </para>
+                <programlisting><![CDATA[
+sli.sandbox.enabled = true				    
+bootstrap.sandbox.createSandboxRealm = true
+bootstrap.sandbox.realm.uniqueId = SandboxIDP
+bootstrap.sandbox.realm.name = Sandbox Environment
+bootstrap.sandbox.realm.idpId = https://identity.provider.example.com/simple-idp
+bootstrap.sandbox.realm.redirectEndpoint = https://identity.provider.example.com/simple-idp
+sli.autoRegisterApps = true
+sli.simple-idp.sandboxImpersonationEnabled = true
+sli.api.ldap.user = cn=[Administrator],dc=slcedu,dc=org
+sli.api.ldap.pass = [password]
+sli.application.buildTag = sli.app.buildTag
+sli.api.performance.tracking = false
+sli.ingestion.errors.tracking = true
+sli.ingestion.warnings.tracking = true
+sli.ingestion.securityEvent.capSize = 
+sli.ingestion.mongotemplate.writeConcern = SAFE
+sli.ingestion.staging.mongotemplate.writeConcern = SAFE
+sli.default.mongotemplate.writeConcern = SAFE
+sli.ingestion.exception.message.log = true
+sli.ingestion.log.level = info
+sli.ingestion.queue.options = keepAlive=true&jms.prefetchPolicy.queuePrefetch=0
+sli.ingestion.queue.brokerUrl = tcp://${sli.ingestion.queue.workItem.host}:${sli.ingestion.queue.workItem.port}?${sli.ingestion.queue.options}
+sli.ingestion.queue.maxConnections = 25
+sli.ingestion.queue.maximumActive = 500
+sli.ingestion.referenceSchema.referenceCheckEnabled = false
+dashboard.log.level = warn
+dashboard.minify.js = true
+dashboard.cache.disable = false
+dashboard.encryption.keyStorePass = [password]
+dashboard.encryption.dalKeyAlias = dalKey
+dashboard.encryption.dalKeyPass = [password]
+dashboard.encryption.keyStore = ../data-access/dal/keyStore/ciKeyStore.jks
+bootstrap.app.admin.authorized_for_all_edorgs = true
+bootstrap.app.admin.allowed_for_all_edorgs = true
+bootstrap.app.databrowser.authorized_for_all_edorgs = true
+bootstrap.app.databrowser.allowed_for_all_edorgs = true
+bootstrap.app.dashboard.authorized_for_all_edorgs = true
+bootstrap.app.dashboard.allowed_for_all_edorgs = true
+bootstrap.app.portal.authorized_for_all_edorgs = true
+bootstrap.app.portal.allowed_for_all_edorgs = true
+                ]]></programlisting>
+                <!-- Revision to come...
+                <para>
+                    These configuration changes do the following:
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Activates the bootstrapping of a sandbox realm.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Defines the name and identity provider information for the sandbox realm.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Changes the API application registration behavior to automatically register
+                            the applications instead of forcing implicit approval of all applications
+                            outside of the ones bootstrapped to the initial system.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                -->
+                <note>
+                    <title><phrase>Sandbox Tip</phrase></title>
+                    <para>
+                        <phrase>Sandbox mode relies on the SimpleIDP being used for the realm authentication. 
+                            This is configured when you set 
+                            <code>sli.simple-idp.sandboxImpersonationEnabled</code> to "true" in the
+                            <filename>sli.properties</filename> file, which presents the user with the
+                            ability to select (and, thus, sign in as) other users and roles for the 
+                            SAML response to the API.</phrase>
+                    </para>
+                </note>
+            </step>
+            <step>
+                <para>
+                    <phrase>Restart the Tomcat service to switch to the new properties.</phrase>
+                </para>
+            </step>
+        </procedure>
+    </section>
+
+</chapter>
+    
+
+        

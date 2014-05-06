@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="r-ingestion_schema"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Ingestion Schema</title>
+    
+    <para>
+        All data to be ingested by &PRODUCT; must follow the
+        &INGESTIONSCHEMANAME; XML Schema. This schema is based on the 
+        Ed-Fi Core Schema (version &EDFIVERSION;) for describing educational 
+        data. See <xref linkend="c-ingestion_schemas"/>
+        for a general description of the schemas and interchanges.
+    </para>
+    <para>
+        The &INGESTIONSCHEMANAME; XML Schema is published as a series of
+        XSD files, compressed into a single .zip archive, available for 
+        download from
+        <link xlink:href="https://inbloom.org/library" xlink:show="new">https://inbloom.org/library</link>.
+        Scroll to the <guilabel>Data Management</guilabel> section and
+        click <guibutton>inBloom ingestion extension schemas</guibutton>.
+    </para>
+    <para>
+        The .zip archive contains the "Core" file and the series of 
+        "Interchange" files.
+    </para>
+    <para>
+        For a list of the interchanges and their entity mappings,
+        see
+        <xref linkend="r-ingestion-entity_interchange_schema_mapping"/>
+        and 
+        <xref linkend="r-ingestion-interchange_entity_mapping"/>.
+    </para>
+    <warning>
+        <title>Important!</title>
+        <para>
+            Because of dependencies between entities and attributes in the
+            XML data files, you must also follow a series of constraints 
+            described in <xref linkend="r-ingestion_constraints"/>.
+        </para>
+    </warning>
+    
+</section>

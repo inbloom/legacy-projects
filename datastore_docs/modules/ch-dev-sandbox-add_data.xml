@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+    
+<chapter xml:id="doc-f6fa6643-0616-4a70-8172-86a000fc4da3"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Add Data to the Sandbox</title>
+
+    <para> 
+        In order to make the most of your development work, you will 
+        need data to test with. This section describes how to import 
+        data to your Sandbox tenancy, a process &COMPANYABBR; calls
+        <glossterm linkend="def-data_ingestion">data ingestion</glossterm>. 
+    </para>
+    <warning>
+        <title>Caution: Do not put real data in your sandbox!</title>
+        <para>
+            The inBloom Sandbox MUST NOT contain real data, 
+            particularly personally identifiable information (PII)
+            or education records for real students and educators. 
+            Make sure to use only artificial or fabricated data in
+            your sandbox. For your convenience, inBloom provides 
+            fabricated sample data sets that you can select and load 
+            into your sandbox.
+        </para>
+    </warning>
+    <para>
+        Before you ingest data to your Sandbox, you must choose what 
+        type of data you want to ingest. &COMPANYABBR; gives you the 
+        following options: 
+    </para>
+    <itemizedlist>
+        <listitem>
+            <para>
+                <emphasis role="bold">&COMPANYABBR;-provided data set</emphasis> &COMPANYABBR;
+                provides data sets with typical education data. You can choose from the following
+                &COMPANYABBR; sample sets: </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis>Small Data Set</emphasis> A 4,000+ record dataset representing a
+                        fictional Daybreak school district with 3 schools and 78 enrolled students.
+                        This dataset contains high-fidelity, curated data meant to be displayed in
+                        the educator Dashboard (see <xref
+                            linkend="doc-4dd89e2c-3cac-4e79-94a4-1ededf5a27a7"/>). </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis>Medium Data Set</emphasis> A 40,000+ record dataset representing
+                        one district with 5 schools and 500 enrolled students. This data set
+                        contains auto-generated, medium-fidelity data which is best viewed using the
+                        Data Browser application (see <xref
+                            linkend="doc-6e954ad4-d3f3-454f-a57d-776c0b2ec6b9"/>), but can also be
+                        viewed in the Dashboard. </para>
+                </listitem>
+            </itemizedlist>
+        </listitem>
+        <listitem>
+            <para>
+                <emphasis role="bold">Custom data set</emphasis> Custom data sets are those not
+                provided by &COMPANYABBR;. These take some special consideration when you prepare
+                the data, though ingesting and using the data works the same in the Sandbox as for
+                the &COMPANYABBR; sample data. See <xref
+                    linkend="doc-c85d7aba-e58c-4937-a387-6bf880765238"/> for details. </para>
+        </listitem>
+    </itemizedlist>
+    <para>Developers can import multiple data sets into a tenancy. For example, you can add both the
+        &PRODUCTABBR;-provided small and medium data sets. However, it is important that the
+        information in each data set be unique and not overlap with other previously added data. If
+        you load conflicting data, the old data will be overwritten with the new and the dataset
+        could become unstable. The small and medium dataset do not contain overlapping data.</para>
+    <para>Once data is added, all developers with access to the tenancy can access and test with the
+        data.</para>
+    <section xml:id="doc-19d3f129-1c43-40ba-92c7-2a43ec8e07fe">
+        <title>Add &COMPANYABBR; Sample Data</title>
+        <para> Use the following steps to sign in to the Sandbox and ingest &COMPANYABBR; sample
+            data for use in your Sandbox: </para>
+        <procedure>
+            <step>
+                <para> Log in to the Sandbox using your developer credentials. See
+                    <link xlink:href="portal.sandbox.inbloom.org" /> </para>
+                     
+            </step>
+            <step>
+                <para>Click <guibutton>Administer My Sandbox</guibutton>.</para>
+                <para>
+                    If this is your first access to the Sandbox, or if
+                    you are accessing it after a recent upgrade to the software
+                    license, click <guibutton>Agree</guibutton> to accept the 
+                    <guilabel>License Agreement</guilabel>.
+                </para>
+            </step>
+            <step>
+                <para> Click <guibutton>Admin</guibutton> to access the administration page for your
+                    Sandbox. </para>
+            </step>
+            <step>
+                <para>Click <guibutton>Create Landing Zone</guibutton> under <guilabel>System
+                        Tools</guilabel>. </para>
+                <para>A landing zone is a File Transfer Protocol (FTP) server location where you can
+                    upload files to be ingested using the &PRODUCTABBR; data ingestion process. For
+                    the Sandbox, sample data is automatically uploaded and ingested. </para>
+                <figure xml:id="figure-sandbox-provision_landing_zone">
+                    <title/>
+                    <mediaobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/sandbox-provision_landing_zone.png" 
+                                scalefit="1" width="7in"/>
+                        </imageobject>
+                        <imageobject role="html">
+                            <imagedata align="center"
+                                fileref="images/sandbox-provision_landing_zone.png" scalefit="1"
+                                width="750px"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+            <step>
+                <para>Load the &COMPANYABBR; example data: </para>
+                <substeps><step><para>Select <guilabel>Autoload &COMPANYABBR; example data</guilabel>.</para></step>
+                    <step><para>Select the dataset to load from the <guilabel>Autoload &COMPANYABBR; example data</guilabel>
+                            menu.</para></step>
+                    <step><para>Click <guibutton>Select</guibutton>.</para></step></substeps>
+                <para>The system begins to load the dataset you selected. The amount of time
+                    it takes the data to load varies. You receive a confirmation email that
+                    contains instructions on how to access the Data Browser.</para>
+            </step>
+           
+            <step>
+                <para> Verify that you can use the data you just ingested to sign in as a test user
+                    (from the data set) and to access data as that user:</para>
+                <substeps>
+                    <step>
+                        <para> Click your email address in the upper right and select
+                            <guibutton>Exit</guibutton> from the drop-down menu to return to the
+                            log in page. </para>
+                        <figure
+                            xml:id="figure-Adding-New-Admin-User-test">
+                            <title>Test User Login</title>
+                            <mediaobject>
+                                <imageobject role="html">
+                                    <imagedata align="center"
+                                        fileref="images/sandbox_test_user_login.png"
+                                        width="7in" scalefit="1"/>
+                                </imageobject>
+                                <imageobject role="fo">
+                                    <imagedata align="center"
+                                        fileref="../common/images/sandbox_test_user_login.png"
+                                        scalefit="1"/>
+                                </imageobject>
+                            </mediaobject>
+                        </figure> 
+                    </step>
+                    <step><para>Log in as a test user. Select</para>
+                        <itemizedlist>
+                            <listitem><para><guilabel>Use Sample User</guilabel> to log in by selecting a sample user from your
+                                dataset.</para></listitem>
+                            <listitem><para><guilabel>Manually Specify a User</guilabel> to log in using a specific test user that you
+                                know the credentials for.</para></listitem>
+                        </itemizedlist>
+                    </step>
+                    <step> <para>If you selected <guilabel>Manually Specify a User</guilabel> enter the user's name and user's role and then click <guibutton>Test As This User</guibutton>.</para>
+                    </step>
+                    <step><para>If you selected <guilabel>Use Sample User</guilabel></para>
+                        <substeps>
+                            <step><para>Select the sample dataset you want to test with.</para></step>
+                            <step><para>Select the user you want to use to test. Each user is associated with a role, so it is recommended that you select a user based on which role is most relevant to your test purposes.</para></step>
+                            <step><para>Click <guibutton>Test As This User</guibutton>.</para></step>
+                        </substeps></step>
+                </substeps>
+            </step>
+            <step>
+                <para>After you sign in, click the <guibutton>&COMPANYABBR; Dashboards</guibutton> application
+                    under <guilabel>My Applications</guilabel>, and make selections to see some of
+                    the sample data this user has access to. </para>
+                <para>For example, if you're using the small &COMPANYABBR; sample data set and
+                    signed in as <guilabel>linda.kim</guilabel> with the role
+                        <guilabel>Educator</guilabel>, you can make the following selections to view
+                    data about Ms. Kim's student, Matt Sollars: </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            District and school are fixed (Ms. Kim is only associated
+                            with one school in one district)
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Course: <guilabel>6th Grade English</guilabel>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Section: <guilabel>6th Grade English - Sec 4</guilabel>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </step>
+            <step>
+                <para> If this is your first time setting up your Sandbox, be sure you've also
+                    registered an application in the Sandbox before going on to your application
+                    development work. See <xref linkend="doc-909557d4-cf76-4144-8201-3f643664fb25"
+                    />. </para>
+            </step>
+        </procedure>
+        <note xml:id="doc-52499f3a-e2a5-4528-b4b6-7835849db21f">
+            <title>Removing Data</title>
+            <para>
+                To remove a data set from your tenancy, use the <code>@purge</code> flag in your 
+                ingestion control file. Placing this file in your landing zone and ingesting it 
+                removes all previously ingested data. For full details, see the 
+                <link xlink:show="new" xlink:href="http://www.inbloom.org/resources/documentation/data-ingestion-specification.pdf">&PRODUCTABBR; Data Ingestion Specification</link>
+                published by the &COMPANYABBR;.
+            </para>
+        </note>
+    </section>
+    
+    <section xml:id="doc-c85d7aba-e58c-4937-a387-6bf880765238">
+        <title>Add Custom Data to your Sandbox</title>
+        <para> Instructions for adding custom data to your Sandbox are the same those for using the
+            &COMPANYABBR; data sets except that you select <guilabel>Provide my own
+                dataset</guilabel> as the data set to work with. Thus, you can use the procedure in
+                <xref linkend="doc-19d3f129-1c43-40ba-92c7-2a43ec8e07fe"/> to ingest your custom
+            data. The key distinctions are in how you prepare the custom data: </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Data sets must comply with the Ed-Fi v1.0.03
+                        specification.</emphasis> To create these data sets, start with Ed-Fi schema
+                    compliant XML interchange files that describe your data set. For full details of
+                    the ingestion process and the specification for the ingestion control file, see
+                    the <link xlink:show="new"
+                        xlink:href="http://www.inbloom.org/resources/documentation/data-ingestion-specification.pdf"
+                        >&PRODUCTABBR; Data Ingestion Specification</link> published by the
+                    &COMPANYABBR;. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">The top-level (state) education organization in your data
+                        set must match that of your Sandbox.</emphasis> Specifically, the
+                        <varname>StateOrganizationId</varname> value in the
+                        <varname>StateEducationOrganization</varname> of your data set must match
+                    that of the Sandbox. If the organization you select does not match an
+                    organization in your data set, you will not have the correct contextual
+                    permissions when you sign in. This could prevent your test users and
+                    applications from retrieving or updating data from the &COMPANYABBR; REST API.
+                    If you're uploading custom data to the &COMPANYABBR; hosted Sandbox, you can
+                    adjust your data to use the same <varname>StateOrganizationId</varname> value
+                    from one of the &COMPANYABBR; sample data sets described earlier. </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+</chapter>

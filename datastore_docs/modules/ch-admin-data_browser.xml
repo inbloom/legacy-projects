@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-4236b37c-05fc-4244-84fb-d548e839089a"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>&PRODUCTABBR; Data Browser</title>
+    
+        <para>The &PRODUCTABBR; Data Browser is a tool that allows <glossterm
+            linkend="def-it_administrator">IT administrators</glossterm> to explore the data that is
+        accessible in their tenants. The &PRODUCTABBR; Data Browser includes search and navigation
+        functions, and it presents the data in sortable tables.</para>
+        <para>When you click a link to an entity in the &PRODUCTABBR; Data Browser, the browser will
+        display all the records for that entity type. For example, if you click
+            <guilabel>GetPrograms</guilabel>, it will return all of the programs in your tenancy.
+        Each program record in the &PRODUCTABBR; Data Browser can be expanded to display metadata
+        associated with the record such as the program type, the ID, and links to related data
+        records. This allows you to double check to make sure that the correct data records exist
+        and are properly recorded in your data store.</para>
+        <para>For more information:</para>
+        <itemizedlist>
+            <listitem>
+                <para>See the <link xlink:show="new" xlink:href="http://inbloom.org/resources/documentation/developer/rest-api-resources">&COMPANYABBR; REST API  Reference</link> for more information on the API calls available to you in the &PRODUCTABBR; Data Store.</para>
+            </listitem>
+            <listitem>
+                <para>See the <link xlink:show="new" xlink:href="http://inbloom.org/resources/documentation/developer/data-store-logical-model">&COMPANYABBR; Data Store Logical Model</link> reference for information on data entities and their related metadata points and fields.</para>
+            </listitem>
+            <listitem>
+                <para>See the section on <link xlink:show="new"
+                    xlink:href="http://inbloom.org/resources/documentation/developer/security">Security in the
+                    &COMPANYABBR;</link> for information on our security model including information
+                on user roles, permissions, and data access context rules. </para>
+            </listitem>
+        </itemizedlist>
+    
+    <section xml:id="doc-28205b4f-d877-4e6e-9f2f-4abb8f629958">
+        <title>Prerequisites</title>
+        <para>To use the &PRODUCTABBR; Data Browser, you must:</para>
+        <itemizedlist>
+            <listitem>
+                <para>Have an account with IT Administrator rights.</para>
+            </listitem>
+            <listitem>
+                <para>Have <glossterm linkend="def-effective_permissions">effective permissions</glossterm> to view the appropriate data.</para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+    <section xml:id="doc-6cc80f04-a6df-42d7-bb57-a5e21886857a">
+        <title>Browsing the &PRODUCTABBR; Data Store</title>
+        <para>To view data using the &PRODUCTABBR; Data Browser:</para>
+        <procedure>
+            <step>
+                <para>Log in to &COMPANYABBR; using your IT Administrator account.</para>
+            </step>
+            <step>
+                <para>Click <guibutton>Admin</guibutton>.</para>
+            </step>
+            <step>
+                <para>Click <guibutton>Data Browser</guibutton>. The Data Browser listings page appears:</para>
+                <figure xml:id="figure-data-browser-listing">
+                    <title>Data Browser Listings Page</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="left" 
+                                fileref="images/data_browser_home.png" 
+                                width="750px" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/data_browser_home.png" width="7in" 
+                                scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+                <itemizedlist>
+                    <listitem>
+                        <para>Use the search feature to jump directly to a specific data
+                            record.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Use the drop-down menu to select the scope of the search. You can
+                            search by ID for students (studentUniqueStateId), teachers
+                            (teacherUniqueStateId), parents (parentUniqueStateId), staff
+                            (staffUniqueStateId), and education organizations
+                            (stateOrganizationId).</para>
+                    </listitem>
+                    <listitem>
+                        <para>Enter the ID in the text input. Click <guibutton>search</guibutton> to
+                            jump directly to the data record.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Click a link to retrieve a listing of data records.</para>
+                    </listitem>
+                </itemizedlist>    
+            </step>
+            <step>
+                <para>This example displays a listing of programs in an example tenant:</para>
+                <figure xml:id="figure-data-browser-program-listings">
+                    <title>Example Program Listing Page</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="left" 
+                                fileref="images/data_browser_program_listings.png" 
+                                width="750px" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/data_browser_program_listings.png" width="7in" scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+                <itemizedlist>
+                    <listitem>
+                        <para><emphasis>A</emphasis> - Click <guibutton>Back to Listings</guibutton> to return to the main listings page.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>B</emphasis> - Click a header row to sort by the column. You can choose to sort in ascending or descending order.</para>
+                    </listitem>
+                    <listitem>
+                        <para><emphasis>C</emphasis> - Click an entry in the table to view an expanded record. For example:</para>
+                    </listitem>
+                </itemizedlist>
+                <figure xml:id="figure-data-browser-expanded-view">
+                    <title>Expanded View of a Program Listing Record</title>
+                    <mediaobject>
+                        <imageobject role="html">
+                            <imagedata align="left" 
+                                fileref="images/data_browser_expanded_view.png" 
+                                width="750px" scalefit="1"/>
+                        </imageobject>
+                        <imageobject role="fo">
+                            <imagedata align="center" 
+                                fileref="../common/images/data_browser_expanded_view.png" width="7in" scalefit="1"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+            </step>
+        </procedure>
+    </section>
+
+    <section>
+        <title>Configuration</title>
+        <para>The order of entity properties is configurable by editing the file located at <filename>./config/order.yml</filename>. The file has root keys which
+          correspond to entity types. The list of properties beneath each root key gives the order in which the properties will appear on an entity detail page or list page.</para>
+    </section>
+    
+    <section xml:id="doc-2de0c227-873b-45b5-884c-bc2392628d3c">
+        <title>Related Documentation</title>
+        <para>As you work with the Data Browser, you may find the following documentation helpful:</para>
+        <itemizedlist>
+            <listitem>
+                <para>Visit <link xlink:show="new" xlink:href="&DEVWEBSITE;">&DEVWEBSITE;</link> for documentation of the &PRODUCTABBR; data model.</para>
+            </listitem>
+            <listitem>
+                <para>Read <xref linkend="doc-3e1677bd-a02f-44a0-9c73-4eaaa1e1b064"/> for more information on &PRODUCTABBR; roles and permissions.</para>
+            </listitem>
+        </itemizedlist>
+    </section>
+</chapter>

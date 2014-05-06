@@ -1,0 +1,450 @@
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html; characterset=ISO-8859-1"/>
+    <title>inBloom technology 1.9.82 Release Notes</title>
+</head>
+    
+<body>
+    
+    <div class="article">
+        
+        <h1 class="title">inBloom technology 1.9.82 Release Notes</h1>
+        
+        <p>
+            <a href="#whatsNew">What's New</a><br />
+            <a href="#dataModelUpdates">Data Model Updates</a><br />
+            <a href="#ingestionSchemaUpdates">Ingestion Schema Updates</a><br />
+            <a href="#apiUpdates">API Updates</a><br />
+            <a href="#actionsRequiredOnUpdate">Actions Required on Update</a><br />
+            <a href="#resolvedIssues">Resolved Issues</a><br />
+            <a href="#knownIssues">Known Issues</a><br />
+            <a href="#webBrowserCompatibility">Web Browser Compatibility</a><br />
+            <a href="#limitations">Known Limitations</a>
+        </p>
+        
+        <h3>Caution</h3>
+        <p>
+            The inBloom sandbox environment MUST NOT contain real data,
+            including educational records or personally identifiable 
+            information (PII) for students or educators. Make sure to 
+            use only artificial or fabricated data. inBloom provides 
+            fabricated sample data sets, available for download or
+            as a selection when setting up your sandbox online.
+        </p>
+        
+        <hr />
+        
+        <h2 id="whatsNew">What's New?</h2>
+        
+        <h3>New Security Event Available from API</h3>
+        <p>
+            "Access denied" events that occur in the API now generate 
+            security events that are viewable using the 
+            <em>securityEvent</em> system resource. See the 
+            <a href="https://inbloom.org/sites/default/files/docs-developer/c-api-app_functions-security_admin.html"><em>securityEvent</em> resource listing</a> 
+            for more information.
+        </p>
+        
+        <h3>Update in API Resources Permissions</h3>
+        <p>
+            Some REST API resources now perform CRUD operations based on 
+            the user's permission by education organization. See
+            <a href="#apiUpdates">API Updates</a> below for more details.
+        </p>
+        
+        <h2 id="ingestionSchemaUpdates">Ingestion Schema Updates</h2>
+        <p>
+            No changes were made to the ingestion schema in this release.
+        </p>
+        
+        <h2 id="dataModelUpdates">Data Model Updates</h2>
+        <p>
+            No changes were made to the logical data model in this release.
+        </p>
+        
+        <h2 id="apiUpdates">API Updates</h2>
+        <p>
+            This release includes the following changes to the API:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    The following resources now perform CRUD operations based 
+                    on the user's permission by education organization. See 
+                    Section 11.3 of the administrator documentation for more 
+                    about how inBloom determines a user's permissions, 
+                    including permissions by education organization:
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            custom resources (in the form <em>/{entity}/{id}/custom</em>)
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            attendance
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            cohort
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            courseTranscript
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            disciplineAction
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            disciplineIncident
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            gradebookEntry
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            reportCards
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            staffEducationOrganizationAssociation
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            student (multi-part URIs)
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentProgramAssocation
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentProgramAssocation
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentAcademicRecord
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentAssessment
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentCohortAssociation
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentDisciplinceIncidedntAssociation
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentParentAssociation
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            studentSectionAssociation
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            teacherSchoolAssociation
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>Added</h3>
+        <p>
+            No resources were added in this release.
+        </p>
+        
+        <h3>Deprecated</h3>
+        <p>
+            No resources were deprecated in this release.
+        </p>
+        
+        <h3>New and Updated Fields</h3>
+        <p>
+            No fields were added or updated in API resources for this release.
+        </p>
+        
+        <h2 id="actionsRequiredOnUpdate">Actions Required on Update</h2>
+        <p>
+            No action is required by users on update.
+        </p>
+        
+        <h2 id="resolvedIssues">Resolved Issues</h2>
+        
+        <p>
+            The following is a list of previously reported issues which have
+            been resolved this release.
+        </p>
+        
+        <h3>DE2893: Escaped greater-than and less-than characters are triggering the blacklist.</h3>
+        <p>
+            Greater-than (&gt;) and less-than (&lt;) characters are removed 
+            from the blacklist with this release.
+        </p>
+        
+        <h3>DE2932: Security events API resource not taking into account TenantId.</h3>
+        <p>
+            When using the <em>securityEvents</em> system resource in the API, 
+            LEA and SEA administrators now see only the security events for 
+            their tenant, even if an identically named education organizations
+            exists in other tenants.
+        </p>
+        
+        <h2 id="knownIssues">Known Issues</h2>
+        <p>
+            The following are the open defects currently used to track known 
+            issues in this release.
+        </p>
+        <h3>DE198: EducationOrganization references to Program are not properly ingested.</h3>
+        <p>
+            The programReference is not yet implemented for 
+            educationOrganization entities. As a result, the API does not 
+            provide a link between educationOrganization and program entities.
+        </p>
+        <h3>DE273: A DisciplineDescriptor is not currently supported in Interchange-StudentDiscipline.</h3>
+        <p>
+            This descriptor is not currently supported. However, a 
+            reference to this descriptor is required for the DisciplineAction
+            entity.
+        </p>
+        <h3>DE325: Global uniqueness of ProgramIdentifier is assumed when multiple EdOrgs can use the same IDs.</h3>
+        <p>
+            The ingestion process assumes that the Program ID is unique 
+            within a tenant, but this should be unique within the specified 
+            EdOrg instead. As a result, the reference could resolve incorrectly.
+        </p>
+        <h3>DE408: Aggregate Viewers cannot see themselves.</h3>
+        <p>
+            Users with the Aggregate Viewer role cannot see their own 
+            Teacher or Staff entity.
+        </p>
+        <h3>DE710: Section, school and session references in AttendanceEvent are ignored.</h3>
+        <p>
+            The way AttendanceEvent entities are handled ignores explicit 
+            characterization of the attendance event - by school, section, 
+            session. As a result, AttendanceEvents for students attending 
+            multiple schools do not properly persist.
+        </p>
+        <h3>DE1434: Internet Explorer 8 users may experience issues when using the dashboard builder.</h3>
+        <p>
+            If you are using Internet Explorer 8 and the dashboard builder, 
+            then intermittently the release after a drag and drop does not 
+            return the page to the correct state.
+        </p>
+        <h3>DE1457: Making a teacher call for a section with two "teachers of record" returns a 403 error.</h3>
+        <p>
+            Making a teacher call for a section with two "teachers of record" 
+            returns a 403 error. This error can cause the sectionInfo panel 
+            to not display.
+        </p>
+        <h3>DE1458: The ingestion service is able to handle more than one teacher of record.</h3>
+        <p>
+            The ingestion service can accept more than one teacher for 
+            a single section. The dashboard does not currently support 
+            this behavior.
+        </p>
+        <h3>DE1573: Attendance Rate should be removed.</h3>
+        <p>
+            The current attendance record includes an attendance rate 
+            column that may not be accurate for some use cases. The 
+            column could be removed by default in a future release.
+        </p>
+        <h3>DE1647: Dashboard may not display all data.</h3>
+        <p>
+            When a large dataset is available, the initial dashboard view 
+            may only display a subset of the data. The dashboard currently 
+            does not display a message explaining this scenario.
+        </p>
+        <h3>DE1728: An error occurs if an OAuth Callback URL does not begin with "HTTPS".</h3>
+        <p>
+            If an application includes a callback URL that does not begin 
+            with "https://", then an error message is returned.
+        </p>
+        <h3>DE2079: HATEOS links don't always work as expected.</h3>
+        <p>
+            The HATEOS links that the API returns may not work as expected 
+            in all cases. The contextual URI rewrites convert some API 
+            requests. Some of these converted requests may not return 
+            what is expected.
+        </p>
+        <h3>DE2160: Selecting a filter after listing a section removes all student data.</h3>
+        <p>
+            When viewing a list of students using the inBloom Dashboard, 
+            choosing a filter related to that student's "special needs" 
+            status results in a "no students found" error.
+        </p>
+        <h3>DE2300: There is a 250 result limit on global entities contained in elasticsearch.</h3>
+        <p>
+            When querying the following entities, results are limited to a 
+            maximum of 250 returns:
+        </p>
+        <ul>
+            <li><p>/assessments</p></li>
+            <li><p>/competencyLevelDescriptor</p></li>
+            <li><p>/learningObjectives</p></li>
+            <li><p>/learningStandards</p></li>
+            <li><p>/studentCompetencyObjectives</p></li>
+        </ul>
+        <h3>DE2725: Updating an entity does not correctly update the search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity 
+            is not updated in elasticsearch and becomes unsearchable.
+        </p>
+        <h3>DE2833: Deletes from Interchanges aside from InterchangeAssessmentMetadata does not work for ObjectiveAssessement and possibly others.</h3>
+        <p>
+            The Action Entity type can be present in any interchange 
+            and should support deletion of any entity type. Currently, 
+            the Action Entity with the type attribute set to DELETE will 
+            only support deletion of entities within the interchange in 
+            which the Action Entity is present. 
+        </p>
+        <h3>DE2851: Newly created student entity is unsearchable.</h3>
+        <p>
+            After creating a student entity, it cannot be retrieved from the 
+            API endpoint.
+        </p>
+        <h3>DE2852: Updating a learningObjective entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2853: Updating a learningStandard entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2857: Updating a courseOffering entity does not correctly update search index.</h3>
+        <p>
+            When an existing entity in the system is updated, that entity is 
+            not updated in elastic search and becomes unsearchable.
+        </p>
+        <h3>DE2914: Delta bulk extract behavior is incorrect for force delete of Assessment followed by an ObjectiveAssessment update in the same delta interval.</h3>
+        <p>
+            There is a condition where "AssessmentItem", "ObjectiveAssessment", 
+            "StudentAssessmentItem", or "StudentObjectiveAssessment" instances 
+            refer to a parent entity instance that does not exist in the data 
+            store (because of forced deletion of that entity or out of order 
+            ingestion). If these dependent entities are updated, then a 
+            "hollow" parent entity which includes the dependent entity instance 
+            data is included in the bulk extract. The correct behavior is 
+            that there is no entry in the bulk extract when the referred to 
+            entity instance does not exist.
+        </p>
+        <h3>DE2930: Total count being returned in API header is incorrect.</h3>
+        <p>
+            This case surfaces entities that have been enabled for contextual
+            roles and the user has different roles in different edorgs.
+        </p>
+        
+        <h2 id="webBrowserCompatibility">Web Browser Compatibility</h2>
+        <p>
+            inBloom technology Dashboard is best viewed in 
+            Internet Explorer 8+, Firefox 6+, Safari 4+ 
+            with 1024x768 as the minimum recommended screen 
+            resolution.
+        </p>
+        
+        <h2 id="limitations">Known Limitations</h2>
+        <p> 
+            Known limitations in this release are summarized as follows:
+        </p>
+        <ul>
+            <li>
+                <p>
+                    <strong>Landing Zone File Size Limit</strong> - 
+                    Currently the Sandbox landing zones enforce a size 
+                    limit of 5 MB for ingestion archive files, 
+                    corresponding to approximately 150-25MB of 
+                    uncompressed XML data, or about 150,000-250,000 
+                    records. In this release, ingesting a data set of 
+                    this size should take less than 5 minutes.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Unsupported Ed-Fi Entities</strong> - 
+                    Some Ed-Fi entities are not yet supported and, thus, 
+                    not consumable through data ingestion. For additional 
+                    information, see the 
+                    <a href="https://inbloom.org/library">inBloom Ingestion Guide</a>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Educator Dashboard</strong> - 
+                    Not all ingestible data is displayed in inBloom 
+                    educator dashboards, including discipline incidents, 
+                    cohorts or student competencies.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>Aggregate Viewer Roles</strong> - 
+                    Aggregate Viewer roles do not yet provide aggregate 
+                    view of data.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <strong>API Custom Data Size Limit</strong> - 
+                    Maximum currently enforced size of a custom data 
+                    resource in API is 128KB. The theoretical maximum 
+                    object size supported by the software platform is 
+                    16MB, but a more practical restriction of 128KB has 
+                    been placed on it in order to encourage efficient 
+                    data management practices and application responsiveness. 
+                    Custom data fields are not intended to be used to 
+                    store multimedia content or other types of 
+                    human-readable documents, for example. Such resources 
+                    are better served through existing web-based 
+                    infrastructure.
+                </p>
+            </li>
+        </ul>
+        
+        <div class="footer">
+            <p>
+                Copyright © 2013 inBloom, Inc. and its affiliates.
+            </p>
+            <p>
+                This document and the information contained herein is provided 
+                on an "AS IS" basis and inBloom, Inc. DISCLAIMS ALL WARRANTIES, 
+                EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY 
+                THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY 
+                RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS 
+                FOR A PARTICULAR PURPOSE.
+            </p>
+        </div>
+        
+    </div> <!-- END of div class "article" -->
+
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE revhistory [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<revhistory xml:id="docs-ingestion-revhistory"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <revision>
+        <revnumber>1.2.72</revnumber>
+        <date>3/15/2013</date>
+        <revdescription>
+            <para>
+                Created document by revising and reorganizing reference and
+                conceptual content from an ingestion specification document, 
+                instructional content from administrator documentation, and
+                the data model reference content from developer documentation.
+            </para>
+            <para>
+                Enhanced content by providing hints for how to address errors
+                and warnings reported in ingestion log files.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.73</revnumber>
+        <date>4/03/2013</date>
+        <revdescription>
+            <para>
+                Enchanced parser warning and error content with examples and
+                the assertion that each parser errors results in an
+                ingestion failure.
+            </para>
+            <para>
+                Removed material some content that was no longer accurate 
+                since out of order ingestion is now fully supported.
+            </para>
+            <para>
+                Updated references to reflect changes in 
+                AssessmentPeriodDescriptor and AssessmentFamily.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.2.74</revnumber>
+        <date>4/17/2013</date>
+        <revdescription>
+            <para>
+                Added a chapter covering deleting data through the ingestion
+                system. For this release, the feature is implemented with
+                "safe deletion" limitations described in the new chapter.
+            </para>
+            <para>
+                Repaired text wrapping and overlapping issues in reference
+                tables throughout the document.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.3.75</revnumber>
+        <date>4/30/2013</date>
+        <revdescription>
+            <para> 
+                Supplemented and revised the chapter covering deleting data 
+                through the ingestion system. 
+            </para>
+            <para> 
+                Appended new entries to the table of ingestion error messages, 
+                all related to the new deletes through ingestion feature.
+            </para>
+            <para> 
+                Updated reference and conceptual content based on careful 
+                review from engineers.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.3.76</revnumber>
+        <date>5/15/2013</date>
+        <revdescription>
+            <para> 
+                For the deletes through ingestion content:
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Added new information about how student data is 
+                        handled during the force delete of an education 
+                        organization.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Removed entity-specific constraints on forced deletes
+                        since they're no longer applicable.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.4.77</revnumber>
+        <date>5/29/2013</date>
+        <revdescription>
+            <para> 
+                No changes were made to this document for this release.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.5.78</revnumber>
+        <date>6/12/2013</date>
+        <revdescription>
+            <para> 
+                Updated table to reflect deprecated error code CORE_0015.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.6.79</revnumber>
+        <date>6/26/2013</date>
+        <revdescription>
+            <para> 
+                No changes were made to this document for this release.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.7.80</revnumber>
+        <date>7/8/2013</date>
+        <revdescription>
+            <para>
+                Updated error message table and description of
+                the control file format to reflect that the use of a
+                checksum for each XML file was deprecated.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.8.81</revnumber>
+        <date>7/19/2013</date>
+        <revdescription>
+            <para>
+                No changes were made to this document for this release.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.9.82</revnumber>
+        <date>8/2/2013</date>
+        <revdescription>
+            <para>
+                No changes were made to this document for this release.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.10.85</revnumber>
+        <date>9/13/2013</date>
+        <revdescription>
+            <para>
+                Changes made to reflect move from SEA, LEA and School entity subtypes to one Generic EducationOrganization Type.  Additionally, documentation of support for multiple parent ed org references has been added. 
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.87</revnumber>
+        <date>10/11/2013</date>
+        <revdescription>
+            <para>
+                Change made to reflect the addition of AttendanceEventCategory to the natural key of AttendanceEvent.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.12.88</revnumber>
+        <date>10/25/2013</date>
+        <revdescription>
+            <para>
+                Added the control file flag @duplicate-detection and options.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.14.92</revnumber>
+        <date>12/17/2013</date>
+        <revdescription>
+            <para>
+                Updated Interchange name in Appendix.
+            </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.14.93</revnumber>
+        <date>1/7/2014</date>
+        <revdescription>
+            <para> Added information regarding BellSchedule and ClassPeriod entities. </para>
+        </revdescription>
+    </revision>
+    <revision>
+        <revnumber>1.15</revnumber>
+        <date>3/1/2014</date>
+        <revdescription>
+            <para> Removed cascade delete as an option. </para>
+        </revdescription>
+    </revision>
+    <!--revision>
+        <revnumber>&CURRENTRELEASEREVISION;</revnumber>
+        <date>&CURRENTRELEASEDATE;</date>
+        <revdescription>
+            <para>
+                No changes were made during this release.
+            </para>
+        </revdescription>
+    </revision-->
+</revhistory>
+
+        

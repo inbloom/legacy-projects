@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % slc_entities SYSTEM "../common/entities.ent">
+%slc_entities;
+]>
+    
+<chapter xml:id="doc-304fac41-889f-41e3-9e5b-bdef74c05e44"
+         xmlns="http://docbook.org/ns/docbook" 
+         xmlns:xi="http://www.w3.org/2001/XInclude" 
+         xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Deploy &COMPANYABBR; Applications: Portal</title>
+
+    <para>
+        The sections that follow cover preparing for, installing, and 
+        configuring the Portal as part of the applications in &PRODUCTABBR;.
+    </para>
+
+    <section xml:id="doc-0082e63d-ad8a-494c-b99f-dac10867b076">
+        <title>Portal: What You Need to Know Before Deployment</title>
+        <para> Portal is a customized implementation of the Liferay web application. It provides the
+            default interface from which other &PRODUCTABBR; applications can be accessed. The
+            platform code is deployed on top of Liferay via the Liferay Hot Deploy function. Do not send any requests to the Tomcat server to which the Portal's
+                being deployed until you complete all the installation steps in <xref
+                    linkend="doc-2fe4e90c-8686-4039-929d-359fef942eae"/>.
+            The Tomcat service must be restarted in order for all of the
+                automatic changes to Liferay to properly take effect.
+        </para>
+        <para>Portal is scaled by adding additional Portal server instances which  requires
+            clustering Tomcat and specific Liferay configuration. Details on this can be found in
+            the installation section. Due to session caching within Liferay, Load Balancer session
+            stickiness is recommended.</para>
+    </section>
+    
+    <section xml:id="doc-2fe4e90c-8686-4039-929d-359fef942eae">
+        <title>Portal: Installation</title>
+        <para>
+            Installation for the Portal requires the following:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    An operating IDP
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    An operating API
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase>An operating MySQL server that the Portal server can connect to via SSL</phrase>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A Tomcat application server to host this software
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <phrase>An application keystore</phrase>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <phrase>This software utilizes two components. The first is an open source package called Liferay. 
+                The customized Portal code and configurations are applied to Liferay to make the 
+                interface a working Portal deployment.</phrase>
+        </para>
+        <para> Use the following procedure to install the Portal application for &PRODUCTABBR;: </para>
+        <procedure>
+            <step>
+                <para>
+                    <phrase>Stop Tomcat, and set the <varname>CATALINA_HOME</varname> and
+                        <varname>CATALINA_BASE</varname> environment variables:</phrase>
+                </para>
+                <programlisting><![CDATA[
+export CATALINA_HOME = /path/to/tomcat/installation
+export CATALINA_BASE = /path/to/tomcat/instance
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Edit the file <filename>my.cnf</filename> on your primary MySQL server, 
+                        adding the following line to your config:</phrase>
+                </para>
+                <programlisting><![CDATA[
+binlog_format=row
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>In MySQL, create a user <guilabel>liferay</guilabel> and a database 
+                        <guilabel>lportal</guilabel>, and grant <guilabel>liferay</guilabel>
+                        access to <guilabel>lportal</guilabel>. Use the following MySQL
+                        commands, replacing &gt;portal_server&lt; with the name or IP of the
+                        Portal server and &lt;user_password&gt; with the password for user 
+                        <guilabel>liferay</guilabel>.</phrase>
+                </para>
+                <programlisting><![CDATA[
+mysql> create database lportal;
+mysql> create user ‘liferay’@’<portal_server>’ identified by ‘<user_password>’;
+mysql> grant all on lportal.* to ‘liferay’@’<portal_server>’ require SSL;
+mysql> flush privileges;
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Download Liferay Community Edition 6.1 GA1 bundled with Tomcat, and 
+                        extract it to the path to the Liferay Tomcat source.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>Install Liferay dependency.</para><programlisting><![CDATA[
+gem install sass --pre
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Copy the JARs that Liferay depends on to Tomcat. Use the following
+                        commands, replacing &lt;liferay_tomcat_path&gt; with the path to 
+                        the Liferay Tomcat source:</phrase>
+                </para>
+                <programlisting><![CDATA[
+mkdir -p $CATALINA_BASE/lib/ext
+cp <liferay_tomcat_path>/tomcat/lib/ext/*.jar $CATALINA_BASE/lib/ext
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Drop <filename>portal.war</filename> in Tomcat. The subsequent installation steps 
+                        assume <filename>portal.war</filename> has been installed as <guilabel>portal</guilabel>
+                        context, and not <guilabel>root</guilabel> context:</phrase>
+                </para>
+                <programlisting><![CDATA[
+cp portal.war $CATALINA_BASE/webapps/portal.war
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Change ownership on the Tomcat <filename>webapps</filename> folder:</phrase>
+                </para>
+                <programlisting><![CDATA[
+chown -R tomcat:tomcat $TOMCAT_HOME/webapps
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Create the hot deploy folder for Portal 
+                        (commands assume that Tomcat is running as user <guilabel>tomcat</guilabel>):</phrase>
+                </para>
+                <programlisting><![CDATA[
+mkdir /opt/deploy
+chown -R tomcat:tomcat /opt/deploy
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Create the four configuration files that are utilized by the Portal
+                        as indicated in the following steps:</phrase>
+                </para>
+                <substeps>
+                    <step>
+                        <para>
+                            <phrase><filename>$CATALINA_BASE/portal-setup-wizard.properties</filename> -
+                                Used to load default Portal settings during startup. Contents should
+                                be as follows where &lt;admin_email&gt; is the email that
+                                &PRODUCTABBR; should use as the Sender when users report a problem 
+                                from the Portal:</phrase>
+                        </para>
+                        <programlisting><![CDATA[
+admin.email.from.name=some@email.com
+default.admin.first.name=default.first.name
+default.admin.last.name=default.last.name
+liferay.home=$CATALINA_BASE 
+admin.email.from.address=<admin_email>
+company.default.name=default.company.name
+default.admin.email.address=default@email.com
+company.default.locale=en_US
+setup.wizard.enabled=false
+default.admin.screen.name=default.screen.name
+]]></programlisting>
+                    </step>
+                    <step>
+                        <para>
+                            <phrase><filename>$CATALINA_BASE/encryption/encryption.properties</filename> -
+                                Contains the configurations needed to get the key to encrypt/decrypt 
+                                properties. Contents should be as follows
+                                where &lt;keystore_location&gt; is the location  of the keystore, 
+                                &lt;keystore_password&gt; is the password to the application keystore, 
+                                &lt;key_alias&gt; is the key from the keystore you want to use for 
+                                encryption, and &lt;key_password&gt; is the password to obtain the 
+                                key from the keystore. If you haven't created a keystore and/or key 
+                                for this purpose, please follow the instructions documented in 
+                                <xref linkend="doc-385181f1-ba5d-43ce-83a1-ba4ea937d618"/>:</phrase>
+                        </para>
+                        <programlisting><![CDATA[
+sli.encryption.keyStore=<keystore_location>
+sli.encryption.keyStorePass=<keystore_password>
+sli.encryption.dalKeyAlias=<key_alias>
+sli.encryption.dalKeyPass=<key_password>
+sli.wildcard.x509certificate.alias=wildcard
+]]></programlisting>
+                    </step>
+                    <step>
+                        <para>
+                            <phrase><filename>$CATALINA_BASE/portal-ext.properties</filename> -
+                                The core configuration file that will be used by various modules that
+                                comprise the Portal application. This defines the database that you 
+                                previously created, the email server Portal will be using, cluster 
+                                configurations, etc. Contents should be as follows:</phrase>
+                        </para>
+                        <programlisting><![CDATA[
+#Environment Mode
+#For Sandbox mode, the property should be set to false, for Production mode - true
+is_sandbox = true
+
+# MySQL settings
+jdbc.default.driverClassName=com.mysql.jdbc.Driver
+jdbc.default.url=jdbc:mysql://mysql.domain.tld/lportal?
+emulateLocators=true&useUnicode=true
+&characterEncoding=UTF-8&useFastDateParsing=false&createDatabaseIfNotExists=true
+&useSSL=true&requireSSL=true
+jdbc.default.username=liferay
+jdbc.default.password=<db_password>
+jdbc.default.encrypted.password=true
+include-and-override=${sli.encryption.properties}
+
+# email server settings
+mail.session.mail.smtp.host=<mail_server_host>
+mail.session.mail.smtp.port=<mail_server_port>
+mail.session.mail.smtp.auth=true
+mail.session.mail.smtp.credential.encryption=<encryption_flag>
+mail.session.mail.smtp.user=<smtp_username>
+mail.session.mail.smtp.password=<smtp_password>
+mail.session.mail.transport.protocol=smtp
+
+# cluster settings
+cluster.link.enabled=true
+org.quartz.jobStore.isClustered=true
+net.sf.ehcache.configurationResourceName=/ehcache/hibernate-clustered.xml
+ehcache.multi.vm.config.location=/ehcache/liferay-multi-vm-clustered.xml
+dl.store.impl=com.liferay.portlet.documentlibrary.store.JCRStore
+lucene.replicate.write=false
+lucene.store.jdbc.auto.clean.up.enabled=true
+lucene.store.type=jdbc
+
+# application settings
+session.timeout=20
+session.timeout.warning=0
+portal.ctx=/portal
+sli.cookie.domain=<domain of application>
+users.reminder.queries.enabled=false
+users.reminder.queries.custom.question.enabled=false
+users.reminder.queries.required=false
+system.roles=SLI Administrator, Educator
+setup.wizard.enabled=false
+portlet.event.distribution=layout-set
+portlet.public.render.parameter.distribution=ALL_PORTLETS
+org.slc.sli.login.servlet.filter.sso.SLIFilter=true
+users.screen.name.validator=com.liferay.portal.security.auth.LiberalScreenNameValidator
+users.email.address.required=false
+terms.of.use.required=true
+sli.sso.logout.on.session.expiration=true
+sso.login.error.page=/portal/web/guest/error
+sli.role.itadmin=IT Administrator
+sli.role.sliadmin=SLI Administrator
+sli.role.educator=Educator
+sli.role.admin=LEA Administrator,Realm Administrator,IT Administrator,SEA Administrator,SLC Operator,Application Developer,Ingestion User,SEA Super Administrator,LEA Super Administrator,Realm Admin,App Developer,Sandbox Administrator
+sli.role.liferayadmin=SLC Operator
+wsrp.page=/portal/web/guest/wsrp
+iframe.page=/portal/web/guest/iframe
+template.processing.enabled=false
+image.menu_arrow=menu_arrow1.png
+image.arrow=arrow.png
+image.arrow_w=arrow_w.png
+image.sli_logo=inBloomBlack.png
+layout.user.public.layouts.enabled=false
+layout.user.public.layouts.modifiable=true
+layout.user.public.layouts.auto.create=false
+layout.user.private.layouts.enabled=false
+layout.user.private.layouts.modifiable=true
+layout.user.private.layouts.auto.create=false
+layout.lar.file.name=layout.lar
+auto.deploy.deploy.dir=/opt/deploy
+layout.friendly.url.page.not.found=/web/guest/error
+auto.deploy.copy.log4j=false
+browser.cache.signed.in.disabled=true
+http.header.version.verbosity= partial
+]]></programlisting>
+                        <para>
+                            <phrase>You can choose to encrypt email credentials by setting &lt;encryption_flag&gt;
+                                to "true". In that case, you should use the encryption tool 
+                                covered in <xref linkend="doc-eba7f1b4-69e4-4602-b3c0-015fc1a02677"/> to 
+                                encrypt &lt;smtp_username&gt; and &lt;smtp_password&gt;. Otherwise, you can 
+                                set &lt;encryption_flag&gt; to "false" and use clear-text values for 
+                                &lt;smtp_username&gt; and &lt;smtp_password&gt;.</phrase>
+                        </para>
+                    </step>
+                    <step>
+                        <para>
+                            <phrase><filename>$CATALINA_BASE/sli.properties</filename> -
+                                Stores the Portal application configurations. Contents should be
+                                as follows. See the paragraphs following the code shown for
+                                a guide to filling in the variable values shown:</phrase>
+                        </para>
+                        <programlisting><![CDATA[
+sli.google_analytics.id=<account_id>
+sli.domain=<server_domain>
+
+log.path=<log_path>
+log.level=<log_level>
+
+api.client=apiClient
+security.server.url=https://<api_hostname>/
+api.server.url=https://<api_hostname>/
+portal.oauth.encryption=<encryption_flag>
+portal.oauth.client.id=<client_id>
+portal.oauth.client.secret=<secret>
+portal.oauth.redirect=https://<hostname>/portal/c/portal/login
+
+]]></programlisting>
+                       <para>
+                            <phrase>The &lt;account_id&gt; is the ID associated with your 
+                                Google Analytics account and &lt;server_domain&gt; is the top-level 
+                                domain for the Portal application. For instance, if your application 
+                                URL is <filename>https://portal.inbloom.org/portal</filename>, 
+                                &lt;server_domain&gt; should be <filename>inbloom.org</filename>.
+                                The &lt;log_path&gt; is the directory where you want your log 
+                                files to be, and &lt;log_level&gt; specifies the level of your log 
+                                details with an increasing order of ERROR, WARN, INFO, DEBUG and TRACE:</phrase>
+                        </para>
+                        <para>
+                            <phrase>You can bootstrap Portal by adding "portal" as one of the comma-separated 
+                                applications for <parameter>bootstrap.app.keys</parameter> in the 
+                                <filename>sli.properties</filename> file on the API server(s). In that 
+                                case, &lt;client_id&gt; and &lt;secret&gt; should be equal to the values
+                                for <parameter>bootstrap.app.portal.client_secret</parameter> and 
+                                <parameter>bootstrap.app.portal.client_id</parameter> from the 
+                                <filename>sli.properties</filename> on the API server. If you choose not 
+                                to bootstrap Portal, you will need to register Portal using the application
+                                registration tool and get the values for &lt;client_id&gt; and 
+                                &lt;secret&gt; during application registration.</phrase>
+                        </para>
+                        <para>
+                            <phrase>You can choose to encrypt oauth client id and secret by setting 
+                                &lt;encryption_flag&gt; to "true". In that case, you should use the 
+                                encryption tool covered in <xref linkend="doc-eba7f1b4-69e4-4602-b3c0-015fc1a02677"/>
+                                to encrypt &lt;client_id&gt; and &lt;secret&gt;. Otherwise, you can set 
+                                &lt;encryption_flag&gt; to "false" and use clear-text values for 
+                                &lt;client_id&gt; and &lt;secret&gt;.</phrase>
+                        </para>
+                    </step>
+                </substeps>
+            </step>
+            <step>
+                <para>
+                    <phrase>Create a symbolic link from
+                        <filename>$CATALINA_BASE/portal-ext.properties</filename>
+                        to 
+                        <filename>/opt/portal-ext.properties</filename>:</phrase>
+                </para>
+                <programlisting><![CDATA[
+ln -s $CATALINA_BASE/portal-ext.properties /opt/portal-ext.properties
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Set the following runtime arguments 
+                        (optionally, you can add these to <filename>$CATALINA_BASE/bin/setenv.sh</filename>):</phrase>
+                </para>
+                <programlisting><![CDATA[
+JAVA_OPTS="$JAVA_OPTS -Dfile.encoding=UTF8 \
+-Dorg.apache.catalina.loader.WebappClassLoader.ENABLE_CLEAR_REFERENCES=false \
+-Xmx1024m -XX:MaxPermSize=512m -Djava.net.preferIPv4Stack=true \
+-Dsli.encryption.keyStore=/path/to/keystore \
+-Dsli.conf=$CATALINA_BASE/sli.properties \
+-Dsli.encryption.properties=$CATALINA_BASE/encryption/encryption.properties"
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>In <filename>$CATALINA_BASE/conf/catalina.properties</filename>, 
+                        change the <guilabel>common.loader</guilabel> and 
+                        <guilabel>shared.loader</guilabel> lines to the following:</phrase>
+                </para>
+                <programlisting><![CDATA[
+common.loader=$CATALINA_HOME/lib,$CATALINA_HOME/lib/*.jar,$CATALINA_BASE/lib,\
+$CATALINA_BASE/lib/*.jar,$CATALINA_BASE/lib/ext,$CATALINA_BASE/lib/ext/*.jar
+
+shared.loader=$CATALINA_BASE/conf
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Edit the Tomcat <filename>server.xml</filename> file, and modify the line beginning with 
+                        "&lt;Engine name="Catalina"" and add "jvmroute="value"" with a unique value.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>At this point, you've completed the basic configuration required for the software to work.</phrase>
+                </para>
+                <para>
+                    <phrase>From here, consult the Liferay documentation on clustering, and modify your Tomcat 
+                        installation to support clustering across hosts. Specifically, nodes operating Liferay 
+                        need to be able to have synced session cache data. A good starting point for this is 
+                        <link xlink:show="new" xlink:href="http://www.liferay.com/community/wiki/-/wiki/Main/Clustering">http://www.liferay.com/community/wiki/-/wiki/Main/Clustering</link>. 
+                        With this, you will need to ensure that your Tomcat web.xml file contains the 
+                        "&lt;distributable/&gt;" flag.</phrase>
+                </para>
+                <para>
+                    <phrase><emphasis>IMPORTANT:</emphasis> In order to enable proper clustering of the application, 
+                        configuration settings <parameter>cluster.link.enabled</parameter> must be set to "true",
+                        and <parameter>lucene.replicate.write</parameter> must be set to false.  Before starting 
+                        Tomcat, ensure all files are owned by the Tomcat user:</phrase>
+                </para>
+                <programlisting><![CDATA[
+chown -R tomcat:tomcat $CATALINA_BASE
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    Make sure all the properties files are readable by the <guilabel>tomcat</guilabel> user:
+                </para>
+                <programlisting><![CDATA[
+chown -R tomcat:tomcat $CATALINA_BASE/*.properties
+chown -R tomcat:tomcat $CATALINA_BASE/encryption/encryption.properties
+]]></programlisting>
+            </step>
+            <step>
+                <para>
+                    <phrase>Place the associated <filename>portal.war</filename> files into 
+                        <filename>/opt/deploy</filename>, except for 
+                        <filename>deploylar-hook-6.1.0.1.war</filename> and 
+                        <filename>layout.lar</filename>, and start Tomcat. You should review the output 
+                        of Tomcat's <filename>catalina.out</filename> file to identify if any errors occurred 
+                        during startup. The most common ones will be database connectivity issues, based on 
+                        DNS or name resolution capabilities, and as such you may need to adjust and create 
+                        additional user/access records in MySQL.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Place <filename>deploylar-hook-6.1.0.1.war</filename> and 
+                        <filename>layout.lar</filename> into 
+                        <filename>/opt/deploy</filename>, and restart Tomcat. One of the Liferay portlets
+                        that is deployed disables all stock Liferay portlets, though its configuration 
+                        does not take effect until after a restart. It is highly recommended that you 
+                        review the <filename>WEB-INF/liferay-portlets.xml</filename> file to ensure that 
+                        everything is set labeled with "&lt;include&gt;false&lt;/include&gt;".</phrase>
+                    </para>
+            </step>
+        </procedure>
+    </section>
+    
+    <section xml:id="doc-eba7f1b4-69e4-4602-b3c0-015fc1a02677">
+        <title>Portal: Configuration</title>
+        <para>
+            Portal configuration is covered by the 
+            <filename>portal-ext.properties</filename>, file that contains 
+            configuration settings used by Liferay. The expected base 
+            configuration is detailed in the installation section.
+        </para>
+        <para>
+            The section that follows covers how to
+            encrypt the Portal configuration settings and how to address
+            Portal customization requests from &PRODUCTABBR; administrators.
+        </para>
+        <section xml:id="doc-f70d741b-5862-4ae2-b9ca-5310631a00c4">
+            <title>Encrypting the Portal Configuration</title>
+            <para>
+                An encryption tool is provided to assist with encryption of 
+                properties in <filename>portal-ext.properties</filename> and 
+                <filename>sli.properties</filename>:
+            </para>
+            <procedure>
+                <step>
+                    <para>
+                        Unzip <filename>EncryptionTool.zip</filename> into a 
+                        folder. We'll refer to this as 
+                        &lt;encryption_tool_folder&gt; in later steps.
+                    </para>
+                </step>
+                <step>
+                    <para>
+                        From &lt;encryption_tool_folder&gt;, run the following 
+                        commands to get the encrypted strings:
+                    </para>
+                    <programlisting><![CDATA[
+java -jar encryption-tool-1.0-SNAPSHOT.jar <keystore_location> \
+<keystore_password> <key_alias> <key_password> \
+<string_to_encrypt>
+                    ]]></programlisting>
+                </step>
+                <step>
+                    <para>
+                        To validate the encrypted property values, run the 
+                        following command to get the decrypted strings:
+                    </para>
+                    <programlisting><![CDATA[
+java -jar decryption-tool-1.0-SNAPSHOT.jar <keystore_location> \
+<keystore_password> <key_alias> <key_password> \
+<string_to_encrypt>
+                    ]]></programlisting>
+                </step>
+            </procedure>
+        </section>
+    </section>
+    
+    <section xml:id="doc-73b31625-4149-49c3-8577-5e6bed6f5c82">
+        <title>Portal: Troubleshooting During Deployment</title>
+        <para>
+            The Liferay installation and deployment process logs to the Tomcat 
+            <filename>catalina.out</filename> 
+            log file. All portlet hot-deploy processes are logged as well.
+        </para>
+        <para>
+            <phrase>The typical first step in troubleshooting is to attempt a 
+                re-deployment through the hot deploy folder followed by
+                restarting the Portal server's Tomcat service after the log
+                file changes have slowed. Hot deployment on a medium-performance
+                Amazon Machine Image (AMI) instance should take anywhere from
+                one to three minutes.</phrase>
+       </para>
+        <para>
+            <phrase>In the event that a deployment experiences unexpected issues, such as portlets reporting that they are no longer deployed, you may need to reset the Portal to its initial state. Assuming the configuration is correct, the following steps can be performed to reset Portal to an initial clean state:</phrase>
+        </para>
+        <procedure>
+            <step>
+                <para>
+                    <phrase>Block inbound access to Portal server(s) via HTTPS to ensure that no user attempts to log in via the Portal process.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Drop and recreate the MySQL database supporting Portal.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Redeploy Liferay to the Portal server by removing all of the contents of the webapps folder except <filename>portal.war</filename>. <filename>Portal.war</filename> will extract again upon restart of Tomcat.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Restart Tomcat on a single server to allow Liferay to re-create the tables in the MySQL database.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Monitor the <filename>catalina.out</filename> log file to ensure that the Liferay deployment has completed. Once the first tomcat server is restarted, the others may be restarted as well.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Restart Tomcat, monitor <filename>catalina.out</filename> to ensure that Liferay has completed starting.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Extract the Portal package to the deploy folder.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Monitor the <filename>catalina.out</filename> log for the text "Hook for wsrp-portlet is available for use" which will indicate that the portlets have completed deployment.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Restart Tomcat again. Some of the portlets are unable to fully take effect until a second restart has completed.</phrase>
+                </para>
+            </step>
+            <step>
+                <para>
+                    <phrase>Once Tomcat has completed restarting, inbound HTTPS access may be resumed to the Portal server(s).</phrase>
+                </para>
+            </step>
+        </procedure>        
+    </section>
+    <section xml:id="doc-15feecdb-597c-449e-99dd-67bd47ed0d10">
+        <title>Portal SQL Cleanup for Deploying a New Release</title>
+        <para>This task must be performed in order for the Portal to reflect changes to text or
+            other web content.</para>
+        <note><para>If the EULA acceptance needs to be purged due to text changing, the export/import of EULA
+                table steps can be skipped, and the whole MySQL database can be purged.</para></note>
+        <procedure>
+            <step><para>Deploy the Portal.</para></step>
+            <step><para>Use the mysql-workbench to export the EULA table to the lportal.user_.csv
+                    file.</para></step>
+            <step><para>Wipe the Portal database.</para></step>
+            <step><para>Redeploy the Portal.</para></step>
+            <step><para>Import the EULA data from the lportal.user_.csv file.</para></step>
+            <step><para>Start the Portal.</para>
+            <substeps>
+                <step><para>Log in as the user that previously accepted the EULA.</para></step>
+                <step><para>Confirm that the EULA pop up
+                    did not occur upon log in.</para></step>
+            </substeps></step>
+        </procedure>
+    </section>
+    <section xml:id="docs-864f0706-d8d8-4f14-9855-a2c75ff7bd73">
+        <title>Portal: How to Reset the End User License Agreement</title>
+        <para>To reset the end user license agreement, it is required that you have access to the
+            MYSQL database. The value of the user_.screenName is composed with
+                <code>"username"_"tenant"</code>. Example: linda.kim of midgar has a
+            user_.screenName is linda.kim_midgar.</para>
+        <procedure>
+            <step><para>Login to the datbase server. The database is lportal.</para>
+              <programlisting><![CDATA[mysql lportal -u <username> -p <password>]]></programlisting>  
+            </step>
+            <step><para>Run the apporpriate SQL command.</para>
+                <para>To reset the end user license agreement for linda.kim at midgar tenant:</para>
+                <programlisting><![CDATA[UPDATE user_ SET agreedToTermsOfUse=0 WHERE screenName = 'linda.kim_midgar';]]></programlisting>
+                <para>To reset the end user license agreement for linda.kim regardless of tenant:</para>
+                <programlisting><![CDATA[UPDATE user_ SET agreedToTermsOfUse=0 WHERE screenName like 'linda.kim_%';]]></programlisting>
+                <para>To reset the end user license agreement for all users:</para>
+                <programlisting><![CDATA[UPDATE user_ SET agreedToTermsOfUse=0;]]></programlisting>
+            </step>
+        </procedure>
+    </section>
+</chapter>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE chapter [
+<!ENTITY % entities SYSTEM "../common/entities.ent">
+%entities;
+]>
+
+<chapter xml:id="doc-dfd3b13b-bce1-431a-93ef-8acc6563cff7"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Security and Administration Designations</title>
+    <para> To better understand the roles, permissions, and other &PRODUCTABBR; security information
+        for &PRODUCTABBR; users that are described in <xref linkend="doc-3e1677bd-a02f-44a0-9c73-4eaaa1e1b064"
+        />, it is necessary to be familiar with the security and administration designations. </para>
+    <section xml:id="doc-37d742c3-43b7-4f1e-a471-61be1ffe7e6c">
+        <title>Tenant and Realm</title>
+        <para>
+            &PRODUCTABBR; administration is often described in terms of a
+            <firstterm>tenant</firstterm> or a <firstterm>realm</firstterm>:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para> A <glossterm linkend="def-tenant">tenant</glossterm> is a single set of
+                    self-consistent data that is logically isolated within the &PRODUCTABBR; Secure
+                    Data Service. A tenant logically corresponds to an <glossterm
+                        linkend="def-education_organization">education organization</glossterm>,
+                    such as a state, county, or district school system. &PRODUCTABBR; was designed
+                    so that within a tenant, records should readily transfer when a student or staff
+                    member changes schools, even if it a transfer between districts under the same
+                    state. The highest tenant level that the infrastructure is designed to manage is
+                    that associated with a single state education agency (SEA). </para>
+            </listitem>
+            <listitem>
+                <para>
+                    A <glossterm linkend="def-realm">realm</glossterm> is a 
+                    designation used to describe the context within which a
+                    digital user's authentication is valid. In other words, 
+                    a realm corresponds to the level at which identity services
+                    exist. If a district provides its own identity services, 
+                    that district can serve as a realm. If a state is 
+                    providing identity services, then the state is a realm. 
+                    If there is a group of districts within a state that have 
+                    a shared identity service, then the organization that 
+                    groups those districts together is a realm. 
+                    In &PRODUCTABBR;, the highest available realm is a
+                    state education agency (SEA).
+                </para>
+                <para> 
+                    User IDs, defined by the realm, are only guaranteed to be 
+                    unique within the context of a single tenant. For example, 
+                    multiple tenants could contain the user ID 
+                    <guilabel>tmifune</guilabel>, but &PRODUCTABBR; does not
+                    consider <guilabel>tmifune</guilabel> from one tenancy to
+                    be the same user as <guilabel>tmifune</guilabel> from 
+                    another tenancy. To avoid data conflicts, a realm should 
+                    not serve multiple tenants.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    <section xml:id="doc-822b31de-b272-4598-bf46-3a9766b7fb1c">
+        <title>Federated and Hosted</title>
+        <para>
+            &PRODUCTABBR; user and administrator roles are described as being 
+            either
+            <firstterm>federated</firstterm> or <firstterm>hosted</firstterm>:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para> A <glossterm linkend="def-federated">federated</glossterm> user is a user
+                    that authenticates using an identity provider that is maintained by an education
+                    agency, whether at the state, county, or district level. This identify provider
+                    (IDP), typically a directory service like LDAP, is where the <glossterm
+                        linkend="def-realm">realm</glossterm> is defined. Since the IDP is external
+                    to &PRODUCTABBR;, user roles in &PRODUCTABBR; must be customized and mapped to
+                    correspond to the user roles in the IDP. This should be done before data is
+                    added to the &PRODUCTABBR; Secure Data Service, whether through <glossterm
+                        linkend="def-data_ingestion">data ingestion</glossterm> or through the REST
+                    API). Administrator and developer documentation for &PRODUCTABBR; cover the
+                    tools and procedures for managing user roles and rights. </para>
+            </listitem>
+            <listitem>
+                <para> 
+                    A <glossterm linkend="def-hosted">hosted</glossterm> user 
+                    is a user created in the 
+                    <glossterm linkend="def-hosted_directory">&PRODUCTABBR; hosted directory service</glossterm>.
+                    The hosted directory service is one of the services
+                    deployed and managed as part of the &PRODUCTABBR;. The
+                    role of these hosted users is to serve as administrators 
+                    for &PRODUCTABBR;; thus, they're referred to as 
+                    <glossterm linkend="def-inbloom_administrator">&PRODUCTABBR; administrators</glossterm>.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </section>
+    
+</chapter>
+
+        

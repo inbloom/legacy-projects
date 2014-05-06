@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE section [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<section xml:id="c-product_architecture" xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <title>&PRODUCTABBR; Architecture</title>
+    <para> 
+     <figure xml:id="figure-architecture">
+                <title>&PRODUCTABBR; Architecture Diagram</title>
+                <mediaobject>
+                        <imageobject role="html">
+                                <imagedata fileref="&IMAGEDIRHTML;/architecture.png" 
+                                       width="850px" scalefit="1"/>
+                    </imageobject>
+                        <imageobject role="fo">
+                               <imagedata fileref="&IMAGEDIRPDF;/architecture.png" 
+                                        width="7in" scalefit="1"/>
+                         </imageobject>
+                   </mediaobject>
+            </figure>
+            
+                Major subsystems shown:
+            </para>
+        <itemizedlist>
+                <listitem>
+                        <para>
+                                <emphasis role="bold">Application Layer</emphasis> - Layer that all users will
+                                interact with, including all the web-based applications included in the
+                                &PRODUCTABBR; and any third-party web or mobile applications that an education
+                                organization adds to its &PRODUCTABBR;. A user’s role will determine the
+                                applications to which that user has access. </para>
+                    </listitem>
+                <listitem>
+                        <para>
+                                <emphasis role="bold">Application Programming Interface</emphasis> - Layer that
+                                applications use to interact with the &PRODUCTABBR; Secure Data Service. It consists
+                                of one or more nodes hosting the &PRODUCTABBR; REST API. </para>
+                </listitem>
+            <listitem>
+                            <para>
+                                    <emphasis role="bold">Identity Providers (IDPs)</emphasis> - Displays the
+                                    integrated identity solution for &PRODUCTABBR;. Shown here are SimpleIDP, which
+                                    is the identity provider for &PRODUCTABBR;, and the IDPs for the state and
+                                    district education agencies using this &PRODUCTABBR; deployment. </para>
+                        </listitem>
+                    <listitem>
+                            <para>
+                                    <emphasis role="bold">Databases</emphasis> - The &PRODUCTABBR; Secure Data Service
+                                    with educational data from the state and district education agencies plus other data
+                                    important to &PRODUCTABBR; operation. </para>
+                        </listitem>
+                    <listitem>
+                            <para>
+                                    <emphasis role="bold">Open LDAP and Ingestion</emphasis> - The portion of
+                                    &PRODUCTABBR; dedicated to <firstterm>ingestion</firstterm>, the process of adding
+                                    or updating large amounts of data at one time to the &PRODUCTABBR; Secure Data
+                                    Service. </para>
+                        </listitem>
+                    <listitem>
+                            <para>
+                                    <emphasis role="bold">Background Services</emphasis> - The components that ensure
+                                    that the &PRODUCTABBR; Secure Data Service runs smoothly and efficiently. </para>
+                        </listitem>
+                </itemizedlist>
+        
+   
+</section>

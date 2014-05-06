@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE appendix [
+<!ENTITY % entities SYSTEM "../../common/entities.ent">
+%entities;
+<!ENTITY IMAGEDIRPDF "../../common/images">
+<!ENTITY IMAGEDIRHTML "images">
+]>
+   
+<appendix xml:id="r-dashboard-json-dot_notation"
+    xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    
+    <title>Dot Notation for Data Fields</title>
+    
+    <para>
+        The JSON required to create a customized dashboard experience includes 
+        referencing the data fields in JSON dot notation. The notation is 
+        relative to the entity or entities that have been retrieved from 
+        the data store. In the case of the List Of Students and the student 
+        panel tab in the dashboard, all notation is 
+        <emphasis>relative to</emphasis> the student entities that were 
+        returned. For example, the full name of a student would be listed 
+        as simply "full name", while a field for a specific 
+        studentAssessment would be referenced by drilling down into the 
+        correct assessment and the field desired (see below reference).    
+    </para>
+    <para>
+        The field notation departs from the logical data model because 
+        entities have been "enriched" with additional information for 
+        convenience. For example, the current grade can be directly accessed 
+        from student.
+    </para>
+    <para>
+        The following is a list of all the data fields you can include in
+        your custom JSON for the dashboard, translated into the dot
+        notation you need. Fields in angle brackets (like &lt;Name&gt;) 
+        require you to replace the text between the dots with an actual 
+        value. The supported field values are shown, and other values would 
+        match information in your &PRODUCTABBR; data store. All notation is 
+        relative to <emphasis>student</emphasis>.
+    </para>
+    <informaltable>
+        <tgroup cols="3">
+            <colspec colname="firstCol" colwidth="3*"/>
+            <colspec colname="secondCol" colwidth="2*"/>
+            <colspec colname="thirdCol" colwidth="3*"/>
+            <thead>
+                <row>
+                    <entry>
+                        <para>JSON Dot Notation Syntax</para>
+                    </entry>
+                    <entry>
+                        <para>Values for Field Name</para>
+                    </entry>
+                    <entry>
+                        <para>Note</para>
+                    </entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry morerows="5">
+                        <para>
+                            &lt;field name&gt;
+                        </para>
+                        <para>
+                            These values apply directly to the student.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            gradeLevel
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            name.fullName
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            programParticipation
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            currentSession-0
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            First test grade for current session.
+                            Replace "0" with "1" for second test,
+                            replace "0" with "2" for third test, etc.
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            previousSemester
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Final grade last semester
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            twoSemestersAgo
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Final grade two semesters ago
+                        </para>
+                    </entry>
+                </row>                
+                <row>
+                    <entry morerows="4">
+                        <para>
+                            assessments.&lt;assessment name&gt;.&lt;field name&gt;
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Scale Score
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            readingLevel
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            perfLevel
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            profLevel
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            Other
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            Depends upon ingested data (example "Lexile")
+                        </para>
+                    </entry>
+                </row>
+                <row>
+                    <entry morerows="3">
+                        <para>
+                            attendances.&lt;field name&gt;
+                        </para>
+                        <para>
+                            These values are calculated for the current
+                            academic year.
+                        </para>
+                    </entry>
+                    <entry>
+                        <para>
+                            absenceCount
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            attendanceRate
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            tardyCount
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+                <row>
+                    <!-- First column extended for this row -->
+                    <entry>
+                        <para>
+                            tardyRate
+                        </para>
+                    </entry>
+                    <entry/>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+    
+</appendix>
