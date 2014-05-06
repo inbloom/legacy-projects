@@ -1,0 +1,88 @@
+these instructions only cover the tool setup for running the core services
+
+once these steps are complete, you should have operational system for running the datastore application on OSX
+
+first off, install xcode from the AppStore (5.0.1 has ide problems but shouldn't be a problem for command line needs)
+
+install homebrew: 
+$ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+
+
+##FOR JAVA 7 (if you are running the project under java 7) 
+install java 7
+set $JAVA_HOME to point to the Home dir of the new jvm
+
+it's a good idea to always run...
+$ brew update
+...to update formulas before installing. this keeps things sane 
+
+(as a side note but rather important - if you are developing in the sli project and running a local jetty target,
+make sure to install jetty8 because the project is using jdk 1.6)
+$ brew install jetty8
+
+should you get a "No available formula for jetty8" error go here:
+http://stackoverflow.com/questions/3987683/homebrew-install-specific-version-of-formula
+and follow tschundeee's advice
+
+install rvm with ruby 2.0.0: 
+$ curl -L https://get.rvm.io | bash -s stable --ruby=2.0.0
+
+switch to 2.0.0: 
+$ rvm --default use 2.0.0
+
+check your gems
+$ gem list
+
+if you get a squirrely message about libyaml
+$ rvm pkg install libyaml
+
+it'll bitch about deprecated. whatevs.
+$ rvm uninstall all
+$ rvm install 2.0.0
+an alternative is to use clang for compilation
+$ rvm install 2.0.0 --with-gcc=clang 
+
+make sure we are all good, no nasty messages or warnings
+$ ruby -v
+$ gem list
+
+install mongodb
+$ brew install mongodb
+(/usr/local/Cellar/mongodb/2.4.7)
+
+install activemq
+$ brew install apache-activemq
+(/usr/local/Cellar/activemq/5.8.0) don't forget to modify activemq.xml!!
+
+install maven
+$ brew install maven
+(/usr/local/Cellar/maven/3.1.1)
+
+install ant
+$ brew install ant
+(/usr/local/Cellar/ant/1.9.2)
+
+modify /etc/profile to include the MAVEN_OPTS and SLI_ROOT env variables from the Readme
+$ sudo nano /etc/profile
+
+this will get you far enough to build and run all of the core services...however...a gem dependency in the rails apps (therubyracer) will fail so do this
+$ gem install libv8
+$ gem install therubyracer
+
+you will need to modify the Gemfile.lock and comment out the references to libv8 and therubyracer with a "#". 
+
+Alternatively, you may be able to get therubyracer installed by following instructions at http://stackoverflow.com/questions/19630154/gem-install-therubyracer-v-0-10-2-on-osx-mavericks-not-installing
+--------------------------------------
+brew tap homebrew/dupes
+brew install apple-gcc42
+
+export CC=/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/gcc-4.2
+export CXX=/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/g++-4.2
+export CPP=/usr/local/Cellar/apple-gcc42/4.2.1-5666.3/bin/cpp-4.2
+
+brew uninstall v8
+
+gem uninstall libv8
+
+gem install therubyracer -v '0.10.2' # specify version
+----------------------------------------
