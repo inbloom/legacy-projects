@@ -1,4 +1,4 @@
-#inBloom LRI Middleware
+#LRI Middleware
 
 ##DESCRIPTION
 ---
