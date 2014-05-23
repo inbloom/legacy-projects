@@ -1,11 +1,11 @@
-# Welcome to the inBloom Databrowser! #
+# Welcome to the Databrowser! #
 
-In a nutshell, this application is used to traverse the inBloom API to see all of the data available to you.
+In a nutshell, this application is used to traverse the ESDS API to see all of the data available to you.
 You can explore the data by clicking on the links that the API shows, or you can even explicitly tell
 the Databrowser what part of the API to visit.
 
 ## Configuration And Setup ##
-The inBloom Databrowser is a fairly simple Ruby on Rails application, but there are a few customizations and
+The Databrowser is a fairly simple Ruby on Rails application, but there are a few customizations and
 configuration files to be aware of.
 
 Once you've prepped the Databrowser by installing the pre-requisite gems using bundler, you should take
@@ -44,5 +44,8 @@ We also use cucumber to do behavior tests.
 ##Localization##
 We make use of the localization in the config/locales directory to translate some of the fields that the API
 Would return. Simple things like 'firstName' would be translated to 'First Name', and so on.
+
+##Licensing
+Databrowser is licensed under the Apache License, Version 2.0. See LICENSE-2.0.txt for full license text.
 
 
