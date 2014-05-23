@@ -14,7 +14,7 @@ Deployment
 ------------
 
 1. Verify that GnuPG is installed
-2. Clone the inBloom LR Connector git repository to the deployment directory
+2. Clone the LR Connector git repository to the deployment directory
 3. Install the required libraries:
 
         pip install -r requirements.txt
