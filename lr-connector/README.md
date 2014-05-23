@@ -1,7 +1,7 @@
-inBloom LR Connector
+LR Connector
 ===========
 
-The inBloom LR Connector pulls data from the inBloom Learning Registry node and extracts and inserts relevant data into the LRI.
+The LR Connector pulls data from the Learning Registry node and extracts and inserts relevant data into the LRI.
 
 
 External Dependencies
@@ -97,3 +97,8 @@ Include the following two settings if the LRI API is protected by Basic Authenti
 
 * "logging_level" - Sets the level of the python logging module used within Connector
 * "interval" - Harvest interval (in seconds)
+
+
+Licensing
+=========
+LR Connector is licensed under the Apache License, Version 2.0. See LICENSE-2.0.txt for full license text.
