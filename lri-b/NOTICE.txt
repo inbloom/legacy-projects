@@ -1,8 +1,5 @@
 
- 
-(if appropriate) Copyright 2011,2012 Bill & Melinda Gates Foundation
-Copyright 2012-2013 inBloom, Inc. and its affiliates.
- 
+
  
 Licensed under the Apache License, Version 2.0 (the "License");
  
@@ -34,7 +31,7 @@ The following software may be included in this product:
 py2neo - python module. Use of any of this software is governed by the terms
 of the license referenced below. 
 
-© 2011-2012 Nigel Smith
+ï¿½ 2011-2012 Nigel Smith
 
 License: https://github.com/nigelsmall/py2neo/blob/master/LICENSE
 
@@ -46,7 +43,7 @@ The following software may be included in this product:
 OpenLaszlo. Use of any of this software is governed by the terms
 of the license referenced below.
 
-© 2002-2010 Laszlo Systems, Inc.
+ï¿½ 2002-2010 Laszlo Systems, Inc.
 
 License: Common Public License (CPL 1.0)<http://www.opensource.org/licenses/cpl.php>
 
@@ -57,7 +54,7 @@ The following software may be included in this product:
 jQuery. Use of any of this software is governed by the terms
 of the license referenced below.
 
-© jQuery Foundation
+ï¿½ jQuery Foundation
 
 License: http://jquery.org/license/
 
@@ -70,7 +67,7 @@ The following software may be included in this product:
 D3.js. Use of any of this software is governed by the terms
 of the license referenced below.
 
-© 2012 Michael Bostock
+ï¿½ 2012 Michael Bostock
 
 License:  https://github.com/mbostock/d3/blob/master/LICENSE
 
