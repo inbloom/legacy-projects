@@ -1,17 +1,17 @@
 LIST OF USER-FACING DOCUMENTATION FROM THIS REPOSITORY
 
 The following represents the externally-facing publications produced 
-for inBloom to support its namesake product, including any tips for
+for ESDS to support its namesake product, including any tips for
 maintaining the content.
 
-NOTE: There may be user-facing publications from inBloom outside this list,
+NOTE: There may be user-facing publications from ESDS outside this list,
       but this list is focused on technical documentation maintained from
       this repository.
       
 NOTE: Information and instructions for generating these documents can be
       found in the "README" file.
 
-The inBloom delivery checklist for user-facing docs is as follows:
+The ESDS delivery checklist for user-facing docs is as follows:
 [  ] User Release Notes
 [  ] Developer Documentation
 [  ] Administrator Documentation
@@ -22,7 +22,7 @@ The inBloom delivery checklist for user-facing docs is as follows:
 -- User Release Notes ---------------------------------------------------
 FORMAT:    Single HTML page
 AUDIENCE:  All those who may be interested in the unique aspects of each 
-           inBloom release or the changes that have occured between releases
+           ESDS release or the changes that have occurred between releases
 
 Release notes are collaboratively developed between releases at a wiki 
 page, then converted to HTML for delivery. The HTML is maintained in the 
@@ -35,10 +35,10 @@ and keep that template updated as needed, too.
 
 -- Developer Documentation ----------------------------------------------
 FORMAT:    Hierarchy of HTML documents and supporting files (CSS, images, etc.)
-AUDIENCE:  Software engineers developing applications using the inBloom REST API
+AUDIENCE:  Software engineers developing applications using the ESDS REST API
 
 Developer documentation is created and maintained by writers, with content 
-coming from both auto-generated files from the inBloom code and from 
+coming from both auto-generated files from the ESDS code and from 
 DocBook XML source maintained in the datastore_docs repository. Note that
 several modules used to produce this documentation affect multiple 
 documents/audiences and are included in other documentation.
@@ -50,18 +50,18 @@ the code repository ("datastore") that will be picked up when the script is
 run to generate document artifacts for user documentation.
 
 INCLUDES:
--- What it means to have the application developer user role in inBloom
+-- What it means to have the application developer user role in ESDS
 -- How to set up a sandbox development environment
 -- How to download and use the SDKs
--- The global parameters and other inBloom-specific information needed for
+-- The global parameters and other ESDS-specific information needed for
    using the REST API
 -- Data model reference (similar to Ed-Fi's schema documentation)
 -- REST API reference, including each endpoint and associated methods
--- inBloom security rules
+-- ESDS security rules
 
 -- Administrator Documentation ------------------------------------------
 FORMAT:    Single-volume PDF
-AUDIENCE:  Administrators responsible for managing inBloom day-to-day for 
+AUDIENCE:  Administrators responsible for managing ESDS day-to-day for 
            a given education organization
 
 The administrator documentation is created and maintained by writers using
@@ -70,16 +70,16 @@ several modules used to produce this documentation affect multiple
 documents/audiences and are included in other documentation.
 
 Includes:
--- Integrating an education organization's identity services with inBloom
+-- Integrating an education organization's identity services with ESDS
 -- Managing user rights and roles
--- Managing inBloom user accounts (such as ingestion users)
--- Preparing and ingesting data in the inBloom data store
--- inBloom security rules
+-- Managing ESDS user accounts (such as ingestion users)
+-- Preparing and ingesting data in the ESDS data store
+-- ESDS security rules
 
 -- Runbook -------------------------------------------------------------
 FORMAT:    Single-volume PDF
 AUDIENCE:  Operators responsible for deploying, configuring, and maintaining 
-           the software associated with inBloom
+           the software associated with ESDS
 
 The runbook is created and maintained by writers using DocBook XML source 
 maintained in the datastore_docs repository. Note that a couple of the
@@ -87,14 +87,14 @@ modules used to produce this documentation affect multiple
 documents/audiences and are included in other documentation.
 
 Includes:
--- Planning for a new inBloom deployment
--- Installing and configuring each inBloom component
--- Troubleshooting inBloom software and configuration
+-- Planning for a new ESDS deployment
+-- Installing and configuring each ESDS component
+-- Troubleshooting ESDS software and configuration
 
 -- Ingestion Documentation ---------------------------------------------
 FORMAT:    Single-volume PDF
 AUDIENCE:  Individuals responsible for preparing data for bulk ingestion to
-           the inBloom data store, either for the first time or as part of
+           the ESDS data store, either for the first time or as part of
            regularly scheduled updates
 
 The ingestion documentation is created and maintained by writers using 
@@ -109,7 +109,7 @@ Includes:
 
 -- Dashboard Customization Documentation -------------------------------
 FORMAT:    Single-volume PDF
-AUDIENCE:  Administrators for inBloom who need to customize the inBloom 
+AUDIENCE:  Administrators for ESDS who need to customize the ESDS 
            Dashboard for the needs of an education organization
 
 The dashboard customization documentation is created and maintained by 
@@ -126,7 +126,7 @@ Includes:
 -- Environment Specification -------------------------------------------
 FORMAT:    Word document (DOCX)
 AUDIENCE:  Operators responsible for deploying, configuring, and maintaining 
-           the software associated with inBloom, and who need to update an
+           the software associated with ESDS, and who need to update an
            existing deployment to the current release
 
 The environment specification is created by the engineering teams
@@ -139,16 +139,16 @@ for the link to the environment specification wiki page for the current
 release cycle.
 
 Includes:
--- Allocating resources needed to deploy inBloom
--- Establishing an IT environment for inBloom
+-- Allocating resources needed to deploy ESDS
+-- Establishing an IT environment for ESDS
 
 -- Technical Specification ---------------------------------------------
 FORMAT:    Ordered series of wiki pages
-AUDIENCE:  Potential customers evaluating inBloom from a technical 
+AUDIENCE:  Potential customers evaluating ESDS from a technical 
            standpoint or technical experts seeking to understand how 
-           inBloom is designed and how each inBloom component works
+           ESDS is designed and how each ESDS component works
 
-This was created as part of a contractual agreement with inBloom, though
+This was created as part of a contractual agreement with ESDS, though
 the final product was not delivered beyond its staging point in "thesli"
 wiki:
 https://thesli.onconfluence.com/display/sli/Technical+Specification
@@ -158,13 +158,14 @@ editing, enhancing, and organization. Engineers have not maintained that
 content over time, though, and the future of this document is uncertain.
 
 Includes:
--- The design and architecture of inBloom
--- The major subsystems within inBloom and the components that make up those subsystems
+-- The design and architecture of ESDS
+-- The major subsystems within ESDS and the components that make up those subsystems
 -- The data flow, protocols, and security across all interconnected components
--- The technical details about how each process and component works in inBloom
+-- The technical details about how each process and component works in ESDS
 
 -- XML Source Files (OLD) ----------------------------------------------
-Before the "datastore_docs" repository was directly accessible by inBloom,
+Before the "datastore_docs" repository was directly accessible by ESDS,
 release submission included assembling the XML source files used to produce
 several publications. The script used to assemble this is still in the
 scripts directory: "gather_source_files.sh".
+ESDS
