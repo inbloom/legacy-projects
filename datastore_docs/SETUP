@@ -1,7 +1,7 @@
-Environment Setup for building inBloom User-facing Documentation
+Environment Setup for building ESDS User-facing Documentation
 
 The environment needed to build user-facing documentation 
-for inBloom requires the following, with details provided 
+for ESDS requires the following, with details provided 
 in the sections that follow:
 
 (1) A local Git client and access to the datastore_docs repository (where
@@ -19,7 +19,7 @@ in the sections that follow:
 Set Up the Git Checkout
 ------------------------
 Documentation is version controlled in the datastore_docs repository for 
-the inBloom project. Install git and check out the repository as covered 
+the ESDS project. Install git and check out the repository as covered 
 in the "Install git" portion of Development Environment Configuration 
 for engineers. Writers also recommend using a UI tool like SourceTree 
 to simplify Git interactions. 
@@ -44,7 +44,7 @@ at the oXygen XML site.
 
 If you want to build documentation from oXygen rather than a command 
 line, one additional step is required: updating the XML entities file. 
-The common entities file used in building inBloom documentation is 
+The common entities file used in building ESDS documentation is 
 techdoc/common/entities.ent in your datastore_docs checkout. There, 
 update the value of LOCALDOCBOOKXSL to match the absolute path to 
 your DocBook XSL directory on your local filesystem (which you set 
@@ -64,7 +64,7 @@ will be significantly different; readers are encouraged to supplement
 this file if they discover a Windows environment setup that will work.
 
 Here's how to set up your command line environment in Linux or Mac for 
-building the user-facing documentation for inBloom:
+building the user-facing documentation for ESDS:
 
 (1) Select a common application directory for all the applications 
     used in this environment. In a Mac, for example, you can select 
@@ -112,7 +112,7 @@ building the user-facing documentation for inBloom:
     Download and unpack the binary Apache FOP 1.0 (not the "source" files) 
     into $APPDIR. This Java application processes formatting object (FO) 
     files into other forms of output, such as the PDF files used for 
-    inBloom documentation.
+    ESDS documentation.
 (10) OFFO Hyphenation Library - 
      http://offo.sourceforge.net/hyphenation/
      Download and unpack the binary OFFO Hyphenation Library (not the 
