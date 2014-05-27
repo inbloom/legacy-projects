@@ -1,4 +1,4 @@
-##datastore_docs##
+datastore_docs
 
 Copyright 2012 inBloom, Inc.
 
