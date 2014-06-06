@@ -2,6 +2,22 @@
 
 MODE="screen"
 WORKING_DIR=$(pwd)
+INSTALL_ROOT="${HOME}/Projects/"
+
+
+bashexec () 
+{
+	# Create a temporary file
+	TMPFILE=$(mktemp)
+
+	# Add stuff to the temporary file
+	echo "source ~/.bashrc" > $TMPFILE
+	echo "$1" >> $TMPFILE
+	echo "rm -f $TMPFILE" >> $TMPFILE
+
+	# Start the new bash shell 
+	bash --rcfile $TMPFILE
+}
 
 start_inmemory_ldap ()
 {
@@ -10,10 +26,10 @@ start_inmemory_ldap ()
     cd $IN_MEMORY_LDAP_ROOT
     if [ $MODE = "screen" ]
     then
-        screen -S datastore_ldap_inmemory -d -m mvn jetty:run
+        screen -S ldap-in-memory -d -m mvn jetty:run
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then
-        bash --rcfile <(echo "mvn jetty:run")
+		bashexec "mvn jetty:run"
     fi
 }
 
@@ -27,7 +43,7 @@ start_ingestion ()
         screen -S ingestion-service -d -m mvn jetty:run
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then
-        bash --rcfile <(echo "mvn jetty:run")
+        bashexec "mvn jetty:run"
     fi
 }
 
@@ -41,7 +57,7 @@ start_api ()
         screen -S api -d -m mvn jetty:run
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then
-        bash --rcfile <(echo "mvn jetty:run")
+        bashexec "mvn jetty:run"
     fi
 }
 
@@ -54,7 +70,7 @@ start_simple_idp ()
         screen -S simple-idp -d -m mvn jetty:run
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then
-        bash --rcfile <(echo "mvn jetty:run")
+        bashexec "mvn jetty:run"
     fi
 }
 
@@ -69,7 +85,7 @@ start_search_indexer ()
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then    
         #./scripts/local_search_indexer.sh start
-        bash --rcfile <(echo "./scripts/local_search_indexer.sh start && tail -f logs/search-indexer.log")
+        bashexec "./scripts/local_search_indexer.sh start && tail -f logs/search-indexer.log"
     fi
 }
 
@@ -82,7 +98,7 @@ start_dashboard ()
         screen -S dashboard -d -m mvn jetty:run
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then
-        bash --rcfile <(echo "mvn jetty:run")
+        bashexec "mvn jetty:run"
     fi
 }
 
@@ -96,7 +112,7 @@ start_admin_tools ()
         screen -S admin-rails -d -m bundle exec rails server
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then
-        bash --rcfile <(echo "bundle exec rails server")
+		bashexec "bundle exec rails server"
     fi
 }
 
@@ -110,8 +126,13 @@ start_data_browser ()
         screen -S databrowser -d -m bundle exec rails server
     elif [ $MODE = "tabbed" -o $MODE = "command" ]
     then
-        bash --rcfile <(echo "bundle exec rails server")
+        bashexec "bundle exec rails server"
     fi
+}
+
+list ()
+{
+    screen -list
 }
 
 startall ()
@@ -119,15 +140,18 @@ startall ()
     echo "startall"
     if [ $MODE = "screen" ]
     then
-        echo "starting normally"
+        echo "Starting components in screen mode"
         start_inmemory_ldap
         start_ingestion
         start_api
         start_simple_idp
-        start_search_indexer
+        #start_search_indexer
         start_dashboard
         start_admin_tools
         start_data_browser
+		
+		echo "Applications started in the following active screen sessions: "
+		list
     elif [ $MODE = "tabbed" ]
     then
         echo "starting in tabbed mode"
@@ -136,25 +160,75 @@ startall ()
     
 }
 
-resetDatabase ()
+realmInit ()
 {
-    cd $SLI_ROOT/config/scripts
-    sudo bundle install
-    ./resetAllDbs.sh
-    
     cd $SLI_ROOT/acceptance-tests
     bundle install
     bundle exec rake realmInit
+}
+
+importSandboxData ()
+{
+    cd $SLI_ROOT/acceptance-tests
+    bundle install
     bundle exec rake importSandboxData
+}
+
+ingestSmallSampleDataset ()
+{
     cd $SLI_ROOT/ingestion/ingestion-service/target/ingestion/lz/inbound/Midgar-DAYBREAK
     cp $SLI_ROOT/acceptance-tests/test/features/ingestion/test_data/SmallSampleDataSet.zip ./
     ruby $SLI_ROOT/opstools/ingestion_trigger/publish_file_uploaded.rb STOR $(pwd)/SmallSampleDataSet.zip
 }
 
+resetDatabase ()
+{
+    cd $SLI_ROOT/config/scripts
+    sudo bundle install
+    ./resetAllDbs.sh
+}
+
+build_sli () 
+{
+    cd "${INSTALL_ROOT}secure-data-service/build-tools"
+    mvn clean install
+	
+    cd $SLI_ROOT
+    mvn clean install -DskipTests -Dsli.env=local-ldap-server #build to use local in-memory ldap
+	
+    #build admin-rails app
+    cd $SLI_ROOT/admin-tools/admin-rails
+    bundle install
+    
+    
+    #build databrowser rails app
+    cd $SLI_ROOT/databrowser
+    bundle install
+    
+	
+}
+
 setup ()
 {
+	echo -e "BEGIN INSTALL\n\n\n"
+	
+	if [[ $EUID = 0 ]]; then
+	   echo -e "DANGER DANGER DANGER!!\nRunning this script as root is a bad idea. Run as a normal user and let sudo work its magic." 
+	   exit 1
+	fi
+	
     #setup additional apt repositories
     echo "Configuring oracle-java apt repo"
+    if [ ! `which add-apt-repository` ]
+    then
+    sudo apt-get update
+    echo "installing python-software-properties"
+    sudo apt-get -y install python-software-properties
+    sudo apt-get update
+    echo "Python software properties installed"
+    else
+    echo "add-apt-repository exists and is in path.  Skipping install"
+    fi
     sudo add-apt-repository -y ppa:webupd8team/java
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
     
@@ -165,7 +239,7 @@ setup ()
     #refresh packages
     sudo apt-get update
     
-    packagelist=( "openssh-server" "git" "screen" "build-essential" "zip" "libxml2-dev" "libxslt1-dev" "libssl-dev" "zlib1g-dev" "ruby2.0" "ruby2.0-dev" "ruby-switch" "python-software-properties" "oracle-java7-installer" "mongodb-10gen=2.2.6" "maven" "activemq" )
+    packagelist=( "openssh-server" "curl" "git" "screen" "build-essential" "zip" "libxml2-dev" "libxslt1-dev" "libssl-dev" "zlib1g-dev" "libgdbm-dev" "libncurses5-dev" "automake" "libtool bison" "libffi-dev" "python-software-properties" "oracle-java7-installer" "mongodb-10gen=2.2.6" "maven")
     
     for i in "${packagelist[@]}"
     do
@@ -187,25 +261,49 @@ setup ()
     # is the next step needed with sufficient disk?
     #uncomment nojournal in /etc/mongodb.conf
     
+	#install ruby
+	echo "Installing RVM and Ruby"
+	curl -L https://get.rvm.io | bash -s stable
+	source $HOME/.rvm/scripts/rvm
+	echo "source ${HOME}/.rvm/scripts/rvm" >> $HOME/.bashrc
+	rvm install 2.0.0
+	rvm use 2.0.0 --default
+	ruby -v
+	
+	echo "gem: --no-ri --no-rdoc" > $HOME/.gemrc
+	
     sudo gem install bundler
-    # configure activemq
-    sudo service activemq stop
+    # install activemq
+	echo "Install activemq"	
+	mkdir $HOME/tmp
+	cd $HOME/tmp
+	curl -O http://archive.apache.org/dist/activemq/apache-activemq/5.8.0/apache-activemq-5.8.0-bin.tar.gz
+	tar xvzf apache-activemq*.tar.gz -C /tmp/
+	sudo su -c "mv /tmp/apache-activemq* /opt/"
+	sudo ln -sf /opt/apache-activemq-5.8.0/ /opt/activemq
+	sudo adduser -system activemq
+	sudo chown -R activemq: /opt/apache-activemq-5.8.0
+	sudo ln -sf /opt/activemq/bin/activemq /etc/init.d/
+	sudo update-rc.d activemq defaults	
+	rm -rf $HOME/tmp
+	
+    #sudo service activemq stop
     
     #check to see if we've already added stomp config to activemq
-    if ! $(grep -q stomp /etc/activemq/instances-available/main/activemq.xml)
+    if ! $(grep -q stomp /opt/activemq/instances-available/main/activemq.xml)
     then
         echo "Adding stomp config to activemq.xml"
-        sudo perl -pi -e "s~<transportConnector name=\"openwire\" uri=\"tcp\://127\.0\.0\.1:61616\"/>~<transportConnector name=\"openwire\" uri=\"tcp://127\.0\.0\.1:61616\"/>\n\t\t<transportConnector name=\"stomp\" uri=\"stomp://0\.0\.0\.0\:61613\"/>~g" /etc/activemq/instances-available/main/activemq.xml
+        sudo perl -pi -e "s~<transportConnector name=\"openwire\" uri=\"tcp\://127\.0\.0\.1:61616\"/>~<transportConnector name=\"openwire\" uri=\"tcp://127\.0\.0\.1:61616\"/>\n\t\t<transportConnector name=\"stomp\" uri=\"stomp://0\.0\.0\.0\:61613\"/>~g" /opt/activemq/instances-available/main/activemq.xml
         # Stomp must be activated by adding <transportConnector name="stomp" uri="stomp://0.0.0.0:61613"/>to the conf/activemq.xml file in the <transportConnectors> block
-    else
+	else
         echo "Stomp config already added to activemq.xml. Skipping."
     fi
-    sudo ln -s /etc/activemq/instances-available/main /etc/activemq/instances-enabled/main
+    sudo ln -s /opt/activemq/instances-available/main /opt/activemq/instances-enabled/main
     sudo service activemq start
     
     # OpenADK 
-    mkdir ~/Projects
-    cd ~/Projects
+    mkdir "$INSTALL_ROOT"
+    cd "$INSTALL_ROOT"
     git clone https://github.com/open-adk/OpenADK-java.git
     cd OpenADK-java/adk-generator
     ant clean US
@@ -214,36 +312,32 @@ setup ()
     perl -pi -e 's/1.0.0-SNAPSHOT/1.0.0/g' ./pom.xml
     mvn -P US install
     
-    cd ~/Projects
-    git clone https://github.com/inbloomdev/datastore.git
+    cd $INSTALL_ROOT
+    git clone https://github.com/inbloom/secure-data-service.git
     
-    cd ~/Projects
-    git clone https://github.com/inbloomdev/datastore_ldap_inmemory.git
+    cd $INSTALL_ROOT
+    git clone https://github.com/inbloom/ldap-in-memory.git
 
     #set env variables for future
     echo 'export MAVEN_OPTS="-Xmx2g -XX:+CMSClassUnloadingEnabled -XX:PermSize=128M -XX:MaxPermSize=512M"' >> ~/.bashrc
-    echo 'export SLI_ROOT=~/Projects/datastore/sli' >> ~/.bashrc
-    echo 'export IN_MEMORY_LDAP_ROOT=~/Projects/datastore_ldap_inmemory' >> ~/.bashrc
+    echo "export SLI_ROOT=${INSTALL_ROOT}secure-data-service/sli" >> ~/.bashrc
+    echo "export IN_MEMORY_LDAP_ROOT=${INSTALL_ROOT}ldap-in-memory" >> ~/.bashrc
 
-    source ~/.bashrc
+    source $HOME/.bashrc
 
     #need to export env variables for now
     export MAVEN_OPTS="-Xmx2g -XX:+CMSClassUnloadingEnabled -XX:PermSize=128M -XX:MaxPermSize=512M"
-    export SLI_ROOT=~/Projects/datastore/sli
-    export IN_MEMORY_LDAP_ROOT=~/Projects/datastore_ldap_inmemory
+    export SLI_ROOT="${INSTALL_ROOT}secure-data-service/sli"
+    export IN_MEMORY_LDAP_ROOT="${INSTALL_ROOT}ldap-in-memory"
        
 
-    cd ~/Projects/datastore/build-tools
-    mvn clean install
-    cd $SLI_ROOT
-    mvn clean install -DskipTests
+    #kick off maven builds and bundle ruby tools
+    build_sli
     
     #start mongodb
     sudo service mongodb start
     
-    cd $SLI_ROOT/config/scripts
-    sudo bundle install
-    ./resetAllDbs.sh
+	resetDatabase
     
     cp $SLI_ROOT/data-access/dal/keyStore/trustey.jks /tmp
     
@@ -251,31 +345,16 @@ setup ()
     start_ingestion
     start_api
     start_simple_idp
-    start_search_indexer
+    #start_search_indexer
+	start_admin_tools
+	start_data_browser
+	start_dashboard
     
     #ingest sample data set
-    cd $SLI_ROOT/acceptance-tests
-    bundle install
-    bundle exec rake realmInit
-    bundle exec rake importSandboxData
-    cd $SLI_ROOT/ingestion/ingestion-service/target/ingestion/lz/inbound/Midgar-DAYBREAK
-    cp $SLI_ROOT/acceptance-tests/test/features/ingestion/test_data/SmallSampleDataSet.zip ./
-    screen -S sample-ingestion -d -m ruby $SLI_ROOT/opstools/ingestion_trigger/publish_file_uploaded.rb STOR $(pwd)/SmallSampleDataSet.zip
-    screen -S sample-ingestion-tail -d -m tail -F $SLI_ROOT/ingestion/ingestion-service/target/ingestion/logs/ingestion.log    
-    
-    start_dashboard
-    
-    #build admin-rails app
-    cd $SLI_ROOT/admin-tools/admin-rails
-    bundle install
-    start_admin_tools
-    
-    #build databrowser rails app
-    cd $SLI_ROOT/databrowser
-    bundle install
-    start_data_browser
-
-    echo "Installation complete!" 
+	realmInit
+	importSandboxData
+      
+    echo -e "\n\nInstallation complete!!!" 
 }
 
 stopall ()
@@ -293,10 +372,10 @@ stopall ()
     screen -S simple-idp -p 0 -X stuff $'\003'
     
     #stop search indexer
-    echo "Stopping search indexer"
-    cd $SLI_ROOT/search-indexer
-    screen -S search-indexer -d -m ./scripts/local_search_indexer.sh stop
-    screen -S search-indexer-tail -p 0 -X kill
+    #echo "Stopping search indexer"
+    #cd $SLI_ROOT/search-indexer
+    #screen -S search-indexer -d -m ./scripts/local_search_indexer.sh stop
+    #screen -S search-indexer-tail -p 0 -X kill
 
     echo "Stopping sample ingestion log"    
     screen -S sample-ingestion-tail -p 0 -X kill
@@ -314,18 +393,14 @@ stopall ()
     screen -S databrowser -p 0 -X stuff $'\003'
 
     #stop datastore_ldap_inmemory
-    echo "Stopping datastore_ldap_inmemory"
-    screen -S datastore_ldap_inmemory -p 0 -X stuff $'\003'
+    echo "Stopping ldap-in-memory"
+    screen -S ldap-in-memory -p 0 -X stuff $'\003'
 }
 
-list ()
-{
-    screen -list
-}
 
 if [ -z "$SLI_ROOT" ]
 then
-   export SLI_ROOT=~/Projects/datastore/sli 
+   export SLI_ROOT=${INSTALL_ROOT}secure-data-service/sli 
 fi
 if [ -z "$MAVEN_OPTS" ]
 then
@@ -358,9 +433,8 @@ if [ $MODE != "command" ]
 then
     if [ "$1" = "install" ]
     then
-        #read -ep "Please enter your github username: " gitusername
-        #read -esp "Please enter you github password: " gitpassword
-        setup #gitusername gitpassword
+		echo -e "\n\n==========================================================\nBeginning install, writing output to installation.log\n=========================================================="
+        setup | tee installation.log
     elif [ "$1" = "start" ]
     then
         startall
@@ -373,12 +447,31 @@ then
     elif [ "$1" = "resetdb" ]
     then
         resetDatabase
+	elif [ "$1" = "realminit" ]
+	then
+		realmInit
+	elif [ "$1" = "ingestdata" ]
+	then
+		ingestSmallSampleDataset
+	elif [ "$1" = "importdata" ]
+	then
+		importSandboxData
+	elif [ "$1" = "loaddata" ]
+	then
+		loadData
+	elif [ "$1" = "build" ]
+	then
+		build_sli
     else
         echo "Valid parameters for this script are:"
         echo "    install : Performs initial installation and configuration of software"
         echo "    start : Start all components of the application"
         echo "    stop : Stop all components of the application"
-        echo "    resetdb : Reset the database and rerun injestion of the sample dataset"
+        echo "    resetdb : Reset the database"
+		echo "    realminit : Initialize realms"
+		echo "    ingestdata : Load the small sample dataset via ingestion"
+		echo "    importdata : Load the small sample dataset sandbox data via import"
+		echo "    build : Run maven build and bundle rails apps"
         echo "    list : List all active screen sessions"
     fi
 fi
