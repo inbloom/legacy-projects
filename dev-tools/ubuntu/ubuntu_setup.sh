@@ -174,10 +174,18 @@ importSandboxData ()
     bundle exec rake importSandboxData
 }
 
+ingestSmallSampleDatasetDefault ()
+{
+    cd $SLI_ROOT/ingestion/ingestion-service/target/ingestion/lz/inbound/Midgar-DAYBREAK
+    cp $SLI_ROOT/acceptance-tests/test/features/ingestion/test_data/SmallSampleDataSet.zip ./
+    ruby $SLI_ROOT/opstools/ingestion_trigger/publish_file_uploaded.rb STOR $(pwd)/SmallSampleDataSet.zip
+}
+
 ingestSmallSampleDataset ()
 {
-	echo "Ingesting data to tenant $1"
-    cd $SLI_ROOT/ingestion/ingestion-service/target/ingestion/lz/inbound/$1
+	dir=$(find . -mindepth 1 -maxdepth 1 -type d)
+	echo $dir
+    cd $SLI_ROOT/api/target/ingestion/lz/inbound/$1/$dir
     cp $SLI_ROOT/acceptance-tests/test/features/ingestion/test_data/SmallSampleDataSet.zip ./
     ruby $SLI_ROOT/opstools/ingestion_trigger/publish_file_uploaded.rb STOR $(pwd)/SmallSampleDataSet.zip
 }
@@ -458,9 +466,8 @@ then
 		then
 			ingestSmallSampleDataset $2
 		else
-			ingestSmallSampleDataset Midgar-DAYBREAK
+			ingestSmallSampleDatasetDefault
 		fi
-		
 	elif [ "$1" = "importdata" ]
 	then
 		importSandboxData
