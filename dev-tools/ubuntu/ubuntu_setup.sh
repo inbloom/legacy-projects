@@ -176,7 +176,8 @@ importSandboxData ()
 
 ingestSmallSampleDataset ()
 {
-    cd $SLI_ROOT/ingestion/ingestion-service/target/ingestion/lz/inbound/Midgar-DAYBREAK
+	echo "Ingesting data to tenant $1"
+    cd $SLI_ROOT/ingestion/ingestion-service/target/ingestion/lz/inbound/$1
     cp $SLI_ROOT/acceptance-tests/test/features/ingestion/test_data/SmallSampleDataSet.zip ./
     ruby $SLI_ROOT/opstools/ingestion_trigger/publish_file_uploaded.rb STOR $(pwd)/SmallSampleDataSet.zip
 }
@@ -290,7 +291,7 @@ setup ()
     #sudo service activemq stop
     
     #check to see if we've already added stomp config to activemq
-    if ! $(grep -q stomp /opt/activemq/instances-available/main/activemq.xml)
+    if ! $(grep -q stomp /opt/activemq/conf/activemq.xml)
     then
         echo "Adding stomp config to activemq.xml"
         sudo perl -pi -e "s~</transportConnectors>~<transportConnector name=\"stomp\" uri=\"stomp://0\.0\.0\.0\:61613?maximumConnections=1000&amp;wireformat.maxFrameSize=104857600\"/>\n</transportConnectors>~g" /opt/activemq/conf/activemq.xml
@@ -298,7 +299,8 @@ setup ()
 	else
         echo "Stomp config already added to activemq.xml. Skipping."
     fi
-    sudo ln -s /opt/activemq/instances-available/main /opt/activemq/instances-enabled/main
+    sudo ln -s /opt/activemq/instances-available/main /opt/activemq/instances-enabled/main # still needed?
+	sudo service activemq stop
     sudo service activemq start
     
     # OpenADK 
@@ -452,7 +454,13 @@ then
 		realmInit
 	elif [ "$1" = "ingestdata" ]
 	then
-		ingestSmallSampleDataset
+		if [ ! -z "$2" ]
+		then
+			ingestSmallSampleDataset $2
+		else
+			ingestSmallSampleDataset Midgar-DAYBREAK
+		fi
+		
 	elif [ "$1" = "importdata" ]
 	then
 		importSandboxData
