@@ -183,9 +183,9 @@ ingestSmallSampleDatasetDefault ()
 
 ingestSmallSampleDataset ()
 {
-	dir=$(find . -mindepth 1 -maxdepth 1 -type d)
-	echo $dir
-    cd $SLI_ROOT/api/target/ingestion/lz/inbound/$1/$dir
+	dir=$(find $SLI_ROOT/api/target/ingestion/lz/inbound/$1 -mindepth 1 -maxdepth 1 -type d)
+    cd $dir
+	echo "Starting injestion for $(pwd)"
     cp $SLI_ROOT/acceptance-tests/test/features/ingestion/test_data/SmallSampleDataSet.zip ./
     ruby $SLI_ROOT/opstools/ingestion_trigger/publish_file_uploaded.rb STOR $(pwd)/SmallSampleDataSet.zip
 }
