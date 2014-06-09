@@ -293,7 +293,7 @@ setup ()
     if ! $(grep -q stomp /opt/activemq/instances-available/main/activemq.xml)
     then
         echo "Adding stomp config to activemq.xml"
-        sudo perl -pi -e "s~<transportConnector name=\"openwire\" uri=\"tcp\://127\.0\.0\.1:61616\"/>~<transportConnector name=\"openwire\" uri=\"tcp://127\.0\.0\.1:61616\"/>\n\t\t<transportConnector name=\"stomp\" uri=\"stomp://0\.0\.0\.0\:61613\"/>~g" /opt/activemq/instances-available/main/activemq.xml
+        sudo perl -pi -e "s~</transportConnectors>~<transportConnector name=\"stomp\" uri=\"stomp://0\.0\.0\.0\:61613?maximumConnections=1000&amp;wireformat.maxFrameSize=104857600\"/>\n</transportConnectors>~g" /opt/activemq/conf/activemq.xml
         # Stomp must be activated by adding <transportConnector name="stomp" uri="stomp://0.0.0.0:61613"/>to the conf/activemq.xml file in the <transportConnectors> block
 	else
         echo "Stomp config already added to activemq.xml. Skipping."
