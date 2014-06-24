@@ -4,6 +4,8 @@ In a nutshell, this application is used to traverse the ESDS API to see all of t
 You can explore the data by clicking on the links that the API shows, or you can even explicitly tell
 the Databrowser what part of the API to visit.
 
+The data browser is utilitized by an IT Administrator to view the data in their data store and view the status of completed ingestion jobs. For more information, view the Administrator Guide.
+
 ## Configuration And Setup ##
 The Databrowser is a fairly simple Ruby on Rails application, but there are a few customizations and
 configuration files to be aware of.
