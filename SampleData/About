@@ -1,1 +1,46 @@
 This folder contains two different sets of data that can be used for testing and using various parts of the SDS.
+
+Sample data sets
+There are four sample data sets each with slight variations of data: 
+•	Small sample dataset
+•	Medium sample dataset
+•	Updated Sample Data
+•	Testing Data Browser
+
+Small and Medium Sample Datasets (these are not included here)
+Both the small and medium sample datasets are in the environment and were traditionally used by app developers to test their applications. The only way to view the data in these sets is to look through the xml. 
+These datasets are good to use if you are demoing apps or you just want to make sure your apps are returning data. Since the data does not exist in any format other than XML they are difficult to use if you are trying to validate the data presented is accurate. 
+
+
+Updated Sample Data (dataset in this folder)
+The Updated Sample Data dataset contains records for most of the entities in the SDS. There are a wide variety of use cases that can be extracted from this dataset. It is based off the Small Sample Data dataset, with additional entities and data added for robustness. 
+Not all staff members in this dataset are setup in LDAP for login purposes. 
+This dataset is good to use if you are building apps and want to verify the data presented in your application is correct, since a wide variety of use cases can be supported. However, this dataset has not been tested. Follow the steps below to use this data set:
+1.	Convert to XML.
+2.	Create control file and .zip file.
+3.	Upload .zip file to landing zone.
+4.	Review log file in landing zone for errors and fix. 
+
+
+Testing Data Browser (dataset in this folder)
+The Testing Data Browser dataset was created to test specific use cases regarding counts of Teachers, Students, and Staff and does not provide a robust dataset for other entities. There are other entities present in the file, with limited data, and the file should ingest without issues. 
+Not all staff members in this dataset are setup in LDAP for login purposes. 
+The Testing Data Browser dataset has been ingested repeatedly without error and can be combined with data from Updated Sample Data for a more robust dataset where the underlying data is easily understood. To do this, just copy data from the tabs of the same name from the Updated Sample Data spreadsheet into the Testing Data Browser spreadsheet. When doing this, make sure you keep the column names in the Testing Data Browser spreadsheet (they should be the same), since this has ingested without issues. There may be a few errors in ingestion, but they will likely be due to small data issues as opposed to bigger problems with entities. 
+Entities covered:
+•	EducationOrganizations
+•	Staff/Teacher
+•	StaffEducationOrganizationAssocaition
+•	Student
+•	StudentSchoolAssociation
+•	TeacherSchoolAssociation
+•	Attendance 
+•	Note: There’s several other entities with only 1 record, however the ones above have at least 15 records
+
+Things to remember about using these spreadsheets.
+-	Dates in the format mm/dd/yyyy
+-	true/false must be all lower case
+
+
+
+
+
