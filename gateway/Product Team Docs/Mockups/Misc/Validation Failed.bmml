@@ -1,0 +1,41 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1348" measuredH="592" mockupW="1296" mockupH="546">
+  <controls>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Title" x="58" y="46" w="-1" h="-1" measuredW="289" measuredH="43" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Validation%20Failed</text>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="__group__" x="52" y="103" w="1296" h="489" measuredW="1296" measuredH="489" zOrder="1" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="1" controlTypeID="__group__" x="0" y="0" w="1296" h="489" measuredW="1296" measuredH="489" zOrder="0" locked="false" isInGroup="34">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="__group__" x="0" y="0" w="1296" h="489" measuredW="1296" measuredH="489" zOrder="0" locked="false" isInGroup="1">
+              <groupChildrenDescriptors>
+                <control controlID="11" controlTypeID="__group__" x="0" y="0" w="1296" h="489" measuredW="1296" measuredH="489" zOrder="0" locked="false" isInGroup="0">
+                  <groupChildrenDescriptors>
+                    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="0" y="0" w="1296" h="489" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="11">
+                      <controlProperties>
+                        <text>A%20Web%20Page%0Ahttp%3A//</text>
+                      </controlProperties>
+                    </control>
+                    <control controlID="11" controlTypeID="com.balsamiq.mockups::Title" x="97" y="177" w="-1" h="-1" measuredW="458" measuredH="43" zOrder="1" locked="false" isInGroup="11">
+                      <controlProperties>
+                        <text>Account%20validation%20failed%21%20</text>
+                      </controlProperties>
+                    </control>
+                    <control controlID="12" controlTypeID="com.balsamiq.mockups::Paragraph" x="97" y="239" w="780" h="127" measuredW="200" measuredH="80" zOrder="2" locked="false" isInGroup="11">
+                      <controlProperties>
+                        <size>16</size>
+                        <text>Error%21%20This%20account%20has%20already%20been%20validated%20or%20the%2072-hour%20validation%20period%20has%20expired.%20%0A%20%0A%5BClick%20here%5D%20if%20you%20need%20to%20restart%20the%20registration%20process.%20%20Otherwise%20%5Bclick%20here%5D%20to%20login%20to%20your%20account.%0A%20%0AFor%20questions%20please%20contact%20%5Bdevsupport@inbloom.org%5D.</text>
+                      </controlProperties>
+                    </control>
+                  </groupChildrenDescriptors>
+                </control>
+              </groupChildrenDescriptors>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

@@ -1,0 +1,14 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2586" measuredH="1011" mockupW="2526" mockupH="991">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Image" x="60" y="20" w="-1" h="-1" measuredW="1192" measuredH="991" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/fuck%2520paul.png</src>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="1295" y="99" w="-1" h="-1" measuredW="1291" measuredH="623" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/fuck%2520him%2520again.png</src>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

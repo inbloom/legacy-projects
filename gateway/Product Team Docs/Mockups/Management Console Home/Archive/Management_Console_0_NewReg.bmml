@@ -1,0 +1,124 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1150" measuredH="964" mockupW="1042" mockupH="956">
+  <controls>
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::Title" x="108" y="8" w="-1" h="-1" measuredW="1042" measuredH="43" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Development%20Management%20Console%20-%20NEW%20REGISTRANT</text>
+      </controlProperties>
+    </control>
+    <control controlID="93" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="108" y="75" w="878" h="889" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="94" controlTypeID="com.balsamiq.mockups::Title" x="145" y="220" w="-1" h="-1" measuredW="642" measuredH="43" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Development%20Management%20Console</text>
+      </controlProperties>
+    </control>
+    <control controlID="95" controlTypeID="com.balsamiq.mockups::Paragraph" x="145" y="315" w="796" h="292" measuredW="200" measuredH="80" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Welcome%2C%20Joe%0A%20%0AWe%27re%20glad%20you%27re%20here%21%20%20Your%20%5BSandbox%20tenant%5D%20has%20been%20created%20and%20a%20%5Bsample%20data%20set%5D%20is%20currently%20being%20loaded.%20%20This%20may%20take%20a%20few%20minutes%20but%20you%20will%20recieve%20an%20email%20when%20this%20step%20has%20completed.%20%20inBloom%20has%20supplied%20the%20%5BDashboard%5D%20and%20%5BData%20Browswer%5D%20exemplar%20applications%20so%20you%20can%20quickly%20see%20this%20data%20in%20action.%20%28The%20code%20for%20these%20applications%20is%20also%20available%20on%20our%20%5BGithub%20repositories%5D.%20%29%0A%20%0A%5BData%20Administration%5D%20allows%20you%20to%20manage%20additional%20custom%20data%20set%20for%20testing%20these%20and%20your%20own%20%5Bregistered%20applications%5D.%20%20%0A%20%0A*PLEASE%20NOTE%20this%20environment%20is%20solely%20for%20testing%20purpurses%20and%20MUST%20NOT%20contain%20personally%20identifiable%20information.*%0A%20%0ATo%20help%20get%20you%20started%20inBloom%20has%20created%20other%20helpful%20links%20below.%20%20%0A%20%0AIf%20you%20run%20into%20any%20issues%20or%20you%20have%20a%20good%20idea%20for%20a%20new%20feature%2C%20please%20%5Bcontact%20us%5D.%20Just%20click%20your%20name%20in%20the%20upper%20right%2C%20then%20click%20Report%20a%20problem.%0A%20%0AThank%20you%2C%0A%20%0AinBloom%0A%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::Canvas" x="110" y="146" w="876" h="46" measuredW="100" measuredH="70" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>0</color>
+      </controlProperties>
+    </control>
+    <control controlID="98" controlTypeID="com.balsamiq.mockups::Label" x="286" y="159" w="-1" h="-1" measuredW="72" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Applications</text>
+      </controlProperties>
+    </control>
+    <control controlID="99" controlTypeID="com.balsamiq.mockups::Label" x="391" y="159" w="-1" h="-1" measuredW="52" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Sandbox</text>
+      </controlProperties>
+    </control>
+    <control controlID="100" controlTypeID="com.balsamiq.mockups::SubTitle" x="130" y="160" w="-1" h="-1" measuredW="83" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>inBloom</text>
+      </controlProperties>
+    </control>
+    <control controlID="101" controlTypeID="com.balsamiq.mockups::Label" x="808" y="160" w="140" h="-1" measuredW="140" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>mathkitties@gmail.com%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="103" controlTypeID="com.balsamiq.mockups::RoundButton" x="948" y="168" w="10" h="10" measuredW="32" measuredH="32" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderColor>16777215</borderColor>
+        <shape>triangle</shape>
+        <shapeRotation>180</shapeRotation>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="104" controlTypeID="com.balsamiq.mockups::MultilineButton" x="134" y="274" w="796" h="27" measuredW="492" measuredH="66" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>65535</color>
+        <text>*Registration%20Complete%21*%20%20Thank%20you%20for%20registering%20with%20inBloom.</text>
+      </controlProperties>
+    </control>
+    <control controlID="105" controlTypeID="__group__" x="186" y="610" w="231" h="233" measuredW="231" measuredH="233" zOrder="11" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::SubTitle" x="14" y="8" w="189" h="-1" measuredW="173" measuredH="27" zOrder="1" locked="false" isInGroup="105">
+          <controlProperties>
+            <text>Getting%20Started</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Paragraph" x="14" y="49" w="180" h="175" measuredW="200" measuredH="80" zOrder="2" locked="false" isInGroup="105">
+          <controlProperties>
+            <text>%5BRegister%20a%20New%20Application%5D%0A%20%20%0A%5BManage%20Applications%5D%0A%20%0A%5BData%20Administration%5D%0A%20%0A%5BCreate%20Custom%20Roles%5D%0A%20%0A%5BManage%20Developer%20Accounts%5D%0A%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="231" h="233" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="105">
+          <controlProperties>
+            <color>10470904</color>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="107" controlTypeID="__group__" x="432" y="610" w="231" h="233" measuredW="231" measuredH="233" zOrder="12" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::SubTitle" x="14" y="8" w="195" h="-1" measuredW="140" measuredH="27" zOrder="1" locked="false" isInGroup="107">
+          <controlProperties>
+            <text>What%27s%20New%3F</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Paragraph" x="14" y="49" w="180" h="175" measuredW="200" measuredH="80" zOrder="2" locked="false" isInGroup="107">
+          <controlProperties>
+            <text>%5BRelease%20Notes%5D%0A%20%0A%5BForums%5D%0A%20%0A%5BinBloom%20OSS%5D%0A%20%0A%5BinBloom%20Blog%5D%0A%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="231" h="233" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="107">
+          <controlProperties>
+            <color>16777215</color>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="108" controlTypeID="__group__" x="680" y="610" w="231" h="233" measuredW="231" measuredH="233" zOrder="13" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::SubTitle" x="14" y="8" w="202" h="-1" measuredW="132" measuredH="27" zOrder="1" locked="false" isInGroup="108">
+          <controlProperties>
+            <text>Applications</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Paragraph" x="14" y="49" w="180" h="175" measuredW="200" measuredH="80" zOrder="2" locked="false" isInGroup="108">
+          <controlProperties>
+            <text>%5BMath%20Cats%20v1.14%5D%0A%20%0A%5BMath%20Kitties%20v2.0%5D%0A%20%0A%5BinBloom%20Dashboard%5D%0A%20%0A%5BinBloom%20Data%20Browser%5D%0A%20%0A%5BMore%5D%0A%20</text>
+          </controlProperties>
+        </control>
+        <control controlID="5" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="231" h="233" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="108">
+          <controlProperties>
+            <color>10470904</color>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>

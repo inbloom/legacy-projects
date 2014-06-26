@@ -1,0 +1,42 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1886" measuredH="899" mockupW="1828" mockupH="847">
+  <controls>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::Title" x="66" y="52" w="-1" h="-1" measuredW="1147" measuredH="43" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Developer%20Account%20Registration%20-%20Accept%20Terms%20and%20Conditions</text>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::StickyNote" x="1373" y="120" w="513" h="285" measuredW="109" measuredH="123" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Assumptions%3A%0A*%20No%20longer%20storing%20data%20unless%20user%20agrees%20to%20EULA%0A*%20Data%20from%20previous%20step%20will%20be%20cached%20until%20user%20selects%20%22I%20Accept%22%0A*%20Links%20will%20reference%20system%20of%20record%20for%20EULA%20docs%3A%0A**%20https%3A//inbloom.org/terms-of-use%0A**%20https%3A//inbloom.org/privacy-policy</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="58" y="144" w="1296" h="755" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Paragraph" x="119" y="478" w="1174" h="162" measuredW="200" measuredH="80" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Step%202%20of%204%0A%20%0AWelcome%21%20%20You%20are%20requesting%20access%20to%20the%20development%20environment%20of%20inBloom.%20%20By%20using%20this%20portion%20of%20the%20inBloom%20website%20%28%22the%20%22Site%22%29%20and%20accessing%20the%20development%20environment%2C%20you%20acknowledge%20and%20agree%20that%20you%20are%20bound%20by%20the%20terms%20and%20conditions%20outlined%20in%20the%20%5BTerms%20of%20Use%5D%20and%20%5BPrivacy%20Policy%5D%20for%20the%20site%2C%20inclusive%20of%20development%20environment%20usage.%20%20Be%20good.</text>
+      </controlProperties>
+    </control>
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::Title" x="119" y="420" w="-1" h="-1" measuredW="397" measuredH="43" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Terms%20and%20Conditions</text>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Button" x="135" y="703" w="82" h="46" measuredW="73" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>65535</color>
+        <text>I%20Accept</text>
+      </controlProperties>
+    </control>
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Button" x="262" y="703" w="83" h="46" measuredW="74" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>I%20Decline</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

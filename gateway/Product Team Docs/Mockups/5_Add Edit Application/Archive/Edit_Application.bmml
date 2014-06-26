@@ -1,0 +1,312 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1328" measuredH="1993" mockupW="1260" mockupH="1946">
+  <controls>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Title" x="68" y="47" w="-1" h="-1" measuredW="849" measuredH="43" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>View%20/%20Edit%20Application%20Information%20-%20SANDBOX</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="76" y="120" w="1029" h="873" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::Title" x="220" y="286" w="859" h="-1" measuredW="697" measuredH="43" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <text>Application%20Name%20v1.0.2b%20%20%20%20%20%20%20Sandbox</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="123" y="399" w="-1" h="-1" measuredW="88" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <size>16</size>
+        <text>Description</text>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::Label" x="632" y="527" w="165" h="-1" measuredW="126" measuredH="24" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>16</size>
+        <text>Application%20Keys</text>
+      </controlProperties>
+    </control>
+    <control controlID="99" controlTypeID="com.balsamiq.mockups::DataGrid" x="632" y="561" w="301" h="54" measuredW="228" measuredH="51" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*Client%20ID*%2C%20*Shared%20Secret*%0Aajkiaue9u33%2C%20qiew5o9q9jafkjal%3B3a4</text>
+      </controlProperties>
+    </control>
+    <control controlID="130" controlTypeID="com.balsamiq.mockups::Button" x="761" y="340" w="151" h="27" measuredW="127" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>65535</color>
+        <text>Add%20to%20Production</text>
+      </controlProperties>
+    </control>
+    <control controlID="132" controlTypeID="com.balsamiq.mockups::Button" x="664" y="866" w="157" h="27" measuredW="61" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Delete</text>
+      </controlProperties>
+    </control>
+    <control controlID="138" controlTypeID="com.balsamiq.mockups::Button" x="265" y="866" w="157" h="27" measuredW="87" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Customers</text>
+      </controlProperties>
+    </control>
+    <control controlID="140" controlTypeID="com.balsamiq.mockups::SubTitle" x="220" y="340" w="-1" h="-1" measuredW="398" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Last%20Updated%3A%20%2007/01/2014%2003%3A11%20PM</text>
+      </controlProperties>
+    </control>
+    <control controlID="141" controlTypeID="com.balsamiq.mockups::Paragraph" x="123" y="431" w="914" h="80" measuredW="200" measuredH="80" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Mauris%20consequat%20lorem%20eget%20suscipit%20fringilla.%20In%20pharetra%20nec%20nulla%20vel%20sagittis.%20Nulla%20nec%20est%20vestibulum%2C%20auctor%20neque%20vel%2C%20tincidunt%20neque.%20Aenean%20pretium%20dictum%20lectus%2C%20vitae%20consectetur%20risus%20blandit%20eget.%20Curabitur%20tristique%20sapien%20nec%20diam%20placerat%2C%20ut%20fermentum%20orci%20faucibus.%20Phasellus%20vitae%20sodales%20sem.%20Aliquam%20odio%20turpis%2C%20dignissim%20at%20dignissim%20at%2C%20placerat%20non%20quam.%20Nam%20condimentum%20consequat%20risus%20quis%20hendrerit.</text>
+      </controlProperties>
+    </control>
+    <control controlID="151" controlTypeID="com.balsamiq.mockups::Label" x="123" y="522" w="130" h="-1" measuredW="130" measuredH="24" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <size>16</size>
+        <text>Application%20URLs</text>
+      </controlProperties>
+    </control>
+    <control controlID="156" controlTypeID="com.balsamiq.mockups::Button" x="797" y="526" w="139" h="27" measuredW="135" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Request%20New%20Keys</text>
+      </controlProperties>
+    </control>
+    <control controlID="157" controlTypeID="com.balsamiq.mockups::Button" x="464" y="866" w="157" h="27" measuredW="65" measuredH="27" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Disable</text>
+      </controlProperties>
+    </control>
+    <control controlID="172" controlTypeID="com.balsamiq.mockups::StickyNote" x="1159" y="135" w="169" h="109" measuredW="109" measuredH="123" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Add%20to%20Production%20is%20only%20available%20if%20this%20app%20has%20NOT%20been%20added%20to%20Production%20yet</text>
+      </controlProperties>
+    </control>
+    <control controlID="192" controlTypeID="com.balsamiq.mockups::Image" x="123" y="283" w="-1" h="-1" measuredW="77" measuredH="79" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Image</text>
+      </controlProperties>
+    </control>
+    <control controlID="194" controlTypeID="com.balsamiq.mockups::Label" x="123" y="553" w="95" h="-1" measuredW="95" measuredH="21" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Homepage%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="195" controlTypeID="com.balsamiq.mockups::Label" x="239" y="553" w="298" h="-1" measuredW="110" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="196" controlTypeID="com.balsamiq.mockups::Label" x="123" y="581" w="84" h="-1" measuredW="84" measuredH="21" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Redirect%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="197" controlTypeID="com.balsamiq.mockups::Label" x="239" y="581" w="298" h="-1" measuredW="110" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="198" controlTypeID="com.balsamiq.mockups::Label" x="123" y="609" w="68" h="-1" measuredW="68" measuredH="21" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Admin%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="199" controlTypeID="com.balsamiq.mockups::Label" x="239" y="609" w="298" h="-1" measuredW="110" measuredH="21" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="200" controlTypeID="com.balsamiq.mockups::Label" x="123" y="638" w="68" h="-1" measuredW="68" measuredH="21" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Image%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="201" controlTypeID="com.balsamiq.mockups::Label" x="239" y="638" w="298" h="-1" measuredW="110" measuredH="21" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="204" controlTypeID="com.balsamiq.mockups::Title" x="76" y="1047" w="-1" h="-1" measuredW="927" measuredH="43" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>View%20/%20Edit%20Application%20Information%20-%20PRODUCTION</text>
+      </controlProperties>
+    </control>
+    <control controlID="205" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="84" y="1120" w="1029" h="873" measuredW="450" measuredH="400" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>65535</color>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="206" controlTypeID="com.balsamiq.mockups::Title" x="228" y="1286" w="859" h="-1" measuredW="732" measuredH="43" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>left</align>
+        <text>Application%20Name%20v1.0.2b%20%20%20%20%20%20%20Production</text>
+      </controlProperties>
+    </control>
+    <control controlID="207" controlTypeID="com.balsamiq.mockups::Label" x="131" y="1399" w="-1" h="-1" measuredW="88" measuredH="24" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <size>16</size>
+        <text>Description</text>
+      </controlProperties>
+    </control>
+    <control controlID="208" controlTypeID="com.balsamiq.mockups::Label" x="640" y="1527" w="165" h="-1" measuredW="126" measuredH="24" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <size>16</size>
+        <text>Application%20Keys</text>
+      </controlProperties>
+    </control>
+    <control controlID="209" controlTypeID="com.balsamiq.mockups::DataGrid" x="640" y="1561" w="301" h="54" measuredW="228" measuredH="51" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*Client%20ID*%2C%20*Shared%20Secret*%0Aajkiaue9u33%2C%20qiew5o9q9jafkjal%3B3a4</text>
+      </controlProperties>
+    </control>
+    <control controlID="212" controlTypeID="com.balsamiq.mockups::Button" x="273" y="1866" w="157" h="27" measuredW="87" measuredH="27" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Customers</text>
+      </controlProperties>
+    </control>
+    <control controlID="213" controlTypeID="com.balsamiq.mockups::SubTitle" x="228" y="1340" w="-1" h="-1" measuredW="398" measuredH="27" zOrder="31" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Last%20Updated%3A%20%2007/01/2014%2003%3A11%20PM</text>
+      </controlProperties>
+    </control>
+    <control controlID="214" controlTypeID="com.balsamiq.mockups::Paragraph" x="131" y="1431" w="914" h="80" measuredW="200" measuredH="80" zOrder="32" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Mauris%20consequat%20lorem%20eget%20suscipit%20fringilla.%20In%20pharetra%20nec%20nulla%20vel%20sagittis.%20Nulla%20nec%20est%20vestibulum%2C%20auctor%20neque%20vel%2C%20tincidunt%20neque.%20Aenean%20pretium%20dictum%20lectus%2C%20vitae%20consectetur%20risus%20blandit%20eget.%20Curabitur%20tristique%20sapien%20nec%20diam%20placerat%2C%20ut%20fermentum%20orci%20faucibus.%20Phasellus%20vitae%20sodales%20sem.%20Aliquam%20odio%20turpis%2C%20dignissim%20at%20dignissim%20at%2C%20placerat%20non%20quam.%20Nam%20condimentum%20consequat%20risus%20quis%20hendrerit.</text>
+      </controlProperties>
+    </control>
+    <control controlID="215" controlTypeID="com.balsamiq.mockups::Label" x="131" y="1553" w="95" h="-1" measuredW="95" measuredH="21" zOrder="33" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Homepage%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="216" controlTypeID="com.balsamiq.mockups::Label" x="247" y="1553" w="298" h="-1" measuredW="110" measuredH="21" zOrder="34" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="217" controlTypeID="com.balsamiq.mockups::Label" x="131" y="1581" w="84" h="-1" measuredW="84" measuredH="21" zOrder="35" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Redirect%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="218" controlTypeID="com.balsamiq.mockups::Label" x="247" y="1581" w="298" h="-1" measuredW="110" measuredH="21" zOrder="36" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="219" controlTypeID="com.balsamiq.mockups::Label" x="131" y="1609" w="68" h="-1" measuredW="68" measuredH="21" zOrder="37" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Admin%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="220" controlTypeID="com.balsamiq.mockups::Label" x="247" y="1609" w="298" h="-1" measuredW="110" measuredH="21" zOrder="38" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="221" controlTypeID="com.balsamiq.mockups::Label" x="131" y="1522" w="130" h="-1" measuredW="130" measuredH="24" zOrder="39" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <size>16</size>
+        <text>Application%20URLs</text>
+      </controlProperties>
+    </control>
+    <control controlID="222" controlTypeID="com.balsamiq.mockups::Button" x="805" y="1526" w="139" h="27" measuredW="135" measuredH="27" zOrder="40" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Request%20New%20Keys</text>
+      </controlProperties>
+    </control>
+    <control controlID="223" controlTypeID="com.balsamiq.mockups::Button" x="472" y="1866" w="157" h="27" measuredW="65" measuredH="27" zOrder="41" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Disable</text>
+      </controlProperties>
+    </control>
+    <control controlID="224" controlTypeID="com.balsamiq.mockups::Image" x="131" y="1283" w="-1" h="-1" measuredW="77" measuredH="79" zOrder="42" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Image</text>
+      </controlProperties>
+    </control>
+    <control controlID="225" controlTypeID="com.balsamiq.mockups::Label" x="131" y="1638" w="68" h="-1" measuredW="68" measuredH="21" zOrder="43" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <text>Image%20URL</text>
+      </controlProperties>
+    </control>
+    <control controlID="226" controlTypeID="com.balsamiq.mockups::Label" x="247" y="1638" w="298" h="-1" measuredW="110" measuredH="21" zOrder="44" locked="false" isInGroup="-1">
+      <controlProperties>
+        <italic>false</italic>
+        <text>https%3A//inbloom.org</text>
+      </controlProperties>
+    </control>
+    <control controlID="227" controlTypeID="com.balsamiq.mockups::DataGrid" x="131" y="1710" w="813" h="111" measuredW="519" measuredH="111" zOrder="45" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*Metadata*%2C%20*Description*%2C%20*True*%0AAdmin%20Application%2C%20Is%20this%20an%20administrative%20application%3F%2C%20%5BX%5D%0AInstalled%2C%20This%20is%20used%20for%20applications%20that%20aren%27t%20web-based%20%28Mobile%29%2C%20%5B%5D%0ABulk%20Extract%2C%20Is%20this%20application%20used%20to%20perform%20only%20bulk%20extraction%3F%2C%20%5BX%5D%0A%7BL%2C%20L%2C%20C%7D</text>
+      </controlProperties>
+    </control>
+    <control controlID="229" controlTypeID="com.balsamiq.mockups::Label" x="131" y="1674" w="130" h="-1" measuredW="185" measuredH="24" zOrder="46" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <size>16</size>
+        <text>More%20Application%20Details</text>
+      </controlProperties>
+    </control>
+    <control controlID="230" controlTypeID="com.balsamiq.mockups::DataGrid" x="123" y="716" w="813" h="111" measuredW="519" measuredH="111" zOrder="47" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>*Metadata*%2C%20*Description*%2C%20*True*%0AAdmin%20Application%2C%20Is%20this%20an%20administrative%20application%3F%2C%20%5BX%5D%0AInstalled%2C%20This%20is%20used%20for%20applications%20that%20aren%27t%20web-based%20%28Mobile%29%2C%20%5B%5D%0ABulk%20Extract%2C%20Is%20this%20application%20used%20to%20perform%20only%20bulk%20extraction%3F%2C%20%5BX%5D%0A%7BL%2C%20L%2C%20C%7D</text>
+      </controlProperties>
+    </control>
+    <control controlID="231" controlTypeID="com.balsamiq.mockups::Label" x="123" y="680" w="130" h="-1" measuredW="185" measuredH="24" zOrder="48" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>true</bold>
+        <color>0</color>
+        <size>16</size>
+        <text>More%20Application%20Details</text>
+      </controlProperties>
+    </control>
+    <control controlID="232" controlTypeID="com.balsamiq.mockups::Button" x="678" y="1866" w="157" h="27" measuredW="61" measuredH="27" zOrder="49" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>16777215</color>
+        <text>Delete</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
